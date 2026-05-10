@@ -1,0 +1,22 @@
+{
+  "name": "callidus-am-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "extract:articles": "node scripts/extract-articles.mjs",
+    "extract:recommendations": "node scripts/extract-recommendations.mjs",
+    "extract:special": "node scripts/extract-special-pages.mjs",
+    "extract:legal": "node scripts/extract-legal-pages.mjs",
+    "download:media": "node scripts/download-media.mjs",
+    "download:documents": "node scripts/download-documents.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "latest",
+    "astro": "latest"
+  },
+  "devDependencies": {}
+}

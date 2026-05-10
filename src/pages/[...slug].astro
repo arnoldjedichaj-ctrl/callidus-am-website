@@ -1,0 +1,506 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import inventory from '../data/inventory.json';
+import images from '../data/images.json';
+import articles from '../data/articles.json';
+import specialPages from '../data/special-pages.json';
+import legalPages from '../data/legal-pages.json';
+import structure from '../data/site-structure.json';
+import { categoryForLang } from '../data/i18n.js';
+
+const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
+const customSpecialPages = {
+  'nexus-app': {
+    slug: 'nexus-app',
+    kind: 'product',
+    title: 'NEXUS App | KI-Ernährungstracker & Fitness-Coach',
+    hero: 'NEXUS - Ihre persönliche Gesundheits-KI',
+    lead: 'Schluss mit manuellem Tippen. NEXUS kombiniert moderne künstliche Intelligenz mit Ihren Vitaldaten, damit Sie Ernährung, Training, Regeneration und Wohlbefinden wirklich verstehen.',
+    blocks: [
+      { type: 'heading', level: 2, text: 'Lernen Sie NEXUS kennen - Ihre persönliche Gesundheits-KI' },
+      { type: 'paragraph', text: 'Die meisten Fitness-Apps sind lediglich stumme Datenspeicher. Sie zählen Schritte oder Kalorien, erklären Ihnen aber nicht, was das bedeutet. Callidus ändert das.' },
+      { type: 'paragraph', text: 'Im Zentrum unserer App steht NEXUS - eine fortschrittliche KI, die wie ein Expertenteam arbeitet und Ihnen hilft, sich jeden Tag gesünder, fitter und glücklicher zu fühlen.' },
+      { type: 'heading', level: 2, text: 'Das Herzstück: Ihr Expertenrat' },
+      { type: 'paragraph', text: 'Basierend auf Ihren Daten analysiert Nexus Ihre Situation täglich aus vier Perspektiven: Psychologie, Sportwissenschaft, Ernährung und Gesundheitsanalyse.' },
+      { type: 'listItem', text: 'Der Psychologe überwacht Ihr mentales Gleichgewicht und Ihren Stresspegel.' },
+      { type: 'listItem', text: 'Der Sportwissenschaftler optimiert Ihr Training und Ihre Regeneration.' },
+      { type: 'listItem', text: 'Der Ernährungsexperte prüft auf Nährstoffmängel und Ihre Stoffwechselgesundheit.' },
+      { type: 'listItem', text: 'Der Gesundheitsanalyst erkennt Trends und warnt vor Burnout oder Übertraining.' },
+      { type: 'heading', level: 2, text: 'Warum Callidus anders ist' },
+      { type: 'heading', level: 3, text: 'Intelligente Fotoanalyse' },
+      { type: 'paragraph', text: 'Schluss mit dem lästigen Tippen: Fotografieren Sie einfach Ihr Essen. Die KI erkennt das Gericht, schätzt Kalorien und die wichtigsten Nährstoffe und gibt Ihnen sofort Feedback.' },
+      { type: 'heading', level: 3, text: 'KI-Koch und Rezeptgenerator' },
+      { type: 'paragraph', text: 'Sagen Sie Nexus, was in Ihrem Kühlschrank ist. Der KI-Koch erstellt in Sekunden ein personalisiertes Rezept - inklusive Nährwertangaben, Zubereitungsschritten und Express-Option.' },
+      { type: 'heading', level: 3, text: 'Dynamischer Wochenplan' },
+      { type: 'paragraph', text: 'Nexus erstellt jede Woche einen neuen Plan: Erholungsmodus bei Stress, Leistungsmodus für volle Energie oder Stoffwechselbalance für Gewichtsverlust.' },
+      { type: 'heading', level: 3, text: 'Professionelle PDF-Berichte' },
+      { type: 'paragraph', text: 'Erstellen Sie mit nur einem Klick Berichte zu Gesundheitstrends und Nährstoffaufnahme - hilfreich für Arzt, Trainer oder die eigene Übersicht.' },
+      { type: 'heading', level: 2, text: 'Weitere Funktionen' },
+      { type: 'paragraph', text: 'Gamifizierung, Motivation, Chat mit Nexus und eine Wissensbibliothek begleiten Sie im Alltag. Ihre Gesundheitsdaten dienen nur einem Zweck: Ihnen zu helfen.' },
+      { type: 'paragraph', text: 'Hören Sie auf, Daten nur zu sammeln. Beginnen Sie, sie zu verstehen. Holen Sie sich Nexus an Ihre Seite.' },
+    ],
+  },
+  'uber-uns': {
+    slug: 'uber-uns',
+    kind: 'about',
+    title: 'Über uns: Unsere Philosophie & Expertise | callidus A&M',
+    hero: 'Unsere Geschichte: Gesundheit als Herzensangelegenheit',
+    lead: 'Herzlich willkommen bei callidus A&M. Wir sind Arnold und Margarita, die Gesichter und Herzen hinter diesem Projekt.',
+    blocks: [
+      { type: 'heading', level: 2, text: 'Unsere Geschichte: Gesundheit als Herzensangelegenheit' },
+      { type: 'paragraph', text: 'Herzlich willkommen bei callidus A&M. Wir sind Arnold und Margarita, die Gesichter und Herzen hinter diesem Projekt.' },
+      { type: 'paragraph', text: 'Unsere Reise begann nicht mit einem Geschäftsplan, sondern mit einer tiefen persönlichen Überzeugung: dass wahres Wohlbefinden in der Harmonie von Körper, Geist und Seele liegt.' },
+      { type: 'paragraph', text: 'Seit über 5 Jahren beschäftigt sich Margarita intensiv mit Naturheilkunde, ganzheitlicher Ernährung und den kraftvollen Werkzeugen, die uns die Natur zur Verfügung stellt.' },
+      { type: 'paragraph', text: 'Was als private Leidenschaft begann, um die Gesundheit unserer eigenen Familie zu stärken, wurde schnell zur Berufung. Immer wieder wurden wir im Freundes- und Bekanntenkreis um Rat gefragt und sahen, wie groß der Bedarf an verständlichen, ehrlichen und fundierten Informationen ist.' },
+      { type: 'paragraph', text: 'Mit callidus A&M möchten wir dieses Wissen mit Ihnen teilen. Wir sind keine große Firma, sondern eine Familie, die fest daran glaubt, dass jeder die Kontrolle über seine Gesundheit selbst in die Hand nehmen kann.' },
+      { type: 'heading', level: 2, text: 'Unsere Philosophie: Von uns für Sie geprüft' },
+      { type: 'paragraph', text: 'Jedes Produkt, das Sie in unseren Empfehlungen finden, und jeder Ratschlag in unserem Ratgeber hat einen einfachen Ursprung: Wir nutzen und leben es selbst.' },
+      { type: 'paragraph', text: 'Wir bieten nur an, was uns persönlich überzeugt hat und was den höchsten Qualitäts- und BIO-Standards entspricht.' },
+      { type: 'paragraph', text: 'Unser Ziel ist es, Ihr vertrauenswürdiger Kompass in der oft unübersichtlichen Welt der Gesundheitsprodukte zu sein. Wir freuen uns, Sie auf Ihrem Weg zu mehr Wohlbefinden begleiten zu dürfen.' },
+      { type: 'paragraph', text: 'Herzlichst, Arnold & Margarita' },
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  const pathForStatic = (page) => new URL(page.url).pathname;
+  return inventory
+    .filter((page) => page.slug !== 'home' && page.status === 'ok' && pathForStatic(page) !== '/ratgeber/')
+    .filter((page) => !pathForStatic(page).startsWith('/unsere-empfehlungen/'))
+    .map((page) => ({
+      params: { slug: pathForStatic(page).replace(/^\//, '').replace(/\/$/, '') },
+      props: { page },
+    }));
+}
+
+const { page } = Astro.props;
+const article = articles.find((item) => item.slug === page.slug);
+const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
+const legalPage = legalPages.find((item) => item.slug === page.slug);
+const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
+const categoryRedirectPath = categoryRedirect ? `/ratgeber/#${categoryRedirect.slug}` : null;
+const title = categoryRedirect?.title || legalPage?.title || specialPage?.title || page.title || page.h1?.[0] || 'callidus A&M';
+const heroLead = legalPage?.lead || (specialPage?.kind === 'lexicon' ? '' : specialPage?.lead) || page.description;
+const mainImage = article?.image || (page.slug === 'nexus-app' ? imageMap.get(page.images?.[1]) : null) || imageMap.get(page.images?.[1]) || imageMap.get(page.images?.[0]);
+const sectionEyebrow = article
+  ? `${article.readingTime} Min. Lesezeit`
+  : categoryRedirect
+    ? 'Ratgeber'
+    : legalPage
+    ? 'Rechtliches'
+    : specialPage?.kind === 'lexicon'
+      ? 'Lexicon Vitae'
+      : specialPage?.kind === 'product'
+        ? 'NEXUS'
+        : specialPage?.kind === 'about'
+          ? 'Über uns'
+          : specialPage
+            ? 'callidus Bereich'
+            : 'Migration Preview';
+const headings = article?.blocks?.filter((block) => block.type === 'heading').slice(0, 8) || [];
+const slugify = (value) => value.toLowerCase().replace(/[^a-z0-9äöüß]+/gi, '-').replace(/^-|-$/g, '');
+const categorize = (item) => {
+  const haystack = `${item.slug} ${item.title} ${item.description} ${(item.h2 || []).join(' ')}`.toLowerCase();
+  return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
+};
+const rawCategory = article ? categorize(article) : null;
+const category = rawCategory ? categoryForLang(rawCategory, 'de') : null;
+const related = article && rawCategory
+  ? articles.filter((item) => item.slug !== article.slug && categorize(item).slug === rawCategory.slug).slice(0, 3)
+  : [];
+const baseSpecialLinks = specialPage?.links?.filter((link) => link.label && link.href) || [];
+const brevoSignupLink = specialPages
+  .find((item) => item.slug === 'stress-reset-kurs')
+  ?.links?.find((link) => link.href?.includes('sibforms.com'));
+const specialLinks = baseSpecialLinks;
+const youtubeId = (link) => {
+  const source = `${link?.href || ''} ${link?.originalHref || ''}`;
+  return source.match(/(?:watch\?v=|embed\/)([A-Za-z0-9_-]+)/)?.[1];
+};
+const youtubeThumb = (link) => {
+  const id = youtubeId(link);
+  return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+};
+const moduleNumber = (label) => label?.match(/Modul\s+(\d+)/i)?.[1] || (label?.match(/Bonus/i) ? 'bonus' : null);
+const courseModuleCards = ['kurs-mitgliederbereich', 'reset-hub'].includes(page.slug)
+  ? specialLinks
+      .filter((link) => !/Kompendium|Wahre Entlastung/i.test(link.label))
+      .reduce((modules, link) => {
+        const number = moduleNumber(link.label);
+        if (!number) return modules;
+        const existing = modules.find((item) => item.number === number);
+        const entry = existing || { number, title: number === 'bonus' ? 'Bonus' : `Modul ${number}` };
+        if (!existing) modules.push(entry);
+        if (link.type === 'video' || link.href?.includes('youtube.com')) {
+          entry.video = link;
+          entry.thumbnail = youtubeThumb(link);
+          entry.name = link.label.replace(/^Modul\s+\d+\s+-\s+Video\s+|^Bonus\s+-\s+Video\s+/i, '').replace(/^"|"$/g, '');
+        } else if (link.download) {
+          entry.pdf = link;
+          entry.name = entry.name || link.label.replace(/^Modul\s+\d+\s+-\s+PDF\s+/i, '').replace(/^"|"$/g, '');
+        }
+        return modules;
+      }, [])
+      .sort((a, b) => {
+        if (a.number === 'bonus') return 1;
+        if (b.number === 'bonus') return -1;
+        return Number(a.number) - Number(b.number);
+      })
+  : [];
+const courseModuleLinkSet = new Set(courseModuleCards.flatMap((module) => [module.video?.href, module.pdf?.href]).filter(Boolean));
+const courseHeroVideo = ['modul-4', 'modul-5'].includes(page.slug)
+  ? specialLinks.find((link) => link.type === 'video' || link.href?.includes('youtube.com'))
+  : null;
+const displaySpecialLinks = courseHeroVideo
+  ? specialLinks.filter((link) => link !== courseHeroVideo)
+  : specialLinks.filter((link) => !courseModuleLinkSet.has(link.href));
+const resourceTypeLabel = (link) => {
+  if (link.type === 'video' || link.href?.includes('youtube.com')) return 'Video';
+  if (link.href?.includes('sibforms.com')) return 'Brevo';
+  if (link.download) return 'PDF';
+  return link.external ? 'Extern' : 'Weiter';
+};
+const resourceClass = (link) => [
+  'resource-link',
+  link.external ? 'external' : '',
+  link.type === 'video' || link.href?.includes('youtube.com') ? 'video' : '',
+].filter(Boolean).join(' ');
+const resourceRel = (link) => {
+  if (!link.external) return undefined;
+  return link.type === 'video' || link.href?.includes('youtube.com') ? 'noopener' : 'sponsored nofollow noopener';
+};
+const findSpecialLink = (needle) => specialLinks.find((link) => link.href?.includes(needle) || link.label?.includes(needle));
+const purchaseLinkForBlock = (block, index) => {
+  if (specialPage?.kind !== 'course') return null;
+  const text = block.text || '';
+  if (!/Einführungsangebot|EinfÃ¼hrungsangebot|Nur\s+(69|19)/i.test(text)) return null;
+  if (/69/.test(text)) return findSpecialLink('645388');
+  const nearbyText = specialPage.blocks.slice(Math.max(0, index - 4), index + 1).map((item) => item.text || '').join(' ');
+  if (/Modul\s*5/i.test(nearbyText)) return findSpecialLink('645365');
+  if (/Modul\s*4/i.test(nearbyText)) return findSpecialLink('643822');
+  return null;
+};
+const inlineHtml = (value = '') => value
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/~~([^~]+)~~/g, '<s>$1</s>');
+const lexiconIntro = specialPage?.kind === 'lexicon'
+  ? specialPage.blocks.filter((block) => block.type === 'paragraph').slice(0, 3)
+  : [];
+const lexiconSource = specialPages.find((item) => item.kind === 'lexicon');
+const lexiconEntries = lexiconSource?.lexiconEntries || [];
+const textForMatch = (item) => [
+  item?.title,
+  item?.hero,
+  item?.lead,
+  item?.description,
+  ...(item?.blocks || []).map((block) => block.text || ''),
+].join(' ').toLowerCase();
+const lexiconSlug = (entry) => `/lexicon-vitae/#${slugify(entry.term)}`;
+const articleLexiconRefs = article
+  ? lexiconEntries.filter((entry) => textForMatch(article).includes(entry.term.toLowerCase())).slice(0, 8)
+  : [];
+const specialLexiconRefs = specialPage && specialPage.kind !== 'lexicon'
+  ? lexiconEntries.filter((entry) => textForMatch(specialPage).includes(entry.term.toLowerCase())).slice(0, 8)
+  : [];
+const lexiconGroups = specialPage?.kind === 'lexicon'
+  ? Object.entries(
+      (specialPage.lexiconEntries || []).reduce((groups, entry) => {
+        const letter = entry.term.charAt(0).toUpperCase();
+        groups[letter] = groups[letter] || [];
+        groups[letter].push(entry);
+        return groups;
+      }, {})
+    ).sort(([a], [b]) => a.localeCompare(b, 'de'))
+  : [];
+const lexiconUsage = specialPage?.kind === 'lexicon'
+  ? new Map((specialPage.lexiconEntries || []).map((entry) => [
+      entry.term,
+      [
+        ...articles
+          .filter((item) => textForMatch(item).includes(entry.term.toLowerCase()))
+          .slice(0, 4)
+          .map((item) => ({ title: item.title, path: item.path })),
+        ...specialPages
+          .filter((item) => item.slug !== 'lexicon-vitae' && textForMatch(item).includes(entry.term.toLowerCase()))
+          .slice(0, 3)
+          .map((item) => ({ title: item.hero || item.title, path: item.path })),
+      ],
+    ]))
+  : new Map();
+const specialBlockClass = (block) => {
+  const text = block.text || '';
+  if (specialPage?.kind !== 'course') return block.type === 'listItem' ? 'special-list-item' : '';
+  if (/^Der 5-|^JETZT DAS|^Jetzt starten/.test(text)) return 'course-callout';
+  if (/^\d+\./.test(text) || /^Tag \d/.test(text)) return 'course-step';
+  if (/^â€¢|^•/.test(text)) return 'special-list-item course-benefit';
+  if (/RegulÃ¤rer Wert|Ihr persÃ¶nliches|Regulärer Wert|Ihr persönliches/.test(text)) return 'course-price';
+  if (/Wichtiger Hinweis|Hinweis zur Darstellung/.test(text)) return 'course-note';
+  return '';
+};
+const articleJsonLd = article ? {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: page.description || article.description,
+  image: mainImage ? new URL(mainImage, 'https://www.callidus-am.de').href : undefined,
+  inLanguage: 'de-DE',
+  author: { '@type': 'Organization', name: 'callidus A&M' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'callidus A&M',
+    logo: { '@type': 'ImageObject', url: 'https://www.callidus-am.de/favicon.svg' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(page.path || `/${page.slug}/`, 'https://www.callidus-am.de').href },
+} : null;
+---
+<BaseLayout
+  lang="de"
+  alternatePath="/en/guide/"
+  title={title}
+  description={page.description || 'callidus A&M'}
+  ogImage={mainImage}
+  pageType={article ? 'article' : 'website'}
+>
+  {articleJsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)}></script>
+  )}
+  <section class="section">
+    <article class="article-shell">
+      <div class="article-hero">
+        <p class="eyebrow">{sectionEyebrow}</p>
+        <h1>{specialPage?.hero || title}</h1>
+        {heroLead && <p class="lede">{heroLead}</p>}
+        {courseHeroVideo ? (
+          <a class="video-hero-card" href={courseHeroVideo.href} target="_blank" rel="noopener">
+            {youtubeThumb(courseHeroVideo) && <img src={youtubeThumb(courseHeroVideo)} alt="" loading="lazy" />}
+            <span class="video-play" aria-hidden="true">Play</span>
+            <strong>{courseHeroVideo.label}</strong>
+          </a>
+        ) : mainImage && <img class={page.slug === 'nexus-app' ? 'article-image qr-image' : page.slug === 'uber-uns' ? 'article-image about-image' : page.slug === 'stress-reset-kurs' ? 'article-image course-image' : 'article-image'} src={mainImage} alt={title} loading="lazy" decoding="async" />}
+        {article?.media?.length > 0 && (
+          <div class="media-grid" aria-label="Medien zum Artikel">
+            {article.media.map((item) => (
+              <div class="media-card">
+                <span class="badge gold">{item.type === 'audio' ? 'Audio' : 'Video'}</span>
+                <strong>{item.title}</strong>
+                {item.type === 'audio' ? (
+                  <audio controls preload="none" src={item.src}></audio>
+                ) : item.type === 'video' ? (
+                  <video controls preload="metadata" src={item.src}></video>
+                ) : (
+                  <iframe src={item.src} title={item.title} loading="lazy"></iframe>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {categoryRedirectPath ? (
+        <>
+          <script is:inline define:vars={{ categoryRedirectPath }}>
+            window.location.replace(categoryRedirectPath);
+          </script>
+          <div class="notice" style="margin-top: 2rem;">
+            <strong>Kategorie verschoben</strong>
+            <p>Diese Kategorie ist jetzt direkt im Ratgeber integriert, damit keine doppelte Zwischenseite mehr entsteht.</p>
+            <a class="button primary" href={categoryRedirectPath}>Zum Ratgeber</a>
+          </div>
+        </>
+      ) : legalPage ? (
+        <div class="legal-layout">
+          <aside class="toc legal-toc" aria-label="Inhaltsverzeichnis">
+            <span class="badge mint">Dokument</span>
+            {legalPage.sections.filter((section) => section.heading).slice(0, 12).map((section) => (
+              <a href={`#${slugify(section.heading)}`}>{section.heading}</a>
+            ))}
+          </aside>
+          <div class="legal-prose prose">
+            {legalPage.sections.map((section) => (
+              <section id={section.heading ? slugify(section.heading) : undefined}>
+                {section.heading && <h2>{section.heading}</h2>}
+                {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ))}
+            <div class="notice">
+              <strong>Hinweis:</strong>
+              <p>Diese Seite wurde aus der bisherigen callidus-am.de-Seite übernommen. Vor Veröffentlichung bitte einmal rechtlich/inhaltlich gegenprüfen, besonders wenn sich Hosting, Tracking, Newsletter, Zahlungsanbieter oder App-Funktionen ändern.</p>
+            </div>
+          </div>
+        </div>
+      ) : specialPage ? (
+        <>
+          {courseModuleCards.length > 0 && (
+            <section class="course-module-grid" aria-label="Kursmodule">
+              {courseModuleCards.map((module, index) => (
+                <article class={`course-module-card ${module.number === 'bonus' ? 'bonus' : ''}`} data-reveal={String((index % 3) + 1)}>
+                  {module.video && (
+                    <a class="course-module-thumb" href={module.video.href} target="_blank" rel="noopener">
+                      {module.thumbnail && <img src={module.thumbnail} alt="" loading="lazy" />}
+                      <span class="video-play" aria-hidden="true">Play</span>
+                    </a>
+                  )}
+                  <div class="course-module-body">
+                    <span class="badge mint">{module.title}</span>
+                    <h2>{module.name || module.title}</h2>
+                    <div class="course-module-actions">
+                      {module.video && <a class="button primary" href={module.video.href} target="_blank" rel="noopener">Video ansehen</a>}
+                      {module.pdf && <a class="button" href={module.pdf.href} download>PDF öffnen</a>}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
+          {displaySpecialLinks.length > 0 && specialPage.kind !== 'lexicon' && (
+            <section class="resource-strip" aria-label="Ressourcen">
+              {displaySpecialLinks.map((link, index) => (
+                <a class={resourceClass(link)} href={link.href} target={link.external ? '_blank' : undefined} rel={resourceRel(link)} download={link.download ? true : undefined} data-reveal={String((index % 3) + 1)}>
+                  <span>{resourceTypeLabel(link)}</span>
+                  <strong>{link.label}</strong>
+                </a>
+              ))}
+            </section>
+          )}
+          {specialPage.kind === 'lexicon' && specialPage.lexiconEntries?.length > 0 ? (
+            <div class="special-layout special-lexicon">
+              <div class="prose lexicon-intro">
+                {lexiconIntro.map((block) => <p>{block.text}</p>)}
+              </div>
+              <nav class="lexicon-alpha" aria-label="Alphabetische Navigation">
+                {lexiconGroups.map(([letter]) => <a href={`#lexicon-${letter.toLowerCase()}`}>{letter}</a>)}
+              </nav>
+              {lexiconGroups.map(([letter, entries]) => (
+                <section class="lexicon-letter-group" id={`lexicon-${letter.toLowerCase()}`}>
+                  <h2>{letter}</h2>
+                  <div class="lexicon-grid" aria-label={`Lateinische Begriffe mit ${letter}`}>
+                    {entries.map((entry, index) => {
+                      const usage = lexiconUsage.get(entry.term) || [];
+                      return (
+                        <article class="lexicon-card" id={slugify(entry.term)} data-reveal={String((index % 3) + 1)}>
+                          <span class="badge mint">Lexicon</span>
+                          <h3>{entry.term}</h3>
+                          {entry.translation && <p class="lexicon-translation">Deutsch: {entry.translation}</p>}
+                          {entry.description && <p>{entry.description}</p>}
+                          {usage.length > 0 && (
+                            <div class="lexicon-used">
+                              <strong>Verwendet in</strong>
+                              {usage.map((item) => <a href={item.path}>{item.title}</a>)}
+                            </div>
+                          )}
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div class={`special-layout special-${specialPage.kind}`}>
+              <div class="prose">
+                {specialPage.blocks.map((block, index) => {
+                  if (block.type === 'heading') {
+                    const id = slugify(block.text);
+                    return block.level < 3 ? <h2 id={id}>{block.text}</h2> : <h3 id={id}>{block.text}</h3>;
+                  }
+                  const className = specialBlockClass(block);
+                  const purchaseLink = purchaseLinkForBlock(block, index);
+                  if (purchaseLink) {
+                    return (
+                      <div class={`${className || 'course-price'} course-offer-card`}>
+                        <p set:html={inlineHtml(block.text)} />
+                        <a class="button primary" href={purchaseLink.href} target="_blank" rel="sponsored nofollow noopener">{purchaseLink.label}</a>
+                      </div>
+                    );
+                  }
+                  if (block.type === 'listItem' || className) {
+                    return <p class={className || 'special-list-item'} set:html={inlineHtml(block.text)} />;
+                  }
+                  return <p set:html={inlineHtml(block.text)} />;
+                })}
+              </div>
+            </div>
+          )}
+        </>
+      ) : article ? (
+        <>
+          <div class="article-layout">
+            {headings.length > 1 && (
+              <aside class="toc" aria-label="Inhaltsverzeichnis">
+                <span class="badge mint">Inhalt</span>
+                {headings.map((heading) => <a href={`#${slugify(heading.text)}`}>{heading.text}</a>)}
+              </aside>
+            )}
+            <div class="prose">
+              {articleLexiconRefs.length > 0 && (
+                <aside class="lexicon-reference-strip" aria-label="Lateinische Begriffe in diesem Artikel">
+                  <span class="badge mint">Lexicon</span>
+                  {articleLexiconRefs.map((entry) => (
+                    <a href={lexiconSlug(entry)}>{entry.term}</a>
+                  ))}
+                </aside>
+              )}
+              {article.blocks.map((block) => {
+                if (block.type === 'heading') {
+                  const id = slugify(block.text);
+                  return block.level < 3 ? (
+                    <h2 id={id}>{block.text}</h2>
+                  ) : (
+                    <h3 id={id}>{block.text}</h3>
+                  );
+                }
+                if (block.type === 'list') {
+                  return <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
+                }
+                return <p>{block.text}</p>;
+              })}
+              <div class="notice">
+                <strong>Hinweis:</strong>
+                <p>Dieser Gesundheitsartikel ersetzt keine medizinische Beratung. Bei Beschwerden, Medikamenten oder Vorerkrankungen bitte fachlichen Rat einholen.</p>
+              </div>
+            </div>
+          </div>
+          {related.length > 0 && (
+            <section class="related-articles" aria-labelledby="related-heading">
+              <div>
+                <p class="eyebrow">Weiterlesen</p>
+                <h2 id="related-heading">Passende Artikel</h2>
+                {category && <p>Mehr aus dem Bereich {category.title}.</p>}
+              </div>
+              <div class="grid">
+                {related.map((item, index) => (
+                  <a class="card" href={item.path} data-reveal={String((index % 3) + 1)}>
+                    {item.image && <img src={item.image} alt={item.title} loading="lazy" decoding="async" />}
+                    <div class="card-body">
+                      <span class={`badge ${category?.accent || 'mint'}`}>{item.readingTime} Min.</span>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
+      ) : (
+        <>
+          <div class="notice" style="margin-top: 2rem;">
+            <strong>Gesicherte Originalseite:</strong>
+            <p>Der Inhalt dieser URL wurde lokal als HTML archiviert. Diese Seite ist noch nicht als Artikel bereinigt.</p>
+            <a class="button" href={page.url}>Original ansehen</a>
+          </div>
+          {page.h2?.length > 0 && (
+            <section style="margin-top: 2rem;">
+              <h2>Struktur aus der Originalseite</h2>
+              <div class="grid" style="margin-top: 1rem;">
+                {page.h2.slice(0, 8).map((heading) => <div class="card"><div class="card-body"><h3>{heading}</h3></div></div>)}
+              </div>
+            </section>
+          )}
+        </>
+      )}
+    </article>
+  </section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  lang="de"
+  title="Seite nicht gefunden | callidus A&M"
+  description="Diese Seite existiert nicht oder wurde verschoben. Hier geht es zurueck zur Startseite oder zum Ratgeber."
+>
+  <section class="section">
+    <div class="container hero">
+      <div data-reveal>
+        <p class="eyebrow">Fehler 404</p>
+        <h1>Diese Seite konnten wir nicht finden.</h1>
+        <p class="lede">
+          Der Link ist veraltet, falsch geschrieben oder die Seite wurde verschoben.
+          Hier kommen Sie schnell wieder weiter.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/">Zur Startseite</a>
+          <a class="button" href="/ratgeber/">Zum Ratgeber</a>
+          <a class="button" href="/unsere-empfehlungen/">Zu den Empfehlungen</a>
+        </div>
+      </div>
+      <div class="sticky-note" data-reveal="2">
+        <p class="eyebrow">Suchen Sie etwas Bestimmtes?</p>
+        <p>
+          Schreiben Sie uns gern an
+          <a href="mailto:info@callidus-am.de">info@callidus-am.de</a>.
+          Wir helfen Ihnen, den passenden Inhalt zu finden.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

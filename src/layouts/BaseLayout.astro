@@ -1,0 +1,277 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { ui, languages } from '../data/i18n.js';
+import { socialLinks } from '../data/social-links.js';
+import '../styles/global.css';
+
+const {
+  title = 'callidus A&M',
+  description = 'Ganzheitliche Gesundheit, fundiertes Wissen und praktische Impulse für Körper, Geist und Seele.',
+  lang = 'de',
+  alternatePath,
+  ogImage,
+  pageType = 'website',
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
+
+const t = ui[lang] || ui.de;
+const currentPath = Astro.url.pathname;
+const siteOrigin = 'https://www.callidus-am.de';
+const canonicalUrl = new URL(currentPath, siteOrigin).href;
+const switchPath = alternatePath || (lang === 'de' ? '/en/' : '/');
+const switchLang = lang === 'de' ? 'en' : 'de';
+const logoPath = '/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png';
+const socialImage = ogImage || logoPath;
+const absoluteSocialImage = new URL(socialImage, siteOrigin).href;
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'callidus A&M',
+  url: siteOrigin,
+  logo: new URL(logoPath, siteOrigin).href,
+  email: 'info@callidus-am.de',
+  sameAs: [
+    'https://www.instagram.com/callidusam/',
+    'https://www.youtube.com/@callidus-am',
+    'https://www.tiktok.com/@callidusam',
+    'https://www.facebook.com/profile.php?id=61580058447671',
+  ],
+};
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'callidus A&M',
+  url: siteOrigin,
+  inLanguage: lang === 'en' ? 'en-US' : 'de-DE',
+  description,
+};
+const navItems = [
+  { href: t.paths.guide, label: t.nav.guide },
+  { href: t.paths.recommendations, label: t.nav.recommendations },
+  { href: t.paths.course, label: t.nav.course },
+  { href: t.paths.nexus, label: t.nav.nexus },
+  { href: t.paths.manual, label: t.nav.manual },
+  { href: t.paths.lexicon, label: t.nav.lexicon },
+  { href: t.paths.about, label: t.nav.about },
+];
+const socialIcons = {
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle>',
+  youtube: '<path d="M22 12s0-3.4-.44-5.02a2.8 2.8 0 0 0-1.98-1.98C17.86 4.55 12 4.55 12 4.55s-5.86 0-7.58.45a2.8 2.8 0 0 0-1.98 1.98C2 8.6 2 12 2 12s0 3.4.44 5.02a2.8 2.8 0 0 0 1.98 1.98c1.72.45 7.58.45 7.58.45s5.86 0 7.58-.45a2.8 2.8 0 0 0 1.98-1.98C22 15.4 22 12 22 12Z"></path><path d="m10 15 5.2-3L10 9v6Z"></path>',
+  tiktok: '<path d="M15 3c.35 2.6 1.8 4.3 4.4 4.7v3.4a7.7 7.7 0 0 1-4.3-1.3v5.6a5.6 5.6 0 1 1-5.6-5.6c.38 0 .74.04 1.1.12v3.55a2.2 2.2 0 1 0 1.55 2.1V3h2.85Z"></path>',
+  facebook: '<path d="M14 8.5h2.5V5h-2.9C10.4 5 9 6.9 9 9.7V12H6.5v3.6H9V22h4v-6.4h3l.6-3.6H13V9.9c0-.95.32-1.4 1-1.4Z"></path>',
+};
+---
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f7e9" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={lang} href={new URL(currentPath, siteOrigin).href} />
+    <link rel="alternate" hreflang={switchLang} href={new URL(switchPath, siteOrigin).href} />
+    <link rel="alternate" hreflang="x-default" href={siteOrigin + '/'} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href={logoPath} />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'de_DE'} />
+    <meta property="og:site_name" content="callidus A&M" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absoluteSocialImage} />
+    <meta property="og:image:alt" content="callidus A&M" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteSocialImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)}></script>
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('callidus-theme');
+        const theme = stored || 'light';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={t.paths.home} aria-label="callidus A&M">
+        <span class="brand-mark">
+          <img src={logoPath} alt="" width="48" height="48" loading="eager" />
+        </span>
+        <span>
+          <strong>callidus A&M</strong>
+          <small>{t.brandSubline}</small>
+        </span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="header-actions" id="site-menu">
+        <nav class="main-nav" aria-label={t.navLabel}>
+          {navItems.map((item) => (
+            <a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+        <div class="language-switch" aria-label={t.languageLabel}>
+          <span>{lang.toUpperCase()}</span>
+          <a href={switchPath}>{languages[switchLang]}</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Darkmode umschalten" aria-pressed="false">
+          <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+          </svg>
+          <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.5 14.4A8 8 0 0 1 9.6 3.5 8.8 8.8 0 1 0 20.5 14.4Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <p>© callidus A&M. {t.footer}</p>
+        <nav class="social-nav" aria-label={t.socialLabel}>
+          {socialLinks.map((item) => (
+            <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.label} öffnen`} title={item.label}>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={socialIcons[item.icon]} />
+              <strong>{item.label}</strong>
+            </a>
+          ))}
+        </nav>
+      </div>
+      <nav class="legal-nav" aria-label={t.legalLabel}>
+        <a href={t.paths.legal}>{t.legal.imprint}</a>
+        <a href={t.paths.privacy}>{t.legal.privacy}</a>
+        <a href={t.paths.terms}>{t.legal.terms}</a>
+      </nav>
+    </footer>
+    <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis" hidden>
+      <div class="cookie-banner-inner">
+        <div>
+          <strong>Cookies & externe Inhalte</strong>
+          <p>
+            Diese Webseite ist standardmaessig komplett tracking-frei. Erst wenn Sie eingebettete
+            YouTube-Videos oder das Newsletter-Formular laden, werden Cookies und Daten von Drittanbietern uebertragen.
+            Mehr Infos in unserer <a href="/datenschutz/">Datenschutzerklaerung</a>.
+          </p>
+        </div>
+        <div class="cookie-banner-actions">
+          <button type="button" class="button" data-cookie-decline>Nur Notwendige</button>
+          <button type="button" class="button primary" data-cookie-accept>Akzeptieren</button>
+        </div>
+      </div>
+    </div>
+    <button class="back-to-top" type="button" aria-label="Nach oben">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 15 6-6 6 6"></path>
+      </svg>
+    </button>
+    <script is:inline>
+      const revealItems = () => {
+        const items = document.querySelectorAll('[data-reveal]');
+        if (!('IntersectionObserver' in window)) {
+          items.forEach((item) => item.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        items.forEach((item) => observer.observe(item));
+      };
+      revealItems();
+      document.addEventListener('astro:page-load', revealItems);
+
+      const setupNavigation = () => {
+        const header = document.querySelector('.site-header');
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('#site-menu');
+        const backToTop = document.querySelector('.back-to-top');
+        const updateScrollState = () => {
+          header?.classList.toggle('is-scrolled', window.scrollY > 12);
+          backToTop?.classList.toggle('is-visible', window.scrollY > 280);
+        };
+
+        toggle?.addEventListener('click', () => {
+          const isOpen = document.body.classList.toggle('menu-open');
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        menu?.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            document.body.classList.remove('menu-open');
+            toggle?.setAttribute('aria-expanded', 'false');
+          });
+        });
+        backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        updateScrollState();
+        window.addEventListener('scroll', updateScrollState, { passive: true });
+      };
+      setupNavigation();
+      document.addEventListener('astro:page-load', setupNavigation);
+
+      const setupTheme = () => {
+        const toggle = document.querySelector('.theme-toggle');
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const applyTheme = (theme) => {
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem('callidus-theme', theme);
+          toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+          metaTheme?.setAttribute('content', theme === 'dark' ? '#08100d' : '#f5f7e9');
+        };
+        applyTheme(localStorage.getItem('callidus-theme') || document.documentElement.dataset.theme || 'light');
+        if (toggle && !toggle.dataset.themeReady) {
+          toggle.dataset.themeReady = 'true';
+          toggle.addEventListener('click', () => {
+            applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+          });
+        }
+      };
+      setupTheme();
+      document.addEventListener('astro:page-load', setupTheme);
+
+      const COOKIE_KEY = 'callidus-cookie-consent';
+      const setupCookieBanner = () => {
+        const banner = document.querySelector('.cookie-banner');
+        if (!banner || banner.dataset.ready) return;
+        banner.dataset.ready = 'true';
+        const stored = localStorage.getItem(COOKIE_KEY);
+        const apply = (consent) => {
+          document.documentElement.dataset.consent = consent;
+          localStorage.setItem(COOKIE_KEY, consent);
+          banner.hidden = true;
+          window.dispatchEvent(new CustomEvent('callidus-consent', { detail: consent }));
+        };
+        if (!stored) {
+          banner.hidden = false;
+        } else {
+          document.documentElement.dataset.consent = stored;
+        }
+        banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => apply('all'));
+        banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => apply('necessary'));
+      };
+      setupCookieBanner();
+      document.addEventListener('astro:page-load', setupCookieBanner);
+    </script>
+  </body>
+</html>

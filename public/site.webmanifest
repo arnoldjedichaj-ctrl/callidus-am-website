@@ -1,0 +1,12 @@
+{
+  "name": "callidus A&M",
+  "short_name": "callidus A&M",
+  "description": "Ganzheitliche Gesundheit, fundiertes Wissen und praktische Impulse fuer Koerper, Geist und Seele.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7e9",
+  "theme_color": "#838961",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

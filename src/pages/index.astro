@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import inventory from '../data/inventory.json';
+import images from '../data/images.json';
+import articles from '../data/articles.json';
+import specialPages from '../data/special-pages.json';
+import structure from '../data/site-structure.json';
+import { homeCopy, categoryForLang } from '../data/i18n.js';
+
+const lang = 'de';
+const copy = homeCopy[lang];
+const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
+const pages = inventory.filter((page) => page.status === 'ok');
+const heroImage = imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[1]) || imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[0]);
+const logoPath = '/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png';
+const nexusPreviewPath = '/assets/original/006-wp-content-uploads-go-x-u-f0b406a7-c356-4935-99d5-4fa5a26d9ff4-l86-t0-w1000-h1000-image-768x768.png';
+const imageFor = (page) => page.image || heroImage;
+const categorize = (page) => {
+  const haystack = `${page.slug} ${page.title} ${page.description} ${(page.h2 || []).join(' ')}`.toLowerCase();
+  return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
+};
+const featured = ['darmgesundheit-mit-akazienfaser','3-atemtechniken-fur-mehr-energie','gesundheit-im-familien-alltag','die-biologische-uhr-verlangsamen','sport-als-stress-killer','nexus-app']
+  .map((slug) => articles.find((page) => page.slug === slug))
+  .filter(Boolean);
+const categoryCounts = structure.categories.map((category) => ({
+  ...categoryForLang(category, lang),
+  path: `/ratgeber/#${category.slug}`,
+  count: articles.filter((page) => categorize(page).slug === category.slug).length,
+}));
+const compassItems = [
+  { slug: 'geist-seele', position: 'top', shortTitle: 'Geist & Seele' },
+  { slug: 'zukunft-gesundheit', position: 'right', shortTitle: 'Zukunft' },
+  { slug: 'sport-energie', position: 'bottom', shortTitle: 'Sport & Energie' },
+  { slug: 'koerper-ernaehrung', position: 'left', shortTitle: 'Körper & Ernährung' },
+].map((item) => ({
+  ...categoryCounts.find((category) => category.slug === item.slug),
+  position: item.position,
+  shortTitle: item.shortTitle,
+})).filter((item) => item.slug);
+const brevoSignupLink = specialPages
+  .find((page) => page.slug === 'stress-reset-kurs')
+  ?.links?.find((link) => link.href?.includes('sibforms.com'));
+const resources = [
+  brevoSignupLink && {
+    path: brevoSignupLink.href,
+    external: true,
+    kind: 'funnel',
+    badge: 'Gratis',
+    hero: 'Stress-Reset Gratis-Ressourcen freischalten',
+    lead: 'Tragen Sie sich in die E-Mail-Liste ein und erhalten Sie Zugang zu Kompendium, Journal und den ersten Video-Modulen.',
+  }
+].filter(Boolean);
+---
+<BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
+  <section class="section">
+    <div class="container hero">
+      <div data-reveal>
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1>{copy.headline}</h1>
+        <p class="lede">{copy.lede}</p>
+        <div class="actions">
+          <a class="button primary" href="/ratgeber/">{copy.primaryCta}</a>
+        </div>
+      </div>
+      <figure class="logo-hero-visual" data-reveal="2" aria-label="callidus Gesundheits-Kompass">
+        <div class="hero-compass">
+          <div class="compass-ring" aria-hidden="true"></div>
+          <img class="hero-logo" src={logoPath} alt="callidus A&M Logo" width="320" height="320" />
+          <div class="compass-orbit" aria-label="Themenbereiche">
+            {compassItems.map((category) => (
+              <a class={`compass-label compass-${category.position} ${category.accent}`} href={category.path}>
+                <span class="compass-dot" aria-hidden="true"></span>
+                <span>{category.shortTitle}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <h2 data-reveal="2">{copy.orientationHeadline}</h2>
+      <div class="grid" style="margin-top: 1.5rem;">
+        {categoryCounts.map((category, index) => (
+          <a class="card" href={category.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${category.accent}`}>{category.count} {copy.contentLabel}</span>
+              <h3>{category.title}</h3>
+              <p>{category.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <h2>{copy.selectionHeadline}</h2>
+        <p>{copy.selectionText}</p>
+        <a class="button" href="/ratgeber/">{copy.allArticles}</a>
+      </div>
+      <div class="grid featured">
+        {featured.map((page, index) => {
+          const category = categoryForLang(categorize(page), lang);
+          return (
+            <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+              <img src={imageFor(page)} alt={page.title} loading="lazy" decoding="async" />
+              <div class="card-body">
+                <span class={`badge ${category.accent}`}>{category.title}</span>
+                <h3>{page.title}</h3>
+                <p>{page.description}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">{copy.appsEyebrow}</p>
+        <h2>{copy.appsHeadline}</h2>
+        <p class="lede app-cta-text">{copy.appsText}</p>
+      </div>
+      <div class="app-showcase" data-reveal="2">
+        <img src={nexusPreviewPath} alt="NEXUS App Vorschau – KI-Gesundheits-App von callidus A&M" loading="lazy" decoding="async" />
+        <div class="grid app-cards">
+          <a class="card" href="/handbuch/"><div class="card-body"><span class="badge mint">Dokumentation</span><h3>{copy.manualCardTitle}</h3><p>{copy.manualCardText}</p></div></a>
+          <a class="card" href="/nexus-app/"><div class="card-body"><span class="badge gold">Produkt</span><h3>NEXUS App</h3><p>{copy.nexusCardText}</p></div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">Kurse & Ressourcen</p>
+        <h2>Gratis-Ressourcen für den Stress Reset.</h2>
+        <p>Der Einstieg läuft über die E-Mail-Anmeldung. Danach erhalten Sie Zugang zu Kompendium, Journal und den ersten Video-Modulen.</p>
+        <a class="button primary" href="/stress-reset-kurs/">Stress Reset öffnen</a>
+      </div>
+      <div class="grid featured">
+        {resources.map((page, index) => (
+          <a class="card" href={page.path} target={page.external ? '_blank' : undefined} rel={page.external ? 'noopener' : undefined} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class="badge gold">{page.badge || (page.kind === 'lexicon' ? 'Lexicon' : page.kind === 'funnel' ? 'Download' : 'Kurs')}</span>
+              <h3>{page.hero}</h3>
+              <p>{page.lead}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="newsletter">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">Newsletter & Gratis-Download</p>
+        <h2>Das ultimative Vitamin-Kompendium – komplett kostenlos.</h2>
+        <p>
+          Erhalten Sie unser umfassendes 38-seitiges E-Book über alle 13 essenziellen Vitamine.
+          Tragen Sie einfach Ihre E-Mail-Adresse ein und Sie erhalten den Download-Link direkt
+          in Ihr Postfach. Zusätzlich einmal im Monat unser exklusiver Newsletter mit
+          Gesundheits-Tipps und Empfehlungen.
+        </p>
+        <p style="font-size:.85rem;color:var(--muted);">
+          Mit der Anmeldung akzeptieren Sie unsere
+          <a href="/datenschutz/">Datenschutzerklärung</a>. Abmeldung jederzeit per Klick möglich.
+        </p>
+      </div>
+      <div data-reveal="2">
+        <div id="brevo-embed" class="newsletter-placeholder" data-newsletter-embed data-form-url={brevoSignupLink?.href || ''}>
+          <p>Wir laden das Anmeldeformular von Brevo. Bitte stimmen Sie dafür der Datenübertragung an Brevo zu.</p>
+          <button class="button primary" type="button" data-load-newsletter>Formular laden</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const setupNewsletter = () => {
+        const wrapper = document.querySelector('[data-newsletter-embed]');
+        if (!wrapper || wrapper.dataset.ready) return;
+        wrapper.dataset.ready = 'true';
+        const url = wrapper.dataset.formUrl;
+        if (!url) return;
+        const mount = () => {
+          wrapper.innerHTML = '<iframe class="newsletter-embed" src="' + url + '" title="Newsletter-Anmeldung Vitamin-Kompendium" loading="lazy"></iframe>';
+        };
+        const consent = localStorage.getItem('callidus-cookie-consent');
+        if (consent === 'all') {
+          mount();
+          return;
+        }
+        wrapper.querySelector('[data-load-newsletter]')?.addEventListener('click', () => {
+          localStorage.setItem('callidus-cookie-consent', 'all');
+          document.documentElement.dataset.consent = 'all';
+          mount();
+        });
+        window.addEventListener('callidus-consent', (event) => {
+          if (event.detail === 'all') mount();
+        });
+      };
+      setupNewsletter();
+      document.addEventListener('astro:page-load', setupNewsletter);
+    })();
+  </script>
+</BaseLayout>

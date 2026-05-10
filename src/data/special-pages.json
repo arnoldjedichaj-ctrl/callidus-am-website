@@ -1,0 +1,1222 @@
+[
+  {
+    "slug": "bitte-bestaetigen",
+    "path": "/bitte-bestaetigen/",
+    "title": "bitte-bestaetigen",
+    "hero": "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!",
+    "lead": "Vielen Dank für Ihre Anmeldung. Ihr umfassendes Gratis-Paket (Kompendium, Journal & 3 Video-Module) ist fast freigeschaltet. Bitte prüfen Sie jetzt Ihr Postfach. Aus Datenschutzgründen (DSGVO) benötigen wir Ihre einmalige Bestätigung.",
+    "kind": "funnel",
+    "originalUrl": "https://www.callidus-am.de/bitte-bestaetigen/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Öffnen Sie jetzt Ihr E-Mail-Postfach (auch Spam/Werbung prüfen) und klicken Sie auf den Bestätigungslink in der E-Mail mit dem Betreff: \"Ihre Freebies warten – Bestätigung erforderlich\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Sobald Sie bestätigt haben, leiten wir Sie sofort zu Ihrem Download-Hub weiter, wo alle Videos und PDFs für Sie bereitstehen."
+      }
+    ],
+    "links": []
+  },
+  {
+    "slug": "download",
+    "path": "/download/",
+    "title": "Download Vitamin Kompensium",
+    "hero": "Herzlichen Dank für Ihre Anmeldung!",
+    "lead": "Hier ist Ihr versprochenes Vitamin-Kompendium. Klicken Sie einfach auf den Button, um den Download zu starten.",
+    "kind": "funnel",
+    "originalUrl": "https://www.callidus-am.de/download/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Herzlichen Dank für Ihre Anmeldung!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hier ist Ihr versprochenes Vitamin-Kompendium. Klicken Sie einfach auf den Button, um den Download zu starten."
+      }
+    ],
+    "links": [
+      {
+        "href": "/assets/documents/001-vitamin-kompendium.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/5bfcd058-1ef1-4b53-b4ab-4c33fba80075/Vitamin-Kompendium.pdf",
+        "label": "Download \"Vitam Kompendium\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/002-klangfrequenzen--meditation-gesundheit-anwendung.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/4d1db03f-0728-410b-8aac-a4347c79cea5/Klangfrequenzen_-Meditation-Gesundheit-Anwendung.pdf",
+        "label": "Download Bonus \"Klangfrequenzen Kompendium\"",
+        "external": false,
+        "download": true
+      }
+    ]
+  },
+  {
+    "slug": "kurs-mitgliederbereich",
+    "path": "/kurs-mitgliederbereich/",
+    "title": "kurs-mitgliederbereich",
+    "hero": "WILLKOMMEN IM 7-TAGE STRESS-RESET: IHR VOLLER ZUGANG IST FREIGESCHALTET.",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "kind": "course",
+    "originalUrl": "https://www.callidus-am.de/kurs-mitgliederbereich/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "WILLKOMMEN IM 7-TAGE STRESS-RESET: IHR VOLLER ZUGANG IST FREIGESCHALTET."
+      },
+      {
+        "type": "paragraph",
+        "text": "Gratulation zur besten Investition in Ihre mentale Klarheit! Hier finden Sie alle 7 Module, die zugehörigen PDFs und Ihren Zukunftsanker-Bonus. Wir empfehlen, die Module Tag für Tag durchzugehen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Reset-Knopf: Sofort aus dem Stressmodus kommen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Wahrnehmen statt Reagieren: Reize bewusst verarbeiten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ankommen im Körper: Spannung lösen, Präsenz gewinnen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sprache & Selbstbild : Innere Worte verändern den Alltag."
+      },
+      {
+        "type": "paragraph",
+        "text": "Loslassen: Kontrolle abgeben und regenerieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Energie tanken: Bewegung & Atem für Vitalität."
+      },
+      {
+        "type": "paragraph",
+        "text": "Balance leben: Ruhe dauerhaft integrieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "BONUS: Der Zukunftsanker: Verankern Sie die Erfolge emotional, damit die Klarheit und Ruhe Sie dauerhaft begleiten."
+      },
+      {
+        "type": "paragraph",
+        "text": "BONUS: Atemübung für Fortgeschrittene"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+      }
+    ],
+    "links": [
+      {
+        "href": "/assets/documents/003-wahre-entlastung.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/73d16680-1d51-4453-88c1-c44111a756ec/Wahre-Entlastung.pdf",
+        "label": "Kompendium - PDF \"Wahre Entlastung\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/004-modul-1-stress-reset-journal.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/0a8e35e3-a382-4c1c-b7e9-bc1f5f49745e/Modul-1-Stress-Reset-Journal.pdf",
+        "label": "Modul 1 - PDF \"Stress Reset Journal\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/005-modul-2-compressed.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/864f90f8-f978-4246-960f-76a882d48d55/Modul-2_compressed.pdf",
+        "label": "Modul 2 - PDF \"Morgen-Mindset\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/006-modul-3-fokus-und-klarjeit.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/4dd957be-e19c-44f5-a4ae-91a94b9e98dd/Modul-3-Fokus-und-Klarjeit.pdf",
+        "label": "Modul 3 - PDF \"Fokus & Klarheit\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/007-modul-4-fokus-auf-sprache-und-selbstbild.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/f08cf862-2a92-4034-ba93-c0bfbc28a9ad/Modul-4-Fokus-auf-Sprache-und-Selbstbild.pdf",
+        "label": "Modul 4 - PDF \"Fokus auf Sprache & Selbstbild\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/008-modul-5-loslassen.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/ba1ec5f1-11ce-4b00-9f87-cd413a0c8533/Modul-5-Loslassen.pdf",
+        "label": "Modul 5 - PDF \"Loslassen\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/009-modul-6-compressed.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/c1cf837e-3e0e-4bd9-966c-5fa311c00675/Modul-6_compressed.pdf",
+        "label": "Modul 6 - PDF \"Energie tanken\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/010-modul-7-compressed.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/8f50ea0e-b2e8-443a-aeb5-4692451536ed/Modul-7_compressed.pdf",
+        "label": "Modul 7 - PDF \"Balance leben\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=cyjxJZaLM4k",
+        "originalHref": "https://www.youtube.com/embed/cyjxJZaLM4k",
+        "label": "Modul 1 - Video \"Der Reset-Knopf\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=cvIIAgtsUH4",
+        "originalHref": "https://www.youtube.com/embed/cvIIAgtsUH4",
+        "label": "Modul 2 - Video \"Wahrnehmen statt Reagieren\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=NkYzOAEmpfY",
+        "originalHref": "https://www.youtube.com/embed/NkYzOAEmpfY",
+        "label": "Modul 3 - Video \"Ankommen im Koerper\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=WeGmEGYwqEw",
+        "originalHref": "https://www.youtube.com/embed/WeGmEGYwqEw",
+        "label": "Modul 4 - Video \"Sprache & Selbstbild\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=yiZgKN5F3YY",
+        "originalHref": "https://www.youtube.com/embed/yiZgKN5F3YY",
+        "label": "Modul 5 - Video \"Loslassen\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=ZfGdQT1F1PM",
+        "originalHref": "https://www.youtube.com/embed/ZfGdQT1F1PM",
+        "label": "Modul 6 - Video \"Energie tanken\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=N0J5DA9g2wk",
+        "originalHref": "https://www.youtube.com/embed/N0J5DA9g2wk",
+        "label": "Modul 7 - Video \"Balance leben\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=90OeLwvQEkM",
+        "originalHref": "https://www.youtube.com/embed/90OeLwvQEkM",
+        "label": "Bonus - Video \"Zukunftsanker\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "slug": "lexicon-vitae",
+    "path": "/lexicon-vitae/",
+    "title": "Glossarium callidus A&M",
+    "hero": "Lexicon Vitae – Das Wörterbuch des Lebens von callidus A&M",
+    "lead": "Acumen Mentis",
+    "kind": "lexicon",
+    "originalUrl": "https://www.callidus-am.de/lexicon-vitae/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "Lexicon Vitae – Das Wörterbuch des Lebens von callidus A&M"
+      },
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "Willkommen im Lexicon Vitae von callidus A&M!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wir bei callidus A&M glauben an die zeitlose Weisheit, die in vielen Kulturen und Epochen zu finden ist."
+      },
+      {
+        "type": "paragraph",
+        "text": "Die lateinische Sprache, reich an prägnanten und tiefsinnigen Begriffen, dient uns als Brücke, um die Essenz unserer ganzheitlichen Ansätze zu verdeutlichen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hier finden Sie Erklärungen zu den lateinischen Ausdrücken, die wir auf unserer Reise zu mehr Wohlbefinden verwenden – als Ihr Consilium Certum (sicherer Rat) auf dem Via Ad Salutem (Weg zur Gesundheit)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Geistige Schärfe, Scharfsinn Dieser Begriff beschreibt die Fähigkeit des Geistes, schnell und präzise zu denken, komplexe Zusammenhänge zu erkennen und klare Entscheidungen zu treffen. Ein Ziel unseres ganzheitlichen Ansatzes für geistige Klarheit.."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gleichgewicht des Lebens, Lebensbalance"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieser Ausdruck beschreibt den optimalen Zustand der Harmonie zwischen den zentralen Lebensbereichen – dem gesunden Körper ( Corpus Sanum ), dem klaren Geist ( Mens Sana ) und der gepflegten Seele ( Spiritus Sanus ). Das Streben nach Balans Vitae ist der Kern unseres ganzheitlichen Ansatzes, um Burnout zu vermeiden und dauerhafte Vitalität zu sichern."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Klug, gewandt, geschickt, erfahren Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir Ihnen bieten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesunde Nahrung Dieser Ausdruck fasst unsere Überzeugung zusammen, dass die richtige und bewährte Ernährung der Grundstein für körperliches Wohlbefinden und langanhaltende Vitalität ist. Ein zentraler Pfeiler unserer Kategorie \"Körper & Ernährung\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Bewusstes Handeln, bewusste Tätigkeit"
+      },
+      {
+        "type": "paragraph",
+        "text": "Conscientia Acta steht für die Fähigkeit, Entscheidungen und Aktivitäten nicht aus der Gewohnheit oder im Autopiloten heraus zu treffen, sondern mit voller Achtsamkeit und Präsenz. Dieser Begriff ist fundamental für die Umsetzung neuer, gesunder Gewohnheiten und hilft, den ständigen Impulsen des Murmur Interius entgegenzuwirken."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Sicherer Rat, bewährte Empfehlung Wir bei callidus A&M sind bestrebt, Ihnen stets fundiertes Wissen und verlässliche Ratschläge zu bieten, denen Sie vertrauen können – geprüft und erprobt auf dem Weg zu Ihrem Wohlbefinden."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesunder Körper Dieser Ausdruck bildet zusammen mit \"Mens Sana\" die Essenz unseres ganzheitlichen Ansatzes. Er betont die Bedeutung eines starken, vitalen und gut versorgten Körpers als Basis für Gesundheit und Lebensfreude."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Geschenk des Herzens Dieser Begriff, den wir im Kontext der Dankbarkeit verwenden, symbolisiert die positive innere Haltung und die emotionalen Vorteile, die durch ein dankbares Herz entstehen – ein wahres Geschenk an sich selbst und andere."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesteigerter Fokus, erhöhte Konzentration Dieser Ausdruck beschreibt den Zustand erhöhter mentaler Klarheit und die Fähigkeit, sich auf Wesentliches zu konzentrieren. Ein wichtiges Ziel bei Themen wie Digitalem Detox und Achtsamkeit."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Starker Geist, Mut Dieser Ausdruck steht für innere Stärke, mentale Widerstandsfähigkeit und den Mut, Herausforderungen zu begegnen. Er reflektiert auch die vitalisierende Wirkung, die ein gut versorgter Körper (z.B. durch Vitamin D) auf unsere Psyche haben kann."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Starker Körper Ein direkter und klarer Ausdruck für die körperliche Stärke, Fitness und Belastbarkeit, die wir durch Bewegung, richtige Ernährung und Prävention anstreben."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Dankbarkeit des Geistes/der Seele Dieser Begriff hebt die tiefe, seelische Dimension der Dankbarkeit hervor, die über das bloße \"Dankeschön\" hinausgeht und eine fundamentale positive Haltung im Leben kultiviert."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Neuanfang, neues Projekt, Beginn Dieser Ausdruck motiviert dazu, alte Gewohnheiten zu überdenken und mutig neue Wege zu beschreiten – sei es in der Ernährung, Bewegung oder mentalen Ausrichtung."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Leichter Beginn Betont, dass große Veränderungen oft mit kleinen, machbaren Schritten beginnen. Der perfekte Ausdruck für unsere Philosophie, den Einstieg in neue Gewohnheiten zu erleichtern."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Innovation des Lebens, Erneuerung des Lebens Dieser Begriff spiegelt unseren Anspruch wider, nicht nur auf etabliertes Wissen zu setzen, sondern auch neue Erkenntnisse und innovative Ansätze für ein gesünderes und erfüllteres Leben zu präsentieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Leichtigkeit des Geistes Beschreibt den Zustand, in dem der Geist frei von unnötiger Last, Sorgen oder Überforderung ist. Ein Ziel im Umgang mit dem \"unsichtbaren Full-Time-Job\" und mentaler Entlastung."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Mentale Freiheit Dieser zentrale Begriff steht für die Fähigkeit, die Kontrolle über die eigenen Gedanken zu übernehmen, limitierende Glaubenssätze zu überwinden und ein selbstbestimmtes, ungebundenes mentales Leben zu führen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesunder Geist Der klassische Ausdruck für einen klaren, ausgewogenen und widerstandsfähigen Geist. Er bildet die zweite Säule unseres ganzheitlichen Ansatzes, zusammen mit \"Corpus Sanum\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Inneres Murmeln, Raunen Dieser Ausdruck bezieht sich auf den ständigen inneren Monolog und die oft unbewussten Gedankenströme, die unser Handeln und Fühlen beeinflussen. Ein Schlüssel zum Verständnis unseres Mindsets."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen Ihres ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung Ihrer Zukunft. Es ist der Mittelpunkt, der all Ihre Bemühungen vereint und Ihnen hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll Ihnen als digitaler Nexus dienen, um alle Aspekte Ihrer persönlichen Entwicklung zu vernetzen."
+      },
+      {
+        "type": "paragraph",
+        "text": "------&gt; In Entwicklung &lt;------"
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Frieden des Geistes, Seelenfrieden Beschreibt einen Zustand tiefer innerer Ruhe und Gelassenheit, frei von inneren Konflikten und äußerer Unruhe. Ein erstrebenswertes Ziel durch Achtsamkeit und mentale Resets."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Zellschutz Dieser Ausdruck präzisiert die schützende Funktion bestimmter Nährstoffe, insbesondere Antioxidantien wie Vitamin E, die unsere Zellen vor Schäden bewahren und die Alterungsprozesse verlangsamen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Ich blicke voraus, ich schaue nach vorne Ein Begriff, der unsere Zukunftsorientierung unterstreicht. Es geht darum, proaktiv und vorausschauend die Weichen für eine gesunde und erfüllte Zukunft zu stellen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Kraft der Natur, Stärke der Natur Dieser Ausdruck würdigt die heilenden und stärkenden Kräfte, die in der Natur liegen – sei es durch Heilpflanzen wie Ashwagandha, natürliche Ernährung oder Bewegung an der frischen Luft."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Mentale Widerstandsfähigkeit, Elastizität des Geistes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Abgeleitet vom lateinischen resilire (zurückspringen), bezeichnet Resilientia Animi die innere Stärke und psychische Robustheit. Diese Fähigkeit ermöglicht es uns, Herausforderungen, Rückschlägen und Krisen nicht nur standzuhalten, sondern gestärkt daraus hervorzugehen. Sie ist der Schlüssel zur langfristigen Bewahrung von Pax Mentis in einer volatilen Welt."
+      },
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "Resonantia Telluris"
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Resonanz der Erde, Erd-Resonanz"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieser Ausdruck bezieht sich auf die natürliche elektromagnetische Schwingung der Erde (die Schumann-Resonanz ). Wir verwenden diesen Begriff, um die tiefe Verbindung zwischen unserem Wohlbefinden und den natürlichen Rhythmen der Erde zu verdeutlichen, deren Frequenz einen idealen Zustand der Entspannung im Gehirn fördern kann."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesundheit, Wohlbefinden, Heil"
+      },
+      {
+        "type": "paragraph",
+        "text": "Salus bezeichnet nicht nur die Abwesenheit von Krankheit, sondern den umfassenden Zustand des ganzheitlichen Wohlbefindens auf körperlicher, geistiger und seelischer Ebene. Unser Via Ad Salutem (Weg zur Gesundheit) ist auf die Erreichung dieses vitalen, umfassenden Zustands ausgerichtet, der über die bloße Fitness hinausgeht."
+      },
+      {
+        "type": "paragraph",
+        "text": "Salus war die römische Göttin der Sicherheit, des Wohlergehens und des Wohlstands, sowohl für Einzelpersonen als auch für den Staat."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Weisheit, Wissen, Einsicht Ein fundamentaler Wert bei callidus A&M. Wir möchten Ihnen nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die Ihr Leben bereichern."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Unbesiegte Sonne Ein kraftvoller, altertümlicher Ausdruck, der sich perfekt als poetischer Beiname für Vitamin D eignet, da dieses Vitamin durch die Kraft der Sonne in uns aktiviert wird und uns stärkt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Gesunder Geist/Seele S ynonym zu Mens Sana, betont es die lebendige, atmende Essenz unseres innersten Seins und die Bedeutung seiner Pflege."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Der Zustand wie zuvor, der ursprüngliche Zustand Im Kontext unserer Artikel steht dies für die Rückkehr zu einem Zustand der Ruhe, Klarheit und Balance, den wir durch mentale Resets wiederherstellen können."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Wellen des Geistes, Gehirnwellen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieser Begriff fasst die verschiedenen Schwingungsmuster des Gehirns zusammen (wie Alpha, Theta und Delta), die mit unterschiedlichen Bewusstseinszuständen (Entspannung, Meditation, Schlaf) korrespondieren. Die bewusste Beeinflussung der Undae Mentis – beispielsweise durch Klangfrequenzen – ist ein zentrales Werkzeug zur mentalen Neuprogrammierung und Stressreduktion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Weg zur Gesundheit, Pfad zum Wohlbefinden Dieser Ausdruck symbolisiert die Reise, auf die wir unsere Leser und Klienten begleiten – einen individuellen und ganzheitlichen Weg zu mehr Gesundheit und Lebensqualität."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Lebenskraft, Vitalität des Lebens Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die Sie jeden Tag spüren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Deutsch: Scharfe Sicht, scharfes Sehvermögen Präzisiert die Rolle bestimmter Nährstoffe, wie Vitamin A, die für eine optimale Augengesundheit und Sehkraft unerlässlich sind."
+      }
+    ],
+    "links": [
+      {
+        "href": "https://nexus-am.glide.page",
+        "originalHref": "https://nexus-am.glide.page",
+        "label": "Nexus",
+        "external": true,
+        "download": false
+      }
+    ],
+    "lexiconEntries": [
+      {
+        "term": "Acumen Mentis",
+        "translation": "Geistige Schärfe, Scharfsinn",
+        "description": "Dieser Begriff beschreibt die Fähigkeit des Geistes, schnell und präzise zu denken, komplexe Zusammenhänge zu erkennen und klare Entscheidungen zu treffen. Ein Ziel unseres ganzheitlichen Ansatzes für geistige Klarheit.."
+      },
+      {
+        "term": "Balans Vitae",
+        "translation": "Gleichgewicht des Lebens, Lebensbalance",
+        "description": "Dieser Ausdruck beschreibt den optimalen Zustand der Harmonie zwischen den zentralen Lebensbereichen – dem gesunden Körper ( Corpus Sanum ), dem klaren Geist ( Mens Sana ) und der gepflegten Seele ( Spiritus Sanus ). Das Streben nach Balans Vitae ist der Kern unseres ganzheitlichen Ansatzes, um Burnout zu vermeiden und dauerhafte Vitalität zu sichern."
+      },
+      {
+        "term": "Callidus",
+        "translation": "Klug, gewandt, geschickt, erfahren",
+        "description": "Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir Ihnen bieten."
+      },
+      {
+        "term": "Cibus Sanus",
+        "translation": "Gesunde Nahrung",
+        "description": "Dieser Ausdruck fasst unsere Überzeugung zusammen, dass die richtige und bewährte Ernährung der Grundstein für körperliches Wohlbefinden und langanhaltende Vitalität ist. Ein zentraler Pfeiler unserer Kategorie \"Körper & Ernährung\"."
+      },
+      {
+        "term": "Conscientia Acta",
+        "translation": "Bewusstes Handeln, bewusste Tätigkeit",
+        "description": "Conscientia Acta steht für die Fähigkeit, Entscheidungen und Aktivitäten nicht aus der Gewohnheit oder im Autopiloten heraus zu treffen, sondern mit voller Achtsamkeit und Präsenz. Dieser Begriff ist fundamental für die Umsetzung neuer, gesunder Gewohnheiten und hilft, den ständigen Impulsen des Murmur Interius entgegenzuwirken."
+      },
+      {
+        "term": "Consilium Certum",
+        "translation": "Sicherer Rat, bewährte Empfehlung",
+        "description": "Wir bei callidus A&M sind bestrebt, Ihnen stets fundiertes Wissen und verlässliche Ratschläge zu bieten, denen Sie vertrauen können – geprüft und erprobt auf dem Weg zu Ihrem Wohlbefinden."
+      },
+      {
+        "term": "Corpus Sanum",
+        "translation": "Gesunder Körper",
+        "description": "Dieser Ausdruck bildet zusammen mit \"Mens Sana\" die Essenz unseres ganzheitlichen Ansatzes. Er betont die Bedeutung eines starken, vitalen und gut versorgten Körpers als Basis für Gesundheit und Lebensfreude."
+      },
+      {
+        "term": "Donum Cordis",
+        "translation": "Geschenk des Herzens",
+        "description": "Dieser Begriff, den wir im Kontext der Dankbarkeit verwenden, symbolisiert die positive innere Haltung und die emotionalen Vorteile, die durch ein dankbares Herz entstehen – ein wahres Geschenk an sich selbst und andere."
+      },
+      {
+        "term": "Focus Auctus",
+        "translation": "Gesteigerter Fokus, erhöhte Konzentration",
+        "description": "Dieser Ausdruck beschreibt den Zustand erhöhter mentaler Klarheit und die Fähigkeit, sich auf Wesentliches zu konzentrieren. Ein wichtiges Ziel bei Themen wie Digitalem Detox und Achtsamkeit."
+      },
+      {
+        "term": "Fortis Animus",
+        "translation": "Starker Geist, Mut",
+        "description": "Dieser Ausdruck steht für innere Stärke, mentale Widerstandsfähigkeit und den Mut, Herausforderungen zu begegnen. Er reflektiert auch die vitalisierende Wirkung, die ein gut versorgter Körper (z.B. durch Vitamin D) auf unsere Psyche haben kann."
+      },
+      {
+        "term": "Fortis Corpus",
+        "translation": "Starker Körper",
+        "description": "Ein direkter und klarer Ausdruck für die körperliche Stärke, Fitness und Belastbarkeit, die wir durch Bewegung, richtige Ernährung und Prävention anstreben."
+      },
+      {
+        "term": "Gratia Animi",
+        "translation": "Dankbarkeit des Geistes/der Seele",
+        "description": "Dieser Begriff hebt die tiefe, seelische Dimension der Dankbarkeit hervor, die über das bloße \"Dankeschön\" hinausgeht und eine fundamentale positive Haltung im Leben kultiviert."
+      },
+      {
+        "term": "Inceptum Novum",
+        "translation": "Neuanfang, neues Projekt, Beginn",
+        "description": "Dieser Ausdruck motiviert dazu, alte Gewohnheiten zu überdenken und mutig neue Wege zu beschreiten – sei es in der Ernährung, Bewegung oder mentalen Ausrichtung."
+      },
+      {
+        "term": "Initium Facile",
+        "translation": "Leichter Beginn Betont, dass große Veränderungen oft mit kleinen, machbaren Schritten beginnen. Der perfekte Ausdruck für unsere Philosophie, den Einstieg in neue Gewohnheiten zu erleichtern.",
+        "description": ""
+      },
+      {
+        "term": "Innovatio Vitae",
+        "translation": "Innovation des Lebens, Erneuerung des Lebens",
+        "description": "Dieser Begriff spiegelt unseren Anspruch wider, nicht nur auf etabliertes Wissen zu setzen, sondern auch neue Erkenntnisse und innovative Ansätze für ein gesünderes und erfüllteres Leben zu präsentieren."
+      },
+      {
+        "term": "Levitas Animi",
+        "translation": "Leichtigkeit des Geistes Beschreibt den Zustand, in dem der Geist frei von unnötiger Last, Sorgen oder Überforderung ist.",
+        "description": "Ein Ziel im Umgang mit dem \"unsichtbaren Full-Time-Job\" und mentaler Entlastung."
+      },
+      {
+        "term": "Libertas Mentis",
+        "translation": "Mentale Freiheit",
+        "description": "Dieser zentrale Begriff steht für die Fähigkeit, die Kontrolle über die eigenen Gedanken zu übernehmen, limitierende Glaubenssätze zu überwinden und ein selbstbestimmtes, ungebundenes mentales Leben zu führen."
+      },
+      {
+        "term": "Mens Sana",
+        "translation": "Gesunder Geist Der klassische Ausdruck für einen klaren, ausgewogenen und widerstandsfähigen Geist. Er bildet die zweite Säule unseres ganzheitlichen Ansatzes, zusammen mit \"Corpus Sanum\".",
+        "description": ""
+      },
+      {
+        "term": "Murmur Interius",
+        "translation": "Inneres Murmeln, Raunen",
+        "description": "Dieser Ausdruck bezieht sich auf den ständigen inneren Monolog und die oft unbewussten Gedankenströme, die unser Handeln und Fühlen beeinflussen. Ein Schlüssel zum Verständnis unseres Mindsets."
+      },
+      {
+        "term": "Nexus",
+        "translation": "Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen Ihres ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung Ihrer Zukunft. Es ist der Mittelpunkt, der all Ihre Bemühungen vereint und Ihnen hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll Ihnen als digitaler Nexus dienen, um alle Aspekte Ihrer persönlichen Entwicklung zu vernetzen.",
+        "description": "------&gt; In Entwicklung &lt;------"
+      },
+      {
+        "term": "Pax Mentis",
+        "translation": "Frieden des Geistes, Seelenfrieden Beschreibt einen Zustand tiefer innerer Ruhe und Gelassenheit, frei von inneren Konflikten und äußerer Unruhe.",
+        "description": "Ein erstrebenswertes Ziel durch Achtsamkeit und mentale Resets."
+      },
+      {
+        "term": "Protego Cellula",
+        "translation": "Zellschutz",
+        "description": "Dieser Ausdruck präzisiert die schützende Funktion bestimmter Nährstoffe, insbesondere Antioxidantien wie Vitamin E, die unsere Zellen vor Schäden bewahren und die Alterungsprozesse verlangsamen."
+      },
+      {
+        "term": "Prospicio",
+        "translation": "Ich blicke voraus, ich schaue nach vorne",
+        "description": "Ein Begriff, der unsere Zukunftsorientierung unterstreicht. Es geht darum, proaktiv und vorausschauend die Weichen für eine gesunde und erfüllte Zukunft zu stellen."
+      },
+      {
+        "term": "Robur Naturae",
+        "translation": "Kraft der Natur, Stärke der Natur",
+        "description": "Dieser Ausdruck würdigt die heilenden und stärkenden Kräfte, die in der Natur liegen – sei es durch Heilpflanzen wie Ashwagandha, natürliche Ernährung oder Bewegung an der frischen Luft."
+      },
+      {
+        "term": "Resilientia Animi",
+        "translation": "Mentale Widerstandsfähigkeit, Elastizität des Geistes",
+        "description": "Abgeleitet vom lateinischen resilire (zurückspringen), bezeichnet Resilientia Animi die innere Stärke und psychische Robustheit. Diese Fähigkeit ermöglicht es uns, Herausforderungen, Rückschlägen und Krisen nicht nur standzuhalten, sondern gestärkt daraus hervorzugehen. Sie ist der Schlüssel zur langfristigen Bewahrung von Pax Mentis in einer volatilen Welt."
+      },
+      {
+        "term": "Resonantia Telluris",
+        "translation": "Resonanz der Erde, Erd-Resonanz",
+        "description": "Dieser Ausdruck bezieht sich auf die natürliche elektromagnetische Schwingung der Erde (die Schumann-Resonanz ). Wir verwenden diesen Begriff, um die tiefe Verbindung zwischen unserem Wohlbefinden und den natürlichen Rhythmen der Erde zu verdeutlichen, deren Frequenz einen idealen Zustand der Entspannung im Gehirn fördern kann."
+      },
+      {
+        "term": "Salus",
+        "translation": "Gesundheit, Wohlbefinden, Heil",
+        "description": "Salus bezeichnet nicht nur die Abwesenheit von Krankheit, sondern den umfassenden Zustand des ganzheitlichen Wohlbefindens auf körperlicher, geistiger und seelischer Ebene. Unser Via Ad Salutem (Weg zur Gesundheit) ist auf die Erreichung dieses vitalen, umfassenden Zustands ausgerichtet, der über die bloße Fitness hinausgeht. Römische Göttin: Salus war die römische Göttin der Sicherheit, des Wohlergehens und des Wohlstands, sowohl für Einzelpersonen als auch für den Staat."
+      },
+      {
+        "term": "Sapientia",
+        "translation": "Weisheit, Wissen, Einsicht",
+        "description": "Ein fundamentaler Wert bei callidus A&M. Wir möchten Ihnen nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die Ihr Leben bereichern."
+      },
+      {
+        "term": "Sol Invictus",
+        "translation": "Unbesiegte Sonne",
+        "description": "Ein kraftvoller, altertümlicher Ausdruck, der sich perfekt als poetischer Beiname für Vitamin D eignet, da dieses Vitamin durch die Kraft der Sonne in uns aktiviert wird und uns stärkt."
+      },
+      {
+        "term": "Spiritus Sanus",
+        "translation": "Gesunder Geist/Seele S ynonym zu Mens Sana, betont es die lebendige, atmende Essenz unseres innersten Seins und die Bedeutung seiner Pflege.",
+        "description": ""
+      },
+      {
+        "term": "Status Quo Ante",
+        "translation": "Der Zustand wie zuvor, der ursprüngliche Zustand Im Kontext unserer Artikel steht dies für die Rückkehr zu einem Zustand der Ruhe, Klarheit und Balance, den wir durch mentale Resets wiederherstellen können.",
+        "description": ""
+      },
+      {
+        "term": "Undae Mentis",
+        "translation": "Wellen des Geistes, Gehirnwellen",
+        "description": "Dieser Begriff fasst die verschiedenen Schwingungsmuster des Gehirns zusammen (wie Alpha, Theta und Delta), die mit unterschiedlichen Bewusstseinszuständen (Entspannung, Meditation, Schlaf) korrespondieren. Die bewusste Beeinflussung der Undae Mentis – beispielsweise durch Klangfrequenzen – ist ein zentrales Werkzeug zur mentalen Neuprogrammierung und Stressreduktion."
+      },
+      {
+        "term": "Via Ad Salutem",
+        "translation": "Weg zur Gesundheit, Pfad zum Wohlbefinden",
+        "description": "Dieser Ausdruck symbolisiert die Reise, auf die wir unsere Leser und Klienten begleiten – einen individuellen und ganzheitlichen Weg zu mehr Gesundheit und Lebensqualität."
+      },
+      {
+        "term": "Vigor Vitae",
+        "translation": "Lebenskraft, Vitalität des Lebens",
+        "description": "Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die Sie jeden Tag spüren."
+      },
+      {
+        "term": "Visus Acutus",
+        "translation": "Scharfe Sicht, scharfes Sehvermögen Präzisiert die Rolle bestimmter Nährstoffe, wie Vitamin A, die für eine optimale Augengesundheit und Sehkraft unerlässlich sind.",
+        "description": "YouTube-Video YouTube-Video"
+      }
+    ]
+  },
+  {
+    "slug": "modul-4",
+    "path": "/modul-4/",
+    "title": "Modul 4",
+    "hero": "🗣️ Modul 4 – Fokus auf Sprache & Selbstbild",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "kind": "course",
+    "originalUrl": "https://www.callidus-am.de/modul-4/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "🗣️ Modul 4 – Fokus auf Sprache & Selbstbild"
+      },
+      {
+        "type": "paragraph",
+        "text": "🔹 „Sprache & Selbstbild – Wie Worte dein Wohlgefühl formen“"
+      },
+      {
+        "type": "paragraph",
+        "text": "Worte sind Energie. Was du zu dir selbst sagst, prägt dein Nervensystem. Erkenne, wie du mit Sprache Balance schaffst – und eine neue innere Haltung entwickelst."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+      }
+    ],
+    "links": [
+      {
+        "href": "/assets/documents/007-modul-4-fokus-auf-sprache-und-selbstbild.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/f08cf862-2a92-4034-ba93-c0bfbc28a9ad/Modul-4-Fokus-auf-Sprache-und-Selbstbild.pdf",
+        "label": "PDF \"Fokus & Selbstbild\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=WeGmEGYwqEw",
+        "originalHref": "https://www.youtube.com/embed/WeGmEGYwqEw",
+        "label": "Modul 4 - Video \"Sprache & Selbstbild\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "slug": "modul-5",
+    "path": "/modul-5/",
+    "title": "Modul 5",
+    "hero": "🍃 Modul 5 – Loslassen",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "kind": "course",
+    "originalUrl": "https://www.callidus-am.de/modul-5/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "🍃 Modul 5 – Loslassen"
+      },
+      {
+        "type": "paragraph",
+        "text": "🔹 „Loslassen – Lass Kontrolle gehen, finde Vertrauen“"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wahre Entlastung entsteht, wenn du Kontrolle nicht brauchst. Hier lernst du, Spannung abzugeben – und Vertrauen zuzulassen. Dein Körper darf loslassen. Dein Geist darf still werden."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+      }
+    ],
+    "links": [
+      {
+        "href": "/assets/documents/011-modul-5-compressed.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/12c66272-3514-487e-b963-6ec130cf7cfb/Modul-5_compressed.pdf",
+        "label": "PDF \"Loslassen\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=yiZgKN5F3YY",
+        "originalHref": "https://www.youtube.com/embed/yiZgKN5F3YY",
+        "label": "Modul 5 - Video \"Loslassen\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "slug": "reset-hub",
+    "path": "/reset-hub/",
+    "title": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
+    "hero": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
+    "lead": "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
+    "kind": "course",
+    "originalUrl": "https://www.callidus-am.de/reset-hub/",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis."
+      },
+      {
+        "type": "paragraph",
+        "text": "NUR DIE BASIS IST GRATIS. SIE WOLLEN DIE VOLLE TIEFE?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die Module 1-3 haben Ihnen die Basis für Achtsamkeit und Fokus gegeben. Aber wahre, dauerhafte Entlastung liegt in der Integration der Module 4 (Sprache & Selbstbild) bis 7 (Balance) . Dort warten die tiefsten Techniken auf Sie."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 1 – Der Reset-Knopf: Sofort aus dem Stressmodus kommen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 2 – Morgen-Mindset: Reize bewusst verarbeiten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 3 – Fokus & Klarheit: Spannung lösen, Präsenz gewinnen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 4 – Sprache & Selbstbild : Innere Worte verändern den Alltag."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 5 – Loslassen: Kontrolle abgeben und regenerieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 6 – Energie tanken: Bewegung & Atem für Vitalität."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 7 – Balance leben: Ruhe dauerhaft integrieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Das Wissen (Kompendium):"
+      },
+      {
+        "type": "paragraph",
+        "text": "Laden Sie den wissenschaftlichen Leitfaden \"Wahre Entlastung\" herunter"
+      },
+      {
+        "type": "paragraph",
+        "text": "(Der \"Warum\"-Fahrplan)."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ihr Sofortstart: 3 Video-Module aus dem Premium-Kurs"
+      },
+      {
+        "type": "paragraph",
+        "text": "Erleben Sie die kraftvollen Übungen unter professioneller Anleitung."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Modul 1 – Der Sofort-Reset"
+      },
+      {
+        "type": "paragraph",
+        "text": "Manchmal braucht es keinen ganzen Tag – nur einen bewussten Moment. Dieses Modul führt dich Schritt für Schritt aus der Anspannung zurück in deine Mitte. Ein Reset für Körper und Geist – jederzeit abrufbar."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Modul 2 – Wahrnehmen statt Reagieren"
+      },
+      {
+        "type": "paragraph",
+        "text": "Stress beginnt, wenn wir automatisch reagieren. Hier lernst du, innezuhalten – zu beobachten, statt zu kämpfen. Ein stiller Raum entsteht zwischen Reiz und Reaktion: dein Raum der Freiheit."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Modul 3 – Ankommen im Körper"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Körper spricht – oft leiser, als der Kopf zuhört. In diesem Modul lernst du, ihn wieder wahrzunehmen. Spür dich, atme, lande – ganz bei dir."
+      },
+      {
+        "type": "paragraph",
+        "text": "JETZT DAS KOMPLETTE 7-TAGE-RESET-PROGRAMM FREISCHALTEN!"
+      },
+      {
+        "type": "paragraph",
+        "text": "(Inkl. der exklusiven PDFs zu Modul 4-7 und dem Zukunftsanker-Bonus)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regulärer Wert: ~~116,- EUR~~"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ihr persönliches Einführungsangebot: Nur 69,- EUR"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlassen Sie unsere Seite und werden zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
+      },
+      {
+        "type": "paragraph",
+        "text": "Noch nicht sicher? Starten Sie mit einem Fokus-Modul"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wir verstehen, dass Sie vielleicht nur an einem spezifischen Bereich arbeiten möchten. Nutzen Sie unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor Sie das komplette System freischalten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Modul 4 – Fokus auf Sprache & Selbstbild"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regulärer Wert: ~~29,- EUR~~"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modul 5 – Loslassen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hinweis zur Darstellung: Alle visuellen Darstellungen (Fotos von Personen, Modelle und symbolische Illustrationen) dienen ausschließlich der Veranschaulichung der Inhalte des 7-Tage-Stress-Reset-Videokurses und sind nicht zwingend reale Kunden oder Teilnehmer."
+      }
+    ],
+    "links": [
+      {
+        "href": "/assets/documents/003-wahre-entlastung.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/73d16680-1d51-4453-88c1-c44111a756ec/Wahre-Entlastung.pdf",
+        "label": "PDF \"Wahre Entlastung\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/004-modul-1-stress-reset-journal.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/0a8e35e3-a382-4c1c-b7e9-bc1f5f49745e/Modul-1-Stress-Reset-Journal.pdf",
+        "label": "PDF \"Modul 1 Journal\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=cyjxJZaLM4k",
+        "originalHref": "https://www.youtube.com/embed/cyjxJZaLM4k",
+        "label": "Modul 1 - Video \"Der Reset-Knopf\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "/assets/documents/005-modul-2-compressed.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/864f90f8-f978-4246-960f-76a882d48d55/Modul-2_compressed.pdf",
+        "label": "PDF \"Modul 2\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=cvIIAgtsUH4",
+        "originalHref": "https://www.youtube.com/embed/cvIIAgtsUH4",
+        "label": "Modul 2 - Video \"Wahrnehmen statt Reagieren\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "/assets/documents/006-modul-3-fokus-und-klarjeit.pdf",
+        "originalHref": "/wp-content/uploads/go-x/u/4dd957be-e19c-44f5-a4ae-91a94b9e98dd/Modul-3-Fokus-und-Klarjeit.pdf",
+        "label": "PDF \"Modul 3\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=NkYzOAEmpfY",
+        "originalHref": "https://www.youtube.com/embed/NkYzOAEmpfY",
+        "label": "Modul 3 - Video \"Ankommen im Koerper\"",
+        "external": true,
+        "download": false,
+        "type": "video"
+      },
+      {
+        "href": "https://www.digistore24.com/product/645388?voucher=EINFUEHRUNGSRABATT",
+        "originalHref": "https://www.digistore24.com/product/645388?voucher=EINFUEHRUNGSRABATT",
+        "label": "Kompletten 7-Tage-Kurs kaufen",
+        "external": true,
+        "download": false
+      },
+      {
+        "href": "https://www.digistore24.com/product/643822?voucher=EINFUEHRUNGSRABATT_MODUL4",
+        "originalHref": "https://www.digistore24.com/product/643822?voucher=EINFUEHRUNGSRABATT_MODUL4",
+        "label": "Modul 4 kaufen",
+        "external": true,
+        "download": false
+      },
+      {
+        "href": "https://www.digistore24.com/product/645365?voucher=EINFUEHRUNGSRABATT_MODUL5",
+        "originalHref": "https://www.digistore24.com/product/645365?voucher=EINFUEHRUNGSRABATT_MODUL5",
+        "label": "Modul 5 kaufen",
+        "external": true,
+        "download": false
+      }
+    ]
+  },
+  {
+    "slug": "stress-reset-kurs",
+    "path": "/stress-reset-kurs/",
+    "title": "Stress Reset Kurs",
+    "hero": "Was dich im 7-Tage-Stress-Reset erwartet",
+    "lead": "Ein sanfter Weg zu mehr Ruhe, Klarheit & Energie",
+    "kind": "course",
+    "originalUrl": "https://www.callidus-am.de/stress-reset-kurs/",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der 5-Säulen-Reset + 3 Video-Module GRATIS"
+      },
+      {
+        "type": "paragraph",
+        "text": "Zum Einstieg erhalten Sie ein kostenloses Starter-Paket, mit dem Sie sofort beginnen können:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Das Kompendium (Wahre Entlastung) als wissenschaftliche Basis."
+      },
+      {
+        "type": "paragraph",
+        "text": "2. Das Journal (Modul 1) als Ihr tägliches Werkzeug für Reflexion und Umsetzung."
+      },
+      {
+        "type": "paragraph",
+        "text": "3. Die ersten drei Video-Module aus dem Premium-Kurs zur sofortigen Anwendung."
+      },
+      {
+        "type": "heading",
+        "level": 1,
+        "text": "Was dich im 7-Tage-Stress-Reset erwartet"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Ein sanfter Weg zu mehr Ruhe, Klarheit & Energie"
+      },
+      {
+        "type": "paragraph",
+        "text": "Manchmal braucht es keine radikale Veränderung, sondern nur einen klaren Moment, in dem du wieder bei dir ankommst."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieses 7-Tage-Programm ist dein sanfter Weg aus dem Dauerstress – ein kompaktes, wissenschaftlich fundiertes Reset-System für Menschen, die wenig Zeit haben, aber viel Verantwortung tragen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Du brauchst nur 10 Minuten pro Tag. Keine App. Kein Druck. Nur dich – und ein paar Minuten bewusste Aufmerksamkeit."
+      },
+      {
+        "type": "paragraph",
+        "text": "So funktioniert das Programm:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Jeder Tag kombiniert Wissen, Übung und Reflexion:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Verstehen: Kurze Impulse erklären, was im Körper bei Stress passiert."
+      },
+      {
+        "type": "paragraph",
+        "text": "Anwenden: Einfache Mini-Übungen aktivieren dein Ruhe-System."
+      },
+      {
+        "type": "paragraph",
+        "text": "Integrieren: Reflexionsfragen festigen das Gelernte."
+      },
+      {
+        "type": "paragraph",
+        "text": "Diese drei Schritte machen den Unterschied: Du hörst nicht nur zu – du erlebst, wie dein Körper wieder in Balance kommt"
+      },
+      {
+        "type": "paragraph",
+        "text": "Was du in 7 Tagen erleben wirst:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 1 – Der Reset-Knopf: Sofort aus dem Stressmodus kommen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 2 – Morgen-Mindset: Reize bewusst verarbeiten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 3 – Fokus & Klarheit: Spannung lösen, Präsenz gewinnen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 4 – Sprache & Selbstbild : Innere Worte verändern den Alltag."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 5 – Loslassen: Kontrolle abgeben und regenerieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 6 – Energie tanken: Bewegung & Atem für Vitalität."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tag 7 – Balance leben: Ruhe dauerhaft integrieren."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nach diesen 7 Tagen wirst du..."
+      },
+      {
+        "type": "paragraph",
+        "text": "• dich schneller beruhigen können – auch in hektischen Momenten"
+      },
+      {
+        "type": "paragraph",
+        "text": "• achtsamer und präsenter sein"
+      },
+      {
+        "type": "paragraph",
+        "text": "• mehr Energie und Klarheit spüren"
+      },
+      {
+        "type": "paragraph",
+        "text": "• verstehen, was echte Ruhe bedeutet"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mens in equilibrio – Ein Geist in Balance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nach diesen sieben Tagen hast du kein weiteres Ritual – sondern ein System, das dich überall begleitet: im Auto, am Schreibtisch, beim Zubettgehen. Eine Methode, die dich Schritt für Schritt zurück in deine Kraft bringt"
+      },
+      {
+        "type": "paragraph",
+        "text": "„Ruhe ist nicht die Abwesenheit von Bewegung, sondern die Fähigkeit, inmitten des Lebens still zu bleiben.“"
+      },
+      {
+        "type": "paragraph",
+        "text": "Jetzt starten – dein 7-Tage-Stress-Reset"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Vom Wissen zur tiefen Erfahrung"
+      },
+      {
+        "type": "paragraph",
+        "text": "Du kennst jetzt die Theorie hinter kraftvollen Atemtechniken. Aber wahre Veränderung entsteht erst durch die geführte Praxis. Wenn du bereit bist, diese Techniken nicht nur zu lesen, sondern sie unter professioneller Anleitung zu spüren und dauerhaft in deinem Alltag zu verankern, dann ist mein 7-Tage-Stress-Reset-Videokurs der nächste Schritt für dich."
+      },
+      {
+        "type": "paragraph",
+        "text": "JETZT DAS KOMPLETTE 7-TAGE-RESET-PROGRAMM FREISCHALTEN!"
+      },
+      {
+        "type": "paragraph",
+        "text": "(Inkl. der exklusiven PDFs zu Modul 4-7 und dem Zukunftsanker-Bonus)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regulärer Wert: ~~116,- EUR~~"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ihr persönliches Einführungsangebot: Nur 69,- EUR"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlassen Sie unsere Seite und werden zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
+      },
+      {
+        "type": "paragraph",
+        "text": "Noch nicht sicher? Starten Sie mit einem Fokus-Modul"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wir verstehen, dass Sie vielleicht nur an einem spezifischen Bereich arbeiten möchten. Nutzen Sie unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor Sie das komplette System freischalten."
+      },
+      {
+        "type": "paragraph",
+        "text": "Modul 4 – Fokus auf Sprache & Selbstbild"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regulärer Wert: ~~29,- EUR~~"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ihr persönliches Einführungsangebot: Nur 19,- EUR"
+      },
+      {
+        "type": "paragraph",
+        "text": "Modul 5 – Loslassen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+      },
+      {
+        "type": "paragraph",
+        "text": "Regulärer Wert: ~~29,- EUR~~"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ihr persönliches Einführungsangebot: Nur 19,- EUR"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hinweis zur Darstellung: Alle visuellen Darstellungen (Fotos von Personen, Modelle und symbolische Illustrationen) dienen ausschließlich der Veranschaulichung der Inhalte des 7-Tage-Stress-Reset-Videokurses und sind nicht zwingend reale Kunden oder Teilnehmer."
+      }
+    ],
+    "links": [
+      {
+        "href": "https://42261e04.sibforms.com/serve/MUIFAApfZDRHA1LZmpI76HGi2JGEb0iATSkJK15LBDOofZoW71YUFQ7esFQ6nvTLEgIulj0Q3TY-vpeBap3g67YafrjGAYYd4b55CmI8OxmVCZhB5Toozbxn6n9yWXQaUTP6rTfVQa0_pbGE5U9OR0yKgxHatLWAFk59kGNRqRjmM9AtEoO9L3JeLghLLpXEjqlJgIbbYbn1oBVk",
+        "originalHref": "https://42261e04.sibforms.com/serve/MUIFAApfZDRHA1LZmpI76HGi2JGEb0iATSkJK15LBDOofZoW71YUFQ7esFQ6nvTLEgIulj0Q3TY-vpeBap3g67YafrjGAYYd4b55CmI8OxmVCZhB5Toozbxn6n9yWXQaUTP6rTfVQa0_pbGE5U9OR0yKgxHatLWAFk59kGNRqRjmM9AtEoO9L3JeLghLLpXEjqlJgIbbYbn1oBVk",
+        "label": "ALLE GRATIS-RESSOURCEN SOFORT FREISCHALTEN",
+        "external": true,
+        "download": false
+      },
+      {
+        "href": "https://www.digistore24.com/product/645388?voucher=EINFUEHRUNGSRABATT",
+        "originalHref": "https://www.digistore24.com/product/645388?voucher=EINFUEHRUNGSRABATT",
+        "label": "Kompletten 7-Tage-Kurs kaufen",
+        "external": true,
+        "download": false
+      },
+      {
+        "href": "https://www.digistore24.com/product/643822?voucher=EINFUEHRUNGSRABATT_MODUL4",
+        "originalHref": "https://www.digistore24.com/product/643822?voucher=EINFUEHRUNGSRABATT_MODUL4",
+        "label": "Modul 4 kaufen",
+        "external": true,
+        "download": false
+      },
+      {
+        "href": "https://www.digistore24.com/product/645365?voucher=EINFUEHRUNGSRABATT_MODUL5",
+        "originalHref": "https://www.digistore24.com/product/645365?voucher=EINFUEHRUNGSRABATT_MODUL5",
+        "label": "Modul 5 kaufen",
+        "external": true,
+        "download": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import inventory from '../../data/inventory.json';
+import images from '../../data/images.json';
+import articles from '../../data/articles.json';
+import structure from '../../data/site-structure.json';
+import { homeCopy, categoryForLang } from '../../data/i18n.js';
+
+const lang = 'en';
+const copy = homeCopy[lang];
+const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
+const pages = inventory.filter((page) => page.status === 'ok');
+const heroImage = imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[1]) || imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[0]);
+const imageFor = (page) => page.image || heroImage;
+const categorize = (page) => {
+  const haystack = `${page.slug} ${page.title} ${page.description} ${(page.h2 || []).join(' ')}`.toLowerCase();
+  return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
+};
+const featured = ['darmgesundheit-mit-akazienfaser','3-atemtechniken-fur-mehr-energie','gesundheit-im-familien-alltag','die-biologische-uhr-verlangsamen','sport-als-stress-killer','nexus-app']
+  .map((slug) => articles.find((page) => page.slug === slug))
+  .filter(Boolean);
+const categoryCounts = structure.categories.map((category) => ({
+  ...categoryForLang(category, lang),
+  count: articles.filter((page) => categorize(page).slug === category.slug).length,
+}));
+---
+<BaseLayout lang={lang} alternatePath="/" title={copy.title} description={copy.description}>
+  <section class="section">
+    <div class="container hero">
+      <div data-reveal>
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1>{copy.headline}</h1>
+        <p class="lede">{copy.lede}</p>
+        <div class="actions">
+          <a class="button primary" href="/en/guide/">{copy.primaryCta}</a>
+          <a class="button" href="/en/manual/">{copy.manualCta}</a>
+          <a class="button gold" href="/nexus-app/">{copy.nexusCta}</a>
+        </div>
+        <div class="kpi-row" aria-label="Migration status">
+          <div class="kpi"><strong>{articles.length}</strong><span>{copy.kpiArticles}</span></div>
+          <div class="kpi"><strong>{structure.categories.length}</strong><span>{copy.kpiCategories}</span></div>
+          <div class="kpi"><strong>80</strong><span>{copy.kpiImages}</span></div>
+        </div>
+      </div>
+      <figure class="hero-visual" data-reveal="2">
+        <img src={heroImage} alt="callidus A&M" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{copy.orientationEyebrow}</p>
+      <h2 data-reveal="2">{copy.orientationHeadline}</h2>
+      <div class="grid" style="margin-top: 1.5rem;">
+        {categoryCounts.map((category, index) => (
+          <a class="card" href="/en/guide/" data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${category.accent}`}>{category.count} {copy.contentLabel}</span>
+              <h3>{category.title}</h3>
+              <p>{category.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">{copy.selectionEyebrow}</p>
+        <h2>{copy.selectionHeadline}</h2>
+        <p>{copy.selectionText}</p>
+        <a class="button" href="/en/guide/">{copy.allArticles}</a>
+      </div>
+      <div class="grid featured">
+        {featured.map((page, index) => {
+          const category = categoryForLang(categorize(page), lang);
+          return (
+            <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+              <img src={imageFor(page)} alt="" />
+              <div class="card-body">
+                <span class={`badge ${category.accent}`}>{category.title}</span>
+                <h3>{page.title}</h3>
+                <p>{page.description}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">{copy.appsEyebrow}</p>
+        <h2>{copy.appsHeadline}</h2>
+        <p class="lede">{copy.appsText}</p>
+      </div>
+      <div class="grid">
+        <a class="card" href="/en/manual/" data-reveal="2"><div class="card-body"><span class="badge mint">Documentation</span><h3>{copy.manualCardTitle}</h3><p>{copy.manualCardText}</p></div></a>
+        <a class="card" href="/nexus-app/" data-reveal="3"><div class="card-body"><span class="badge gold">Product</span><h3>NEXUS App</h3><p>{copy.nexusCardText}</p></div></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

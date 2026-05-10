@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import recommendations from '../../data/recommendations.json';
+
+export function getStaticPaths() {
+  return recommendations.categories.map((category) => ({
+    params: { category: category.path.replace('/unsere-empfehlungen/', '').replace(/\/$/, '') },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const products = recommendations.products.filter((item) => item.category === category.slug);
+const title = `${category.title}: Empfehlungen | callidus A&M`;
+const description = `Kuratierte Empfehlungen im Bereich ${category.title} von callidus A&M.`;
+---
+<BaseLayout lang="de" alternatePath="/unsere-empfehlungen/" title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <p class={`badge ${category.accent}`} data-reveal>{products.length} Empfehlungen</p>
+      <h1 data-reveal="2">{category.title}</h1>
+      <p class="lede" data-reveal="3">Produkte, Kurse und Ressourcen, die thematisch zu diesem Bereich passen. Externe Links öffnen in einem neuen Tab.</p>
+      <div class="notice affiliate-disclosure" data-reveal="3">
+        <strong>Affiliate-Hinweis:</strong>
+        <p>{recommendations.disclosure}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <div class="product-grid">
+        {products.map((item, index) => (
+          <article class="card product-card" data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${item.accent}`}>{item.provider}</span>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+              <div class="product-meta">
+                <span>{item.affiliate ? 'Affiliate-Link' : 'Externer Link'}</span>
+                <a class="button primary" href={item.url} target="_blank" rel="sponsored nofollow noopener">{item.cta}</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

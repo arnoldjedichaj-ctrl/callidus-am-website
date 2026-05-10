@@ -1,0 +1,7 @@
+{
+  "title": "Callidus App-Handbücher",
+  "description": "Benutzerhandbücher für NEXUS und MOMUS, eingebunden aus der bereitgestellten HTML-Datei.",
+  "sourceFile": "C:/Users/marga/Callidus Handbuch.html",
+  "publicPath": "/handbuch/callidus-handbuch.html",
+  "apps": ["NEXUS", "MOMUS"]
+}

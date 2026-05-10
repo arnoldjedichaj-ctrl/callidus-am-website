@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "title": "Körper & Ernährung",
+      "slug": "koerper-ernaehrung",
+      "legacyPath": "/ratgeber/korper-and-ernahrung/",
+      "accent": "mint",
+      "description": "Erfahren Sie alles über eine gesunde Ernährung. Von Vitaminen und Mineralstoffen bis zur Darmgesundheit - hier finden Sie fundiertes Wissen für Ihren Körper.",
+      "keywords": ["darm", "akazien", "protein", "vitamin", "magnesium", "ashwagandha", "teller", "ernährung"]
+    },
+    {
+      "title": "Sport & Energie",
+      "slug": "sport-energie",
+      "legacyPath": "/ratgeber/sport-and-energie/",
+      "accent": "coral",
+      "description": "Tanken Sie neue Energie! Entdecken Sie effektive Workouts, Tipps für mehr Motivation und wie Sie durch gezielte Bewegung Ihre Fitness und Vitalität steigern.",
+      "keywords": ["workout", "sport", "energie", "bodybuilding", "training", "gehen", "stress-killer", "akku"]
+    },
+    {
+      "title": "Geist & Seele",
+      "slug": "geist-seele",
+      "legacyPath": "/ratgeber/geist-and-seele/",
+      "accent": "blue",
+      "description": "Finden Sie innere Ruhe. Unser Ratgeber für Geist & Seele bietet Techniken zur Stressbewältigung, Achtsamkeit und für mehr mentale Stärke im Alltag.",
+      "keywords": ["atem", "gedanken", "neuro", "detox", "dankbarkeit", "mental", "schlaf", "seele"]
+    },
+    {
+      "title": "Zukunft der Gesundheit",
+      "slug": "zukunft-gesundheit",
+      "legacyPath": "/ratgeber/zukunft-der-gesundheit/",
+      "accent": "gold",
+      "description": "Ein Blick in die Zukunft: Entdecken Sie, wie KI, personalisierte Medizin und Biohacking unsere Gesundheit revolutionieren werden.",
+      "keywords": ["blockchain", "biologische", "personalisierte", "digital", "ki", "nexus", "metformin", "spermidin", "gesundheits-butler"]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import articles from '../../../data/articles.json';
+import structure from '../../../data/site-structure.json';
+import { guideCopy, categoryForLang } from '../../../data/i18n.js';
+
+const lang = 'en';
+const copy = guideCopy[lang];
+const categorize = (page) => {
+  const haystack = `${page.slug} ${page.title} ${page.description} ${(page.h2 || []).join(' ')}`.toLowerCase();
+  return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
+};
+const grouped = structure.categories.map((category) => ({
+  ...categoryForLang(category, lang),
+  articles: articles.filter((page) => categorize(page).slug === category.slug),
+}));
+---
+<BaseLayout lang={lang} alternatePath="/ratgeber/" title={copy.title} description={copy.description}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{copy.eyebrow}</p>
+      <h1 data-reveal="2">{copy.headline}</h1>
+      <p class="lede" data-reveal="3">{copy.lede}</p>
+    </div>
+  </section>
+  {grouped.map((category, sectionIndex) => (
+    <section class={`section ${sectionIndex % 2 === 1 ? 'band' : 'tight'}`}>
+      <div class="container split">
+        <div class="sticky-note" data-reveal>
+          <span class={`badge ${category.accent}`}>{category.articles.length} {copy.articleLabel}</span>
+          <h2>{category.title}</h2>
+          <p>{category.description}</p>
+        </div>
+        <div class="grid">
+          {category.articles.map((page, index) => (
+            <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+              <div class="card-body">
+                <span class={`badge ${category.accent}`}>{page.readingTime} min</span>
+                <h3>{page.title}</h3>
+                <p>{page.description || page.h2?.[0]}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</BaseLayout>

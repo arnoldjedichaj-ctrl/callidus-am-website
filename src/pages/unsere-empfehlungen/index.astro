@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import recommendations from '../../data/recommendations.json';
+
+const title = 'Empfehlungen für ganzheitliche Gesundheit | callidus A&M';
+const description = 'Kuratierte Produktempfehlungen von callidus A&M für Ernährung, Bewegung, mentale Balance und digitale Gesundheit.';
+const providers = [...new Set(recommendations.products.map((item) => item.provider).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de'));
+---
+<BaseLayout lang="de" alternatePath="/en/" title={title} description={description}>
+  <section class="section">
+    <div class="container hero">
+      <div data-reveal>
+        <p class="eyebrow">Empfehlungen</p>
+        <h1>Bewusst ausgewählt statt endlos gesucht.</h1>
+        <p class="lede">Eine kuratierte Sammlung aus Produkten, Kursen und Tools, die in den Gesundheitsbereichen von callidus A&M sinnvoll verortet sind.</p>
+        <div class="actions">
+          {recommendations.categories.map((category) => (
+            <a class="button" href={category.path}>{category.title}</a>
+          ))}
+        </div>
+      </div>
+      <div class="affiliate-panel" data-reveal="2">
+        <span class="badge gold">Transparenz</span>
+        <h2>Affiliate-Hinweis</h2>
+        <p>{recommendations.disclosure}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Bereiche</p>
+      <h2 data-reveal="2">Schnell zum passenden Thema.</h2>
+      <div class="grid" style="margin-top: 1.5rem;">
+        {recommendations.categories.map((category, index) => (
+          <a class="card recommendation-hub-card" href={category.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${category.accent}`}>{category.count} Empfehlungen</span>
+              <h3>{category.title}</h3>
+              <p>Produkte und Ressourcen für diesen Schwerpunkt ansehen.</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container recommendation-finder" data-reveal>
+      <div>
+        <p class="eyebrow">Produktsuche</p>
+        <h2>Empfehlungen intelligent filtern.</h2>
+        <p>Suche nach Produkt, Anbieter, Thema oder Wirkung. Die Liste passt sich sofort an.</p>
+      </div>
+      <form class="filter-panel" data-recommendation-filter>
+        <label>
+          <span>Suche</span>
+          <input type="search" name="query" placeholder="z. B. Magnesium, Schlaf, Amazon..." autocomplete="off" />
+        </label>
+        <label>
+          <span>Bereich</span>
+          <select name="category">
+            <option value="">Alle Bereiche</option>
+            {recommendations.categories.map((category) => <option value={category.slug}>{category.title}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Anbieter</span>
+          <select name="provider">
+            <option value="">Alle Anbieter</option>
+            {providers.map((provider) => <option value={provider}>{provider}</option>)}
+          </select>
+        </label>
+        <button class="button" type="reset">Zurücksetzen</button>
+      </form>
+      <p class="filter-count" data-filter-count>{recommendations.products.length} Empfehlungen</p>
+      <div class="product-grid recommendation-results">
+        {recommendations.products.map((item, index) => (
+          <article
+            class="card product-card"
+            data-recommendation-card
+            data-category={item.category}
+            data-provider={item.provider}
+            data-search={`${item.title} ${item.description} ${item.provider} ${item.categoryTitle}`.toLowerCase()}
+            data-reveal={String((index % 3) + 1)}
+          >
+            <div class="card-body">
+              <span class={`badge ${item.accent}`}>{item.categoryTitle}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <div class="product-meta">
+                <span>{item.provider}</span>
+                <a class="button primary" href={item.url} target="_blank" rel="sponsored nofollow noopener">{item.cta}</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <script is:inline>
+    const setupRecommendationFilter = () => {
+      const form = document.querySelector('[data-recommendation-filter]');
+      const cards = Array.from(document.querySelectorAll('[data-recommendation-card]'));
+      const count = document.querySelector('[data-filter-count]');
+      if (!form || !cards.length || form.dataset.ready) return;
+      form.dataset.ready = 'true';
+      const update = () => {
+        const query = form.query.value.trim().toLowerCase();
+        const category = form.category.value;
+        const provider = form.provider.value;
+        let visible = 0;
+        cards.forEach((card) => {
+          const matchesQuery = !query || card.dataset.search.includes(query);
+          const matchesCategory = !category || card.dataset.category === category;
+          const matchesProvider = !provider || card.dataset.provider === provider;
+          const show = matchesQuery && matchesCategory && matchesProvider;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        if (count) count.textContent = `${visible} Empfehlung${visible === 1 ? '' : 'en'}`;
+      };
+      form.addEventListener('input', update);
+      form.addEventListener('reset', () => window.setTimeout(update, 0));
+      update();
+    };
+    setupRecommendationFilter();
+    document.addEventListener('astro:page-load', setupRecommendationFilter);
+  </script>
+</BaseLayout>

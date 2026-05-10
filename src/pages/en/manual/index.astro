@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import manual from '../../../data/manual.json';
+import { manualCopy } from '../../../data/i18n.js';
+
+const lang = 'en';
+const copy = manualCopy[lang];
+---
+<BaseLayout lang={lang} alternatePath="/handbuch/" title={copy.title} description={copy.description}>
+  <section class="section">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1>{copy.headline}</h1>
+        <p class="lede">{copy.lede}</p>
+        <div class="actions">
+          <a class="button primary" href={manual.publicPath}>{copy.openFullscreen}</a>
+          <a class="button" href="/nexus-app/">{copy.nexusCta}</a>
+        </div>
+      </div>
+      <iframe class="manual-frame" src={manual.publicPath} title="Callidus app manuals" data-reveal="2"></iframe>
+    </div>
+  </section>
+</BaseLayout>

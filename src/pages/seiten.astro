@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import articles from '../data/articles.json';
+import specialPages from '../data/special-pages.json';
+import legalPages from '../data/legal-pages.json';
+
+const title = 'Interne Seitenübersicht | callidus A&M';
+const description = 'Übersicht über sichtbare und intern erreichbare Seiten der migrierten callidus A&M Website.';
+const officialPages = [
+  { title: 'Startseite', path: '/' },
+  { title: 'Ratgeber', path: '/ratgeber/' },
+  { title: 'Empfehlungen', path: '/unsere-empfehlungen/' },
+  { title: 'Stress Reset Kurs', path: '/stress-reset-kurs/' },
+  { title: 'NEXUS App', path: '/nexus-app/' },
+  { title: 'Handbuch', path: '/handbuch/' },
+  { title: 'Lexicon Vitae', path: '/lexicon-vitae/' },
+  { title: 'Über uns', path: '/uber-uns/' },
+];
+const hiddenSpecial = specialPages
+  .filter((page) => !officialPages.some((item) => item.path === page.path))
+  .map((page) => ({ title: page.hero || page.title, path: page.path, kind: page.kind }));
+---
+<BaseLayout lang="de" alternatePath="/en/" title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Interne Übersicht</p>
+      <h1 data-reveal="2">Alle erreichbaren Seiten.</h1>
+      <p class="lede" data-reveal="3">Diese Seite ist nicht als Hauptmenüpunkt gedacht. Sie hilft dir beim Prüfen der Migration und zeigt auch Seiten, die nur über direkte Links, Buttons oder E-Mail-Strecken erreichbar sind.</p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <h2 data-reveal>Offizielle Navigation</h2>
+      <div class="grid directory-grid">
+        {officialPages.map((page, index) => (
+          <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class="badge mint">Sichtbar</span>
+              <h3>{page.title}</h3>
+              <p>{page.path}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 data-reveal>Kurs, Download und interne Strecken</h2>
+      <div class="grid directory-grid">
+        {hiddenSpecial.map((page, index) => (
+          <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class="badge gold">{page.kind}</span>
+              <h3>{page.title}</h3>
+              <p>{page.path}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <h2 data-reveal>Ratgeberartikel</h2>
+      <div class="grid directory-grid">
+        {articles.map((page, index) => (
+          <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class="badge blue">{page.readingTime} Min.</span>
+              <h3>{page.title}</h3>
+              <p>{page.path}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 data-reveal>Rechtliches</h2>
+      <div class="grid directory-grid">
+        {legalPages.map((page, index) => (
+          <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class="badge coral">Rechtliches</span>
+              <h3>{page.title}</h3>
+              <p>{page.path}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
