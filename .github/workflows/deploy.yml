@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Jeden Montag um 06:00 UTC = wechselt die wöchentliche Empfehlungsauswahl
+    - cron: '0 6 * * 1'
 
 permissions:
   contents: read

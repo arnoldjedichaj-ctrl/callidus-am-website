@@ -5,7 +5,7 @@ import images from '../data/images.json';
 import specialPages from '../data/special-pages.json';
 import structure from '../data/site-structure.json';
 import { homeCopy, categoryForLang } from '../data/i18n.js';
-import { allArticles } from '../data/all-articles.js';
+import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articles.js';
 
 // Alle Artikel inkl. Momus-Beiträge fließen in die Kategorie-Counts.
 const articles = allArticles;
@@ -41,6 +41,7 @@ const compassItems = [
   position: item.position,
   shortTitle: item.shortTitle,
 })).filter((item) => item.slug);
+const featured = getWeeklyFeatured(structure.categories);
 const brevoSignupLink = specialPages
   .find((page) => page.slug === 'stress-reset-kurs')
   ?.links?.find((link) => link.href?.includes('sibforms.com'));
@@ -96,6 +97,34 @@ const resources = [
             </div>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">{copy.selectionEyebrow}</p>
+        <h2>{copy.selectionHeadline}</h2>
+        <p>Wöchentlich frische Lese-Empfehlungen aus allen Bereichen — plus einen Beitrag aus der Momus-App.</p>
+        <a class="button" href="/ratgeber/">{copy.allArticles}</a>
+      </div>
+      <div class="grid featured">
+        {featured.map((article, index) => {
+          const cat = categoryForLang(categorize(article), lang);
+          const meta = appBadgeMeta(article.app);
+          return (
+            <a class="card" href={article.path} data-reveal={String((index % 3) + 1)}>
+              <span class={meta.className}>{meta.label}</span>
+              {article.image && <img src={article.image} alt={article.title} loading="lazy" decoding="async" />}
+              <div class="card-body">
+                <span class={`badge ${cat.accent}`}>{cat.title}</span>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
