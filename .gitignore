@@ -6,3 +6,8 @@ dist/
 astro-dev*.log
 .DS_Store
 Thumbs.db
+
+# Firebase Service Account - NIE ins Repo!
+firebase-service-account.json
+firebase-service-account*.json
+*-firebase-adminsdk-*.json

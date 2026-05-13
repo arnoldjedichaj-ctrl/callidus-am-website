@@ -1,20 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import articles from '../../data/articles.json';
 import structure from '../../data/site-structure.json';
 import { guideCopy, categoryForLang } from '../../data/i18n.js';
+import { allArticles, appBadgeMeta } from '../../data/all-articles.js';
 
 const lang = 'de';
 const copy = guideCopy[lang];
-const categorize = (page) => {
-  const haystack = `${page.slug} ${page.title} ${page.description} ${(page.h2 || []).join(' ')}`.toLowerCase();
+const categorize = (article) => {
+  if (article.category) {
+    const direct = structure.categories.find((c) => c.slug === article.category);
+    if (direct) return direct;
+  }
+  const haystack = `${article.slug || ''} ${article.title || ''} ${article.description || ''} ${(article.h2 || []).join(' ')}`.toLowerCase();
   return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
 };
 const grouped = structure.categories.map((category) => ({
   ...categoryForLang(category, lang),
   path: `/ratgeber/#${category.slug}`,
-  articles: articles.filter((page) => categorize(page).slug === category.slug),
+  articles: allArticles.filter((article) => categorize(article).slug === category.slug),
 }));
+const totalArticles = allArticles.length;
+const nexusCount = allArticles.filter((a) => a.app === 'nexus').length;
+const momusCount = allArticles.filter((a) => a.app === 'momus').length;
 ---
 <BaseLayout lang={lang} alternatePath="/en/guide/" title={copy.title} description={copy.description}>
   <section class="section">
@@ -22,10 +29,42 @@ const grouped = structure.categories.map((category) => ({
       <p class="eyebrow" data-reveal>{copy.eyebrow}</p>
       <h1 data-reveal="2">{copy.headline}</h1>
       <p class="lede" data-reveal="3">{copy.lede}</p>
+      <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;" data-reveal="3">
+        {totalArticles} Artikel insgesamt &middot;
+        <span class="app-badge app-badge-nexus">NEXUS</span> {nexusCount}
+        <span class="app-badge app-badge-momus" style="margin-left:.5rem;">MOMUS</span> {momusCount}
+      </p>
+
+      <form class="ratgeber-filter" data-article-filter data-reveal="2" aria-label="Artikel filtern">
+        <label>
+          <span>Suche</span>
+          <input type="search" name="query" placeholder="Stichwort, Titel, Tag…" autocomplete="off" />
+        </label>
+        <label>
+          <span>Bereich</span>
+          <select name="category">
+            <option value="">Alle Bereiche</option>
+            {structure.categories.map((category) => (
+              <option value={category.slug}>{categoryForLang(category, lang).title}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>App</span>
+          <select name="app">
+            <option value="">Alle Apps</option>
+            <option value="nexus">NEXUS</option>
+            <option value="momus">MOMUS</option>
+          </select>
+        </label>
+        <button type="reset">Zurücksetzen</button>
+      </form>
+      <p class="filter-count" data-filter-count>{totalArticles} Artikel</p>
     </div>
   </section>
+
   {grouped.map((category, sectionIndex) => (
-    <section id={category.slug} class={`section ${sectionIndex % 2 === 1 ? 'band' : 'tight'}`}>
+    <section id={category.slug} class={`section category-section ${sectionIndex % 2 === 1 ? 'band' : 'tight'}`} data-category={category.slug}>
       <div class="container split">
         <div class="sticky-note" data-reveal>
           <span class={`badge ${category.accent}`}>{category.articles.length} {copy.articleLabel}</span>
@@ -33,18 +72,71 @@ const grouped = structure.categories.map((category) => ({
           <p>{category.description}</p>
         </div>
         <div class="grid">
-          {category.articles.map((page, index) => (
-            <a class="card" href={page.path} data-reveal={String((index % 3) + 1)}>
-              {page.image && <img src={page.image} alt="" />}
-              <div class="card-body">
-                <span class={`badge ${category.accent}`}>{page.readingTime} Min.</span>
-                <h3>{page.title}</h3>
-                <p>{page.description || page.h2?.[0]}</p>
-              </div>
-            </a>
-          ))}
+          {category.articles.map((article, index) => {
+            const meta = appBadgeMeta(article.app);
+            const tagText = (article.tags || []).join(' ');
+            return (
+              <a
+                class="card"
+                href={article.path}
+                data-reveal={String((index % 3) + 1)}
+                data-article-card
+                data-category={category.slug}
+                data-app={article.app}
+                data-search={`${article.title || ''} ${article.description || ''} ${tagText}`.toLowerCase()}
+              >
+                <span class={meta.className}>{meta.label}</span>
+                {article.image && <img src={article.image} alt={article.title} loading="lazy" decoding="async" />}
+                <div class="card-body">
+                  <span class={`badge ${category.accent}`}>{article.readingTime} Min.</span>
+                  <h3>{article.title}</h3>
+                  <p>{article.description || article.h2?.[0]}</p>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
   ))}
+
+  <script is:inline>
+    const setupArticleFilter = () => {
+      const form = document.querySelector('[data-article-filter]');
+      const cards = Array.from(document.querySelectorAll('[data-article-card]'));
+      const sections = Array.from(document.querySelectorAll('.category-section'));
+      const count = document.querySelector('[data-filter-count]');
+      if (!form || !cards.length || form.dataset.ready) return;
+      form.dataset.ready = 'true';
+
+      const update = () => {
+        const query = (form.query.value || '').trim().toLowerCase();
+        const cat = form.category.value;
+        const app = form.app.value;
+        let visible = 0;
+        const visibleByCategory = {};
+        cards.forEach((card) => {
+          const matchesQuery = !query || card.dataset.search.includes(query);
+          const matchesCategory = !cat || card.dataset.category === cat;
+          const matchesApp = !app || card.dataset.app === app;
+          const show = matchesQuery && matchesCategory && matchesApp;
+          card.hidden = !show;
+          if (show) {
+            visible += 1;
+            visibleByCategory[card.dataset.category] = (visibleByCategory[card.dataset.category] || 0) + 1;
+          }
+        });
+        sections.forEach((section) => {
+          const slug = section.dataset.category;
+          section.hidden = !visibleByCategory[slug];
+        });
+        if (count) count.textContent = `${visible} Artikel`;
+      };
+      form.addEventListener('input', update);
+      form.addEventListener('reset', () => window.setTimeout(update, 0));
+      update();
+    };
+    setupArticleFilter();
+    document.addEventListener('astro:page-load', setupArticleFilter);
+  </script>
 </BaseLayout>

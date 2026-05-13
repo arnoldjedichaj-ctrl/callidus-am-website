@@ -2,9 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import inventory from '../../data/inventory.json';
 import images from '../../data/images.json';
-import articles from '../../data/articles.json';
 import structure from '../../data/site-structure.json';
 import { homeCopy, categoryForLang } from '../../data/i18n.js';
+import { allArticles } from '../../data/all-articles.js';
+
+const articles = allArticles;
 
 const lang = 'en';
 const copy = homeCopy[lang];
@@ -13,7 +15,11 @@ const pages = inventory.filter((page) => page.status === 'ok');
 const heroImage = imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[1]) || imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[0]);
 const imageFor = (page) => page.image || heroImage;
 const categorize = (page) => {
-  const haystack = `${page.slug} ${page.title} ${page.description} ${(page.h2 || []).join(' ')}`.toLowerCase();
+  if (page.category) {
+    const direct = structure.categories.find((category) => category.slug === page.category);
+    if (direct) return direct;
+  }
+  const haystack = `${page.slug || ''} ${page.title || ''} ${page.description || ''} ${(page.h2 || []).join(' ')}`.toLowerCase();
   return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
 };
 const featured = ['darmgesundheit-mit-akazienfaser','3-atemtechniken-fur-mehr-energie','gesundheit-im-familien-alltag','die-biologische-uhr-verlangsamen','sport-als-stress-killer','nexus-app']

@@ -12,11 +12,14 @@
     "extract:special": "node scripts/extract-special-pages.mjs",
     "extract:legal": "node scripts/extract-legal-pages.mjs",
     "download:media": "node scripts/download-media.mjs",
-    "download:documents": "node scripts/download-documents.mjs"
+    "download:documents": "node scripts/download-documents.mjs",
+    "fetch:momus": "node scripts/fetch-momus-articles.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "latest",
     "astro": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "firebase-admin": "^12.7.0"
+  }
 }

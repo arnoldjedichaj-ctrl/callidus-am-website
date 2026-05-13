@@ -2,11 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import inventory from '../data/inventory.json';
 import images from '../data/images.json';
-import articles from '../data/articles.json';
 import specialPages from '../data/special-pages.json';
 import legalPages from '../data/legal-pages.json';
 import structure from '../data/site-structure.json';
 import { categoryForLang } from '../data/i18n.js';
+import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
+
+// Der frühere Import von articles.json ist jetzt durch allArticles ersetzt,
+// damit auch Momus-Artikel als statische Seiten gebaut werden.
+const articles = allArticles;
 
 const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
 const customSpecialPages = {
@@ -64,13 +68,37 @@ const customSpecialPages = {
 
 export function getStaticPaths() {
   const pathForStatic = (page) => new URL(page.url).pathname;
-  return inventory
+  const nexusPaths = inventory
     .filter((page) => page.slug !== 'home' && page.status === 'ok' && pathForStatic(page) !== '/ratgeber/')
     .filter((page) => !pathForStatic(page).startsWith('/unsere-empfehlungen/'))
     .map((page) => ({
       params: { slug: pathForStatic(page).replace(/^\//, '').replace(/\/$/, '') },
       props: { page },
     }));
+
+  // Momus-Artikel als eigene statische Routen
+  const momusPaths = momusAll.map((article) => ({
+    params: { slug: article.slug },
+    props: {
+      page: {
+        slug: article.slug,
+        url: `https://www.callidus-am.de${article.path}`,
+        title: article.title,
+        description: article.description,
+        status: 'ok',
+        h1: [],
+        h2: [],
+        images: article.image ? [article.image] : [],
+        imageCount: article.image ? 1 : 0,
+      },
+    },
+  }));
+
+  // Falls ein Momus-Slug zufaellig mit einem Nexus-Slug kollidiert, gewinnt Nexus
+  const nexusSlugs = new Set(nexusPaths.map((p) => p.params.slug));
+  const filteredMomus = momusPaths.filter((p) => !nexusSlugs.has(p.params.slug));
+
+  return [...nexusPaths, ...filteredMomus];
 }
 
 const { page } = Astro.props;
@@ -100,7 +128,11 @@ const sectionEyebrow = article
 const headings = article?.blocks?.filter((block) => block.type === 'heading').slice(0, 8) || [];
 const slugify = (value) => value.toLowerCase().replace(/[^a-z0-9äöüß]+/gi, '-').replace(/^-|-$/g, '');
 const categorize = (item) => {
-  const haystack = `${item.slug} ${item.title} ${item.description} ${(item.h2 || []).join(' ')}`.toLowerCase();
+  if (item.category) {
+    const direct = structure.categories.find((category) => category.slug === item.category);
+    if (direct) return direct;
+  }
+  const haystack = `${item.slug || ''} ${item.title || ''} ${item.description || ''} ${(item.h2 || []).join(' ')}`.toLowerCase();
   return structure.categories.find((category) => category.keywords.some((keyword) => haystack.includes(keyword))) || structure.categories[0];
 };
 const rawCategory = article ? categorize(article) : null;
@@ -271,6 +303,9 @@ const articleJsonLd = article ? {
     <article class="article-shell">
       <div class="article-hero">
         <p class="eyebrow">{sectionEyebrow}</p>
+        {article?.app && (
+          <span class={appBadgeMeta(article.app).className} aria-label={`App: ${appBadgeMeta(article.app).label}`}>{appBadgeMeta(article.app).label}</span>
+        )}
         <h1>{specialPage?.hero || title}</h1>
         {heroLead && <p class="lede">{heroLead}</p>}
         {courseHeroVideo ? (
