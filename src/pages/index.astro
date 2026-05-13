@@ -69,14 +69,17 @@ const resources = [
       </div>
       <figure class="logo-hero-visual" data-reveal="2" aria-label="callidus Gesundheits-Kompass">
         <div class="hero-compass">
-          <div class="compass-ring" aria-hidden="true"></div>
+          <div class="compass-track" aria-hidden="true"></div>
+          <div class="compass-track compass-track-inner" aria-hidden="true"></div>
           <img class="hero-logo" src={logoPath} alt="callidus A&M Logo" width="320" height="320" />
           <div class="compass-orbit" aria-label="Themenbereiche">
-            {compassItems.map((category) => (
-              <a class={`compass-label compass-${category.position} ${category.accent}`} href={category.path}>
-                <span class="compass-dot" aria-hidden="true"></span>
-                <span>{category.shortTitle}</span>
-              </a>
+            {compassItems.map((category, index) => (
+              <div class={`compass-anchor compass-anchor-${index}`} aria-hidden="false">
+                <a class={`compass-label ${category.accent}`} href={category.path}>
+                  <span class="compass-dot" aria-hidden="true"></span>
+                  <span>{category.shortTitle}</span>
+                </a>
+              </div>
             ))}
           </div>
         </div>

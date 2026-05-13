@@ -297,14 +297,16 @@ p { color: var(--muted); line-height: 1.75; }
   aspect-ratio: 1;
   z-index: 0;
   border-radius: 50%;
+  perspective: 1400px;
+  perspective-origin: 50% 48%;
   background:
     radial-gradient(circle at 50% 50%, rgba(255,255,255,.62) 0 17%, rgba(var(--gold-rgb), .16) 18% 23%, transparent 24%),
-    radial-gradient(circle at 50% 50%, rgba(var(--mint-rgb), .16), transparent 69%);
+    radial-gradient(circle at 50% 50%, rgba(var(--mint-rgb), .12), transparent 65%);
 }
 html[data-theme="dark"] .hero-compass {
   background:
     radial-gradient(circle at 50% 50%, rgba(17,29,24,.76) 0 17%, rgba(var(--gold-rgb), .12) 18% 23%, transparent 24%),
-    radial-gradient(circle at 50% 50%, rgba(var(--mint-rgb), .09), transparent 69%);
+    radial-gradient(circle at 50% 50%, rgba(var(--mint-rgb), .09), transparent 65%);
 }
 html[data-theme="dark"] .hero-logo {
   box-shadow: 0 22px 64px rgba(0,0,0,.44), 0 0 0 10px rgba(245,247,233,.08);
@@ -313,106 +315,141 @@ html[data-theme="dark"] .compass-label {
   background: rgba(17,29,24,.94);
   box-shadow: 0 18px 48px rgba(0,0,0,.34), 0 0 0 1px rgba(245,247,233,.12), inset 0 -3px 0 rgba(var(--gold-rgb),.16);
 }
-.compass-ring {
+
+/* Sichtbare Umlaufbahn als perspektivisch geneigte Ellipse */
+.compass-track {
   position: absolute;
-  inset: 15%;
-  border: 1px solid rgba(var(--mint-rgb), .32);
+  inset: 8%;
   border-radius: 50%;
+  border: 1px solid rgba(var(--mint-rgb), .38);
+  transform: rotateX(70deg);
   box-shadow:
-    inset 0 0 0 1px rgba(var(--gold-rgb), .18),
-    0 0 60px rgba(var(--gold-rgb), .12);
-  animation: pulseRing 5.4s ease-in-out infinite;
+    inset 0 0 0 1px rgba(var(--gold-rgb), .14),
+    0 0 60px rgba(var(--gold-rgb), .10);
+  pointer-events: none;
+  z-index: 1;
 }
-.compass-ring::before,
-.compass-ring::after {
-  content: "";
+.compass-track-inner {
+  inset: 22%;
+  border: 1px dashed rgba(var(--gold-rgb), .30);
+  box-shadow: none;
+  z-index: 2;
+}
+html[data-theme="dark"] .compass-track {
+  border-color: rgba(var(--mint-rgb), .42);
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), .18), 0 0 80px rgba(var(--gold-rgb), .10);
+}
+
+/* Logo in der Mitte auf z=0 */
+.hero-logo {
   position: absolute;
-  left: 50%;
   top: 50%;
-  background: linear-gradient(90deg, transparent, rgba(var(--mint-rgb), .35), transparent);
+  left: 50%;
+  width: 38%;
+  height: 38%;
+  object-fit: contain;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f8f3df 0%, #f0e8c2 100%);
+  box-shadow: 0 22px 64px rgba(0,0,0,.20), 0 0 0 10px rgba(255,255,255,.22);
   transform: translate(-50%, -50%);
+  z-index: 5;
+  animation: compassLogo 7s ease-in-out infinite;
 }
-.compass-ring::before {
-  width: 1px;
-  height: 112%;
-}
-.compass-ring::after {
-  width: 112%;
-  height: 1px;
-}
-.compass-ring span { display: none; }
+
+/* 3D-Orbit-Container: rotiert um Y-Achse */
 .compass-orbit {
   position: absolute;
   inset: 0;
-  z-index: 7;
-  border-radius: 50%;
-  animation: compassOrbit 28s linear infinite;
-  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  animation: orbitSpin 26s linear infinite;
+  pointer-events: none;
 }
-.hero-compass:hover .compass-orbit,
-.hero-compass:hover .compass-label {
-  animation-play-state: paused;
-}
-.hero-compass::before,
-.hero-compass::after {
-  content: "";
+
+/* Anker positionieren die Karten auf dem 3D-Kreis */
+.compass-anchor {
   position: absolute;
-  inset: 26%;
-  border-radius: 50%;
-  border: 1px dashed rgba(var(--gold-rgb), .28);
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  pointer-events: none;
 }
-.hero-compass::after {
-  inset: 36%;
-  border-color: rgba(var(--mint-rgb), .22);
-}
+.compass-anchor-0 { transform: rotateY(0deg)   translateZ(220px); }
+.compass-anchor-1 { transform: rotateY(90deg)  translateZ(220px); }
+.compass-anchor-2 { transform: rotateY(180deg) translateZ(220px); }
+.compass-anchor-3 { transform: rotateY(270deg) translateZ(220px); }
+
+/* Label: counter-rotation, damit Text immer der Kamera zugewandt ist */
 .compass-label {
-  position: absolute;
-  z-index: 6;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: .55rem;
-  width: clamp(9.2rem, 24%, 10.8rem);
+  width: clamp(9.2rem, 22%, 11.2rem);
   min-height: 3.1rem;
-  padding: .72rem .82rem;
+  padding: .72rem .9rem;
   border: 2px solid rgba(var(--gold-rgb), .58);
-  border-radius: .85rem;
+  border-radius: 1rem;
   background: color-mix(in srgb, var(--panel) 97%, transparent);
   color: var(--text);
   text-align: left;
   text-decoration: none;
-  box-shadow: 0 16px 42px rgba(0,0,0,.16), 0 0 0 1px rgba(255,255,255,.72), inset 0 -3px 0 rgba(var(--gold-rgb),.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.18), 0 0 0 1px rgba(255,255,255,.72), inset 0 -3px 0 rgba(var(--gold-rgb),.14);
   backdrop-filter: blur(14px);
+  pointer-events: auto;
+  cursor: pointer;
   transform: translate(-50%, -50%);
-  animation: compassLabelCounter 28s linear infinite;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  animation: orbitCounter 26s linear infinite;
+  transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease, filter 200ms ease;
 }
 .compass-label:hover {
-  border-color: rgba(var(--mint-rgb), .82);
+  border-color: rgba(var(--mint-rgb), .85);
   background: var(--panel);
-  box-shadow: 0 20px 54px rgba(0,0,0,.2), 0 0 0 1px rgba(255,255,255,.82);
-  transform: translate(-50%, -50%) scale(1.035);
+  box-shadow: 0 24px 60px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.85);
 }
-.compass-label > span:last-child { font-size: .74rem; font-weight: 900; line-height: 1.12; text-transform: uppercase; letter-spacing: .04em; }
+.compass-label > span:last-child {
+  font-size: .78rem;
+  font-weight: 900;
+  line-height: 1.12;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
 .compass-dot {
-  flex: 0 0 .68rem;
-  width: .68rem;
-  height: .68rem;
+  flex: 0 0 .7rem;
+  width: .7rem;
+  height: .7rem;
   border-radius: 50%;
   background: var(--mint);
-  box-shadow: 0 0 0 5px rgba(var(--mint-rgb), .12);
+  box-shadow: 0 0 0 5px rgba(var(--mint-rgb), .14);
 }
-.compass-label.coral .compass-dot { background: var(--coral); box-shadow: 0 0 0 5px rgba(167, 96, 79, .13); }
-.compass-label.blue .compass-dot { background: var(--blue); box-shadow: 0 0 0 5px rgba(var(--blue-rgb), .13); }
-.compass-label.gold .compass-dot { background: var(--gold); box-shadow: 0 0 0 5px rgba(var(--gold-rgb), .13); }
-.compass-top { left: 50%; top: 10%; }
-.compass-right { left: 88%; top: 50%; z-index: 8; }
-.compass-bottom { left: 50%; top: 90%; }
-.compass-left { left: 12%; top: 50%; }
-.compass-label.mint { border-color: rgba(var(--mint-rgb), .72); }
-.compass-label.coral { border-color: rgba(167, 96, 79, .68); }
-.compass-label.blue { border-color: rgba(var(--blue-rgb), .68); }
-.compass-label.gold { border-color: rgba(var(--gold-rgb), .74); }
+.compass-label.coral .compass-dot { background: var(--coral); box-shadow: 0 0 0 5px rgba(167, 96, 79, .14); }
+.compass-label.blue  .compass-dot { background: var(--blue);  box-shadow: 0 0 0 5px rgba(var(--blue-rgb), .14); }
+.compass-label.gold  .compass-dot { background: var(--gold);  box-shadow: 0 0 0 5px rgba(var(--gold-rgb), .14); }
+.compass-label.mint  { border-color: rgba(var(--mint-rgb), .75); }
+.compass-label.coral { border-color: rgba(167, 96, 79, .70); }
+.compass-label.blue  { border-color: rgba(var(--blue-rgb), .70); }
+.compass-label.gold  { border-color: rgba(var(--gold-rgb), .76); }
+
+/* Bei Hover über das Kompass-Element pausieren beide Animationen synchron */
+.hero-compass:hover .compass-orbit,
+.hero-compass:hover .compass-label {
+  animation-play-state: paused;
+}
+
+/* 3D-Drehung um Y-Achse */
+@keyframes orbitSpin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+/* Gegen-Drehung, damit die Karten immer aufrecht und lesbar bleiben */
+@keyframes orbitCounter {
+  from { transform: translate(-50%, -50%) rotateY(0deg); }
+  to   { transform: translate(-50%, -50%) rotateY(-360deg); }
+}
+
+/* Reduzierte Bewegung respektieren */
+@media (prefers-reduced-motion: reduce) {
+  .compass-orbit, .compass-label { animation: none; }
+}
 
 .kpi-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 2rem; }
 .kpi { border: 1px solid var(--line); border-radius: .8rem; padding: 1rem; background: rgba(var(--mint-rgb),.06); }
@@ -938,40 +975,41 @@ html[data-theme="dark"] .compass-label {
     aspect-ratio: auto;
     border-radius: 0;
     background: transparent;
+    perspective: none;
   }
   .hero-logo {
     position: static;
     grid-column: 1 / -1;
     justify-self: center;
     width: min(58%, 250px) !important;
+    height: auto !important;
     transform: none;
     animation: logoFloat 7s ease-in-out infinite;
   }
-  .compass-ring,
+  .compass-track,
   .hero-compass::before,
   .hero-compass::after { display: none; }
+  .compass-orbit {
+    display: contents;
+    animation: none;
+  }
+  .compass-anchor {
+    position: static;
+    transform: none;
+    transform-style: flat;
+    width: 100%;
+  }
   .compass-label,
   .compass-label.mint,
   .compass-label.coral,
   .compass-label.blue,
-  .compass-label.gold,
-  .compass-top,
-  .compass-right,
-  .compass-bottom,
-  .compass-left {
+  .compass-label.gold {
     position: static;
     width: 100%;
     transform: none;
+    animation: none;
   }
-  .compass-label:hover,
-  .compass-label.mint:hover,
-  .compass-label.coral:hover,
-  .compass-label.blue:hover,
-  .compass-label.gold:hover,
-  .compass-top:hover,
-  .compass-right:hover,
-  .compass-bottom:hover,
-  .compass-left:hover { transform: translateY(-2px); }
+  .compass-label:hover { transform: translateY(-2px); }
   .compass-label > span:last-child { font-size: .68rem; }
 }
 
