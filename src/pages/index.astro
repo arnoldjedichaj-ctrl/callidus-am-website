@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ShaderBackground from '../components/ShaderBackground.astro';
 import inventory from '../data/inventory.json';
 import images from '../data/images.json';
 import specialPages from '../data/special-pages.json';
@@ -57,6 +58,7 @@ const resources = [
 ].filter(Boolean);
 ---
 <BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
+  <ShaderBackground />
   <section class="section">
     <div class="container hero">
       <div data-reveal>
@@ -195,6 +197,55 @@ const resources = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      /* ── Compass drag-rotation ── */
+      const setupCompassDrag = () => {
+        const compass = document.querySelector('.hero-compass');
+        const orbit   = document.querySelector('.compass-orbit');
+        if (!compass || !orbit) return;
+
+        let dragging    = false;
+        let startAngle  = 0;
+        let accumulated = 0;
+
+        const angleFromCenter = (e) => {
+          const r  = compass.getBoundingClientRect();
+          const cx = r.left + r.width  / 2;
+          const cy = r.top  + r.height / 2;
+          const x  = (e.clientX ?? e.touches?.[0]?.clientX ?? cx) - cx;
+          const y  = (e.clientY ?? e.touches?.[0]?.clientY ?? cy) - cy;
+          return Math.atan2(y, x) * (180 / Math.PI);
+        };
+
+        const onStart = (e) => {
+          dragging   = true;
+          startAngle = angleFromCenter(e) - accumulated;
+          compass.classList.add('is-dragging');
+        };
+        const onMove = (e) => {
+          if (!dragging) return;
+          e.preventDefault();
+          accumulated = angleFromCenter(e) - startAngle;
+          orbit.style.transform = `rotate(${accumulated}deg)`;
+        };
+        const onEnd = () => {
+          dragging = false;
+          compass.classList.remove('is-dragging');
+        };
+
+        compass.addEventListener('mousedown',  onStart);
+        compass.addEventListener('touchstart', onStart, { passive: true });
+        window.addEventListener('mousemove',   onMove);
+        window.addEventListener('touchmove',   onMove, { passive: false });
+        window.addEventListener('mouseup',     onEnd);
+        window.addEventListener('touchend',    onEnd);
+      };
+      setupCompassDrag();
+      document.addEventListener('astro:page-load', setupCompassDrag);
+    })();
+  </script>
 
   <script is:inline>
     (() => {
