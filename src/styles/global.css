@@ -169,18 +169,28 @@ img { display: block; max-width: 100%; }
 .theme-toggle .moon-icon { opacity: 0; transform: translateY(1rem) rotate(-35deg); }
 html[data-theme="dark"] .theme-toggle .sun-icon { opacity: 0; transform: translateY(-1rem) rotate(35deg); }
 html[data-theme="dark"] .theme-toggle .moon-icon { opacity: 1; transform: translateY(0) rotate(0); }
+/* Hamburger: saubere Flex-Spalte mit gleichmäßigem Abstand statt geklumpter Linien */
+.menu-toggle {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.menu-toggle:hover { background: rgba(245,247,233,.16); border-color: rgba(245,247,233,.34); }
 .menu-toggle span {
   display: block;
-  width: 1.1rem;
+  width: 1.25rem;
   height: 2px;
-  margin: 2px auto;
+  margin: 0;
   border-radius: 999px;
   background: currentColor;
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition: transform 200ms ease, opacity 160ms ease;
 }
-.menu-open .menu-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
-.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .main-nav a, .site-footer a, .button, .language-switch a {
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -286,6 +296,9 @@ p { color: var(--muted); line-height: 1.75; }
   aspect-ratio: 1;
   z-index: 0;
   border-radius: 50%;
+  /* Bahn-Radien: horizontale und (perspektivisch verkürzte) vertikale Halbachse */
+  --orbit-rx: 210px;
+  --orbit-ry: 110px;
   background:
     radial-gradient(circle at 50% 50%, rgba(255,255,255,.62) 0 18%, rgba(var(--gold-rgb), .14) 19% 23%, transparent 24%),
     radial-gradient(circle at 50% 50%, rgba(var(--mint-rgb), .11), transparent 66%);
@@ -386,16 +399,27 @@ html[data-theme="dark"] .compass-track {
 .compass-anchor-3 { animation-delay:-19.5s; }
 
 @keyframes compassOrbitPath {
-  /* Bahn-Punkte: rechts → unten (vor Logo) → links → oben (hinter Logo) → rechts */
-  0%   { transform: translate(210px,    0px) scale(1);    opacity: 1;   z-index: 6; }
-  12%  { transform: translate(170px,   62px) scale(1.03); opacity: 1;   z-index: 9; }
-  25%  { transform: translate(0px,    110px) scale(1.07); opacity: 1;   z-index: 10; }
-  38%  { transform: translate(-170px,  62px) scale(1.03); opacity: 1;   z-index: 9; }
-  50%  { transform: translate(-210px,   0px) scale(1);    opacity: .92; z-index: 6; }
-  62%  { transform: translate(-170px, -62px) scale(.90);  opacity: .65; z-index: 2; }
-  75%  { transform: translate(0px,   -110px) scale(.78);  opacity: .45; z-index: 1; }
-  88%  { transform: translate(170px,  -62px) scale(.90);  opacity: .65; z-index: 2; }
-  100% { transform: translate(210px,    0px) scale(1);    opacity: 1;   z-index: 6; }
+  /* Elliptische Bahn (8 Punkte alle 45°). Radien kommen aus --orbit-rx/-ry,
+     dadurch lässt sich die Bahn pro Breakpoint skalieren.
+     Unten = vor dem Logo (groß, z-index hoch), oben = hinter dem Logo. */
+  0%    { transform: translate(var(--orbit-rx), 0)
+            scale(1);    opacity: 1;   z-index: 6; }
+  12.5% { transform: translate(calc(var(--orbit-rx) * 0.707), calc(var(--orbit-ry) * 0.707))
+            scale(1.04); opacity: 1;   z-index: 9; }
+  25%   { transform: translate(0, var(--orbit-ry))
+            scale(1.07); opacity: 1;   z-index: 10; }
+  37.5% { transform: translate(calc(var(--orbit-rx) * -0.707), calc(var(--orbit-ry) * 0.707))
+            scale(1.04); opacity: 1;   z-index: 9; }
+  50%   { transform: translate(calc(var(--orbit-rx) * -1), 0)
+            scale(1);    opacity: .92; z-index: 6; }
+  62.5% { transform: translate(calc(var(--orbit-rx) * -0.707), calc(var(--orbit-ry) * -0.707))
+            scale(.88);  opacity: .6;  z-index: 2; }
+  75%   { transform: translate(0, calc(var(--orbit-ry) * -1))
+            scale(.78);  opacity: .45; z-index: 1; }
+  87.5% { transform: translate(calc(var(--orbit-rx) * 0.707), calc(var(--orbit-ry) * -0.707))
+            scale(.88);  opacity: .6;  z-index: 2; }
+  100%  { transform: translate(var(--orbit-rx), 0)
+            scale(1);    opacity: 1;   z-index: 6; }
 }
 
 /* Das Label sitzt im Anchor; Anchor übernimmt die Bewegung. */
@@ -963,7 +987,7 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
 }
 @media (max-width: 820px) {
   .site-header { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .85rem; }
-  .menu-toggle { display: grid; }
+  .menu-toggle { display: flex; }
   .header-actions {
     grid-column: 1 / -1;
     display: grid;
@@ -991,52 +1015,35 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
   .social-nav strong { display: none; }
   .logo-hero-visual {
     min-height: auto;
-    padding: 1.2rem;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
   }
+  /* Kompass bleibt auch auf dem Handy als rotierendes Karussell,
+     nur kleiner skaliert über die --orbit-Variablen. */
   .hero-compass {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .6rem;
-    width: 100%;
-    aspect-ratio: auto;
-    border-radius: 0;
-    background: transparent;
-    perspective: none;
+    width: min(360px, 92vw);
+    aspect-ratio: 1;
+    --orbit-rx: 122px;
+    --orbit-ry: 70px;
   }
+  .compass-track { width: 84%; }
+  .compass-track-inner { width: 60%; }
   .hero-logo {
-    position: static;
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: min(58%, 250px) !important;
-    height: auto !important;
-    transform: none;
-    animation: logoFloat 7s ease-in-out infinite;
-  }
-  .compass-track,
-  .hero-compass::before,
-  .hero-compass::after { display: none; }
-  .compass-orbit {
-    display: contents;
-    animation: none;
+    width: clamp(96px, 31%, 130px);
+    height: clamp(96px, 31%, 130px);
   }
   .compass-anchor {
-    position: static;
-    transform: none;
-    transform-style: flat;
-    width: 100%;
+    width: clamp(7rem, 40%, 8.6rem);
+    margin-left: calc(clamp(7rem, 40%, 8.6rem) / -2);
   }
-  .compass-label,
-  .compass-label.mint,
-  .compass-label.coral,
-  .compass-label.blue,
-  .compass-label.gold {
-    position: static;
-    width: 100%;
-    transform: none;
-    animation: none;
+  .compass-label {
+    min-height: 2.5rem;
+    padding: .5rem .6rem;
+    border-radius: .8rem;
   }
-  .compass-label:hover { transform: translateY(-2px); }
-  .compass-label > span:last-child { font-size: .68rem; }
+  .compass-label > span:last-child { font-size: .6rem; letter-spacing: .03em; }
+  .compass-dot { flex-basis: .55rem; width: .55rem; height: .55rem; }
 }
 
 /* ── Cookie banner ── */
