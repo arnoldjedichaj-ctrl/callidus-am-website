@@ -63,11 +63,18 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
     </div>
   </section>
 
+  <section class="section tight search-results-section" data-search-results hidden>
+    <div class="container">
+      <p class="eyebrow">Suchergebnisse</p>
+      <div class="grid search-results-grid" data-search-results-grid></div>
+    </div>
+  </section>
+
   {grouped.map((category, sectionIndex) => (
     <section id={category.slug} class={`section category-section ${sectionIndex % 2 === 1 ? 'band' : 'tight'}`} data-category={category.slug}>
       <div class="container split">
         <div class="sticky-note" data-reveal>
-          <span class={`badge ${category.accent}`}>{category.articles.length} {copy.articleLabel}</span>
+          <span class={`badge ${category.accent}`} data-category-badge={category.slug}>{category.articles.length} {copy.articleLabel}</span>
           <h2>{category.title}</h2>
           <p>{category.description}</p>
         </div>
@@ -106,6 +113,8 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
       const cards = Array.from(document.querySelectorAll('[data-article-card]'));
       const sections = Array.from(document.querySelectorAll('.category-section'));
       const count = document.querySelector('[data-filter-count]');
+      const resultsSection = document.querySelector('[data-search-results]');
+      const resultsGrid = document.querySelector('[data-search-results-grid]');
       if (!form || !cards.length || form.dataset.ready) return;
       form.dataset.ready = 'true';
 
@@ -113,25 +122,59 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
         const query = (form.query.value || '').trim().toLowerCase();
         const cat = form.category.value;
         const app = form.app.value;
+        const isFiltering = query || cat || app;
         let visible = 0;
         const visibleByCategory = {};
+        const matchedCards = [];
+
         cards.forEach((card) => {
           const matchesQuery = !query || card.dataset.search.includes(query);
           const matchesCategory = !cat || card.dataset.category === cat;
           const matchesApp = !app || card.dataset.app === app;
           const show = matchesQuery && matchesCategory && matchesApp;
-          card.hidden = !show;
+          card.hidden = false; // always visible in their sections (sections hidden instead)
           if (show) {
             visible += 1;
             visibleByCategory[card.dataset.category] = (visibleByCategory[card.dataset.category] || 0) + 1;
+            matchedCards.push(card);
           }
         });
-        sections.forEach((section) => {
-          const slug = section.dataset.category;
-          section.hidden = !visibleByCategory[slug];
-        });
+
+        if (isFiltering) {
+          // Hide category sections; show results panel instead
+          sections.forEach((s) => { s.hidden = true; });
+          if (resultsSection && resultsGrid) {
+            resultsGrid.innerHTML = '';
+            matchedCards.forEach((card) => {
+              const clone = card.cloneNode(true);
+              clone.hidden = false;
+              resultsGrid.appendChild(clone);
+            });
+            resultsSection.hidden = false;
+          }
+        } else {
+          // Restore: show all sections, hide results panel
+          sections.forEach((section) => {
+            section.hidden = false;
+            const slug = section.dataset.category;
+            const badge = section.querySelector(`[data-category-badge="${slug}"]`);
+            if (badge && badge.dataset.originalCount) {
+              badge.textContent = badge.textContent.replace(/^\d+/, badge.dataset.originalCount);
+            }
+          });
+          if (resultsSection) resultsSection.hidden = true;
+        }
+
         if (count) count.textContent = `${visible} Artikel`;
       };
+
+      // Store original counts
+      sections.forEach((section) => {
+        const slug = section.dataset.category;
+        const badge = section.querySelector(`[data-category-badge="${slug}"]`);
+        if (badge) badge.dataset.originalCount = badge.textContent.match(/^\d+/)?.[0] || '';
+      });
+
       form.addEventListener('input', update);
       form.addEventListener('reset', () => window.setTimeout(update, 0));
       update();

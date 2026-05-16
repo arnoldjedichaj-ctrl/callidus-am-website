@@ -999,9 +999,50 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
     transition: max-height 220ms ease, opacity 180ms ease, transform 180ms ease;
   }
   .menu-open .header-actions { max-height: 80vh; opacity: 1; transform: translateY(0); }
-  .main-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; justify-content: stretch; }
-  .main-nav a, .language-switch { justify-content: center; }
-  .language-switch { width: max-content; }
+  .main-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .55rem;
+    justify-content: stretch;
+    padding: .55rem;
+    border-radius: 22px;
+    background: rgba(245,247,233,.10);
+    border: 1px solid rgba(245,247,233,.14);
+  }
+  .main-nav a {
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: .85rem .75rem;
+    border-radius: 14px;
+    color: var(--chrome-text);
+    border-color: rgba(245,247,233,.16);
+  }
+  /* Last item alone on row → spans both columns */
+  .main-nav a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .main-nav a:hover, .main-nav a[aria-current="page"] {
+    background: rgba(245,247,233,.18);
+    border-color: rgba(245,247,233,.46);
+    color: var(--chrome-text);
+    transform: none;
+  }
+  .main-nav a[aria-current="page"] {
+    background: rgba(245,247,233,.22);
+    box-shadow: none;
+  }
+  .language-switch { justify-content: center; width: max-content; }
+  /* Controls row: language + theme side-by-side, centered */
+  .header-actions .language-switch,
+  .header-actions .theme-toggle {
+    margin-top: .3rem;
+  }
+  .header-actions {
+    gap: .65rem;
+    padding-bottom: .5rem;
+  }
   .hero, .split { grid-template-columns: 1fr; min-height: auto; }
   .article-layout, .legal-layout { grid-template-columns: 1fr; }
   .filter-panel, .app-cards { grid-template-columns: 1fr; }
@@ -1166,6 +1207,9 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
   margin: .5rem 0 1rem;
 }
 .category-section { scroll-margin-top: 6rem; }
+.search-results-section { padding-top: 0; }
+.search-results-grid { animation: fadeIn 180ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(.4rem); } to { opacity: 1; transform: none; } }
 
 /* ── Trustpilot Widget im Footer ── */
 .trustpilot-wrapper {
