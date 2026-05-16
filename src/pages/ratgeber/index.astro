@@ -148,6 +148,8 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
             matchedCards.forEach((card) => {
               const clone = card.cloneNode(true);
               clone.hidden = false;
+              clone.removeAttribute('data-reveal');
+              clone.classList.add('is-visible');
               resultsGrid.appendChild(clone);
             });
             resultsSection.hidden = false;
