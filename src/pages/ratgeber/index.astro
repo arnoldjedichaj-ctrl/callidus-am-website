@@ -66,7 +66,15 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
   <section class="section tight search-results-section" data-search-results hidden>
     <div class="container">
       <p class="eyebrow">Suchergebnisse</p>
-      <div class="grid search-results-grid" data-search-results-grid></div>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn-prev" data-carousel-prev aria-label="Zurück" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-track" data-search-results-grid></div>
+        <button class="carousel-btn carousel-btn-next" data-carousel-next aria-label="Weiter" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -115,9 +123,54 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
       const count = document.querySelector('[data-filter-count]');
       const resultsSection = document.querySelector('[data-search-results]');
       const resultsGrid = document.querySelector('[data-search-results-grid]');
+      const btnPrev = document.querySelector('[data-carousel-prev]');
+      const btnNext = document.querySelector('[data-carousel-next]');
       if (!form || !cards.length || form.dataset.ready) return;
       form.dataset.ready = 'true';
 
+      // ── Carousel helpers ──────────────────────────────────────────
+      const CARD_WIDTH = () => {
+        const first = resultsGrid?.firstElementChild;
+        if (!first) return 280;
+        return first.getBoundingClientRect().width + 16; // width + gap
+      };
+
+      const updateArrows = () => {
+        if (!resultsGrid || !btnPrev || !btnNext) return;
+        const { scrollLeft, scrollWidth, clientWidth } = resultsGrid;
+        const hasOverflow = scrollWidth > clientWidth + 4;
+        btnPrev.hidden = !hasOverflow || scrollLeft < 8;
+        btnNext.hidden = !hasOverflow || scrollLeft >= scrollWidth - clientWidth - 8;
+      };
+
+      const scroll = (dir) => {
+        if (!resultsGrid) return;
+        resultsGrid.scrollBy({ left: dir * CARD_WIDTH() * 2, behavior: 'smooth' });
+      };
+
+      btnPrev?.addEventListener('click', () => scroll(-1));
+      btnNext?.addEventListener('click', () => scroll(1));
+      resultsGrid?.addEventListener('scroll', updateArrows, { passive: true });
+
+      // Mouse drag to scroll
+      let dragStart = null;
+      let scrollStart = 0;
+      resultsGrid?.addEventListener('mousedown', (e) => {
+        dragStart = e.clientX;
+        scrollStart = resultsGrid.scrollLeft;
+        resultsGrid.classList.add('is-dragging');
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (dragStart === null) return;
+        resultsGrid.scrollLeft = scrollStart - (e.clientX - dragStart);
+      });
+      window.addEventListener('mouseup', () => {
+        dragStart = null;
+        resultsGrid?.classList.remove('is-dragging');
+        updateArrows();
+      });
+
+      // ── Filter logic ──────────────────────────────────────────────
       const update = () => {
         const query = (form.query.value || '').trim().toLowerCase();
         const cat = form.category.value;
@@ -132,7 +185,7 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
           const matchesCategory = !cat || card.dataset.category === cat;
           const matchesApp = !app || card.dataset.app === app;
           const show = matchesQuery && matchesCategory && matchesApp;
-          card.hidden = false; // always visible in their sections (sections hidden instead)
+          card.hidden = false;
           if (show) {
             visible += 1;
             visibleByCategory[card.dataset.category] = (visibleByCategory[card.dataset.category] || 0) + 1;
@@ -141,7 +194,6 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
         });
 
         if (isFiltering) {
-          // Hide category sections; show results panel instead
           sections.forEach((s) => { s.hidden = true; });
           if (resultsSection && resultsGrid) {
             resultsGrid.innerHTML = '';
@@ -153,9 +205,10 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
               resultsGrid.appendChild(clone);
             });
             resultsSection.hidden = false;
+            resultsGrid.scrollLeft = 0;
+            window.setTimeout(updateArrows, 50);
           }
         } else {
-          // Restore: show all sections, hide results panel
           sections.forEach((section) => {
             section.hidden = false;
             const slug = section.dataset.category;
@@ -165,6 +218,8 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
             }
           });
           if (resultsSection) resultsSection.hidden = true;
+          if (btnPrev) btnPrev.hidden = true;
+          if (btnNext) btnNext.hidden = true;
         }
 
         if (count) count.textContent = `${visible} Artikel`;
