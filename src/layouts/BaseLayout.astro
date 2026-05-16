@@ -75,8 +75,9 @@ const socialIcons = {
     <link rel="alternate" hreflang={lang} href={new URL(currentPath, siteOrigin).href} />
     <link rel="alternate" hreflang={switchLang} href={new URL(switchPath, siteOrigin).href} />
     <link rel="alternate" hreflang="x-default" href={siteOrigin + '/'} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content={pageType} />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'de_DE'} />
@@ -94,6 +95,8 @@ const socialIcons = {
     <meta name="twitter:image" content={absoluteSocialImage} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)}></script>
+    <!-- Trustpilot Widget Loader -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <title>{title}</title>
     <script is:inline>
       (() => {
@@ -145,6 +148,12 @@ const socialIcons = {
       <slot />
     </main>
     <footer class="site-footer">
+      <!-- Trustpilot Review Collector Widget -->
+      <div class="trustpilot-wrapper">
+        <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a0765bcbcabb859c8675fbb" data-style-height="52px" data-style-width="100%" data-token="ed79da09-c348-4913-89dc-6e60a759e0ba">
+          <a href="https://de.trustpilot.com/review/callidus-am.de" target="_blank" rel="noopener">Trustpilot</a>
+        </div>
+      </div>
       <div class="footer-brand">
         <p>© callidus A&M. {t.footer}</p>
         <nav class="social-nav" aria-label={t.socialLabel}>
@@ -203,6 +212,7 @@ const socialIcons = {
       revealItems();
       document.addEventListener('astro:page-load', revealItems);
 
+      let scrollListenerAdded = false;
       const setupNavigation = () => {
         const header = document.querySelector('.site-header');
         const toggle = document.querySelector('.menu-toggle');
@@ -213,19 +223,36 @@ const socialIcons = {
           backToTop?.classList.toggle('is-visible', window.scrollY > 280);
         };
 
-        toggle?.addEventListener('click', () => {
-          const isOpen = document.body.classList.toggle('menu-open');
-          toggle.setAttribute('aria-expanded', String(isOpen));
-        });
+        if (toggle && !toggle.dataset.navReady) {
+          toggle.dataset.navReady = 'true';
+          const handleToggle = (event) => {
+            event.preventDefault();
+            const isOpen = document.body.classList.toggle('menu-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+          };
+          toggle.addEventListener('click', handleToggle);
+          toggle.addEventListener('touchend', handleToggle, { passive: false });
+        }
+
         menu?.querySelectorAll('a').forEach((link) => {
+          if (link.dataset.navReady) return;
+          link.dataset.navReady = 'true';
           link.addEventListener('click', () => {
             document.body.classList.remove('menu-open');
             toggle?.setAttribute('aria-expanded', 'false');
           });
         });
-        backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        if (backToTop && !backToTop.dataset.navReady) {
+          backToTop.dataset.navReady = 'true';
+          backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        if (!scrollListenerAdded) {
+          scrollListenerAdded = true;
+          window.addEventListener('scroll', updateScrollState, { passive: true });
+        }
         updateScrollState();
-        window.addEventListener('scroll', updateScrollState, { passive: true });
       };
       setupNavigation();
       document.addEventListener('astro:page-load', setupNavigation);

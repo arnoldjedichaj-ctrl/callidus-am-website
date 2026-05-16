@@ -1167,6 +1167,22 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
 }
 .category-section { scroll-margin-top: 6rem; }
 
+/* ── Trustpilot Widget im Footer ── */
+.trustpilot-wrapper {
+  grid-column: 1 / -1;
+  margin-bottom: 1.25rem;
+  padding: .6rem .8rem;
+  background: rgba(245, 247, 233, .08);
+  border: 1px solid rgba(245, 247, 233, .14);
+  border-radius: 14px;
+}
+.trustpilot-wrapper .trustpilot-widget {
+  min-height: 52px;
+}
+@media (max-width: 820px) {
+  .trustpilot-wrapper { padding: .4rem; }
+}
+
 /* ── Newsletter embed ── */
 .newsletter-embed {
   width: 100%;
