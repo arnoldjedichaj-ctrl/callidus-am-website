@@ -206,7 +206,7 @@ const socialIcons = {
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.05 });
         items.forEach((item) => observer.observe(item));
       };
       revealItems();
@@ -276,6 +276,28 @@ const socialIcons = {
       };
       setupTheme();
       document.addEventListener('astro:page-load', setupTheme);
+
+      const initTrustpilot = () => {
+        const widget = document.querySelector('.trustpilot-widget');
+        if (!widget) return;
+        if (window.Trustpilot) {
+          window.Trustpilot.loadFromElement(widget, true);
+          return;
+        }
+        // Script not ready yet — retry up to 5× every 800 ms
+        let tries = 0;
+        const id = setInterval(() => {
+          tries++;
+          if (window.Trustpilot) {
+            window.Trustpilot.loadFromElement(widget, true);
+            clearInterval(id);
+          } else if (tries >= 5) {
+            clearInterval(id);
+          }
+        }, 800);
+      };
+      initTrustpilot();
+      document.addEventListener('astro:page-load', initTrustpilot);
 
       const COOKIE_KEY = 'callidus-cookie-consent';
       const setupCookieBanner = () => {
