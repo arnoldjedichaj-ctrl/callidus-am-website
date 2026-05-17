@@ -606,6 +606,140 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
   max-width: 500px; margin: 8px auto 0; line-height: 1.6; padding-bottom: 40px;
 }
 .momus-panel .footer-disclaimer { color: rgba(240,232,208,.1); }
+
+/* ═══════════════════════════════════
+   KAIROS
+═══════════════════════════════════ */
+.kairos-panel { background: #0d0c14; min-height: 100vh; }
+
+.app-tab.kairos-tab.active {
+  border-bottom-color: #8b5cf6;
+  background: rgba(139,92,246,.07);
+}
+.app-tab.kairos-tab.active span { color: #8b5cf6; }
+.app-tab.kairos-tab.active img { box-shadow: 0 0 0 2px rgba(139,92,246,.5); }
+
+.sidebar-body.kairos-bg { background: #0d0c14; }
+.sidebar-body.kairos-bg .sidebar-search input { background: rgba(139,92,246,.08); }
+.sidebar-body.kairos-bg .sidebar-search input:focus { border-color: rgba(139,92,246,.4); }
+
+.nav-section-label.kairos-accent { color: rgba(139,92,246,.6); }
+.nav-link.active-kairos { color: #8b5cf6; border-left-color: #8b5cf6; background: rgba(139,92,246,.07); font-weight: 700; }
+.nav-link.active-kairos .nav-num { color: rgba(139,92,246,.5); }
+
+.kairos-cover {
+  background: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(139,92,246,.15) 0%, transparent 65%),
+              #0d0c14;
+}
+.kairos-cover .cover-app-img {
+  width: 100px; height: 100px; border-radius: 22px; object-fit: cover; margin-bottom: 28px;
+  box-shadow: 0 0 0 1px rgba(139,92,246,.4), 0 24px 64px rgba(139,92,246,.2);
+}
+.kairos-cover .cover-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.3); border-radius: 999px;
+  padding: 5px 16px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #8b5cf6; margin-bottom: 24px;
+}
+.kairos-cover .cover-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; color: #ede8f5; margin-bottom: 14px;
+}
+.kairos-cover .cover-title em { font-style: italic; color: #8b5cf6; }
+.kairos-cover .cover-stat .val { color: #8b5cf6; }
+.kairos-cover .badge-dot { background: #8b5cf6; }
+
+.kairos-panel .cover-sub { color: rgba(237,232,245,.4); }
+.kairos-panel .cover-stat .lbl { color: rgba(237,232,245,.28); }
+.kairos-panel .stat-div { background: rgba(255,255,255,.1); }
+.kairos-panel .chapter-eyebrow { color: rgba(139,92,246,.7); }
+.kairos-panel .chapter-eyebrow::after { background: rgba(255,255,255,.07); }
+.kairos-panel .chapter-title { color: #ede8f5; }
+.kairos-panel .chapter-lead { color: rgba(237,232,245,.62); border-color: rgba(139,92,246,.35); }
+.kairos-panel .chapter h3 { color: #ede8f5; }
+.kairos-panel .chapter h3::before { background: #8b5cf6; }
+.kairos-panel .chapter p { color: rgba(237,232,245,.68); }
+.kairos-panel .steps li { color: rgba(237,232,245,.68); }
+.kairos-panel .steps li::before { background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.3); color: #8b5cf6; }
+.kairos-panel .dtable thead { background: rgba(139,92,246,.08); }
+.kairos-panel .dtable th { color: rgba(139,92,246,.8); }
+.kairos-panel .dtable td { color: rgba(237,232,245,.63); }
+.kairos-panel .tip-box { background: rgba(139,92,246,.08); border-color: rgba(139,92,246,.2); }
+.kairos-panel .warn-box { background: rgba(220,80,80,.07); border-color: rgba(220,80,80,.2); }
+.kairos-panel .tip-box p { color: rgba(237,232,245,.75); }
+.kairos-panel .warn-box p { color: rgba(237,232,245,.7); }
+.kairos-panel .tip-box .box-ico { color: #8b5cf6; }
+.kairos-panel .warn-box .box-ico { color: #e05050; }
+.kairos-panel strong { color: rgba(237,232,245,.95); }
+.kairos-panel .footer-quote { color: rgba(237,232,245,.35); }
+.kairos-panel .footer-meta { color: rgba(237,232,245,.18); }
+.kairos-panel .footer-disclaimer { color: rgba(237,232,245,.12); }
+.kairos-panel .part-sub { color: rgba(237,232,245,.3); }
+.kairos-panel .part-title { color: #ede8f5; }
+.kairos-panel .part-num { color: rgba(139,92,246,.6); }
+
+.part-header-kairos {
+  background: linear-gradient(135deg, rgba(139,92,246,.1), rgba(99,52,206,.04));
+  border: 1px solid rgba(139,92,246,.2); border-radius: 14px; padding: 36px 44px;
+  position: relative; overflow: hidden;
+}
+.part-header-kairos::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,.08), transparent 70%);
+}
+
+.kairos-rp .rp-bar { background: linear-gradient(90deg,#6334ce,#8b5cf6,#c4b5fd); }
+.btt.kairos { background: rgba(139,92,246,.18); border-color: rgba(139,92,246,.3); color: #8b5cf6; }
+.btt.kairos:hover { background: rgba(139,92,246,.3); }
+
+/* Council cards */
+.council-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; max-width: 680px; }
+.council-card { border-radius: 11px; padding: 16px 18px; border: 1px solid; }
+.council-role { font-size: 0.65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
+.council-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 5px; }
+.council-desc { font-size: 0.78rem; line-height: 1.5; color: rgba(237,232,245,.42); }
+.cc-int { background: rgba(139,92,246,.07); border-color: rgba(139,92,246,.2); } .cc-int .council-name { color: #8b5cf6; } .cc-int .council-role { color: rgba(139,92,246,.5); }
+.cc-mc  { background: rgba(236,120,80,.06); border-color: rgba(236,120,80,.18); } .cc-mc .council-name { color: #ec7850; } .cc-mc .council-role { color: rgba(236,120,80,.5); }
+.cc-bs  { background: rgba(46,185,120,.06); border-color: rgba(46,185,120,.18); } .cc-bs .council-name { color: #2eb978; } .cc-bs .council-role { color: rgba(46,185,120,.5); }
+.cc-na  { background: rgba(240,180,50,.06); border-color: rgba(240,180,50,.18); } .cc-na .council-name { color: #f0b432; } .cc-na .council-role { color: rgba(240,180,50,.5); }
+.cc-mov { background: rgba(80,160,230,.06); border-color: rgba(80,160,230,.18); } .cc-mov .council-name { color: #50a0e6; } .cc-mov .council-role { color: rgba(80,160,230,.5); }
+.cc-ea  { background: rgba(220,80,140,.06); border-color: rgba(220,80,140,.18); } .cc-ea .council-name { color: #dc508c; } .cc-ea .council-role { color: rgba(220,80,140,.5); }
+.cc-pc  { background: rgba(80,200,200,.06); border-color: rgba(80,200,200,.18); } .cc-pc .council-name { color: #50c8c8; } .cc-pc .council-role { color: rgba(80,200,200,.5); }
+
+/* Personality cards */
+.personality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; max-width: 680px; }
+.personality-card { border-radius: 11px; padding: 16px 18px; border: 1px solid; }
+.personality-name { font-size: 0.84rem; font-weight: 800; margin-bottom: 5px; }
+.personality-desc { font-size: 0.78rem; line-height: 1.5; color: rgba(237,232,245,.45); }
+.pv-warm  { background: rgba(240,130,80,.06); border-color: rgba(240,130,80,.2); } .pv-warm .personality-name { color: #f08250; }
+.pv-dir   { background: rgba(80,160,230,.06); border-color: rgba(80,160,230,.2); } .pv-dir .personality-name { color: #50a0e6; }
+.pv-light { background: rgba(46,205,120,.06); border-color: rgba(46,205,120,.2); } .pv-light .personality-name { color: #2ecd78; }
+.pv-dry   { background: rgba(160,140,200,.06); border-color: rgba(160,140,200,.2); } .pv-dry .personality-name { color: #a08cc8; }
+
+/* Ecosystem CTA banner */
+.ecosystem-cta {
+  border: 1px solid rgba(139,92,246,.25); border-radius: 14px; padding: 24px 28px;
+  margin: 28px 0; display: flex; align-items: center; gap: 20px; max-width: 680px;
+  background: linear-gradient(135deg, rgba(139,92,246,.08), rgba(99,52,206,.03));
+}
+.ecosystem-cta-icon { font-size: 2rem; flex-shrink: 0; }
+.ecosystem-cta-text h4 { margin: 0 0 5px; color: #8b5cf6; font-size: 0.95rem; font-weight: 800; }
+.ecosystem-cta-text p  { margin: 0; font-size: 0.82rem; color: rgba(237,232,245,.52); line-height: 1.5; }
+.ecosystem-cta-btn {
+  flex-shrink: 0; margin-left: auto;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.35); border-radius: 10px;
+  padding: 9px 16px; font-size: 0.8rem; font-weight: 700; color: #8b5cf6;
+  text-decoration: none; transition: all 200ms; white-space: nowrap;
+}
+.ecosystem-cta-btn:hover { background: rgba(139,92,246,.28); transform: translateY(-1px); }
+
+@media(max-width:960px) {
+  .council-grid,.personality-grid { grid-template-columns: 1fr; }
+  .ecosystem-cta { flex-direction: column; align-items: flex-start; }
+  .ecosystem-cta-btn { margin-left: 0; }
+}
 </style>
 </head>
 <body>
@@ -636,6 +770,10 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
     <div class="app-tab momus-tab" id="tabMomus" onclick="switchApp('momus')">
       <img src="assets/logo_momus.png" alt="MOMUS">
       <span>MOMUS</span>
+    </div>
+    <div class="app-tab kairos-tab" id="tabKairos" onclick="switchApp('kairos')">
+      <img src="assets/logo_kairos.png" alt="KAIROS">
+      <span>KAIROS</span>
     </div>
   </div>
 
@@ -684,6 +822,35 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
       <a class="nav-link" data-app="nexus" href="#n-k26"><span class="nav-num">26</span>Fehlerbehebung</a>
       <a class="nav-link" data-app="nexus" href="#n-k27"><span class="nav-num">27</span>Technische Übersicht</a>
       <a class="nav-link" data-app="nexus" href="#n-k28"><span class="nav-num">28</span>Free vs. Premium</a>
+    </nav>
+
+    <!-- KAIROS nav -->
+    <nav class="nav-panel" id="navKairos">
+      <div class="nav-section-label kairos-accent">Teil I · Erste Schritte</div>
+      <a class="nav-link" data-app="kairos" href="#k-k01"><span class="nav-num">01</span>Willkommen bei KAIROS</a>
+      <a class="nav-link" data-app="kairos" href="#k-k02"><span class="nav-num">02</span>Installation &amp; Ersteinrichtung</a>
+      <a class="nav-link" data-app="kairos" href="#k-k03"><span class="nav-num">03</span>Registrierung &amp; Anmeldung</a>
+      <a class="nav-link" data-app="kairos" href="#k-k04"><span class="nav-num">04</span>Onboarding &amp; Einwilligungen</a>
+      <div class="nav-section-label kairos-accent">Teil II · Kernfunktionen</div>
+      <a class="nav-link" data-app="kairos" href="#k-k05"><span class="nav-num">05</span>Home &amp; Hub-Übersicht</a>
+      <a class="nav-link" data-app="kairos" href="#k-k06"><span class="nav-num">06</span>Sprachassistent &amp; Voice Chat</a>
+      <a class="nav-link" data-app="kairos" href="#k-k07"><span class="nav-num">07</span>Gesprächsgedächtnis</a>
+      <a class="nav-link" data-app="kairos" href="#k-k08"><span class="nav-num">08</span>Erinnerungen &amp; Kalender</a>
+      <div class="nav-section-label kairos-accent">Teil III · Council of Integration</div>
+      <a class="nav-link" data-app="kairos" href="#k-k09"><span class="nav-num">09</span>Das Council-Konzept</a>
+      <a class="nav-link" data-app="kairos" href="#k-k10"><span class="nav-num">10</span>Die 7 Rollen</a>
+      <a class="nav-link" data-app="kairos" href="#k-k11"><span class="nav-num">11</span>Persönlichkeit &amp; Senior-Modus</a>
+      <div class="nav-section-label kairos-accent">Teil IV · Ökosystem-Integration</div>
+      <a class="nav-link" data-app="kairos" href="#k-k12"><span class="nav-num">12</span>NEXUS verbinden</a>
+      <a class="nav-link" data-app="kairos" href="#k-k13"><span class="nav-num">13</span>MOMUS verbinden</a>
+      <a class="nav-link" data-app="kairos" href="#k-k14"><span class="nav-num">14</span>Cross-App-Aktionen</a>
+      <a class="nav-link" data-app="kairos" href="#k-k15"><span class="nav-num">15</span>Hub-Status &amp; Synchronisation</a>
+      <a class="nav-link" data-app="kairos" href="#k-k16"><span class="nav-num">16</span>Ökosystem-Diagramm</a>
+      <div class="nav-section-label kairos-accent">Teil V · Einstellungen &amp; Technik</div>
+      <a class="nav-link" data-app="kairos" href="#k-k17"><span class="nav-num">17</span>Einstellungen &amp; Profil</a>
+      <a class="nav-link" data-app="kairos" href="#k-k18"><span class="nav-num">18</span>Sprache &amp; Barrierefreiheit</a>
+      <a class="nav-link" data-app="kairos" href="#k-k19"><span class="nav-num">19</span>Datenschutz &amp; DSGVO</a>
+      <a class="nav-link" data-app="kairos" href="#k-k20"><span class="nav-num">20</span>FAQ &amp; Fehlerbehebung</a>
     </nav>
 
     <!-- MOMUS nav -->
@@ -1498,6 +1665,450 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
     </div><!-- /content momus -->
   </div><!-- /panelMomus -->
 
+
+  <!-- ════════════════ KAIROS PANEL ════════════════ -->
+  <div class="app-panel kairos-panel" id="panelKairos">
+
+    <!-- Cover -->
+    <section class="cover kairos-cover" id="k-cover">
+      <div class="cover-grid"></div>
+      <img class="cover-app-img" src="assets/logo_kairos.png" alt="KAIROS App Icon">
+      <div class="cover-badge"><span class="badge-dot"></span>Callidus A&M · v1.0</div>
+      <h1 class="cover-title"><em>KAIROS</em><br>Benutzerhandbuch</h1>
+      <p class="cover-sub">Dein KI-Assistent und Ökosystem-Orchestrator — der Geist, der NEXUS und MOMUS zusammenführt.</p>
+      <div class="cover-stats">
+        <div class="cover-stat"><div class="val">20</div><div class="lbl">Kapitel</div></div>
+        <div class="stat-div"></div>
+        <div class="cover-stat"><div class="val">7</div><div class="lbl">Council-Rollen</div></div>
+        <div class="stat-div"></div>
+        <div class="cover-stat"><div class="val">2</div><div class="lbl">Sprachen</div></div>
+        <div class="stat-div"></div>
+        <div class="cover-stat"><div class="val">AI</div><div class="lbl">Gemini 2.5</div></div>
+      </div>
+      <div class="cover-scroll">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        Loslegen
+      </div>
+    </section>
+
+    <div class="content">
+
+      <!-- TEIL I -->
+      <div class="part-divider"><div class="part-header-kairos"><div class="part-num">Teil I</div><h2 class="part-title">Erste Schritte</h2><div class="part-sub">Kapitel 1–4 · Installation, Registrierung, Einwilligungen</div></div></div>
+
+      <article class="chapter" id="k-k01">
+        <div class="chapter-eyebrow">Kapitel 01</div>
+        <h2 class="chapter-title">Willkommen bei KAIROS</h2>
+        <p class="chapter-lead">KAIROS ist der intelligente Mittelpunkt des Callidus-Ökosystems. Während NEXUS deinen Körper trackt und MOMUS deine Energie verwaltet, ist KAIROS dein sprachgesteuerter Begleiter — der alles zusammenführt und versteht.</p>
+        <h3>Was KAIROS einzigartig macht</h3>
+        <p>KAIROS ist kein gewöhnlicher Chatbot. Die App verarbeitet deine Sprache, erkennt Absichten, koordiniert Aktionen über App-Grenzen hinweg und antwortet nicht mit einer einzelnen Stimme — sondern mit einem <strong>Council of Integration</strong>: sieben spezialisierte KI-Rollen, die gemeinsam auf deine Situation eingehen.</p>
+        <h3>Die drei Säulen von KAIROS</h3>
+        <table class="dtable"><thead><tr><th>Säule</th><th>Was es bedeutet</th></tr></thead><tbody>
+          <tr><td><strong>Voice First</strong></td><td>Spreche mit KAIROS wie mit einem Coach — kein Tippen nötig</td></tr>
+          <tr><td><strong>Ecosystem Hub</strong></td><td>Liest Kontext aus NEXUS &amp; MOMUS, führt Aktionen dort aus</td></tr>
+          <tr><td><strong>Council of Integration</strong></td><td>7 KI-Rollen analysieren deine Situation mehrdimensional</td></tr>
+        </tbody></table>
+        <h3>Systemanforderungen</h3>
+        <table class="dtable"><thead><tr><th>Plattform</th><th>Mindestanforderung</th></tr></thead><tbody>
+          <tr><td>Android</td><td>Android 8.0 (API 26) oder höher</td></tr>
+          <tr><td>iOS</td><td>iOS 14.0 oder höher</td></tr>
+          <tr><td>Mikrofon</td><td>Erforderlich für Voice-Funktion</td></tr>
+          <tr><td>Internet</td><td>Erforderlich (Gemini API, Firebase)</td></tr>
+        </tbody></table>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>KAIROS kann ohne NEXUS und MOMUS als eigenständiger Sprachassistent genutzt werden. Die Ökosystem-Features entfalten sich erst beim Verknüpfen der Apps.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k02">
+        <div class="chapter-eyebrow">Kapitel 02</div>
+        <h2 class="chapter-title">Installation &amp; Ersteinrichtung</h2>
+        <p class="chapter-lead">KAIROS wird im Google Play Store und Apple App Store verfügbar sein. Der Rollout erfolgt nach der finalen Server-Konfiguration.</p>
+        <h3>Android</h3>
+        <ol class="steps"><li>Google Play Store öffnen</li><li>Nach <kbd>KAIROS Callidus</kbd> suchen</li><li><strong>Installieren</strong> tippen und warten</li><li>App öffnen und Ersteinrichtung starten</li></ol>
+        <h3>iOS</h3>
+        <ol class="steps"><li>App Store öffnen</li><li>Nach <kbd>KAIROS</kbd> von Callidus A&M suchen</li><li><strong>Laden</strong> tippen und mit Face ID / Touch ID bestätigen</li><li>App öffnen</li></ol>
+        <h3>Erststart</h3>
+        <ol class="steps"><li><strong>Sprache wählen</strong> – Deutsch oder Englisch</li><li><strong>Konto erstellen</strong> oder mit Google anmelden</li><li><strong>Onboarding durchlaufen</strong> – Einwilligungen, Persönlichkeit, Senior-Modus</li><li><strong>Optional:</strong> NEXUS und MOMUS per Link-Code verbinden</li></ol>
+        <div class="warn-box"><span class="box-ico">⚠</span><p>KAIROS benötigt eine aktive Internetverbindung für alle KI-Funktionen. Offline-Betrieb ist nicht verfügbar.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k03">
+        <div class="chapter-eyebrow">Kapitel 03</div>
+        <h2 class="chapter-title">Registrierung &amp; Anmeldung</h2>
+        <p class="chapter-lead">Erstelle dein KAIROS-Konto — mit E-Mail oder Google. Dein Account ist die Brücke zwischen KAIROS und deinen anderen Callidus-Apps.</p>
+        <h3>Konto erstellen (E-Mail)</h3>
+        <ol class="steps"><li>Auf <strong>Konto erstellen</strong> tippen</li><li>Gültige E-Mail-Adresse eingeben</li><li>Sicheres Passwort wählen (mind. 8 Zeichen)</li><li>Bestätigungsmail öffnen und Link anklicken</li><li>Zurück zur App — Anmeldung erfolgt automatisch</li></ol>
+        <h3>Google Sign-In</h3>
+        <ol class="steps"><li>Auf <strong>Mit Google anmelden</strong> tippen</li><li>Google-Konto auswählen</li><li>Berechtigungen bestätigen</li><li>Direkt in die App — kein separates Passwort nötig</li></ol>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Wichtig: Verwende für KAIROS dieselbe E-Mail-Adresse wie für NEXUS und MOMUS, wenn du die Apps später verknüpfen möchtest. Die Verknüpfung erfolgt jedoch über Link-Codes und ist auch mit verschiedenen Konten möglich.</p></div>
+        <h3>Passwort vergessen</h3>
+        <ol class="steps"><li>Auf dem Login-Screen <strong>Passwort vergessen</strong> tippen</li><li>E-Mail-Adresse eingeben</li><li>Link in der Bestätigungsmail anklicken</li><li>Neues Passwort festlegen</li></ol>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k04">
+        <div class="chapter-eyebrow">Kapitel 04</div>
+        <h2 class="chapter-title">Onboarding &amp; Einwilligungen</h2>
+        <p class="chapter-lead">KAIROS fragt dich beim ersten Start nach drei klar getrennten Einwilligungen. Jede kannst du unabhängig erteilen oder widerrufen — transparent, nach DSGVO.</p>
+        <h3>Die drei Einwilligungsebenen</h3>
+        <table class="dtable"><thead><tr><th>Einwilligung</th><th>Standard</th><th>Was es aktiviert</th></tr></thead><tbody>
+          <tr><td><strong>Gesprächsgedächtnis</strong></td><td>Aktiviert</td><td>KAIROS speichert Zusammenfassungen deiner Gespräche, um dich besser zu kennen</td></tr>
+          <tr><td><strong>Ökosystem-Kontext</strong></td><td>Deaktiviert</td><td>KAIROS darf NEXUS- und MOMUS-Daten in seine Antworten einbeziehen</td></tr>
+          <tr><td><strong>Kalender-Kontext</strong></td><td>Deaktiviert</td><td>KAIROS liest die nächsten 14 Tage deines Gerätekalenders — Daten werden <em>nicht</em> gespeichert</td></tr>
+        </tbody></table>
+        <h3>Wo du Einwilligungen änderst</h3>
+        <p>Alle drei Schalter sind jederzeit unter <kbd>Einstellungen › Datenschutz</kbd> erreichbar. Eine Deaktivierung wirkt sofort — KAIROS bezieht die betreffenden Daten ab sofort nicht mehr ein.</p>
+        <h3>Persönlichkeitsmodus wählen</h3>
+        <p>Im Onboarding wählst du außerdem den Kommunikationsstil von KAIROS. Das kannst du später jederzeit unter <kbd>Einstellungen › Persönlichkeit</kbd> anpassen (Details in Kapitel 11).</p>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Das Onboarding kann jederzeit über <kbd>Einstellungen › Onboarding wiederholen</kbd> neu durchgeführt werden. Alle Einwilligungen werden dabei neu abgefragt.</p></div>
+      </article>
+
+      <!-- TEIL II -->
+      <div class="part-divider"><div class="part-header-kairos"><div class="part-num">Teil II</div><h2 class="part-title">Kernfunktionen</h2><div class="part-sub">Kapitel 5–8 · Home, Voice Chat, Gedächtnis, Erinnerungen</div></div></div>
+
+      <article class="chapter" id="k-k05">
+        <div class="chapter-eyebrow">Kapitel 05</div>
+        <h2 class="chapter-title">Home &amp; Hub-Übersicht</h2>
+        <p class="chapter-lead">Der Home-Tab zeigt dir auf einen Blick, wie dein Ökosystem steht. Verknüpfte Apps, offene Aktionen und den Echtzeit-Status aller Verbindungen.</p>
+        <h3>Navigation</h3>
+        <table class="dtable"><thead><tr><th>Tab</th><th>Inhalt</th></tr></thead><tbody>
+          <tr><td><strong>Home / Hub</strong></td><td>Ökosystem-Status, App-Karten (NEXUS/MOMUS), offene Cross-App-Aktionen</td></tr>
+          <tr><td><strong>Voice</strong></td><td>Sprachassistent mit Mikrofon-Taste und Gesprächsverlauf</td></tr>
+          <tr><td><strong>Einstellungen</strong></td><td>Profil, Hub-Verbindungen, Datenschutz, Persönlichkeit</td></tr>
+        </tbody></table>
+        <h3>App-Status-Karten</h3>
+        <p>Sobald NEXUS oder MOMUS verknüpft sind, zeigt der Home-Screen je eine Statuskarte. Die Karte zeigt Verbindungsstatus, letzte Synchronisierung und ob Lese-/Schreibzugriff gewährt ist.</p>
+        <h3>Offene Aktionen (Pending Actions)</h3>
+        <p>Hat KAIROS aus einem Gespräch heraus eine Aktion für NEXUS oder MOMUS erstellt, erscheint sie hier zur Bestätigung. Du entscheidest, ob die Aktion ausgeführt wird — KAIROS handelt nie ohne deine Freigabe.</p>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Aktionen verfallen nach 24 Stunden automatisch, wenn du sie nicht bestätigst oder ablehnst.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k06">
+        <div class="chapter-eyebrow">Kapitel 06</div>
+        <h2 class="chapter-title">Sprachassistent &amp; Voice Chat</h2>
+        <p class="chapter-lead">Der Voice-Tab ist das Herzstück von KAIROS. Tippe auf das Mikrofon, sprich — und KAIROS antwortet mit seiner Council-Stimme.</p>
+        <h3>So funktioniert eine Sprachsitzung</h3>
+        <ol class="steps"><li>Zum <strong>Voice-Tab</strong> wechseln</li><li>Auf die <strong>Mikrofon-Taste</strong> tippen — Taste leuchtet violett</li><li><strong>Sprechen</strong> — auf Deutsch oder Englisch</li><li>Taste erneut tippen oder kurz schweigen zum Beenden</li><li>KAIROS analysiert und antwortet — Text erscheint und wird vorgelesen (TTS)</li></ol>
+        <h3>Beispielgespräche</h3>
+        <table class="dtable"><thead><tr><th>Thema</th><th>Beispiel-Aussage</th></tr></thead><tbody>
+          <tr><td>Reflexion</td><td>„Ich bin heute sehr erschöpft, obwohl ich wenig gemacht habe."</td></tr>
+          <tr><td>Aktion</td><td>„Trage bitte 2 Gläser Wasser in NEXUS ein."</td></tr>
+          <tr><td>Analyse</td><td>„Wie war meine Energiebilanz diese Woche laut MOMUS?"</td></tr>
+          <tr><td>Planung</td><td>„Erinnere mich morgen um 8 Uhr ans Meditieren."</td></tr>
+          <tr><td>Ziel</td><td>„Mein Ziel für diese Woche: täglich 30 Minuten spazieren gehen."</td></tr>
+        </tbody></table>
+        <h3>Text-to-Speech (TTS)</h3>
+        <p>KAIROS liest seine Antworten standardmäßig vor. TTS kann unter <kbd>Einstellungen › Audio</kbd> ein- und ausgeschaltet werden. Die Sprachausgabe nutzt die Systemstimme des Geräts.</p>
+        <h3>Sprachunterstützung</h3>
+        <table class="dtable"><thead><tr><th>Sprache</th><th>Erkennung</th><th>Antwort</th></tr></thead><tbody>
+          <tr><td>Deutsch (de_DE)</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Englisch (en_US)</td><td>✓</td><td>✓</td></tr>
+        </tbody></table>
+        <div class="warn-box"><span class="box-ico">⚠</span><p>Die Spracherkennung benötigt Mikrofon-Berechtigung. Wenn KAIROS nicht zuhört, prüfe unter <kbd>Systemeinstellungen › Apps › KAIROS › Berechtigungen</kbd>, ob das Mikrofon freigegeben ist.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k07">
+        <div class="chapter-eyebrow">Kapitel 07</div>
+        <h2 class="chapter-title">Gesprächsgedächtnis</h2>
+        <p class="chapter-lead">KAIROS kann sich an wichtige Gesprächsmomente erinnern — nicht als vollständige Transkripte, sondern als intelligente Zusammenfassungen. So kennt dich KAIROS über Sitzungen hinweg.</p>
+        <h3>Wie das Gedächtnis funktioniert</h3>
+        <p>Nach jedem Gespräch analysiert KAIROS, welche Inhalte für künftige Sitzungen relevant sind. Relevante Passagen werden als Gedächtniseinträge gespeichert — mit Thema, Zusammenfassung und Relevanzbewertung.</p>
+        <h3>Was KAIROS speichert</h3>
+        <table class="dtable"><thead><tr><th>Typ</th><th>Beispiel</th></tr></thead><tbody>
+          <tr><td>Ziele</td><td>„Möchte weniger Koffein konsumieren"</td></tr>
+          <tr><td>Muster</td><td>„Erschöpfung immer montags nach Meetings"</td></tr>
+          <tr><td>Vorlieben</td><td>„Bevorzugt kurze, direkte Antworten"</td></tr>
+          <tr><td>Kontext</td><td>„Hat letzte Woche mit dem Laufen begonnen"</td></tr>
+        </tbody></table>
+        <h3>Chat-Verlauf aufrufen</h3>
+        <p>Den vollständigen Gesprächsverlauf findest du unter <kbd>Voice › Chat-Verlauf</kbd> (Uhren-Symbol oben rechts). Einzelne Gespräche können von dort gelöscht werden.</p>
+        <h3>Gedächtnis deaktivieren oder löschen</h3>
+        <p>Unter <kbd>Einstellungen › Datenschutz › Gesprächsgedächtnis</kbd> kannst du:</p>
+        <ol class="steps"><li>Das Gedächtnis komplett deaktivieren (neue Gespräche werden nicht gespeichert)</li><li>Alle gespeicherten Einträge auf einmal löschen</li><li>Einzelne Einträge im Chat-Verlauf entfernen</li></ol>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k08">
+        <div class="chapter-eyebrow">Kapitel 08</div>
+        <h2 class="chapter-title">Erinnerungen &amp; Kalender</h2>
+        <p class="chapter-lead">KAIROS kann Erinnerungen setzen — direkt aus dem Gespräch heraus oder manuell im Erinnerungs-Tab.</p>
+        <h3>Erinnerung per Sprache erstellen</h3>
+        <ol class="steps"><li>Sage z. B.: <kbd>„Erinnere mich morgen um 9 Uhr ans Meditieren"</kbd></li><li>KAIROS erkennt die Absicht und erstellt eine Pending Action</li><li>Im Home-Tab die Aktion <strong>bestätigen</strong></li><li>Erinnerung erscheint im Erinnerungs-Tab</li></ol>
+        <h3>Erinnerung manuell erstellen</h3>
+        <ol class="steps"><li>Zum <strong>Erinnerungs-Tab</strong> wechseln (Glocken-Symbol)</li><li>Auf <strong>+ Neu</strong> tippen</li><li>Titel, Datum und Uhrzeit eingeben</li><li><strong>Speichern</strong> — lokale Benachrichtigung wird gesetzt</li></ol>
+        <h3>Kalender-Kontext (optional)</h3>
+        <p>Wenn du unter <kbd>Einstellungen › Datenschutz › Kalender-Kontext</kbd> zustimmst, liest KAIROS deine Gerätkalender-Einträge für die nächsten <strong>14 Tage</strong>. Diese Daten werden <em>ausschließlich</em> im KI-Prompt verwendet und <strong>nicht</strong> in Firebase gespeichert.</p>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Kalender-Daten verbessern KAIROSs Antworten erheblich — z. B. „Du hast morgen ein Meeting um 10 Uhr, plane deinen Sport davor ein." Die Daten verlassen dein Gerät nicht dauerhaft.</p></div>
+        <h3>Berechtigungen</h3>
+        <p>Android benötigt die <kbd>READ_CALENDAR</kbd>-Berechtigung. Diese wird erst angefragt, wenn du den Kalender-Kontext aktivierst.</p>
+      </article>
+
+      <!-- TEIL III -->
+      <div class="part-divider"><div class="part-header-kairos"><div class="part-num">Teil III</div><h2 class="part-title">Council of Integration</h2><div class="part-sub">Kapitel 9–11 · Das Konzept, die 7 Rollen, Persönlichkeit</div></div></div>
+
+      <article class="chapter" id="k-k09">
+        <div class="chapter-eyebrow">Kapitel 09</div>
+        <h2 class="chapter-title">Das Council-Konzept</h2>
+        <p class="chapter-lead">Was KAIROS von jedem anderen KI-Assistenten unterscheidet: Nicht eine einzelne KI antwortet — sondern ein Rat aus sieben spezialisierten Perspektiven.</p>
+        <h3>Warum ein Council?</h3>
+        <p>Gesundheit ist mehrdimensional. Eine Erschöpfung kann körperliche, mentale, ernährungsbedingte oder energetische Ursachen haben. Der Council of Integration stellt sicher, dass keine Perspektive übersehen wird — jede der sieben Rollen bringt ihr Expertenwissen ein, bevor KAIROS eine integrierte Antwort formuliert.</p>
+        <h3>Wie der Council arbeitet</h3>
+        <ol class="steps"><li>Du sprichst mit KAIROS</li><li>Der Intent-Parser erkennt die Kernthemen deiner Aussage</li><li>Relevante Council-Rollen werden aktiviert (nicht immer alle sieben)</li><li>Jede aktive Rolle analysiert deinen Kontext aus ihrer Perspektive</li><li>KAIROS synthetisiert die Perspektiven zu einer integrierten Antwort</li></ol>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Je mehr Kontext KAIROS hat — durch Gedächtnis, NEXUS-Daten und MOMUS-Status — desto präziser und relevanter werden die Council-Antworten.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k10">
+        <div class="chapter-eyebrow">Kapitel 10</div>
+        <h2 class="chapter-title">Die 7 Rollen</h2>
+        <p class="chapter-lead">Jede Rolle im Council of Integration hat ein klar definiertes Fachgebiet und eine eigene Perspektive auf deine Gesundheit.</p>
+        <div class="council-grid">
+          <div class="council-card cc-int"><div class="council-role">Koordination</div><div class="council-name">Der Integrator</div><div class="council-desc">Verbindet alle Perspektiven zu einer kohärenten Antwort. Ist immer aktiv.</div></div>
+          <div class="council-card cc-mc"><div class="council-role">Sinn &amp; Motivation</div><div class="council-name">Meaning Compass</div><div class="council-desc">Hinterfragt Werte, Ziele und den persönlichen Sinn hinter deinen Entscheidungen.</div></div>
+          <div class="council-card cc-bs"><div class="council-role">Körper &amp; Gesundheit</div><div class="council-name">Body Strategist</div><div class="council-desc">Analysiert körperliche Symptome, Erholung, Schlaf und körperliche Balance.</div></div>
+          <div class="council-card cc-na"><div class="council-role">Ernährung</div><div class="council-name">Nutrition Architect</div><div class="council-desc">Bewertet Ernährungsgewohnheiten, Nährstoffe und Energiequellen aus NEXUS-Daten.</div></div>
+          <div class="council-card cc-mov"><div class="council-role">Bewegung &amp; Sport</div><div class="council-name">Movement Coach</div><div class="council-desc">Analysiert Aktivitätslevel, Trainingsplanung und Bewegungsbalance.</div></div>
+          <div class="council-card cc-ea"><div class="council-role">Energie &amp; Digital</div><div class="council-name">Energy Analyst</div><div class="council-desc">Wertet MOMUS-Daten aus: Energy Shield, Phoenix Score, Bildschirmzeit-Muster.</div></div>
+          <div class="council-card cc-pc"><div class="council-role">Muster &amp; Gewohnheiten</div><div class="council-name">Pattern Chronicler</div><div class="council-desc">Erkennt Wiederholungen, Trigger und Verhaltenszyklen über Zeit hinweg.</div></div>
+        </div>
+        <h3>Welche Rollen werden aktiviert?</h3>
+        <p>Nicht jede Anfrage aktiviert alle sieben Rollen. Der Intent-Parser von KAIROS bestimmt anhand der erkannten Absicht, welche Rollen relevant sind. Bei einer Frage zu Erschöpfung sind z. B. Body Strategist, Energy Analyst und Pattern Chronicler aktiv — bei einer Ernährungsfrage Nutrition Architect und Body Strategist.</p>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k11">
+        <div class="chapter-eyebrow">Kapitel 11</div>
+        <h2 class="chapter-title">Persönlichkeit &amp; Senior-Modus</h2>
+        <p class="chapter-lead">KAIROS passt seinen Kommunikationsstil an dich an. Wähle, wie direkt, warm oder humorvoll der Assistent mit dir spricht.</p>
+        <h3>Die vier Persönlichkeitsmodi</h3>
+        <div class="personality-grid">
+          <div class="personality-card pv-warm"><div class="personality-name">Warm &amp; Empathisch</div><div class="personality-desc">Einfühlsam, unterstützend, emotional resonant. Ideal für Reflexion und schwierige Themen.</div></div>
+          <div class="personality-card pv-dir"><div class="personality-name">Direkt &amp; Klar</div><div class="personality-desc">Faktenorientiert, konkret, ohne Umschweife. Ideal für Analyse und klare Empfehlungen.</div></div>
+          <div class="personality-card pv-light"><div class="personality-name">Leicht &amp; Motivierend</div><div class="personality-desc">Positiv, ermutigend, energie-aufbauend. Ideal für den Morgen und Motivationsschübe.</div></div>
+          <div class="personality-card pv-dry"><div class="personality-name">Trocken &amp; Witzig</div><div class="personality-desc">Mit einem Augenzwinkern — sachlich, aber mit leisem Humor. Ideal für entspannte Sitzungen.</div></div>
+        </div>
+        <h3>Persönlichkeit ändern</h3>
+        <p>Unter <kbd>Einstellungen › Persönlichkeit</kbd> kannst du den Modus jederzeit wechseln. Die Änderung gilt ab dem nächsten Gespräch sofort.</p>
+        <h3>Senior-Modus</h3>
+        <p>Der Senior-Modus vereinfacht die gesamte Oberfläche: größere Schriftgrade, reduziertere Navigation, langsameres TTS-Tempo und deutlichere Bestätigungsdialoge. Aktivierung: <kbd>Einstellungen › Barrierefreiheit › Senior-Modus</kbd>.</p>
+        <table class="dtable"><thead><tr><th>Funktion</th><th>Standard</th><th>Senior-Modus</th></tr></thead><tbody>
+          <tr><td>Schriftgröße</td><td>Normal</td><td>+25% größer</td></tr>
+          <tr><td>TTS-Tempo</td><td>100%</td><td>80%</td></tr>
+          <tr><td>Navigation</td><td>3 Tabs</td><td>2 Tabs (Home + Voice)</td></tr>
+          <tr><td>Bestätigungen</td><td>Einmal tippen</td><td>Zweimal bestätigen</td></tr>
+        </tbody></table>
+      </article>
+
+      <!-- TEIL IV -->
+      <div class="part-divider"><div class="part-header-kairos"><div class="part-num">Teil IV</div><h2 class="part-title">Ökosystem-Integration</h2><div class="part-sub">Kapitel 12–16 · NEXUS, MOMUS, Cross-App-Aktionen, Hub-Status</div></div></div>
+
+      <article class="chapter" id="k-k12">
+        <div class="chapter-eyebrow">Kapitel 12</div>
+        <h2 class="chapter-title">NEXUS verbinden</h2>
+        <p class="chapter-lead">Verbinde KAIROS mit NEXUS, damit der Council deine Gesundheitsdaten kennt und Aktionen wie Mahlzeiten oder Workout-Einträge direkt in NEXUS schreiben kann.</p>
+        <h3>Verbindung über Link-Code</h3>
+        <ol class="steps"><li>In <strong>NEXUS</strong> öffnen: <kbd>Profil › KAIROS Hub › Link-Code generieren</kbd></li><li>Den <strong>8-stelligen Code</strong> notieren (gültig 15 Minuten)</li><li>In <strong>KAIROS</strong> öffnen: <kbd>Einstellungen › NEXUS verbinden</kbd></li><li>Code eingeben und <strong>Verbinden</strong> tippen</li><li>Bestätigung abwarten — Status wechselt auf <strong>Verbunden</strong></li></ol>
+        <h3>Was KAIROS aus NEXUS liest</h3>
+        <table class="dtable"><thead><tr><th>Datenpunkt</th><th>Verwendung</th></tr></thead><tbody>
+          <tr><td>Nutzerprofil (Alter, Gewicht, Größe)</td><td>Personalisierte Empfehlungen</td></tr>
+          <tr><td>Tages-Kalorien &amp; Wasser</td><td>Tagesüberblick im Council</td></tr>
+          <tr><td>Letzte 40 Mahlzeiten</td><td>Ernährungsmuster erkennen</td></tr>
+          <tr><td>Letzte 20 Aktivitäten (7 Tage)</td><td>Bewegungsanalyse</td></tr>
+          <tr><td>Letzte 14 Tagebucheinträge</td><td>Stimmungsmuster</td></tr>
+          <tr><td>Gesundheitsplan</td><td>Ziel-Kontext</td></tr>
+        </tbody></table>
+        <h3>Was KAIROS in NEXUS schreiben kann</h3>
+        <p>Nach deiner Bestätigung einer Pending Action kann KAIROS folgendes in NEXUS eintragen:</p>
+        <ul class="steps"><li>Mahlzeit mit Nährwerten (<kbd>log_meal</kbd>)</li><li>Tagebucheintrag (<kbd>write_journal_entry</kbd>)</li><li>Wasseraufnahme (<kbd>log_water</kbd>)</li><li>Trainingseinheit (<kbd>log_workout</kbd>)</li><li>Wohlbefindens-Score (<kbd>log_wellbeing</kbd>)</li><li>Persönliches Ziel setzen (<kbd>update_goal</kbd>)</li></ul>
+        <div class="warn-box"><span class="box-ico">⚠</span><p>KAIROS führt <strong>keine</strong> Aktionen in NEXUS aus, ohne dass du diese zuvor im Home-Tab bestätigt hast. Du hast immer die letzte Kontrolle.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k13">
+        <div class="chapter-eyebrow">Kapitel 13</div>
+        <h2 class="chapter-title">MOMUS verbinden</h2>
+        <p class="chapter-lead">Verbinde KAIROS mit MOMUS, damit der Energy Analyst im Council deine Energie-Daten versteht und MOMUS-Aktionen auslösen kann.</p>
+        <h3>Verbindung über Link-Code</h3>
+        <ol class="steps"><li>In <strong>MOMUS</strong> öffnen: <kbd>Einstellungen › KAIROS Hub › Link-Code generieren</kbd></li><li>Den <strong>8-stelligen Code</strong> notieren (gültig 15 Minuten)</li><li>In <strong>KAIROS</strong> öffnen: <kbd>Einstellungen › MOMUS verbinden</kbd></li><li>Code eingeben und <strong>Verbinden</strong> tippen</li><li>Bestätigung abwarten — Status wechselt auf <strong>Verbunden</strong></li></ol>
+        <h3>Was KAIROS aus MOMUS liest</h3>
+        <table class="dtable"><thead><tr><th>Datenpunkt</th><th>Verwendung</th></tr></thead><tbody>
+          <tr><td>Energy Shield Score (0–100)</td><td>Energiezustand verstehen</td></tr>
+          <tr><td>Phoenix Score &amp; Resets</td><td>Rückschlag-Muster erkennen</td></tr>
+          <tr><td>Energy Leaks (nach Typ)</td><td>Energievampire identifizieren</td></tr>
+          <tr><td>Tägliche Schrittanzahl</td><td>Bewegungskorrelation</td></tr>
+          <tr><td>Bildschirmzeit (Kategorien)</td><td>Digital-Wellness-Analyse</td></tr>
+          <tr><td>Körperprofil</td><td>Personalisierung</td></tr>
+        </tbody></table>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>MOMUS überträgt <strong>keine App-Namen</strong> — nur anonymisierte Kategorien (Social Media, Kommunikation, Video etc.). Deine Privatsphäre ist vollständig gewahrt.</p></div>
+        <h3>Verbindung trennen</h3>
+        <p>Unter <kbd>Einstellungen › MOMUS › Verbindung trennen</kbd> wird die Verknüpfung sofort aufgehoben. MOMUS löscht alle synchronisierten Daten aus den gemeinsam genutzten Firestore-Dokumenten.</p>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k14">
+        <div class="chapter-eyebrow">Kapitel 14</div>
+        <h2 class="chapter-title">Cross-App-Aktionen</h2>
+        <p class="chapter-lead">KAIROS erkennt aus deinen Worten, wann eine Aktion in NEXUS oder MOMUS sinnvoll ist — und schlägt sie dir zur Bestätigung vor.</p>
+        <h3>Intent-Erkennung</h3>
+        <p>Der Intent-Parser analysiert deine Spracheingabe auf Schlüsselabsichten. Erkannte Aktionen werden als <strong>Pending Actions</strong> im Home-Tab angezeigt.</p>
+        <h3>Unterstützte Aktionen (NEXUS)</h3>
+        <table class="dtable"><thead><tr><th>Aktion</th><th>Auslöser-Beispiel</th></tr></thead><tbody>
+          <tr><td>Mahlzeit eintragen</td><td>„Ich habe gerade einen Apfel gegessen"</td></tr>
+          <tr><td>Wasser eintragen</td><td>„Ich habe 0,5 Liter getrunken"</td></tr>
+          <tr><td>Training eintragen</td><td>„Ich war 40 Minuten laufen"</td></tr>
+          <tr><td>Tagebucheintrag</td><td>„Heute war ein schwieriger Tag wegen..."</td></tr>
+          <tr><td>Wohlbefinden</td><td>„Ich fühle mich heute eine 7 von 10"</td></tr>
+          <tr><td>Ziel setzen</td><td>„Mein Ziel: diese Woche täglich meditieren"</td></tr>
+        </tbody></table>
+        <h3>Aktionsfluss</h3>
+        <ol class="steps"><li>KAIROS erkennt Absicht aus deiner Aussage</li><li>Pending Action erscheint im Home-Tab mit Details</li><li>Du tippst <strong>Bestätigen</strong> oder <strong>Ablehnen</strong></li><li>Bei Bestätigung: KAIROS schreibt direkt in die Ziel-App</li><li>Aktion wird im Audit-Log mit Zeitstempel protokolliert</li></ol>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Du kannst den Text einer Pending Action vor der Bestätigung noch bearbeiten. Tippe auf den Aktions-Chip, um Details anzupassen.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k15">
+        <div class="chapter-eyebrow">Kapitel 15</div>
+        <h2 class="chapter-title">Hub-Status &amp; Synchronisation</h2>
+        <p class="chapter-lead">Der Hub-Status zeigt dir jederzeit, wie gut KAIROS mit deinen anderen Apps verbunden ist. Alle Indikatoren findest du in den Einstellungen.</p>
+        <h3>Status-Indikatoren</h3>
+        <table class="dtable"><thead><tr><th>Indikator</th><th>Bedeutung</th></tr></thead><tbody>
+          <tr><td><strong style="color:#5f9a6a">● Freigabe aktiv</strong></td><td>Link-Code wurde eingelöst, Verbindung besteht</td></tr>
+          <tr><td><strong style="color:#8b5cf6">● KAIROS bestätigt</strong></td><td>KAIROS hat die Verbindung von seiner Seite bestätigt</td></tr>
+          <tr><td><strong style="color:#c9a227">● Daten bereit</strong></td><td>Synchronisierte Daten stehen KAIROS zur Verfügung</td></tr>
+          <tr><td><strong style="color:#50a0e6">● Schreiben aktiv</strong></td><td>KAIROS darf Aktionen in diese App schreiben</td></tr>
+          <tr><td><strong style="color:#e05050">● Getrennt</strong></td><td>Keine aktive Verbindung — Link-Code nötig</td></tr>
+        </tbody></table>
+        <h3>Manuelle Synchronisation</h3>
+        <p>Unter <kbd>Einstellungen › [App] › Jetzt synchronisieren</kbd> kannst du eine sofortige Synchronisation auslösen. Nützlich, wenn du gerade viele Daten in NEXUS oder MOMUS eingetragen hast und KAIROS das sofort wissen soll.</p>
+        <h3>Verbindung erneut herstellen</h3>
+        <p>Wenn die Verbindung unterbrochen wurde (z. B. nach einem Konto-Wechsel), tippe auf <kbd>Neu verknüpfen</kbd>. Ein neuer Link-Code wird benötigt.</p>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k16">
+        <div class="chapter-eyebrow">Kapitel 16</div>
+        <h2 class="chapter-title">Ökosystem-Diagramm</h2>
+        <p class="chapter-lead">Das interaktive Ökosystem-Diagramm zeigt, wie NEXUS, MOMUS und KAIROS zusammenarbeiten — mit animierten Datenströmen und klickbaren Detailansichten.</p>
+        <div class="ecosystem-cta">
+          <div class="ecosystem-cta-icon">🌐</div>
+          <div class="ecosystem-cta-text">
+            <h4>Interaktives Ökosystem-Diagramm</h4>
+            <p>Datenflüsse, Hub-Architektur und App-Verbindungen visualisiert — klickbar und vollständig animiert.</p>
+          </div>
+          <a class="ecosystem-cta-btn" href="ecosystem.html" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Diagramm öffnen
+          </a>
+        </div>
+        <h3>Was das Diagramm zeigt</h3>
+        <table class="dtable"><thead><tr><th>Element</th><th>Beschreibung</th></tr></thead><tbody>
+          <tr><td>NEXUS (Grün)</td><td>Gesundheits- &amp; Ernährungs-App — schreibt Kontext in den Hub</td></tr>
+          <tr><td>MOMUS (Gold)</td><td>Energie- &amp; Digital-Wellness-App — schreibt Status in den Hub</td></tr>
+          <tr><td>KAIROS (Violett)</td><td>KI-Orchestrator — liest aus dem Hub und koordiniert Aktionen</td></tr>
+          <tr><td>Ecosystem Hub (Weiß)</td><td>Firebase Firestore als zentraler Datenspeicher</td></tr>
+          <tr><td>Animierte Linien</td><td>Echtzeit-Datenstrom zwischen den Apps</td></tr>
+        </tbody></table>
+      </article>
+
+      <!-- TEIL V -->
+      <div class="part-divider"><div class="part-header-kairos"><div class="part-num">Teil V</div><h2 class="part-title">Einstellungen &amp; Technik</h2><div class="part-sub">Kapitel 17–20 · Einstellungen, Sprache, Datenschutz, FAQ</div></div></div>
+
+      <article class="chapter" id="k-k17">
+        <div class="chapter-eyebrow">Kapitel 17</div>
+        <h2 class="chapter-title">Einstellungen &amp; Profil</h2>
+        <p class="chapter-lead">Alle Konfigurationsoptionen von KAIROS sind im Einstellungs-Tab gebündelt — übersichtlich in Kategorien gegliedert.</p>
+        <h3>Übersicht aller Einstellungsbereiche</h3>
+        <table class="dtable"><thead><tr><th>Bereich</th><th>Optionen</th></tr></thead><tbody>
+          <tr><td><strong>Profil</strong></td><td>Name, E-Mail (schreibgeschützt)</td></tr>
+          <tr><td><strong>Persönlichkeit</strong></td><td>Kommunikationsstil (warm/direkt/leicht/trocken)</td></tr>
+          <tr><td><strong>Audio</strong></td><td>TTS ein/aus, Sprechergeschwindigkeit</td></tr>
+          <tr><td><strong>NEXUS</strong></td><td>Verbindungsstatus, Sync, Link-Code, trennen</td></tr>
+          <tr><td><strong>MOMUS</strong></td><td>Verbindungsstatus, Sync, Link-Code, trennen</td></tr>
+          <tr><td><strong>Datenschutz</strong></td><td>Gedächtnis, Ökosystem-Kontext, Kalender-Kontext</td></tr>
+          <tr><td><strong>Barrierefreiheit</strong></td><td>Senior-Modus, Schriftgröße</td></tr>
+          <tr><td><strong>Sprache</strong></td><td>Deutsch / Englisch</td></tr>
+          <tr><td><strong>Konto</strong></td><td>Abmelden, Konto löschen</td></tr>
+          <tr><td><strong>Rechtliches</strong></td><td>Datenschutzerklärung, Impressum</td></tr>
+        </tbody></table>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k18">
+        <div class="chapter-eyebrow">Kapitel 18</div>
+        <h2 class="chapter-title">Sprache &amp; Barrierefreiheit</h2>
+        <p class="chapter-lead">KAIROS unterstützt Deutsch und Englisch vollständig — Oberfläche, Spracherkennung und KI-Antworten passen sich der gewählten Sprache an.</p>
+        <h3>Sprache wechseln</h3>
+        <ol class="steps"><li><kbd>Einstellungen › Sprache</kbd> öffnen</li><li>Gewünschte Sprache auswählen: <strong>Deutsch</strong> oder <strong>English</strong></li><li>App startet automatisch neu um die Sprachressourcen zu laden</li></ol>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Die Spracherkennung (Speech-to-Text) passt sich automatisch der App-Sprache an. Deutsch → <kbd>de_DE</kbd>, Englisch → <kbd>en_US</kbd>.</p></div>
+        <h3>Senior-Modus</h3>
+        <p>Aktiviere den Senior-Modus unter <kbd>Einstellungen › Barrierefreiheit</kbd> für eine vereinfachte, barrierearme Nutzung. Details in Kapitel 11.</p>
+        <h3>Schriftgröße</h3>
+        <p>Unabhängig vom Senior-Modus kann die Basis-Schriftgröße in drei Stufen angepasst werden: <kbd>Normal</kbd>, <kbd>Groß</kbd>, <kbd>Sehr Groß</kbd>.</p>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k19">
+        <div class="chapter-eyebrow">Kapitel 19</div>
+        <h2 class="chapter-title">Datenschutz &amp; DSGVO</h2>
+        <p class="chapter-lead">KAIROS wurde mit Privacy by Design entwickelt. Hier findest du eine vollständige Übersicht, welche Daten wo gespeichert werden und welche Rechte du hast.</p>
+        <h3>Wo deine Daten gespeichert werden</h3>
+        <table class="dtable"><thead><tr><th>Datentyp</th><th>Speicherort</th><th>Löschbar</th></tr></thead><tbody>
+          <tr><td>Firebase Auth (E-Mail, UID)</td><td>Firebase Auth</td><td>✓ Konto löschen</td></tr>
+          <tr><td>KAIROS-Profil (Sprache, Persönlichkeit)</td><td>Firestore <kbd>users/{uid}/kairos_profile</kbd></td><td>✓</td></tr>
+          <tr><td>Gesprächsgedächtnis</td><td>Firestore <kbd>users/{uid}/kairos_memory</kbd></td><td>✓ Einzeln + alle</td></tr>
+          <tr><td>Erinnerungen</td><td>Firestore <kbd>users/{uid}/kairos_reminders</kbd></td><td>✓</td></tr>
+          <tr><td>Audit-Log (Aktionen)</td><td>Firestore <kbd>users/{uid}/audit_log</kbd></td><td>✓ bei Kontolöschung</td></tr>
+          <tr><td>Kalender-Daten</td><td><strong>Nicht gespeichert</strong> — nur im RAM</td><td>—</td></tr>
+        </tbody></table>
+        <h3>Deine DSGVO-Rechte</h3>
+        <table class="dtable"><thead><tr><th>Recht</th><th>Wo</th></tr></thead><tbody>
+          <tr><td>Auskunft (Art. 15)</td><td><kbd>Einstellungen › Datenschutz › Meine Daten</kbd></td></tr>
+          <tr><td>Berichtigung (Art. 16)</td><td>Profil &amp; Einstellungen direkt bearbeiten</td></tr>
+          <tr><td>Löschung (Art. 17)</td><td><kbd>Einstellungen › Konto › Konto löschen</kbd></td></tr>
+          <tr><td>Einschränkung (Art. 18)</td><td>Einwilligungen einzeln deaktivieren</td></tr>
+          <tr><td>Widerruf der Einwilligung</td><td><kbd>Einstellungen › Datenschutz</kbd></td></tr>
+        </tbody></table>
+        <h3>Rechtsgrundlage</h3>
+        <p>Die Verarbeitung personenbezogener Daten in KAIROS basiert auf <strong>DSGVO Art. 6 Abs. 1 lit. a</strong> (Einwilligung). Die vollständige Datenschutzerklärung ist erreichbar unter <kbd>Einstellungen › Rechtliches › Datenschutzerklärung</kbd>.</p>
+        <div class="tip-box"><span class="box-ico">ℹ</span><p>Die Verknüpfung mit NEXUS und MOMUS erfordert explizite Zustimmung in allen beteiligten Apps. Die Verbindung kann jederzeit und unabhängig in jeder App getrennt werden.</p></div>
+      </article>
+      <hr class="div">
+
+      <article class="chapter" id="k-k20">
+        <div class="chapter-eyebrow">Kapitel 20</div>
+        <h2 class="chapter-title">FAQ &amp; Fehlerbehebung</h2>
+        <p class="chapter-lead">Die häufigsten Fragen und Lösungen auf einen Blick.</p>
+        <h3>Häufige Fragen</h3>
+        <table class="dtable"><thead><tr><th>Frage</th><th>Antwort</th></tr></thead><tbody>
+          <tr><td>KAIROS hört nicht zu</td><td>Mikrofon-Berechtigung prüfen: <kbd>Systemeinstellungen › Apps › KAIROS › Berechtigungen</kbd></td></tr>
+          <tr><td>Link-Code funktioniert nicht</td><td>Codes sind 15 Min. gültig — neuen Code generieren</td></tr>
+          <tr><td>Council-Antwort ist sehr allgemein</td><td>Mehr Kontext sprechen, NEXUS/MOMUS verbinden, Ökosystem-Kontext aktivieren</td></tr>
+          <tr><td>Pending Action verschwunden</td><td>Aktionen verfallen nach 24 Std. — neu auslösen</td></tr>
+          <tr><td>Gedächtnis scheint leer</td><td>Prüfen ob Gedächtnis-Einwilligung aktiv ist (<kbd>Einstellungen › Datenschutz</kbd>)</td></tr>
+          <tr><td>Keine TTS-Ausgabe</td><td>Audio-Einstellung prüfen und Gerätlautstärke erhöhen</td></tr>
+          <tr><td>App reagiert langsam</td><td>Internetverbindung prüfen — KAIROS benötigt Gemini API</td></tr>
+        </tbody></table>
+        <h3>Fehlercodes</h3>
+        <table class="dtable"><thead><tr><th>Code</th><th>Bedeutung</th><th>Lösung</th></tr></thead><tbody>
+          <tr><td><kbd>AUTH_REQUIRED</kbd></td><td>Nicht angemeldet</td><td>Neu anmelden</td></tr>
+          <tr><td><kbd>LINK_EXPIRED</kbd></td><td>Link-Code abgelaufen</td><td>Neuen Code generieren</td></tr>
+          <tr><td><kbd>NO_CONNECTION</kbd></td><td>Kein Internet</td><td>WLAN/Daten prüfen</td></tr>
+          <tr><td><kbd>KAIROS_SECRET_MISSING</kbd></td><td>Server-Konfiguration fehlt</td><td>Support kontaktieren</td></tr>
+        </tbody></table>
+        <h3>Support kontaktieren</h3>
+        <p>Bei anhaltenden Problemen erreichst du uns unter <strong>info@callidus-am.de</strong> oder über das Kontaktformular auf <strong>callidus-am.de</strong>.</p>
+      </article>
+
+      <div class="footer-quote">"Der richtige Moment ist nicht der, den die Uhr zeigt —<br>sondern der, den du bewusst wählst."</div>
+      <div class="footer-meta">callidus A&M · callidus-am.de · Stand Mai 2026</div>
+      <div class="footer-disclaimer">KAIROS ist ein KI-gestützter Assistent und ersetzt keine medizinische Beratung, Diagnose oder Behandlung. Bei gesundheitlichen Beschwerden wende dich an eine Ärztin oder einen Arzt.</div>
+
+    </div><!-- /content -->
+  </div><!-- /panelKairos -->
+
 </main>
 
 <script>
@@ -1511,22 +2122,27 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
     // panels
     document.getElementById('panelNexus').classList.toggle('active', app === 'nexus');
     document.getElementById('panelMomus').classList.toggle('active', app === 'momus');
+    document.getElementById('panelKairos').classList.toggle('active', app === 'kairos');
 
     // tabs
     document.getElementById('tabNexus').classList.toggle('active', app === 'nexus');
     document.getElementById('tabMomus').classList.toggle('active', app === 'momus');
+    document.getElementById('tabKairos').classList.toggle('active', app === 'kairos');
 
     // sidebar theme
     const body = document.getElementById('sidebarBody');
-    body.className = 'sidebar-body ' + (app === 'nexus' ? 'nexus-bg' : 'momus-bg');
+    const bgClass = app === 'nexus' ? 'nexus-bg' : app === 'momus' ? 'momus-bg' : 'kairos-bg';
+    body.className = 'sidebar-body ' + bgClass;
 
     // nav panels
     document.getElementById('navNexus').classList.toggle('active', app === 'nexus');
     document.getElementById('navMomus').classList.toggle('active', app === 'momus');
+    document.getElementById('navKairos').classList.toggle('active', app === 'kairos');
 
     // reading progress color
     const rp = document.getElementById('rp');
-    rp.className = 'rp ' + (app === 'nexus' ? 'nexus-rp' : 'momus-rp');
+    const rpClass = app === 'nexus' ? 'nexus-rp' : app === 'momus' ? 'momus-rp' : 'kairos-rp';
+    rp.className = 'rp ' + rpClass;
 
     // back to top color
     const btt = document.getElementById('btt');
@@ -1547,7 +2163,6 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
 
   // ── Active nav ──
   function updateActiveNav() {
-    const prefix = currentApp === 'nexus' ? 'n-' : 'm-';
     const activeClass = 'active-' + currentApp;
     const links = document.querySelectorAll('.nav-link[data-app="' + currentApp + '"]');
     const scrollY = window.scrollY + 140;
@@ -1559,7 +2174,7 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
       if (el && el.offsetTop <= scrollY) current = link;
     });
 
-    links.forEach(l => l.classList.remove('active-nexus', 'active-momus'));
+    links.forEach(l => l.classList.remove('active-nexus', 'active-momus', 'active-kairos'));
     if (current) current.classList.add(activeClass);
   }
 
@@ -1594,7 +2209,7 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
   // ── Search ──
   document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase().trim();
-    const nav = currentApp === 'nexus' ? 'navNexus' : 'navMomus';
+    const nav = currentApp === 'nexus' ? 'navNexus' : currentApp === 'momus' ? 'navMomus' : 'navKairos';
     document.querySelectorAll('#' + nav + ' .nav-link').forEach(link => {
       link.style.display = (!q || link.textContent.toLowerCase().includes(q)) ? '' : 'none';
     });

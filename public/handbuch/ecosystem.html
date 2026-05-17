@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callidus Ökosystem – Interaktives Schaubild</title>
+<style>
+  :root {
+    --nexus:   #10b981;
+    --nexus2:  #059669;
+    --momus:   #f59e0b;
+    --momus2:  #d97706;
+    --kairos:  #8b5cf6;
+    --kairos2: #7c3aed;
+    --hub:     #3b82f6;
+    --bg:      #0a0a0f;
+    --surface: #13131a;
+    --card:    #1a1a26;
+    --border:  rgba(255,255,255,0.07);
+    --text:    #e2e8f0;
+    --muted:   #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    width: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Canvas background ── */
+  #bgCanvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Sections ── */
+  section { position: relative; z-index: 1; }
+
+  /* ════════════════════════════════════════
+     HERO / DIAGRAM SECTION
+  ════════════════════════════════════════ */
+  #heroSection {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px 20px;
+  }
+
+  .eco-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .eco-header h1 {
+    font-size: clamp(1.3rem, 3vw, 2.1rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--nexus), var(--hub), var(--kairos));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+  .eco-header p {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  #diagramSvg {
+    width: 100%;
+    max-width: 860px;
+    height: auto;
+    overflow: visible;
+    filter: drop-shadow(0 0 40px rgba(59,130,246,0.15));
+  }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+  .legend-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .scroll-hint {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    opacity: 0.7;
+    animation: fadeFloat 2.4s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 20px; height: 20px; }
+  @keyframes fadeFloat {
+    0%,100% { opacity: 0.5; transform: translateY(0); }
+    50%      { opacity: 0.9; transform: translateY(4px); }
+  }
+
+  /* ════════════════════════════════════════
+     FEATURE OVERVIEW SECTION
+  ════════════════════════════════════════ */
+  #featuresSection {
+    padding: 60px 24px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .section-heading h2 {
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .section-heading p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* App cards grid */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .apps-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  .app-card {
+    background: var(--card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .app-card:hover {
+    transform: translateY(-4px);
+  }
+  .app-card.nexus-card:hover { box-shadow: 0 12px 40px rgba(16,185,129,0.18); }
+  .app-card.momus-card:hover { box-shadow: 0 12px 40px rgba(245,158,11,0.18); }
+  .app-card.kairos-card:hover { box-shadow: 0 12px 40px rgba(139,92,246,0.18); }
+
+  /* Card header */
+  .card-header {
+    padding: 22px 22px 16px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .nexus-card .card-header::before { background: var(--nexus); }
+  .momus-card .card-header::before { background: var(--momus); }
+  .kairos-card .card-header::before { background: var(--kairos); }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .card-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+  .nexus-card .card-name  { color: var(--nexus); }
+  .momus-card .card-name  { color: var(--momus); }
+  .kairos-card .card-name { color: var(--kairos); }
+
+  .card-tagline {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* Status badge */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-top: 10px;
+  }
+  .status-badge.live    { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+  .status-badge.beta    { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .status-badge.concept { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .status-badge.live .status-dot { animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink {
+    0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+
+  /* Card body */
+  .card-body { padding: 18px 20px 22px; }
+
+  /* Feature category */
+  .feat-group {
+    margin-bottom: 16px;
+  }
+  .feat-group:last-child { margin-bottom: 0; }
+
+  .feat-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nexus-card  .feat-label { color: var(--nexus); }
+  .momus-card  .feat-label { color: var(--momus); }
+  .kairos-card .feat-label { color: var(--kairos); }
+
+  .feat-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.15;
+  }
+
+  .feat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.3;
+  }
+
+  .chip.highlight {
+    border-color: rgba(255,255,255,0.12);
+    color: var(--text);
+    font-weight: 600;
+  }
+  .nexus-card  .chip.highlight { background: rgba(16,185,129,0.12); }
+  .momus-card  .chip.highlight { background: rgba(245,158,11,0.12); }
+  .kairos-card .chip.highlight { background: rgba(139,92,246,0.12); }
+
+  /* Premium badge in chips */
+  .premium-chip {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: linear-gradient(135deg,rgba(251,191,36,0.15),rgba(251,146,60,0.1));
+    color: #fbbf24;
+    border: 1px solid rgba(251,191,36,0.25);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Completeness bar */
+  .completeness {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .completeness-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.73rem;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .completeness-row span:last-child {
+    font-weight: 700;
+  }
+  .nexus-card  .completeness-row span:last-child { color: var(--nexus); }
+  .momus-card  .completeness-row span:last-child { color: var(--momus); }
+  .kairos-card .completeness-row span:last-child { color: var(--kairos); }
+
+  .progress-bar {
+    height: 5px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+  .nexus-card  .progress-fill { background: linear-gradient(90deg,var(--nexus2),var(--nexus)); }
+  .momus-card  .progress-fill { background: linear-gradient(90deg,var(--momus2),var(--momus)); }
+  .kairos-card .progress-fill { background: linear-gradient(90deg,var(--kairos2),var(--kairos)); }
+
+  /* ── SVG node hover ── */
+  .node-group { cursor: pointer; }
+  .node-group .node-bg { transition: filter 0.2s; }
+  .node-group:hover .node-bg { filter: brightness(1.3); }
+
+  /* ── Pulse rings ── */
+  @keyframes pulseRing {
+    0%   { r: 38; opacity: 0.6; }
+    100% { r: 58; opacity: 0; }
+  }
+  .pulse  { animation: pulseRing 2.2s ease-out infinite; }
+  .pulse2 { animation: pulseRing 2.2s ease-out 0.7s infinite; }
+
+  /* ── Info panel (popup) ── */
+  #infoPanel {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 24px;
+    width: min(460px, 92vw);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+  }
+  #infoPanel.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  #infoPanel .panel-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+  #infoPanel .panel-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  #infoPanel .panel-title { font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; }
+  #infoPanel .panel-sub   { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+  #infoPanel .panel-body  { font-size: 0.81rem; color: #94a3b8; line-height: 1.6; }
+  #infoPanel .panel-tags  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  #infoPanel .tag {
+    font-size: 0.7rem; padding: 3px 10px; border-radius: 99px;
+    font-weight: 600; letter-spacing: 0.03em;
+  }
+  #infoPanel .close-btn {
+    position: absolute; top: 12px; right: 14px;
+    background: none; border: none; color: var(--muted);
+    font-size: 1.1rem; cursor: pointer; line-height: 1;
+  }
+  #infoPanel .close-btn:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .eco-header h1 { font-size: 1.15rem; }
+    .legend { gap: 10px; }
+    #featuresSection { padding: 40px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — ANIMATED DIAGRAM
+═══════════════════════════════════════════ -->
+<section id="heroSection">
+  <div class="eco-header">
+    <h1>Das Callidus Ökosystem</h1>
+    <p>Klicke auf einen Knoten, um mehr zu erfahren · Scrolle für die Feature-Übersicht</p>
+  </div>
+
+  <svg id="diagramSvg" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="gNexus" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/>
+      </radialGradient>
+      <radialGradient id="gMomus" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#d97706"/>
+      </radialGradient>
+      <radialGradient id="gKairos" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/>
+      </radialGradient>
+      <radialGradient id="gHub" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1d4ed8"/>
+      </radialGradient>
+      <radialGradient id="gFirebase" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/>
+      </radialGradient>
+      <radialGradient id="gGemini" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#9333ea"/>
+      </radialGradient>
+      <radialGradient id="gUser" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#94a3b8"/><stop offset="100%" stop-color="#475569"/>
+      </radialGradient>
+
+      <filter id="hubGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+      <filter id="nodeGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+      <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="6" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+
+      <marker id="arrowHub" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#3b82f6" opacity="0.7"/>
+      </marker>
+      <marker id="arrowNexus" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#10b981" opacity="0.7"/>
+      </marker>
+      <marker id="arrowMomus" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" opacity="0.7"/>
+      </marker>
+      <marker id="arrowKairos" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#8b5cf6" opacity="0.7"/>
+      </marker>
+
+      <!-- Motion paths -->
+      <path id="path-nexus-hub"  d="M 240,250 Q 340,220 410,250" fill="none"/>
+      <path id="path-hub-nexus"  d="M 410,255 Q 340,280 240,255" fill="none"/>
+      <path id="path-momus-hub"  d="M 660,250 Q 570,220 490,250" fill="none"/>
+      <path id="path-hub-momus"  d="M 490,255 Q 570,280 660,255" fill="none"/>
+      <path id="path-hub-kairos" d="M 450,205 Q 450,140 450,110" fill="none"/>
+      <path id="path-kairos-hub" d="M 458,110 Q 458,145 458,205" fill="none"/>
+      <path id="path-fb-hub"     d="M 450,370 Q 450,330 450,300" fill="none"/>
+      <path id="path-gem-kairos" d="M 320,90 Q 370,80 430,90" fill="none"/>
+    </defs>
+
+    <!-- Orbital rings -->
+    <g transform="translate(450,250)">
+      <circle r="120" fill="none" stroke="rgba(59,130,246,0.07)" stroke-width="1" stroke-dasharray="4 8"/>
+      <circle r="170" fill="none" stroke="rgba(59,130,246,0.04)" stroke-width="1" stroke-dasharray="2 12"/>
+    </g>
+
+    <!-- Connection lines -->
+    <line x1="278" y1="250" x2="412" y2="250" stroke="#10b981" stroke-width="2" stroke-dasharray="6 4" opacity="0.4" marker-end="url(#arrowHub)"/>
+    <line x1="412" y1="256" x2="278" y2="256" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.25" marker-end="url(#arrowNexus)"/>
+    <line x1="622" y1="250" x2="490" y2="250" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6 4" opacity="0.4" marker-end="url(#arrowHub)"/>
+    <line x1="490" y1="256" x2="622" y2="256" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.25" marker-end="url(#arrowMomus)"/>
+    <line x1="450" y1="212" x2="450" y2="148" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="6 4" opacity="0.4" marker-end="url(#arrowKairos)"/>
+    <line x1="456" y1="148" x2="456" y2="212" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.25" marker-end="url(#arrowHub)"/>
+    <line x1="450" y1="362" x2="450" y2="298" stroke="#fb923c" stroke-width="2" stroke-dasharray="5 5" opacity="0.4" marker-end="url(#arrowHub)"/>
+    <line x1="338" y1="98" x2="418" y2="108" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.35" marker-end="url(#arrowKairos)"/>
+    <line x1="308" y1="110" x2="230" y2="218" stroke="#c084fc" stroke-width="1" stroke-dasharray="3 6" opacity="0.18" marker-end="url(#arrowNexus)"/>
+    <line x1="148" y1="348" x2="208" y2="278" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.3" marker-end="url(#arrowNexus)"/>
+
+    <!-- Data stream particles: Nexus→Hub -->
+    <circle r="3" fill="#10b981" opacity="0.9"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#path-nexus-hub"/></animateMotion></circle>
+    <circle r="2.5" fill="#34d399" opacity="0.7"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.8s"><mpath href="#path-nexus-hub"/></animateMotion></circle>
+    <circle r="2" fill="#6ee7b7" opacity="0.5"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.6s"><mpath href="#path-nexus-hub"/></animateMotion></circle>
+    <!-- Hub→Nexus -->
+    <circle r="3" fill="#3b82f6" opacity="0.9"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.4s"><mpath href="#path-hub-nexus"/></animateMotion></circle>
+    <circle r="2" fill="#60a5fa" opacity="0.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#path-hub-nexus"/></animateMotion></circle>
+    <!-- Momus→Hub -->
+    <circle r="3" fill="#f59e0b" opacity="0.9"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.2s"><mpath href="#path-momus-hub"/></animateMotion></circle>
+    <circle r="2.5" fill="#fbbf24" opacity="0.7"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1s"><mpath href="#path-momus-hub"/></animateMotion></circle>
+    <!-- Hub→Momus -->
+    <circle r="3" fill="#3b82f6" opacity="0.9"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.6s"><mpath href="#path-hub-momus"/></animateMotion></circle>
+    <circle r="2" fill="#60a5fa" opacity="0.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.8s"><mpath href="#path-hub-momus"/></animateMotion></circle>
+    <!-- Hub→Kairos -->
+    <circle r="3" fill="#8b5cf6" opacity="0.9"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0s"><mpath href="#path-hub-kairos"/></animateMotion></circle>
+    <circle r="2.5" fill="#a78bfa" opacity="0.7"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.7s"><mpath href="#path-hub-kairos"/></animateMotion></circle>
+    <!-- Kairos→Hub -->
+    <circle r="3" fill="#8b5cf6" opacity="0.9"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.3s"><mpath href="#path-kairos-hub"/></animateMotion></circle>
+    <!-- Firebase→Hub -->
+    <circle r="2.5" fill="#fb923c" opacity="0.8"><animateMotion dur="2s" repeatCount="indefinite" begin="0s"><mpath href="#path-fb-hub"/></animateMotion></circle>
+    <circle r="2" fill="#fed7aa" opacity="0.5"><animateMotion dur="2s" repeatCount="indefinite" begin="1s"><mpath href="#path-fb-hub"/></animateMotion></circle>
+    <!-- Gemini→Kairos -->
+    <circle r="2" fill="#c084fc" opacity="0.8"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#path-gem-kairos"/></animateMotion></circle>
+    <circle r="1.5" fill="#e9d5ff" opacity="0.5"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0.9s"><mpath href="#path-gem-kairos"/></animateMotion></circle>
+
+    <!-- HUB NODE -->
+    <g class="node-group" id="nodeHub" onclick="showInfo('hub')">
+      <g transform="translate(450,250)">
+        <circle r="62" fill="#1d4ed8" opacity="0.12" filter="url(#hubGlow)">
+          <animate attributeName="opacity" values="0.12;0.25;0.12" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="pulse"  r="46" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+        <circle class="pulse2" r="46" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+        <circle class="node-bg" r="44" fill="url(#gHub)" filter="url(#nodeGlow)"/>
+        <circle r="44" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle r="36" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text y="8" text-anchor="middle" font-size="26" dominant-baseline="middle">🔗</text>
+        <text y="32" text-anchor="middle" font-size="10" font-weight="700" fill="white" letter-spacing="1.5" opacity="0.9">HUB</text>
+      </g>
+    </g>
+
+    <!-- NEXUS NODE -->
+    <g class="node-group" id="nodeNexus" onclick="showInfo('nexus')">
+      <g transform="translate(200,250)">
+        <circle r="52" fill="#059669" opacity="0.1" filter="url(#softGlow)">
+          <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="node-bg" r="40" fill="url(#gNexus)" filter="url(#nodeGlow)"/>
+        <circle r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text y="6" text-anchor="middle" font-size="22" dominant-baseline="middle">🌿</text>
+        <text y="28" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" letter-spacing="1.5" opacity="0.9">NEXUS</text>
+      </g>
+    </g>
+
+    <!-- MOMUS NODE -->
+    <g class="node-group" id="nodeMomus" onclick="showInfo('momus')">
+      <g transform="translate(700,250)">
+        <circle r="52" fill="#d97706" opacity="0.1" filter="url(#softGlow)">
+          <animate attributeName="opacity" values="0.1;0.22;0.1" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="node-bg" r="40" fill="url(#gMomus)" filter="url(#nodeGlow)"/>
+        <circle r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text y="6" text-anchor="middle" font-size="22" dominant-baseline="middle">🎭</text>
+        <text y="28" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" letter-spacing="1.5" opacity="0.9">MOMUS</text>
+      </g>
+    </g>
+
+    <!-- KAIROS NODE -->
+    <g class="node-group" id="nodeKairos" onclick="showInfo('kairos')">
+      <g transform="translate(450,100)">
+        <circle r="52" fill="#7c3aed" opacity="0.12" filter="url(#softGlow)">
+          <animate attributeName="opacity" values="0.12;0.28;0.12" dur="3.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="node-bg" r="40" fill="url(#gKairos)" filter="url(#nodeGlow)"/>
+        <circle r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text y="6" text-anchor="middle" font-size="22" dominant-baseline="middle">🌙</text>
+        <text y="28" text-anchor="middle" font-size="9.5" font-weight="700" fill="white" letter-spacing="1.5" opacity="0.9">KAIROS</text>
+      </g>
+    </g>
+
+    <!-- FIREBASE NODE -->
+    <g class="node-group" id="nodeFirebase" onclick="showInfo('firebase')">
+      <g transform="translate(450,400)">
+        <circle r="44" fill="#ea580c" opacity="0.08" filter="url(#softGlow)"/>
+        <circle class="node-bg" r="32" fill="url(#gFirebase)" filter="url(#nodeGlow)"/>
+        <circle r="32" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <text y="4" text-anchor="middle" font-size="18" dominant-baseline="middle">🔥</text>
+        <text y="22" text-anchor="middle" font-size="8.5" font-weight="700" fill="white" letter-spacing="1" opacity="0.9">FIREBASE</text>
+      </g>
+    </g>
+
+    <!-- GEMINI NODE -->
+    <g class="node-group" id="nodeGemini" onclick="showInfo('gemini')">
+      <g transform="translate(288,88)">
+        <circle r="40" fill="#9333ea" opacity="0.08" filter="url(#softGlow)"/>
+        <circle class="node-bg" r="30" fill="url(#gGemini)" filter="url(#nodeGlow)"/>
+        <circle r="30" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <text y="3" text-anchor="middle" font-size="16" dominant-baseline="middle">✨</text>
+        <text y="20" text-anchor="middle" font-size="8" font-weight="700" fill="white" letter-spacing="1" opacity="0.9">GEMINI AI</text>
+      </g>
+    </g>
+
+    <!-- USER NODE -->
+    <g class="node-group" id="nodeUser" onclick="showInfo('user')">
+      <g transform="translate(132,382)">
+        <circle r="38" fill="#475569" opacity="0.08" filter="url(#softGlow)"/>
+        <circle class="node-bg" r="28" fill="url(#gUser)" filter="url(#nodeGlow)"/>
+        <circle r="28" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <text y="3" text-anchor="middle" font-size="16" dominant-baseline="middle">👤</text>
+        <text y="20" text-anchor="middle" font-size="8" font-weight="700" fill="white" letter-spacing="1" opacity="0.9">NUTZER</text>
+      </g>
+    </g>
+
+    <!-- Edge labels -->
+    <text x="324" y="237" text-anchor="middle" font-size="8.5" fill="#94a3b8" opacity="0.65" font-family="monospace">Link-Code</text>
+    <text x="576" y="237" text-anchor="middle" font-size="8.5" fill="#94a3b8" opacity="0.65" font-family="monospace">Sync</text>
+    <text x="462" y="178" text-anchor="start"  font-size="8.5" fill="#94a3b8" opacity="0.65" font-family="monospace">Kontext</text>
+    <text x="466" y="340" text-anchor="start"  font-size="8.5" fill="#94a3b8" opacity="0.65" font-family="monospace">Auth / DB</text>
+    <text x="318" y="142" text-anchor="middle" font-size="8"   fill="#94a3b8" opacity="0.55" font-family="monospace">KI-Rat</text>
+  </svg>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>NEXUS – Gesundheit</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>MOMUS – Energie</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>KAIROS – Reflexion</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>Hub – Datensync</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fb923c"></div>Firebase</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c084fc"></div>Gemini AI</div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    Feature-Übersicht
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — FEATURE OVERVIEW
+═══════════════════════════════════════════ -->
+<section id="featuresSection">
+  <div class="section-heading">
+    <h2>App-Features im Überblick</h2>
+    <p>Drei spezialisierte Apps — ein integriertes Ökosystem für ganzheitliche Gesundheit</p>
+  </div>
+
+  <div class="apps-grid">
+
+    <!-- ── NEXUS ── -->
+    <div class="app-card nexus-card">
+      <div class="card-header">
+        <span class="card-icon">🌿</span>
+        <div class="card-name">NEXUS</div>
+        <div class="card-tagline">Gesundheits- &amp; Ernährungs-App</div>
+        <div class="status-badge live"><span class="status-dot"></span> Live im Play Store</div>
+      </div>
+      <div class="card-body">
+
+        <div class="feat-group">
+          <div class="feat-label">Kernfunktionen</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Mahlzeiten-Tracking</span>
+            <span class="chip highlight">Aktivitätsverfolgung</span>
+            <span class="chip">GPS-Tracking</span>
+            <span class="chip">Health API</span>
+            <span class="chip highlight">Tagebuch</span>
+            <span class="chip">Kalorienzähler</span>
+            <span class="chip">Wassertracker</span>
+            <span class="chip">Schrittzähler</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Künstliche Intelligenz</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Mahlzeit-Analyse</span>
+            <span class="chip highlight">Personalisierter Ernährungsplan</span>
+            <span class="chip">Gesundheitsplan</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Gamification</div>
+          <div class="feat-chips">
+            <span class="chip">XP-System</span>
+            <span class="chip">Level</span>
+            <span class="chip">Streaks</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Medien &amp; Inhalte</div>
+          <div class="feat-chips">
+            <span class="chip">YouTube-Integration</span>
+            <span class="chip">Audio-Library</span>
+            <span class="chip">Artikel-Library</span>
+            <span class="premium-chip">★ Premium</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Plattform</div>
+          <div class="feat-chips">
+            <span class="chip">Flutter</span>
+            <span class="chip">16 Sprachen</span>
+            <span class="chip">In-App-Purchase</span>
+            <span class="chip">Firebase</span>
+          </div>
+        </div>
+
+        <div class="completeness">
+          <div class="completeness-row">
+            <span>Reifegrad</span>
+            <span>95 %</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MOMUS ── -->
+    <div class="app-card momus-card">
+      <div class="card-header">
+        <span class="card-icon">🎭</span>
+        <div class="card-name">MOMUS</div>
+        <div class="card-tagline">Energie- &amp; Digital-Wellness-App</div>
+        <div class="status-badge beta"><span class="status-dot"></span> Beta / Feature-reich</div>
+      </div>
+      <div class="card-body">
+
+        <div class="feat-group">
+          <div class="feat-label">Energie-System</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Energie-Cockpit</span>
+            <span class="chip highlight">Energy Leaks tracken</span>
+            <span class="chip highlight">Phoenix Score</span>
+            <span class="chip">Energie-Labor</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Telefon-Analytics</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Bildschirmzeit nach Kategorie</span>
+            <span class="chip">Nur lokal</span>
+            <span class="chip">Consent-Pflicht</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Kognitive Spiele</div>
+          <div class="feat-chips">
+            <span class="chip highlight">15+ Gehirnspiele</span>
+            <span class="chip">Stroop-Test</span>
+            <span class="chip">N-Back</span>
+            <span class="chip">Sudoku</span>
+            <span class="chip">Reaktionszeit</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Dokumente &amp; AI</div>
+          <div class="feat-chips">
+            <span class="chip highlight">PDF/Bild-Upload</span>
+            <span class="chip highlight">AI-Analyse &amp; Chat</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Biometrie &amp; Plattform</div>
+          <div class="feat-chips">
+            <span class="chip">Health API</span>
+            <span class="chip">Schlaftracking</span>
+            <span class="chip">16 Sprachen</span>
+            <span class="chip">In-App-Purchase</span>
+            <span class="premium-chip">★ Premium</span>
+          </div>
+        </div>
+
+        <div class="completeness">
+          <div class="completeness-row">
+            <span>Reifegrad</span>
+            <span>80 %</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── KAIROS ── -->
+    <div class="app-card kairos-card">
+      <div class="card-header">
+        <span class="card-icon">🌙</span>
+        <div class="card-name">KAIROS</div>
+        <div class="card-tagline">AI-Assistent &amp; Ökosystem-Orchestrator</div>
+        <div class="status-badge concept"><span class="status-dot"></span> Konzept / In Entwicklung</div>
+      </div>
+      <div class="card-body">
+
+        <div class="feat-group">
+          <div class="feat-label">KI-Kern</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Voice-First Konversation</span>
+            <span class="chip highlight">Gemini 2.5 Flash</span>
+            <span class="chip">Intent-Parsing</span>
+            <span class="chip">Cross-App-Aktionen</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Council of Integration</div>
+          <div class="feat-chips">
+            <span class="chip highlight">7 AI-Stimmen / Rollen</span>
+            <span class="chip">Körper</span>
+            <span class="chip">Ernährung</span>
+            <span class="chip">Bewegung</span>
+            <span class="chip">Energie</span>
+            <span class="chip">Muster</span>
+            <span class="chip">Trauma</span>
+            <span class="chip">Wachstum</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Kontext &amp; Gedächtnis</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Konversations-Zusammenfassungen</span>
+            <span class="chip">Firestore Memory (mit Consent)</span>
+            <span class="chip">Gerätkalender als AI-Kontext</span>
+            <span class="chip">Nicht gespeichert</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Hub-Integration</div>
+          <div class="feat-chips">
+            <span class="chip highlight">Ausstehende Aktionen → Nexus</span>
+            <span class="chip highlight">Ausstehende Aktionen → Momus</span>
+            <span class="chip">Link-Code Pairing</span>
+          </div>
+        </div>
+
+        <div class="feat-group">
+          <div class="feat-label">Sonstiges</div>
+          <div class="feat-chips">
+            <span class="chip">Lokale Benachrichtigungen</span>
+            <span class="chip">Erinnerungen</span>
+            <span class="chip">Flutter</span>
+          </div>
+        </div>
+
+        <div class="completeness">
+          <div class="completeness-row">
+            <span>Reifegrad</span>
+            <span>50 %</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /apps-grid -->
+</section>
+
+<!-- ── Info Panel ── -->
+<div id="infoPanel">
+  <button class="close-btn" onclick="hideInfo()">✕</button>
+  <div class="panel-header">
+    <div class="panel-icon" id="pIcon"></div>
+    <div>
+      <div class="panel-title" id="pTitle"></div>
+      <div class="panel-sub" id="pSub"></div>
+    </div>
+  </div>
+  <div class="panel-body" id="pBody"></div>
+  <div class="panel-tags" id="pTags"></div>
+</div>
+
+<script>
+// ── Particle background ──
+(function() {
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  const particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = ['#10b981','#8b5cf6','#3b82f6','#f59e0b','#c084fc'];
+  for (let i = 0; i < 55; i++) {
+    particles.push({
+      x: Math.random() * 1920, y: Math.random() * 1080,
+      r: Math.random() * 1.8 + 0.4,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      alpha: Math.random() * 0.45 + 0.12,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = particles[i].color;
+          ctx.globalAlpha = (1 - d/110) * 0.07;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Node info ──
+const INFO = {
+  nexus: {
+    icon: '🌿', color: '#10b981', bg: 'rgba(16,185,129,0.15)',
+    title: 'NEXUS', sub: 'Gesundheits-App · Live im Play Store',
+    body: 'NEXUS ist die ausgefeilteste App des Callidus-Ökosystems. KI-gestützte Ernährungsplanung, GPS-Aktivitätstracking, Mahlzeit-Analyse und Gamification (XP, Streaks) machen NEXUS zur zentralen Gesundheitsplattform. Vollständig lokalisiert in 16 Sprachen mit In-App-Purchase.',
+    tags: ['Ernährung', 'Fitness', 'Gamification', '16 Sprachen', 'Live'],
+    tagColor: '#10b981'
+  },
+  momus: {
+    icon: '🎭', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)',
+    title: 'MOMUS', sub: 'Energie- & Digital-Wellness-App',
+    body: 'MOMUS analysiert Energie-Leaks, trackt den Phoenix Score und bietet 15+ kognitive Spiele. Die Bildschirmzeit-Analyse läuft ausschließlich lokal. PDF/Bild-Upload mit AI-Chat macht MOMUS zum Wellness-Analysetool. In-App-Purchase & 16 Sprachen.',
+    tags: ['Phoenix Score', 'Energie-Lab', '15+ Spiele', 'AI-Dokumente', 'Digital Detox'],
+    tagColor: '#f59e0b'
+  },
+  kairos: {
+    icon: '🌙', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)',
+    title: 'KAIROS', sub: 'AI-Assistent & Ökosystem-Orchestrator',
+    body: 'KAIROS steuert das gesamte Ökosystem per Spracheingabe (Gemini 2.5 Flash). Der "Council of Integration" mit 7 spezialisierten AI-Rollen gibt tiefgreifende Reflexionsantworten. Via Intent-Parsing erstellt KAIROS ausstehende Aktionen in NEXUS und MOMUS.',
+    tags: ['Council of Integration', 'Gemini AI', 'Voice-First', 'Intent-Parsing', 'Hub-Orchestrator'],
+    tagColor: '#8b5cf6'
+  },
+  hub: {
+    icon: '🔗', color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',
+    title: 'Callidus Hub', sub: 'Datensynchronisations-Dienst',
+    body: 'Der Hub verbindet alle drei Apps über sichere Firebase Cloud Functions und 15-Minuten-Link-Codes. Synchronisiert werden Gesundheitskontext (NEXUS→KAIROS), Energiedaten (MOMUS→KAIROS) und Reflexions-Outbox (KAIROS→NEXUS/MOMUS).',
+    tags: ['Link-Code', 'Cloud Functions', 'Echtzeit-Sync', 'DSGVO'],
+    tagColor: '#3b82f6'
+  },
+  firebase: {
+    icon: '🔥', color: '#fb923c', bg: 'rgba(251,146,60,0.15)',
+    title: 'Firebase', sub: 'Backend-Infrastruktur',
+    body: 'Drei separate Firebase-Projekte sorgen für strikte Datentrennung zwischen den Apps. Firebase Auth, Firestore, Cloud Functions (Node.js Gen 1) und Secret Manager bilden die komplette Infrastruktur.',
+    tags: ['Authentication', 'Firestore', 'Cloud Functions', 'Secret Manager'],
+    tagColor: '#fb923c'
+  },
+  gemini: {
+    icon: '✨', color: '#c084fc', bg: 'rgba(192,132,252,0.15)',
+    title: 'Gemini 2.5 Flash', sub: 'Google Generative AI',
+    body: 'Googles Gemini 2.5 Flash treibt den Council of Integration in KAIROS an und unterstützt Mahlzeit-Analyse in NEXUS sowie Dokument-AI in MOMUS. API-Keys werden sicher über Firebase Secret Manager verwaltet.',
+    tags: ['LLM', 'Multimodal', '7 AI-Rollen', 'Secret Manager'],
+    tagColor: '#c084fc'
+  },
+  user: {
+    icon: '👤', color: '#94a3b8', bg: 'rgba(148,163,184,0.12)',
+    title: 'Nutzer', sub: 'Datensouveränität & DSGVO',
+    body: 'Alle drei Apps sind DSGVO-konform mit expliziter Einwilligung (Art. 6 Abs. 1 lit. a). Datenlöschung, Datenexport und Hub-Verbindungskontrolle liegen vollständig beim Nutzer. Keine Cross-App-Verbindung ohne aktive Zustimmung.',
+    tags: ['DSGVO', 'Einwilligung', 'Datenlöschung', 'Export'],
+    tagColor: '#94a3b8'
+  }
+};
+
+function showInfo(key) {
+  const d = INFO[key];
+  if (!d) return;
+  document.getElementById('pIcon').textContent = d.icon;
+  document.getElementById('pIcon').style.background = d.bg;
+  document.getElementById('pTitle').textContent = d.title;
+  document.getElementById('pTitle').style.color = d.color;
+  document.getElementById('pSub').textContent = d.sub;
+  document.getElementById('pBody').textContent = d.body;
+  document.getElementById('pTags').innerHTML = d.tags.map(t =>
+    `<span class="tag" style="background:${d.bg};color:${d.color};border:1px solid ${d.color}33">${t}</span>`
+  ).join('');
+  document.getElementById('infoPanel').classList.add('visible');
+}
+function hideInfo() {
+  document.getElementById('infoPanel').classList.remove('visible');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#infoPanel') && !e.target.closest('.node-group')) hideInfo();
+});
+
+// ── Animate progress bars on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(() => {
+          setTimeout(() => { bar.style.width = w; }, 100);
+        });
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.app-card').forEach(card => observer.observe(card));
+</script>
+</body>
+</html>
