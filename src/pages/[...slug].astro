@@ -315,6 +315,14 @@ const articleJsonLd = article ? {
             <strong>{courseHeroVideo.label}</strong>
           </a>
         ) : mainImage && <img class={page.slug === 'nexus-app' ? 'article-image qr-image' : page.slug === 'uber-uns' ? 'article-image about-image' : page.slug === 'stress-reset-kurs' ? 'article-image course-image' : 'article-image'} src={mainImage} alt={title} loading="lazy" decoding="async" />}
+        {page.slug === 'nexus-app' && (
+          <div class="actions" style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener">
+              ▶ Jetzt im Google Play Store
+            </a>
+            <a class="button" href="/handbuch/">Zum App-Handbuch</a>
+          </div>
+        )}
         {article?.media?.length > 0 && (
           <div class="media-grid" aria-label="Medien zum Artikel">
             {article.media.map((item) => (
@@ -534,4 +542,87 @@ const articleJsonLd = article ? {
       )}
     </article>
   </section>
+
+  {page.slug === 'nexus-app' && (
+    <>
+      {/* ── Handbuch-Preview ── */}
+      <section class="section band">
+        <div class="container">
+          <p class="eyebrow" data-reveal>Benutzerhandbuch</p>
+          <h2 data-reveal="2">NEXUS · MOMUS · KAIROS — Alle Handbücher</h2>
+          <p class="lede" data-reveal="3" style="max-width:56ch;">Schritt-für-Schritt-Anleitungen, Feature-Erklärungen und DSGVO-Hinweise für alle drei Callidus-Apps — direkt hier eingebettet.</p>
+          <div data-reveal="2" style="margin-top:2rem;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 24px rgba(0,0,0,.1);">
+            <iframe
+              src="/handbuch/callidus-handbuch.html"
+              title="Callidus App-Handbücher"
+              style="width:100%;height:720px;border:none;display:block;"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div style="margin-top:1rem;text-align:center;">
+            <a class="button" href="/handbuch/" target="_blank">Handbuch im Vollbild öffnen</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Ökosystem-Schaubild ── */}
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow" data-reveal>Das Ökosystem</p>
+          <h2 data-reveal="2">Wie die drei Apps zusammenarbeiten</h2>
+          <p class="lede" data-reveal="3" style="max-width:56ch;">NEXUS, MOMUS und KAIROS sind über den Callidus Hub verbunden und tauschen Gesundheits-, Energie- und Reflexionsdaten sicher aus.</p>
+          <div data-reveal="2" style="margin-top:2rem;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 24px rgba(0,0,0,.1);">
+            <iframe
+              src="/handbuch/ecosystem.html"
+              title="Callidus Ökosystem"
+              style="width:100%;height:620px;border:none;display:block;"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div style="margin-top:1rem;text-align:center;">
+            <a class="button" href="/handbuch/ecosystem.html" target="_blank">Schaubild im Vollbild öffnen</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MOMUS & KAIROS Coming Soon ── */}
+      <section class="section band">
+        <div class="container">
+          <p class="eyebrow" data-reveal>Bald verfügbar</p>
+          <h2 data-reveal="2">Zwei weitere Apps im Callidus-Ökosystem</h2>
+          <p class="lede" data-reveal="3" style="max-width:60ch;">NEXUS ist der erste Schritt. Zwei spezialisierte Begleiter-Apps erweitern das Ökosystem — für ganzheitliche Gesundheit auf allen Ebenen.</p>
+          <div class="grid" style="margin-top:2.5rem;">
+            <article class="card" data-reveal="1">
+              <div class="card-body">
+                <span class="badge gold">Demnächst</span>
+                <h3>🎭 MOMUS — Energie &amp; Digital Wellness</h3>
+                <p>MOMUS analysiert deine Energiequellen und Energie-Leaks, trackt deinen Phoenix Score und bietet 15+ kognitive Gehirnspiele (Stroop, N-Back, Sudoku). Das Energie-Cockpit zeigt dir in Echtzeit, was dich stärkt — und was dich ausbremst.</p>
+                <ul style="margin-top:1rem;padding-left:1.25rem;line-height:2;">
+                  <li>Energie-Cockpit &amp; Phoenix Score</li>
+                  <li>Bildschirmzeit-Analyse (lokal, Consent-pflicht)</li>
+                  <li>15+ kognitive Spiele</li>
+                  <li>PDF/Bild-Upload mit KI-Analyse</li>
+                  <li>In-App-Purchase · 16 Sprachen</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card" data-reveal="2">
+              <div class="card-body">
+                <span class="badge mint">In Entwicklung</span>
+                <h3>🌙 KAIROS — KI-Reflexionsbegleiter</h3>
+                <p>KAIROS ist dein persönlicher KI-Assistent für tiefe Selbstreflexion. Per Spracheingabe führt der „Rat der Integration" — 7 spezialisierte KI-Stimmen — durch Gesundheit, Energie, Emotionen und Lebensmuster. KAIROS liest den Kontext aus NEXUS und MOMUS und orchestriert das gesamte Ökosystem.</p>
+                <ul style="margin-top:1rem;padding-left:1.25rem;line-height:2;">
+                  <li>Voice-First mit Gemini 2.5 Flash</li>
+                  <li>Council of Integration — 7 KI-Rollen</li>
+                  <li>Intent-Parsing → Aktionen in NEXUS &amp; MOMUS</li>
+                  <li>Konversations-Gedächtnis (mit Consent)</li>
+                  <li>Gerätkalender als KI-Kontext</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
 </BaseLayout>
