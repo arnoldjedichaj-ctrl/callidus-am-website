@@ -22,14 +22,15 @@ const canonicalUrl = new URL(currentPath, siteOrigin).href;
 const switchPath = alternatePath || (lang === 'de' ? '/en/' : '/');
 const switchLang = lang === 'de' ? 'en' : 'de';
 const logoPath = '/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png';
-const socialImage = ogImage || logoPath;
+// Social-Sharing-Bild: 1200x630 callidus A&M Logo mit goldenem Verlauf
+const socialImage = ogImage || '/og-image.png';
 const absoluteSocialImage = new URL(socialImage, siteOrigin).href;
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'callidus A&M',
   url: siteOrigin,
-  logo: new URL(logoPath, siteOrigin).href,
+  logo: new URL('/favicon.png', siteOrigin).href,
   email: 'info@callidus-am.de',
   sameAs: [
     'https://www.instagram.com/callidusam/',

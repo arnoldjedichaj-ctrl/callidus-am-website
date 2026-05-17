@@ -10,4 +10,6 @@ Thumbs.db
 # Firebase Service Account - NIE ins Repo!
 firebase-service-account.json
 firebase-service-account*.json
+nexus-service-account.json
+nexus-service-account*.json
 *-firebase-adminsdk-*.json
