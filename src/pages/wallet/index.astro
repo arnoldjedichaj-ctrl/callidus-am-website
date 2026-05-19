@@ -1,0 +1,513 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Sanitas Wallet | callidus A&M"
+  description="Ihr persönliches Sanitas-Guthaben (SAN) — kaufen, einlösen und Wallet verbinden."
+  lang="de"
+>
+  <section class="section wallet-section">
+    <div class="container" style="max-width:720px">
+
+      <!-- AUTH VIEWS -->
+      <div id="view-loading" class="wallet-view" style="text-align:center;padding:4rem 0">
+        <div class="san-spinner"></div>
+        <p class="muted" style="margin-top:1rem">Lade...</p>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="view-auth" class="wallet-view" hidden>
+        <p class="eyebrow" data-reveal>Callidus Mitglieder-Bereich</p>
+        <h1 data-reveal="2">Sanitas Wallet</h1>
+        <p class="lede" data-reveal="3" style="max-width:480px">
+          Erstellen Sie ein kostenloses Konto oder melden Sie sich an, um Ihr SAN-Guthaben zu verwalten und Kurse vergünstigt zu erhalten.
+        </p>
+
+        <div class="wallet-card" data-reveal="3" style="margin-top:2rem">
+          <!-- TAB -->
+          <div class="wallet-tabs">
+            <button class="wallet-tab active" data-tab="login">Anmelden</button>
+            <button class="wallet-tab" data-tab="register">Registrieren</button>
+          </div>
+
+          <form id="form-login" class="wallet-form" novalidate>
+            <label>
+              E-Mail
+              <input type="email" id="login-email" autocomplete="email" required placeholder="ihre@email.de" />
+            </label>
+            <label>
+              Passwort
+              <input type="password" id="login-password" autocomplete="current-password" required placeholder="Passwort" />
+            </label>
+            <p id="login-error" class="form-error" hidden></p>
+            <button type="submit" class="button primary" style="width:100%">Anmelden</button>
+            <button type="button" id="btn-google-login" class="button" style="width:100%;margin-top:.5rem">
+              Mit Google anmelden
+            </button>
+            <button type="button" id="btn-reset-pw" class="form-link">Passwort vergessen?</button>
+          </form>
+
+          <form id="form-register" class="wallet-form" hidden novalidate>
+            <label>
+              Name
+              <input type="text" id="reg-name" required placeholder="Ihr Name" />
+            </label>
+            <label>
+              E-Mail
+              <input type="email" id="reg-email" autocomplete="email" required placeholder="ihre@email.de" />
+            </label>
+            <label>
+              Passwort
+              <input type="password" id="reg-password" autocomplete="new-password" required placeholder="Mindestens 8 Zeichen" />
+            </label>
+            <p id="reg-error" class="form-error" hidden></p>
+            <button type="submit" class="button primary" style="width:100%">Konto erstellen</button>
+            <button type="button" id="btn-google-reg" class="button" style="width:100%;margin-top:.5rem">
+              Mit Google fortfahren
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div id="view-dashboard" class="wallet-view" hidden>
+        <div class="wallet-header" data-reveal>
+          <div>
+            <p class="eyebrow">Sanitas Wallet</p>
+            <h1 id="user-greeting">Willkommen</h1>
+          </div>
+          <button id="btn-logout" class="button" style="align-self:flex-start">Abmelden</button>
+        </div>
+
+        <!-- BALANCE CARDS -->
+        <div class="grid balance-grid" data-reveal="2" style="margin-top:1.5rem">
+          <div class="wallet-card balance-card">
+            <span class="balance-label">SAN-Guthaben</span>
+            <span class="balance-amount" id="san-balance">—</span>
+            <span class="balance-sub">1 SAN = 1,00 € Rabatt</span>
+          </div>
+          <div class="wallet-card balance-card">
+            <span class="balance-label">XP-Punkte</span>
+            <span class="balance-amount" id="xp-balance">—</span>
+            <span class="balance-sub">100 XP → 1 SAN</span>
+          </div>
+        </div>
+
+        <!-- WALLET ADDRESS -->
+        <div class="wallet-card" data-reveal="3" style="margin-top:1.5rem">
+          <div style="display:flex;align-items:center;gap:1rem;justify-content:space-between;flex-wrap:wrap">
+            <div>
+              <strong>Crypto-Wallet</strong>
+              <p class="muted" style="margin:.25rem 0 0;font-size:.875rem" id="wallet-address-display">Keine Wallet verbunden</p>
+            </div>
+            <button id="btn-connect-wallet" class="button">Wallet verbinden</button>
+          </div>
+          <p class="muted" style="font-size:.8rem;margin-top:.75rem">
+            Verbinden Sie eine Ethereum-Wallet (MetaMask o.ä.) um als verifizierter Callidus-Inhaber zusätzliche Vorteile zu erhalten.
+          </p>
+        </div>
+
+        <!-- SAN KAUFEN -->
+        <div data-reveal style="margin-top:2.5rem">
+          <h2>SAN kaufen</h2>
+          <p class="muted">Kaufen Sie Sanitas-Guthaben und lösen Sie es für Rabatte ein.</p>
+          <div class="grid san-packages" style="margin-top:1rem">
+            <button class="wallet-card san-package-card" data-package="san_10" data-san="10" data-eur="7.50">
+              <span class="san-amount">10 SAN</span>
+              <span class="san-price">7,50 €</span>
+              <span class="san-value-note">= 10,00 € Rabattwert</span>
+            </button>
+            <button class="wallet-card san-package-card" data-package="san_25" data-san="25" data-eur="18.75">
+              <span class="san-badge">Beliebt</span>
+              <span class="san-amount">25 SAN</span>
+              <span class="san-price">18,75 €</span>
+              <span class="san-value-note">= 25,00 € Rabattwert</span>
+            </button>
+            <button class="wallet-card san-package-card" data-package="san_50" data-san="50" data-eur="37.50">
+              <span class="san-amount">50 SAN</span>
+              <span class="san-price">37,50 €</span>
+              <span class="san-value-note">= 50,00 € Rabattwert</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STRESS RESET MIT SAN -->
+        <div class="wallet-card san-redeem-card" data-reveal style="margin-top:2rem">
+          <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <span class="badge gold">Exklusiv</span>
+              <h3 style="margin:.75rem 0 .5rem">Stress-Reset-Kurs</h3>
+              <p class="muted" style="font-size:.9rem">Lösen Sie SAN als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit SAN.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px">
+              <div class="san-redeem-input">
+                <label style="font-size:.8rem;color:var(--muted)">SAN einsetzen</label>
+                <input type="number" id="redeem-amount" min="1" max="50" value="10" style="width:80px;text-align:center" />
+              </div>
+              <button id="btn-redeem" class="button primary">Rabattlink erhalten</button>
+            </div>
+          </div>
+          <p id="redeem-result" class="form-success" hidden></p>
+          <p id="redeem-error" class="form-error" hidden></p>
+        </div>
+
+        <!-- XP UMWANDELN -->
+        <div class="wallet-card" data-reveal style="margin-top:1.5rem">
+          <h3 style="margin:0 0 .5rem">XP in SAN umwandeln</h3>
+          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">100 XP = 1 SAN · Max. 10 SAN pro Monat</p>
+          <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+            <input type="number" id="xp-convert-amount" min="100" max="1000" step="100" value="100" style="width:100px" />
+            <span class="muted" style="font-size:.875rem">XP → <strong id="xp-convert-preview">1 SAN</strong></span>
+            <button id="btn-xp-convert" class="button">Umwandeln</button>
+          </div>
+          <p id="xp-error" class="form-error" hidden style="margin-top:.5rem"></p>
+        </div>
+
+        <!-- LEDGER -->
+        <div data-reveal style="margin-top:2.5rem">
+          <h2>Transaktions-Historie</h2>
+          <div id="ledger-list" class="ledger-list">
+            <p class="muted">Lade...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .wallet-section { min-height: 70vh; }
+    .wallet-view { animation: fadeIn .3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .wallet-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: box-shadow .2s;
+    }
+    .wallet-card:where(button) { cursor: pointer; text-align: left; }
+    .wallet-card:where(button):hover { box-shadow: 0 8px 30px rgba(var(--gold-rgb),.18); border-color: var(--gold); }
+
+    .wallet-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 1.5rem; }
+    .wallet-tab { background: none; border: none; padding: .75rem 1.5rem; cursor: pointer; color: var(--muted); font-weight: 500; border-bottom: 2px solid transparent; transition: .15s; }
+    .wallet-tab.active { color: var(--text); border-bottom-color: var(--gold); }
+
+    .wallet-form { display: flex; flex-direction: column; gap: 1rem; }
+    .wallet-form label { display: flex; flex-direction: column; gap: .35rem; font-size: .875rem; font-weight: 500; }
+    .wallet-form input { padding: .6rem .875rem; border: 1px solid var(--line); border-radius: .5rem; background: var(--bg-soft); color: var(--text); font-size: 1rem; }
+    .wallet-form input:focus { outline: 2px solid var(--gold); border-color: transparent; }
+
+    .form-error { color: var(--coral); font-size: .875rem; margin: -.25rem 0; }
+    .form-success { color: var(--mint); font-size: .875rem; }
+    .form-link { background: none; border: none; color: var(--muted); cursor: pointer; font-size: .85rem; text-decoration: underline; padding: 0; }
+
+    .wallet-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+
+    .balance-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .balance-card { display: flex; flex-direction: column; gap: .35rem; }
+    .balance-label { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .balance-amount { font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .balance-sub { font-size: .78rem; color: var(--muted); }
+
+    .san-packages { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .san-package-card { display: flex; flex-direction: column; gap: .4rem; position: relative; }
+    .san-amount { font-size: 1.5rem; font-weight: 700; }
+    .san-price { font-size: 1.1rem; color: var(--gold); font-weight: 600; }
+    .san-value-note { font-size: .78rem; color: var(--muted); }
+    .san-badge { position: absolute; top: .75rem; right: .75rem; background: var(--gold); color: var(--on-accent); font-size: .7rem; font-weight: 700; padding: .15rem .5rem; border-radius: 999px; text-transform: uppercase; }
+
+    .san-redeem-card { border-color: rgba(var(--gold-rgb),.3); }
+    .san-redeem-input { display: flex; flex-direction: column; gap: .25rem; align-items: flex-end; }
+    .san-redeem-input input { padding: .4rem .6rem; border: 1px solid var(--line); border-radius: .375rem; background: var(--bg-soft); color: var(--text); }
+
+    .ledger-list { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
+    .ledger-item { display: flex; justify-content: space-between; align-items: center; padding: .75rem 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: .625rem; font-size: .875rem; }
+    .ledger-item .ledger-desc { color: var(--text); }
+    .ledger-item .ledger-san { font-weight: 700; }
+    .ledger-item .ledger-san.plus { color: var(--mint); }
+    .ledger-item .ledger-san.minus { color: var(--coral); }
+    .ledger-item .ledger-date { color: var(--muted); font-size: .78rem; }
+
+    .san-spinner { width: 2.5rem; height: 2.5rem; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .muted { color: var(--muted); }
+  </style>
+
+  <script>
+    (() => {
+      // ── Firebase lazy import ──────────────────────────────────
+      const FB_CONFIG = {
+        apiKey: 'AIzaSyBdldIWl9iz7bFSEHgd5xkqnZtsLY2EkSg',
+        authDomain: 'nexus-app-61494.firebaseapp.com',
+        projectId: 'nexus-app-61494',
+        storageBucket: 'nexus-app-61494.firebasestorage.app',
+        messagingSenderId: '835373837904',
+        appId: '1:835373837904:web:050099d87ff2ea7ff16b55',
+      };
+
+      // Digistore24 Pakete (muss mit Cloud Functions übereinstimmen)
+      const PACKAGES = {
+        san_10: { san: 10, eur: 7.50, label: '10 SAN' },
+        san_25: { san: 25, eur: 18.75, label: '25 SAN' },
+        san_50: { san: 50, eur: 37.50, label: '50 SAN' },
+      };
+
+      // ── View helpers ──────────────────────────────────────────
+      const show = (id) => {
+        ['view-loading','view-auth','view-dashboard'].forEach(v => {
+          const el = document.getElementById(v);
+          if (el) el.hidden = v !== id;
+        });
+      };
+      const $ = (id) => document.getElementById(id);
+      const setError = (id, msg) => { const el = $(id); if (el) { el.textContent = msg; el.hidden = !msg; } };
+      const setSuccess = (id, msg) => { const el = $(id); if (el) { el.textContent = msg; el.hidden = !msg; } };
+
+      // ── Tab switching ─────────────────────────────────────────
+      const setupTabs = () => {
+        document.querySelectorAll('.wallet-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            document.querySelectorAll('.wallet-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const target = tab.dataset.tab;
+            $('form-login').hidden = target !== 'login';
+            $('form-register').hidden = target !== 'register';
+          });
+        });
+      };
+
+      // ── XP preview ───────────────────────────────────────────
+      const setupXpPreview = () => {
+        const input = $('xp-convert-amount');
+        const preview = $('xp-convert-preview');
+        if (!input || !preview) return;
+        input.addEventListener('input', () => {
+          const xp = parseInt(input.value) || 0;
+          preview.textContent = `${Math.floor(xp / 100)} SAN`;
+        });
+      };
+
+      // ── Firebase init (lazy via CDN) ─────────────────────────
+      let firebaseReady = false;
+      let auth, db, fns;
+
+      async function initFirebase() {
+        if (firebaseReady) return;
+        const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+        const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } =
+          await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
+        const { getFirestore, doc, getDoc, collection, query, orderBy, limit, getDocs } =
+          await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
+        const { getFunctions, httpsCallable } =
+          await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
+
+        const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
+        auth = getAuth(app);
+        db = getFirestore(app);
+        fns = getFunctions(app, 'europe-west1');
+        firebaseReady = true;
+
+        // ── Auth state ──────────────────────────────────────────
+        onAuthStateChanged(auth, async (user) => {
+          if (!user) { show('view-auth'); return; }
+          show('view-dashboard');
+          $('user-greeting').textContent = `Hallo, ${user.displayName || user.email?.split('@')[0] || 'Mitglied'}`;
+          loadDashboard(user, db, fns, { doc, getDoc, collection, query, orderBy, limit, getDocs, httpsCallable });
+        });
+
+        // ── Login ───────────────────────────────────────────────
+        $('form-login')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          setError('login-error', '');
+          try {
+            await signInWithEmailAndPassword(auth, $('login-email').value, $('login-password').value);
+          } catch (err) {
+            setError('login-error', mapAuthError(err.code));
+          }
+        });
+
+        // ── Register ────────────────────────────────────────────
+        $('form-register')?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          setError('reg-error', '');
+          try {
+            const cred = await createUserWithEmailAndPassword(auth, $('reg-email').value, $('reg-password').value);
+            await updateProfile(cred.user, { displayName: $('reg-name').value });
+          } catch (err) {
+            setError('reg-error', mapAuthError(err.code));
+          }
+        });
+
+        // ── Google ──────────────────────────────────────────────
+        const googleSignIn = async () => {
+          try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+          catch (err) { console.error(err); }
+        };
+        $('btn-google-login')?.addEventListener('click', googleSignIn);
+        $('btn-google-reg')?.addEventListener('click', googleSignIn);
+
+        // ── Password reset ───────────────────────────────────────
+        $('btn-reset-pw')?.addEventListener('click', async () => {
+          const email = $('login-email').value;
+          if (!email) { setError('login-error', 'Bitte E-Mail eingeben'); return; }
+          await sendPasswordResetEmail(auth, email);
+          setError('login-error', '');
+          alert('E-Mail zum Zurücksetzen wurde gesendet.');
+        });
+
+        // ── Logout ───────────────────────────────────────────────
+        $('btn-logout')?.addEventListener('click', () => signOut(auth));
+      }
+
+      async function loadDashboard(user, db, fns, helpers) {
+        const { doc, getDoc, collection, query, orderBy, limit, getDocs, httpsCallable } = helpers;
+
+        // Balance
+        try {
+          const balSnap = await getDoc(doc(db, 'users', user.uid, 'balances', 'current'));
+          const bal = balSnap.exists() ? balSnap.data() : { san: 0, xp: 0 };
+          $('san-balance').textContent = (bal.san || 0).toFixed(0);
+          $('xp-balance').textContent = (bal.xp || 0).toFixed(0);
+        } catch (_) {
+          $('san-balance').textContent = '0';
+          $('xp-balance').textContent = '0';
+        }
+
+        // Wallet address
+        try {
+          const userSnap = await getDoc(doc(db, 'users', user.uid));
+          const walletAddr = userSnap.data()?.wallet_address;
+          if (walletAddr) {
+            $('wallet-address-display').textContent = `${walletAddr.slice(0,6)}...${walletAddr.slice(-4)}`;
+            $('btn-connect-wallet').textContent = 'Wallet wechseln';
+          }
+        } catch (_) {}
+
+        // Ledger
+        try {
+          const ledgerRef = collection(db, 'users', user.uid, 'sanitas_ledger');
+          const q = query(ledgerRef, orderBy('created_at', 'desc'), limit(20));
+          const snap = await getDocs(q);
+          const list = $('ledger-list');
+          if (snap.empty) {
+            list.innerHTML = '<p class="muted">Noch keine Transaktionen.</p>';
+          } else {
+            list.innerHTML = snap.docs.map(d => {
+              const data = d.data();
+              const sign = data.amount > 0 ? '+' : '';
+              const cls = data.amount > 0 ? 'plus' : 'minus';
+              const date = data.created_at?.toDate?.()?.toLocaleDateString('de-DE') || '—';
+              return `<div class="ledger-item">
+                <span class="ledger-desc">${data.description || data.type || 'Transaktion'}</span>
+                <span class="ledger-date">${date}</span>
+                <span class="ledger-san ${cls}">${sign}${data.amount} SAN</span>
+              </div>`;
+            }).join('');
+          }
+        } catch (_) {
+          $('ledger-list').innerHTML = '<p class="muted">Transaktionen konnten nicht geladen werden.</p>';
+        }
+
+        // SAN kaufen → Digistore24
+        document.querySelectorAll('.san-package-card').forEach(card => {
+          card.addEventListener('click', async () => {
+            const packageId = card.dataset.package;
+            try {
+              const fn = httpsCallable(fns, 'getSanitasCheckoutUrl');
+              const result = await fn({ packageId, uid: user.uid });
+              if (result.data?.url) {
+                window.location.href = result.data.url;
+              }
+            } catch (err) {
+              alert('Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut.');
+              console.error(err);
+            }
+          });
+        });
+
+        // Stress Reset einlösen
+        $('btn-redeem')?.addEventListener('click', async () => {
+          setError('redeem-error', '');
+          setSuccess('redeem-result', '');
+          const sanAmount = parseInt($('redeem-amount')?.value || '0');
+          if (sanAmount < 1) { setError('redeem-error', 'Bitte Betrag eingeben.'); return; }
+          try {
+            const fn = httpsCallable(fns, 'redeemSanitas');
+            const result = await fn({ productId: 'stress_reset_kurs', sanAmount });
+            if (result.data?.discountUrl) {
+              setSuccess('redeem-result', `Ihr Rabattlink wurde erstellt. Sie werden weitergeleitet...`);
+              setTimeout(() => window.open(result.data.discountUrl, '_blank'), 1500);
+            }
+          } catch (err) {
+            setError('redeem-error', err.message || 'Einlösung fehlgeschlagen.');
+          }
+        });
+
+        // XP umwandeln
+        $('btn-xp-convert')?.addEventListener('click', async () => {
+          setError('xp-error', '');
+          const xpAmount = parseInt($('xp-convert-amount')?.value || '0');
+          if (xpAmount < 100) { setError('xp-error', 'Minimum 100 XP.'); return; }
+          try {
+            const fn = httpsCallable(fns, 'convertXpToSanitas');
+            await fn({ xpAmount });
+            window.location.reload();
+          } catch (err) {
+            setError('xp-error', err.message || 'Umwandlung fehlgeschlagen.');
+          }
+        });
+
+        // Wallet verbinden (MetaMask)
+        $('btn-connect-wallet')?.addEventListener('click', async () => {
+          if (!window.ethereum) {
+            alert('Kein Ethereum-Wallet gefunden. Bitte installieren Sie MetaMask.');
+            return;
+          }
+          try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const address = accounts[0];
+            const message = `Callidus Wallet-Verknüpfung für ${user.uid} — ${Date.now()}`;
+            const signature = await window.ethereum.request({
+              method: 'personal_sign',
+              params: [message, address],
+            });
+            const fn = httpsCallable(fns, 'linkWalletAddress');
+            await fn({ address, message, signature });
+            $('wallet-address-display').textContent = `${address.slice(0,6)}...${address.slice(-4)}`;
+            $('btn-connect-wallet').textContent = 'Wallet wechseln';
+          } catch (err) {
+            alert('Wallet-Verknüpfung fehlgeschlagen: ' + (err.message || err));
+          }
+        });
+      }
+
+      function mapAuthError(code) {
+        const map = {
+          'auth/invalid-email': 'Ungültige E-Mail-Adresse.',
+          'auth/user-not-found': 'Kein Konto mit dieser E-Mail gefunden.',
+          'auth/wrong-password': 'Falsches Passwort.',
+          'auth/email-already-in-use': 'Diese E-Mail wird bereits verwendet.',
+          'auth/weak-password': 'Passwort muss mindestens 6 Zeichen haben.',
+          'auth/too-many-requests': 'Zu viele Versuche. Bitte warten.',
+          'auth/invalid-credential': 'E-Mail oder Passwort ungültig.',
+        };
+        return map[code] || 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.';
+      }
+
+      setupTabs();
+      setupXpPreview();
+      show('view-loading');
+      initFirebase();
+
+      document.addEventListener('astro:page-load', () => {
+        setupTabs();
+        setupXpPreview();
+        if (!firebaseReady) { show('view-loading'); initFirebase(); }
+      });
+    })();
+  </script>
+</BaseLayout>

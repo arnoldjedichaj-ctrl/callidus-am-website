@@ -51,7 +51,7 @@ const navItems = [
   { href: t.paths.guide, label: t.nav.guide },
   { href: t.paths.recommendations, label: t.nav.recommendations },
   { href: t.paths.course, label: t.nav.course },
-  { href: t.paths.nexus, label: lang === 'de' ? 'callidus APP\'s' : 'callidus APP\'s' },
+  { href: t.paths.apps, label: t.nav.apps },
   { href: t.paths.lexicon, label: t.nav.lexicon },
   { href: t.paths.about, label: t.nav.about },
 ];
@@ -133,6 +133,13 @@ const socialIcons = {
           <span>{lang.toUpperCase()}</span>
           <a href={switchPath}>{languages[switchLang]}</a>
         </div>
+        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label="Sanitas Wallet öffnen" title="Sanitas Wallet">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+            <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
+          </svg>
+          <span id="nav-san-balance" class="san-nav-badge" hidden>0</span>
+        </a>
         <button class="theme-toggle" type="button" aria-label="Darkmode umschalten" aria-pressed="false">
           <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="4"></circle>
@@ -192,6 +199,44 @@ const socialIcons = {
         <path d="m6 15 6-6 6 6"></path>
       </svg>
     </button>
+    <script is:inline>
+      // ── Sanitas Wallet Balance im Nav ──────────────────────────
+      (() => {
+        const FB_CONFIG = {
+          apiKey: 'AIzaSyBdldIWl9iz7bFSEHgd5xkqnZtsLY2EkSg',
+          authDomain: 'nexus-app-61494.firebaseapp.com',
+          projectId: 'nexus-app-61494',
+          storageBucket: 'nexus-app-61494.firebasestorage.app',
+          messagingSenderId: '835373837904',
+          appId: '1:835373837904:web:050099d87ff2ea7ff16b55',
+        };
+        let walletInited = false;
+        const initWalletBadge = async () => {
+          if (walletInited) return;
+          walletInited = true;
+          try {
+            const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+            const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
+            const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
+            const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+            onAuthStateChanged(auth, (user) => {
+              const badge = document.getElementById('nav-san-balance');
+              if (!badge) return;
+              if (!user) { badge.hidden = true; return; }
+              onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
+                const san = snap.exists() ? (snap.data().san || 0) : 0;
+                badge.textContent = san;
+                badge.hidden = false;
+              });
+            });
+          } catch (_) {}
+        };
+        initWalletBadge();
+        document.addEventListener('astro:page-load', initWalletBadge);
+      })();
+    </script>
     <script is:inline>
       const revealItems = () => {
         const items = document.querySelectorAll('[data-reveal]');

@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "latest",
-    "astro": "latest"
+    "astro": "latest",
+    "firebase": "^12.13.0"
   },
   "devDependencies": {
     "firebase-admin": "^12.7.0"
