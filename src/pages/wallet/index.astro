@@ -308,7 +308,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
         auth = getAuth(app);
         db = getFirestore(app);
-        fns = getFunctions(app, 'europe-west1');
+        fns = getFunctions(app);
         firebaseReady = true;
 
         // ── Auth state ──────────────────────────────────────────
