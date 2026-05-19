@@ -585,11 +585,102 @@ const articleJsonLd = article ? {
         </div>
       </section>
 
-      {/* ── MOMUS & KAIROS Coming Soon ── */}
+      {/* ── Preise & Abonnements ── */}
       <section class="section band">
         <div class="container">
-          <p class="eyebrow" data-reveal>Bald verfügbar</p>
-          <h2 data-reveal="2">Zwei weitere Apps im Callidus-Ökosystem</h2>
+          <p class="eyebrow" data-reveal>Preise &amp; Abonnements</p>
+          <h2 data-reveal="2">Transparent. Fair. Flexibel.</h2>
+          <p class="lede" data-reveal="3" style="max-width:58ch;">Jede App hat ihr eigenes Abo — oder du holst das KAIROS-Bundle und schaltest alle drei Apps gleichzeitig auf Premium.</p>
+          <div class="grid" style="margin-top:2.5rem;align-items:stretch;">
+
+            {/* NEXUS */}
+            <article class="card" data-reveal="1" style="position:relative;">
+              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+                <span class="badge mint">Kostenlos</span>
+                <h3 style="margin-top:.75rem;">🔬 NEXUS</h3>
+                <p style="font-size:.9rem;opacity:.75;">KI-Ernährungstracker &amp; Fitness-Coach</p>
+                <div style="margin:1.25rem 0;padding:1rem;background:rgba(0,0,0,.04);border-radius:10px;text-align:center;">
+                  <span style="font-size:2rem;font-weight:800;">Gratis</span>
+                  <p style="margin:.25rem 0 0;font-size:.8rem;opacity:.6;">Kernfeatures kostenlos</p>
+                </div>
+                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                  <li>Foto-Analyse (Mahlzeiten &amp; Kalorien)</li>
+                  <li>KI-Koch &amp; Rezeptgenerator</li>
+                  <li>Dynamischer Wochenplan</li>
+                  <li>PDF-Gesundheitsberichte</li>
+                  <li>4-Perspektiven-Expertenrat</li>
+                  <li>Gamification &amp; Chat mit NEXUS</li>
+                </ul>
+                <a class="button" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener" style="margin-top:1.5rem;text-align:center;">▶ Im Google Play Store</a>
+              </div>
+            </article>
+
+            {/* MOMUS */}
+            <article class="card" data-reveal="2" style="position:relative;">
+              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+                <span class="badge gold">Premium</span>
+                <h3 style="margin-top:.75rem;">🎭 MOMUS</h3>
+                <p style="font-size:.9rem;opacity:.75;">Energie &amp; Digital Wellness</p>
+                <div style="margin:1.25rem 0;padding:1rem;background:rgba(0,0,0,.04);border-radius:10px;text-align:center;">
+                  <span style="font-size:2rem;font-weight:800;">€ 3,99</span><span style="font-size:1rem;opacity:.65;">/Monat</span>
+                  <p style="margin:.4rem 0 0;font-size:.8rem;opacity:.75;">oder <strong>€ 29,99 / Jahr</strong> — spart € 17,89</p>
+                  <p style="margin:.2rem 0 0;font-size:.75rem;opacity:.55;">(≈ € 2,50 / Monat)</p>
+                </div>
+                <p style="font-size:.82rem;opacity:.65;margin-bottom:.5rem;">Kostenlos: 5 Gehirnspiele, Energie-Cockpit, Crisis AI</p>
+                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                  <li>8 Premium Brain Games (Sudoku, N-Back u.v.m.)</li>
+                  <li>KI-Energie- &amp; Leak-Analyse</li>
+                  <li>Phoenix-Vollversion &amp; Energy Lab</li>
+                  <li>Dokument-KI &amp; Food-KI</li>
+                  <li>Vollständige Bibliothek &amp; Text-to-Speech</li>
+                  <li>Unbegrenzte Erinnerungen &amp; Analysen</li>
+                </ul>
+                <p style="margin-top:1.5rem;font-size:.78rem;opacity:.5;text-align:center;">7-Tage-Trial über Google Play verfügbar</p>
+              </div>
+            </article>
+
+            {/* KAIROS Bundle — highlighted */}
+            <article class="card" data-reveal="3" style="position:relative;border:2px solid #D4AF37;box-shadow:0 0 0 4px rgba(212,175,55,.12);">
+              <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#D4AF37;color:#000;font-size:.72rem;font-weight:800;padding:.3rem .85rem;border-radius:20px;letter-spacing:.08em;white-space:nowrap;">✦ BESTES ANGEBOT</div>
+              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+                <span class="badge gold">Bundle · Alle 3 Apps</span>
+                <h3 style="margin-top:.75rem;">🌙 KAIROS Bundle</h3>
+                <p style="font-size:.9rem;opacity:.75;">NEXUS + MOMUS + KAIROS — ein Abo</p>
+                <div style="margin:1.25rem 0;padding:1rem;background:rgba(212,175,55,.08);border-radius:10px;border:1px solid rgba(212,175,55,.3);text-align:center;">
+                  <span style="font-size:2rem;font-weight:800;">€ 9,99</span><span style="font-size:1rem;opacity:.65;">/Monat</span>
+                  <p style="margin:.4rem 0 0;font-size:.8rem;opacity:.75;">oder <strong>€ 99,99 / Jahr</strong> — spart € 19,89</p>
+                  <p style="margin:.2rem 0 0;font-size:.75rem;opacity:.55;">(≈ € 8,33 / Monat)</p>
+                </div>
+                <p style="font-size:.82rem;color:#D4AF37;font-weight:600;margin-bottom:.5rem;">⚡ Ein Kauf — alle drei Apps premium</p>
+                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                  <li>Alles aus NEXUS &amp; MOMUS Premium</li>
+                  <li>Voice-First KI mit Gemini 2.5 Flash</li>
+                  <li>Council of Integration — 7 KI-Rollen</li>
+                  <li>Unbegrenzte tägliche Nachrichten</li>
+                  <li>NEXUS &amp; MOMUS als KI-Kontext</li>
+                  <li>Cross-App-Aktionen &amp; Gerätkalender</li>
+                  <li>Langzeitgedächtnis &amp; Erinnerungen</li>
+                </ul>
+                <p style="margin-top:1.5rem;font-size:.78rem;opacity:.5;text-align:center;">7-Tage-Trial über Google Play verfügbar</p>
+              </div>
+            </article>
+
+          </div>
+
+          {/* Ecosystem note */}
+          <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(0,0,0,.04);border-radius:14px;border-left:3px solid #D4AF37;max-width:680px;margin-left:auto;margin-right:auto;" data-reveal="2">
+            <p style="margin:0;font-size:.92rem;line-height:1.7;">
+              <strong>💡 So funktioniert das Ökosystem:</strong> Das KAIROS-Bundle aktiviert automatisch Premium in NEXUS und MOMUS — ein einziges Abo, ein gemeinsames Konto. Wechselst du zwischen den Apps, erkenne das System sofort deinen Status.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MOMUS & KAIROS Apps ── */}
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow" data-reveal>Die Apps im Überblick</p>
+          <h2 data-reveal="2">Drei Apps. Ein Ökosystem.</h2>
           <p class="lede" data-reveal="3" style="max-width:60ch;">NEXUS ist der erste Schritt. Zwei spezialisierte Begleiter-Apps erweitern das Ökosystem — für ganzheitliche Gesundheit auf allen Ebenen.</p>
           <div class="grid" style="margin-top:2.5rem;">
             <article class="card" data-reveal="1">
@@ -600,7 +691,7 @@ const articleJsonLd = article ? {
                 <ul style="margin-top:1rem;padding-left:1.25rem;line-height:2;">
                   <li>Energie-Cockpit &amp; Phoenix Score</li>
                   <li>Bildschirmzeit-Analyse (lokal, Consent-pflicht)</li>
-                  <li>15+ kognitive Spiele</li>
+                  <li>15+ kognitive Spiele (5 kostenlos, 8 Premium)</li>
                   <li>PDF/Bild-Upload mit KI-Analyse</li>
                   <li>In-App-Purchase · 16 Sprachen</li>
                 </ul>
