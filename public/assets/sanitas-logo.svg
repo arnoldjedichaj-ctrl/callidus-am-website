@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <linearGradient id="sanGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="50%" stop-color="#E8C96A"/>
+      <stop offset="100%" stop-color="#A07830"/>
+    </linearGradient>
+    <linearGradient id="sanLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5A9E72"/>
+      <stop offset="100%" stop-color="#3F7F5A"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer ring (coin edge) -->
+  <circle cx="120" cy="120" r="108" stroke="url(#sanGold)" stroke-width="3" opacity="0.6"/>
+  <!-- Inner coin face -->
+  <circle cx="120" cy="120" r="96" fill="url(#sanGold)" opacity="0.12"/>
+  <circle cx="120" cy="120" r="96" stroke="url(#sanGold)" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Hexagon (coin shape, rotated for flat-top) -->
+  <polygon
+    points="120,30 197,75 197,165 120,210 43,165 43,75"
+    fill="url(#sanGold)"
+    opacity="0.08"
+  />
+
+  <!-- Stylized S letterform — flowing, leaf-like curves -->
+  <!-- Upper curve of S -->
+  <path
+    d="M148 84 C148 70 136 62 120 62 C104 62 88 70 88 86 C88 102 104 108 120 112 C138 117 152 124 152 142 C152 160 138 178 118 178 C98 178 84 166 84 152"
+    stroke="url(#sanGold)"
+    stroke-width="12"
+    stroke-linecap="round"
+    fill="none"
+    filter="url(#glow)"
+  />
+
+  <!-- Leaf accent — growing from the S center -->
+  <path
+    d="M120 112 C128 100 140 90 152 86"
+    stroke="url(#sanLeaf)"
+    stroke-width="3"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.8"
+  />
+  <!-- Small leaf shape at the tip -->
+  <ellipse
+    cx="154"
+    cy="83"
+    rx="6"
+    ry="10"
+    fill="url(#sanLeaf)"
+    transform="rotate(-35 154 83)"
+    opacity="0.9"
+  />
+
+  <!-- Inner glow dots (coin detail) -->
+  <circle cx="120" cy="34" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+  <circle cx="120" cy="206" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+  <circle cx="34" cy="77" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+  <circle cx="206" cy="77" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+  <circle cx="34" cy="163" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+  <circle cx="206" cy="163" r="2.5" fill="url(#sanGold)" opacity="0.5"/>
+</svg>
