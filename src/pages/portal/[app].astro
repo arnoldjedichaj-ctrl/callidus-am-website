@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortalGate from '../../components/PortalGate.astro';
+import { portalAppList } from '../../data/portal.js';
+import '../../styles/portal.css';
+
+export function getStaticPaths() {
+  return portalAppList.map((app) => ({
+    params: { app: app.id },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+const firebaseConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
+
+const listTitles = {
+  nexus: ['Mahlzeiten', 'Journal', 'Aktivitaeten'],
+  momus: ['Hub', 'Signale', 'Profil'],
+  kairos: ['Nachrichten', 'Erinnerungen', 'Memory'],
+};
+const titles = listTitles[app.id] || listTitles.nexus;
+---
+
+<BaseLayout
+  title={`${app.title} | Callidus Portal`}
+  description={app.description}
+  lang="de"
+>
+  <section class="section portal-section">
+    <div class="container">
+      <PortalGate firebaseConfig={firebaseConfig} view="app" app={app.id}>
+        <div class="portal-hero" data-reveal>
+          <div class="portal-app-titlebar">
+            <img src={app.icon} alt="" width="96" height="96" loading="eager" />
+            <div>
+              <p class="eyebrow">{app.eyebrow}</p>
+              <h1>{app.name}</h1>
+              <p class="lede portal-copy">{app.description}</p>
+            </div>
+          </div>
+          <div>
+            <span class="portal-pill" id="portal-app-status" data-state="off">Lade...</span>
+            <nav class="portal-subnav" aria-label="Portal Bereiche">
+              <a href="/portal/">Portal</a>
+              {portalAppList.map((item) => (
+                <a href={item.href} aria-current={item.id === app.id ? 'page' : undefined}>{item.name}</a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div class="portal-metric-grid" id="portal-app-metrics" data-reveal="2" style="margin-top:1.25rem"></div>
+
+        <section class="portal-panel" data-reveal="3" style="margin-top:1rem">
+          <h2>Aktueller Kontext</h2>
+          <p class="portal-insight" id="portal-app-insight">Lade...</p>
+          <div class="portal-auth-actions">
+            <a class="button primary" href={app.appHref}>{app.cta}</a>
+            <a class="button" href="/wallet/">Wallet und SAN</a>
+          </div>
+        </section>
+
+        <div class="portal-grid-2" data-reveal style="margin-top:1rem">
+          <section class="portal-panel">
+            <h2>{titles[0]}</h2>
+            <ul class="portal-list" id="portal-primary-list">
+              <li><span class="portal-empty">Lade...</span></li>
+            </ul>
+          </section>
+          <section class="portal-panel">
+            <h2>{titles[1]}</h2>
+            <ul class="portal-list" id="portal-secondary-list">
+              <li><span class="portal-empty">Lade...</span></li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="portal-panel" data-reveal style="margin-top:1rem">
+          <h2>{titles[2]}</h2>
+          <ul class="portal-list" id="portal-tertiary-list">
+            <li><span class="portal-empty">Lade...</span></li>
+          </ul>
+        </section>
+      </PortalGate>
+    </div>
+  </section>
+</BaseLayout>

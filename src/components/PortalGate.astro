@@ -1,0 +1,83 @@
+---
+import portalClientUrl from '../scripts/portal-client.js?url';
+
+const {
+  firebaseConfig,
+  view = 'overview',
+  app = '',
+} = Astro.props;
+---
+
+<div class="portal-shell" data-portal-view={view} data-portal-app={app}>
+  <script type="application/json" id="portal-config" set:html={JSON.stringify(firebaseConfig)}></script>
+
+  <div id="portal-loading" class="portal-state">
+    <p>Lade Portal...</p>
+  </div>
+
+  <section id="portal-auth" class="portal-auth-card" hidden>
+    <p class="eyebrow">Callidus Login</p>
+    <h2>Portal anmelden</h2>
+    <p class="portal-copy">
+      Ein Konto verbindet Wallet, SAN, XP und die freigegebenen App-Daten aus NEXUS, MOMUS und KAIROS.
+    </p>
+
+    <div class="portal-auth-tabs" role="tablist" aria-label="Portal Anmeldung">
+      <button class="portal-tab active" type="button" data-auth-tab="login">Login</button>
+      <button class="portal-tab" type="button" data-auth-tab="register">Neu erstellen</button>
+    </div>
+
+    <form id="portal-login-form" class="portal-auth-form">
+      <label>
+        E-Mail
+        <input id="portal-login-email" type="email" autocomplete="email" required />
+      </label>
+      <label>
+        Passwort
+        <input id="portal-login-password" type="password" autocomplete="current-password" required />
+      </label>
+      <div class="portal-auth-actions">
+        <button class="button primary" type="submit">Einloggen</button>
+        <button class="button" id="portal-google-login" type="button">Google</button>
+        <button class="form-link" id="portal-reset-password" type="button">Passwort vergessen</button>
+      </div>
+    </form>
+
+    <form id="portal-register-form" class="portal-auth-form" hidden>
+      <label>
+        Name
+        <input id="portal-register-name" type="text" autocomplete="name" required />
+      </label>
+      <label>
+        E-Mail
+        <input id="portal-register-email" type="email" autocomplete="email" required />
+      </label>
+      <label>
+        Passwort
+        <input id="portal-register-password" type="password" autocomplete="new-password" minlength="6" required />
+      </label>
+      <div class="portal-auth-actions">
+        <button class="button primary" type="submit">Konto erstellen</button>
+        <button class="button" id="portal-google-register" type="button">Google</button>
+      </div>
+    </form>
+
+    <p id="portal-auth-error" class="portal-error" hidden></p>
+  </section>
+
+  <div id="portal-content" hidden>
+    <div class="portal-userbar">
+      <div class="portal-user-id">
+        <strong id="portal-user-name">Callidus Mitglied</strong>
+        <span id="portal-user-email">-</span>
+      </div>
+      <div class="portal-toolbar">
+        <a class="button" href="/wallet/">Wallet</a>
+        <button class="button" id="portal-signout" type="button">Logout</button>
+      </div>
+    </div>
+    <slot />
+  </div>
+
+  <script type="module" src={portalClientUrl} data-astro-rerun></script>
+</div>

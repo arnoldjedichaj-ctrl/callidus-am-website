@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortalGate from '../../components/PortalGate.astro';
+import { portalAppList } from '../../data/portal.js';
+import '../../styles/portal.css';
+
+const firebaseConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
+---
+
+<BaseLayout
+  title="Callidus Portal | NEXUS, MOMUS & KAIROS"
+  description="Geschuetzter Callidus Mitgliederbereich fuer Wallet, SAN, XP und die freigegebenen Daten aus NEXUS, MOMUS und KAIROS."
+  lang="de"
+>
+  <section class="section portal-section">
+    <div class="container">
+      <PortalGate firebaseConfig={firebaseConfig} view="overview">
+        <div class="portal-hero" data-reveal>
+          <div>
+            <p class="eyebrow">Callidus Portal</p>
+            <h1>Ein Konto fuer deine Apps.</h1>
+            <p class="lede portal-copy">
+              Wallet, Sanitas, XP und freigegebene App-Daten laufen hier in einem geschuetzten Bereich zusammen.
+            </p>
+          </div>
+          <nav class="portal-subnav" aria-label="Portal Bereiche">
+            <a href="/portal/" aria-current="page">Portal</a>
+            {portalAppList.map((app) => <a href={app.href}>{app.name}</a>)}
+          </nav>
+        </div>
+
+        <div class="portal-kpi-grid" data-reveal="2" style="margin-top:1.25rem">
+          <div class="portal-kpi">
+            <span>SAN</span>
+            <strong id="portal-san">-</strong>
+            <small>Einloesbares Sanitas-Guthaben</small>
+          </div>
+          <div class="portal-kpi">
+            <span>XP</span>
+            <strong id="portal-xp">-</strong>
+            <small>App-Aktivitaet und Umwandlung</small>
+          </div>
+          <div class="portal-kpi">
+            <span>Wallet</span>
+            <strong id="portal-wallet">-</strong>
+            <small>Verknuepfte Ethereum-Adresse</small>
+          </div>
+          <div class="portal-kpi">
+            <span>Apps</span>
+            <strong id="portal-linked-apps">-</strong>
+            <small>Sichtbare App-Verbindungen</small>
+          </div>
+        </div>
+
+        <div class="portal-app-grid" data-reveal="3" style="margin-top:1rem">
+          {portalAppList.map((app) => (
+            <a class={`portal-app-card portal-app-${app.color}`} href={app.href} data-app-card={app.id}>
+              <div class="portal-app-head">
+                <img class="portal-app-icon" src={app.icon} alt="" width="64" height="64" loading="lazy" />
+                <span class="portal-pill" id={`portal-${app.id}-status`} data-state="off">Noch nicht aktiv</span>
+              </div>
+              <div>
+                <h2>{app.name}</h2>
+                <p>{app.eyebrow}</p>
+              </div>
+              <div class="portal-app-metrics">
+                <div>
+                  <span>{app.id === 'nexus' ? 'Schritte' : app.id === 'momus' ? 'Phoenix' : 'Profil'}</span>
+                  <strong id={`portal-${app.id}-primary`}>-</strong>
+                </div>
+                <div>
+                  <span>{app.id === 'nexus' ? 'Mahlzeiten' : app.id === 'momus' ? 'Akku' : 'Kontext'}</span>
+                  <strong id={`portal-${app.id}-secondary`}>-</strong>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="portal-grid-2" data-reveal style="margin-top:1rem">
+          <section class="portal-panel">
+            <h2>App-Verbindungen</h2>
+            <ul class="portal-list" id="portal-integration-list">
+              <li><span class="portal-empty">Lade...</span></li>
+            </ul>
+          </section>
+          <section class="portal-panel">
+            <h2>SAN-Verlauf</h2>
+            <ul class="portal-list" id="portal-ledger-list">
+              <li><span class="portal-empty">Lade...</span></li>
+            </ul>
+          </section>
+        </div>
+      </PortalGate>
+    </div>
+  </section>
+</BaseLayout>
