@@ -47,7 +47,10 @@ const titles = listTitles[app.id] || listTitles.nexus;
             </div>
           </div>
           <div>
-            <span class="portal-pill" id="portal-app-status" data-state="off">Lade...</span>
+            <div class="portal-pill-stack portal-pill-stack-end">
+              <span class="portal-pill" id="portal-app-status" data-state="off">Lade...</span>
+              <span class="portal-pill portal-plan-pill" id="portal-app-plan" data-state="off">Free</span>
+            </div>
             <nav class="portal-subnav" aria-label="Portal Bereiche">
               <a href="/portal/">Portal</a>
               {portalAppList.map((item) => (

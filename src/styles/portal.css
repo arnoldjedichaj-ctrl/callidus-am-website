@@ -243,6 +243,17 @@
   align-items: flex-start;
 }
 
+.portal-pill-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  justify-content: flex-end;
+}
+
+.portal-pill-stack-end {
+  margin-left: auto;
+}
+
 .portal-app-icon {
   width: 3.2rem;
   height: 3.2rem;
@@ -293,6 +304,12 @@
   border-color: rgba(167, 96, 79, .38);
   color: var(--coral);
   background: rgba(167, 96, 79, .08);
+}
+
+.portal-plan-pill[data-state="off"] {
+  border-color: color-mix(in srgb, var(--text) 18%, transparent);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
 }
 
 .portal-app-metrics {

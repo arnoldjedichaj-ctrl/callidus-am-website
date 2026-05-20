@@ -64,7 +64,10 @@ const firebaseConfig = {
             <a class={`portal-app-card portal-app-${app.color}`} href={app.href} data-app-card={app.id}>
               <div class="portal-app-head">
                 <img class="portal-app-icon" src={app.icon} alt="" width="64" height="64" loading="lazy" />
-                <span class="portal-pill" id={`portal-${app.id}-status`} data-state="off">Noch nicht aktiv</span>
+                <div class="portal-pill-stack">
+                  <span class="portal-pill" id={`portal-${app.id}-status`} data-state="off">Noch nicht aktiv</span>
+                  <span class="portal-pill portal-plan-pill" id={`portal-${app.id}-plan`} data-state="off">Free</span>
+                </div>
               </div>
               <div>
                 <h2>{app.name}</h2>

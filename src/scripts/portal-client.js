@@ -75,6 +75,71 @@ function bootPortal() {
     return { state: 'off', label: 'Noch nicht aktiv' };
   }
 
+  function firstValue(...values) {
+    return values.find((value) => value != null && value !== '');
+  }
+
+  function dateValue(value) {
+    if (!value) return null;
+    const date = value?.toDate?.() || (value instanceof Date ? value : new Date(value));
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+
+  function normalizeTier(value) {
+    const tier = String(value || '').toLowerCase();
+    if (['premium', 'active', 'paid', 'pro'].includes(tier)) return 'premium';
+    if (['trial', 'test', 'probe'].includes(tier)) return 'trial';
+    if (['free', 'basic', 'basis'].includes(tier)) return 'free';
+    return '';
+  }
+
+  function planFromSources(...sources) {
+    const rank = { free: 1, trial: 2, premium: 3 };
+    let selected = { tier: 'free', source: {} };
+
+    sources.filter(Boolean).forEach((source) => {
+      const rawTier = firstValue(
+        source.status,
+        source.plan,
+        source.tier,
+        source.access_tier,
+        source.subscription_tier,
+        source.subscription?.status,
+        source.entitlement?.status,
+      );
+      const tier = source.premium_entitled === true || source.isPremium === true
+        ? 'premium'
+        : normalizeTier(rawTier);
+      if (tier && rank[tier] > rank[selected.tier]) {
+        selected = { tier, source };
+      }
+    });
+
+    const expiry = dateValue(firstValue(
+      selected.source.expires_at,
+      selected.source.expiry_date,
+      selected.source.valid_until,
+      selected.source.subscription?.expires_at,
+      selected.source.subscription?.expiry_date,
+    ));
+    const trialEnd = dateValue(firstValue(
+      selected.source.trial_end_date,
+      selected.source.trial_ends_at,
+      selected.source.subscription?.trial_end_date,
+      selected.source.subscription?.trial_ends_at,
+    ));
+
+    if (selected.tier === 'premium' && expiry && expiry.getTime() < Date.now()) {
+      return { state: 'off', label: 'Free' };
+    }
+    if (selected.tier === 'trial' && trialEnd && trialEnd.getTime() < Date.now()) {
+      return { state: 'off', label: 'Free' };
+    }
+    if (selected.tier === 'premium') return { state: 'ok', label: 'Premium' };
+    if (selected.tier === 'trial') return { state: 'pending', label: 'Trial' };
+    return { state: 'off', label: 'Free' };
+  }
+
   function setPill(id, status) {
     const el = $(id);
     if (!el) return;
@@ -277,6 +342,12 @@ function bootPortal() {
       momusContext,
       nexusStats,
       momusStats,
+      nexusAccess,
+      momusAccess,
+      kairosAccess,
+      nexusLink,
+      momusLink,
+      kairosLink,
       ledger,
     ] = await Promise.all([
       docData(...base),
@@ -288,6 +359,12 @@ function bootPortal() {
       docData(...base, 'kairos_context', 'momus_current'),
       docData(...base, 'nexus_stats', today),
       docData(...base, 'momus_stats', today),
+      docData(...base, 'app_access', 'nexus'),
+      docData(...base, 'app_access', 'momus'),
+      docData(...base, 'app_access', 'kairos'),
+      docData(...base, 'linked_apps', 'nexus'),
+      docData(...base, 'linked_apps', 'momus'),
+      docData(...base, 'linked_apps', 'kairos'),
       docsData([...base, 'sanitas_ledger'], { orderBy: 'created_at', limit: 5 }),
     ]);
 
@@ -299,6 +376,9 @@ function bootPortal() {
       statusFrom(momusHub, momusContext, Object.keys(momusStats).length > 0).state === 'ok',
       Object.keys(kairosProfile).length > 0,
     ].filter(Boolean).length;
+    const nexusPlan = planFromSources(nexusAccess, nexusLink, nexusHub, userDoc);
+    const momusPlan = planFromSources(momusAccess, momusLink, momusHub, userDoc);
+    const kairosPlan = planFromSources(kairosAccess, kairosLink, userDoc);
 
     text('portal-san', displayNumber(balance.san, ' SAN'));
     text('portal-xp', displayNumber(balance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
@@ -310,6 +390,9 @@ function bootPortal() {
     setPill('portal-kairos-status', Object.keys(kairosProfile).length > 0
       ? { state: 'ok', label: 'Profil aktiv' }
       : { state: 'off', label: 'Noch nicht aktiv' });
+    setPill('portal-nexus-plan', nexusPlan);
+    setPill('portal-momus-plan', momusPlan);
+    setPill('portal-kairos-plan', kairosPlan);
 
     text('portal-nexus-primary', displayNumber(nexusToday.steps || nexusStats.steps || nexusStats.steps_today));
     text('portal-nexus-secondary', displayNumber(nexusToday.meals_today || nexusStats.meals_today, ' Mahlzeiten'));
@@ -321,15 +404,15 @@ function bootPortal() {
     const integrationItems = [
       {
         title: 'NEXUS Hub',
-        meta: nexusHub.sync_state || (nexusContext.connected ? 'summary_written' : 'keine Freigabe sichtbar'),
+        meta: `${nexusHub.sync_state || (nexusContext.connected ? 'summary_written' : 'keine Freigabe sichtbar')} | Tarif: ${nexusPlan.label}`,
       },
       {
         title: 'MOMUS Hub',
-        meta: momusHub.sync_state || (momusContext.connected ? 'summary_written' : 'keine Freigabe sichtbar'),
+        meta: `${momusHub.sync_state || (momusContext.connected ? 'summary_written' : 'keine Freigabe sichtbar')} | Tarif: ${momusPlan.label}`,
       },
       {
         title: 'KAIROS Profil',
-        meta: Object.keys(kairosProfile).length ? 'Profil vorhanden' : 'noch keine Profildaten',
+        meta: `${Object.keys(kairosProfile).length ? 'Profil vorhanden' : 'noch keine Profildaten'} | Tarif: ${kairosPlan.label}`,
       },
     ];
     renderList('portal-integration-list', integrationItems, 'Noch keine App-Verbindung sichtbar.');
@@ -357,7 +440,7 @@ function bootPortal() {
   async function loadNexus(user) {
     const today = todayKey();
     const base = ['users', user.uid];
-    const [userDoc, context, stats, healthPlan, mealPlan, meals, journals, activities, hub] = await Promise.all([
+    const [userDoc, context, stats, healthPlan, mealPlan, meals, journals, activities, hub, access, linked] = await Promise.all([
       docData(...base),
       docData(...base, 'kairos_context', 'nexus_current'),
       docData(...base, 'daily_stats', today),
@@ -367,10 +450,13 @@ function bootPortal() {
       docsData([...base, 'diary_entries'], { orderBy: 'date', limit: 5 }),
       docsData([...base, 'activities'], { orderBy: 'timestamp', limit: 5 }),
       docData(...base, 'hub', 'nexus_status'),
+      docData(...base, 'app_access', 'nexus'),
+      docData(...base, 'linked_apps', 'nexus'),
     ]);
 
     const todayData = context.today || {};
     setPill('portal-app-status', statusFrom(hub, context, meals.length > 0 || Object.keys(stats).length > 0));
+    setPill('portal-app-plan', planFromSources(access, linked, hub, userDoc));
     renderMetrics([
       {
         label: 'Kalorien',
@@ -424,13 +510,14 @@ function bootPortal() {
   async function loadMomus(user) {
     const today = todayKey();
     const base = ['users', user.uid];
-    const [userDoc, context, stats, log, hub, linked, knowledge] = await Promise.all([
+    const [userDoc, context, stats, log, hub, linked, access, knowledge] = await Promise.all([
       docData(...base),
       docData(...base, 'kairos_context', 'momus_current'),
       docData(...base, 'momus_stats', today),
       docData(...base, 'daily_logs', today),
       docData(...base, 'hub', 'momus_status'),
       docData(...base, 'linked_apps', 'momus'),
+      docData(...base, 'app_access', 'momus'),
       docData(...base, 'kairos_context', 'momus_knowledge'),
     ]);
 
@@ -439,6 +526,7 @@ function bootPortal() {
     const leaks = context.leaks || {};
     const body = context.body_profile || knowledge.body_profile || {};
     setPill('portal-app-status', statusFrom(hub, context, Object.keys(stats).length > 0 || Object.keys(log).length > 0));
+    setPill('portal-app-plan', planFromSources(access, linked, hub, userDoc));
 
     renderMetrics([
       {
@@ -493,7 +581,8 @@ function bootPortal() {
 
   async function loadKairos(user) {
     const base = ['users', user.uid];
-    const [profile, memory, messages, reminders, pending, nexusLink, momusLink, nexusHub, momusHub] = await Promise.all([
+    const [userDoc, profile, memory, messages, reminders, pending, nexusLink, momusLink, kairosAccess, nexusHub, momusHub] = await Promise.all([
+      docData(...base),
       docData(...base, 'kairos_profile', 'current'),
       docsData([...base, 'kairos_memory'], { orderBy: 'created_at', limit: 5 }),
       docsData([...base, 'kairos_chat_messages'], { orderBy: 'created_at', limit: 8 }),
@@ -501,6 +590,7 @@ function bootPortal() {
       docsData([...base, 'pending_actions'], { orderBy: 'created_at', limit: 8 }),
       docData(...base, 'linked_apps', 'nexus'),
       docData(...base, 'linked_apps', 'momus'),
+      docData(...base, 'app_access', 'kairos'),
       docData(...base, 'hub', 'nexus_status'),
       docData(...base, 'hub', 'momus_status'),
     ]);
@@ -508,6 +598,7 @@ function bootPortal() {
     setPill('portal-app-status', Object.keys(profile).length
       ? { state: 'ok', label: 'Profil aktiv' }
       : { state: 'off', label: 'Noch nicht aktiv' });
+    setPill('portal-app-plan', planFromSources(kairosAccess, userDoc));
 
     const linkedApps = [
       nexusLink.connected || nexusHub.kairos_linked || nexusHub.connected,
