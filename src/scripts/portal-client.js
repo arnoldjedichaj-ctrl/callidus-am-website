@@ -1,6 +1,8 @@
-const root = document.querySelector('[data-portal-view]');
+function bootPortal() {
+  const root = document.querySelector('[data-portal-view]');
+  if (!root || root.dataset.portalBooted === 'true') return;
+  root.dataset.portalBooted = 'true';
 
-if (root) {
   const configNode = document.getElementById('portal-config');
   const firebaseConfig = configNode ? JSON.parse(configNode.textContent || '{}') : {};
   const portalView = root.dataset.portalView;
@@ -589,3 +591,6 @@ if (root) {
     setError('portal-auth-error', 'Firebase konnte nicht geladen werden.');
   });
 }
+
+bootPortal();
+document.addEventListener('astro:page-load', bootPortal);

@@ -7,6 +7,10 @@
   gap: 1.25rem;
 }
 
+.portal-shell [hidden] {
+  display: none !important;
+}
+
 .portal-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
