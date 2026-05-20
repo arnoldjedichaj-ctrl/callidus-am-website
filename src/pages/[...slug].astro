@@ -679,43 +679,80 @@ const articleJsonLd = article ? {
       </section>
 
       {/* ── MOMUS & KAIROS Apps ── */}
-      <section class="section">
+      <section class="section band">
         <div class="container">
-          <p class="eyebrow" data-reveal>Die Apps im Überblick</p>
+          <p class="eyebrow" data-reveal>Das Ökosystem</p>
           <h2 data-reveal="2">Drei Apps. Ein Ökosystem.</h2>
           <p class="lede" data-reveal="3" style="max-width:60ch;">NEXUS ist der erste Schritt. Zwei spezialisierte Begleiter-Apps erweitern das Ökosystem — für ganzheitliche Gesundheit auf allen Ebenen.</p>
-          <div class="grid" style="margin-top:2.5rem;">
-            <article class="card" data-reveal="1">
-              <div class="card-body">
-                <span class="badge gold">Demnächst</span>
-                <h3>🎭 MOMUS — Energie &amp; Digital Wellness</h3>
-                <p>MOMUS analysiert deine Energiequellen und Energie-Leaks, trackt deinen Phoenix Score und bietet 15+ kognitive Gehirnspiele (Stroop, N-Back, Sudoku). Das Energie-Cockpit zeigt dir in Echtzeit, was dich stärkt — und was dich ausbremst.</p>
-                <ul style="margin-top:1rem;padding-left:1.25rem;line-height:2;">
-                  <li>Energie-Cockpit &amp; Phoenix Score</li>
-                  <li>Bildschirmzeit-Analyse (lokal, Consent-pflicht)</li>
-                  <li>15+ kognitive Spiele (5 kostenlos, 8 Premium)</li>
-                  <li>PDF/Bild-Upload mit KI-Analyse</li>
-                  <li>In-App-Purchase · 16 Sprachen</li>
-                </ul>
+
+          <!-- MOMUS -->
+          <div class="split" style="align-items:center;margin-top:3rem;flex-direction:row-reverse" data-reveal="1">
+            <div>
+              <span class="badge" style="background:var(--violet,#7c3aed);color:#fff">Bald verfügbar</span>
+              <h3 style="margin-top:.75rem">MOMUS</h3>
+              <p class="eyebrow" style="margin-top:-.25rem;margin-bottom:1rem">Energie-Management &amp; Burnout-Prävention</p>
+              <p>MOMUS analysiert Ihre Energielevel, identifiziert Energie-Lecks und hilft Ihnen, Ihren persönlichen Energieschild aufzubauen. Der digitale Begleiter für alle, die nachhaltig leistungsfähig bleiben wollen.</p>
+              <ul class="ecosystem-features">
+                <li>Energie-Cockpit &amp; Phoenix Score</li>
+                <li>Bildschirmzeit-Analyse</li>
+                <li>15+ kognitive Spiele</li>
+                <li>KAIROS-Anbindung</li>
+              </ul>
+              <p class="muted" style="font-size:.875rem;margin-top:1rem">MOMUS erscheint in Kürze im App Store und Google Play.</p>
+              <a href="/wallet/" class="button" style="margin-top:.75rem;display:inline-flex">Jetzt vormerken</a>
+            </div>
+            <div class="app-mockup-mini" aria-hidden="true">
+              <div class="mockup-glow-mini" style="background:var(--violet,#7c3aed)"></div>
+              <div class="mockup-icon-mini">
+                <img src="/handbuch/assets/logo_momus.png" alt="" width="100" height="100" loading="lazy" />
               </div>
-            </article>
-            <article class="card" data-reveal="2">
-              <div class="card-body">
-                <span class="badge mint">In Entwicklung</span>
-                <h3>🌙 KAIROS — KI-Reflexionsbegleiter</h3>
-                <p>KAIROS ist dein persönlicher KI-Assistent für tiefe Selbstreflexion. Per Spracheingabe führt der „Rat der Integration" — 7 spezialisierte KI-Stimmen — durch Gesundheit, Energie, Emotionen und Lebensmuster. KAIROS liest den Kontext aus NEXUS und MOMUS und orchestriert das gesamte Ökosystem.</p>
-                <ul style="margin-top:1rem;padding-left:1.25rem;line-height:2;">
-                  <li>Voice-First mit Gemini 2.5 Flash</li>
-                  <li>Council of Integration — 7 KI-Rollen</li>
-                  <li>Intent-Parsing → Aktionen in NEXUS &amp; MOMUS</li>
-                  <li>Konversations-Gedächtnis (mit Consent)</li>
-                  <li>Gerätkalender als KI-Kontext</li>
-                </ul>
+              <div class="mockup-tag-mini">
+                <span class="badge" style="background:var(--violet,#7c3aed);color:#fff">MOMUS</span>
+                <p>Energie-Management</p>
               </div>
-            </article>
+            </div>
+          </div>
+
+          <!-- KAIROS -->
+          <div class="split" style="align-items:center;margin-top:3rem" data-reveal="2">
+            <div>
+              <span class="badge" style="background:var(--blue,#1d4ed8);color:#fff">Bald verfügbar</span>
+              <h3 style="margin-top:.75rem">KAIROS</h3>
+              <p class="eyebrow" style="margin-top:-.25rem;margin-bottom:1rem">Mentaler Coach &amp; Stressbegleiter</p>
+              <p>KAIROS ist Ihr proaktiver mentaler Coach, der Sie täglich mit personalisierten Impulsen begleitet — basierend auf Ihren Vitaldaten, Energielevels und persönlichen Zielen aus NEXUS und MOMUS.</p>
+              <ul class="ecosystem-features">
+                <li>Proaktive Echtzeit-Impulse</li>
+                <li>Journaling &amp; Reflexion</li>
+                <li>NEXUS + MOMUS Integration</li>
+                <li>Mentale Resilienz-Coaching</li>
+              </ul>
+              <p class="muted" style="font-size:.875rem;margin-top:1rem">KAIROS erscheint gemeinsam mit MOMUS.</p>
+              <a href="/wallet/" class="button" style="margin-top:.75rem;display:inline-flex">Informiert bleiben</a>
+            </div>
+            <div class="app-mockup-mini" aria-hidden="true">
+              <div class="mockup-glow-mini" style="background:var(--blue,#1d4ed8)"></div>
+              <div class="mockup-icon-mini">
+                <img src="/handbuch/assets/logo_kairos.png" alt="" width="100" height="100" loading="lazy" />
+              </div>
+              <div class="mockup-tag-mini">
+                <span class="badge" style="background:var(--blue,#1d4ed8);color:#fff">KAIROS</span>
+                <p>Mentaler Coach</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+      <style>
+        .ecosystem-features { list-style:none; padding:0; margin:.75rem 0 0; display:flex; flex-direction:column; gap:.4rem; }
+        .ecosystem-features li { display:flex; align-items:center; gap:.5rem; font-size:.9rem; }
+        .ecosystem-features li::before { content:''; display:block; width:.4rem; height:.4rem; border-radius:50%; background:var(--gold); flex-shrink:0; }
+        .app-mockup-mini { position:relative; display:flex; flex-direction:column; align-items:center; gap:1.25rem; padding:1.5rem; min-width:180px; }
+        .mockup-glow-mini { position:absolute; width:220px; height:220px; border-radius:50%; opacity:.15; filter:blur(50px); }
+        .mockup-icon-mini { position:relative; background:var(--panel); border:1px solid var(--line); border-radius:1.5rem; padding:1.25rem; box-shadow:var(--shadow); }
+        .mockup-icon-mini img { width:100px; height:100px; object-fit:contain; }
+        .mockup-tag-mini { background:var(--panel); border:1px solid var(--line); border-radius:.75rem; padding:.6rem 1rem; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,.08); }
+        .mockup-tag-mini p { margin:.25rem 0 0; font-size:.8rem; color:var(--muted); }
+      </style>
     </>
   )}
 </BaseLayout>
