@@ -36,6 +36,33 @@ const titles = listTitles[app.id] || listTitles.nexus;
 >
   <section class="section portal-section">
     <div class="container">
+      {app.comingSoon ? (
+        <div class="portal-coming-soon" data-reveal>
+          <nav class="portal-subnav" aria-label="Portal Bereiche" style="margin-bottom:2rem">
+            <a href="/portal/">Portal</a>
+            {portalAppList.map((item) => (
+              <a href={item.href} aria-current={item.id === app.id ? 'page' : undefined}>{item.name}</a>
+            ))}
+          </nav>
+          <div class="portal-app-titlebar" style="margin-bottom:2rem">
+            <img src={app.icon} alt="" width="96" height="96" loading="lazy" style="opacity:.6" />
+            <div>
+              <p class="eyebrow">{app.eyebrow}</p>
+              <h1>{app.name}</h1>
+              <p class="lede portal-copy">{app.description}</p>
+            </div>
+          </div>
+          <div class="portal-panel" style="text-align:center;padding:3rem 2rem">
+            <span class="portal-pill" data-state="pending" style="margin-bottom:1.5rem;display:inline-block">In Entwicklung</span>
+            <h2 style="margin:.5rem 0 1rem">Kommt bald</h2>
+            <p class="muted" style="max-width:480px;margin:0 auto 2rem">
+              {app.name} wird nach dem offiziellen Launch automatisch mit dem Portal verbunden.
+              Du wirst hier dann deine Daten, Fortschritte und den Kontext sehen.
+            </p>
+            <a class="button primary" href="/apps/">{app.cta}</a>
+          </div>
+        </div>
+      ) : (
       <PortalGate firebaseConfig={firebaseConfig} view="app" app={app.id}>
         <div class="portal-hero" data-reveal>
           <div class="portal-app-titlebar">
@@ -93,6 +120,7 @@ const titles = listTitles[app.id] || listTitles.nexus;
           </ul>
         </section>
       </PortalGate>
+      )}
     </div>
   </section>
 </BaseLayout>
