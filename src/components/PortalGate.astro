@@ -22,6 +22,25 @@ const {
       Ein Konto verbindet Wallet, SAN, XP und die freigegebenen App-Daten aus NEXUS, MOMUS und KAIROS.
     </p>
 
+    <!-- Info-Box: Welcher Account? -->
+    <div class="portal-info-box">
+      <strong>Welchen Account verwenden?</strong>
+      <ul>
+        <li>
+          <span class="portal-info-dot portal-info-dot--nexus"></span>
+          <span><strong>NEXUS-Nutzer</strong> — direkt mit dem NEXUS-App-Account einloggen</span>
+        </li>
+        <li>
+          <span class="portal-info-dot portal-info-dot--momus"></span>
+          <span><strong>MOMUS / KAIROS</strong> — hier einmalig neu registrieren (separate Konten bis zur vollen Integration)</span>
+        </li>
+        <li>
+          <span class="portal-info-dot portal-info-dot--all"></span>
+          <span><strong>Mehrere Apps</strong> — ein callidus-Konto reicht für das gesamte Portal</span>
+        </li>
+      </ul>
+    </div>
+
     <div class="portal-auth-tabs" role="tablist" aria-label="Portal Anmeldung">
       <button class="portal-tab active" type="button" data-auth-tab="login">Login</button>
       <button class="portal-tab" type="button" data-auth-tab="register">Neu erstellen</button>
@@ -81,3 +100,22 @@ const {
 
   <script type="module" src={portalClientUrl} data-astro-rerun></script>
 </div>
+
+<style>
+  .portal-info-box {
+    background: var(--bg-soft, #f5f7e9);
+    border: 1px solid var(--line, #e0e2d5);
+    border-left: 3px solid var(--gold, #C9A84C);
+    border-radius: .75rem;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0 1.5rem;
+    font-size: .875rem;
+  }
+  .portal-info-box strong { display: block; margin-bottom: .6rem; font-size: .9rem; }
+  .portal-info-box ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
+  .portal-info-box li { display: flex; align-items: flex-start; gap: .6rem; line-height: 1.5; }
+  .portal-info-dot { display: inline-block; width: .55rem; height: .55rem; border-radius: 50%; flex-shrink: 0; margin-top: .35rem; }
+  .portal-info-dot--nexus { background: var(--mint, #5a9e72); }
+  .portal-info-dot--momus { background: #7c3aed; }
+  .portal-info-dot--all { background: var(--gold, #C9A84C); }
+</style>
