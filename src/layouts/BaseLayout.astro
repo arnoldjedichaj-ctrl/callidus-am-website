@@ -18,6 +18,14 @@ const {
 const t = ui[lang] || ui.de;
 const currentPath = Astro.url.pathname;
 const siteOrigin = 'https://www.callidus-am.de';
+const fbConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
 const canonicalUrl = new URL(currentPath, siteOrigin).href;
 const switchPath = alternatePath || (lang === 'de' ? '/en/' : '/');
 const switchLang = lang === 'de' ? 'en' : 'de';
@@ -199,17 +207,9 @@ const socialIcons = {
         <path d="m6 15 6-6 6 6"></path>
       </svg>
     </button>
-    <script is:inline>
+    <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
       // ── Sanitas Wallet Balance im Nav ──────────────────────────
       (() => {
-        const FB_CONFIG = {
-          apiKey: 'AIzaSyBdldIWl9iz7bFSEHgd5xkqnZtsLY2EkSg',
-          authDomain: 'nexus-app-61494.firebaseapp.com',
-          projectId: 'nexus-app-61494',
-          storageBucket: 'nexus-app-61494.firebasestorage.app',
-          messagingSenderId: '835373837904',
-          appId: '1:835373837904:web:050099d87ff2ea7ff16b55',
-        };
         let walletInited = false;
         const initWalletBadge = async () => {
           if (walletInited) return;
