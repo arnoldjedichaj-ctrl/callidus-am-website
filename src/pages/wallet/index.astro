@@ -130,6 +130,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             </button>
           </div>
           <p id="san-purchase-error" class="form-error" hidden style="margin-top:.75rem"></p>
+          <p class="muted" style="font-size:.75rem;margin-top:.5rem">
+            * Sie werden nach dem Klick sicher zu Digistore24 weitergeleitet (SSL-verschlüsselt).
+          </p>
         </div>
 
         <!-- STRESS RESET MIT SAN -->
@@ -197,6 +200,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .wallet-tab.active { color: var(--text); border-bottom-color: var(--gold); }
 
     .wallet-form { display: flex; flex-direction: column; gap: 1rem; }
+    .wallet-form[hidden] { display: none !important; }
     .wallet-form label { display: flex; flex-direction: column; gap: .35rem; font-size: .875rem; font-weight: 500; }
     .wallet-form input { padding: .6rem .875rem; border: 1px solid var(--line); border-radius: .5rem; background: var(--bg-soft); color: var(--text); font-size: 1rem; }
     .wallet-form input:focus { outline: 2px solid var(--gold); border-color: transparent; }
