@@ -16,13 +16,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container" style="position:relative;z-index:1">
       <div class="san-hero-inner">
         <div class="san-coin-hero" data-reveal aria-hidden="true">
-          <div class="san-coin-outer">
-            <div class="san-coin-inner">
-              <img src="/assets/sanitas-logo.svg" alt="" width="140" height="140" />
+          <div class="san-coin-scene">
+            <div class="san-coin-3d">
+              <div class="san-coin-face san-coin-front">
+                <img src="/assets/sanitas-logo.svg" alt="" width="260" height="260" />
+              </div>
+              <div class="san-coin-face san-coin-back">
+                <img src="/assets/sanitas-logo.svg" alt="" width="260" height="260" style="transform:scaleX(-1)" />
+              </div>
             </div>
           </div>
-          <div class="san-coin-ring san-coin-ring-1"></div>
-          <div class="san-coin-ring san-coin-ring-2"></div>
         </div>
         <div class="san-hero-text" data-reveal="2">
           <div class="san-eyebrow">
@@ -176,7 +179,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
       <div class="san-visual-coin" data-reveal="2" aria-hidden="true">
         <div class="san-big-coin">
-          <img src="/assets/sanitas-logo.svg" alt="" width="200" height="200" />
+          <img src="/assets/sanitas-logo.svg" alt="" width="220" height="220" />
         </div>
         <div class="san-coin-label">
           <span class="san-eyebrow-small">Sanitas</span>
@@ -222,7 +225,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <section class="section">
     <div class="container" style="text-align:center;max-width:560px">
       <div class="san-coin-small" aria-hidden="true">
-        <img src="/assets/sanitas-logo.svg" alt="" width="72" height="72" />
+        <img src="/assets/sanitas-logo.svg" alt="" width="96" height="96" />
       </div>
       <h2 data-reveal style="margin-top:1rem">Bereit?</h2>
       <p data-reveal="2">Erstellen Sie Ihr kostenloses Callidus-Konto und erhalten Sie Ihr erstes SAN-Guthaben.</p>
@@ -272,15 +275,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .san-secondary-btn { border: 1px solid rgba(var(--san-gold-rgb),.4); color: var(--san-gold); }
     .san-secondary-btn:hover { background: rgba(var(--san-gold-rgb),.08); }
 
-    /* ── Coin Animation ────────────────────────────────── */
-    .san-coin-hero { position: relative; width: 260px; height: 260px; flex-shrink: 0; }
-    .san-coin-outer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; animation: coinFloat 4s ease-in-out infinite; }
-    .san-coin-inner { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(232,201,106,.25), rgba(160,120,48,.08)); border: 2px solid rgba(201,168,76,.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(201,168,76,.2), inset 0 0 30px rgba(201,168,76,.05); }
-    .san-coin-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,.2); animation: ringPulse 3s ease-in-out infinite; }
-    .san-coin-ring-1 { inset: -20px; animation-delay: 0s; }
-    .san-coin-ring-2 { inset: -44px; animation-delay: .8s; opacity: .5; }
-    @keyframes coinFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
-    @keyframes ringPulse { 0%,100% { opacity: .3; transform: scale(1); } 50% { opacity: .15; transform: scale(1.04); } }
+    /* ── Coin 3D Spin ──────────────────────────────────── */
+    .san-coin-hero { flex-shrink: 0; }
+    .san-coin-scene {
+      perspective: 900px;
+      width: 260px; height: 260px;
+    }
+    .san-coin-3d {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: coinSpin 10s linear infinite;
+      filter: drop-shadow(0 12px 32px rgba(201,168,76,.35));
+    }
+    .san-coin-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 50%;
+    }
+    .san-coin-back { transform: rotateY(180deg); }
+    @keyframes coinSpin {
+      0%   { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
 
     /* ── Stats Bar ──────────────────────────────────────── */
     .san-stats-bar { background: var(--san-gold); color: #1a1200; padding: 1.25rem 0; }
@@ -325,7 +343,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     /* ── Visual Coin ──────────────────────────────────────── */
     .san-visual-coin { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .san-big-coin { width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(232,201,106,.2), rgba(160,120,48,.05)); border: 2px solid rgba(201,168,76,.35); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(201,168,76,.15); animation: coinFloat 5s ease-in-out infinite; }
+    .san-big-coin { width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 8px 24px rgba(201,168,76,.3)); animation: coinFloat 5s ease-in-out infinite; }
+    @keyframes coinFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .san-coin-label { text-align: center; }
     .san-eyebrow-small { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
     .san-ticker { display: block; font-size: 2rem; font-weight: 800; color: var(--san-gold); line-height: 1.1; }
