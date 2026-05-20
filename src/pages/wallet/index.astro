@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 <BaseLayout
-  title="Sanitas Wallet | callidus A&M"
-  description="Ihr persönliches Sanitas-Guthaben (SAN) — kaufen, einlösen und Wallet verbinden."
+  title="Valus Wallet | callidus A&M"
+  description="Ihr persönliches Valus-Guthaben (VAL) — kaufen, einlösen und Wallet verbinden."
   lang="de"
 >
   <section class="section wallet-section">
@@ -18,9 +18,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <!-- LOGIN -->
       <div id="view-auth" class="wallet-view" hidden>
         <p class="eyebrow" data-reveal>Callidus Mitglieder-Bereich</p>
-        <h1 data-reveal="2">Sanitas Wallet</h1>
+        <h1 data-reveal="2">Valus Wallet</h1>
         <p class="lede" data-reveal="3" style="max-width:480px">
-          Erstellen Sie ein kostenloses Konto oder melden Sie sich an, um Ihr SAN-Guthaben zu verwalten und Kurse vergünstigt zu erhalten.
+          Erstellen Sie ein kostenloses Konto oder melden Sie sich an, um Ihr VAL-Guthaben zu verwalten und Kurse vergünstigt zu erhalten.
         </p>
 
         <div class="wallet-card" data-reveal="3" style="margin-top:2rem">
@@ -73,7 +73,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div id="view-dashboard" class="wallet-view" hidden>
         <div class="wallet-header" data-reveal>
           <div>
-            <p class="eyebrow">Sanitas Wallet</p>
+            <p class="eyebrow">Valus Wallet</p>
             <h1 id="user-greeting">Willkommen</h1>
           </div>
           <button id="btn-logout" class="button" style="align-self:flex-start">Abmelden</button>
@@ -82,14 +82,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <!-- BALANCE CARDS -->
         <div class="grid balance-grid" data-reveal="2" style="margin-top:1.5rem">
           <div class="wallet-card balance-card">
-            <span class="balance-label">SAN-Guthaben</span>
+            <span class="balance-label">VAL-Guthaben</span>
             <span class="balance-amount" id="san-balance">—</span>
-            <span class="balance-sub">1 SAN = 1,00 € Rabatt</span>
+            <span class="balance-sub">1 VAL = 1,00 € Rabatt</span>
           </div>
           <div class="wallet-card balance-card">
             <span class="balance-label">XP-Punkte</span>
             <span class="balance-amount" id="xp-balance">—</span>
-            <span class="balance-sub">100 XP → 1 SAN</span>
+            <span class="balance-sub">100 XP → 1 VAL</span>
           </div>
         </div>
 
@@ -109,22 +109,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         <!-- SAN KAUFEN -->
         <div data-reveal style="margin-top:2.5rem">
-          <h2>SAN kaufen</h2>
-          <p class="muted">Kaufen Sie Sanitas-Guthaben und lösen Sie es für Rabatte ein.</p>
+          <h2>VAL kaufen</h2>
+          <p class="muted">Kaufen Sie Valus-Guthaben und lösen Sie es für Rabatte ein.</p>
           <div class="grid san-packages" style="margin-top:1rem">
             <button class="wallet-card san-package-card" data-package="san_10" data-san="10" data-eur="7.50">
-              <span class="san-amount">10 SAN</span>
+              <span class="san-amount">10 VAL</span>
               <span class="san-price">7,50 €</span>
               <span class="san-value-note">= 10,00 € Rabattwert</span>
             </button>
             <button class="wallet-card san-package-card" data-package="san_25" data-san="25" data-eur="18.75">
               <span class="san-badge">Beliebt</span>
-              <span class="san-amount">25 SAN</span>
+              <span class="san-amount">25 VAL</span>
               <span class="san-price">18,75 €</span>
               <span class="san-value-note">= 25,00 € Rabattwert</span>
             </button>
             <button class="wallet-card san-package-card" data-package="san_50" data-san="50" data-eur="37.50">
-              <span class="san-amount">50 SAN</span>
+              <span class="san-amount">50 VAL</span>
               <span class="san-price">37,50 €</span>
               <span class="san-value-note">= 50,00 € Rabattwert</span>
             </button>
@@ -141,11 +141,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <div style="flex:1;min-width:200px">
               <span class="badge gold">Exklusiv</span>
               <h3 style="margin:.75rem 0 .5rem">Stress-Reset-Kurs</h3>
-              <p class="muted" style="font-size:.9rem">Lösen Sie SAN als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit SAN.</p>
+              <p class="muted" style="font-size:.9rem">Lösen Sie VAL als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit VAL.</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px">
               <div class="san-redeem-input">
-                <label style="font-size:.8rem;color:var(--muted)">SAN einsetzen</label>
+                <label style="font-size:.8rem;color:var(--muted)">VAL einsetzen</label>
                 <input type="number" id="redeem-amount" min="1" max="50" value="10" style="width:80px;text-align:center" />
               </div>
               <button id="btn-redeem" class="button primary">Rabattlink erhalten</button>
@@ -157,11 +157,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         <!-- XP UMWANDELN -->
         <div class="wallet-card" data-reveal style="margin-top:1.5rem">
-          <h3 style="margin:0 0 .5rem">XP in SAN umwandeln</h3>
-          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">100 XP = 1 SAN · Max. 10 SAN pro Monat</p>
+          <h3 style="margin:0 0 .5rem">XP in VAL umwandeln</h3>
+          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">100 XP = 1 VAL · Max. 10 VAL pro Monat</p>
           <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
             <input type="number" id="xp-convert-amount" min="100" max="1000" step="100" value="100" style="width:100px" />
-            <span class="muted" style="font-size:.875rem">XP → <strong id="xp-convert-preview">1 SAN</strong></span>
+            <span class="muted" style="font-size:.875rem">XP → <strong id="xp-convert-preview">1 VAL</strong></span>
             <button id="btn-xp-convert" class="button">Umwandeln</button>
           </div>
           <p id="xp-error" class="form-error" hidden style="margin-top:.5rem"></p>
