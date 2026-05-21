@@ -55,16 +55,35 @@ const websiteJsonLd = {
   inLanguage: lang === 'en' ? 'en-US' : 'de-DE',
   description,
 };
-const navItems = [
-  { href: t.paths.guide, label: t.nav.guide },
-  { href: t.paths.recommendations, label: t.nav.recommendations },
-  { href: t.paths.course, label: t.nav.course },
-  { href: t.paths.apps, label: t.nav.apps },
-  { href: t.paths.portal, label: t.nav.portal },
-  { href: t.paths.valus ?? '/valus/', label: 'Valus' },
-  { href: t.paths.lexicon, label: t.nav.lexicon },
-  { href: t.paths.about, label: t.nav.about },
+// Dropdown-Gruppennavigation
+const navGroups = [
+  {
+    label: lang === 'en' ? 'Knowledge' : 'Wissen',
+    items: [
+      { href: t.paths.guide, label: t.nav.guide },
+      { href: '/wissenskarten/', label: 'Wissenskarten' },
+      { href: t.paths.lexicon, label: t.nav.lexicon },
+    ],
+  },
+  {
+    label: lang === 'en' ? 'Health' : 'Gesundheit',
+    items: [
+      { href: t.paths.recommendations, label: t.nav.recommendations },
+      { href: t.paths.course, label: t.nav.course },
+      { href: t.paths.apps, label: t.nav.apps },
+    ],
+  },
+  {
+    label: 'callidus',
+    items: [
+      { href: t.paths.portal, label: t.nav.portal },
+      { href: t.paths.valus ?? '/valus/', label: 'Valus' },
+    ],
+  },
 ];
+const navStandalone = { href: t.paths.about, label: t.nav.about };
+const isActive = (href: string) =>
+  currentPath === href || (href !== '/' && currentPath.startsWith(href));
 const socialIcons = {
   instagram: '<rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle>',
   youtube: '<path d="M22 12s0-3.4-.44-5.02a2.8 2.8 0 0 0-1.98-1.98C17.86 4.55 12 4.55 12 4.55s-5.86 0-7.58.45a2.8 2.8 0 0 0-1.98 1.98C2 8.6 2 12 2 12s0 3.4.44 5.02a2.8 2.8 0 0 0 1.98 1.98c1.72.45 7.58.45 7.58.45s5.86 0 7.58-.45a2.8 2.8 0 0 0 1.98-1.98C22 15.4 22 12 22 12Z"></path><path d="m10 15 5.2-3L10 9v6Z"></path>',
@@ -135,9 +154,27 @@ const socialIcons = {
       </button>
       <div class="header-actions" id="site-menu">
         <nav class="main-nav" aria-label={t.navLabel}>
-          {navItems.map((item) => (
-            <a href={item.href} aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}>{item.label}</a>
-          ))}
+          {navGroups.map((group) => {
+            const groupActive = group.items.some(item => isActive(item.href));
+            return (
+              <div class={`nav-group${groupActive ? ' has-active' : ''}`}>
+                <button class="nav-group-btn" aria-expanded="false" aria-haspopup="true">
+                  {group.label}
+                  <svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="nav-dropdown" role="menu">
+                  {group.items.map((item) => (
+                    <a href={item.href} role="menuitem" aria-current={isActive(item.href) ? 'page' : undefined}>
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          <a href={navStandalone.href} aria-current={isActive(navStandalone.href) ? 'page' : undefined}>
+            {navStandalone.label}
+          </a>
         </nav>
         <div class="language-switch" aria-label={t.languageLabel}>
           <span>{lang.toUpperCase()}</span>
@@ -209,6 +246,65 @@ const socialIcons = {
         <path d="m6 15 6-6 6 6"></path>
       </svg>
     </button>
+    <script is:inline>
+      // ── Dropdown-Navigation ─────────────────────────────────────
+      (() => {
+        const initDropdowns = () => {
+          const isMobile = () => window.innerWidth <= 820;
+          document.querySelectorAll('.nav-group').forEach(group => {
+            const btn = group.querySelector('.nav-group-btn');
+            if (!btn) return;
+            // Mobile: click to toggle accordion
+            btn.addEventListener('click', (e) => {
+              if (!isMobile()) return;
+              const isOpen = group.classList.contains('is-open');
+              document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                g.classList.remove('is-open');
+                g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+              });
+              if (!isOpen) {
+                group.classList.add('is-open');
+                btn.setAttribute('aria-expanded', 'true');
+              }
+            });
+            // Desktop: keyboard support
+            btn.addEventListener('keydown', (e) => {
+              if (isMobile()) return;
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const isOpen = group.classList.contains('is-open');
+                if (isOpen) {
+                  group.classList.remove('is-open');
+                  btn.setAttribute('aria-expanded', 'false');
+                } else {
+                  document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                    g.classList.remove('is-open');
+                    g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+                  });
+                  group.classList.add('is-open');
+                  btn.setAttribute('aria-expanded', 'true');
+                }
+              }
+              if (e.key === 'Escape') {
+                group.classList.remove('is-open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            });
+          });
+          // Close dropdowns when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-group')) {
+              document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                g.classList.remove('is-open');
+                g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+              });
+            }
+          });
+        };
+        initDropdowns();
+        document.addEventListener('astro:page-load', initDropdowns);
+      })();
+    </script>
     <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
       // ── Sanitas Wallet Balance im Nav ──────────────────────────
       (() => {

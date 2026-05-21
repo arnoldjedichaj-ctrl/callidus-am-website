@@ -1,0 +1,837 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import cards from '../../data/supplement-cards.json';
+
+const title = 'Supplement Wissenskarten – callidus A&M';
+const description = 'Kompakte Steckbriefe zu über 30 Nahrungsergänzungsmitteln: Wirkung, Dosierung, beste Form, Kombinationen und Kontraindikationen auf einen Blick.';
+
+const accentColors: Record<string, string> = {
+  mint:  'rgba(63,127,90,.18)',
+  gold:  'rgba(131,137,97,.22)',
+  coral: 'rgba(167,96,79,.18)',
+  blue:  'rgba(67,111,122,.18)',
+};
+---
+
+<BaseLayout title={title} description={description} lang="de">
+
+  <!-- ── Hero ─────────────────────────────────── -->
+  <section class="section wk-hero">
+    <div class="container">
+      <div data-reveal>
+        <p class="eyebrow">Supplement Bibliothek</p>
+        <h1>Wissenskarten</h1>
+        <p class="lede">
+          Strukturiertes Wissen zu den wichtigsten Nahrungsergänzungsmitteln –
+          Wirkung, Dosierung, beste Form und Wechselwirkungen auf einen Blick.
+        </p>
+      </div>
+
+      <!-- Search -->
+      <div class="wk-search-wrap" data-reveal="2">
+        <div class="wk-search-box">
+          <svg class="wk-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input
+            id="wk-search"
+            type="search"
+            placeholder="Supplement suchen … (z. B. Magnesium, Schlaf, Energie)"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <span class="wk-search-count" id="wk-count"></span>
+        </div>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="wk-filter" data-reveal="3" role="group" aria-label="Kategoriefilter">
+        <button class="wk-filter-btn active" data-filter="all">Alle <span class="wk-filter-n" id="count-all">{cards.length}</span></button>
+        <button class="wk-filter-btn" data-filter="Vitamin">Vitamine</button>
+        <button class="wk-filter-btn" data-filter="Mineralstoff|Spurenelement">Mineralstoffe</button>
+        <button class="wk-filter-btn" data-filter="Longevity|Antioxidans|Hormon">Longevity</button>
+        <button class="wk-filter-btn" data-filter="Adaptogen|Vitalpilz">Adaptogene & Pilze</button>
+        <button class="wk-filter-btn" data-filter="Aminosäure|Protein">Aminosäuren</button>
+        <button class="wk-filter-btn" data-filter="Pflanzenstoff|Superfood|Präbiotikum|Fettsäure|Mikrobiom">Weitere</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Carousel ──────────────────────────────── -->
+  <section class="section wk-section">
+    <div class="wk-track-outer" id="wk-track-outer">
+      <div class="wk-track" id="wk-track">
+        {cards.map((card) => (
+          <article
+            class={`wk-card accent-${card.accent}`}
+            data-category={card.category}
+            data-search={`${card.name} ${card.subtitle} ${card.summary} ${card.category} ${card.wirkung.join(' ')}`}
+            data-id={card.id}
+          >
+            <!-- Card visual header -->
+            <div class="wk-visual" style={`background: linear-gradient(145deg, ${accentColors[card.accent] ?? 'rgba(131,137,97,.15)'}, transparent 70%);`}>
+              <span class="wk-icon" aria-hidden="true">{card.icon}</span>
+              <div class="wk-visual-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Card body -->
+            <div class="wk-body">
+              <div class="wk-meta">
+                <span class={`badge ${card.accent}`}>{card.category}</span>
+              </div>
+              <h2 class="wk-name">{card.name}</h2>
+              <p class="wk-subtitle">{card.subtitle}</p>
+              <p class="wk-summary">{card.summary}</p>
+
+              <!-- Top-Wirkungen als Chips -->
+              <ul class="wk-top-effects" aria-label="Hauptwirkungen">
+                {card.wirkung.slice(0, 3).map(w => (
+                  <li class="wk-effect-chip">{w}</li>
+                ))}
+              </ul>
+
+              <button
+                class={`wk-expand-btn accent-${card.accent}`}
+                aria-expanded="false"
+                aria-controls={`detail-${card.id}`}
+              >
+                <span>Vollständiger Steckbrief</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+
+            <!-- ── Steckbrief ── -->
+            <div class="wk-detail" id={`detail-${card.id}`} hidden>
+              <div class="wk-detail-inner">
+
+                <div class="wk-detail-section">
+                  <h3 class="wk-dl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wirkung</h3>
+                  <ul class="wk-tags">
+                    {card.wirkung.map(w => <li class="wk-tag">{w}</li>)}
+                  </ul>
+                </div>
+
+                <div class="wk-detail-row">
+                  <div class="wk-detail-section">
+                    <h3 class="wk-dl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Dosierung</h3>
+                    <p class="wk-dt">{card.dosierung}</p>
+                  </div>
+                  <div class="wk-detail-section">
+                    <h3 class="wk-dl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Beste Form</h3>
+                    <p class="wk-dt">{card.beste_form}</p>
+                  </div>
+                </div>
+
+                <div class="wk-detail-row">
+                  <div class="wk-detail-section">
+                    <h3 class="wk-dl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Kombinationen</h3>
+                    <ul class="wk-dt-list">
+                      {card.kombinationen.map(k => <li>{k}</li>)}
+                    </ul>
+                  </div>
+                  <div class="wk-detail-section">
+                    <h3 class="wk-dl wk-dl-warn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Kontraindikationen</h3>
+                    <ul class="wk-dt-list wk-dt-warn">
+                      {card.kontraindikationen.map(k => <li>{k}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="wk-detail-section wk-science">
+                  <h3 class="wk-dl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Wissenschaftlicher Stand</h3>
+                  <p class="wk-dt wk-dt-science">{card.wissenschaft}</p>
+                </div>
+
+                {card.affiliate_url && (
+                  <div class="wk-cta-row">
+                    <a
+                      class={`button wk-affiliate-btn`}
+                      href={card.affiliate_url}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      Empfehlung ansehen *
+                      <span class="wk-provider-badge">{card.affiliate_provider}</span>
+                    </a>
+                  </div>
+                )}
+
+                <button class="wk-close-btn" aria-label="Steckbrief schließen">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>
+                  Schließen
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+
+        <!-- Empty state -->
+        <div class="wk-empty" id="wk-empty" hidden>
+          <span>🔍</span>
+          <p>Kein Supplement gefunden. Versuche einen anderen Suchbegriff.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav bar -->
+    <div class="wk-nav container">
+      <button class="wk-arrow" id="wk-prev" aria-label="Vorherige Karten" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="wk-dots" id="wk-dots" role="group" aria-label="Kartennavigation"></div>
+      <button class="wk-arrow" id="wk-next" aria-label="Nächste Karten">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <p class="wk-hint">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      Ziehen, scrollen oder Pfeile · Karte anklicken für vollständigen Steckbrief
+    </p>
+  </section>
+
+  <!-- ── Disclaimer ── -->
+  <section class="section band wk-disclaimer">
+    <div class="container">
+      <p>
+        <strong>Medizinischer Hinweis:</strong> Die Informationen dienen ausschließlich der allgemeinen
+        Information und ersetzen keine ärztliche Beratung. Nahrungsergänzungsmittel können Wechselwirkungen
+        mit Medikamenten haben. Bei gesundheitlichen Beschwerden immer zuerst einen Arzt konsultieren.
+      </p>
+      <p>
+        * Mit Sternchen gekennzeichnete Links sind Affiliate-Links. Bei einem Kauf darüber kann
+        callidus A&M eine Provision erhalten – für dich ohne Mehrkosten.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+/* ══════════════════════════════════════════
+   HERO & SEARCH
+══════════════════════════════════════════ */
+.wk-hero { padding-bottom: 0; }
+
+.wk-search-wrap { margin-top: 2rem; }
+.wk-search-box {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: 1rem;
+  padding: .75rem 1.1rem;
+  transition: border-color 180ms, box-shadow 180ms;
+  max-width: 620px;
+}
+.wk-search-box:focus-within {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(var(--mint-rgb), .12);
+}
+.wk-search-icon { color: var(--muted); flex-shrink: 0; }
+#wk-search {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: .95rem;
+  color: var(--text);
+  min-width: 0;
+}
+#wk-search::placeholder { color: var(--muted); }
+.wk-search-count {
+  font-size: .75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.wk-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.25rem;
+}
+.wk-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .38rem .9rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: .8rem;
+  cursor: pointer;
+  transition: all 160ms ease;
+  white-space: nowrap;
+}
+.wk-filter-btn:hover { border-color: var(--mint); color: var(--mint); }
+.wk-filter-btn.active { background: var(--mint); border-color: var(--mint); color: var(--on-accent); }
+.wk-filter-n {
+  background: rgba(255,255,255,.22);
+  padding: .05rem .38rem;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 700;
+}
+.wk-filter-btn:not(.active) .wk-filter-n { background: var(--panel-2); color: var(--muted); }
+
+/* ══════════════════════════════════════════
+   CAROUSEL
+══════════════════════════════════════════ */
+.wk-section { padding-top: 2rem; }
+
+.wk-track-outer {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  padding: 2.5rem 0 1.5rem;
+}
+.wk-track-outer::-webkit-scrollbar { display: none; }
+.wk-track-outer.is-dragging { cursor: grabbing; }
+
+.wk-track {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0 max(1.5rem, calc((100vw - 1200px) / 2));
+  width: max-content;
+  align-items: flex-start;
+}
+
+/* ══════════════════════════════════════════
+   CARD BASE
+══════════════════════════════════════════ */
+.wk-card {
+  scroll-snap-align: start;
+  width: 310px;
+  flex-shrink: 0;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: box-shadow 200ms ease, transform 200ms ease, width 260ms ease;
+  position: relative;
+}
+.wk-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.wk-card:not(.wk-expanded):hover {
+  box-shadow: 0 20px 60px rgba(58,64,38,.14), 0 4px 16px rgba(58,64,38,.08);
+  transform: translateY(-3px);
+}
+.wk-card.wk-expanded { width: clamp(340px, 72vw, 820px); }
+
+/* ── Color accent stripe ── */
+.wk-card.accent-mint  { border-top: 3px solid var(--mint); }
+.wk-card.accent-gold  { border-top: 3px solid var(--gold); }
+.wk-card.accent-coral { border-top: 3px solid var(--coral); }
+.wk-card.accent-blue  { border-top: 3px solid var(--blue); }
+
+/* ── Visual header ── */
+.wk-visual {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.wk-visual-line {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 120%, rgba(255,255,255,.18) 0%, transparent 65%);
+}
+.wk-icon {
+  font-size: 3.8rem;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.1));
+  transition: transform 220ms ease;
+}
+.wk-card:not(.wk-expanded):hover .wk-icon { transform: scale(1.08) translateY(-2px); }
+
+/* ── Body ── */
+.wk-body { padding: 1.1rem 1.2rem 1.2rem; }
+.wk-meta { margin-bottom: .55rem; }
+.wk-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 .2rem;
+  line-height: 1.25;
+}
+.wk-subtitle {
+  font-size: .77rem;
+  color: var(--muted);
+  margin: 0 0 .65rem;
+}
+.wk-summary {
+  font-size: .83rem;
+  line-height: 1.55;
+  color: var(--soft);
+  margin: 0 0 .9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.wk-card.wk-expanded .wk-summary { -webkit-line-clamp: unset; }
+
+/* Top-effects chips */
+.wk-top-effects {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+.wk-effect-chip {
+  font-size: .7rem;
+  padding: .2rem .55rem;
+  background: var(--panel-2);
+  border-radius: 999px;
+  color: var(--soft);
+  white-space: nowrap;
+}
+
+/* Expand button */
+.wk-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: .55rem .85rem;
+  border-radius: .75rem;
+  border: 1.5px solid var(--line);
+  background: var(--panel-2);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 180ms ease;
+  gap: .5rem;
+}
+.wk-expand-btn:hover { background: var(--panel); }
+.wk-expand-btn.accent-mint:hover { border-color: var(--mint); color: var(--mint); }
+.wk-expand-btn.accent-gold:hover { border-color: var(--gold); color: var(--gold); }
+.wk-expand-btn.accent-coral:hover { border-color: var(--coral); color: var(--coral); }
+.wk-expand-btn.accent-blue:hover { border-color: var(--blue); color: var(--blue); }
+.wk-expand-btn svg { transition: transform 220ms ease; flex-shrink: 0; }
+.wk-expand-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* ══════════════════════════════════════════
+   STECKBRIEF DETAIL PANEL
+══════════════════════════════════════════ */
+.wk-detail {
+  border-top: 1.5px solid var(--line);
+  animation: wk-in 220ms ease;
+}
+@keyframes wk-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wk-detail-inner { padding: 1.25rem 1.2rem 1rem; }
+
+.wk-detail-section { margin-bottom: 1rem; }
+.wk-detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .wk-detail-row { grid-template-columns: 1fr; }
+}
+
+.wk-dl {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  margin: 0 0 .45rem;
+}
+.wk-dl-warn { color: var(--coral); }
+
+.wk-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+.wk-tag {
+  font-size: .75rem;
+  padding: .25rem .6rem;
+  background: var(--panel-2);
+  border-radius: 999px;
+  color: var(--soft);
+}
+
+.wk-dt {
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--soft);
+  margin: 0;
+}
+.wk-dt-list {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: .8rem;
+  line-height: 1.7;
+  color: var(--soft);
+}
+.wk-dt-warn { color: var(--coral); }
+.wk-dt-warn li::marker { color: var(--coral); }
+
+.wk-science { background: var(--panel-2); border-radius: .75rem; padding: .85rem 1rem; }
+.wk-dt-science {
+  font-style: italic;
+  font-size: .8rem;
+}
+
+/* CTA row */
+.wk-cta-row { margin-top: .5rem; margin-bottom: .5rem; }
+.wk-affiliate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .82rem;
+  padding: .5rem 1.1rem;
+  border-radius: .75rem;
+}
+.wk-provider-badge {
+  font-size: .65rem;
+  padding: .15rem .45rem;
+  background: rgba(255,255,255,.2);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.wk-close-btn {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: .78rem;
+  cursor: pointer;
+  padding: .5rem 0 0;
+  margin-top: .5rem;
+  transition: color 150ms;
+}
+.wk-close-btn:hover { color: var(--text); }
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+.wk-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.wk-arrow {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  background: var(--panel);
+  cursor: pointer;
+  color: var(--text);
+  transition: all 160ms ease;
+  flex-shrink: 0;
+}
+.wk-arrow:hover:not(:disabled) { border-color: var(--mint); color: var(--mint); background: rgba(var(--mint-rgb),.06); }
+.wk-arrow:disabled { opacity: .3; cursor: default; }
+
+.wk-dots {
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 260px;
+}
+.wk-dot {
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: var(--line);
+  border: none;
+  cursor: pointer;
+  transition: all 180ms ease;
+  padding: 0;
+}
+.wk-dot.active { background: var(--mint); transform: scale(1.4); }
+.wk-dot:hover { background: var(--muted); }
+
+.wk-hint {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .73rem;
+  color: var(--muted);
+  margin-top: .75rem;
+  justify-content: center;
+}
+
+/* Empty state */
+.wk-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  width: 320px;
+  height: 300px;
+  background: var(--panel);
+  border: 1.5px dashed var(--line);
+  border-radius: 1.5rem;
+  color: var(--muted);
+  text-align: center;
+  font-size: .9rem;
+  padding: 2rem;
+  flex-shrink: 0;
+}
+.wk-empty span { font-size: 2.5rem; }
+
+/* Hidden */
+.wk-card.wk-hidden { display: none; }
+
+/* Disclaimer */
+.wk-disclaimer { margin-top: 1rem; }
+.wk-disclaimer .container p {
+  font-size: .78rem;
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto .5rem;
+  text-align: center;
+}
+</style>
+
+<script is:inline>
+(() => {
+  /* ──────────────────────────────────────────────────────
+     STATE
+  ────────────────────────────────────────────────────── */
+  const outer   = document.getElementById('wk-track-outer');
+  const track   = document.getElementById('wk-track');
+  const dotsEl  = document.getElementById('wk-dots');
+  const prevBtn = document.getElementById('wk-prev');
+  const nextBtn = document.getElementById('wk-next');
+  const searchEl = document.getElementById('wk-search');
+  const countEl  = document.getElementById('wk-count');
+  const emptyEl  = document.getElementById('wk-empty');
+  if (!outer || !track || !dotsEl || !prevBtn || !nextBtn) return;
+
+  let allCards     = Array.from(track.querySelectorAll('.wk-card'));
+  let visibleCards = [...allCards];
+  let currentIndex = 0;
+
+  /* ──────────────────────────────────────────────────────
+     DOTS
+  ────────────────────────────────────────────────────── */
+  const buildDots = () => {
+    dotsEl.innerHTML = '';
+    const max = Math.min(visibleCards.length, 30);
+    for (let i = 0; i < max; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'wk-dot' + (i === currentIndex ? ' active' : '');
+      dot.setAttribute('aria-label', `Karte ${i + 1}`);
+      const idx = i;
+      dot.addEventListener('click', () => scrollToIndex(idx));
+      dotsEl.appendChild(dot);
+    }
+    updateArrows();
+  };
+
+  const updateDots = () => {
+    dotsEl.querySelectorAll('.wk-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === currentIndex));
+    updateArrows();
+  };
+
+  const updateArrows = () => {
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex >= visibleCards.length - 1;
+  };
+
+  const scrollToIndex = (index) => {
+    if (index < 0 || index >= visibleCards.length) return;
+    currentIndex = index;
+    const card = visibleCards[index];
+    const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    const targetLeft = card.offsetLeft - pad;
+    outer.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    updateDots();
+  };
+
+  buildDots();
+  nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+  prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+
+  /* ──────────────────────────────────────────────────────
+     SCROLL SYNC
+  ────────────────────────────────────────────────────── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = visibleCards.indexOf(e.target);
+        if (idx !== -1 && idx !== currentIndex) {
+          currentIndex = idx;
+          updateDots();
+        }
+      }
+    });
+  }, { root: outer, threshold: 0.55 });
+
+  const reobserve = () => {
+    allCards.forEach(c => io.unobserve(c));
+    visibleCards.forEach(c => io.observe(c));
+  };
+  reobserve();
+
+  /* ──────────────────────────────────────────────────────
+     MOUSE DRAG
+  ────────────────────────────────────────────────────── */
+  let isDragging = false, startX = 0, startScroll = 0;
+
+  outer.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    isDragging = true;
+    startX = e.pageX;
+    startScroll = outer.scrollLeft;
+    outer.classList.add('is-dragging');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const dx = e.pageX - startX;
+    outer.scrollLeft = startScroll - dx;
+  });
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    outer.classList.remove('is-dragging');
+  });
+
+  /* prevent drag triggering card click */
+  outer.addEventListener('click', e => {
+    if (Math.abs(outer.scrollLeft - startScroll) > 5) e.stopPropagation();
+  }, true);
+
+  /* ──────────────────────────────────────────────────────
+     EXPAND / COLLAPSE
+  ────────────────────────────────────────────────────── */
+  track.addEventListener('click', e => {
+    const expandBtn  = e.target.closest('.wk-expand-btn');
+    const collapseBtn = e.target.closest('.wk-close-btn');
+
+    const closeAll = () => {
+      track.querySelectorAll('.wk-detail:not([hidden])').forEach(d => {
+        d.hidden = true;
+        const card = d.closest('.wk-card');
+        card?.classList.remove('wk-expanded');
+        card?.querySelector('.wk-expand-btn')?.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    if (expandBtn) {
+      const card   = expandBtn.closest('.wk-card');
+      const detailId = expandBtn.getAttribute('aria-controls');
+      const detail = document.getElementById(detailId);
+      const wasOpen = expandBtn.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      if (!wasOpen) {
+        detail.hidden = false;
+        expandBtn.setAttribute('aria-expanded', 'true');
+        card.classList.add('wk-expanded');
+        requestAnimationFrame(() => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        });
+      }
+    }
+    if (collapseBtn) {
+      closeAll();
+    }
+  });
+
+  /* ──────────────────────────────────────────────────────
+     SEARCH
+  ────────────────────────────────────────────────────── */
+  let activeFilter = 'all';
+
+  const applyFilters = () => {
+    const q = (searchEl?.value || '').toLowerCase().trim();
+    let count = 0;
+
+    allCards.forEach(card => {
+      const cat    = card.dataset.category || '';
+      const search = (card.dataset.search || '').toLowerCase();
+      const matchFilter = activeFilter === 'all' ||
+        activeFilter.split('|').some(f => cat.includes(f));
+      const matchSearch = !q || search.includes(q);
+      const show = matchFilter && matchSearch;
+      card.classList.toggle('wk-hidden', !show);
+      if (show) count++;
+    });
+
+    visibleCards = allCards.filter(c => !c.classList.contains('wk-hidden'));
+    currentIndex = 0;
+    buildDots();
+    reobserve();
+
+    if (emptyEl) emptyEl.hidden = visibleCards.length > 0;
+    if (countEl) countEl.textContent = q ? `${count} Ergebnis${count !== 1 ? 'se' : ''}` : '';
+
+    if (visibleCards.length) {
+      const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      outer.scrollTo({ left: visibleCards[0].offsetLeft - pad, behavior: 'smooth' });
+    }
+    nextBtn.disabled = visibleCards.length <= 1;
+  };
+
+  searchEl?.addEventListener('input', applyFilters);
+
+  /* ──────────────────────────────────────────────────────
+     CATEGORY FILTER
+  ────────────────────────────────────────────────────── */
+  document.querySelectorAll('.wk-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.wk-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  /* ──────────────────────────────────────────────────────
+     ASTRO PAGE LOAD RESET
+  ────────────────────────────────────────────────────── */
+  document.addEventListener('astro:page-load', () => {
+    allCards = Array.from(track.querySelectorAll('.wk-card'));
+    visibleCards = [...allCards];
+    currentIndex = 0;
+    buildDots();
+    reobserve();
+  });
+})();
+</script>
