@@ -24,23 +24,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         <!-- COIN -->
         <div class="val-coin-wrap" aria-hidden="true">
-          <!-- Dark plate gives coin contrast against light page background -->
-          <div class="val-coin-plate"></div>
-          <!-- Glow halo behind coin -->
-          <div class="val-coin-halo"></div>
-          <!-- 3D spinning scene -->
           <div class="val-scene">
-            <div class="val-coin-3d">
-              <div class="val-face val-face-front">
-                <img src="/assets/sanitas-logo.svg" alt="" width="340" height="340" />
-              </div>
-              <div class="val-face val-face-back">
-                <img src="/assets/valus-coin-back.svg" alt="" width="340" height="340" />
-              </div>
-            </div>
+            <img class="val-coin-image" src="/assets/valus-coin.png" alt="" width="500" height="500" loading="eager" decoding="async" />
           </div>
-          <!-- Shadow on "floor" -->
-          <div class="val-coin-shadow"></div>
         </div>
 
         <!-- TEXT -->
@@ -280,17 +266,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
        ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="container" style="text-align:center;max-width:580px">
-      <!-- mini spinning coin -->
+      <!-- mini coin -->
       <div class="val-cta-coin" aria-hidden="true">
         <div class="val-mini-scene">
-          <div class="val-mini-3d">
-            <div class="val-mini-face val-mini-front">
-              <img src="/assets/sanitas-logo.svg" alt="" width="88" height="88" />
-            </div>
-            <div class="val-mini-face val-mini-back">
-              <img src="/assets/valus-coin-back.svg" alt="" width="88" height="88" />
-            </div>
-          </div>
+          <img class="val-mini-image" src="/assets/valus-coin.png" alt="" width="500" height="500" loading="lazy" decoding="async" />
         </div>
       </div>
       <h2 data-reveal style="margin-top:1.25rem">Bereit?</h2>
@@ -348,97 +327,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
 
     /* dark circular plate — ensures coin has contrast against light bg */
-    .val-coin-plate {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -56%);
-      width: 370px;
-      height: 370px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle at 42% 40%,
-        rgba(30, 22, 0, 0.52) 0%,
-        rgba(20, 14, 0, 0.60) 40%,
-        rgba(10, 7, 0, 0.45) 65%,
-        transparent 78%
-      );
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* big gold glow halo behind coin */
-    .val-coin-halo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -55%);
-      width: 440px;
-      height: 440px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle at 38% 36%,
-        rgba(255,210,60,.55) 0%,
-        rgba(201,168,76,.35) 25%,
-        rgba(160,110,20,.18) 50%,
-        transparent 70%
-      );
-      filter: blur(22px);
-      pointer-events: none;
-      z-index: 1;
-      animation: haloBreath 6s ease-in-out infinite;
-    }
-    @keyframes haloBreath {
-      0%,100% { opacity: 0.85; transform: translate(-50%,-55%) scale(1); }
-      50%      { opacity: 1;    transform: translate(-50%,-55%) scale(1.07); }
-    }
-
     .val-scene {
-      perspective: 1100px;
-      width: 340px;
-      height: 340px;
+      width: clamp(280px, 36vw, 420px);
+      height: clamp(280px, 36vw, 420px);
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
-    .val-coin-3d {
+    .val-coin-image {
       width: 100%;
       height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: valCoinSpin 12s linear infinite;
-      /* rich multi-layer drop shadow */
-      filter:
-        drop-shadow(0 0 32px rgba(220,170,20,.55))
-        drop-shadow(0 18px 50px rgba(140,90,0,.65))
-        drop-shadow(0 4px 12px rgba(0,0,0,.50));
-    }
-    .val-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      border-radius: 50%;
-    }
-    .val-face-back { transform: rotateY(180deg); }
-
-    @keyframes valCoinSpin {
-      0%   { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
-    }
-
-    /* floor shadow ellipse */
-    .val-coin-shadow {
-      width: 280px;
-      height: 28px;
-      background: radial-gradient(ellipse, rgba(120,80,0,.55) 0%, transparent 70%);
-      border-radius: 50%;
-      margin-top: -12px;
-      filter: blur(8px);
-      animation: shadowPulse 12s linear infinite;
-    }
-    @keyframes shadowPulse {
-      0%,100% { transform: scaleX(1); opacity: .7; }
-      50%      { transform: scaleX(0.82); opacity: .45; }
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 38px rgba(120,80,0,.26));
     }
 
     /* ── Hero text ──────────────────────────────────────────── */
@@ -592,16 +492,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     /* ── CTA coin ───────────────────────────────────────────── */
     .val-cta-coin { display: flex; justify-content: center; }
-    .val-mini-scene { perspective: 600px; width: 88px; height: 88px; }
-    .val-mini-3d {
-      width: 100%; height: 100%; position: relative;
-      transform-style: preserve-3d;
-      animation: valCoinSpin 12s linear infinite;
-      filter:
-        drop-shadow(0 0 12px rgba(220,170,20,.5))
-        drop-shadow(0 6px 18px rgba(120,70,0,.55));
+    .val-mini-scene { width: 88px; height: 88px; }
+    .val-mini-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(120,70,0,.24));
     }
-    .val-mini-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 50%; }
-    .val-mini-back { transform: rotateY(180deg); }
   </style>
 </BaseLayout>
