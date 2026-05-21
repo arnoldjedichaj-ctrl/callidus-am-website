@@ -6,147 +6,171 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   description="Valus (VAL) ist das Guthaben-System von callidus A&M. Sammle VAL durch Aktivität, kaufe es vergünstigt und löse es für Kurse und Premium-Inhalte ein."
   lang="de"
 >
-  <!-- HERO -->
-  <section class="section san-hero">
-    <div class="san-hero-bg" aria-hidden="true">
-      <div class="san-orb san-orb-1"></div>
-      <div class="san-orb san-orb-2"></div>
-      <div class="san-orb san-orb-3"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section val-hero">
+    <!-- ambient orbs -->
+    <div class="val-bg" aria-hidden="true">
+      <div class="val-orb val-orb-1"></div>
+      <div class="val-orb val-orb-2"></div>
+      <div class="val-orb val-orb-3"></div>
+      <div class="val-orb val-orb-4"></div>
     </div>
+
     <div class="container" style="position:relative;z-index:1">
-      <div class="san-hero-inner">
-        <div class="san-coin-hero" data-reveal aria-hidden="true">
-          <div class="san-coin-scene">
-            <div class="san-coin-3d">
-              <div class="san-coin-face san-coin-front">
-                <img src="/assets/sanitas-logo.svg" alt="" width="260" height="260" />
+      <div class="val-hero-inner">
+
+        <!-- COIN -->
+        <div class="val-coin-wrap" aria-hidden="true">
+          <!-- Dark plate gives coin contrast against light page background -->
+          <div class="val-coin-plate"></div>
+          <!-- Glow halo behind coin -->
+          <div class="val-coin-halo"></div>
+          <!-- 3D spinning scene -->
+          <div class="val-scene">
+            <div class="val-coin-3d">
+              <div class="val-face val-face-front">
+                <img src="/assets/sanitas-logo.svg" alt="" width="340" height="340" />
               </div>
-              <div class="san-coin-face san-coin-back">
-                <img src="/assets/valus-coin-back.svg" alt="" width="260" height="260" />
+              <div class="val-face val-face-back">
+                <img src="/assets/valus-coin-back.svg" alt="" width="340" height="340" />
               </div>
             </div>
           </div>
+          <!-- Shadow on "floor" -->
+          <div class="val-coin-shadow"></div>
         </div>
-        <div class="san-hero-text" data-reveal="2">
-          <div class="san-eyebrow">
-            <span class="san-badge-pill">VAL</span>
+
+        <!-- TEXT -->
+        <div class="val-hero-text" data-reveal>
+          <div class="val-eyebrow">
+            <span class="val-pill">VAL</span>
             <span>Valus · Guthaben-System</span>
           </div>
-          <h1 class="san-headline">Gesundheit,<br/>die sich<br/><em>auszahlt.</em></h1>
-          <p class="san-claim">
+          <h1 class="val-h1">Gesundheit,<br/>die sich<br/><em>auszahlt.</em></h1>
+          <p class="val-claim">
             Valus (VAL) ist das Wert-System von callidus A&M.<br/>
             <strong>1 VAL = 1,00 € Rabatt</strong> auf Kurse, Premium und mehr.
           </p>
-          <div class="san-cta-group">
-            <a href="/wallet/" class="button san-primary-btn">Jetzt Wallet erstellen</a>
-            <a href="#wie-es-funktioniert" class="button san-secondary-btn">Wie funktioniert VAL?</a>
+          <div class="val-cta-row">
+            <a href="/wallet/" class="button val-btn-gold">Wallet erstellen</a>
+            <a href="#wie-es-funktioniert" class="button val-btn-ghost">Wie funktioniert VAL?</a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="san-stats-bar">
+  <!-- ═══════════════════════════════════════════════════════════
+       STATS BAR
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="val-stats-bar">
     <div class="container">
-      <div class="san-stats">
-        <div class="san-stat">
-          <span class="san-stat-value">1 VAL</span>
-          <span class="san-stat-label">= 1,00 € Rabatt</span>
+      <div class="val-stats">
+        <div class="val-stat">
+          <span class="val-stat-v">1 VAL</span>
+          <span class="val-stat-l">= 1,00 € Rabatt</span>
         </div>
-        <div class="san-stat-divider" aria-hidden="true"></div>
-        <div class="san-stat">
-          <span class="san-stat-value">0,75 €</span>
-          <span class="san-stat-label">Einstiegspreis pro VAL</span>
+        <div class="val-stat-sep" aria-hidden="true"></div>
+        <div class="val-stat">
+          <span class="val-stat-v">0,75 €</span>
+          <span class="val-stat-l">Einstiegspreis pro VAL</span>
         </div>
-        <div class="san-stat-divider" aria-hidden="true"></div>
-        <div class="san-stat">
-          <span class="san-stat-value">100 XP</span>
-          <span class="san-stat-label">= 1 VAL via App-Aktivität</span>
+        <div class="val-stat-sep" aria-hidden="true"></div>
+        <div class="val-stat">
+          <span class="val-stat-v">100 XP</span>
+          <span class="val-stat-l">= 1 VAL via App-Aktivität</span>
         </div>
-        <div class="san-stat-divider" aria-hidden="true"></div>
-        <div class="san-stat">
-          <span class="san-stat-value">Kein Token</span>
-          <span class="san-stat-label">Sicher, intern, DSGVO-konform</span>
+        <div class="val-stat-sep" aria-hidden="true"></div>
+        <div class="val-stat">
+          <span class="val-stat-v">Kein Token</span>
+          <span class="val-stat-l">Sicher · Intern · DSGVO</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- WIE ES FUNKTIONIERT -->
+  <!-- ═══════════════════════════════════════════════════════════
+       WIE ES FUNKTIONIERT
+       ═══════════════════════════════════════════════════════════ -->
   <section class="section" id="wie-es-funktioniert">
     <div class="container">
       <p class="eyebrow" data-reveal>So funktioniert VAL</p>
       <h2 data-reveal="2">Drei Wege zu Valus-Guthaben.</h2>
-      <div class="san-ways" data-reveal="3">
+      <div class="val-ways" data-reveal="3">
 
-        <div class="san-way-card">
-          <div class="san-way-icon" style="background:rgba(var(--san-gold-rgb),.12)">
+        <div class="val-card">
+          <div class="val-card-icon" style="background:rgba(var(--san-gold-rgb),.12)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
               <rect x="2" y="5" width="20" height="14" rx="2"/>
               <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/>
             </svg>
           </div>
-          <div class="san-way-num">01</div>
+          <div class="val-card-num">01</div>
           <h3>Kaufen</h3>
-          <p>Erwerbe VAL-Pakete direkt über Digistore24. Der Kaufpreis liegt <strong>unter dem Einlösewert</strong> — du kaufst also mit sofortigem Gewinn.</p>
-          <div class="san-way-table">
-            <div class="san-way-row"><span>10 VAL</span><span class="san-price-buy">7,50 €</span><span class="san-price-value">→ 10 € Wert</span></div>
-            <div class="san-way-row"><span>25 VAL</span><span class="san-price-buy">18,75 €</span><span class="san-price-value">→ 25 € Wert</span></div>
-            <div class="san-way-row"><span>50 VAL</span><span class="san-price-buy">37,50 €</span><span class="san-price-value">→ 50 € Wert</span></div>
+          <p>Erwerbe VAL-Pakete direkt über Digistore24. Der Kaufpreis liegt <strong>unter dem Einlösewert</strong> — du kaufst mit sofortigem Gewinn.</p>
+          <div class="val-table">
+            <div class="val-row"><span>10 VAL</span><span class="val-price-buy">7,50 €</span><span class="val-price-val">→ 10 € Wert</span></div>
+            <div class="val-row"><span>25 VAL</span><span class="val-price-buy">18,75 €</span><span class="val-price-val">→ 25 € Wert</span></div>
+            <div class="val-row"><span>50 VAL</span><span class="val-price-buy">37,50 €</span><span class="val-price-val">→ 50 € Wert</span></div>
           </div>
-          <a href="/wallet/" class="san-way-cta">VAL kaufen</a>
+          <a href="/wallet/" class="val-card-link">VAL kaufen →</a>
         </div>
 
-        <div class="san-way-card san-way-featured">
-          <div class="san-way-icon" style="background:rgba(var(--mint-rgb),.12)">
+        <div class="val-card val-card-featured">
+          <span class="val-featured-badge">Kostenlos</span>
+          <div class="val-card-icon" style="background:rgba(var(--mint-rgb),.12)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z"/>
             </svg>
           </div>
-          <span class="san-featured-badge">Kostenlos</span>
-          <div class="san-way-num">02</div>
+          <div class="val-card-num">02</div>
           <h3>Verdienen</h3>
           <p>Sammle XP durch die Nutzung der callidus Apps. Täglich einloggen, Mahlzeiten tracken, Bewegung erfassen — alles bringt XP.</p>
-          <div class="san-way-table">
-            <div class="san-way-row"><span>100 XP</span><span class="san-price-value">→ 1 VAL</span></div>
-            <div class="san-way-row"><span>Max. pro Monat</span><span class="san-price-value">→ 10 VAL</span></div>
-            <div class="san-way-row"><span>NEXUS App</span><span class="san-price-value">XP-Quelle</span></div>
+          <div class="val-table">
+            <div class="val-row"><span>100 XP</span><span class="val-price-val">→ 1 VAL</span></div>
+            <div class="val-row"><span>Max. pro Monat</span><span class="val-price-val">→ 10 VAL</span></div>
+            <div class="val-row"><span>NEXUS App</span><span class="val-price-val">XP-Quelle</span></div>
           </div>
-          <a href="/nexus-app/" class="san-way-cta">NEXUS App holen</a>
+          <a href="/nexus-app/" class="val-card-link">NEXUS App holen →</a>
         </div>
 
-        <div class="san-way-card">
-          <div class="san-way-icon" style="background:rgba(var(--blue-rgb),.12)">
+        <div class="val-card">
+          <div class="val-card-icon" style="background:rgba(var(--blue-rgb),.12)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
               <path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 Z"/>
             </svg>
           </div>
-          <div class="san-way-num">03</div>
+          <div class="val-card-num">03</div>
           <h3>Bonus erhalten</h3>
           <p>Bundle-Käufe, Empfehlungen und besondere Aktionen bringen VAL als Bonus. Wer ein Bundle kauft, erhält einen VAL-Startersatz.</p>
-          <div class="san-way-table">
-            <div class="san-way-row"><span>Bundle-Kauf</span><span class="san-price-value">→ VAL Bonus</span></div>
-            <div class="san-way-row"><span>Empfehlung</span><span class="san-price-value">→ Kommt bald</span></div>
-            <div class="san-way-row"><span>Aktionen</span><span class="san-price-value">→ Monatlich</span></div>
+          <div class="val-table">
+            <div class="val-row"><span>Bundle-Kauf</span><span class="val-price-val">→ VAL Bonus</span></div>
+            <div class="val-row"><span>Empfehlung</span><span class="val-price-val">→ Kommt bald</span></div>
+            <div class="val-row"><span>Aktionen</span><span class="val-price-val">→ Monatlich</span></div>
           </div>
-          <a href="/wallet/" class="san-way-cta">Wallet öffnen</a>
+          <a href="/wallet/" class="val-card-link">Wallet öffnen →</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- EINLÖSEN -->
-  <section class="section san-redeem-section">
-    <div class="container split" style="align-items:center;gap:4rem">
+  <!-- ═══════════════════════════════════════════════════════════
+       EINLÖSEN
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section val-redeem-section">
+    <div class="container val-split">
       <div data-reveal>
         <p class="eyebrow">Einlösen</p>
         <h2>Was kann ich mit VAL kaufen?</h2>
-        <p style="margin-bottom:1.5rem">VAL funktioniert als direkter Rabatt — du zahlst den Differenzbetrag normal, der VAL-Wert wird abgezogen.</p>
-        <div class="san-redeem-list">
-          <div class="san-redeem-item">
-            <span class="san-redeem-icon mint">
+        <p style="margin-bottom:1.5rem;color:var(--muted)">VAL funktioniert als direkter Rabatt — du zahlst den Differenzbetrag normal, der VAL-Wert wird abgezogen.</p>
+        <div class="val-redeem-list">
+          <div class="val-redeem-item">
+            <span class="val-redeem-icon mint">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 2v16M6 6l4-4 4 4M6 14l4 4 4-4"/></svg>
             </span>
             <div>
@@ -154,8 +178,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <p>Bis zu 50% des Preises mit VAL bezahlen</p>
             </div>
           </div>
-          <div class="san-redeem-item">
-            <span class="san-redeem-icon gold">
+          <div class="val-redeem-item">
+            <span class="val-redeem-icon gold">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6v8M7 9l3-3 3 3"/></svg>
             </span>
             <div>
@@ -163,37 +187,67 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <p>NEXUS, MOMUS, KAIROS — kommt bald</p>
             </div>
           </div>
-          <div class="san-redeem-item">
-            <span class="san-redeem-icon blue">
+          <div class="val-redeem-item">
+            <span class="val-redeem-icon blue">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="14" height="10" rx="2"/><path d="M7 9h6M7 12h4"/></svg>
             </span>
             <div>
-              <strong>Weitere Kurse & Bundles</strong>
+              <strong>Weitere Kurse &amp; Bundles</strong>
               <p>Roadmap wird laufend erweitert</p>
             </div>
           </div>
         </div>
-        <p class="san-rule-note">
-          ℹ️ Max. 50% eines Produktpreises mit VAL · Kein VAL-zu-VAL-Kauf · Kein Auszahlen in Euro
-        </p>
+        <p class="val-rule-note">ℹ️ Max. 50% eines Produktpreises mit VAL · Kein VAL-zu-VAL-Kauf · Kein Auszahlen in Euro</p>
       </div>
-      <div class="san-visual-coin" data-reveal="2" aria-hidden="true">
-        <div class="san-big-coin">
-          <img src="/assets/sanitas-logo.svg" alt="" width="220" height="220" />
-        </div>
-        <div class="san-coin-label">
-          <span class="san-eyebrow-small">Valus</span>
-          <span class="san-ticker">VAL</span>
-          <span class="san-sub">Callidus Guthaben</span>
+
+      <!-- Value cards instead of static coin -->
+      <div class="val-redeem-visual" data-reveal="2">
+        <div class="val-value-showcase">
+          <div class="val-value-card">
+            <div class="val-vc-top">
+              <span class="val-vc-amount">10 VAL</span>
+              <span class="val-vc-badge">= 10 € Wert</span>
+            </div>
+            <div class="val-vc-bar">
+              <div class="val-vc-fill" style="width:75%"></div>
+            </div>
+            <span class="val-vc-note">kaufen für 7,50 €</span>
+          </div>
+          <div class="val-value-card val-vc-mid">
+            <div class="val-vc-top">
+              <span class="val-vc-amount">25 VAL</span>
+              <span class="val-vc-badge">= 25 € Wert</span>
+            </div>
+            <div class="val-vc-bar">
+              <div class="val-vc-fill" style="width:75%"></div>
+            </div>
+            <span class="val-vc-note">kaufen für 18,75 €</span>
+          </div>
+          <div class="val-value-card">
+            <div class="val-vc-top">
+              <span class="val-vc-amount">50 VAL</span>
+              <span class="val-vc-badge">= 50 € Wert</span>
+            </div>
+            <div class="val-vc-bar">
+              <div class="val-vc-fill" style="width:75%"></div>
+            </div>
+            <span class="val-vc-note">kaufen für 37,50 €</span>
+          </div>
+          <div class="val-vc-saving">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="1 4 4 7 8 2 12 7 15 4"/></svg>
+            Immer 25% günstiger als der Einlösewert
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SICHERHEIT / RECHTLICHES -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SICHERHEIT
+       ═══════════════════════════════════════════════════════════ -->
   <section class="section band">
     <div class="container">
-      <p class="eyebrow" data-reveal>Vertrauen & Sicherheit</p>
+      <p class="eyebrow" data-reveal>Vertrauen &amp; Sicherheit</p>
       <h2 data-reveal="2">VAL ist kein Krypto-Token.</h2>
       <div class="grid" data-reveal="3" style="margin-top:1.5rem">
         <div class="card">
@@ -206,7 +260,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="card">
           <div class="card-body">
             <span class="badge gold">DSGVO</span>
-            <h3>Serverbasiert & sicher</h3>
+            <h3>Serverbasiert &amp; sicher</h3>
             <p>Alle Salden werden in Firebase gespeichert — keine Gesundheitsdaten auf der Blockchain, volle Kontrolle auf unserer Seite.</p>
           </div>
         </div>
@@ -221,20 +275,35 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ═══════════════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════════════ -->
   <section class="section">
-    <div class="container" style="text-align:center;max-width:560px">
-      <div class="san-coin-small" aria-hidden="true">
-        <img src="/assets/sanitas-logo.svg" alt="" width="96" height="96" />
+    <div class="container" style="text-align:center;max-width:580px">
+      <!-- mini spinning coin -->
+      <div class="val-cta-coin" aria-hidden="true">
+        <div class="val-mini-scene">
+          <div class="val-mini-3d">
+            <div class="val-mini-face val-mini-front">
+              <img src="/assets/sanitas-logo.svg" alt="" width="88" height="88" />
+            </div>
+            <div class="val-mini-face val-mini-back">
+              <img src="/assets/valus-coin-back.svg" alt="" width="88" height="88" />
+            </div>
+          </div>
+        </div>
       </div>
-      <h2 data-reveal style="margin-top:1rem">Bereit?</h2>
-      <p data-reveal="2">Erstellen Sie Ihr kostenloses Callidus-Konto und erhalten Sie Ihr erstes VAL-Guthaben.</p>
-      <a href="/wallet/" class="button san-primary-btn" data-reveal="3" style="margin-top:1.25rem;display:inline-flex">
+      <h2 data-reveal style="margin-top:1.25rem">Bereit?</h2>
+      <p data-reveal="2" style="color:var(--muted)">Erstellen Sie Ihr kostenloses Callidus-Konto und erhalten Sie Ihr erstes VAL-Guthaben.</p>
+      <a href="/wallet/" class="button val-btn-gold" data-reveal="3" style="margin-top:1.25rem;display:inline-flex">
         Wallet erstellen — kostenlos
       </a>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       STYLES
+       ═══════════════════════════════════════════════════════════ -->
   <style>
     :root {
       --san-gold: #C9A84C;
@@ -248,89 +317,291 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       --san-gold-dark: #C9A84C;
     }
 
-    .san-hero { position: relative; overflow: hidden; padding-block: clamp(4rem, 10vw, 8rem); }
-    .san-hero-bg { position: absolute; inset: 0; pointer-events: none; }
-    .san-orb { position: absolute; border-radius: 50%; filter: blur(80px); }
-    .san-orb-1 { width: 480px; height: 480px; background: rgba(201,168,76,.18); top: -120px; right: -80px; }
-    .san-orb-2 { width: 320px; height: 320px; background: rgba(63,127,90,.10); bottom: -60px; left: 10%; }
-    .san-orb-3 { width: 200px; height: 200px; background: rgba(201,168,76,.08); top: 40%; left: -40px; }
+    /* ── Hero ───────────────────────────────────────────────── */
+    .val-hero {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(3.5rem, 8vw, 7rem);
+    }
+    .val-bg { position: absolute; inset: 0; pointer-events: none; }
+    .val-orb { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .val-orb-1 { width: 560px; height: 560px; background: rgba(201,168,76,.20); top: -160px; right: -100px; }
+    .val-orb-2 { width: 360px; height: 360px; background: rgba(201,168,76,.10); bottom: -80px; left: 5%; }
+    .val-orb-3 { width: 220px; height: 220px; background: rgba(63,127,90,.08); top: 35%; left: -40px; }
+    .val-orb-4 { width: 180px; height: 180px; background: rgba(201,168,76,.12); bottom: 20%; right: 15%; }
 
-    .san-hero-inner { display: flex; align-items: center; gap: clamp(2rem, 6vw, 5rem); flex-wrap: wrap; justify-content: center; }
-    .san-hero-text { flex: 1; min-width: 280px; max-width: 520px; }
-    .san-eyebrow { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; font-size: .875rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-    .san-badge-pill { background: var(--san-gold); color: #1a1200; font-size: .7rem; font-weight: 800; padding: .2rem .6rem; border-radius: 999px; letter-spacing: .08em; }
-    .san-headline { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; font-weight: 800; margin: 0 0 1.25rem; letter-spacing: -.02em; }
-    .san-headline em { font-style: normal; color: var(--san-gold); }
-    .san-claim { font-size: 1.1rem; color: var(--muted); line-height: 1.65; margin-bottom: 2rem; }
-    .san-claim strong { color: var(--text); }
-    .san-cta-group { display: flex; gap: .75rem; flex-wrap: wrap; }
-    .san-primary-btn { background: var(--san-gold); color: #1a1200; border: none; font-weight: 700; }
-    .san-primary-btn:hover { background: var(--san-gold-light); }
-    .san-secondary-btn { border: 1px solid rgba(var(--san-gold-rgb),.4); color: var(--san-gold); }
-    .san-secondary-btn:hover { background: rgba(var(--san-gold-rgb),.08); }
+    .val-hero-inner {
+      display: flex;
+      align-items: center;
+      gap: clamp(2.5rem, 7vw, 6rem);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-    /* 3D Coin Spin */
-    .san-coin-hero { flex-shrink: 0; }
-    .san-coin-scene { perspective: 900px; width: 260px; height: 260px; }
-    .san-coin-3d {
+    /* ── Coin presentation ──────────────────────────────────── */
+    .val-coin-wrap {
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* dark circular plate — ensures coin has contrast against light bg */
+    .val-coin-plate {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -56%);
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 42% 40%,
+        rgba(30, 22, 0, 0.52) 0%,
+        rgba(20, 14, 0, 0.60) 40%,
+        rgba(10, 7, 0, 0.45) 65%,
+        transparent 78%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* big gold glow halo behind coin */
+    .val-coin-halo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: 440px;
+      height: 440px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 38% 36%,
+        rgba(255,210,60,.55) 0%,
+        rgba(201,168,76,.35) 25%,
+        rgba(160,110,20,.18) 50%,
+        transparent 70%
+      );
+      filter: blur(22px);
+      pointer-events: none;
+      z-index: 1;
+      animation: haloBreath 6s ease-in-out infinite;
+    }
+    @keyframes haloBreath {
+      0%,100% { opacity: 0.85; transform: translate(-50%,-55%) scale(1); }
+      50%      { opacity: 1;    transform: translate(-50%,-55%) scale(1.07); }
+    }
+
+    .val-scene {
+      perspective: 1100px;
+      width: 340px;
+      height: 340px;
+      position: relative;
+      z-index: 2;
+    }
+    .val-coin-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: valCoinSpin 12s linear infinite;
+      /* rich multi-layer drop shadow */
+      filter:
+        drop-shadow(0 0 32px rgba(220,170,20,.55))
+        drop-shadow(0 18px 50px rgba(140,90,0,.65))
+        drop-shadow(0 4px 12px rgba(0,0,0,.50));
+    }
+    .val-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 50%;
+    }
+    .val-face-back { transform: rotateY(180deg); }
+
+    @keyframes valCoinSpin {
+      0%   { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    /* floor shadow ellipse */
+    .val-coin-shadow {
+      width: 280px;
+      height: 28px;
+      background: radial-gradient(ellipse, rgba(120,80,0,.55) 0%, transparent 70%);
+      border-radius: 50%;
+      margin-top: -12px;
+      filter: blur(8px);
+      animation: shadowPulse 12s linear infinite;
+    }
+    @keyframes shadowPulse {
+      0%,100% { transform: scaleX(1); opacity: .7; }
+      50%      { transform: scaleX(0.82); opacity: .45; }
+    }
+
+    /* ── Hero text ──────────────────────────────────────────── */
+    .val-hero-text { flex: 1; min-width: 280px; max-width: 520px; }
+    .val-eyebrow {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;
+      font-size: .875rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .val-pill {
+      background: var(--san-gold); color: #1a1200;
+      font-size: .7rem; font-weight: 800; padding: .22rem .65rem;
+      border-radius: 999px; letter-spacing: .08em;
+    }
+    .val-h1 {
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      line-height: 1.05; font-weight: 800; margin: 0 0 1.25rem;
+      letter-spacing: -.02em;
+    }
+    .val-h1 em { font-style: normal; color: var(--san-gold); }
+    .val-claim { font-size: 1.1rem; color: var(--muted); line-height: 1.65; margin-bottom: 2rem; }
+    .val-claim strong { color: var(--text); }
+    .val-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .val-btn-gold {
+      background: var(--san-gold); color: #1a1200; border: none; font-weight: 700;
+      box-shadow: 0 4px 20px rgba(var(--san-gold-rgb),.45);
+    }
+    .val-btn-gold:hover { background: var(--san-gold-light); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(var(--san-gold-rgb),.55); }
+    .val-btn-ghost { border: 1px solid rgba(var(--san-gold-rgb),.4); color: var(--san-gold); }
+    .val-btn-ghost:hover { background: rgba(var(--san-gold-rgb),.08); }
+
+    /* ── Stats bar ──────────────────────────────────────────── */
+    .val-stats-bar { background: var(--san-gold); color: #1a1200; padding: 1.25rem 0; }
+    html[data-theme="dark"] .val-stats-bar {
+      background: rgba(201,168,76,.12);
+      border-block: 1px solid rgba(201,168,76,.2);
+      color: var(--text);
+    }
+    .val-stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; flex-wrap: wrap;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+    }
+    .val-stat { text-align: center; }
+    .val-stat-v { display: block; font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
+    .val-stat-l { display: block; font-size: .73rem; opacity: .75; margin-top: .15rem; font-weight: 500; }
+    .val-stat-sep { width: 1px; height: 2.5rem; background: rgba(26,18,0,.2); }
+    html[data-theme="dark"] .val-stat-sep { background: rgba(201,168,76,.2); }
+
+    /* ── Ways / cards ───────────────────────────────────────── */
+    .val-ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .val-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 1.25rem;
+      padding: 1.75rem; display: flex; flex-direction: column; gap: .75rem;
+      position: relative; transition: box-shadow .25s, border-color .25s, transform .25s;
+    }
+    .val-card:hover {
+      box-shadow: 0 14px 44px rgba(var(--san-gold-rgb),.16);
+      border-color: rgba(var(--san-gold-rgb),.3);
+      transform: translateY(-3px);
+    }
+    .val-card-featured {
+      border-color: rgba(var(--san-gold-rgb),.45);
+      box-shadow: 0 8px 32px rgba(var(--san-gold-rgb),.12);
+    }
+    .val-featured-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--san-gold); color: #1a1200;
+      font-size: .7rem; font-weight: 800; padding: .2rem .65rem; border-radius: 999px;
+    }
+    .val-card-icon {
+      width: 3rem; height: 3rem; border-radius: .75rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .val-card-icon svg { width: 1.4rem; height: 1.4rem; color: var(--san-gold); }
+    .val-card-num { font-size: .7rem; font-weight: 800; color: var(--muted); letter-spacing: .1em; }
+    .val-card h3 { font-size: 1.2rem; margin: 0; }
+    .val-card p { color: var(--muted); font-size: .9rem; margin: 0; line-height: 1.6; }
+    .val-table { display: flex; flex-direction: column; gap: .35rem; margin-top: .25rem; border-top: 1px solid var(--line); padding-top: .75rem; }
+    .val-row { display: flex; justify-content: space-between; font-size: .82rem; gap: .5rem; }
+    .val-price-buy { color: var(--san-gold); font-weight: 600; }
+    .val-price-val { color: var(--mint); font-weight: 600; font-size: .8rem; }
+    .val-card-link {
+      margin-top: .5rem; display: inline-flex; align-items: center;
+      font-size: .875rem; font-weight: 600; color: var(--san-gold); text-decoration: none;
+      border-bottom: 1px solid rgba(var(--san-gold-rgb),.3); padding-bottom: .1rem; width: fit-content;
+    }
+    .val-card-link:hover { border-bottom-color: var(--san-gold); }
+
+    /* ── Redeem section ─────────────────────────────────────── */
+    .val-redeem-section { background: var(--bg-soft); }
+    .val-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 800px) { .val-split { grid-template-columns: 1fr; } }
+    .val-redeem-list { display: flex; flex-direction: column; gap: 1rem; }
+    .val-redeem-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .val-redeem-icon {
+      flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: .625rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .val-redeem-icon svg { width: 1.1rem; height: 1.1rem; }
+    .val-redeem-icon.mint { background: rgba(var(--mint-rgb),.12); color: var(--mint); }
+    .val-redeem-icon.gold { background: rgba(var(--san-gold-rgb),.12); color: var(--san-gold); }
+    .val-redeem-icon.blue { background: rgba(var(--blue-rgb),.12); color: var(--blue); }
+    .val-redeem-item strong { display: block; margin-bottom: .2rem; }
+    .val-redeem-item p { margin: 0; font-size: .875rem; color: var(--muted); }
+    .val-rule-note {
+      margin-top: 1.25rem; font-size: .8rem; color: var(--muted);
+      background: rgba(var(--san-gold-rgb),.06);
+      border: 1px solid rgba(var(--san-gold-rgb),.18);
+      border-radius: .625rem; padding: .625rem 1rem;
+    }
+
+    /* value-cards showcase */
+    .val-redeem-visual { display: flex; align-items: center; justify-content: center; }
+    .val-value-showcase { display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 320px; }
+    .val-value-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 1rem;
+      padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: .5rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .val-vc-mid {
+      border-color: rgba(var(--san-gold-rgb),.4);
+      box-shadow: 0 4px 20px rgba(var(--san-gold-rgb),.12);
+      transform: scale(1.03);
+    }
+    .val-vc-top { display: flex; justify-content: space-between; align-items: center; }
+    .val-vc-amount { font-size: 1.05rem; font-weight: 700; }
+    .val-vc-badge {
+      background: rgba(var(--mint-rgb),.12); color: var(--mint);
+      font-size: .72rem; font-weight: 700; padding: .18rem .5rem; border-radius: 999px;
+    }
+    .val-vc-bar {
+      height: 5px; background: var(--line); border-radius: 999px; overflow: hidden;
+    }
+    .val-vc-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--san-gold-dark), var(--san-gold-light));
+      border-radius: 999px;
+      animation: vcFill 1.8s ease-out forwards;
+    }
+    @keyframes vcFill { from { width: 0%; } }
+    .val-vc-note { font-size: .78rem; color: var(--san-gold); font-weight: 600; }
+    .val-vc-saving {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .78rem; color: var(--mint); font-weight: 600;
+      padding: .5rem .75rem;
+      background: rgba(var(--mint-rgb),.07);
+      border: 1px solid rgba(var(--mint-rgb),.15);
+      border-radius: .625rem;
+    }
+
+    /* ── CTA coin ───────────────────────────────────────────── */
+    .val-cta-coin { display: flex; justify-content: center; }
+    .val-mini-scene { perspective: 600px; width: 88px; height: 88px; }
+    .val-mini-3d {
       width: 100%; height: 100%; position: relative;
       transform-style: preserve-3d;
-      animation: coinSpin 10s linear infinite;
-      filter: drop-shadow(0 16px 40px rgba(160,110,0,.7));
+      animation: valCoinSpin 12s linear infinite;
+      filter:
+        drop-shadow(0 0 12px rgba(220,170,20,.5))
+        drop-shadow(0 6px 18px rgba(120,70,0,.55));
     }
-    .san-coin-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 50%; }
-    .san-coin-back { transform: rotateY(180deg); }
-    @keyframes coinSpin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
-
-    /* Stats */
-    .san-stats-bar { background: var(--san-gold); color: #1a1200; padding: 1.25rem 0; }
-    html[data-theme="dark"] .san-stats-bar { background: rgba(201,168,76,.15); border-block: 1px solid rgba(201,168,76,.2); color: var(--text); }
-    .san-stats { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; padding: 0 clamp(1rem, 4vw, 3rem); }
-    .san-stat { text-align: center; }
-    .san-stat-value { display: block; font-size: 1.25rem; font-weight: 800; line-height: 1.2; }
-    .san-stat-label { display: block; font-size: .75rem; opacity: .75; margin-top: .15rem; font-weight: 500; }
-    .san-stat-divider { width: 1px; height: 2.5rem; background: rgba(26,18,0,.2); }
-    html[data-theme="dark"] .san-stat-divider { background: rgba(201,168,76,.2); }
-
-    /* Ways */
-    .san-ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .san-way-card { background: var(--panel); border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.75rem; display: flex; flex-direction: column; gap: .75rem; position: relative; transition: box-shadow .2s; }
-    .san-way-card:hover { box-shadow: 0 12px 40px rgba(var(--san-gold-rgb),.15); border-color: rgba(var(--san-gold-rgb),.3); }
-    .san-way-featured { border-color: rgba(var(--san-gold-rgb),.4); box-shadow: 0 8px 30px rgba(var(--san-gold-rgb),.1); }
-    .san-featured-badge { position: absolute; top: 1rem; right: 1rem; background: var(--san-gold); color: #1a1200; font-size: .7rem; font-weight: 800; padding: .2rem .6rem; border-radius: 999px; }
-    .san-way-icon { width: 3rem; height: 3rem; border-radius: .75rem; display: flex; align-items: center; justify-content: center; }
-    .san-way-icon svg { width: 1.4rem; height: 1.4rem; color: var(--san-gold); }
-    .san-way-num { font-size: .7rem; font-weight: 800; color: var(--muted); letter-spacing: .1em; }
-    .san-way-card h3 { font-size: 1.2rem; margin: 0; }
-    .san-way-card p { color: var(--muted); font-size: .9rem; margin: 0; line-height: 1.6; }
-    .san-way-table { display: flex; flex-direction: column; gap: .35rem; margin-top: .25rem; border-top: 1px solid var(--line); padding-top: .75rem; }
-    .san-way-row { display: flex; justify-content: space-between; font-size: .82rem; }
-    .san-price-buy { color: var(--san-gold); font-weight: 600; }
-    .san-price-value { color: var(--mint); font-weight: 600; font-size: .8rem; }
-    .san-way-cta { margin-top: .5rem; display: inline-flex; align-items: center; gap: .4rem; font-size: .875rem; font-weight: 600; color: var(--san-gold); text-decoration: none; border-bottom: 1px solid rgba(var(--san-gold-rgb),.3); padding-bottom: .1rem; width: fit-content; }
-    .san-way-cta:hover { border-bottom-color: var(--san-gold); }
-
-    /* Redeem */
-    .san-redeem-section { background: var(--bg-soft); }
-    .san-redeem-list { display: flex; flex-direction: column; gap: 1rem; }
-    .san-redeem-item { display: flex; align-items: flex-start; gap: 1rem; }
-    .san-redeem-icon { flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: .625rem; display: flex; align-items: center; justify-content: center; }
-    .san-redeem-icon svg { width: 1.1rem; height: 1.1rem; }
-    .san-redeem-icon.mint { background: rgba(var(--mint-rgb),.12); color: var(--mint); }
-    .san-redeem-icon.gold { background: rgba(var(--san-gold-rgb),.12); color: var(--san-gold); }
-    .san-redeem-icon.blue { background: rgba(var(--blue-rgb),.12); color: var(--blue); }
-    .san-redeem-item strong { display: block; margin-bottom: .2rem; }
-    .san-redeem-item p { margin: 0; font-size: .875rem; color: var(--muted); }
-    .san-rule-note { margin-top: 1.25rem; font-size: .8rem; color: var(--muted); background: rgba(var(--san-gold-rgb),.06); border: 1px solid rgba(var(--san-gold-rgb),.18); border-radius: .625rem; padding: .625rem 1rem; }
-
-    /* Visual Coin */
-    .san-visual-coin { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .san-big-coin { width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 8px 28px rgba(180,130,20,.45)); animation: coinFloat 5s ease-in-out infinite; }
-    @keyframes coinFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .san-coin-label { text-align: center; }
-    .san-eyebrow-small { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-    .san-ticker { display: block; font-size: 2rem; font-weight: 800; color: var(--san-gold); line-height: 1.1; }
-    .san-sub { display: block; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
-    .san-coin-small { display: flex; justify-content: center; }
+    .val-mini-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 50%; }
+    .val-mini-back { transform: rotateY(180deg); }
   </style>
 </BaseLayout>
