@@ -629,191 +629,200 @@ const accentColors: Record<string, string> = {
 
 <script is:inline>
 (() => {
-  /* ──────────────────────────────────────────────────────
-     STATE
-  ────────────────────────────────────────────────────── */
-  const outer   = document.getElementById('wk-track-outer');
-  const track   = document.getElementById('wk-track');
-  const dotsEl  = document.getElementById('wk-dots');
-  const prevBtn = document.getElementById('wk-prev');
-  const nextBtn = document.getElementById('wk-next');
+  /* ── DOM refs ───────────────────────────────────────────────── */
+  const outer    = document.getElementById('wk-track-outer');
+  const track    = document.getElementById('wk-track');
+  const dotsEl   = document.getElementById('wk-dots');
+  const prevBtn  = document.getElementById('wk-prev');
+  const nextBtn  = document.getElementById('wk-next');
   const searchEl = document.getElementById('wk-search');
   const countEl  = document.getElementById('wk-count');
   const emptyEl  = document.getElementById('wk-empty');
   if (!outer || !track || !dotsEl || !prevBtn || !nextBtn) return;
 
+  /* ── State ──────────────────────────────────────────────────── */
   let allCards     = Array.from(track.querySelectorAll('.wk-card'));
   let visibleCards = [...allCards];
   let currentIndex = 0;
+  let activeFilter = 'all';
 
-  /* ──────────────────────────────────────────────────────
-     DOTS
-  ────────────────────────────────────────────────────── */
-  const buildDots = () => {
-    dotsEl.innerHTML = '';
-    const max = Math.min(visibleCards.length, 30);
-    for (let i = 0; i < max; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'wk-dot' + (i === currentIndex ? ' active' : '');
-      dot.setAttribute('aria-label', `Karte ${i + 1}`);
-      const idx = i;
-      dot.addEventListener('click', () => scrollToIndex(idx));
-      dotsEl.appendChild(dot);
-    }
-    updateArrows();
+  /* ── SCROLL TARGET (BoundingClientRect – reliable in all cases) */
+  const scrollToCard = (index) => {
+    if (index < 0 || index >= visibleCards.length) return;
+    currentIndex = index;
+    const card       = visibleCards[index];
+    const outerRect  = outer.getBoundingClientRect();
+    const cardRect   = card.getBoundingClientRect();
+    const target     = outer.scrollLeft + (cardRect.left - outerRect.left);
+    outer.scrollTo({ left: target, behavior: 'smooth' });
+    syncUI();
   };
 
-  const updateDots = () => {
+  /* ── UI sync ────────────────────────────────────────────────── */
+  const syncUI = () => {
     dotsEl.querySelectorAll('.wk-dot').forEach((d, i) =>
       d.classList.toggle('active', i === currentIndex));
-    updateArrows();
-  };
-
-  const updateArrows = () => {
     prevBtn.disabled = currentIndex <= 0;
     nextBtn.disabled = currentIndex >= visibleCards.length - 1;
   };
 
-  const scrollToIndex = (index) => {
-    if (index < 0 || index >= visibleCards.length) return;
-    currentIndex = index;
-    const card = visibleCards[index];
-    const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-    const targetLeft = card.offsetLeft - pad;
-    outer.scrollTo({ left: targetLeft, behavior: 'smooth' });
-    updateDots();
+  /* ── BUILD DOTS (event-delegation – no per-dot listeners) ────── */
+  const buildDots = () => {
+    dotsEl.innerHTML = '';
+    const max = Math.min(visibleCards.length, 32);
+    for (let i = 0; i < max; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'wk-dot' + (i === currentIndex ? ' active' : '');
+      dot.setAttribute('aria-label', `Karte ${i + 1}`);
+      dot.dataset.i = String(i);
+      dotsEl.appendChild(dot);
+    }
+    syncUI();
   };
+  dotsEl.addEventListener('click', e => {
+    const dot = e.target.closest('.wk-dot');
+    if (dot) scrollToCard(Number(dot.dataset.i));
+  });
 
   buildDots();
-  nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
-  prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
 
-  /* ──────────────────────────────────────────────────────
-     SCROLL SYNC
-  ────────────────────────────────────────────────────── */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = visibleCards.indexOf(e.target);
-        if (idx !== -1 && idx !== currentIndex) {
-          currentIndex = idx;
-          updateDots();
-        }
+  /* ── ARROW BUTTONS ──────────────────────────────────────────── */
+  nextBtn.addEventListener('click', () => scrollToCard(currentIndex + 1));
+  prevBtn.addEventListener('click', () => scrollToCard(currentIndex - 1));
+
+  /* ── SCROLL SYNC (scroll-event + rAF, no IntersectionObserver) */
+  let rafId = 0;
+  outer.addEventListener('scroll', () => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const outerLeft = outer.getBoundingClientRect().left;
+      let bestIdx  = currentIndex;
+      let bestDist = Infinity;
+      visibleCards.forEach((card, idx) => {
+        const dist = Math.abs(card.getBoundingClientRect().left - outerLeft);
+        if (dist < bestDist) { bestDist = dist; bestIdx = idx; }
+      });
+      if (bestIdx !== currentIndex) {
+        currentIndex = bestIdx;
+        syncUI();
       }
     });
-  }, { root: outer, threshold: 0.55 });
+  }, { passive: true });
 
-  const reobserve = () => {
-    allCards.forEach(c => io.unobserve(c));
-    visibleCards.forEach(c => io.observe(c));
-  };
-  reobserve();
-
-  /* ──────────────────────────────────────────────────────
-     MOUSE DRAG
-  ────────────────────────────────────────────────────── */
-  let isDragging = false, startX = 0, startScroll = 0;
+  /* ── MOUSE DRAG ─────────────────────────────────────────────── */
+  let dragging    = false;
+  let didDrag     = false;   // true only when mouse moved > 5 px
+  let dragStartX  = 0;
+  let dragScroll  = 0;
 
   outer.addEventListener('mousedown', e => {
-    if (e.button !== 0) return;
-    isDragging = true;
-    startX = e.pageX;
-    startScroll = outer.scrollLeft;
+    // Ignore clicks directly on buttons / links so they stay clickable
+    if (e.button !== 0 || e.target.closest('button, a')) return;
+    dragging   = true;
+    didDrag    = false;
+    dragStartX = e.clientX;
+    dragScroll = outer.scrollLeft;
     outer.classList.add('is-dragging');
-    e.preventDefault();
   });
+
   window.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const dx = e.pageX - startX;
-    outer.scrollLeft = startScroll - dx;
-  });
+    if (!dragging) return;
+    const dx = e.clientX - dragStartX;
+    if (Math.abs(dx) > 5) didDrag = true;
+    outer.scrollLeft = dragScroll - dx;
+  }, { passive: true });
+
   window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
+    if (!dragging) return;
+    dragging = false;
     outer.classList.remove('is-dragging');
+    // Clear didDrag after click event has fired (next tick)
+    setTimeout(() => { didDrag = false; }, 50);
   });
 
-  /* prevent drag triggering card click */
-  outer.addEventListener('click', e => {
-    if (Math.abs(outer.scrollLeft - startScroll) > 5) e.stopPropagation();
-  }, true);
+  /* ── EXPAND / COLLAPSE ──────────────────────────────────────── */
+  const closeAll = () => {
+    track.querySelectorAll('.wk-detail:not([hidden])').forEach(d => {
+      d.hidden = true;
+      const c = d.closest('.wk-card');
+      if (!c) return;
+      c.classList.remove('wk-expanded');
+      c.querySelector('.wk-expand-btn')?.setAttribute('aria-expanded', 'false');
+    });
+  };
 
-  /* ──────────────────────────────────────────────────────
-     EXPAND / COLLAPSE
-  ────────────────────────────────────────────────────── */
-  track.addEventListener('click', e => {
-    const expandBtn  = e.target.closest('.wk-expand-btn');
-    const collapseBtn = e.target.closest('.wk-close-btn');
-
-    const closeAll = () => {
-      track.querySelectorAll('.wk-detail:not([hidden])').forEach(d => {
-        d.hidden = true;
-        const card = d.closest('.wk-card');
-        card?.classList.remove('wk-expanded');
-        card?.querySelector('.wk-expand-btn')?.setAttribute('aria-expanded', 'false');
+  // Attach directly to each expand/close button – avoids any event bubbling issues
+  const bindCardButtons = () => {
+    track.querySelectorAll('.wk-expand-btn').forEach(btn => {
+      // Remove old listener by cloning
+      const fresh = btn.cloneNode(true);
+      btn.parentNode.replaceChild(fresh, btn);
+      fresh.addEventListener('click', e => {
+        if (didDrag) return;          // was a drag, ignore
+        e.stopPropagation();
+        const card    = fresh.closest('.wk-card');
+        const detail  = document.getElementById(fresh.getAttribute('aria-controls'));
+        const wasOpen = fresh.getAttribute('aria-expanded') === 'true';
+        closeAll();
+        if (!wasOpen && detail) {
+          detail.hidden = false;
+          fresh.setAttribute('aria-expanded', 'true');
+          card.classList.add('wk-expanded');
+          // Scroll card into view after CSS width-transition (260 ms)
+          setTimeout(() => {
+            const oRect = outer.getBoundingClientRect();
+            const cRect = card.getBoundingClientRect();
+            if (cRect.left < oRect.left + 8) {
+              outer.scrollTo({ left: outer.scrollLeft + cRect.left - oRect.left - 16, behavior: 'smooth' });
+            }
+          }, 280);
+        }
       });
-    };
+    });
 
-    if (expandBtn) {
-      const card   = expandBtn.closest('.wk-card');
-      const detailId = expandBtn.getAttribute('aria-controls');
-      const detail = document.getElementById(detailId);
-      const wasOpen = expandBtn.getAttribute('aria-expanded') === 'true';
-      closeAll();
-      if (!wasOpen) {
-        detail.hidden = false;
-        expandBtn.setAttribute('aria-expanded', 'true');
-        card.classList.add('wk-expanded');
-        requestAnimationFrame(() => {
-          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-        });
-      }
-    }
-    if (collapseBtn) {
-      closeAll();
-    }
-  });
+    track.querySelectorAll('.wk-close-btn').forEach(btn => {
+      const fresh = btn.cloneNode(true);
+      btn.parentNode.replaceChild(fresh, btn);
+      fresh.addEventListener('click', e => {
+        e.stopPropagation();
+        closeAll();
+      });
+    });
+  };
 
-  /* ──────────────────────────────────────────────────────
-     SEARCH
-  ────────────────────────────────────────────────────── */
-  let activeFilter = 'all';
+  bindCardButtons();
 
+  /* ── FILTER + SEARCH ────────────────────────────────────────── */
   const applyFilters = () => {
     const q = (searchEl?.value || '').toLowerCase().trim();
     let count = 0;
 
     allCards.forEach(card => {
-      const cat    = card.dataset.category || '';
-      const search = (card.dataset.search || '').toLowerCase();
-      const matchFilter = activeFilter === 'all' ||
+      const cat   = card.dataset.category || '';
+      const text  = (card.dataset.search  || '').toLowerCase();
+      const matchF = activeFilter === 'all' ||
         activeFilter.split('|').some(f => cat.includes(f));
-      const matchSearch = !q || search.includes(q);
-      const show = matchFilter && matchSearch;
+      const matchQ = !q || text.includes(q);
+      const show   = matchF && matchQ;
       card.classList.toggle('wk-hidden', !show);
       if (show) count++;
     });
 
     visibleCards = allCards.filter(c => !c.classList.contains('wk-hidden'));
     currentIndex = 0;
+
+    // Reset scroll instantly, then build UI
+    outer.scrollTo({ left: 0, behavior: 'instant' });
     buildDots();
-    reobserve();
 
     if (emptyEl) emptyEl.hidden = visibleCards.length > 0;
-    if (countEl) countEl.textContent = q ? `${count} Ergebnis${count !== 1 ? 'se' : ''}` : '';
-
-    if (visibleCards.length) {
-      const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-      outer.scrollTo({ left: visibleCards[0].offsetLeft - pad, behavior: 'smooth' });
-    }
-    nextBtn.disabled = visibleCards.length <= 1;
+    if (countEl) countEl.textContent = q
+      ? `${count} Ergebnis${count !== 1 ? 'se' : ''}`
+      : '';
   };
 
   searchEl?.addEventListener('input', applyFilters);
 
-  /* ──────────────────────────────────────────────────────
-     CATEGORY FILTER
-  ────────────────────────────────────────────────────── */
   document.querySelectorAll('.wk-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.wk-filter-btn').forEach(b => b.classList.remove('active'));
@@ -823,15 +832,15 @@ const accentColors: Record<string, string> = {
     });
   });
 
-  /* ──────────────────────────────────────────────────────
-     ASTRO PAGE LOAD RESET
-  ────────────────────────────────────────────────────── */
+  /* ── ASTRO PAGE LOAD ────────────────────────────────────────── */
   document.addEventListener('astro:page-load', () => {
-    allCards = Array.from(track.querySelectorAll('.wk-card'));
+    allCards     = Array.from(track.querySelectorAll('.wk-card'));
     visibleCards = [...allCards];
     currentIndex = 0;
+    activeFilter = 'all';
+    outer.scrollTo({ left: 0, behavior: 'instant' });
     buildDots();
-    reobserve();
+    bindCardButtons();
   });
 })();
 </script>
