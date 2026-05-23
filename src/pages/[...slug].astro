@@ -76,6 +76,23 @@ export function getStaticPaths() {
       props: { page },
     }));
 
+  const legalPaths = legalPages.map((page) => ({
+    params: { slug: page.slug },
+    props: {
+      page: {
+        slug: page.slug,
+        url: page.originalUrl || `https://www.callidus-am.de/${page.slug}/`,
+        title: page.title,
+        description: page.lead || '',
+        status: 'ok',
+        h1: [page.title],
+        h2: page.sections?.map((section) => section.heading).filter(Boolean) || [],
+        images: ['https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png'],
+        imageCount: 1,
+      },
+    },
+  }));
+
   // Momus-Artikel als eigene statische Routen
   const momusPaths = momusAll.map((article) => ({
     params: { slug: article.slug },
@@ -96,9 +113,11 @@ export function getStaticPaths() {
 
   // Falls ein Momus-Slug zufaellig mit einem Nexus-Slug kollidiert, gewinnt Nexus
   const nexusSlugs = new Set(nexusPaths.map((p) => p.params.slug));
+  const filteredLegal = legalPaths.filter((p) => !nexusSlugs.has(p.params.slug));
+  const primarySlugs = new Set([...nexusSlugs, ...filteredLegal.map((p) => p.params.slug)]);
   const filteredMomus = momusPaths.filter((p) => !nexusSlugs.has(p.params.slug));
 
-  return [...nexusPaths, ...filteredMomus];
+  return [...nexusPaths, ...filteredLegal, ...filteredMomus.filter((p) => !primarySlugs.has(p.params.slug))];
 }
 
 const { page } = Astro.props;

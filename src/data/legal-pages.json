@@ -156,6 +156,57 @@
     ]
   },
   {
+    "slug": "konto-loeschen",
+    "title": "Konto löschen",
+    "lead": "Anleitung zum Löschen deines Kontos und deiner Daten in den Callidus Apps MOMUS und KAIROS.",
+    "originalUrl": "https://www.callidus-am.de/konto-loeschen/",
+    "sections": [
+      {
+        "heading": "",
+        "paragraphs": [
+          "Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App löschen. Die Löschung ist dauerhaft und kann nicht rückgängig gemacht werden. Diese Seite beschreibt den Vorgang für die Apps MOMUS und KAIROS."
+        ]
+      },
+      {
+        "heading": "Konto in MOMUS löschen",
+        "paragraphs": [
+          "1. Öffne die MOMUS App auf deinem Gerät.",
+          "2. Tippe oben links auf das Menü-Symbol (☰) um das Seitmenü zu öffnen.",
+          "3. Wähle Einstellungen.",
+          "4. Scrolle zum Abschnitt Konto und tippe auf Konto löschen.",
+          "5. Bestätige die Sicherheitsabfrage. Dein Konto, alle Energie-Logs, Analysen, Dokumente und synchronisierten KAIROS-Daten werden unwiderruflich gelöscht.",
+          "Die Löschung erfolgt sofort. Firebase Authentication und alle Firestore-Dokumente unter deiner Nutzer-ID werden vollständig entfernt."
+        ]
+      },
+      {
+        "heading": "Konto in KAIROS löschen",
+        "paragraphs": [
+          "1. Öffne die KAIROS App auf deinem Gerät.",
+          "2. Tippe auf Einstellungen (Zahnrad-Symbol).",
+          "3. Wähle Konto löschen.",
+          "4. Bestätige die Sicherheitsabfrage. Dein Konto, alle Gesprächsverläufe, Tagebucheinträge, Erinnerungen und Hub-Verlinkungen werden unwiderruflich gelöscht.",
+          "Die Löschung erfolgt sofort. Firebase Authentication und alle Firestore-Dokumente unter deiner Nutzer-ID werden vollständig entfernt."
+        ]
+      },
+      {
+        "heading": "Welche Daten werden gelöscht?",
+        "paragraphs": [
+          "Bei der Kontolöschung in MOMUS werden folgende Daten dauerhaft gelöscht: Profildaten (Name, Alter, Geschlecht, Körperdaten), alle täglichen Energie-Logs, Energie-Analysen und KI-Berichte, Dokumente und gespeicherte Artikel, Phoenix-Path-Verlauf und Streak-Daten sowie alle mit KAIROS synchronisierten Daten.",
+          "Hinweis zu In-App-Käufen: Das aktive Abo wird über Google Play oder den Apple App Store verwaltet und muss dort separat gekündigt werden.",
+          "Bei der Kontolöschung in KAIROS werden gelöscht: Profildaten und Authentifizierungsdaten, alle Gesprächsverläufe und KI-Antworten, Tagebucheinträge und Gedächtnis-Einträge, Erinnerungen und Kalenderverknüpfungen sowie Hub-Verlinkungen zu NEXUS und MOMUS."
+        ]
+      },
+      {
+        "heading": "Konto kann nicht gelöscht werden?",
+        "paragraphs": [
+          "Falls du keinen Zugang mehr zur App hast oder die Löschung technisch nicht möglich ist, wende dich per E-Mail an uns. Wir löschen dein Konto manuell innerhalb von 30 Tagen.",
+          "E-Mail: info@callidus-am.de | Betreff: Kontolöschung [App-Name] | Bitte gib deine registrierte E-Mail-Adresse an.",
+          "Rechtsgrundlage: Art. 17 DSGVO (Recht auf Löschung). Callidus A&M | Arnold Jedich | Gerstengasse 12 | 86356 Neusaß | info@callidus-am.de"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "nutzungsbedingungen",
     "title": "Nutzungsbedingungen",
     "lead": "Regeln für die Nutzung der Website, Inhalte und verbundenen Dienste.",
