@@ -13,6 +13,7 @@ function bootPortal() {
     api: null,
     auth: null,
     db: null,
+    fns: null,
     user: null,
   };
 
@@ -57,6 +58,18 @@ function bootPortal() {
     const date = value?.toDate?.() || (typeof value === 'string' ? new Date(value) : null);
     if (!date || Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  function displayDateTime(value) {
+    const date = value?.toDate?.() || (value instanceof Date ? value : (typeof value === 'string' ? new Date(value) : null));
+    if (!date || Number.isNaN(date.getTime())) return '';
+    return date.toLocaleString('de-DE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   }
 
   function shortText(value, length = 140) {
@@ -150,6 +163,15 @@ function bootPortal() {
   function clearNode(el) {
     if (!el) return;
     while (el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function setStatus(id, message, state = '') {
+    const el = $(id);
+    if (!el) return;
+    el.textContent = message || '';
+    el.hidden = !message;
+    if (state) el.dataset.state = state;
+    else delete el.dataset.state;
   }
 
   function renderList(id, items, emptyText) {
@@ -298,13 +320,15 @@ function bootPortal() {
     const appApi = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
     const authApi = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
     const firestoreApi = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
+    const functionsApi = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
     const app = appApi.getApps().length === 0
       ? appApi.initializeApp(firebaseConfig)
       : appApi.getApps()[0];
 
-    state.api = { ...appApi, ...authApi, ...firestoreApi };
+    state.api = { ...appApi, ...authApi, ...firestoreApi, ...functionsApi };
     state.auth = authApi.getAuth(app);
     state.db = firestoreApi.getFirestore(app);
+    state.fns = functionsApi.getFunctions(app, 'us-central1');
     state.ready = true;
 
     setupAuthHandlers();
@@ -324,6 +348,8 @@ function bootPortal() {
     text('portal-user-email', user.email || user.uid);
     if (portalView === 'overview') {
       await loadOverview(user);
+    } else if (portalView === 'coach') {
+      await loadCoach(user);
     } else {
       await loadAppDetail(user, portalApp);
     }
@@ -425,6 +451,241 @@ function bootPortal() {
       })),
       'Noch keine SAN-Transaktionen.',
     );
+  }
+
+  function setCoachFormValues(values = {}) {
+    const form = $('coach-preferences-form');
+    if (!form) return;
+    ['goal', 'level', 'sessionsPerWeek', 'minutesPerSession', 'nutritionGoal', 'dietStyle', 'intolerances', 'restrictions', 'notes']
+      .forEach((name) => {
+        const field = form.querySelector(`[name="${name}"]`);
+        if (field && values[name] != null && values[name] !== '') {
+          field.value = values[name];
+        }
+      });
+    const equipment = Array.isArray(values.equipment) ? values.equipment : [];
+    form.querySelectorAll('input[name="equipment"]').forEach((field) => {
+      field.checked = equipment.includes(field.value);
+    });
+  }
+
+  function boundedInt(value, fallback, min, max) {
+    const parsed = Number.parseInt(value, 10);
+    if (!Number.isFinite(parsed)) return fallback;
+    return Math.min(max, Math.max(min, parsed));
+  }
+
+  function collectCoachPreferences(form) {
+    const data = new FormData(form);
+    return {
+      goal: String(data.get('goal') || '').trim(),
+      level: String(data.get('level') || '').trim(),
+      sessionsPerWeek: boundedInt(data.get('sessionsPerWeek'), 3, 1, 6),
+      minutesPerSession: boundedInt(data.get('minutesPerSession'), 35, 10, 120),
+      equipment: data.getAll('equipment').map((item) => String(item).trim()).filter(Boolean),
+      nutritionGoal: String(data.get('nutritionGoal') || 'balanced').trim(),
+      dietStyle: String(data.get('dietStyle') || 'mixed').trim(),
+      intolerances: shortText(data.get('intolerances'), 240),
+      restrictions: shortText(data.get('restrictions'), 520),
+      notes: shortText(data.get('notes'), 520),
+    };
+  }
+
+  function appendEmpty(container, textValue) {
+    clearNode(container);
+    const span = document.createElement('span');
+    span.className = 'portal-empty';
+    span.textContent = textValue;
+    container.appendChild(span);
+  }
+
+  function renderCoachPlan(plan = {}, meta = {}) {
+    const hasPlan = plan && Object.keys(plan).length > 0;
+    if (!hasPlan) {
+      setPill('coach-plan-state', { state: 'off', label: 'Noch kein Plan' });
+      setPill('coach-plan-source', { state: 'off', label: 'MVP' });
+      return;
+    }
+
+    text('coach-plan-summary', plan.summary || 'Plan gespeichert.');
+    text('coach-plan-updated', meta.createdAt ? `Erstellt am ${displayDateTime(meta.createdAt)}` : 'Plan gespeichert.');
+    text('coach-plan-checkin', plan.nextCheckIn ? `Naechster Check-in: ${plan.nextCheckIn}` : 'Naechster Check-in: nach der ersten Trainingswoche.');
+    setPill('coach-plan-state', { state: 'ok', label: 'Plan aktiv' });
+    setPill('coach-plan-source', { state: meta.provider === 'gemini' ? 'ok' : 'pending', label: meta.model || 'Gemini' });
+
+    const trainingNode = $('coach-plan-training');
+    if (trainingNode) {
+      clearNode(trainingNode);
+      const items = Array.isArray(plan.weeklyTraining) ? plan.weeklyTraining : [];
+      if (!items.length) {
+        appendEmpty(trainingNode, 'Noch kein Trainingsplan vorhanden.');
+      } else {
+        items.forEach((item) => {
+          const node = document.createElement('div');
+          node.className = 'portal-plan-day';
+          const title = document.createElement('strong');
+          const workout = document.createElement('span');
+          const notes = document.createElement('span');
+          title.textContent = [item.day, item.focus].filter(Boolean).join(' | ') || 'Training';
+          workout.textContent = item.workout || item.session || '';
+          notes.textContent = [item.duration, item.notes].filter(Boolean).join(' | ');
+          node.append(title);
+          if (workout.textContent) node.append(workout);
+          if (notes.textContent) node.append(notes);
+          trainingNode.appendChild(node);
+        });
+      }
+    }
+
+    const nutritionNode = $('coach-plan-nutrition');
+    if (nutritionNode) {
+      clearNode(nutritionNode);
+      const nutrition = plan.nutritionPlan || {};
+      const meals = Array.isArray(nutrition.meals) ? nutrition.meals : [];
+      if (nutrition.dailyTarget || nutrition.hydration) {
+        const node = document.createElement('div');
+        node.className = 'portal-plan-meal';
+        const title = document.createElement('strong');
+        const detail = document.createElement('span');
+        title.textContent = nutrition.dailyTarget || 'Tagesziel';
+        detail.textContent = nutrition.hydration || '';
+        node.append(title);
+        if (detail.textContent) node.append(detail);
+        nutritionNode.appendChild(node);
+      }
+      meals.forEach((meal) => {
+        const node = document.createElement('div');
+        node.className = 'portal-plan-meal';
+        const title = document.createElement('strong');
+        const detail = document.createElement('span');
+        title.textContent = meal.name || meal.time || 'Mahlzeit';
+        detail.textContent = [meal.foods, meal.reason, meal.notes].filter(Boolean).join(' | ');
+        node.append(title);
+        if (detail.textContent) node.append(detail);
+        nutritionNode.appendChild(node);
+      });
+      if (!nutritionNode.children.length) {
+        appendEmpty(nutritionNode, 'Noch kein Ernaehrungsplan vorhanden.');
+      }
+    }
+
+    const recoveryItems = Array.isArray(plan.recovery) ? plan.recovery : [];
+    renderList(
+      'coach-plan-recovery',
+      recoveryItems.map((item) => ({
+        title: typeof item === 'string' ? item : item.title || item.focus || 'Regeneration',
+        meta: typeof item === 'string' ? '' : item.detail || item.notes || '',
+      })),
+      'Noch keine Regenerationshinweise.',
+    );
+
+    const safetyItems = Array.isArray(plan.safetyNotes) ? plan.safetyNotes : [];
+    renderList(
+      'coach-plan-safety',
+      safetyItems.map((item) => ({
+        title: typeof item === 'string' ? item : item.title || item.type || 'Hinweis',
+        meta: typeof item === 'string' ? '' : item.detail || item.notes || '',
+      })),
+      'Hinweise erscheinen nach der Planerstellung.',
+    );
+  }
+
+  function coachErrorMessage(error) {
+    const code = error?.code || '';
+    if (code.includes('not-found')) return 'Die Gemini-Funktion ist noch nicht deployt. Die Oberflaeche ist bereit, der Serverteil fehlt noch.';
+    if (code.includes('failed-precondition')) return 'Die Gemini-Funktion ist deployt, aber noch nicht voll konfiguriert. Bitte GEMINI_API_KEY als Secret setzen.';
+    if (code.includes('unauthenticated')) return 'Bitte erneut einloggen.';
+    if (code.includes('invalid-argument')) return error.message || 'Bitte die Pflichtfelder pruefen.';
+    return 'Plan konnte gerade nicht erstellt werden. Bitte spaeter erneut versuchen.';
+  }
+
+  function setupCoachHandlers(user) {
+    const form = $('coach-preferences-form');
+    if (!form || form.dataset.ready === 'true') return;
+    form.dataset.ready = 'true';
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = $('coach-generate-plan');
+      const preferences = collectCoachPreferences(form);
+      if (!preferences.goal || !preferences.level) {
+        setStatus('coach-status', 'Bitte Ziel und Trainingslevel auswaehlen.', 'error');
+        return;
+      }
+      setStatus('coach-status', 'Gemini erstellt deinen Plan...', '');
+      if (button) button.disabled = true;
+      try {
+        const callable = state.api.httpsCallable(state.fns, 'generateSportEnergyPlan');
+        const response = await callable({ preferences });
+        const payload = response.data || {};
+        renderCoachPlan(payload.plan, {
+          provider: 'gemini',
+          model: payload.model || 'Gemini',
+          createdAt: payload.createdAt || new Date().toISOString(),
+        });
+        setPill('coach-gemini-state', { state: 'ok', label: 'Gemini aktiv' });
+        setStatus('coach-status', 'Plan wurde erstellt und gespeichert.', 'ok');
+        await loadCoach(user, { skipFormSetup: true });
+      } catch (error) {
+        console.warn('Coach generation failed', error);
+        setPill('coach-gemini-state', { state: 'pending', label: 'Function pruefen' });
+        setStatus('coach-status', coachErrorMessage(error), 'error');
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  }
+
+  async function loadCoach(user, options = {}) {
+    const today = todayKey();
+    const base = ['users', user.uid];
+    const [
+      userDoc,
+      nexusContext,
+      nexusStats,
+      healthPlan,
+      mealPlan,
+      momusContext,
+      momusStats,
+      kairosProfile,
+      preferences,
+      latestPlan,
+      planHistory,
+    ] = await Promise.all([
+      docData(...base),
+      docData(...base, 'kairos_context', 'nexus_current'),
+      docData(...base, 'daily_stats', today),
+      docData(...base, 'health_plan', 'current'),
+      docData(...base, 'meal_plan', 'current'),
+      docData(...base, 'kairos_context', 'momus_current'),
+      docData(...base, 'momus_stats', today),
+      docData(...base, 'kairos_profile', 'current'),
+      docData(...base, 'sport_coach', 'preferences'),
+      docData(...base, 'sport_coach', 'latest_plan'),
+      docsData([...base, 'sport_coach_plans'], { orderBy: 'created_at', limit: 1 }),
+    ]);
+
+    const latest = Object.keys(latestPlan).length ? latestPlan : (planHistory[0] || {});
+    const plan = latest.plan || {};
+    const nexusToday = nexusContext.today || {};
+    const momusShield = momusContext.energy_shield || {};
+
+    text('coach-context-nexus', displayNumber(nexusToday.steps ?? nexusStats.steps ?? nexusStats.steps_today));
+    text('coach-context-nexus-sub', `${displayNumber(nexusToday.calories_consumed ?? nexusStats.caloriesConsumed)} kcal | Ziel ${displayNumber(nexusToday.calorie_goal || mealPlan.targetCalories || userDoc.daily_calorie_goal)}`);
+    text('coach-context-momus', displayNumber(momusShield.energy_battery ?? momusStats.energy_battery, '%'));
+    text('coach-context-momus-sub', momusShield.state || momusStats.energy_shield_state || 'Noch wenige Energie-Signale');
+    text('coach-context-kairos', kairosProfile.tone || kairosProfile.mode || (Object.keys(kairosProfile).length ? 'Aktiv' : 'Basis'));
+    text('coach-context-kairos-sub', kairosProfile.focus || kairosProfile.intention || 'Profil und Kontext');
+    text('coach-context-plan', Object.keys(plan).length ? 'Aktiv' : '-');
+    text('coach-context-plan-sub', displayDateTime(latest.created_at) || 'Noch kein gespeicherter Plan');
+
+    const currentPreferences = preferences.current || preferences;
+    if (!options.skipFormSetup) setCoachFormValues(currentPreferences);
+    renderCoachPlan(plan, {
+      provider: latest.provider,
+      model: latest.model,
+      createdAt: latest.created_at,
+    });
+    setupCoachHandlers(user);
   }
 
   async function loadAppDetail(user, appId) {

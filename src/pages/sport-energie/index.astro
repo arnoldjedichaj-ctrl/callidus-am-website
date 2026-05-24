@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import recommendations from '../../data/recommendations.json';
+import { allArticles, appBadgeMeta } from '../../data/all-articles.js';
+
+const title = 'Sport & Energie | Trainingsplan, Ernaehrung und KI-Coach';
+const description =
+  'Sport & Energie bei callidus A&M: Beispiel-Trainingsplan, angepasste Ernaehrung, Regeneration und Einstieg in den geschuetzten Gemini-Coach.';
+
+const heroImage = '/assets/original/018-wp-content-uploads-go-x-u-e86f1034-ab13-4d60-8d7f-05a924f85e91-l0-t88-w2000-h1701-image-1366x1162.png';
+const sportArticles = allArticles.filter((article) => article.category === 'sport-energie').slice(0, 6);
+const sportProducts = recommendations.products.filter((item) => item.category === 'sport-energie').slice(0, 4);
+
+const weekPlan = [
+  {
+    day: 'Montag',
+    focus: 'Kraftbasis',
+    training: 'Ganzkoerper: Kniebeuge-Variante, Rudern, Liegestuetz, Hip Hinge, Core.',
+    nutrition: 'Proteinreiches Fruehstueck, komplexe Kohlenhydrate rund ums Training.',
+  },
+  {
+    day: 'Dienstag',
+    focus: 'Zone 2',
+    training: '35 Minuten lockeres Gehen, Radfahren oder Joggen mit ruhiger Atmung.',
+    nutrition: 'Mehr Gemuesevolumen, ausreichend Salz und 2 bis 2,5 Liter Wasser.',
+  },
+  {
+    day: 'Mittwoch',
+    focus: 'Mobilitaet',
+    training: '20 Minuten Mobility: Huefte, Brustwirbelsaeule, Schulterblatt, Waden.',
+    nutrition: 'Omega-3-Quelle, Magnesium am Abend, leichte Mahlzeit vor dem Schlaf.',
+  },
+  {
+    day: 'Donnerstag',
+    focus: 'Kraftaufbau',
+    training: 'Oberkoerper/Unterkoerper-Mix mit progressiver Steigerung und sauberer Technik.',
+    nutrition: 'Protein pro Mahlzeit einplanen, Kohlenhydrate nach Belastung auffuellen.',
+  },
+  {
+    day: 'Freitag',
+    focus: 'Energie-Reset',
+    training: '15 Minuten Intervall: 40 Sekunden Arbeit, 80 Sekunden locker, 8 Runden.',
+    nutrition: 'Einfache, gut vertraegliche Mahlzeiten; kein schweres Essen direkt davor.',
+  },
+  {
+    day: 'Wochenende',
+    focus: 'Regeneration',
+    training: 'Spaziergang, Schlafrhythmus stabilisieren, optional sanftes Dehnen.',
+    nutrition: 'Meal-Prep fuer zwei Tage, ballaststoffreich und ohne Perfektionismus.',
+  },
+];
+
+const nutritionDay = [
+  {
+    time: 'Morgen',
+    meal: 'Joghurt oder pflanzliche Alternative, Beeren, Hafer, Nuesse, Proteinquelle.',
+    purpose: 'Stabiler Start ohne Energieloch.',
+  },
+  {
+    time: 'Mittag',
+    meal: 'Bowl aus Reis oder Kartoffeln, Gemuese, Olivenoel, Ei, Fisch, Tofu oder Huelsenfruechten.',
+    purpose: 'Mikronaehrstoffe und Trainingsenergie.',
+  },
+  {
+    time: 'Vor Training',
+    meal: 'Banane, Dattel oder kleine Scheibe Brot; bei Bedarf Kaffee oder Mate.',
+    purpose: 'Leichter Fokus ohne schweren Magen.',
+  },
+  {
+    time: 'Abend',
+    meal: 'Protein, warmes Gemuese, moderate Kohlenhydrate, Magnesium- oder Kraeutertee-Routine.',
+    purpose: 'Regeneration und Schlafqualitaet.',
+  },
+];
+
+const coachInputs = [
+  'Ziel, Erfahrung und Zeitbudget',
+  'Equipment und Alltag',
+  'Ernaehrungsform und Unvertraeglichkeiten',
+  'App-Signale aus NEXUS, MOMUS und KAIROS',
+];
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section sport-energy-hero">
+    <div class="container hero sport-hero">
+      <div data-reveal>
+        <p class="eyebrow">Sport & Energie</p>
+        <h1>Training, das zu deinem Alltag passt.</h1>
+        <p class="lede">
+          Dieser Bereich verbindet Bewegung, Ernaehrung und Regeneration. Oeffentlich als Beispielplan,
+          geschuetzt im Portal als persoenlicher Gemini-Coach.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/portal/coach/" aria-label="Zum geschuetzten Sport und Energie Coach">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M8 8v8M16 8v8M4 10v4M20 10v4" /></svg>
+            Coach starten
+          </a>
+          <a class="button" href="#beispielplan">Beispielplan ansehen</a>
+        </div>
+      </div>
+
+      <figure class="sport-visual" data-reveal="2">
+        <img src={heroImage} alt="Trainings- und Energievisual von callidus A&M" loading="eager" decoding="async" />
+        <figcaption>
+          <strong>Hybrid-Coaching</strong>
+          <span>App-Daten + Fragebogen + Gemini-Planung</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container sport-signal-grid">
+      {coachInputs.map((item, index) => (
+        <div class="sport-signal" data-reveal={String((index % 3) + 1)}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{item}</strong>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section tight" id="beispielplan">
+    <div class="container split sport-plan-layout">
+      <div class="sticky-note" data-reveal>
+        <span class="badge coral">Beispiel</span>
+        <h2>Eine Woche Sport & Energie</h2>
+        <p>
+          Dieser Plan ist bewusst alltagstauglich: genug Reiz fuer Fortschritt, genug Luft fuer
+          Schlaf, Familie, Arbeit und Erholung. Der Portal-Coach passt daraus spaeter einen Plan fuer
+          deine Ziele und Daten an.
+        </p>
+      </div>
+      <div class="sport-week-grid">
+        {weekPlan.map((day, index) => (
+          <article class="sport-day" data-reveal={String((index % 3) + 1)}>
+            <div>
+              <span>{day.day}</span>
+              <h3>{day.focus}</h3>
+            </div>
+            <p>{day.training}</p>
+            <small>{day.nutrition}</small>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <span class="badge mint">Ernaehrung</span>
+        <h2>Training wirkt besser, wenn der Teller mitarbeitet.</h2>
+        <p class="lede">
+          Die Ernaehrung muss nicht kompliziert sein. Entscheidend sind Wiederholbarkeit,
+          Protein, Mikronaehrstoffe, Fluessigkeit und Timing rund um Belastung.
+        </p>
+      </div>
+      <div class="sport-nutrition-grid">
+        {nutritionDay.map((item, index) => (
+          <article class="sport-nutrition" data-reveal={String((index % 3) + 1)}>
+            <span>{item.time}</span>
+            <h3>{item.meal}</h3>
+            <p>{item.purpose}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container split">
+      <div data-reveal>
+        <span class="badge gold">Gemini-Coach</span>
+        <h2>Persoenlich wird es nach dem Login.</h2>
+        <p class="lede">
+          Im Portal kann der Coach App-Signale aus NEXUS, MOMUS und KAIROS mit deinen Angaben
+          verbinden. Daraus entsteht ein strukturierter Plan fuer Training, Ernaehrung,
+          Regeneration und den naechsten Check-in.
+        </p>
+        <div class="notice sport-safety-note">
+          <strong>Wichtig:</strong>
+          <p>
+            Der Coach ersetzt keine medizinische Diagnose. Bei Schmerzen, Erkrankungen,
+            Schwangerschaft, Essstoerungen oder Unsicherheit bitte professionell abklaeren.
+          </p>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="/portal/coach/">Zum geschuetzten Coach</a>
+          <a class="button" href="/ratgeber/#sport-energie">Sport-Ratgeber lesen</a>
+        </div>
+      </div>
+      <div class="sport-coach-preview" data-reveal="2">
+        <div>
+          <span>JSON Plan</span>
+          <strong>weeklyTraining</strong>
+          <small>Kraft, Ausdauer, Mobility, Regeneration</small>
+        </div>
+        <div>
+          <span>Nutrition</span>
+          <strong>nutritionPlan</strong>
+          <small>Mahlzeiten, Hydration, Anpassungen</small>
+        </div>
+        <div>
+          <span>Safety</span>
+          <strong>safetyNotes</strong>
+          <small>Grenzen, Warnhinweise, professionelle Abklaerung</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <span class="badge blue">Ratgeber</span>
+        <h2>Passende Inhalte aus Sport & Energie</h2>
+      </div>
+      <div class="grid">
+        {sportArticles.map((article, index) => {
+          const meta = appBadgeMeta(article.app);
+          return (
+            <a class="card" href={article.path} data-reveal={String((index % 3) + 1)}>
+              <span class={meta.className}>{meta.label}</span>
+              {article.image && <img src={article.image} alt={article.title} loading="lazy" decoding="async" />}
+              <div class="card-body">
+                <span class="badge coral">{article.readingTime} Min.</span>
+                <h3>{article.title}</h3>
+                <p>{article.description || article.h2?.[0]}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <span class="badge gold">Empfehlungen</span>
+        <h2>Hilfsmittel fuer Training und Energie</h2>
+      </div>
+      <div class="product-grid">
+        {sportProducts.map((item, index) => (
+          <article class="card product-card" data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${item.accent}`}>{item.provider}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <div class="product-meta">
+                <span>{item.affiliate ? 'Affiliate-Link' : 'Externer Link'}</span>
+                <a class="button primary" href={item.url} target="_blank" rel="sponsored nofollow noopener">{item.cta}</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .sport-hero {
+      min-height: 74vh;
+    }
+
+    .sport-hero h1 {
+      max-width: 12ch;
+    }
+
+    .sport-visual {
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .sport-visual img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .sport-visual figcaption {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .65rem;
+      padding: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .sport-visual figcaption span {
+      color: var(--muted);
+    }
+
+    .button svg {
+      width: 1.05rem;
+      height: 1.05rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      margin-right: .35rem;
+    }
+
+    .sport-signal-grid,
+    .sport-nutrition-grid,
+    .sport-coach-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .sport-signal,
+    .sport-day,
+    .sport-nutrition,
+    .sport-coach-preview > div {
+      border: 1px solid var(--line);
+      border-radius: .5rem;
+      background: color-mix(in srgb, var(--panel) 94%, transparent);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .sport-signal {
+      display: grid;
+      gap: .45rem;
+      min-height: 8rem;
+      padding: 1rem;
+    }
+
+    .sport-signal span,
+    .sport-day span,
+    .sport-nutrition span,
+    .sport-coach-preview span {
+      color: var(--coral);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .sport-signal strong {
+      align-self: end;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .sport-plan-layout {
+      align-items: start;
+    }
+
+    .sport-week-grid {
+      display: grid;
+      gap: .85rem;
+    }
+
+    .sport-day {
+      display: grid;
+      gap: .65rem;
+      padding: 1rem;
+    }
+
+    .sport-day h3,
+    .sport-nutrition h3 {
+      font-size: 1.12rem;
+      line-height: 1.25;
+    }
+
+    .sport-day p,
+    .sport-day small,
+    .sport-nutrition p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 1.25rem;
+    }
+
+    .sport-nutrition,
+    .sport-coach-preview > div {
+      display: grid;
+      gap: .6rem;
+      padding: 1rem;
+      min-height: 12rem;
+    }
+
+    .sport-coach-preview strong {
+      color: var(--text);
+      font-size: 1.35rem;
+    }
+
+    .sport-coach-preview small {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sport-safety-note {
+      margin-top: 1.1rem;
+    }
+
+    @media (max-width: 820px) {
+      .sport-hero {
+        min-height: auto;
+      }
+
+      .sport-visual img {
+        aspect-ratio: 16 / 11;
+      }
+    }
+  </style>
+</BaseLayout>

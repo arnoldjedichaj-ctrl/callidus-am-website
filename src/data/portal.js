@@ -43,3 +43,12 @@ export const portalApps = {
 };
 
 export const portalAppList = Object.values(portalApps);
+
+export const portalCoachLink = {
+  id: 'coach',
+  name: 'Coach',
+  title: 'Sport & Energie Coach',
+  href: '/portal/coach/',
+};
+
+export const portalNavList = [...portalAppList, portalCoachLink];

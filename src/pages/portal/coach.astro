@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortalGate from '../../components/PortalGate.astro';
+import { portalNavList } from '../../data/portal.js';
+import '../../styles/portal.css';
+
+const firebaseConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
+
+const equipmentOptions = [
+  ['bodyweight', 'Eigengewicht'],
+  ['dumbbells', 'Hanteln'],
+  ['bands', 'Baender'],
+  ['gym', 'Fitnessstudio'],
+  ['bike', 'Rad / Ergometer'],
+];
+---
+
+<BaseLayout
+  title="Sport & Energie Coach | Callidus Portal"
+  description="Geschuetzter Gemini-Coach fuer individuelle Trainingsplaene, Ernaehrung und Regeneration aus App-Daten und Nutzerangaben."
+  lang="de"
+>
+  <section class="section portal-section">
+    <div class="container">
+      <PortalGate firebaseConfig={firebaseConfig} view="coach">
+        <div class="portal-hero" data-reveal>
+          <div>
+            <p class="eyebrow">Sport & Energie Coach</p>
+            <h1>Dein Plan aus Daten und Alltag.</h1>
+            <p class="lede portal-copy">
+              Der Coach verbindet freigegebene App-Signale mit deinen Angaben und bereitet daraus
+              Training, Ernaehrung, Regeneration und den naechsten Check-in vor.
+            </p>
+          </div>
+          <div>
+            <div class="portal-pill-stack portal-pill-stack-end">
+              <span class="portal-pill" id="coach-gemini-state" data-state="pending">Gemini vorbereitet</span>
+              <span class="portal-pill portal-plan-pill" id="coach-plan-state" data-state="off">Noch kein Plan</span>
+            </div>
+            <nav class="portal-subnav" aria-label="Portal Bereiche">
+              <a href="/portal/">Portal</a>
+              {portalNavList.map((item) => (
+                <a href={item.href} aria-current={item.id === 'coach' ? 'page' : undefined}>{item.name}</a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div class="portal-metric-grid" data-reveal="2" style="margin-top:1.25rem">
+          <div class="portal-metric">
+            <span>NEXUS</span>
+            <strong id="coach-context-nexus">-</strong>
+            <small id="coach-context-nexus-sub">Tageswerte und Ernaehrung</small>
+          </div>
+          <div class="portal-metric">
+            <span>MOMUS</span>
+            <strong id="coach-context-momus">-</strong>
+            <small id="coach-context-momus-sub">Energie und Belastung</small>
+          </div>
+          <div class="portal-metric">
+            <span>KAIROS</span>
+            <strong id="coach-context-kairos">-</strong>
+            <small id="coach-context-kairos-sub">Profil und Kontext</small>
+          </div>
+          <div class="portal-metric">
+            <span>Plan</span>
+            <strong id="coach-context-plan">-</strong>
+            <small id="coach-context-plan-sub">Letzter Coach-Stand</small>
+          </div>
+        </div>
+
+        <div class="portal-grid-2 portal-coach-layout" data-reveal style="margin-top:1rem">
+          <section class="portal-panel">
+            <h2>Coach-Fragebogen</h2>
+            <p class="portal-mini">
+              Kurz genug fuer den Alltag, konkret genug fuer einen brauchbaren Plan.
+            </p>
+            <form id="coach-preferences-form" class="portal-coach-form">
+              <div class="portal-form-grid">
+                <label>
+                  <span>Ziel</span>
+                  <select name="goal" required>
+                    <option value="">Bitte waehlen</option>
+                    <option value="energy">Mehr Energie im Alltag</option>
+                    <option value="fat_loss">Koerperfett reduzieren</option>
+                    <option value="muscle_gain">Muskeln aufbauen</option>
+                    <option value="endurance">Ausdauer verbessern</option>
+                    <option value="stress_resilience">Stressresistenz staerken</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Trainingslevel</span>
+                  <select name="level" required>
+                    <option value="">Bitte waehlen</option>
+                    <option value="beginner">Einsteiger</option>
+                    <option value="returning">Wiedereinstieg</option>
+                    <option value="intermediate">Fortgeschritten</option>
+                    <option value="advanced">Sehr erfahren</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Einheiten pro Woche</span>
+                  <input name="sessionsPerWeek" type="number" inputmode="numeric" min="1" max="6" value="3" required />
+                </label>
+                <label>
+                  <span>Minuten pro Einheit</span>
+                  <input name="minutesPerSession" type="number" inputmode="numeric" min="10" max="120" value="35" required />
+                </label>
+                <label>
+                  <span>Ernaehrungsziel</span>
+                  <select name="nutritionGoal" required>
+                    <option value="balanced">Ausgewogen und stabil</option>
+                    <option value="high_protein">Protein betonen</option>
+                    <option value="light_digestive">Leicht verdaulich</option>
+                    <option value="performance">Trainingsernergie auffuellen</option>
+                    <option value="calorie_control">Kalorien bewusster steuern</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Ernaehrungsform</span>
+                  <select name="dietStyle">
+                    <option value="mixed">Mischkost</option>
+                    <option value="vegetarian">Vegetarisch</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="low_carb">Low Carb</option>
+                    <option value="mediterranean">Mediterran</option>
+                  </select>
+                </label>
+              </div>
+
+              <fieldset>
+                <legend>Equipment</legend>
+                <div class="portal-check-grid">
+                  {equipmentOptions.map(([value, label]) => (
+                    <label>
+                      <input type="checkbox" name="equipment" value={value} />
+                      <span>{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <label>
+                <span>Unvertraeglichkeiten oder Lebensmittel, die nicht passen</span>
+                <input name="intolerances" type="text" maxlength="240" placeholder="z. B. Laktose, Gluten, Nuesse" />
+              </label>
+
+              <label>
+                <span>Einschraenkungen, Schmerzen oder Vorsichtspunkte</span>
+                <textarea name="restrictions" rows="3" maxlength="520" placeholder="z. B. Knie, Ruecken, Blutdruck, Schwangerschaft, Medikamente"></textarea>
+              </label>
+
+              <label>
+                <span>Was soll der Coach sonst wissen?</span>
+                <textarea name="notes" rows="3" maxlength="520" placeholder="Alltag, Schlaf, Motivation, Vorlieben, Trainingszeiten"></textarea>
+              </label>
+
+              <p id="coach-status" class="portal-coach-status" hidden></p>
+              <div class="portal-auth-actions">
+                <button class="button primary" id="coach-generate-plan" type="submit">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M8 8v8M16 8v8M4 10v4M20 10v4" /></svg>
+                  Plan mit Gemini erstellen
+                </button>
+                <a class="button" href="/sport-energie/">Oeffentliches Beispiel</a>
+              </div>
+            </form>
+          </section>
+
+          <section class="portal-panel portal-coach-plan">
+            <div class="portal-coach-plan-head">
+              <div>
+                <h2>Aktueller Plan</h2>
+                <p class="portal-mini" id="coach-plan-updated">Noch kein gespeicherter Plan.</p>
+              </div>
+              <span class="portal-pill" id="coach-plan-source" data-state="off">MVP</span>
+            </div>
+            <p class="portal-insight" id="coach-plan-summary">
+              Sobald die Gemini-Funktion aktiv ist, erscheint hier dein individueller Sport-&-Energie-Plan.
+            </p>
+
+            <div class="portal-plan-grid">
+              <section class="portal-plan-block">
+                <h3>Training</h3>
+                <div id="coach-plan-training" class="portal-plan-content">
+                  <span class="portal-empty">Noch kein Trainingsplan vorhanden.</span>
+                </div>
+              </section>
+              <section class="portal-plan-block">
+                <h3>Ernaehrung</h3>
+                <div id="coach-plan-nutrition" class="portal-plan-content">
+                  <span class="portal-empty">Noch kein Ernaehrungsplan vorhanden.</span>
+                </div>
+              </section>
+              <section class="portal-plan-block">
+                <h3>Regeneration</h3>
+                <ul id="coach-plan-recovery" class="portal-list">
+                  <li><span class="portal-empty">Noch keine Regenerationshinweise.</span></li>
+                </ul>
+              </section>
+              <section class="portal-plan-block">
+                <h3>Sicherheit</h3>
+                <ul id="coach-plan-safety" class="portal-list">
+                  <li><span class="portal-empty">Hinweise erscheinen nach der Planerstellung.</span></li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="portal-insight portal-checkin" id="coach-plan-checkin">
+              Naechster Check-in: nach der ersten erfassten Trainingswoche.
+            </div>
+          </section>
+        </div>
+      </PortalGate>
+    </div>
+  </section>
+</BaseLayout>

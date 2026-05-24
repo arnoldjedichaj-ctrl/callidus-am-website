@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PortalGate from '../../components/PortalGate.astro';
-import { portalAppList } from '../../data/portal.js';
+import { portalAppList, portalNavList } from '../../data/portal.js';
 import '../../styles/portal.css';
 
 export function getStaticPaths() {
@@ -40,7 +40,7 @@ const titles = listTitles[app.id] || listTitles.nexus;
         <div class="portal-coming-soon" data-reveal>
           <nav class="portal-subnav" aria-label="Portal Bereiche" style="margin-bottom:2rem">
             <a href="/portal/">Portal</a>
-            {portalAppList.map((item) => (
+            {portalNavList.map((item) => (
               <a href={item.href} aria-current={item.id === app.id ? 'page' : undefined}>{item.name}</a>
             ))}
           </nav>
@@ -80,7 +80,7 @@ const titles = listTitles[app.id] || listTitles.nexus;
             </div>
             <nav class="portal-subnav" aria-label="Portal Bereiche">
               <a href="/portal/">Portal</a>
-              {portalAppList.map((item) => (
+              {portalNavList.map((item) => (
                 <a href={item.href} aria-current={item.id === app.id ? 'page' : undefined}>{item.name}</a>
               ))}
             </nav>

@@ -10,6 +10,7 @@ export const ui = {
     navLabel: 'Hauptnavigation',
     nav: {
       guide: 'Ratgeber',
+      sport: 'Sport & Energie',
       recommendations: 'Empfehlungen',
       course: 'Stress Reset',
       apps: 'Apps',
@@ -22,6 +23,7 @@ export const ui = {
     paths: {
       home: '/',
       guide: '/ratgeber/',
+      sport: '/sport-energie/',
       recommendations: '/unsere-empfehlungen/',
       course: '/stress-reset-kurs/',
       apps: '/nexus-app/',
@@ -52,6 +54,7 @@ export const ui = {
     navLabel: 'Main navigation',
     nav: {
       guide: 'Guide',
+      sport: 'Sport & Energy',
       recommendations: 'Recommendations',
       course: 'Stress Reset',
       apps: 'Apps',
@@ -64,6 +67,7 @@ export const ui = {
     paths: {
       home: '/en/',
       guide: '/en/guide/',
+      sport: '/sport-energie/',
       recommendations: '/unsere-empfehlungen/',
       course: '/stress-reset-kurs/',
       apps: '/nexus-app/',

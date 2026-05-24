@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PortalGate from '../../components/PortalGate.astro';
-import { portalAppList } from '../../data/portal.js';
+import { portalAppList, portalNavList } from '../../data/portal.js';
 import '../../styles/portal.css';
 
 const firebaseConfig = {
@@ -32,7 +32,7 @@ const firebaseConfig = {
           </div>
           <nav class="portal-subnav" aria-label="Portal Bereiche">
             <a href="/portal/" aria-current="page">Portal</a>
-            {portalAppList.map((app) => <a href={app.href}>{app.name}</a>)}
+            {portalNavList.map((app) => <a href={app.href}>{app.name}</a>)}
           </nav>
         </div>
 
@@ -85,6 +85,37 @@ const firebaseConfig = {
               </div>
             </a>
           ))}
+          <a class="portal-app-card portal-app-coral" href="/portal/coach/" data-app-card="coach">
+            <div class="portal-app-head">
+              <div class="portal-app-icon portal-app-icon-symbol" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 12h12" />
+                  <path d="M8 8v8" />
+                  <path d="M16 8v8" />
+                  <path d="M4 10v4" />
+                  <path d="M20 10v4" />
+                </svg>
+              </div>
+              <div class="portal-pill-stack">
+                <span class="portal-pill" data-state="pending">Gemini vorbereitet</span>
+                <span class="portal-pill portal-plan-pill" data-state="off">MVP</span>
+              </div>
+            </div>
+            <div>
+              <h2>Coach</h2>
+              <p>Trainingsplan, Ernaehrung und Regeneration aus App-Daten plus Fragebogen.</p>
+            </div>
+            <div class="portal-app-metrics">
+              <div>
+                <span>Plan</span>
+                <strong>Hybrid</strong>
+              </div>
+              <div>
+                <span>KI</span>
+                <strong>Gemini</strong>
+              </div>
+            </div>
+          </a>
         </div>
 
         <div class="portal-grid-2" data-reveal style="margin-top:1rem">
