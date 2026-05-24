@@ -24,6 +24,17 @@ const PLAN_SCHEMA = {
           workout: { type: "STRING" },
           duration: { type: "STRING" },
           notes: { type: "STRING" },
+          exercises: {
+            type: "ARRAY",
+            items: {
+              type: "OBJECT",
+              properties: {
+                name: { type: "STRING" },
+                cue: { type: "STRING" },
+              },
+              required: ["name"],
+            },
+          },
         },
         required: ["day", "focus", "workout"],
       },
@@ -194,6 +205,7 @@ function buildPrompt(preferences, context) {
     "Nutze die App-Daten nur als Kontext, nicht als absolute Wahrheit. Wenn Daten fehlen, plane konservativ.",
     "Sicherheitsregeln: Keine Heilversprechen. Bei Schmerzen, Brustdruck, Schwindel, Schwangerschaft, Essstoerung, bekannten Erkrankungen oder Medikamenten immer professionelle Abklaerung empfehlen. Keine extremen Diaeten oder gefaehrliche Belastung.",
     "Erstelle genau die JSON-Struktur aus dem Schema: summary, weeklyTraining, nutritionPlan, recovery, safetyNotes, nextCheckIn.",
+    "Fuege pro weeklyTraining-Einheit 2 bis 5 konkrete exercises hinzu. Nutze einfache deutsche Uebungsnamen wie Kniebeuge, Rudern, Liegestuetz, Plank, Ausfallschritt, Schulterdruecken, Band-Rudern, Mountain Climber, Glute Bridge oder Spaziergang, damit die Webseite passende Bildkarten anzeigen kann.",
     `Nutzerangaben: ${JSON.stringify(preferences)}`,
     `App-Kontext: ${JSON.stringify(context)}`,
   ].join("\n\n");
@@ -220,6 +232,10 @@ function normalizePlan(plan) {
       workout: cleanString(item.workout, 700),
       duration: cleanString(item.duration, 80),
       notes: cleanString(item.notes, 300),
+      exercises: ensureArray(item.exercises).slice(0, 5).map((exercise) => ({
+        name: cleanString(exercise.name || exercise, 120),
+        cue: cleanString(exercise.cue, 180),
+      })),
     })),
     nutritionPlan: {
       dailyTarget: cleanString(plan.nutritionPlan?.dailyTarget, 500),

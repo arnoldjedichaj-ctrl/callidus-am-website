@@ -499,6 +499,162 @@ function bootPortal() {
     container.appendChild(span);
   }
 
+  const exerciseLibrary = [
+    {
+      key: 'squat',
+      title: 'Kniebeuge',
+      cue: 'Huefte nach hinten, Knie folgen den Fussspitzen.',
+      aliases: ['kniebeuge', 'squat', 'hocke'],
+      icon: 'squat',
+    },
+    {
+      key: 'row',
+      title: 'Rudern',
+      cue: 'Brust lang, Ellenbogen nah am Koerper zurueckziehen.',
+      aliases: ['rudern', 'band-rudern', 'hantelrudern', 'rows'],
+      icon: 'row',
+    },
+    {
+      key: 'pushup',
+      title: 'Liegestuetz',
+      cue: 'Koerper als Linie, Haende unter den Schultern.',
+      aliases: ['liegestuetz', 'push-up', 'pushup', 'auf knien'],
+      icon: 'pushup',
+    },
+    {
+      key: 'plank',
+      title: 'Plank',
+      cue: 'Rippen runter, Bauch aktiv, ruhig atmen.',
+      aliases: ['plank', 'unterarmstuetz', 'core'],
+      icon: 'plank',
+    },
+    {
+      key: 'lunge',
+      title: 'Ausfallschritt',
+      cue: 'Vorderer Fuss stabil, Oberkoerper aufrecht.',
+      aliases: ['ausfallschritt', 'lunge', 'lunges'],
+      icon: 'lunge',
+    },
+    {
+      key: 'press',
+      title: 'Schulterdruecken',
+      cue: 'Gewicht kontrolliert ueber Kopf, Bauch bleibt fest.',
+      aliases: ['schulterdruecken', 'press', 'overhead'],
+      icon: 'press',
+    },
+    {
+      key: 'bridge',
+      title: 'Glute Bridge',
+      cue: 'Fersen in den Boden, Huefte kontrolliert anheben.',
+      aliases: ['glute bridge', 'hueftbruecke', 'hip bridge'],
+      icon: 'bridge',
+    },
+    {
+      key: 'mountain',
+      title: 'Mountain Climber',
+      cue: 'Stuetz stabil halten, Knie rhythmisch nach vorn.',
+      aliases: ['mountain climber', 'climber'],
+      icon: 'mountain',
+    },
+    {
+      key: 'walk',
+      title: 'Spaziergang',
+      cue: 'Locker starten, Tempo so waehlen, dass Atmung ruhig bleibt.',
+      aliases: ['spaziergang', 'gehen', 'walking', 'zone 2'],
+      icon: 'walk',
+    },
+    {
+      key: 'bike',
+      title: 'Rad / Ergometer',
+      cue: 'Gleichmaessig treten, Intensitaet bewusst niedrig halten.',
+      aliases: ['rad', 'ergometer', 'bike', 'fahrrad'],
+      icon: 'bike',
+    },
+  ];
+
+  function exerciseIcon(kind) {
+    const icons = {
+      squat: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="M9 9.2h6l1.8 3.1"/><path d="m9.5 9.4-2.1 3.8 3.1 2.2"/><path d="m14.8 12.5-2.5 2.8 3.7 3.8"/><path d="m10.4 15.4-1.9 4.1"/>',
+      row: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="M8.1 10.5h7.8"/><path d="m8.1 10.5-2.8 4.6"/><path d="m15.9 10.5 2.8 4.6"/><path d="M6.5 15.1h11"/><path d="m10.2 11.2 1.2 4.2 3.3-2.1"/>',
+      pushup: '<path d="M17.5 6.4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z"/><path d="M4 15.5h16"/><path d="m6.2 14.9 5.6-4.1 5.2 3.9"/><path d="m10.4 11.9 1.7 3.6"/><path d="M18.8 14.8 20.6 18"/>',
+      plank: '<path d="M17.6 7.1a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="M4.4 15.2h14.2"/><path d="m5.8 14.9 7.3-4.3 4.7 4.2"/><path d="M8.2 15.1 7 18.5"/><path d="M16.6 15.1l1.8 3.2"/>',
+      lunge: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="m11 9.2 2.5 3.5"/><path d="m13.5 12.7 4.4.3"/><path d="m13.5 12.7-2.8 6.2"/><path d="m17.9 13-1.7 5.5"/><path d="M8.2 18.9h4.2"/>',
+      press: '<path d="M12 5a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 12 5Z"/><path d="M8.2 11.2h7.6"/><path d="M8 7.8V4.6"/><path d="M16 7.8V4.6"/><path d="M7 4.6h2"/><path d="M15 4.6h2"/><path d="m10 11.4-.8 7.2"/><path d="m14 11.4.8 7.2"/>',
+      bridge: '<path d="M17.8 11.3a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="M4 17.2h16"/><path d="m5.8 16.9 4.1-5 5.4 4.9"/><path d="m9.9 11.9 4.3-.1"/><path d="M6.2 17.1 4.8 20"/><path d="m18.1 17.1 1.4 2.8"/>',
+      mountain: '<path d="M17.6 5.9a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="m5.2 15.4 5.4-5 5.9 3.9"/><path d="m10.6 10.4 2.4 6"/><path d="m13 16.4-4.8 2.4"/><path d="m16.5 14.3 3.4 3.5"/>',
+      walk: '<path d="M12.7 4.3a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="m11.8 9.3-2.1 4.2 3.2 2.1"/><path d="m12.1 9.5 3.1 2.4"/><path d="m12.9 15.6-1.2 4"/><path d="m9.7 13.5-3 1.8"/><path d="m15.2 11.9 2.4-1.3"/>',
+      bike: '<circle cx="7" cy="16.5" r="3.1"/><circle cx="17" cy="16.5" r="3.1"/><path d="M7 16.5 10.6 10h3.2l3.2 6.5"/><path d="m10.6 10 2.1 6.5L17 16.5"/><path d="M13.8 10h2.8"/><path d="M9.7 8h2.2"/>',
+    };
+    return `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[kind] || icons.squat}</svg>`;
+  }
+
+  function lookupExercise(name) {
+    const haystack = String(name || '').toLowerCase();
+    return exerciseLibrary.find((item) => item.aliases.some((alias) => haystack.includes(alias)));
+  }
+
+  function resolveExercises(item = {}) {
+    const explicit = Array.isArray(item.exercises)
+      ? item.exercises.map((exercise) => ({
+          sourceName: typeof exercise === 'string' ? exercise : exercise.name,
+          cue: typeof exercise === 'string' ? '' : exercise.cue,
+        }))
+      : [];
+    const sourceText = [item.focus, item.workout, item.notes].filter(Boolean).join(' ');
+    const inferred = exerciseLibrary
+      .filter((exercise) => exercise.aliases.some((alias) => sourceText.toLowerCase().includes(alias)))
+      .map((exercise) => ({ sourceName: exercise.title, cue: '' }));
+    const seen = new Set();
+    return [...explicit, ...inferred]
+      .map((entry) => {
+        const match = lookupExercise(entry.sourceName) || {
+          title: cleanExerciseName(entry.sourceName),
+          cue: 'Langsam starten und saubere Technik priorisieren.',
+          icon: 'squat',
+          key: cleanExerciseName(entry.sourceName).toLowerCase(),
+        };
+        return {
+          key: match.key || match.title,
+          title: match.title || cleanExerciseName(entry.sourceName),
+          cue: entry.cue || match.cue,
+          icon: match.icon || 'squat',
+        };
+      })
+      .filter((exercise) => {
+        const key = exercise.key.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .slice(0, 5);
+  }
+
+  function cleanExerciseName(value) {
+    return shortText(value || 'Uebung', 40);
+  }
+
+  function renderExerciseCards(container, exercises) {
+    if (!exercises.length) return;
+    const grid = document.createElement('div');
+    grid.className = 'portal-exercise-grid';
+    exercises.forEach((exercise) => {
+      const card = document.createElement('article');
+      card.className = 'portal-exercise-card';
+      const visual = document.createElement('div');
+      visual.className = 'portal-exercise-visual';
+      visual.innerHTML = exerciseIcon(exercise.icon);
+      const body = document.createElement('div');
+      const title = document.createElement('strong');
+      const cue = document.createElement('span');
+      title.textContent = exercise.title;
+      cue.textContent = exercise.cue;
+      body.append(title, cue);
+      card.append(visual, body);
+      grid.appendChild(card);
+    });
+    container.appendChild(grid);
+  }
+
   function renderCoachPlan(plan = {}, meta = {}) {
     const hasPlan = plan && Object.keys(plan).length > 0;
     if (!hasPlan) {
@@ -520,18 +676,31 @@ function bootPortal() {
       if (!items.length) {
         appendEmpty(trainingNode, 'Noch kein Trainingsplan vorhanden.');
       } else {
-        items.forEach((item) => {
+        items.forEach((item, index) => {
           const node = document.createElement('div');
-          node.className = 'portal-plan-day';
+          node.className = 'portal-training-card';
+          const head = document.createElement('div');
+          head.className = 'portal-training-head';
+          const dayPill = document.createElement('span');
+          dayPill.className = 'portal-training-day';
+          dayPill.textContent = item.day || `Tag ${index + 1}`;
+          const duration = document.createElement('small');
+          duration.textContent = item.duration || '';
           const title = document.createElement('strong');
-          const workout = document.createElement('span');
-          const notes = document.createElement('span');
-          title.textContent = [item.day, item.focus].filter(Boolean).join(' | ') || 'Training';
+          title.textContent = item.focus || 'Training';
+          head.append(dayPill, title);
+          if (duration.textContent) head.appendChild(duration);
+          const workout = document.createElement('p');
           workout.textContent = item.workout || item.session || '';
-          notes.textContent = [item.duration, item.notes].filter(Boolean).join(' | ');
-          node.append(title);
+          node.append(head);
           if (workout.textContent) node.append(workout);
-          if (notes.textContent) node.append(notes);
+          renderExerciseCards(node, resolveExercises(item));
+          if (item.notes) {
+            const notes = document.createElement('small');
+            notes.className = 'portal-training-note';
+            notes.textContent = item.notes;
+            node.appendChild(notes);
+          }
           trainingNode.appendChild(node);
         });
       }
