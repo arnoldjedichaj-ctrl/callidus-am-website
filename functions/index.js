@@ -398,3 +398,39 @@ exports.generateSportEnergyPlan = onCall(
     };
   },
 );
+
+exports.getSportEnergyPlan = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: [
+      "https://www.callidus-am.de",
+      "https://callidus-am.de",
+      "http://127.0.0.1:4321",
+      "http://localhost:4321",
+    ],
+  },
+  async (request) => {
+    if (!request.auth?.uid) {
+      throw new HttpsError("unauthenticated", "Bitte einloggen.");
+    }
+
+    const userRef = db.collection("users").doc(request.auth.uid);
+    const [latestSnap, preferencesSnap] = await Promise.all([
+      userRef.collection("sport_coach").doc("latest_plan").get(),
+      userRef.collection("sport_coach").doc("preferences").get(),
+    ]);
+
+    const latest = latestSnap.exists ? latestSnap.data() : {};
+    const preferences = preferencesSnap.exists ? preferencesSnap.data() : {};
+
+    return {
+      plan: latest.plan || null,
+      preferences: preferences.current || preferences || null,
+      provider: latest.provider || "",
+      model: latest.model || "",
+      createdAt: latest.created_at_iso || safeTimestamp(latest.created_at),
+    };
+  },
+);

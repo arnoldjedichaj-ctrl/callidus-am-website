@@ -572,20 +572,70 @@ function bootPortal() {
     },
   ];
 
-  function exerciseIcon(kind) {
-    const icons = {
-      squat: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="M9 9.2h6l1.8 3.1"/><path d="m9.5 9.4-2.1 3.8 3.1 2.2"/><path d="m14.8 12.5-2.5 2.8 3.7 3.8"/><path d="m10.4 15.4-1.9 4.1"/>',
-      row: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="M8.1 10.5h7.8"/><path d="m8.1 10.5-2.8 4.6"/><path d="m15.9 10.5 2.8 4.6"/><path d="M6.5 15.1h11"/><path d="m10.2 11.2 1.2 4.2 3.3-2.1"/>',
-      pushup: '<path d="M17.5 6.4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z"/><path d="M4 15.5h16"/><path d="m6.2 14.9 5.6-4.1 5.2 3.9"/><path d="m10.4 11.9 1.7 3.6"/><path d="M18.8 14.8 20.6 18"/>',
-      plank: '<path d="M17.6 7.1a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="M4.4 15.2h14.2"/><path d="m5.8 14.9 7.3-4.3 4.7 4.2"/><path d="M8.2 15.1 7 18.5"/><path d="M16.6 15.1l1.8 3.2"/>',
-      lunge: '<path d="M12 4.2a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="m11 9.2 2.5 3.5"/><path d="m13.5 12.7 4.4.3"/><path d="m13.5 12.7-2.8 6.2"/><path d="m17.9 13-1.7 5.5"/><path d="M8.2 18.9h4.2"/>',
-      press: '<path d="M12 5a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 12 5Z"/><path d="M8.2 11.2h7.6"/><path d="M8 7.8V4.6"/><path d="M16 7.8V4.6"/><path d="M7 4.6h2"/><path d="M15 4.6h2"/><path d="m10 11.4-.8 7.2"/><path d="m14 11.4.8 7.2"/>',
-      bridge: '<path d="M17.8 11.3a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="M4 17.2h16"/><path d="m5.8 16.9 4.1-5 5.4 4.9"/><path d="m9.9 11.9 4.3-.1"/><path d="M6.2 17.1 4.8 20"/><path d="m18.1 17.1 1.4 2.8"/>',
-      mountain: '<path d="M17.6 5.9a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1Z"/><path d="m5.2 15.4 5.4-5 5.9 3.9"/><path d="m10.6 10.4 2.4 6"/><path d="m13 16.4-4.8 2.4"/><path d="m16.5 14.3 3.4 3.5"/>',
-      walk: '<path d="M12.7 4.3a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z"/><path d="m11.8 9.3-2.1 4.2 3.2 2.1"/><path d="m12.1 9.5 3.1 2.4"/><path d="m12.9 15.6-1.2 4"/><path d="m9.7 13.5-3 1.8"/><path d="m15.2 11.9 2.4-1.3"/>',
-      bike: '<circle cx="7" cy="16.5" r="3.1"/><circle cx="17" cy="16.5" r="3.1"/><path d="M7 16.5 10.6 10h3.2l3.2 6.5"/><path d="m10.6 10 2.1 6.5L17 16.5"/><path d="M13.8 10h2.8"/><path d="M9.7 8h2.2"/>',
+  function exerciseVisual(kind) {
+    const visuals = {
+      squat: [
+        'M18 12c5 0 8 4 8 10v10h-5V22c0-3-1-5-3-5s-3 2-3 5v10h-5V22c0-6 3-10 8-10Z',
+        'M64 21c6 0 11 5 11 12v9h-6v-8c0-4-2-7-5-7s-5 3-5 7v8h-6v-9c0-7 5-12 11-12Z',
+        'M112 32c6 0 11 5 11 12v12h-6V44c0-4-2-7-5-7s-5 3-5 7v12h-6V44c0-7 5-12 11-12Z',
+      ],
+      row: [
+        'M13 35h24l-8 8H8l5-8Zm5-18 13 10-5 5-13-9 5-6Z',
+        'M57 32h27l-6 8H52l5-8Zm5-15 17 7-3 6-17-6 3-7Z',
+        'M103 29h29l-4 8h-30l5-8Zm3-15 20 2-1 7-20-2 1-7Z',
+      ],
+      pushup: [
+        'M8 42h37v6H8v-6Zm6-13 21 8-2 6-21-8 2-6Z',
+        'M55 38h38v6H55v-6Zm5-11 26 6-1 6-27-6 2-6Z',
+        'M102 34h39v6h-39v-6Zm4-10 31 4-1 6-31-4 1-6Z',
+      ],
+      plank: [
+        'M8 38h38v6H8v-6Zm7-12 27 8-2 6-27-8 2-6Z',
+        'M55 37h38v6H55v-6Zm7-11 27 8-2 6-27-8 2-6Z',
+        'M102 37h38v6h-38v-6Zm7-11 27 8-2 6-27-8 2-6Z',
+      ],
+      lunge: [
+        'M19 12c5 0 8 4 8 9 0 6-3 10-8 10s-8-4-8-10c0-5 3-9 8-9Z',
+        'M67 20c6 0 11 5 11 12 0 5-3 9-7 11l-4-5c2-1 4-3 4-6 0-4-2-6-5-6s-5 3-5 7v10h-6V33c0-8 5-13 12-13Z',
+        'M115 30c7 0 12 5 12 12 0 4-2 8-5 10l-5-4c2-1 3-3 3-6 0-4-2-6-5-6s-5 2-5 6v14h-6V42c0-7 5-12 11-12Z',
+      ],
+      press: [
+        'M18 29h9v23h-6V35h-6v17H9V29h9Zm-4-16h16v5H14v-5Z',
+        'M65 22h9v30h-6V28h-6v24h-6V22h9Zm-8-12h22v5H57v-5Z',
+        'M112 17h9v35h-6V23h-6v29h-6V17h9Zm-12-12h30v5h-30V5Z',
+      ],
+      bridge: [
+        'M8 45h38v6H8v-6Zm6-18h25l4 18H36l-2-10H18l-4 10H8l6-18Z',
+        'M55 42h38v6H55v-6Zm6-19h26l5 19h-7l-3-11H66l-4 11h-7l6-19Z',
+        'M102 42h38v6h-38v-6Zm6-19h26l5 19h-7l-3-11h-16l-4 11h-7l6-19Z',
+      ],
+      mountain: [
+        'M8 40h38v6H8v-6Zm7-17 24 11-2 6-24-11 2-6Z',
+        'M55 38h38v6H55v-6Zm8-18 22 13-3 6-22-13 3-6Z',
+        'M102 36h38v6h-38v-6Zm8-17 24 12-3 6-24-12 3-6Z',
+      ],
+      walk: [
+        'M18 10a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-2 12 7 8-4 4-4-5-5 13-6-2 7-18h5Z',
+        'M66 10a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-3 12 8 8-4 4-4-5-5 13-6-2 7-18h4Z',
+        'M114 10a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-3 12 8 8-4 4-4-5-5 13-6-2 7-18h4Z',
+      ],
+      bike: [
+        'M14 40a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm34 0a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-34 9h34L34 25H24L14 49Z',
+        'M62 40a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm34 0a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-34 9h34L82 25H72L62 49Z',
+        'M110 40a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm34 0a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-34 9h34l-14-24h-10l-10 24Z',
+      ],
     };
-    return `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[kind] || icons.squat}</svg>`;
+    const phases = visuals[kind] || visuals.squat;
+    return `
+      <svg viewBox="0 0 150 70" aria-hidden="true" class="portal-exercise-sequence">
+        <path class="floor" d="M7 58h136" />
+        <g class="phase phase-1"><path d="${phases[0]}"/></g>
+        <path class="arrow" d="M45 34h14m-4-4 4 4-4 4"/>
+        <g class="phase phase-2"><path d="${phases[1]}"/></g>
+        <path class="arrow" d="M93 34h14m-4-4 4 4-4 4"/>
+        <g class="phase phase-3"><path d="${phases[2]}"/></g>
+      </svg>
+    `;
   }
 
   function lookupExercise(name) {
@@ -642,8 +692,9 @@ function bootPortal() {
       card.className = 'portal-exercise-card';
       const visual = document.createElement('div');
       visual.className = 'portal-exercise-visual';
-      visual.innerHTML = exerciseIcon(exercise.icon);
+      visual.innerHTML = exerciseVisual(exercise.icon);
       const body = document.createElement('div');
+      body.className = 'portal-exercise-body';
       const title = document.createElement('strong');
       const cue = document.createElement('span');
       title.textContent = exercise.title;
@@ -759,6 +810,49 @@ function bootPortal() {
     );
   }
 
+  function coachCacheKey(user) {
+    return user?.uid ? `callidus-sport-coach-plan:${user.uid}` : '';
+  }
+
+  function saveCoachCache(user, payload = {}) {
+    const key = coachCacheKey(user);
+    if (!key) return;
+    try {
+      localStorage.setItem(key, JSON.stringify({
+        plan: payload.plan || null,
+        provider: payload.provider || 'gemini',
+        model: payload.model || '',
+        createdAt: payload.createdAt || new Date().toISOString(),
+        preferences: payload.preferences || null,
+      }));
+    } catch (error) {
+      console.warn('Coach cache write failed', error);
+    }
+  }
+
+  function readCoachCache(user) {
+    const key = coachCacheKey(user);
+    if (!key) return null;
+    try {
+      const cached = JSON.parse(localStorage.getItem(key) || 'null');
+      return cached?.plan ? cached : null;
+    } catch (error) {
+      console.warn('Coach cache read failed', error);
+      return null;
+    }
+  }
+
+  async function fetchCoachPlanViaFunction() {
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'getSportEnergyPlan');
+      const response = await callable({});
+      return response.data || null;
+    } catch (error) {
+      console.warn('Coach plan callable read failed', error);
+      return null;
+    }
+  }
+
   function coachErrorMessage(error) {
     const code = error?.code || '';
     if (code.includes('not-found')) return 'Die Gemini-Funktion ist noch nicht deployt. Die Oberflaeche ist bereit, der Serverteil fehlt noch.';
@@ -790,6 +884,13 @@ function bootPortal() {
           provider: 'gemini',
           model: payload.model || 'Gemini',
           createdAt: payload.createdAt || new Date().toISOString(),
+        });
+        saveCoachCache(user, {
+          plan: payload.plan,
+          provider: 'gemini',
+          model: payload.model || 'Gemini',
+          createdAt: payload.createdAt || new Date().toISOString(),
+          preferences,
         });
         setPill('coach-gemini-state', { state: 'ok', label: 'Gemini aktiv' });
         setStatus('coach-status', 'Plan wurde erstellt und gespeichert.', 'ok');
@@ -833,8 +934,35 @@ function bootPortal() {
       docsData([...base, 'sport_coach_plans'], { orderBy: 'created_at', limit: 1 }),
     ]);
 
-    const latest = Object.keys(latestPlan).length ? latestPlan : (planHistory[0] || {});
-    const plan = latest.plan || {};
+    let latest = Object.keys(latestPlan).length ? latestPlan : (planHistory[0] || {});
+    let plan = latest.plan || {};
+    const callablePlan = Object.keys(plan).length ? null : await fetchCoachPlanViaFunction();
+    if (!Object.keys(plan).length && callablePlan?.plan) {
+      latest = {
+        plan: callablePlan.plan,
+        provider: callablePlan.provider,
+        model: callablePlan.model,
+        created_at_iso: callablePlan.createdAt,
+      };
+      plan = callablePlan.plan;
+      saveCoachCache(user, {
+        plan,
+        provider: callablePlan.provider,
+        model: callablePlan.model,
+        createdAt: callablePlan.createdAt,
+        preferences: callablePlan.preferences,
+      });
+    }
+    const cachedPlan = Object.keys(plan).length ? null : readCoachCache(user);
+    if (!Object.keys(plan).length && cachedPlan?.plan) {
+      latest = {
+        plan: cachedPlan.plan,
+        provider: cachedPlan.provider,
+        model: cachedPlan.model,
+        created_at_iso: cachedPlan.createdAt,
+      };
+      plan = cachedPlan.plan;
+    }
     const nexusToday = nexusContext.today || {};
     const momusShield = momusContext.energy_shield || {};
 
@@ -852,7 +980,7 @@ function bootPortal() {
     renderCoachPlan(plan, {
       provider: latest.provider,
       model: latest.model,
-      createdAt: latest.created_at,
+      createdAt: latest.created_at || latest.created_at_iso,
     });
     setupCoachHandlers(user);
   }
