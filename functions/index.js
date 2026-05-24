@@ -44,6 +44,33 @@ const PLAN_SCHEMA = {
       properties: {
         dailyTarget: { type: "STRING" },
         hydration: { type: "STRING" },
+        weeklyDays: {
+          type: "ARRAY",
+          items: {
+            type: "OBJECT",
+            properties: {
+              day: { type: "STRING" },
+              date: { type: "STRING" },
+              focus: { type: "STRING" },
+              prep: { type: "STRING" },
+              meals: {
+                type: "ARRAY",
+                items: {
+                  type: "OBJECT",
+                  properties: {
+                    time: { type: "STRING" },
+                    name: { type: "STRING" },
+                    foods: { type: "STRING" },
+                    reason: { type: "STRING" },
+                    notes: { type: "STRING" },
+                  },
+                  required: ["time", "name", "foods"],
+                },
+              },
+            },
+            required: ["day", "date", "meals"],
+          },
+        },
         meals: {
           type: "ARRAY",
           items: {
@@ -59,7 +86,7 @@ const PLAN_SCHEMA = {
           },
         },
       },
-      required: ["dailyTarget", "meals"],
+      required: ["dailyTarget", "weeklyDays"],
     },
     recovery: {
       type: "ARRAY",
@@ -93,6 +120,26 @@ function todayKey() {
   const month = String(date.getUTCMonth() + 1).padStart(2, "0");
   const day = String(date.getUTCDate()).padStart(2, "0");
   return `${date.getUTCFullYear()}-${month}-${day}`;
+}
+
+const DAY_NAMES = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+
+function isoDate(date) {
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  return `${date.getUTCFullYear()}-${month}-${day}`;
+}
+
+function defaultCalendarDays(date = new Date()) {
+  const start = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  return Array.from({ length: 7 }, (_, index) => {
+    const dayDate = new Date(start);
+    dayDate.setUTCDate(start.getUTCDate() + index);
+    return {
+      day: DAY_NAMES[dayDate.getUTCDay()],
+      date: isoDate(dayDate),
+    };
+  });
 }
 
 function cleanString(value, maxLength = 500) {
@@ -133,6 +180,17 @@ function sanitizePreferences(input = {}) {
   };
 }
 
+function sanitizeCalendarDays(input = []) {
+  const fallback = defaultCalendarDays();
+  if (!Array.isArray(input)) return fallback;
+  const cleaned = input.slice(0, 7).map((item = {}, index) => ({
+    day: cleanString(item.day, 40) || fallback[index]?.day || `Tag ${index + 1}`,
+    date: cleanString(item.date, 20) || fallback[index]?.date || "",
+    label: cleanString(item.label, 40),
+  }));
+  return fallback.map((fallbackDay, index) => cleaned[index] || fallbackDay);
+}
+
 async function docData(ref) {
   try {
     const snap = await ref.get();
@@ -160,7 +218,7 @@ function safeTimestamp(value) {
   return String(value).slice(0, 80);
 }
 
-function compactContext({ userDoc, nexusContext, nexusStats, healthPlan, mealPlan, meals, activities, momusContext, momusStats, kairosProfile }) {
+function compactContext({ userDoc, nexusContext, nexusStats, healthPlan, mealPlan, meals, activities, momusContext, momusStats, kairosProfile, calendarDays }) {
   const nexusToday = nexusContext.today || {};
   const momusShield = momusContext.energy_shield || {};
   return {
@@ -185,6 +243,7 @@ function compactContext({ userDoc, nexusContext, nexusStats, healthPlan, mealPla
       tone: kairosProfile.tone || kairosProfile.mode || "",
       focus: cleanString(kairosProfile.focus || kairosProfile.intention, 360),
     },
+    calendarDays: calendarDays || defaultCalendarDays(),
     recentMeals: meals.slice(0, 5).map((meal) => ({
       name: cleanString(meal.name, 120),
       calories: meal.calories || null,
@@ -206,6 +265,7 @@ function buildPrompt(preferences, context) {
     "Sicherheitsregeln: Keine Heilversprechen. Bei Schmerzen, Brustdruck, Schwindel, Schwangerschaft, Essstoerung, bekannten Erkrankungen oder Medikamenten immer professionelle Abklaerung empfehlen. Keine extremen Diaeten oder gefaehrliche Belastung.",
     "Erstelle genau die JSON-Struktur aus dem Schema: summary, weeklyTraining, nutritionPlan, recovery, safetyNotes, nextCheckIn.",
     "Fuege pro weeklyTraining-Einheit 2 bis 5 konkrete exercises hinzu. Nutze einfache deutsche Uebungsnamen wie Kniebeuge, Rudern, Liegestuetz, Plank, Ausfallschritt, Schulterdruecken, Band-Rudern, Mountain Climber, Glute Bridge oder Spaziergang, damit die Webseite passende Bildkarten anzeigen kann.",
+    "nutritionPlan.weeklyDays muss exakt 7 Kalendertage enthalten und die calendarDays aus dem App-Kontext verwenden. Jeder Tag braucht Fruehstueck, Mittagessen, Abendessen und optional 1 Snack. Plane abwechslungsreich, aber alltagstauglich; keine extreme Diaet.",
     `Nutzerangaben: ${JSON.stringify(preferences)}`,
     `App-Kontext: ${JSON.stringify(context)}`,
   ].join("\n\n");
@@ -224,6 +284,7 @@ function ensureArray(value) {
 }
 
 function normalizePlan(plan) {
+  const nutritionPlan = plan.nutritionPlan || {};
   return {
     summary: cleanString(plan.summary, 900),
     weeklyTraining: ensureArray(plan.weeklyTraining).slice(0, 7).map((item) => ({
@@ -238,9 +299,22 @@ function normalizePlan(plan) {
       })),
     })),
     nutritionPlan: {
-      dailyTarget: cleanString(plan.nutritionPlan?.dailyTarget, 500),
-      hydration: cleanString(plan.nutritionPlan?.hydration, 240),
-      meals: ensureArray(plan.nutritionPlan?.meals).slice(0, 6).map((item) => ({
+      dailyTarget: cleanString(nutritionPlan.dailyTarget, 500),
+      hydration: cleanString(nutritionPlan.hydration, 240),
+      weeklyDays: ensureArray(nutritionPlan.weeklyDays).slice(0, 7).map((day) => ({
+        day: cleanString(day.day, 80),
+        date: cleanString(day.date, 20),
+        focus: cleanString(day.focus, 160),
+        prep: cleanString(day.prep, 240),
+        meals: ensureArray(day.meals).slice(0, 5).map((item) => ({
+          time: cleanString(item.time, 80),
+          name: cleanString(item.name, 120),
+          foods: cleanString(item.foods, 500),
+          reason: cleanString(item.reason, 260),
+          notes: cleanString(item.notes, 220),
+        })),
+      })),
+      meals: ensureArray(nutritionPlan.meals).slice(0, 6).map((item) => ({
         time: cleanString(item.time, 80),
         name: cleanString(item.name, 120),
         foods: cleanString(item.foods, 500),
@@ -322,6 +396,7 @@ exports.generateSportEnergyPlan = onCall(
     }
 
     const preferences = sanitizePreferences(request.data?.preferences || {});
+    const calendarDays = sanitizeCalendarDays(request.data?.calendarDays);
     if (!preferences.goal || !preferences.level) {
       throw new HttpsError("invalid-argument", "Ziel und Trainingslevel sind Pflichtfelder.");
     }
@@ -364,6 +439,7 @@ exports.generateSportEnergyPlan = onCall(
       momusContext,
       momusStats,
       kairosProfile,
+      calendarDays,
     });
     const model = process.env.GEMINI_MODEL || DEFAULT_MODEL;
     const prompt = buildPrompt(preferences, context);

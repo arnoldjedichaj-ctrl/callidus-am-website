@@ -42,6 +42,39 @@ function bootPortal() {
     return `${date.getFullYear()}-${month}-${day}`;
   }
 
+  function isoLocalDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${date.getFullYear()}-${month}-${day}`;
+  }
+
+  function coachCalendarDays(startDate = new Date()) {
+    const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+    return Array.from({ length: 7 }, (_, index) => {
+      const date = new Date(startDate);
+      date.setHours(12, 0, 0, 0);
+      date.setDate(startDate.getDate() + index);
+      return {
+        day: dayNames[date.getDay()],
+        date: isoLocalDate(date),
+        label: date.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' }),
+      };
+    });
+  }
+
+  function displayCalendarDay(day = {}, index = 0) {
+    if (day.label) return day.label;
+    const fallback = coachCalendarDays()[index] || {};
+    const rawDate = day.date || fallback.date;
+    if (!rawDate) return day.day || fallback.day || `Tag ${index + 1}`;
+    const [year, month, date] = String(rawDate).split('-').map((part) => Number.parseInt(part, 10));
+    const parsed = Number.isFinite(year) && Number.isFinite(month) && Number.isFinite(date)
+      ? new Date(year, month - 1, date, 12)
+      : new Date(rawDate);
+    if (Number.isNaN(parsed.getTime())) return day.day || fallback.day || `Tag ${index + 1}`;
+    return parsed.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+  }
+
   function num(value, fallback = 0) {
     const parsed = Number(value);
     return Number.isFinite(parsed) ? parsed : fallback;
@@ -706,6 +739,89 @@ function bootPortal() {
     container.appendChild(grid);
   }
 
+  function appendNutritionSummary(container, nutrition = {}) {
+    if (!nutrition.dailyTarget && !nutrition.hydration) return;
+    const node = document.createElement('div');
+    node.className = 'portal-nutrition-summary';
+    const title = document.createElement('strong');
+    const detail = document.createElement('span');
+    title.textContent = nutrition.dailyTarget || 'Tagesziel';
+    detail.textContent = nutrition.hydration || '';
+    node.append(title);
+    if (detail.textContent) node.append(detail);
+    container.appendChild(node);
+  }
+
+  function mealDetail(meal = {}) {
+    return [meal.foods, meal.reason, meal.notes].filter(Boolean).join(' | ');
+  }
+
+  function renderWeeklyNutrition(container, nutrition = {}) {
+    const days = Array.isArray(nutrition.weeklyDays) ? nutrition.weeklyDays : [];
+    if (!days.length) return false;
+    appendNutritionSummary(container, nutrition);
+    const calendar = document.createElement('div');
+    calendar.className = 'portal-nutrition-calendar';
+    days.slice(0, 7).forEach((day, index) => {
+      const article = document.createElement('article');
+      article.className = 'portal-nutrition-day';
+
+      const head = document.createElement('div');
+      head.className = 'portal-nutrition-head';
+      const datePill = document.createElement('span');
+      datePill.className = 'portal-nutrition-date';
+      datePill.textContent = displayCalendarDay(day, index);
+      const title = document.createElement('strong');
+      title.textContent = day.focus || day.day || `Tag ${index + 1}`;
+      head.append(datePill, title);
+      article.appendChild(head);
+
+      const meals = Array.isArray(day.meals) ? day.meals : [];
+      if (meals.length) {
+        const list = document.createElement('div');
+        list.className = 'portal-nutrition-meals';
+        meals.slice(0, 5).forEach((meal) => {
+          const row = document.createElement('div');
+          const label = document.createElement('strong');
+          const detail = document.createElement('span');
+          label.textContent = meal.name || meal.time || 'Mahlzeit';
+          detail.textContent = mealDetail(meal);
+          row.append(label);
+          if (detail.textContent) row.append(detail);
+          list.appendChild(row);
+        });
+        article.appendChild(list);
+      }
+
+      if (day.prep) {
+        const prep = document.createElement('small');
+        prep.className = 'portal-nutrition-prep';
+        prep.textContent = day.prep;
+        article.appendChild(prep);
+      }
+
+      calendar.appendChild(article);
+    });
+    container.appendChild(calendar);
+    return true;
+  }
+
+  function renderDailyNutrition(container, nutrition = {}) {
+    appendNutritionSummary(container, nutrition);
+    const meals = Array.isArray(nutrition.meals) ? nutrition.meals : [];
+    meals.forEach((meal) => {
+      const node = document.createElement('div');
+      node.className = 'portal-plan-meal';
+      const title = document.createElement('strong');
+      const detail = document.createElement('span');
+      title.textContent = meal.name || meal.time || 'Mahlzeit';
+      detail.textContent = mealDetail(meal);
+      node.append(title);
+      if (detail.textContent) node.append(detail);
+      container.appendChild(node);
+    });
+  }
+
   function renderCoachPlan(plan = {}, meta = {}) {
     const hasPlan = plan && Object.keys(plan).length > 0;
     if (!hasPlan) {
@@ -761,29 +877,7 @@ function bootPortal() {
     if (nutritionNode) {
       clearNode(nutritionNode);
       const nutrition = plan.nutritionPlan || {};
-      const meals = Array.isArray(nutrition.meals) ? nutrition.meals : [];
-      if (nutrition.dailyTarget || nutrition.hydration) {
-        const node = document.createElement('div');
-        node.className = 'portal-plan-meal';
-        const title = document.createElement('strong');
-        const detail = document.createElement('span');
-        title.textContent = nutrition.dailyTarget || 'Tagesziel';
-        detail.textContent = nutrition.hydration || '';
-        node.append(title);
-        if (detail.textContent) node.append(detail);
-        nutritionNode.appendChild(node);
-      }
-      meals.forEach((meal) => {
-        const node = document.createElement('div');
-        node.className = 'portal-plan-meal';
-        const title = document.createElement('strong');
-        const detail = document.createElement('span');
-        title.textContent = meal.name || meal.time || 'Mahlzeit';
-        detail.textContent = [meal.foods, meal.reason, meal.notes].filter(Boolean).join(' | ');
-        node.append(title);
-        if (detail.textContent) node.append(detail);
-        nutritionNode.appendChild(node);
-      });
+      if (!renderWeeklyNutrition(nutritionNode, nutrition)) renderDailyNutrition(nutritionNode, nutrition);
       if (!nutritionNode.children.length) {
         appendEmpty(nutritionNode, 'Noch kein Ernaehrungsplan vorhanden.');
       }
@@ -878,7 +972,7 @@ function bootPortal() {
       if (button) button.disabled = true;
       try {
         const callable = state.api.httpsCallable(state.fns, 'generateSportEnergyPlan');
-        const response = await callable({ preferences });
+        const response = await callable({ preferences, calendarDays: coachCalendarDays() });
         const payload = response.data || {};
         renderCoachPlan(payload.plan, {
           provider: 'gemini',

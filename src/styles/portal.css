@@ -554,11 +554,11 @@
 
 .portal-plan-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas:
-    "training nutrition"
-    "training recovery"
-    "training safety";
+    "training training"
+    "nutrition nutrition"
+    "recovery safety";
   gap: .85rem;
 }
 
@@ -610,6 +610,96 @@
 .portal-plan-meal span {
   color: var(--muted);
   line-height: 1.5;
+}
+
+.portal-nutrition-summary {
+  display: grid;
+  gap: .25rem;
+  border: 1px solid rgba(var(--mint-rgb), .24);
+  border-radius: .5rem;
+  background: rgba(var(--mint-rgb), .06);
+  padding: .75rem;
+}
+
+.portal-nutrition-summary strong {
+  color: var(--text);
+}
+
+.portal-nutrition-summary span,
+.portal-nutrition-prep {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.portal-nutrition-calendar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: .65rem;
+}
+
+.portal-nutrition-day {
+  display: grid;
+  align-content: start;
+  gap: .6rem;
+  min-height: 100%;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  padding: .75rem;
+}
+
+.portal-nutrition-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .5rem;
+  align-items: center;
+}
+
+.portal-nutrition-head strong {
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.portal-nutrition-date {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.7rem;
+  border-radius: 999px;
+  padding: .22rem .5rem;
+  background: rgba(var(--gold-rgb), .14);
+  color: var(--olive);
+  font-size: .74rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.portal-nutrition-meals {
+  display: grid;
+  gap: .45rem;
+}
+
+.portal-nutrition-meals div {
+  display: grid;
+  gap: .12rem;
+  border-top: 1px solid var(--line);
+  padding-top: .45rem;
+}
+
+.portal-nutrition-meals div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.portal-nutrition-meals strong {
+  color: var(--text);
+  font-size: .9rem;
+  line-height: 1.25;
+}
+
+.portal-nutrition-meals span {
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.42;
 }
 
 .portal-training-card {

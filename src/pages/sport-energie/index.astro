@@ -50,26 +50,48 @@ const weekPlan = [
   },
 ];
 
-const nutritionDay = [
+const nutritionWeek = [
   {
-    time: 'Morgen',
-    meal: 'Joghurt oder pflanzliche Alternative, Beeren, Hafer, Nuesse, Proteinquelle.',
-    purpose: 'Stabiler Start ohne Energieloch.',
+    day: 'Montag',
+    focus: 'Krafttag',
+    meals: 'Hafer-Protein-Fruehstueck, Bowl mit Reis und Gemuese, abends warmes Protein mit Kartoffeln.',
+    purpose: 'Mehr Kohlenhydrate rund ums Training.',
   },
   {
-    time: 'Mittag',
-    meal: 'Bowl aus Reis oder Kartoffeln, Gemuese, Olivenoel, Ei, Fisch, Tofu oder Huelsenfruechten.',
-    purpose: 'Mikronaehrstoffe und Trainingsenergie.',
+    day: 'Dienstag',
+    focus: 'Ausdauer',
+    meals: 'Leichtes Fruehstueck, mediterraner Teller mittags, Suppe oder Ofengemuese am Abend.',
+    purpose: 'Fluessigkeit und Elektrolyte bewusst einplanen.',
   },
   {
-    time: 'Vor Training',
-    meal: 'Banane, Dattel oder kleine Scheibe Brot; bei Bedarf Kaffee oder Mate.',
-    purpose: 'Leichter Fokus ohne schweren Magen.',
+    day: 'Mittwoch',
+    focus: 'Regeneration',
+    meals: 'Joghurt mit Beeren, Linsen- oder Tofu-Gericht, abends leicht und ballaststoffreich.',
+    purpose: 'Entzuendungsarme, gut vertraegliche Mahlzeiten.',
   },
   {
-    time: 'Abend',
-    meal: 'Protein, warmes Gemuese, moderate Kohlenhydrate, Magnesium- oder Kraeutertee-Routine.',
-    purpose: 'Regeneration und Schlafqualitaet.',
+    day: 'Donnerstag',
+    focus: 'Kraftaufbau',
+    meals: 'Protein pro Mahlzeit, Snack vor dem Training, danach Kohlenhydrate und Gemuese.',
+    purpose: 'Muskeln versorgen, ohne schwer im Magen zu liegen.',
+  },
+  {
+    day: 'Freitag',
+    focus: 'Energie-Reset',
+    meals: 'Einfacher Tagesplan mit vertraeglichen Lebensmitteln, genug Wasser und kleinem Pre-Workout.',
+    purpose: 'Stabile Energie fuer kurze intensive Reize.',
+  },
+  {
+    day: 'Samstag',
+    focus: 'Meal-Prep',
+    meals: 'Zwei Basisgerichte vorbereiten: Proteinquelle, Gemuese, Kartoffeln/Reis oder Huelsenfruechte.',
+    purpose: 'Die kommende Woche leichter machen.',
+  },
+  {
+    day: 'Sonntag',
+    focus: 'Ruhe',
+    meals: 'Ruhiger Start, vollwertiges Mittagessen, abends leichte Schlafroutine mit Tee.',
+    purpose: 'Regeneration und Planbarkeit.',
   },
 ];
 
@@ -153,15 +175,16 @@ const coachInputs = [
         <span class="badge mint">Ernaehrung</span>
         <h2>Training wirkt besser, wenn der Teller mitarbeitet.</h2>
         <p class="lede">
-          Die Ernaehrung muss nicht kompliziert sein. Entscheidend sind Wiederholbarkeit,
-          Protein, Mikronaehrstoffe, Fluessigkeit und Timing rund um Belastung.
+          Die Ernaehrung muss nicht kompliziert sein. Der Coach plant deshalb eine volle Woche:
+          wiederholbar, mit Protein, Mikronaehrstoffen, Fluessigkeit und Timing rund um Belastung.
         </p>
       </div>
       <div class="sport-nutrition-grid">
-        {nutritionDay.map((item, index) => (
+        {nutritionWeek.map((item, index) => (
           <article class="sport-nutrition" data-reveal={String((index % 3) + 1)}>
-            <span>{item.time}</span>
-            <h3>{item.meal}</h3>
+            <span>{item.day}</span>
+            <h3>{item.focus}</h3>
+            <small>{item.meals}</small>
             <p>{item.purpose}</p>
           </article>
         ))}
@@ -200,7 +223,7 @@ const coachInputs = [
         <div>
           <span>Nutrition</span>
           <strong>nutritionPlan</strong>
-          <small>Mahlzeiten, Hydration, Anpassungen</small>
+          <small>7-Tage-Kalender, Mahlzeiten, Hydration, Anpassungen</small>
         </div>
         <div>
           <span>Safety</span>
@@ -376,7 +399,8 @@ const coachInputs = [
 
     .sport-day p,
     .sport-day small,
-    .sport-nutrition p {
+    .sport-nutrition p,
+    .sport-nutrition small {
       margin: 0;
       color: var(--muted);
       line-height: 1.6;
