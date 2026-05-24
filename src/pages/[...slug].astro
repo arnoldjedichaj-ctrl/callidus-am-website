@@ -375,7 +375,7 @@ const articleJsonLd = article ? {
         <div class="legal-layout">
           <aside class="toc legal-toc" aria-label="Inhaltsverzeichnis">
             <span class="badge mint">Dokument</span>
-            {legalPage.sections.filter((section) => section.heading).slice(0, 12).map((section) => (
+            {legalPage.sections.filter((section) => section.heading).slice(0, 24).map((section) => (
               <a href={`#${slugify(section.heading)}`}>{section.heading}</a>
             ))}
           </aside>

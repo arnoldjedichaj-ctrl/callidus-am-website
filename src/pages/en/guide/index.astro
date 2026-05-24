@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import structure from '../../../data/site-structure.json';
-import { guideCopy, categoryForLang } from '../../../data/i18n.js';
+import { guideCopy, categoryForLang, articleForLang } from '../../../data/i18n.js';
 import { allArticles } from '../../../data/all-articles.js';
 
 const articles = allArticles;
@@ -17,7 +17,7 @@ const categorize = (page) => {
 };
 const grouped = structure.categories.map((category) => ({
   ...categoryForLang(category, lang),
-  articles: articles.filter((page) => categorize(page).slug === category.slug),
+  articles: articles.filter((page) => categorize(page).slug === category.slug).map((page) => articleForLang(page, lang)),
 }));
 ---
 <BaseLayout lang={lang} alternatePath="/ratgeber/" title={copy.title} description={copy.description}>
@@ -32,7 +32,7 @@ const grouped = structure.categories.map((category) => ({
     <section class={`section ${sectionIndex % 2 === 1 ? 'band' : 'tight'}`}>
       <div class="container split">
         <div class="sticky-note" data-reveal>
-          <span class={`badge ${category.accent}`}>{category.articles.length} {copy.articleLabel}</span>
+          <span class={`badge ${category.accent}`}>{category.articles.length} {category.articles.length === 1 ? copy.articleLabel : copy.articleLabelPlural}</span>
           <h2>{category.title}</h2>
           <p>{category.description}</p>
         </div>

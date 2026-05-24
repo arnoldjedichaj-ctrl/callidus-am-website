@@ -1,1166 +1,1086 @@
-﻿[
-    {
-        "url":  "https://www.callidus-am.de/",
-        "slug":  "home",
-        "title":  "callidus A\u0026M: Ihr Kompass für ganzheitliche Gesundheit \u0026 Wohlbefinden",
-        "description":  "Entdecken Sie bei callidus A\u0026M fundiertes Wissen für Körper, Geist \u0026 Seele. Finden Sie Ratgeber zu gesunder Ernährung, Sport, Stressabbau \u0026 mentaler Stärke.",
-        "h1":  [
-                   "Ihr Weg zu ganzheitlichem Wohlbefinden beginnt hier.",
-                   "Das ultimative Vitamin-Kompendium"
-               ],
-        "h2":  [
-                   "Ihre Gesundheit im Mittelpunkt",
-                   "Wissen für Ihr Wohlbefinden",
-                   "NEXUS – Dein Körper. Deine Daten. Deine Transformation.",
-                   "Ihre Gesundheit. Ganzheitlich gedacht",
-                   "Bio. Nachhaltig. Ehrlich"
-               ],
-        "imageCount":  6,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/88538fee-5de5-4ac9-b827-2e19ee0e8e23/l254,t723,w1493,h1277/image-768x657.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/a431c967-733b-4ea4-a73d-16b9189a927c/l0,t255,w2000,h1727/image-768x663.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/629bfa1e-edbd-4420-a4aa-b7a8c089c9f8/l19,t137,w1781,h1557/image-768x671.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/5646fff2-d8b7-4963-8b00-3f5b6f93eda8/l0,t253,w2000,h1747/image-768x671.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/f0b406a7-c356-4935-99d5-4fa5a26d9ff4/l86,t0,w1000,h1000/image-768x768.png"
-                   ],
-        "localHtml":  "source/content-html/home.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/10-minuten-morgen-workout/",
-        "slug":  "10-minuten-morgen-workout",
-        "title":  "10-Minuten Morgen-Workout für mehr Energie | callidus A\u0026M",
-        "description":  "Keine Zeit für Sport? Starten Sie Ihren Tag mit diesem effektiven 10-Minuten-Workout. Mehr Energie, besserer Fokus und ein fitter Körper – ganz ohne Geräte.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der 10-Minuten-Start: Das effektivste Morgen-Workout für mehr Energie am Tag"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/e317139a-f0ba-4421-9b13-212efcb458f4/l0,t0,w2000,h2000/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/10-minuten-morgen-workout.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/3-atemtechniken-fur-mehr-energie/",
-        "slug":  "3-atemtechniken-fur-mehr-energie",
-        "title":  "3 einfache Atemtechniken für Energie \u0026 Stressabbau | callidus A\u0026M",
-        "description":  "Entdecken Sie, wie Sie mit einfachen Atemübungen sofort Stress reduzieren und neue Energie tanken. Lernen Sie 3 Techniken für mehr Ruhe und Klarheit im Alltag.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Mehr als nur Atmen: 3 einfache Atemtechniken für sofort mehr Energie und Ruhe",
-                   "Vom Lesen zum Fühlen: Der nächste Schritt"
-               ],
-        "imageCount":  3,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/c1adcf35-ea49-45ca-bc50-24ecf20a73d7/l0,t0,w2000,h2000/image-1366x1366.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/91fbdb7b-11dc-4f0c-9371-0c9ba99cc5c5/l0,t126,w810,h1080/image.png"
-                   ],
-        "localHtml":  "source/content-html/3-atemtechniken-fur-mehr-energie.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ashwagandha/",
-        "slug":  "ashwagandha",
-        "title":  "Ashwagandha: Wirkung \u0026 Anwendung der Schlafbeere bei Stress | callidus A\u0026M",
-        "description":  "Was ist Ashwagandha und wie wirkt es? Entdecken Sie, wie dieses natürliche Adaptogen aus dem Ayurveda Ihnen helfen kann, Stress abzubauen und besser zu schlafen.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Was ist Ashwagandha? Wie die Schlafbeere bei Stress und innerer Unruhe helfen kann."
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/37ad76cb-ed13-4591-a032-d5adf7e3fdaf/l0,t0,w2000,h2000/image-1366x1366.jpg"
-                   ],
-        "localHtml":  "source/content-html/ashwagandha.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/biologische-verjungung/",
-        "slug":  "biologische-verjungung",
-        "title":  "Biologische Verjüngung: Wie Sie Ihre Zellen \u0026 Haut erneuern | callidus A\u0026M",
-        "description":  "Mehr als nur Hautpflege. Erfahren Sie, wie Sie durch die richtigen Nährstoffe und Gewohnheiten den Prozess der biologischen Verjüngung von innen heraus unterstützen können.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Biologische Verjüngung: Ein praktischer Leitfaden zur Erneuerung von innen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/2bc7784f-598f-4087-a51e-76e83819c684/l153,t43,w1810,h1810/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/biologische-verjungung.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/bitte-bestaetigen/",
-        "slug":  "bitte-bestaetigen",
-        "title":  "bitte-bestaetigen",
-        "description":  "",
-        "h1":  [
-                   "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!"
-               ],
-        "h2":  [
-                   "Vielen Dank für Ihre Anmeldung. Ihr umfassendes Gratis-Paket (Kompendium, Journal \u0026 3 Video-Module) ist fast freigeschaltet. Bitte prüfen Sie jetzt Ihr Postfach. Aus Datenschutzgründen (DSGVO) benötigen wir Ihre einmalige Bestätigung."
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/bitte-bestaetigen.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/blockchain-ihre-gesundheit/",
-        "slug":  "blockchain-ihre-gesundheit",
-        "title":  "Entdecken Sie, wie Blockchain Ihre Gesundheitsdaten sicherer macht",
-        "description":  "Blockchain Gesundheitswesen, Patientendaten Sicherheit, E-Health Blockchain, Medikamentenfälschung verhindern, digitale Gesundheitsakte, Smart Contracts Medizin, Gesundheitsdaten teilen, Zukunft der M",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Blockchain im Gesundheitswesen: Die Zukunft Ihrer Daten und Diagnosen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f8698ec-35a2-48ca-b4fc-bea569579d0e/l149,t63,w1062,h903/image.png"
-                   ],
-        "localHtml":  "source/content-html/blockchain-ihre-gesundheit.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/darmgesundheit-mit-akazienfaser/",
-        "slug":  "darmgesundheit-mit-akazienfaser",
-        "title":  "Darmgesundheit: Akazienfaser \u0026 Probiotika für Ihre Balance | callidus A\u0026M",
-        "description":  "Ein gesunder Darm ist der Schlüssel zu Wohlbefinden. Erfahren Sie, wie lösliche Ballaststoffe wie Akazienfaser als Präbiotika Ihre Darmflora gezielt unterstützen.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Darmgesundheit: Wie Akazienfaser und Probiotika Ihre innere Balance stärken"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/399a3755-a79c-4a61-9ece-79a6b164d473/l23,t0,w1873,h1873/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/darmgesundheit-mit-akazienfaser.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/das-diktat-ihrer-gedanken/",
-        "slug":  "das-diktat-ihrer-gedanken",
-        "title":  "Ihr Mindset entscheidet über Erfolg und Scheitern. Entdecken Sie, wie Sie die Kontrolle über Ihre Ge",
-        "description":  "Mindset ändern, Gedanken kontrollieren, limitierende Glaubenssätze, mentales Training, Erfolg Mindset, negative Gedanken, Psychologie des Erfolgs, Selbstsabotage, Geist und Seele, callidus A\u0026M Mindset",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Das Diktat Ihrer Gedanken: Warum Ihr Mindset Ihr größter Feind – oder Ihr ultimativer Verbündeter ist"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bb983e34-3a22-4bf6-8483-5cd40f059364/l0,t77,w1024,h871/image.png"
-                   ],
-        "localHtml":  "source/content-html/das-diktat-ihrer-gedanken.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/das-protokoll-zur-neuro-resilienz/",
-        "slug":  "das-protokoll-zur-neuro-resilienz",
-        "title":  "Demenz \u0026 Depression vorbeugen: Das Protokoll zur Neuro-Resilienz | callidus A\u0026M",
-        "description":  "Die Vorstellung, die Kontrolle über unseren Geist zu verlieren, gehört zu den größten Ängsten unserer Zeit. Doch die Wissenschaft zeigt immer deutlicher: Wir sind dem nicht hilflos ausgeliefert. Entde",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Das Protokoll zur Neuro-Resilienz: Wie wir unser Gehirn aktiv vor Demenz und Depression schützen können"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bb3fc7da-fd68-4a55-ba00-4ca401fb605b/l137,t137,w1726,h1726/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/das-protokoll-zur-neuro-resilienz.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/datenschutz/",
-        "slug":  "datenschutz",
-        "title":  "Datenschutz",
-        "description":  "",
-        "h1":  [
-                   "Datenschutz"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/datenschutz.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-digitale-detox/",
-        "slug":  "der-digitale-detox",
-        "title":  "Wie eine bewusste Auszeit Ihrem Gehirn neue Superkräfte verleiht",
-        "description":  "Digitaler Detox, mentale Klarheit, Gehirn Reset, Konzentration steigern, Kreativität fördern, digitales Wohlbefinden, Handy Auszeit, Stress durch Bildschirmzeit, callidus A\u0026M Geist.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der digitale Detox: Wie eine bewusste Auszeit Ihrem Gehirn neue Superkräfte verleiht"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/29bed86e-73f5-4300-877f-c8910c4d3c30/l0,t107,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/der-digitale-detox.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-energie-reset/",
-        "slug":  "der-energie-reset",
-        "title":  "Wie 15 Minuten tägliche Bewegung Ihren Tag revolutionieren",
-        "description":  "Energie Reset, 15 Minuten Bewegung, tägliche Bewegung, kurze Workouts, Energie im Alltag, Stressabbau Bewegung, Konzentration steigern, schnelle Fitness, callidus A\u0026M Energie.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der \"Energie-Reset\": Wie 15 Minuten tägliche Bewegung Ihren Tag revolutionieren"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/7c721296-6245-45cb-9460-ddda78139803/l0,t96,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/der-energie-reset.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-ganzheitliche-bodybuilding-plan/",
-        "slug":  "der-ganzheitliche-bodybuilding-plan",
-        "title":  "Der ganzheitliche Trainingsplan für Muskelaufbau | callidus A\u0026M",
-        "description":  "Mehr als nur Gewichte heben. Entdecken Sie unseren wissenschaftlich fundierten Plan für maximalen Muskelaufbau durch intelligentes Training, gezielte Ernährung und mentale Stärke.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der ganzheitliche Ansatz für maximalen Muskelaufbau: Ein Leitfaden für ambitionierte Athleten"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/e86f1034-ab13-4d60-8d7f-05a924f85e91/l0,t88,w2000,h1701/image-1366x1162.png"
-                   ],
-        "localHtml":  "source/content-html/der-ganzheitliche-bodybuilding-plan.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-innere-akku/",
-        "slug":  "der-innere-akku",
-        "title":  "Wie Ernährung und Schlaf Ihre Trainingsleistung steuern",
-        "description":  "Schlaf Training, Ernährung Sport, Regeneration Sport, Trainingsleistung steigern, Energielevel optimieren, Mikronährstoffe Sport, Sporternährung, Schlafqualität, innerer Akku, callidus A\u0026M Leistung.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der innere Akku: Wie Ernährung und Schlaf Ihre Trainingsleistung steuern (und nicht nur das Training selbst)"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/30a679e9-7773-4071-b2ba-15e8b36a1008/l0,t77,w1024,h871/image.png"
-                   ],
-        "localHtml":  "source/content-html/der-innere-akku.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-schlaf-reset/",
-        "slug":  "der-schlaf-reset",
-        "title":  "Der SchlBesser schlafen: 5 Abendrituale für einen erholsamen Schlaf | callidus A\u0026Maf-Reset",
-        "description":  "Können Sie nicht einschlafen oder wachen oft auf? Entdecken Sie 5 einfache Abendrituale, die Ihnen helfen, zur Ruhe zu kommen und Ihre Schlafqualität zu verbessern.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der Schlaf-Reset: Wie Sie mit 5 einfachen Abendritualen wieder erholsam schlafen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/6ef7efa2-d0e7-4bc1-8244-1ba092bdbdaf/l149,t15,w1848,h1848/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/der-schlaf-reset.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/der-unsichtbare-teller/",
-        "slug":  "der-unsichtbare-teller",
-        "title":  "Entdecken Sie den \"unsichtbaren Teller\": Es geht nicht nur darum, WAS Sie essen, sondern WIE. Verste",
-        "description":  "Achtsames Essen, intuitives Essen, Essgewohnheiten, Verdauung verbessern, Mindset Ernährung, Stress und Essen, ganzheitliche Ernährung, Nährstoffaufnahme, Essen und Wohlbefinden, callidus A\u0026M Ernährun",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der unsichtbare Teller: Warum das, WAS wir essen, nur die halbe Miete ist – und WIE wir essen, alles verändert"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/3ac31ce1-9897-4528-a93e-a5eada54787e/l0,t96,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/der-unsichtbare-teller.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/die-biologische-uhr-verlangsamen/",
-        "slug":  "die-biologische-uhr-verlangsamen",
-        "title":  "Gesundes Altern: Wie wir die biologische Uhr verlangsamen können | callidus A\u0026M",
-        "description":  "Ist Altern eine Krankheit? Entdecken Sie die Wissenschaft der Langlebigkeit (Longevity) und erfahren Sie, wie Ansätze wie Senolytika und NAD+ den Alterungsprozess verlangsamen.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Gesundes Altern: Wie die Wissenschaft lernt, unsere biologische Uhr zu verlangsamen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/eaa504fa-fb03-4355-809a-28615515ed12/l180,t23,w1818,h1818/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/die-biologische-uhr-verlangsamen.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/die-kraft-der-dankbarkeit/",
-        "slug":  "die-kraft-der-dankbarkeit",
-        "title":  "Wie ein einfaches \"Danke\" Ihr emotionales Wohlbefinden stärkt",
-        "description":  "Dankbarkeit, emotionales Wohlbefinden, Dankbarkeit stärken, Glück durch Dankbarkeit, Resilienz, mentale Gesundheit, positive Psychologie, Dankbarkeitsübungen, innere Zufriedenheit, callidus A\u0026M Seele.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Die Kraft der Dankbarkeit: Wie ein einfaches \"Danke\" Ihr emotionales Wohlbefinden stärkt"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/9d0d841d-1b3a-4738-bd7d-cc88ca715a7f/l0,t96,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/die-kraft-der-dankbarkeit.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/die-kraft-des-magnesiums/",
-        "slug":  "die-kraft-des-magnesiums",
-        "title":  "Die Kraft des Magnesiums: Wichtig für Muskeln \u0026 Nerven | callidus A\u0026M",
-        "description":  "Müde, verspannt oder unruhig? Erfahren Sie, warum ein Magnesiummangel die Ursache sein könnte und wie Sie Ihre Speicher mit den richtigen Lebensmitteln auffüllen.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Die Kraft des Magnesiums: Warum dieses Mineral für Muskeln und Nerven unerlässlich ist"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/16755d43-e1d9-4dc8-9e33-06c98e5a12e0/l137,t20,w1855,h1855/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/die-kraft-des-magnesiums.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/die-kunst-des-mentalen-resets/",
-        "slug":  "die-kunst-des-mentalen-resets",
-        "title":  "Ihr Kopf ist voll? Entdecken Sie 5 einfache, 5-minütige Übungen",
-        "description":  "Mentaler Reset, Kopf frei bekommen, Stressabbau 5 Minuten, schnelle Entspannung, Achtsamkeitsübungen, Atemübungen Stress, mentale Klarheit, innere Ruhe, callidus A\u0026M Gehirn.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Die Kunst des mentalen Resets: 5 Übungen, um den Kopf in 5 Minuten frei zu bekommen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/f09322c5-cefc-4717-a203-bbd26892545f/l0,t96,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/die-kunst-des-mentalen-resets.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/die-personalisierte-revolution/",
-        "slug":  "die-personalisierte-revolution",
-        "title":  "Personalisierte Gesundheit: Wie Gen-Analyse \u0026 KI die Medizin revolutionieren | callidus A\u0026M",
-        "description":  "Die Zukunft ist persönlich. Erfahren Sie, wie DNA-basierte Ernährung (Nutrigenomik) und KI-Analysen die Gesundheitsvorsorge für immer verändern werden.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Die stille Revolution: Wie personalisierte Biologie unsere Gesundheit neu definiert."
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/181fae69-b926-4ae9-8306-50c4b429368d/l52,t0,w953,h953/image.png"
-                   ],
-        "localHtml":  "source/content-html/die-personalisierte-revolution.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/digitale-alchemie/",
-        "slug":  "digitale-alchemie",
-        "title":  "Digitale Alchemie: Wie Neuro-Tech unsere Emotionen steuert | callidus A\u0026M",
-        "description":  "Die Zukunft ist fühlbar. Erfahren Sie, wie tragbare Neuro-Technologie und digitale Therapeutika uns ermöglichen, Stress, Fokus und Kreativität in Echtzeit zu steuern.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Digitale Alchemie: Wie wir lernen, unsere Gehirnwellen und Emotionen in Echtzeit zu steuern"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/60bcdf4d-daa9-4e60-88c9-10db805bbb2d/l0,t105,w2000,h1701/image-1366x1162.png"
-                   ],
-        "localHtml":  "source/content-html/digitale-alchemie.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/download/",
-        "slug":  "download",
-        "title":  "Download Vitamin Kompensium",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Herzlichen Dank für Ihre Anmeldung!"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/l141,t141,w743,h743/image.png"
-                   ],
-        "localHtml":  "source/content-html/download.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/gehen-als-training/",
-        "slug":  "gehen-als-training",
-        "title":  "Gehen als Training: Warum Spazierengehen so effektiv ist | callidus A\u0026M",
-        "description":  "Entdecken Sie die überraschenden gesundheitlichen Vorteile des Gehens. Warum ein täglicher Spaziergang Gelenke schont, Stress abbaut und Ihnen beim Abnehmen helfen kann.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Gehen statt Laufen: Warum Spazierengehen das am meisten unterschätzte Training ist"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/43aa046e-8d9d-4ab5-8d9d-b9939401c70e/l0,t0,w2000,h2000/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/gehen-als-training.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/gesundheit-im-familien-alltag/",
-        "slug":  "gesundheit-im-familien-alltag",
-        "title":  "Gesund leben mit Familie \u0026 Job: Der Full-Time-Job Gesundheit meistern | callidus A\u0026M",
-        "description":  "3 Stunden Sport, veganes Kochen für alle, Kinder und ein Job: Ist ein gesundes Leben im Alltag nur ein Wunschtraum? Wir zeigen, wie Sie Prioritäten setzen und gewinnen.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Der unsichtbare \"Full-Time-Job\" Gesundheit: Wie wir im Alltag von Familie und Beruf dennoch gewinnen können"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/89d3d741-a63b-406b-a7f6-052972f7980f/l57,t2,w1840,h1840/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/gesundheit-im-familien-alltag.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ihr-digitaler-gesundheits-butler/",
-        "slug":  "ihr-digitaler-gesundheits-butler",
-        "title":  "Der digitale Gesundheits-Butler: Wie KI \u0026 Roboter uns begleiten | callidus A\u0026M",
-        "description":  "Die Zukunft der Gesundheit ist persönlich und immer verfügbar. Erfahren Sie, wie KI als Ihr digitaler Butler und empathischer Coach Ihr Wohlbefinden revolutionieren wird.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Ihr digitaler Gesundheits-Butler: Wie KI \u0026 Roboter zu unseren persönlichen Begleitern werden"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/c69eb68e-5c3a-42c6-95d8-db5d309bcf43/l14,t167,w1825,h1825/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/ihr-digitaler-gesundheits-butler.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/impressum/",
-        "slug":  "impressum",
-        "title":  "Impressum",
-        "description":  "",
-        "h1":  [
-                   "Impressum"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/impressum.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/jenseits-der-pille/",
-        "slug":  "jenseits-der-pille",
-        "title":  "Die Zukunft der Medizin: Jenseits der Pille | callidus A\u0026M",
-        "description":  "Von smarten Implantaten, die Werte in Echtzeit messen, bis hin zu 3D-gedruckten Organen. Entdecken Sie die revolutionären Behandlungsmethoden der Zukunft.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Jenseits der Pille: Die revolutionären Behandlungsmethoden der Zukunft"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/2f7f5a63-da65-491e-a24e-196b0a8c0525/l0,t0,w1889,h1889/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/jenseits-der-pille.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/kurs-mitgliederbereich/",
-        "slug":  "kurs-mitgliederbereich",
-        "title":  "kurs-mitgliederbereich",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "WILLKOMMEN IM 7-TAGE STRESS-RESET: IHR VOLLER ZUGANG IST FREIGESCHALTET.",
-                   "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
-               ],
-        "imageCount":  3,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/fb764c60-34ec-4bb1-a526-15a9f61f1180/l0,t82,w543,h501/image.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/video-placeholder.png/image-768x768.png"
-                   ],
-        "localHtml":  "source/content-html/kurs-mitgliederbereich.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/lexicon-vitae/",
-        "slug":  "lexicon-vitae",
-        "title":  "Glossarium callidus A\u0026M",
-        "description":  "",
-        "h1":  [
-                   "Lexicon Vitae – Das Wörterbuch des Lebens von callidus A\u0026M",
-                   "Willkommen im Lexicon Vitae von callidus A\u0026M!",
-                   "B",
-                   ".",
-                   "Balans Vitae",
-                   "Cibus Sanus",
-                   "Conscientia Acta",
-                   "Consilium Certum",
-                   "Corpus Sanum",
-                   "Fortis Animus",
-                   "Fortis Corpus",
-                   "Initium Facile",
-                   "Innovatio Vitae",
-                   "Prospicio",
-                   "Resilientia Animi",
-                   "Resonantia Telluris",
-                   "Salus",
-                   "Sol Invictus",
-                   "Visus Acutus"
-               ],
-        "h2":  [
-                   "Acumen Mentis",
-                   "Callidus",
-                   "Donum Cordis",
-                   "Focus Auctus",
-                   "Gratia Animi",
-                   "Inceptum Novum",
-                   "Levitas Animi",
-                   "Libertas Mentis",
-                   "Mens Sana",
-                   "Murmur Interius",
-                   "Nexus",
-                   "Pax Mentis",
-                   "Protego Cellula",
-                   "Robur Naturae",
-                   "Sapientia",
-                   "Spiritus Sanus",
-                   "Status Quo Ante",
-                   "Undae Mentis",
-                   "Via Ad Salutem",
-                   "Vigor Vitae"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/218940fa-b27e-4c33-933a-63e3e7de4b50/l0,t354,w1280,h742/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/lexicon-vitae.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/metformin-vs-spermidin/",
-        "slug":  "metformin-vs-spermidin",
-        "title":  "Metformin \u0026 Spermidin: Die Wissenschaft hinter dem langen Leben | callidus A\u0026M",
-        "description":  "Ein Medikament und ein Naturstoff im Fokus der Anti-Aging-Forschung. Entdecken Sie, wie Metformin und Spermidin unsere zelluläre Langlebigkeit beeinflussen könnten.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Metformin \u0026 Spermidin: Der Wettlauf um die Formel für ein langes, gesundes Leben"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/63e95552-976a-409b-8f4a-0cf5883343b8/l0,t45,w2000,h1764/image-1366x1205.png"
-                   ],
-        "localHtml":  "source/content-html/metformin-vs-spermidin.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/modul-4/",
-        "slug":  "modul-4",
-        "title":  "Modul 4",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "🗣️ Modul 4 – Fokus auf Sprache \u0026 Selbstbild",
-                   "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/modul-4.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/modul-5/",
-        "slug":  "modul-5",
-        "title":  "Modul 5",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "🍃 Modul 5 – Loslassen",
-                   "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/modul-5.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/nachhaltigkeit/",
-        "slug":  "nachhaltigkeit",
-        "title":  "Nachhaltigkeit",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Unsere Verantwortung: Gesundheit für uns und unseren Planeten"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/58cbb558-ad07-44b1-be0e-62397a7521a7/l70,t45,w1820,h1820/image-768x768.png"
-                   ],
-        "localHtml":  "source/content-html/nachhaltigkeit.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/nachhaltigkeit-text/",
-        "slug":  "nachhaltigkeit-text",
-        "title":  "Nachhaltigkeit text",
-        "description":  "",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Unsere Verantwortung: Gesundheit für uns und unseren Planeten"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/45c8cdab-dd0c-4bd4-95eb-12c4c1c54778/l135,t0,w1080,h1080/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/nachhaltigkeit-text.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/nexus-app/",
-        "slug":  "nexus-app",
-        "title":  "NEXUS App | KI-Ernährungstracker \u0026 Fitness-Coach in einem",
-        "description":  "Tracke deine Ernährung per Foto-KI, synchronisiere Google Fit \u0026 Apple Health und erhalte personalisierte Trainingspläne. Jetzt die NEXUS App entdecken!",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "NEXUS – Die intelligente Gesundheits-Couch für deine Transformation"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/82a627dc-591f-4d16-99b8-b6d4cb3292cd/l17,t17,w456,h456/image.png"
-                   ],
-        "localHtml":  "source/content-html/nexus-app.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/nutzungsbedingungen/",
-        "slug":  "nutzungsbedingungen",
-        "title":  "Nutzungsbedingungen",
-        "description":  "",
-        "h1":  [
-                   "Nutzungsbedingungen"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/nutzungsbedingungen.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/protein-wissen-fur-kraftaufbau/",
-        "slug":  "protein-wissen-fur-kraftaufbau",
-        "title":  "Pflanzliches Protein: Wie Sie effektiv Kraft aufbauen | callidus A\u0026M",
-        "description":  "Entdecken Sie die Kraft von pflanzlichem Protein. Erfahren Sie, warum Proteine für Muskelaufbau und Energie entscheidend sind und welche veganen Quellen am besten sind.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Protein-Wissen: Wie pflanzliches Protein Ihnen effektiv beim Kraftaufbau hilft"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/6a038b9d-998f-41c0-a8d4-cfe08e823eda/l119,t0,w1855,h1855/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/protein-wissen-fur-kraftaufbau.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ratgeber/",
-        "slug":  "ratgeber",
-        "title":  "Ratgeber für ganzheitliche Gesundheit | callidus A\u0026M",
-        "description":  "Entdecken Sie fundiertes Wissen rund um Naturheilkunde, Ernährung und mentales Wohlbefinden. Unser Ratgeber bietet Ihnen praktische Tipps und Experten-Einblicke.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Ihr Kompass für ganzheitliches Wohlbefinden",
-                   "Wissen für Ihr Wohlbefinden"
-               ],
-        "imageCount":  6,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/e765d0d3-76dd-4fe2-b53c-3e8c1ee19bc9/l0,t0,w2000,h2000/image-768x768.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/88538fee-5de5-4ac9-b827-2e19ee0e8e23/l254,t723,w1493,h1277/image-768x657.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/a431c967-733b-4ea4-a73d-16b9189a927c/l0,t255,w2000,h1727/image-768x663.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/629bfa1e-edbd-4420-a4aa-b7a8c089c9f8/l19,t137,w1781,h1557/image-768x671.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/5646fff2-d8b7-4963-8b00-3f5b6f93eda8/l0,t253,w2000,h1747/image-768x671.png"
-                   ],
-        "localHtml":  "source/content-html/ratgeber.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ratgeber/geist-and-seele/",
-        "slug":  "ratgeber-geist-and-seele",
-        "title":  "Mentale Balance \u0026 Stressabbau: Tipps für die Seele | callidus A\u0026M",
-        "description":  "Finden Sie innere Ruhe. Unser Ratgeber für Geist \u0026 Seele bietet Techniken zur Stressbewältigung, Achtsamkeit und für mehr mentale Stärke im Alltag.",
-        "h1":  [
-                   "Ratgeber: Geist \u0026 Seele"
-               ],
-        "h2":  [
-                   "Das Protokoll zur Neuro-Resilienz: Wie wir unser Gehirn aktiv vor Demenz und Depression schützen können",
-                   "Das Diktat Ihrer Gedanken: Warum Ihr Mindset Ihr größter Feind – oder Ihr ultimativer Verbündeter ist",
-                   "Praxis-Impuls: Eine Technik in Aktion"
-               ],
-        "imageCount":  9,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/b27a31a4-e053-4b01-bf8e-2f56a5e7f87e/l334,t0,w1024,h1024/image-768x768.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/e898d39e-cba1-48f9-9edb-e8f9442dbed6/l0,t0,w1910,h1910/image-768x768.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/b8c8cb3c-c11b-4460-b28e-3307e9712aa2/l241,t101,w1759,h1759/image-768x768.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/1b642890-9ccf-4369-be6c-4dd7cb573abf/l430,t299,w1384,h1384/image-1366x1366.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/f9c954d9-e59f-4c14-8acb-96871bb2c587/l54,t54,w1172,h1172/image-768x768.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/d605d663-1b74-4467-9809-873574a70b96/l4,t45,w1145,h1145/image-768x768.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/7d773992-84ce-4889-8aff-525de7d7cfcf/l54,t54,w1172,h1172/image-768x768.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/c4ff602d-1570-476d-817d-c493b304843b/l66,t66,w1148,h1148/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/ratgeber-geist-and-seele.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ratgeber/korper-and-ernahrung/",
-        "slug":  "ratgeber-korper-and-ernahrung",
-        "title":  "Gesunde Ernährung \u0026 Nährstoffe für den Körper | callidus A\u0026M",
-        "description":  "Erfahren Sie alles über eine gesunde Ernährung. Von Vitaminen und Mineralstoffen bis zur Darmgesundheit – hier finden Sie fundiertes Wissen für Ihren Körper.",
-        "h1":  [
-                   "Ratgeber: Körper \u0026 Ernährung"
-               ],
-        "h2":  [
-                   "Der unsichtbare Teller: Warum das, WAS wir essen, nur die halbe Miete ist – und WIE wir essen, alles verändert"
-               ],
-        "imageCount":  8,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/2b61ad9e-e8dd-43dc-8ac7-303df31cc9b7/l0,t33,w1910,h1843/image-768x741.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/e7cd8739-d093-45ed-a998-3d67511f29fb/l68,t0,w1871,h1798/image-768x738.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/3a68214e-0c37-43c9-96cc-b50a52745b53/l25,t6,w1910,h1841/image-768x740.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/c7055737-14c7-49ff-8766-134271fd56de/l0,t55,w1280,h1170/image.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/f2cbd407-ec54-49a1-87be-0979b6b01c09/l90,t0,w1910,h1843/image-768x741.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/147c274e-9268-48a5-85fd-26dde2323851/l89,t31,w1910,h1836/image-768x738.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/a1e65bad-ca1c-41da-961b-171af1b5efc0/l62,t49,w1871,h1803/image-768x740.png"
-                   ],
-        "localHtml":  "source/content-html/ratgeber-korper-and-ernahrung.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ratgeber/sport-and-energie/",
-        "slug":  "ratgeber-sport-and-energie",
-        "title":  "Fitness, Bewegung \u0026 neue Energie: Ihr Sport-Ratgeber | callidus A\u0026M",
-        "description":  "Tanken Sie neue Energie! Entdecken Sie effektive Workouts, Tipps für mehr Motivation und wie Sie durch gezielte Bewegung Ihre Fitness und Vitalität steigern.",
-        "h1":  [
-                   "Ratgeber: Sport \u0026 Energie"
-               ],
-        "h2":  [
-                   "Das \"Gesundheits-Dilemma\": Warum ein optimales Leben ein Full-Time-Job ist (und wie es trotzdem geht)",
-                   "Sport als Stress-Killer: Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt",
-                   "Der ganzheitliche Ansatz für maximalen Muskelaufbau: Ein Leitfaden für ambitionierte Athleten"
-               ],
-        "imageCount":  9,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/1a652eb7-104f-4c14-a645-913be6bd278e/l0,t35,w2000,h1930/image-768x741.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/84ce8647-0f56-47c9-84dc-8f2c095aa586/l61,t77,w1832,h1760/image-768x738.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/21260f2f-3dc5-41ab-8095-4ab5dec45e86/l0,t37,w2000,h1926/image-768x740.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/a67b5e68-05ee-4aea-9771-4ad43fc843b2/l0,t2,w1024,h936/image.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/96080aad-731e-483e-9204-050950d13c50/l81,t100,w1119,h1080/image-768x741.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/ccabf08a-87f9-4449-aed7-d4f6321d2f8d/l0,t0,w1280,h1230/image-768x738.jpg",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/770a578a-c502-4424-b433-0b0fb5128197/l0,t19,w1024,h986/image-768x740.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/9db61855-757b-4313-88ee-e740c680fac5/l0,t39,w2000,h1829/image-1366x1249.png"
-                   ],
-        "localHtml":  "source/content-html/ratgeber-sport-and-energie.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/ratgeber/zukunft-der-gesundheit/",
-        "slug":  "ratgeber-zukunft-der-gesundheit",
-        "title":  "Zukunft der Gesundheit: KI, Gen-Analyse \u0026 Langlebigkeit | callidus A\u0026M",
-        "description":  "Ein Blick in die Zukunft: Entdecken Sie, wie KI, personalisierte Medizin und Biohacking unsere Gesundheit revolutionieren werden. Fundierte Einblicke und Analysen.",
-        "h1":  [
-                   "Ratgeber: Zukunft der Gesundheit"
-               ],
-        "h2":  [
-                   "Gesundes Altern: Wie die Wissenschaft lernt, unsere biologische Uhr zu verlangsamen",
-                   "Blockchain im Gesundheitswesen: Ihre Daten sicher, smart und in Ihrer Hand"
-               ],
-        "imageCount":  9,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/7458b4b9-3903-45a3-8db8-4c482ca9a903/l0,t160,w1871,h1805/image-768x741.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/395bac8f-725c-49d6-a1d3-02764dec67bf/l73,t221,w1795,h1725/image-768x738.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/5c6c8807-6ca4-46c3-b03b-510efd1eea53/l40,t0,w1871,h1803/image-768x740.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/56a1ce6e-8af4-4c1c-b591-ebfa303fc6a1/l111,t0,w1889,h1889/image-1366x1366.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/896f4e20-1072-4ff4-a4de-c6ac16edcf0d/l36,t93,w1871,h1805/image-768x741.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/8ae90695-e69f-4791-9cbf-b006c5cf4945/l168,t73,w1832,h1760/image-768x738.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/6bc7ab6e-314e-4118-ab90-d516a061c659/l65,t98,w1871,h1803/image-768x740.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/1be7da4f-86fb-4624-a900-bea905bdeac3/l0,t0,w1024,h1024/image.png"
-                   ],
-        "localHtml":  "source/content-html/ratgeber-zukunft-der-gesundheit.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/reset-hub/",
-        "slug":  "reset-hub",
-        "title":  "",
-        "description":  "",
-        "h1":  [
-                   "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT."
-               ],
-        "h2":  [
-                   "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
-                   "Ihr Sofortstart: 3 Video-Module aus dem Premium-Kurs"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/fb764c60-34ec-4bb1-a526-15a9f61f1180/l0,t82,w543,h501/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/reset-hub.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/sport-als-stress-killer/",
-        "slug":  "sport-als-stress-killer",
-        "title":  "Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt",
-        "description":  "Sport Stress Killer, Bewegung Stressabbau, mentale Gesundheit Sport, Energie durch Sport, Stressmanagement Bewegung, Gehirn aufräumen Sport, natürliche Stresshilfe, Wohlbefinden durch Bewegung, callid",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Sport als Stress-Killer: Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/15658024-5721-4392-bf2a-ee5225cdee5e/l0,t96,w1280,h1089/image.jpg"
-                   ],
-        "localHtml":  "source/content-html/sport-als-stress-killer.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/stress-reset-kurs/",
-        "slug":  "stress-reset-kurs",
-        "title":  "Stress Reset Kurs",
-        "description":  "",
-        "h1":  [
-                   "Was dich im 7-Tage-Stress-Reset erwartet"
-               ],
-        "h2":  [
-                   "Ein sanfter Weg zu mehr Ruhe, Klarheit \u0026 Energie",
-                   "Vom Wissen zur tiefen Erfahrung"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/b076dea2-a190-4db0-bbe8-ae6244b2fe60/l3,t298,w807,h969/image.png"
-                   ],
-        "localHtml":  "source/content-html/stress-reset-kurs.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/uber-uns/",
-        "slug":  "uber-uns",
-        "title":  "Über uns: Unsere Philosophie \u0026 Expertise | callidus A\u0026M",
-        "description":  "Erfahren Sie die Geschichte hinter callidus A\u0026M. Entdecken Sie, wie langjährige Erfahrung in der Naturheilkunde unsere Mission für ganzheitliche Gesundheit prägt.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Unsere Geschichte: Gesundheit als Herzensangelegenheit"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/l214,t214,w596,h596/image.png"
-                   ],
-        "localHtml":  "source/content-html/uber-uns.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/unsere-empfehlungen/",
-        "slug":  "unsere-empfehlungen",
-        "title":  "Geprüfte Produkte für Körper, Geist \u0026 Seele | callidus A\u0026M Empfehlungen",
-        "description":  "Entdecken Sie unsere handverlesene Auswahl an empfohlenen Produkten \u0026 Kursen. Finden Sie das Beste für Ernährung, mentales Wohlbefinden und Fitness. Ihre Quelle für vertrauenswürdige Gesundheit.",
-        "h1":  [
-                   "Unsere Empfehlungen: Produkte, die wir selbst nutzen und lieben"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f65189c-afa5-443e-8fc6-fec35134ab53/l0,t0,w2000,h2000/image-768x768.png"
-                   ],
-        "localHtml":  "source/content-html/unsere-empfehlungen.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/unsere-empfehlungen/geist-and-seele-1/",
-        "slug":  "unsere-empfehlungen-geist-and-seele-1",
-        "title":  "Geprüfte Produkte für Körper, Geist \u0026 Seele | callidus A\u0026M Empfehlungen",
-        "description":  "Finden Sie innere Ruhe und Balance. Entdecken Sie unsere Empfehlungen für besseren Schlaf, Stressabbau, Meditation und mentales Wohlbefinden.",
-        "h1":  [
-                   "Unsere Empfehlung: Geist \u0026 Seele"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/unsere-empfehlungen-geist-and-seele-1.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/unsere-empfehlungen/korper-and-ernahrung/",
-        "slug":  "unsere-empfehlungen-korper-and-ernahrung",
-        "title":  "Produkte für Körper \u0026 Ernährung: Unsere Empfehlungen | callidus A\u0026M",
-        "description":  "Entdecken Sie unsere geprüften Empfehlungen für Ihre körperliche Gesundheit. Finden Sie die besten Produkte für Nährstoffe, Vitamine und Darmgesundheit.",
-        "h1":  [
-                   "Unsere Empfehlungen: Körper \u0026 Ernährung"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/unsere-empfehlungen-korper-and-ernahrung.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/unsere-empfehlungen/sport-and-energie/",
-        "slug":  "unsere-empfehlungen-sport-and-energie",
-        "title":  "Produkte für Sport \u0026 Energie: Unsere Empfehlungen | callidus A\u0026M",
-        "description":  "Steigern Sie Ihre Leistung und Regeneration. Hier finden Sie unsere Top-Empfehlungen für Fitness, Muskelaufbau und mehr Energie im Alltag.",
-        "h1":  [
-                   "Unsere Empfehlungen: Sport \u0026 Energie"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/unsere-empfehlungen-sport-and-energie.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/unsere-empfehlungen/zukunft-der-gesundheit/",
-        "slug":  "unsere-empfehlungen-zukunft-der-gesundheit",
-        "title":  "Produkte für Zukunft der Gesundheit: Unsere Empfehlungen | callidus A\u0026M",
-        "description":  "Entdecken Sie unsere geprüften Empfehlungen für Produkte der Gesundheit, die Sie in die Zukunft bringen.",
-        "h1":  [
-                   "Unsere Empfehlungen: Zukunft der Gesundheit"
-               ],
-        "h2":  [
-
-               ],
-        "imageCount":  1,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
-                   ],
-        "localHtml":  "source/content-html/unsere-empfehlungen-zukunft-der-gesundheit.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/vitamin-a-wachter-der-sehkraft/",
-        "slug":  "vitamin-a-wachter-der-sehkraft",
-        "title":  "Vitamin A: Wächter der Sehkraft \u0026 des Immunsystems | callidus A\u0026M",
-        "description":  "Entdecken Sie, warum Vitamin A für Ihre Augen und Ihr Immunsystem so wichtig ist. Erfahren Sie alles über die besten Quellen und die Anzeichen eines Mangels.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Vitamin A: Der Wächter der Sehkraft und des Immunsystems"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/395dd840-07b3-4298-900d-3e85171d8546/l0,t0,w2000,h2000/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/vitamin-a-wachter-der-sehkraft.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/vitamin-c-mythen/",
-        "slug":  "vitamin-c-mythen",
-        "title":  "Vitamin C Mythen: Was der Immun-Booster wirklich kann | callidus A\u0026M",
-        "description":  "Schützt Vitamin C wirklich vor Erkältungen? Klären Sie die größten Mythen auf und erfahren Sie, was Vitamin C für Ihr Immunsystem \u0026 Ihre Haut tatsächlich leistet.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Kollagen: Der Baustein für straffe Haut, gesunde Gelenke und starke Knochen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/3bcbb458-b542-43dc-bced-4c112f7a9735/l2,t0,w1880,h1880/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/vitamin-c-mythen.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/vitamin-d-das-sonnenhormon/",
-        "slug":  "vitamin-d-das-sonnenhormon",
-        "title":  "Vitamin D: Das Sonnenhormon für Knochen \u0026 Immunsystem | callidus A\u0026M",
-        "description":  "Erfahren Sie, warum Vitamin D so wichtig ist und wieso viele Menschen in Deutschland im Winter unterversorgt sind. Alles zu Funktion, Quellen und Mangel.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Vitamin D (Calciferol): Das Sonnenhormon für Knochen, Muskeln und Immunsystem"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/f4690add-ad09-464d-aee7-0886977216e2/l0,t0,w2000,h2000/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/vitamin-d-das-sonnenhormon.html",
-        "status":  "ok"
-    },
-    {
-        "url":  "https://www.callidus-am.de/vitamin-e-der-zellschutzer/",
-        "slug":  "vitamin-e-der-zellschutzer",
-        "title":  "Vitamin E: Der Meister-Antioxidans für den Zellschutz | callidus A\u0026M",
-        "description":  "Erfahren Sie, wie Vitamin E als starkes Antioxidans Ihre Zellen vor oxidativem Stress schützt. Entdecken Sie die besten Quellen wie Nüsse, Samen und Öle.",
-        "h1":  [
-
-               ],
-        "h2":  [
-                   "Vitamin E (Tocopherol): Der Meister-Antioxidans zum Schutz Ihrer Zellen"
-               ],
-        "imageCount":  2,
-        "images":  [
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-                       "https://www.callidus-am.de/wp-content/uploads/go-x/u/56aa8add-e7b8-449b-8cb0-0226436aac50/l0,t0,w2000,h2000/image-1366x1366.png"
-                   ],
-        "localHtml":  "source/content-html/vitamin-e-der-zellschutzer.html",
-        "status":  "ok"
-    }
+[
+  {
+    "url": "https://www.callidus-am.de/",
+    "slug": "home",
+    "title": "callidus A&M: Ihr Kompass für ganzheitliche Gesundheit & Wohlbefinden",
+    "description": "Entdecken Sie bei callidus A&M fundiertes Wissen für Körper, Geist & Seele. Finden Sie Ratgeber zu gesunder Ernährung, Sport, Stressabbau & mentaler Stärke.",
+    "h1": [
+      "Ihr Weg zu ganzheitlichem Wohlbefinden beginnt hier.",
+      "Das ultimative Vitamin-Kompendium"
+    ],
+    "h2": [
+      "Ihre Gesundheit im Mittelpunkt",
+      "Wissen für Ihr Wohlbefinden",
+      "NEXUS – Dein Körper. Deine Daten. Deine Transformation.",
+      "Ihre Gesundheit. Ganzheitlich gedacht",
+      "Bio. Nachhaltig. Ehrlich"
+    ],
+    "imageCount": 6,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/88538fee-5de5-4ac9-b827-2e19ee0e8e23/l254,t723,w1493,h1277/image-768x657.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/a431c967-733b-4ea4-a73d-16b9189a927c/l0,t255,w2000,h1727/image-768x663.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/629bfa1e-edbd-4420-a4aa-b7a8c089c9f8/l19,t137,w1781,h1557/image-768x671.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/5646fff2-d8b7-4963-8b00-3f5b6f93eda8/l0,t253,w2000,h1747/image-768x671.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/f0b406a7-c356-4935-99d5-4fa5a26d9ff4/l86,t0,w1000,h1000/image-768x768.png"
+    ],
+    "localHtml": "source/content-html/home.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/10-minuten-morgen-workout/",
+    "slug": "10-minuten-morgen-workout",
+    "title": "10-Minuten Morgen-Workout für mehr Energie | callidus A&M",
+    "description": "Keine Zeit für Sport? Starten Sie Ihren Tag mit diesem effektiven 10-Minuten-Workout. Mehr Energie, besserer Fokus und ein fitter Körper – ganz ohne Geräte.",
+    "h1": [],
+    "h2": [
+      "Der 10-Minuten-Start: Das effektivste Morgen-Workout für mehr Energie am Tag"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/e317139a-f0ba-4421-9b13-212efcb458f4/l0,t0,w2000,h2000/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/10-minuten-morgen-workout.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/3-atemtechniken-fur-mehr-energie/",
+    "slug": "3-atemtechniken-fur-mehr-energie",
+    "title": "3 einfache Atemtechniken für Energie & Stressabbau | callidus A&M",
+    "description": "Entdecken Sie, wie Sie mit einfachen Atemübungen sofort Stress reduzieren und neue Energie tanken. Lernen Sie 3 Techniken für mehr Ruhe und Klarheit im Alltag.",
+    "h1": [],
+    "h2": [
+      "Mehr als nur Atmen: 3 einfache Atemtechniken für sofort mehr Energie und Ruhe",
+      "Vom Lesen zum Fühlen: Der nächste Schritt"
+    ],
+    "imageCount": 3,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/c1adcf35-ea49-45ca-bc50-24ecf20a73d7/l0,t0,w2000,h2000/image-1366x1366.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/91fbdb7b-11dc-4f0c-9371-0c9ba99cc5c5/l0,t126,w810,h1080/image.png"
+    ],
+    "localHtml": "source/content-html/3-atemtechniken-fur-mehr-energie.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ashwagandha/",
+    "slug": "ashwagandha",
+    "title": "Ashwagandha: Wirkung & Anwendung der Schlafbeere bei Stress | callidus A&M",
+    "description": "Was ist Ashwagandha und wie wirkt es? Entdecken Sie, wie dieses natürliche Adaptogen aus dem Ayurveda Ihnen helfen kann, Stress abzubauen und besser zu schlafen.",
+    "h1": [],
+    "h2": [
+      "Was ist Ashwagandha? Wie die Schlafbeere bei Stress und innerer Unruhe helfen kann."
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/37ad76cb-ed13-4591-a032-d5adf7e3fdaf/l0,t0,w2000,h2000/image-1366x1366.jpg"
+    ],
+    "localHtml": "source/content-html/ashwagandha.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/biologische-verjungung/",
+    "slug": "biologische-verjungung",
+    "title": "Biologische Verjüngung: Wie Sie Ihre Zellen & Haut erneuern | callidus A&M",
+    "description": "Mehr als nur Hautpflege. Erfahren Sie, wie Sie durch die richtigen Nährstoffe und Gewohnheiten den Prozess der biologischen Verjüngung von innen heraus unterstützen können.",
+    "h1": [],
+    "h2": [
+      "Biologische Verjüngung: Ein praktischer Leitfaden zur Erneuerung von innen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/2bc7784f-598f-4087-a51e-76e83819c684/l153,t43,w1810,h1810/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/biologische-verjungung.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/bitte-bestaetigen/",
+    "slug": "bitte-bestaetigen",
+    "title": "bitte-bestaetigen",
+    "description": "",
+    "h1": [
+      "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!"
+    ],
+    "h2": [
+      "Vielen Dank für Ihre Anmeldung. Ihr umfassendes Gratis-Paket (Kompendium, Journal & 3 Video-Module) ist fast freigeschaltet. Bitte prüfen Sie jetzt Ihr Postfach. Aus Datenschutzgründen (DSGVO) benötigen wir Ihre einmalige Bestätigung."
+    ],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/bitte-bestaetigen.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/blockchain-ihre-gesundheit/",
+    "slug": "blockchain-ihre-gesundheit",
+    "title": "Entdecken Sie, wie Blockchain Ihre Gesundheitsdaten sicherer macht",
+    "description": "Blockchain Gesundheitswesen, Patientendaten Sicherheit, E-Health Blockchain, Medikamentenfälschung verhindern, digitale Gesundheitsakte, Smart Contracts Medizin, Gesundheitsdaten teilen, Zukunft der M",
+    "h1": [],
+    "h2": [
+      "Blockchain im Gesundheitswesen: Die Zukunft Ihrer Daten und Diagnosen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f8698ec-35a2-48ca-b4fc-bea569579d0e/l149,t63,w1062,h903/image.png"
+    ],
+    "localHtml": "source/content-html/blockchain-ihre-gesundheit.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/darmgesundheit-mit-akazienfaser/",
+    "slug": "darmgesundheit-mit-akazienfaser",
+    "title": "Darmgesundheit: Akazienfaser & Probiotika für Ihre Balance | callidus A&M",
+    "description": "Ein gesunder Darm ist der Schlüssel zu Wohlbefinden. Erfahren Sie, wie lösliche Ballaststoffe wie Akazienfaser als Präbiotika Ihre Darmflora gezielt unterstützen.",
+    "h1": [],
+    "h2": [
+      "Darmgesundheit: Wie Akazienfaser und Probiotika Ihre innere Balance stärken"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/399a3755-a79c-4a61-9ece-79a6b164d473/l23,t0,w1873,h1873/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/darmgesundheit-mit-akazienfaser.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/das-diktat-ihrer-gedanken/",
+    "slug": "das-diktat-ihrer-gedanken",
+    "title": "Ihr Mindset entscheidet über Erfolg und Scheitern. Entdecken Sie, wie Sie die Kontrolle über Ihre Ge",
+    "description": "Mindset ändern, Gedanken kontrollieren, limitierende Glaubenssätze, mentales Training, Erfolg Mindset, negative Gedanken, Psychologie des Erfolgs, Selbstsabotage, Geist und Seele, callidus A&M Mindset",
+    "h1": [],
+    "h2": [
+      "Das Diktat Ihrer Gedanken: Warum Ihr Mindset Ihr größter Feind – oder Ihr ultimativer Verbündeter ist"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bb983e34-3a22-4bf6-8483-5cd40f059364/l0,t77,w1024,h871/image.png"
+    ],
+    "localHtml": "source/content-html/das-diktat-ihrer-gedanken.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/das-protokoll-zur-neuro-resilienz/",
+    "slug": "das-protokoll-zur-neuro-resilienz",
+    "title": "Demenz & Depression vorbeugen: Das Protokoll zur Neuro-Resilienz | callidus A&M",
+    "description": "Die Vorstellung, die Kontrolle über unseren Geist zu verlieren, gehört zu den größten Ängsten unserer Zeit. Doch die Wissenschaft zeigt immer deutlicher: Wir sind dem nicht hilflos ausgeliefert. Entde",
+    "h1": [],
+    "h2": [
+      "Das Protokoll zur Neuro-Resilienz: Wie wir unser Gehirn aktiv vor Demenz und Depression schützen können"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bb3fc7da-fd68-4a55-ba00-4ca401fb605b/l137,t137,w1726,h1726/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/das-protokoll-zur-neuro-resilienz.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/konto-loeschen/",
+    "slug": "konto-loeschen",
+    "title": "Konto löschen | Callidus Apps",
+    "description": "Anleitung zum Löschen deines Kontos und deiner Daten in den Callidus Apps MOMUS und KAIROS.",
+    "h1": [
+      "Konto löschen"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/datenschutz/",
+    "slug": "datenschutz",
+    "title": "Datenschutz",
+    "description": "",
+    "h1": [
+      "Datenschutz"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/datenschutz.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-digitale-detox/",
+    "slug": "der-digitale-detox",
+    "title": "Wie eine bewusste Auszeit Ihrem Gehirn neue Superkräfte verleiht",
+    "description": "Digitaler Detox, mentale Klarheit, Gehirn Reset, Konzentration steigern, Kreativität fördern, digitales Wohlbefinden, Handy Auszeit, Stress durch Bildschirmzeit, callidus A&M Geist.",
+    "h1": [],
+    "h2": [
+      "Der digitale Detox: Wie eine bewusste Auszeit Ihrem Gehirn neue Superkräfte verleiht"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/29bed86e-73f5-4300-877f-c8910c4d3c30/l0,t107,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/der-digitale-detox.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-energie-reset/",
+    "slug": "der-energie-reset",
+    "title": "Wie 15 Minuten tägliche Bewegung Ihren Tag revolutionieren",
+    "description": "Energie Reset, 15 Minuten Bewegung, tägliche Bewegung, kurze Workouts, Energie im Alltag, Stressabbau Bewegung, Konzentration steigern, schnelle Fitness, callidus A&M Energie.",
+    "h1": [],
+    "h2": [
+      "Der \"Energie-Reset\": Wie 15 Minuten tägliche Bewegung Ihren Tag revolutionieren"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/7c721296-6245-45cb-9460-ddda78139803/l0,t96,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/der-energie-reset.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-ganzheitliche-bodybuilding-plan/",
+    "slug": "der-ganzheitliche-bodybuilding-plan",
+    "title": "Der ganzheitliche Trainingsplan für Muskelaufbau | callidus A&M",
+    "description": "Mehr als nur Gewichte heben. Entdecken Sie unseren wissenschaftlich fundierten Plan für maximalen Muskelaufbau durch intelligentes Training, gezielte Ernährung und mentale Stärke.",
+    "h1": [],
+    "h2": [
+      "Der ganzheitliche Ansatz für maximalen Muskelaufbau: Ein Leitfaden für ambitionierte Athleten"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/e86f1034-ab13-4d60-8d7f-05a924f85e91/l0,t88,w2000,h1701/image-1366x1162.png"
+    ],
+    "localHtml": "source/content-html/der-ganzheitliche-bodybuilding-plan.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-innere-akku/",
+    "slug": "der-innere-akku",
+    "title": "Wie Ernährung und Schlaf Ihre Trainingsleistung steuern",
+    "description": "Schlaf Training, Ernährung Sport, Regeneration Sport, Trainingsleistung steigern, Energielevel optimieren, Mikronährstoffe Sport, Sporternährung, Schlafqualität, innerer Akku, callidus A&M Leistung.",
+    "h1": [],
+    "h2": [
+      "Der innere Akku: Wie Ernährung und Schlaf Ihre Trainingsleistung steuern (und nicht nur das Training selbst)"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/30a679e9-7773-4071-b2ba-15e8b36a1008/l0,t77,w1024,h871/image.png"
+    ],
+    "localHtml": "source/content-html/der-innere-akku.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-schlaf-reset/",
+    "slug": "der-schlaf-reset",
+    "title": "Der SchlBesser schlafen: 5 Abendrituale für einen erholsamen Schlaf | callidus A&Maf-Reset",
+    "description": "Können Sie nicht einschlafen oder wachen oft auf? Entdecken Sie 5 einfache Abendrituale, die Ihnen helfen, zur Ruhe zu kommen und Ihre Schlafqualität zu verbessern.",
+    "h1": [],
+    "h2": [
+      "Der Schlaf-Reset: Wie Sie mit 5 einfachen Abendritualen wieder erholsam schlafen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/6ef7efa2-d0e7-4bc1-8244-1ba092bdbdaf/l149,t15,w1848,h1848/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/der-schlaf-reset.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/der-unsichtbare-teller/",
+    "slug": "der-unsichtbare-teller",
+    "title": "Entdecken Sie den \"unsichtbaren Teller\": Es geht nicht nur darum, WAS Sie essen, sondern WIE. Verste",
+    "description": "Achtsames Essen, intuitives Essen, Essgewohnheiten, Verdauung verbessern, Mindset Ernährung, Stress und Essen, ganzheitliche Ernährung, Nährstoffaufnahme, Essen und Wohlbefinden, callidus A&M Ernährun",
+    "h1": [],
+    "h2": [
+      "Der unsichtbare Teller: Warum das, WAS wir essen, nur die halbe Miete ist – und WIE wir essen, alles verändert"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/3ac31ce1-9897-4528-a93e-a5eada54787e/l0,t96,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/der-unsichtbare-teller.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/die-biologische-uhr-verlangsamen/",
+    "slug": "die-biologische-uhr-verlangsamen",
+    "title": "Gesundes Altern: Wie wir die biologische Uhr verlangsamen können | callidus A&M",
+    "description": "Ist Altern eine Krankheit? Entdecken Sie die Wissenschaft der Langlebigkeit (Longevity) und erfahren Sie, wie Ansätze wie Senolytika und NAD+ den Alterungsprozess verlangsamen.",
+    "h1": [],
+    "h2": [
+      "Gesundes Altern: Wie die Wissenschaft lernt, unsere biologische Uhr zu verlangsamen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/eaa504fa-fb03-4355-809a-28615515ed12/l180,t23,w1818,h1818/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/die-biologische-uhr-verlangsamen.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/die-kraft-der-dankbarkeit/",
+    "slug": "die-kraft-der-dankbarkeit",
+    "title": "Wie ein einfaches \"Danke\" Ihr emotionales Wohlbefinden stärkt",
+    "description": "Dankbarkeit, emotionales Wohlbefinden, Dankbarkeit stärken, Glück durch Dankbarkeit, Resilienz, mentale Gesundheit, positive Psychologie, Dankbarkeitsübungen, innere Zufriedenheit, callidus A&M Seele.",
+    "h1": [],
+    "h2": [
+      "Die Kraft der Dankbarkeit: Wie ein einfaches \"Danke\" Ihr emotionales Wohlbefinden stärkt"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/9d0d841d-1b3a-4738-bd7d-cc88ca715a7f/l0,t96,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/die-kraft-der-dankbarkeit.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/die-kraft-des-magnesiums/",
+    "slug": "die-kraft-des-magnesiums",
+    "title": "Die Kraft des Magnesiums: Wichtig für Muskeln & Nerven | callidus A&M",
+    "description": "Müde, verspannt oder unruhig? Erfahren Sie, warum ein Magnesiummangel die Ursache sein könnte und wie Sie Ihre Speicher mit den richtigen Lebensmitteln auffüllen.",
+    "h1": [],
+    "h2": [
+      "Die Kraft des Magnesiums: Warum dieses Mineral für Muskeln und Nerven unerlässlich ist"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/16755d43-e1d9-4dc8-9e33-06c98e5a12e0/l137,t20,w1855,h1855/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/die-kraft-des-magnesiums.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/die-kunst-des-mentalen-resets/",
+    "slug": "die-kunst-des-mentalen-resets",
+    "title": "Ihr Kopf ist voll? Entdecken Sie 5 einfache, 5-minütige Übungen",
+    "description": "Mentaler Reset, Kopf frei bekommen, Stressabbau 5 Minuten, schnelle Entspannung, Achtsamkeitsübungen, Atemübungen Stress, mentale Klarheit, innere Ruhe, callidus A&M Gehirn.",
+    "h1": [],
+    "h2": [
+      "Die Kunst des mentalen Resets: 5 Übungen, um den Kopf in 5 Minuten frei zu bekommen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/f09322c5-cefc-4717-a203-bbd26892545f/l0,t96,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/die-kunst-des-mentalen-resets.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/die-personalisierte-revolution/",
+    "slug": "die-personalisierte-revolution",
+    "title": "Personalisierte Gesundheit: Wie Gen-Analyse & KI die Medizin revolutionieren | callidus A&M",
+    "description": "Die Zukunft ist persönlich. Erfahren Sie, wie DNA-basierte Ernährung (Nutrigenomik) und KI-Analysen die Gesundheitsvorsorge für immer verändern werden.",
+    "h1": [],
+    "h2": [
+      "Die stille Revolution: Wie personalisierte Biologie unsere Gesundheit neu definiert."
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/181fae69-b926-4ae9-8306-50c4b429368d/l52,t0,w953,h953/image.png"
+    ],
+    "localHtml": "source/content-html/die-personalisierte-revolution.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/digitale-alchemie/",
+    "slug": "digitale-alchemie",
+    "title": "Digitale Alchemie: Wie Neuro-Tech unsere Emotionen steuert | callidus A&M",
+    "description": "Die Zukunft ist fühlbar. Erfahren Sie, wie tragbare Neuro-Technologie und digitale Therapeutika uns ermöglichen, Stress, Fokus und Kreativität in Echtzeit zu steuern.",
+    "h1": [],
+    "h2": [
+      "Digitale Alchemie: Wie wir lernen, unsere Gehirnwellen und Emotionen in Echtzeit zu steuern"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/60bcdf4d-daa9-4e60-88c9-10db805bbb2d/l0,t105,w2000,h1701/image-1366x1162.png"
+    ],
+    "localHtml": "source/content-html/digitale-alchemie.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/download/",
+    "slug": "download",
+    "title": "Download Vitamin Kompensium",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "Herzlichen Dank für Ihre Anmeldung!"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/l141,t141,w743,h743/image.png"
+    ],
+    "localHtml": "source/content-html/download.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/gehen-als-training/",
+    "slug": "gehen-als-training",
+    "title": "Gehen als Training: Warum Spazierengehen so effektiv ist | callidus A&M",
+    "description": "Entdecken Sie die überraschenden gesundheitlichen Vorteile des Gehens. Warum ein täglicher Spaziergang Gelenke schont, Stress abbaut und Ihnen beim Abnehmen helfen kann.",
+    "h1": [],
+    "h2": [
+      "Gehen statt Laufen: Warum Spazierengehen das am meisten unterschätzte Training ist"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/43aa046e-8d9d-4ab5-8d9d-b9939401c70e/l0,t0,w2000,h2000/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/gehen-als-training.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/gesundheit-im-familien-alltag/",
+    "slug": "gesundheit-im-familien-alltag",
+    "title": "Gesund leben mit Familie & Job: Der Full-Time-Job Gesundheit meistern | callidus A&M",
+    "description": "3 Stunden Sport, veganes Kochen für alle, Kinder und ein Job: Ist ein gesundes Leben im Alltag nur ein Wunschtraum? Wir zeigen, wie Sie Prioritäten setzen und gewinnen.",
+    "h1": [],
+    "h2": [
+      "Der unsichtbare \"Full-Time-Job\" Gesundheit: Wie wir im Alltag von Familie und Beruf dennoch gewinnen können"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/89d3d741-a63b-406b-a7f6-052972f7980f/l57,t2,w1840,h1840/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/gesundheit-im-familien-alltag.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ihr-digitaler-gesundheits-butler/",
+    "slug": "ihr-digitaler-gesundheits-butler",
+    "title": "Der digitale Gesundheits-Butler: Wie KI & Roboter uns begleiten | callidus A&M",
+    "description": "Die Zukunft der Gesundheit ist persönlich und immer verfügbar. Erfahren Sie, wie KI als Ihr digitaler Butler und empathischer Coach Ihr Wohlbefinden revolutionieren wird.",
+    "h1": [],
+    "h2": [
+      "Ihr digitaler Gesundheits-Butler: Wie KI & Roboter zu unseren persönlichen Begleitern werden"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/c69eb68e-5c3a-42c6-95d8-db5d309bcf43/l14,t167,w1825,h1825/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/ihr-digitaler-gesundheits-butler.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/impressum/",
+    "slug": "impressum",
+    "title": "Impressum",
+    "description": "",
+    "h1": [
+      "Impressum"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/impressum.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/jenseits-der-pille/",
+    "slug": "jenseits-der-pille",
+    "title": "Die Zukunft der Medizin: Jenseits der Pille | callidus A&M",
+    "description": "Von smarten Implantaten, die Werte in Echtzeit messen, bis hin zu 3D-gedruckten Organen. Entdecken Sie die revolutionären Behandlungsmethoden der Zukunft.",
+    "h1": [],
+    "h2": [
+      "Jenseits der Pille: Die revolutionären Behandlungsmethoden der Zukunft"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/2f7f5a63-da65-491e-a24e-196b0a8c0525/l0,t0,w1889,h1889/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/jenseits-der-pille.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/kurs-mitgliederbereich/",
+    "slug": "kurs-mitgliederbereich",
+    "title": "kurs-mitgliederbereich",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "WILLKOMMEN IM 7-TAGE STRESS-RESET: IHR VOLLER ZUGANG IST FREIGESCHALTET.",
+      "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+    ],
+    "imageCount": 3,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/fb764c60-34ec-4bb1-a526-15a9f61f1180/l0,t82,w543,h501/image.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/video-placeholder.png/image-768x768.png"
+    ],
+    "localHtml": "source/content-html/kurs-mitgliederbereich.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/lexicon-vitae/",
+    "slug": "lexicon-vitae",
+    "title": "Glossarium callidus A&M",
+    "description": "",
+    "h1": [
+      "Lexicon Vitae – Das Wörterbuch des Lebens von callidus A&M",
+      "Willkommen im Lexicon Vitae von callidus A&M!",
+      "B",
+      ".",
+      "Balans Vitae",
+      "Cibus Sanus",
+      "Conscientia Acta",
+      "Consilium Certum",
+      "Corpus Sanum",
+      "Fortis Animus",
+      "Fortis Corpus",
+      "Initium Facile",
+      "Innovatio Vitae",
+      "Prospicio",
+      "Resilientia Animi",
+      "Resonantia Telluris",
+      "Salus",
+      "Sol Invictus",
+      "Visus Acutus"
+    ],
+    "h2": [
+      "Acumen Mentis",
+      "Callidus",
+      "Donum Cordis",
+      "Focus Auctus",
+      "Gratia Animi",
+      "Inceptum Novum",
+      "Levitas Animi",
+      "Libertas Mentis",
+      "Mens Sana",
+      "Murmur Interius",
+      "Nexus",
+      "Pax Mentis",
+      "Protego Cellula",
+      "Robur Naturae",
+      "Sapientia",
+      "Spiritus Sanus",
+      "Status Quo Ante",
+      "Undae Mentis",
+      "Via Ad Salutem",
+      "Vigor Vitae"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/218940fa-b27e-4c33-933a-63e3e7de4b50/l0,t354,w1280,h742/image.jpg"
+    ],
+    "localHtml": "source/content-html/lexicon-vitae.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/metformin-vs-spermidin/",
+    "slug": "metformin-vs-spermidin",
+    "title": "Metformin & Spermidin: Die Wissenschaft hinter dem langen Leben | callidus A&M",
+    "description": "Ein Medikament und ein Naturstoff im Fokus der Anti-Aging-Forschung. Entdecken Sie, wie Metformin und Spermidin unsere zelluläre Langlebigkeit beeinflussen könnten.",
+    "h1": [],
+    "h2": [
+      "Metformin & Spermidin: Der Wettlauf um die Formel für ein langes, gesundes Leben"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/63e95552-976a-409b-8f4a-0cf5883343b8/l0,t45,w2000,h1764/image-1366x1205.png"
+    ],
+    "localHtml": "source/content-html/metformin-vs-spermidin.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/modul-4/",
+    "slug": "modul-4",
+    "title": "Modul 4",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "🗣️ Modul 4 – Fokus auf Sprache & Selbstbild",
+      "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+    ],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/modul-4.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/modul-5/",
+    "slug": "modul-5",
+    "title": "Modul 5",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "🍃 Modul 5 – Loslassen",
+      "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+    ],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/modul-5.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/nachhaltigkeit/",
+    "slug": "nachhaltigkeit",
+    "title": "Nachhaltigkeit",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "Unsere Verantwortung: Gesundheit für uns und unseren Planeten"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/58cbb558-ad07-44b1-be0e-62397a7521a7/l70,t45,w1820,h1820/image-768x768.png"
+    ],
+    "localHtml": "source/content-html/nachhaltigkeit.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/nachhaltigkeit-text/",
+    "slug": "nachhaltigkeit-text",
+    "title": "Nachhaltigkeit text",
+    "description": "",
+    "h1": [],
+    "h2": [
+      "Unsere Verantwortung: Gesundheit für uns und unseren Planeten"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/45c8cdab-dd0c-4bd4-95eb-12c4c1c54778/l135,t0,w1080,h1080/image.jpg"
+    ],
+    "localHtml": "source/content-html/nachhaltigkeit-text.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/nexus-app/",
+    "slug": "nexus-app",
+    "title": "NEXUS App | KI-Ernährungstracker & Fitness-Coach in einem",
+    "description": "Tracke deine Ernährung per Foto-KI, synchronisiere Google Fit & Apple Health und erhalte personalisierte Trainingspläne. Jetzt die NEXUS App entdecken!",
+    "h1": [],
+    "h2": [
+      "NEXUS – Die intelligente Gesundheits-Couch für deine Transformation"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/82a627dc-591f-4d16-99b8-b6d4cb3292cd/l17,t17,w456,h456/image.png"
+    ],
+    "localHtml": "source/content-html/nexus-app.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/nutzungsbedingungen/",
+    "slug": "nutzungsbedingungen",
+    "title": "Nutzungsbedingungen",
+    "description": "",
+    "h1": [
+      "Nutzungsbedingungen"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/nutzungsbedingungen.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/protein-wissen-fur-kraftaufbau/",
+    "slug": "protein-wissen-fur-kraftaufbau",
+    "title": "Pflanzliches Protein: Wie Sie effektiv Kraft aufbauen | callidus A&M",
+    "description": "Entdecken Sie die Kraft von pflanzlichem Protein. Erfahren Sie, warum Proteine für Muskelaufbau und Energie entscheidend sind und welche veganen Quellen am besten sind.",
+    "h1": [],
+    "h2": [
+      "Protein-Wissen: Wie pflanzliches Protein Ihnen effektiv beim Kraftaufbau hilft"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/6a038b9d-998f-41c0-a8d4-cfe08e823eda/l119,t0,w1855,h1855/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/protein-wissen-fur-kraftaufbau.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ratgeber/",
+    "slug": "ratgeber",
+    "title": "Ratgeber für ganzheitliche Gesundheit | callidus A&M",
+    "description": "Entdecken Sie fundiertes Wissen rund um Naturheilkunde, Ernährung und mentales Wohlbefinden. Unser Ratgeber bietet Ihnen praktische Tipps und Experten-Einblicke.",
+    "h1": [],
+    "h2": [
+      "Ihr Kompass für ganzheitliches Wohlbefinden",
+      "Wissen für Ihr Wohlbefinden"
+    ],
+    "imageCount": 6,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/e765d0d3-76dd-4fe2-b53c-3e8c1ee19bc9/l0,t0,w2000,h2000/image-768x768.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/88538fee-5de5-4ac9-b827-2e19ee0e8e23/l254,t723,w1493,h1277/image-768x657.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/a431c967-733b-4ea4-a73d-16b9189a927c/l0,t255,w2000,h1727/image-768x663.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/629bfa1e-edbd-4420-a4aa-b7a8c089c9f8/l19,t137,w1781,h1557/image-768x671.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/5646fff2-d8b7-4963-8b00-3f5b6f93eda8/l0,t253,w2000,h1747/image-768x671.png"
+    ],
+    "localHtml": "source/content-html/ratgeber.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ratgeber/geist-and-seele/",
+    "slug": "ratgeber-geist-and-seele",
+    "title": "Mentale Balance & Stressabbau: Tipps für die Seele | callidus A&M",
+    "description": "Finden Sie innere Ruhe. Unser Ratgeber für Geist & Seele bietet Techniken zur Stressbewältigung, Achtsamkeit und für mehr mentale Stärke im Alltag.",
+    "h1": [
+      "Ratgeber: Geist & Seele"
+    ],
+    "h2": [
+      "Das Protokoll zur Neuro-Resilienz: Wie wir unser Gehirn aktiv vor Demenz und Depression schützen können",
+      "Das Diktat Ihrer Gedanken: Warum Ihr Mindset Ihr größter Feind – oder Ihr ultimativer Verbündeter ist",
+      "Praxis-Impuls: Eine Technik in Aktion"
+    ],
+    "imageCount": 9,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/b27a31a4-e053-4b01-bf8e-2f56a5e7f87e/l334,t0,w1024,h1024/image-768x768.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/e898d39e-cba1-48f9-9edb-e8f9442dbed6/l0,t0,w1910,h1910/image-768x768.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/b8c8cb3c-c11b-4460-b28e-3307e9712aa2/l241,t101,w1759,h1759/image-768x768.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1b642890-9ccf-4369-be6c-4dd7cb573abf/l430,t299,w1384,h1384/image-1366x1366.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/f9c954d9-e59f-4c14-8acb-96871bb2c587/l54,t54,w1172,h1172/image-768x768.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/d605d663-1b74-4467-9809-873574a70b96/l4,t45,w1145,h1145/image-768x768.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/7d773992-84ce-4889-8aff-525de7d7cfcf/l54,t54,w1172,h1172/image-768x768.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/c4ff602d-1570-476d-817d-c493b304843b/l66,t66,w1148,h1148/image.jpg"
+    ],
+    "localHtml": "source/content-html/ratgeber-geist-and-seele.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ratgeber/korper-and-ernahrung/",
+    "slug": "ratgeber-korper-and-ernahrung",
+    "title": "Gesunde Ernährung & Nährstoffe für den Körper | callidus A&M",
+    "description": "Erfahren Sie alles über eine gesunde Ernährung. Von Vitaminen und Mineralstoffen bis zur Darmgesundheit – hier finden Sie fundiertes Wissen für Ihren Körper.",
+    "h1": [
+      "Ratgeber: Körper & Ernährung"
+    ],
+    "h2": [
+      "Der unsichtbare Teller: Warum das, WAS wir essen, nur die halbe Miete ist – und WIE wir essen, alles verändert"
+    ],
+    "imageCount": 8,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/2b61ad9e-e8dd-43dc-8ac7-303df31cc9b7/l0,t33,w1910,h1843/image-768x741.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/e7cd8739-d093-45ed-a998-3d67511f29fb/l68,t0,w1871,h1798/image-768x738.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/3a68214e-0c37-43c9-96cc-b50a52745b53/l25,t6,w1910,h1841/image-768x740.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/c7055737-14c7-49ff-8766-134271fd56de/l0,t55,w1280,h1170/image.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/f2cbd407-ec54-49a1-87be-0979b6b01c09/l90,t0,w1910,h1843/image-768x741.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/147c274e-9268-48a5-85fd-26dde2323851/l89,t31,w1910,h1836/image-768x738.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/a1e65bad-ca1c-41da-961b-171af1b5efc0/l62,t49,w1871,h1803/image-768x740.png"
+    ],
+    "localHtml": "source/content-html/ratgeber-korper-and-ernahrung.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ratgeber/sport-and-energie/",
+    "slug": "ratgeber-sport-and-energie",
+    "title": "Fitness, Bewegung & neue Energie: Ihr Sport-Ratgeber | callidus A&M",
+    "description": "Tanken Sie neue Energie! Entdecken Sie effektive Workouts, Tipps für mehr Motivation und wie Sie durch gezielte Bewegung Ihre Fitness und Vitalität steigern.",
+    "h1": [
+      "Ratgeber: Sport & Energie"
+    ],
+    "h2": [
+      "Das \"Gesundheits-Dilemma\": Warum ein optimales Leben ein Full-Time-Job ist (und wie es trotzdem geht)",
+      "Sport als Stress-Killer: Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt",
+      "Der ganzheitliche Ansatz für maximalen Muskelaufbau: Ein Leitfaden für ambitionierte Athleten"
+    ],
+    "imageCount": 9,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1a652eb7-104f-4c14-a645-913be6bd278e/l0,t35,w2000,h1930/image-768x741.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/84ce8647-0f56-47c9-84dc-8f2c095aa586/l61,t77,w1832,h1760/image-768x738.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/21260f2f-3dc5-41ab-8095-4ab5dec45e86/l0,t37,w2000,h1926/image-768x740.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/a67b5e68-05ee-4aea-9771-4ad43fc843b2/l0,t2,w1024,h936/image.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/96080aad-731e-483e-9204-050950d13c50/l81,t100,w1119,h1080/image-768x741.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/ccabf08a-87f9-4449-aed7-d4f6321d2f8d/l0,t0,w1280,h1230/image-768x738.jpg",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/770a578a-c502-4424-b433-0b0fb5128197/l0,t19,w1024,h986/image-768x740.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/9db61855-757b-4313-88ee-e740c680fac5/l0,t39,w2000,h1829/image-1366x1249.png"
+    ],
+    "localHtml": "source/content-html/ratgeber-sport-and-energie.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/ratgeber/zukunft-der-gesundheit/",
+    "slug": "ratgeber-zukunft-der-gesundheit",
+    "title": "Zukunft der Gesundheit: KI, Gen-Analyse & Langlebigkeit | callidus A&M",
+    "description": "Ein Blick in die Zukunft: Entdecken Sie, wie KI, personalisierte Medizin und Biohacking unsere Gesundheit revolutionieren werden. Fundierte Einblicke und Analysen.",
+    "h1": [
+      "Ratgeber: Zukunft der Gesundheit"
+    ],
+    "h2": [
+      "Gesundes Altern: Wie die Wissenschaft lernt, unsere biologische Uhr zu verlangsamen",
+      "Blockchain im Gesundheitswesen: Ihre Daten sicher, smart und in Ihrer Hand"
+    ],
+    "imageCount": 9,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/7458b4b9-3903-45a3-8db8-4c482ca9a903/l0,t160,w1871,h1805/image-768x741.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/395bac8f-725c-49d6-a1d3-02764dec67bf/l73,t221,w1795,h1725/image-768x738.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/5c6c8807-6ca4-46c3-b03b-510efd1eea53/l40,t0,w1871,h1803/image-768x740.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/56a1ce6e-8af4-4c1c-b591-ebfa303fc6a1/l111,t0,w1889,h1889/image-1366x1366.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/896f4e20-1072-4ff4-a4de-c6ac16edcf0d/l36,t93,w1871,h1805/image-768x741.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/8ae90695-e69f-4791-9cbf-b006c5cf4945/l168,t73,w1832,h1760/image-768x738.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/6bc7ab6e-314e-4118-ab90-d516a061c659/l65,t98,w1871,h1803/image-768x740.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1be7da4f-86fb-4624-a900-bea905bdeac3/l0,t0,w1024,h1024/image.png"
+    ],
+    "localHtml": "source/content-html/ratgeber-zukunft-der-gesundheit.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/reset-hub/",
+    "slug": "reset-hub",
+    "title": "",
+    "description": "",
+    "h1": [
+      "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT."
+    ],
+    "h2": [
+      "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
+      "Ihr Sofortstart: 3 Video-Module aus dem Premium-Kurs"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/fb764c60-34ec-4bb1-a526-15a9f61f1180/l0,t82,w543,h501/image.jpg"
+    ],
+    "localHtml": "source/content-html/reset-hub.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/sport-als-stress-killer/",
+    "slug": "sport-als-stress-killer",
+    "title": "Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt",
+    "description": "Sport Stress Killer, Bewegung Stressabbau, mentale Gesundheit Sport, Energie durch Sport, Stressmanagement Bewegung, Gehirn aufräumen Sport, natürliche Stresshilfe, Wohlbefinden durch Bewegung, callid",
+    "h1": [],
+    "h2": [
+      "Sport als Stress-Killer: Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/15658024-5721-4392-bf2a-ee5225cdee5e/l0,t96,w1280,h1089/image.jpg"
+    ],
+    "localHtml": "source/content-html/sport-als-stress-killer.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/stress-reset-kurs/",
+    "slug": "stress-reset-kurs",
+    "title": "Stress Reset Kurs",
+    "description": "",
+    "h1": [
+      "Was dich im 7-Tage-Stress-Reset erwartet"
+    ],
+    "h2": [
+      "Ein sanfter Weg zu mehr Ruhe, Klarheit & Energie",
+      "Vom Wissen zur tiefen Erfahrung"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/b076dea2-a190-4db0-bbe8-ae6244b2fe60/l3,t298,w807,h969/image.png"
+    ],
+    "localHtml": "source/content-html/stress-reset-kurs.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/uber-uns/",
+    "slug": "uber-uns",
+    "title": "Über uns: Unsere Philosophie & Expertise | callidus A&M",
+    "description": "Erfahren Sie die Geschichte hinter callidus A&M. Entdecken Sie, wie langjährige Erfahrung in der Naturheilkunde unsere Mission für ganzheitliche Gesundheit prägt.",
+    "h1": [],
+    "h2": [
+      "Unsere Geschichte: Gesundheit als Herzensangelegenheit"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/l214,t214,w596,h596/image.png"
+    ],
+    "localHtml": "source/content-html/uber-uns.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/unsere-empfehlungen/",
+    "slug": "unsere-empfehlungen",
+    "title": "Geprüfte Produkte für Körper, Geist & Seele | callidus A&M Empfehlungen",
+    "description": "Entdecken Sie unsere handverlesene Auswahl an empfohlenen Produkten & Kursen. Finden Sie das Beste für Ernährung, mentales Wohlbefinden und Fitness. Ihre Quelle für vertrauenswürdige Gesundheit.",
+    "h1": [
+      "Unsere Empfehlungen: Produkte, die wir selbst nutzen und lieben"
+    ],
+    "h2": [],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f65189c-afa5-443e-8fc6-fec35134ab53/l0,t0,w2000,h2000/image-768x768.png"
+    ],
+    "localHtml": "source/content-html/unsere-empfehlungen.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/unsere-empfehlungen/geist-and-seele-1/",
+    "slug": "unsere-empfehlungen-geist-and-seele-1",
+    "title": "Geprüfte Produkte für Körper, Geist & Seele | callidus A&M Empfehlungen",
+    "description": "Finden Sie innere Ruhe und Balance. Entdecken Sie unsere Empfehlungen für besseren Schlaf, Stressabbau, Meditation und mentales Wohlbefinden.",
+    "h1": [
+      "Unsere Empfehlung: Geist & Seele"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/unsere-empfehlungen-geist-and-seele-1.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/unsere-empfehlungen/korper-and-ernahrung/",
+    "slug": "unsere-empfehlungen-korper-and-ernahrung",
+    "title": "Produkte für Körper & Ernährung: Unsere Empfehlungen | callidus A&M",
+    "description": "Entdecken Sie unsere geprüften Empfehlungen für Ihre körperliche Gesundheit. Finden Sie die besten Produkte für Nährstoffe, Vitamine und Darmgesundheit.",
+    "h1": [
+      "Unsere Empfehlungen: Körper & Ernährung"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/unsere-empfehlungen-korper-and-ernahrung.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/unsere-empfehlungen/sport-and-energie/",
+    "slug": "unsere-empfehlungen-sport-and-energie",
+    "title": "Produkte für Sport & Energie: Unsere Empfehlungen | callidus A&M",
+    "description": "Steigern Sie Ihre Leistung und Regeneration. Hier finden Sie unsere Top-Empfehlungen für Fitness, Muskelaufbau und mehr Energie im Alltag.",
+    "h1": [
+      "Unsere Empfehlungen: Sport & Energie"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/unsere-empfehlungen-sport-and-energie.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/unsere-empfehlungen/zukunft-der-gesundheit/",
+    "slug": "unsere-empfehlungen-zukunft-der-gesundheit",
+    "title": "Produkte für Zukunft der Gesundheit: Unsere Empfehlungen | callidus A&M",
+    "description": "Entdecken Sie unsere geprüften Empfehlungen für Produkte der Gesundheit, die Sie in die Zukunft bringen.",
+    "h1": [
+      "Unsere Empfehlungen: Zukunft der Gesundheit"
+    ],
+    "h2": [],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
+    ],
+    "localHtml": "source/content-html/unsere-empfehlungen-zukunft-der-gesundheit.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/vitamin-a-wachter-der-sehkraft/",
+    "slug": "vitamin-a-wachter-der-sehkraft",
+    "title": "Vitamin A: Wächter der Sehkraft & des Immunsystems | callidus A&M",
+    "description": "Entdecken Sie, warum Vitamin A für Ihre Augen und Ihr Immunsystem so wichtig ist. Erfahren Sie alles über die besten Quellen und die Anzeichen eines Mangels.",
+    "h1": [],
+    "h2": [
+      "Vitamin A: Der Wächter der Sehkraft und des Immunsystems"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/395dd840-07b3-4298-900d-3e85171d8546/l0,t0,w2000,h2000/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/vitamin-a-wachter-der-sehkraft.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/vitamin-c-mythen/",
+    "slug": "vitamin-c-mythen",
+    "title": "Vitamin C Mythen: Was der Immun-Booster wirklich kann | callidus A&M",
+    "description": "Schützt Vitamin C wirklich vor Erkältungen? Klären Sie die größten Mythen auf und erfahren Sie, was Vitamin C für Ihr Immunsystem & Ihre Haut tatsächlich leistet.",
+    "h1": [],
+    "h2": [
+      "Kollagen: Der Baustein für straffe Haut, gesunde Gelenke und starke Knochen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/3bcbb458-b542-43dc-bced-4c112f7a9735/l2,t0,w1880,h1880/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/vitamin-c-mythen.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/vitamin-d-das-sonnenhormon/",
+    "slug": "vitamin-d-das-sonnenhormon",
+    "title": "Vitamin D: Das Sonnenhormon für Knochen & Immunsystem | callidus A&M",
+    "description": "Erfahren Sie, warum Vitamin D so wichtig ist und wieso viele Menschen in Deutschland im Winter unterversorgt sind. Alles zu Funktion, Quellen und Mangel.",
+    "h1": [],
+    "h2": [
+      "Vitamin D (Calciferol): Das Sonnenhormon für Knochen, Muskeln und Immunsystem"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/f4690add-ad09-464d-aee7-0886977216e2/l0,t0,w2000,h2000/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/vitamin-d-das-sonnenhormon.html",
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/vitamin-e-der-zellschutzer/",
+    "slug": "vitamin-e-der-zellschutzer",
+    "title": "Vitamin E: Der Meister-Antioxidans für den Zellschutz | callidus A&M",
+    "description": "Erfahren Sie, wie Vitamin E als starkes Antioxidans Ihre Zellen vor oxidativem Stress schützt. Entdecken Sie die besten Quellen wie Nüsse, Samen und Öle.",
+    "h1": [],
+    "h2": [
+      "Vitamin E (Tocopherol): Der Meister-Antioxidans zum Schutz Ihrer Zellen"
+    ],
+    "imageCount": 2,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/56aa8add-e7b8-449b-8cb0-0226436aac50/l0,t0,w2000,h2000/image-1366x1366.png"
+    ],
+    "localHtml": "source/content-html/vitamin-e-der-zellschutzer.html",
+    "status": "ok"
+  }
 ]

@@ -16,6 +16,43 @@ const {
 } = Astro.props;
 
 const t = ui[lang] || ui.de;
+const labels = lang === 'en'
+  ? {
+      knowledge: 'Knowledge',
+      health: 'Health',
+      knowledgeCards: 'Knowledge cards',
+      menuOpen: 'Open menu',
+      walletOpen: 'Open Sanitas Wallet',
+      toggleTheme: 'Toggle dark mode',
+      socialOpen: (label) => `Open ${label}`,
+      cookieLabel: 'Cookie notice',
+      cookieTitle: 'Cookies & external content',
+      cookieTextBefore: 'This website is completely tracking-free by default. Cookies and data are only transferred to third-party providers when you load embedded YouTube videos or the newsletter form.',
+      cookieTextMore: 'More information is available in our',
+      cookiePrivacy: 'privacy policy',
+      cookieDecline: 'Necessary only',
+      cookieAccept: 'Accept',
+      backToTop: 'Back to top',
+      trustpilotLocale: 'en-US',
+    }
+  : {
+      knowledge: 'Wissen',
+      health: 'Gesundheit',
+      knowledgeCards: 'Wissenskarten',
+      menuOpen: 'Menü öffnen',
+      walletOpen: 'Sanitas Wallet öffnen',
+      toggleTheme: 'Darkmode umschalten',
+      socialOpen: (label) => `${label} öffnen`,
+      cookieLabel: 'Cookie-Hinweis',
+      cookieTitle: 'Cookies & externe Inhalte',
+      cookieTextBefore: 'Diese Webseite ist standardmäßig komplett tracking-frei. Erst wenn Sie eingebettete YouTube-Videos oder das Newsletter-Formular laden, werden Cookies und Daten von Drittanbietern übertragen.',
+      cookieTextMore: 'Mehr Infos in unserer',
+      cookiePrivacy: 'Datenschutzerklärung',
+      cookieDecline: 'Nur Notwendige',
+      cookieAccept: 'Akzeptieren',
+      backToTop: 'Nach oben',
+      trustpilotLocale: 'de-DE',
+    };
 const currentPath = Astro.url.pathname;
 const siteOrigin = 'https://www.callidus-am.de';
 const fbConfig = {
@@ -58,15 +95,15 @@ const websiteJsonLd = {
 // Dropdown-Gruppennavigation
 const navGroups = [
   {
-    label: lang === 'en' ? 'Knowledge' : 'Wissen',
+    label: labels.knowledge,
     items: [
       { href: t.paths.guide, label: t.nav.guide },
-      { href: '/wissenskarten/', label: 'Wissenskarten' },
+      { href: '/wissenskarten/', label: labels.knowledgeCards },
       { href: t.paths.lexicon, label: t.nav.lexicon },
     ],
   },
   {
-    label: lang === 'en' ? 'Health' : 'Gesundheit',
+    label: labels.health,
     items: [
       { href: t.paths.recommendations, label: t.nav.recommendations },
       { href: t.paths.course, label: t.nav.course },
@@ -147,7 +184,7 @@ const socialIcons = {
           <small>{t.brandSubline}</small>
         </span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label={labels.menuOpen}>
         <span></span>
         <span></span>
         <span></span>
@@ -180,14 +217,14 @@ const socialIcons = {
           <span>{lang.toUpperCase()}</span>
           <a href={switchPath}>{languages[switchLang]}</a>
         </div>
-        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label="Sanitas Wallet öffnen" title="Sanitas Wallet">
+        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label={labels.walletOpen} title="Sanitas Wallet">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
             <rect x="2" y="5" width="20" height="14" rx="2"></rect>
             <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
           </svg>
           <span id="nav-san-balance" class="san-nav-badge" hidden>0</span>
         </a>
-        <button class="theme-toggle" type="button" aria-label="Darkmode umschalten" aria-pressed="false">
+        <button class="theme-toggle" type="button" aria-label={labels.toggleTheme} aria-pressed="false">
           <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
@@ -204,7 +241,7 @@ const socialIcons = {
     <footer class="site-footer">
       <!-- Trustpilot Review Collector Widget -->
       <div class="trustpilot-wrapper">
-        <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a0765bcbcabb859c8675fbb" data-style-height="52px" data-style-width="100%" data-token="ed79da09-c348-4913-89dc-6e60a759e0ba">
+        <div class="trustpilot-widget" data-locale={labels.trustpilotLocale} data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a0765bcbcabb859c8675fbb" data-style-height="52px" data-style-width="100%" data-token="ed79da09-c348-4913-89dc-6e60a759e0ba">
           <a href="https://de.trustpilot.com/review/callidus-am.de" target="_blank" rel="noopener">Trustpilot</a>
         </div>
       </div>
@@ -212,7 +249,7 @@ const socialIcons = {
         <p>© callidus A&M. {t.footer}</p>
         <nav class="social-nav" aria-label={t.socialLabel}>
           {socialLinks.map((item) => (
-            <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.label} öffnen`} title={item.label}>
+            <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={labels.socialOpen(item.label)} title={item.label}>
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={socialIcons[item.icon]} />
               <strong>{item.label}</strong>
             </a>
@@ -225,23 +262,23 @@ const socialIcons = {
         <a href={t.paths.terms}>{t.legal.terms}</a>
       </nav>
     </footer>
-    <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis" hidden>
+    <div class="cookie-banner" role="dialog" aria-live="polite" aria-label={labels.cookieLabel} hidden>
       <div class="cookie-banner-inner">
         <div>
-          <strong>Cookies & externe Inhalte</strong>
+          <strong>{labels.cookieTitle}</strong>
           <p>
-            Diese Webseite ist standardmaessig komplett tracking-frei. Erst wenn Sie eingebettete
-            YouTube-Videos oder das Newsletter-Formular laden, werden Cookies und Daten von Drittanbietern uebertragen.
-            Mehr Infos in unserer <a href="/datenschutz/">Datenschutzerklaerung</a>.
+            {labels.cookieTextBefore}
+            {' '}
+            {labels.cookieTextMore} <a href={t.paths.privacy}>{labels.cookiePrivacy}</a>.
           </p>
         </div>
         <div class="cookie-banner-actions">
-          <button type="button" class="button" data-cookie-decline>Nur Notwendige</button>
-          <button type="button" class="button primary" data-cookie-accept>Akzeptieren</button>
+          <button type="button" class="button" data-cookie-decline>{labels.cookieDecline}</button>
+          <button type="button" class="button primary" data-cookie-accept>{labels.cookieAccept}</button>
         </div>
       </div>
     </div>
-    <button class="back-to-top" type="button" aria-label="Nach oben">
+    <button class="back-to-top" type="button" aria-label={labels.backToTop}>
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="m6 15 6-6 6 6"></path>
       </svg>
@@ -249,11 +286,16 @@ const socialIcons = {
     <script is:inline>
       // ── Dropdown-Navigation ─────────────────────────────────────
       (() => {
+        let outsideBound = false;
         const initDropdowns = () => {
           const isMobile = () => window.innerWidth <= 820;
           document.querySelectorAll('.nav-group').forEach(group => {
             const btn = group.querySelector('.nav-group-btn');
-            if (!btn) return;
+            // Mehrfach-Bindung vermeiden: astro:page-load (ClientRouter) feuert
+            // bei jeder Navigation und beim Erststart → sonst doppelte Handler,
+            // die das Auf-/Zuklappen sofort wieder rückgängig machen.
+            if (!btn || btn.dataset.navGroupReady) return;
+            btn.dataset.navGroupReady = 'true';
             // Mobile: click to toggle accordion
             btn.addEventListener('click', (e) => {
               if (!isMobile()) return;
@@ -291,15 +333,18 @@ const socialIcons = {
               }
             });
           });
-          // Close dropdowns when clicking outside
-          document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-group')) {
-              document.querySelectorAll('.nav-group.is-open').forEach(g => {
-                g.classList.remove('is-open');
-                g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
-              });
-            }
-          });
+          // Close dropdowns when clicking outside (nur einmal global binden)
+          if (!outsideBound) {
+            outsideBound = true;
+            document.addEventListener('click', (e) => {
+              if (!e.target.closest('.nav-group')) {
+                document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                  g.classList.remove('is-open');
+                  g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+                });
+              }
+            });
+          }
         };
         initDropdowns();
         document.addEventListener('astro:page-load', initDropdowns);

@@ -142,15 +142,88 @@
         ]
       },
       {
-        "heading": "",
+        "heading": "9. Datenschutz in den Callidus Apps (NEXUS, MOMUS, KAIROS)",
         "paragraphs": [
-          "Datenschutzerklärung für die App „NEXUS“ Stand:"
+          "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 24. Mai 2026.",
+          "Verantwortliche Stelle ist die im Abschnitt „Hinweis zur verantwortlichen Stelle\" genannte Callidus A&M, Arnold Jedich. Bei Fragen zum Datenschutz in den Apps erreichen Sie uns unter info@callidus-am.de.",
+          "Die Apps nutzen die Firebase-Plattform von Google (Google Ireland Limited bzw. Google LLC). Ihre Konto- und Nutzungsdaten werden in unserem zugriffsgeschützten Firebase-/Google-Cloud-Projekt gespeichert und ausschließlich zur Bereitstellung der App-Funktionen verarbeitet.",
+          "Die Nutzung der Apps ist freiwillig. Sensible Funktionen (z. B. Gesundheitsanalysen sowie Dokument- und Fotoanalysen) werden erst nach Ihrer ausdrücklichen Einwilligung aktiviert und können jederzeit mit Wirkung für die Zukunft widerrufen werden."
         ]
       },
       {
-        "heading": "12. Februar",
+        "heading": "10. Konto und Anmeldung",
         "paragraphs": [
-          "2026 Wichtig: Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Diese Datenschutzerklärung informiert Sie umfassend über die Verarbeitung Ihrer personenbezogenen Daten bei der Nutzung unserer Callidus NEXUS App. Inhaltsverzeichnis"
+          "Für die Nutzung der Apps legen Sie ein Nutzerkonto an. Die Authentifizierung erfolgt über Firebase Authentication (Google). Dabei verarbeiten wir Ihre E-Mail-Adresse und – bei Anmeldung mit Google – Ihren Namen sowie Ihre Google-Konto-Kennung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).",
+          "Optional können Sie die Anmeldung per Fingerabdruck oder Gesichtserkennung (biometrische Entsperrung) aktivieren. Die biometrische Prüfung findet ausschließlich lokal auf Ihrem Gerät statt; biometrische Daten werden weder an uns noch an Dritte übertragen oder gespeichert.",
+          "Bei wiederholten fehlgeschlagenen Anmeldungen können technische Schutzdaten verarbeitet werden, um Missbrauch zu verhindern (Art. 6 Abs. 1 lit. f DSGVO)."
+        ]
+      },
+      {
+        "heading": "11. Gesundheits- und Fitnessdaten",
+        "paragraphs": [
+          "In den Apps können Sie Gesundheits- und Fitnessangaben erfassen, z. B. Schrittzahl, Körperdaten (Alter, Größe, Gewicht, BMI), Schlaf, Ernährungs- und Aktivitätsdaten sowie Angaben zu Wohlbefinden und Energie. In MOMUS und NEXUS kann die Schrittzahl – nach Ihrer Freigabe – über Health Connect (Android) bzw. Apple Health (iOS) ausgelesen werden.",
+          "Diese Angaben gehören zu den besonderen Kategorien personenbezogener Daten. Wir verarbeiten sie ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO, um Ihnen die Analyse-, Tracking- und Coaching-Funktionen bereitzustellen.",
+          "Ohne Ihre Einwilligung werden keine Gesundheitsdaten ausgelesen oder ausgewertet. Sie können die Einwilligung jederzeit in den App-Einstellungen oder durch Entzug der jeweiligen Geräte-Berechtigung widerrufen."
+        ]
+      },
+      {
+        "heading": "12. Dokumenten-Upload und KI-Analyse",
+        "paragraphs": [
+          "Die Apps bieten eine Dokumentenverwaltung mit KI-gestützter Texterkennung und Analyse (z. B. für Arztbriefe, Befunde, Rezepte und sonstige Schreiben). Diese Funktion ist aktiv verfügbar. Wenn Sie sie nutzen, wird der Inhalt des jeweiligen Dokuments zur Verarbeitung an den KI-Dienst Google Gemini übertragen.",
+          "Hochgeladene Dokumente und die Analyseergebnisse werden in Ihrem persönlichen, zugriffsgeschützten Konto-Bereich gespeichert. Da Dokumente Gesundheitsdaten enthalten können, erfolgt die Verarbeitung auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO.",
+          "Die Übermittlung an den KI-Dienst kann eine Verarbeitung in einem Drittland (USA) umfassen. Diese stützen wir zusätzlich auf Ihre ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO. Vor der ersten Analyse werden Sie um diese Einwilligung gebeten; Sie können sie jederzeit widerrufen."
+        ]
+      },
+      {
+        "heading": "13. Foto- und Gesichtsanalyse",
+        "paragraphs": [
+          "MOMUS bietet eine optionale Funktion zur Foto- bzw. Gesichtsanalyse (z. B. eine Alterungs-Simulation). Hierfür wird das von Ihnen ausgewählte Foto einmalig an den Dienst FAL AI mit Sitz in den USA übertragen und dort verarbeitet.",
+          "FAL AI verarbeitet das Foto als Auftragsverarbeiter und speichert es nach Angaben des Anbieters nicht dauerhaft. Das Analyseergebnis wird auf Ihrem Gerät bzw. in Ihrem Konto gespeichert. Eine Weitergabe an weitere Dritte über FAL AI hinaus erfolgt nicht.",
+          "Da es sich um biometrische bzw. gesundheitsbezogene Daten handeln kann und eine Übermittlung in die USA erfolgt, verarbeiten wir diese Daten ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a und Art. 49 Abs. 1 lit. a DSGVO. NEXUS nutzt zur Analyse von Essensfotos den KI-Dienst Google Gemini; auch diese Analyse erfolgt ausschließlich auf Ihre Veranlassung."
+        ]
+      },
+      {
+        "heading": "14. App-Verknüpfung (Companion-Hub)",
+        "paragraphs": [
+          "Unsere Apps können auf Ihren Wunsch miteinander verbunden werden (Companion-Hub), damit z. B. KAIROS auf zusammengefasste Daten aus NEXUS oder MOMUS zugreifen kann. Diese Verknüpfung ist optional und standardmäßig deaktiviert.",
+          "Erst wenn Sie den Hub aktivieren, werden Zusammenfassungen (z. B. Tagesstatistiken, Schritt- und Aktivitätswerte sowie Statusinformationen) in Ihrem persönlichen Konto-Bereich gespeichert und zwischen den Apps ausgetauscht. Solange der Hub deaktiviert ist, verbleibt die jeweilige Auswertung – soweit technisch möglich – lokal auf Ihrem Gerät.",
+          "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, soweit Gesundheitsdaten betroffen sind. Sie können die Verknüpfung jederzeit in den App-Einstellungen trennen."
+        ]
+      },
+      {
+        "heading": "15. Nutzungs- und Geräteanalyse",
+        "paragraphs": [
+          "MOMUS bietet eine optionale Analyse Ihrer Geräte- und App-Nutzung (z. B. Bildschirmzeit, Nutzung pro App-Kategorie, Nachtnutzung), um Ihnen Hinweise zu Ihren „Energie-Lecks\" zu geben. Diese Auswertung erfolgt standardmäßig nur lokal auf Ihrem Gerät.",
+          "Nur wenn Sie den Companion-Hub aktiviert haben, werden ausschließlich Zusammenfassungen dieser Auswertung in Ihrem privaten Konto-Bereich gespeichert. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO."
+        ]
+      },
+      {
+        "heading": "16. Abonnements und In-App-Käufe",
+        "paragraphs": [
+          "Premium-Funktionen können Sie über ein Abonnement bzw. einen In-App-Kauf erwerben. Die Zahlungsabwicklung erfolgt über den jeweiligen App-Store (Google Play bzw. Apple App Store); wir erhalten keine vollständigen Zahlungsdaten.",
+          "Zur Freischaltung und zum Schutz vor Missbrauch verarbeiten wir Kauf- und Verifizierungsdaten (z. B. Produkt-ID, Bestell-/Order-ID, Kauf-Token, Status und Ablaufdatum). Die Prüfung des Kaufs erfolgt serverseitig über eine gesicherte Funktion. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO."
+        ]
+      },
+      {
+        "heading": "17. Benachrichtigungen und Spracheingabe",
+        "paragraphs": [
+          "Mit Ihrer Zustimmung senden wir Push-Benachrichtigungen über Firebase Cloud Messaging (Google). Hierzu wird ein gerätebezogenes Token verarbeitet. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; Sie können Benachrichtigungen in den System- oder App-Einstellungen deaktivieren.",
+          "Für die optionale Spracheingabe (Diktierfunktion) wird das Mikrofon genutzt. Die Spracherkennung erfolgt über den Spracherkennungsdienst Ihres Betriebssystems (Google bzw. Apple) und nur, während Sie die Funktion aktiv nutzen."
+        ]
+      },
+      {
+        "heading": "18. Auftragsverarbeitung und Drittlandübermittlung",
+        "paragraphs": [
+          "Zur Bereitstellung der Apps setzen wir externe Dienstleister als Auftragsverarbeiter ein, insbesondere Google (Firebase Authentication, Firestore-Datenbank, Cloud Functions, Cloud Messaging sowie Gemini) und FAL AI für die optionale Fotoanalyse. Mit diesen Anbietern bestehen bzw. werden Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO geschlossen.",
+          "Dabei kann es zu einer Übermittlung personenbezogener Daten in die USA kommen. Soweit für den Empfänger keine Zertifizierung nach dem EU-US Data Privacy Framework vorliegt, stützen wir die Übermittlung auf die Standardvertragsklauseln der EU-Kommission und/oder – bei sensiblen Funktionen – auf Ihre ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO."
+        ]
+      },
+      {
+        "heading": "19. Speicherdauer, Ihre Rechte und Kontolöschung",
+        "paragraphs": [
+          "Wir speichern Ihre App-Daten, solange Ihr Konto besteht bzw. solange dies für die genannten Zwecke erforderlich ist. Sie können Ihre in den Apps gespeicherten Daten jederzeit über die Export-Funktion in den Einstellungen herunterladen (Recht auf Datenübertragbarkeit, Art. 20 DSGVO).",
+          "Sie können Ihr Konto und die zugehörigen Daten jederzeit über die Funktion „Konto löschen\" in den App-Einstellungen dauerhaft löschen. Ihnen stehen zudem die in dieser Datenschutzerklärung genannten Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Aufsichtsbehörde zu.",
+          "Erteilte Einwilligungen (z. B. für Gesundheits-, Dokument- oder Fotoanalysen) können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt."
         ]
       }
     ]

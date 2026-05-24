@@ -153,6 +153,7 @@ export const guideCopy = {
     headline: 'Wissen, das sich sortiert anfühlt.',
     lede: 'Ihr Kompass für ganzheitliches Wohlbefinden: fundiertes Wissen rund um Naturheilkunde, Ernährung, Bewegung, mentale Balance und die Zukunft der Gesundheit.',
     articleLabel: 'Artikel',
+    articleLabelPlural: 'Artikel',
     categoryCta: 'Kategorie-Seite ansehen',
   },
   en: {
@@ -162,6 +163,7 @@ export const guideCopy = {
     headline: 'Knowledge that feels organized.',
     lede: 'The existing content is being moved into four clear areas. German legacy URLs stay intact, while this English structure gives you a clean translation layer to expand over time.',
     articleLabel: 'Article',
+    articleLabelPlural: 'articles',
     categoryCta: 'Open category',
   },
 };
@@ -208,11 +210,231 @@ export const categoryTranslations = {
   },
 };
 
+export const articleTranslations = {
+  en: {
+    '10-minuten-morgen-workout': {
+      title: '10-Minute Morning Workout for More Energy | callidus A&M',
+      description: 'Short on time? Start your day with an effective 10-minute workout for more energy, better focus, and a fitter body, with no equipment required.',
+    },
+    '3-atemtechniken-fur-mehr-energie': {
+      title: '3 Simple Breathing Techniques for Energy & Stress Relief | callidus A&M',
+      description: 'Discover how simple breathing exercises can reduce stress and restore energy quickly. Learn three techniques for more calm and clarity in everyday life.',
+    },
+    ashwagandha: {
+      title: 'Ashwagandha: Benefits & Uses for Stress and Sleep | callidus A&M',
+      description: 'What is ashwagandha and how does it work? Learn how this natural Ayurvedic adaptogen may help reduce stress and support better sleep.',
+    },
+    'biologische-verjungung': {
+      title: 'Biological Rejuvenation: Renew Your Cells & Skin | callidus A&M',
+      description: 'More than skin care: learn how nutrients and daily habits can support biological rejuvenation from the inside out.',
+    },
+    'blockchain-ihre-gesundheit': {
+      title: 'How Blockchain Can Make Health Data Safer',
+      description: 'A clear look at blockchain in healthcare, patient data security, digital health records, smart contracts, and safer ways to share medical information.',
+    },
+    'darmgesundheit-mit-akazienfaser': {
+      title: 'Gut Health: Acacia Fiber & Probiotics for Balance | callidus A&M',
+      description: 'A healthy gut is key to wellbeing. Learn how soluble fibers such as acacia fiber can support your microbiome as targeted prebiotics.',
+    },
+    'das-diktat-ihrer-gedanken': {
+      title: 'Your Mindset Shapes Success and Failure',
+      description: 'Learn how to challenge limiting beliefs, steer negative thoughts, and regain more control over your inner dialogue.',
+    },
+    'das-protokoll-zur-neuro-resilienz': {
+      title: 'Preventing Dementia & Depression: The Neuro-Resilience Protocol | callidus A&M',
+      description: 'Losing control of the mind is one of today\'s greatest fears. Science increasingly shows how lifestyle can help protect cognitive and emotional resilience.',
+    },
+    'der-digitale-detox': {
+      title: 'How a Conscious Digital Break Gives Your Brain New Strength',
+      description: 'Digital detox, mental clarity, better focus, creativity, and healthier screen habits: why a deliberate break can reset your nervous system.',
+    },
+    'der-energie-reset': {
+      title: 'How 15 Minutes of Daily Movement Can Transform Your Day',
+      description: 'A practical energy reset through short daily movement, stress relief, better concentration, and quick routines that fit into real life.',
+    },
+    'der-ganzheitliche-bodybuilding-plan': {
+      title: 'The Holistic Training Plan for Muscle Growth | callidus A&M',
+      description: 'More than lifting weights: discover a science-informed approach to building muscle through smart training, targeted nutrition, and mental strength.',
+    },
+    'der-innere-akku': {
+      title: 'How Nutrition and Sleep Shape Training Performance',
+      description: 'Sleep, recovery, micronutrients, sports nutrition, and energy levels: the inner battery that determines how well your body performs.',
+    },
+    'der-schlaf-reset': {
+      title: 'Sleep Reset: 5 Evening Rituals for Restorative Sleep | callidus A&M',
+      description: 'Trouble falling asleep or staying asleep? Discover five simple evening rituals that help you wind down and improve sleep quality.',
+    },
+    'der-unsichtbare-teller': {
+      title: 'The Invisible Plate: Why How You Eat Matters Too',
+      description: 'Mindful eating is not only about what is on your plate. Learn how habits, stress, digestion, and attention shape nutrition and wellbeing.',
+    },
+    'die-biologische-uhr-verlangsamen': {
+      title: 'Healthy Aging: How We Can Slow the Biological Clock | callidus A&M',
+      description: 'Is aging a disease? Explore longevity science and learn how approaches such as senolytics and NAD+ may influence the aging process.',
+    },
+    'die-kraft-der-dankbarkeit': {
+      title: 'How a Simple Thank You Strengthens Emotional Wellbeing',
+      description: 'Gratitude, resilience, positive psychology, and inner satisfaction: why a small daily practice can have a measurable emotional effect.',
+    },
+    'die-kraft-des-magnesiums': {
+      title: 'The Power of Magnesium: Essential for Muscles & Nerves | callidus A&M',
+      description: 'Tired, tense, or restless? Learn why magnesium deficiency may play a role and how to replenish your stores with the right foods.',
+    },
+    'die-kunst-des-mentalen-resets': {
+      title: 'Is Your Head Full? Try 5 Simple Five-Minute Exercises',
+      description: 'Quick mental reset tools for stress relief, clearer thoughts, breathing practice, mindfulness, and more inner calm in everyday life.',
+    },
+    'die-personalisierte-revolution': {
+      title: 'Personalized Health: How Genetics & AI Are Changing Medicine | callidus A&M',
+      description: 'The future is personal. Learn how DNA-based nutrition and AI analysis may transform prevention and health guidance.',
+    },
+    'digitale-alchemie': {
+      title: 'Digital Alchemy: How Neurotech Shapes Our Emotions | callidus A&M',
+      description: 'Wearable neurotechnology and digital therapeutics may soon help us regulate stress, focus, and creativity in real time.',
+    },
+    'gehen-als-training': {
+      title: 'Walking as Training: Why Going for a Walk Is So Effective | callidus A&M',
+      description: 'Discover the surprising health benefits of walking, from joint-friendly movement and stress relief to sustainable weight management.',
+    },
+    'gesundheit-im-familien-alltag': {
+      title: 'Healthy Living With Family & Work: Mastering the Full-Time Job of Health | callidus A&M',
+      description: 'Exercise, cooking, children, and work can clash quickly. Learn how to set priorities and make healthy routines realistic.',
+    },
+    'ihr-digitaler-gesundheits-butler': {
+      title: 'The Digital Health Butler: How AI & Robots Can Support Us | callidus A&M',
+      description: 'The future of health is personal and always available. Learn how AI coaches and robotics may support everyday wellbeing.',
+    },
+    'jenseits-der-pille': {
+      title: 'The Future of Medicine: Beyond the Pill | callidus A&M',
+      description: 'From smart implants that measure values in real time to 3D-printed organs: explore tomorrow\'s treatment methods.',
+    },
+    'metformin-vs-spermidin': {
+      title: 'Metformin & Spermidine: The Science of a Long Life | callidus A&M',
+      description: 'A medicine and a natural compound in anti-aging research: how metformin and spermidine may influence cellular longevity.',
+    },
+    'protein-wissen-fur-kraftaufbau': {
+      title: 'Plant-Based Protein: How to Build Strength Effectively | callidus A&M',
+      description: 'Discover the power of plant protein and learn why protein matters for muscle growth, energy, and effective vegan nutrition.',
+    },
+    'sport-als-stress-killer': {
+      title: 'How Movement Clears Your Brain and Releases New Energy',
+      description: 'Exercise as stress relief: how movement supports mental health, frees energy, improves wellbeing, and helps the brain reset.',
+    },
+    'vitamin-a-wachter-der-sehkraft': {
+      title: 'Vitamin A: Guardian of Vision & Immune Health | callidus A&M',
+      description: 'Learn why vitamin A is important for your eyes and immune system, including the best sources and signs of deficiency.',
+    },
+    'vitamin-c-mythen': {
+      title: 'Vitamin C Myths: What the Immune Booster Really Can Do | callidus A&M',
+      description: 'Does vitamin C really prevent colds? Clear up common myths and learn what it actually does for immunity and skin.',
+    },
+    'vitamin-d-das-sonnenhormon': {
+      title: 'Vitamin D: The Sunshine Hormone for Bones & Immune Health | callidus A&M',
+      description: 'Learn why vitamin D matters, why many people are undersupplied in winter, and what function, sources, and deficiency signs to know.',
+    },
+    'vitamin-e-der-zellschutzer': {
+      title: 'Vitamin E: The Master Antioxidant for Cell Protection | callidus A&M',
+      description: 'Learn how vitamin E protects cells from oxidative stress and discover the best sources, including nuts, seeds, and oils.',
+    },
+    'soziale-isolation-2-0-warum-menschen-nur-pixel-im-weg-deines-gluecks-sind': {
+      title: 'Social Isolation 2.0: Why People Are Just Pixels in the Way of Your Happiness',
+      description: 'Real encounters are unpredictable, loud, and inconvenient. A satirical look at turning life into a sealed digital echo chamber.',
+    },
+    'die-ergonomie-des-niedergangs-dein-schreibtisch-als-orthopaedisches-schlachtfeld': {
+      title: 'The Ergonomics of Decline: Your Desk as an Orthopedic Battlefield',
+      description: 'A satirical guide to turning your workplace into a mechanical torture device for your back, neck, and concentration.',
+    },
+    'der-salz-rausch-warum-du-deine-arterien-wie-eine-poekelkammer-behandeln-solltest': {
+      title: 'The Salt Rush: Why You Should Treat Your Arteries Like a Curing Chamber',
+      description: 'A satirical ode to sodium excess, crispy blood pressure, and the strange idea of preserving the body from the inside.',
+    },
+    'der-unbewegliche-herrscher-warum-aufstehen-ein-designfehler-der-evolution-ist': {
+      title: 'The Immovable Ruler: Why Standing Up Is an Evolutionary Design Flaw',
+      description: 'A satirical analysis of the triumph of remote controls, chairs, and the strategic retreat of human musculature.',
+    },
+    'die-vampir-strategie-warum-schlaf-die-zeitverschwendung-deines-lebens-ist': {
+      title: 'The Vampire Strategy: Why Sleep Is the Waste of Your Life',
+      description: 'A satirical look at sleep deprivation, delirious brilliance, and the tired status symbols of an exhausted elite.',
+    },
+    'das-versiegelte-archiv-warum-der-einlauf-ein-angriff-auf-deine-innere-festung-is': {
+      title: 'The Sealed Archive: Why an Enema Is an Attack on Your Inner Fortress',
+      description: 'A satirical defense of intestinal old inventory and why the body is not quite a Swiss watch to be flushed on command.',
+    },
+    'das-hunger-drama-warum-dein-magen-denkt-die-welt-ginge-unter': {
+      title: 'The Hunger Drama: Why Your Stomach Thinks the World Is Ending',
+      description: 'A satirical view of fasting as an existential crisis, inner cannibalism, and the theatrics of an empty stomach.',
+    },
+    'die-mitternachts-metamorphose-warum-dein-kuehlschrank-nachts-heller-strahlt-als-': {
+      title: 'Midnight Metamorphosis: Why Your Fridge Shines Brighter Than Your Future',
+      description: 'A satirical tribute to cold pizza, late-night hunger, and rebellion against metabolism under refrigerator light.',
+    },
+    'das-goldene-archiv-der-konservierungsstoffe-werde-unsterblich-oder-zumindest-unz': {
+      title: 'The Golden Archive of Preservatives: Become Immortal, or at Least Nonperishable',
+      description: 'A satirical homage to E-numbers, supermarket shelf life, and the dream of becoming chemically stable.',
+    },
+    'das-schnappatmungs-syndrom-warum-ausser-puste-das-neue-game-over-ist': {
+      title: 'The Gasping Syndrome: Why Out of Breath Is the New Game Over',
+      description: 'A satirical praise of shallow breathing and the noble art of treating oxygen as an unwanted intruder.',
+    },
+    'die-wueste-in-dir-warum-durst-das-ultimative-accessoire-fuer-effizienz-gurus-ist': {
+      title: 'The Desert Inside You: Why Thirst Is the Ultimate Efficiency Accessory',
+      description: 'A satirical guide to replacing hydration with willpower, headaches, and an ambitious amount of espresso.',
+    },
+    'die-treppen-phobie-warum-der-aufzug-dein-wahrer-thron-ist': {
+      title: 'Stair Phobia: Why the Elevator Is Your True Throne',
+      description: 'A satirical plea for vertical stillness and the art of moving as little as possible.',
+    },
+    'die-kunst-der-kinetischen-verweigerung-warum-dein-koerper-die-statik-liebt': {
+      title: 'The Art of Kinetic Refusal: Why Your Body Loves Stasis',
+      description: 'A satirical dive into the biology of total inactivity and the evolution of the sitting species.',
+    },
+    'das-gift-abo-warum-dein-seelenfrieden-ein-hindernis-fuer-dein-digitales-ueberleb': {
+      title: 'The Poison Subscription: Why Peace of Mind Blocks Your Digital Survival',
+      description: 'A satirical look at outrage, blood pressure, online scandal, and the cardio program of getting upset.',
+    },
+    'das-multitasking-massaker-wie-man-10-dinge-gleichzeitig-zu-0-erledigt': {
+      title: 'The Multitasking Massacre: How to Do 10 Things at Once at 0%',
+      description: 'A satirical portrait of scattered attention, endless switching, and the productivity illusion that leaves only smoke behind.',
+    },
+    'die-tyrannei-des-kissens-warum-schlafen-nur-etwas-fuer-feiglinge-ist': {
+      title: 'The Tyranny of the Pillow: Why Sleeping Is Only for Cowards',
+      description: 'A satirical manual for turning night into day and transforming fatigue into a lifestyle.',
+    },
+    'doomscrolling-als-meditation-die-erleuchtung-im-digitalen-muellschlund': {
+      title: 'Doomscrolling as Meditation: Enlightenment in the Digital Trash Stream',
+      description: 'A satirical guide to finding the end of the world every 15 seconds and calling it inner stillness.',
+    },
+    'die-evolution-der-horizontalen-fortbewegung-couch-potatoes-united': {
+      title: 'The Evolution of Horizontal Movement: Couch Potatoes United',
+      description: 'A satirical analysis of inertia, horizontal living, and the overestimated practice of standing up.',
+    },
+    'die-suesse-ekstase-des-absturzes-eine-hommage-an-das-zucker-koma': {
+      title: 'The Sweet Ecstasy of the Crash: A Tribute to the Sugar Coma',
+      description: 'A satirical celebration of sugar excess, unstable blood glucose, and advanced self-sabotage.',
+    },
+    'die-architektur-der-lethargie-warum-ihr-sofa-sie-liebt': {
+      title: 'The Architecture of Lethargy: Why Your Sofa Loves You',
+      description: 'A satirical portrait of the relationship between upholstered furniture, the spine, and the final boss of vitality.',
+    },
+    'die-geiselnahme-im-frontallappen-warum-wir-die-kontrolle-verlieren-und-wie-wir-s': {
+      title: 'The Hostage Situation in the Frontal Lobe: Why We Lose Control and How We Take It Back',
+      description: 'A satirical analysis of biochemical mutiny in the brain and a battle plan for mental reconquest.',
+    },
+  },
+};
+
 export function categoryForLang(category, lang = 'de') {
   if (lang === 'en') {
     return { ...category, ...(categoryTranslations.en[category.slug] || {}) };
   }
   return category;
+}
+
+export function articleForLang(article, lang = 'de') {
+  if (lang === 'en') {
+    return { ...article, ...(articleTranslations.en[article.slug] || {}) };
+  }
+  return article;
 }
 
 export function localizedPath(path, lang = 'de') {
