@@ -22,7 +22,7 @@ const labels = lang === 'en'
       health: 'Health',
       knowledgeCards: 'Knowledge cards',
       menuOpen: 'Open menu',
-      walletOpen: 'Open Sanitas Wallet',
+      walletOpen: 'Open Valus Wallet',
       toggleTheme: 'Toggle dark mode',
       socialOpen: (label) => `Open ${label}`,
       cookieLabel: 'Cookie notice',
@@ -40,7 +40,7 @@ const labels = lang === 'en'
       health: 'Gesundheit',
       knowledgeCards: 'Wissenskarten',
       menuOpen: 'Menü öffnen',
-      walletOpen: 'Sanitas Wallet öffnen',
+      walletOpen: 'Valus Wallet öffnen',
       toggleTheme: 'Darkmode umschalten',
       socialOpen: (label) => `${label} öffnen`,
       cookieLabel: 'Cookie-Hinweis',
@@ -220,7 +220,7 @@ const socialIcons = {
           <span>{lang.toUpperCase()}</span>
           <a href={switchPath}>{languages[switchLang]}</a>
         </div>
-        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label={labels.walletOpen} title="Sanitas Wallet">
+        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label={labels.walletOpen} title="Valus Wallet">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
             <rect x="2" y="5" width="20" height="14" rx="2"></rect>
             <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
@@ -394,7 +394,7 @@ const socialIcons = {
       })();
     </script>
     <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
-      // ── Sanitas Wallet Balance im Nav ──────────────────────────
+      // ── Valus Wallet Balance im Nav ──────────────────────────
       (() => {
         let walletInited = false;
         const initWalletBadge = async () => {

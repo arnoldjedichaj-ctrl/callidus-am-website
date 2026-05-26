@@ -88,6 +88,22 @@
     "summary": "NIH-Fachinformation zu Zink, Statusmarkern, Zufuhr und Sicherheit."
   },
   {
+    "id": "nih-omega3",
+    "title": "Omega-3 Fatty Acids - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Omega-3", "DHA", "EPA", "ALA", "Mikronährstoffe"],
+    "summary": "NIH-Fachinformation zu Omega-3-Fettsäuren, Quellen, Status, Sicherheit und Interaktionen."
+  },
+  {
+    "id": "nih-vitamin-c",
+    "title": "Vitamin C - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Vitamin C", "Kollagen", "Antioxidantien", "Mikronährstoffe"],
+    "summary": "NIH-Fachinformation zu Vitamin C, Quellen, Funktionen, Referenzwerten und Sicherheit."
+  },
+  {
     "id": "dge-vitamin-b12",
     "title": "Vitamin B12 Referenzwerte",
     "url": "https://www.dge.de/wissenschaft/referenzwerte/vitamin-b12/",

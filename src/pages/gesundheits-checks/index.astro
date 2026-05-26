@@ -4,8 +4,8 @@ import healthChecks from '../../data/health-checks.json';
 import knowledgeSources from '../../data/knowledge-sources.json';
 import { allArticles } from '../../data/all-articles.js';
 
-const title = '2-Minuten Gesundheits-Checks | callidus A&M';
-const description = 'Stress-Check und Mikronährstoff-Radar von callidus A&M: sofortige Auswertung, Quellen und passende nächste Schritte ohne E-Mail-Gate.';
+const title = 'Gesundheits-Checks & Health IQ | callidus A&M';
+const description = 'Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel.';
 const sourceIndex = Object.fromEntries(knowledgeSources.map((source) => [source.id, source]));
 const articleIndex = Object.fromEntries(allArticles.map((article) => [
   article.path,
@@ -22,13 +22,13 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
     <div class="container split">
       <div data-reveal>
         <p class="eyebrow">Callidus Checks</p>
-        <h1>Kurze Checks. Sofort klare nächste Schritte.</h1>
+        <h1>Kurze Checks. Spielerisch klüger werden.</h1>
         <p class="lede">
-          Starte mit Stress oder Mikronährstoffen. Die Auswertung bleibt direkt sichtbar,
-          ohne E-Mail-Schranke und ohne Diagnoseversprechen.
+          Starte mit Stress, Mikronährstoffen oder dem Health-IQ-Wissensquiz.
+          Die Auswertung bleibt direkt sichtbar, ohne E-Mail-Schranke und ohne Diagnoseversprechen.
         </p>
         <div class="actions">
-          <a class="button primary" href="#check-tool">Check starten</a>
+          <a class="button primary" href="#check-tool">Check oder Quiz starten</a>
           <a class="button" href="/quellen-methodik/">Quellen & Methodik</a>
         </div>
       </div>
@@ -45,8 +45,8 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
         </div>
         <div>
           <span>03</span>
-          <strong>Quellen sichtbar</strong>
-          <p>Jede Auswertung verlinkt auf die wichtigsten fachlichen Grundlagen.</p>
+          <strong>Lernen mit Quellen</strong>
+          <p>Das Wissensquiz zeigt falsche Antworten, Lernfelder und passende Artikel zum Nachlesen.</p>
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
   <section class="section tight" id="check-tool">
     <div class="container">
       <div class="health-check-shell" data-health-checks data-reveal>
-        <div class="check-tabs" role="tablist" aria-label="Gesundheits-Check auswählen">
+        <div class="check-tabs" role="tablist" aria-label="Gesundheits-Check oder Wissensquiz auswählen">
           {Object.values(healthChecks).map((check, index) => (
             <button
               type="button"
@@ -77,7 +77,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             <h2>Deine Auswertung erscheint hier.</h2>
             <p>
               Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil,
-              drei nächste Schritte und passende Quellen.
+              nächste Schritte, Lernfelder und passende Quellen.
             </p>
           </aside>
         </div>
@@ -270,7 +270,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           container.append(block);
         };
 
-        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards }) => {
+        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards, learningCards, reviewCards }) => {
           clear(result);
           result.classList.add('has-result');
           result.append(node('span', 'badge gold', check.label));
@@ -278,7 +278,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           result.append(node('p', '', profile.summary));
           const meter = node('div', 'check-score');
           const scoreText = node('strong', '', `${score} / ${maxScore}`);
-          const scoreLabel = node('span', '', check.id === 'stress' ? 'Stresslast' : 'Radar-Summe');
+          const scoreLabel = node('span', '', check.scoreLabel || (check.id === 'stress' ? 'Stresslast' : 'Radar-Summe'));
           const line = node('div', 'check-score-line');
           const fill = node('span');
           fill.style.width = `${Math.min(100, Math.round((score / maxScore) * 100))}%`;
@@ -299,6 +299,19 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             result.append(nutrientBlock);
           }
 
+          if (learningCards?.length) {
+            const learningBlock = node('div', 'knowledge-learning-list');
+            learningBlock.append(node('strong', '', 'Deine Lernfelder'));
+            learningCards.slice(0, 3).forEach((item) => {
+              const card = node('article', 'knowledge-learning-card');
+              card.append(node('span', '', item.badge || 'Lernfeld'));
+              card.append(node('h3', '', item.label));
+              card.append(node('p', '', item.summary));
+              learningBlock.append(card);
+            });
+            result.append(learningBlock);
+          }
+
           const stepBlock = node('div', 'check-step-list');
           stepBlock.append(node('strong', '', 'Nächste sinnvolle Schritte'));
           const list = node('ol');
@@ -308,6 +321,23 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
 
           renderArticles(articles, result);
           renderSources(sources, result);
+
+          if (reviewCards?.length) {
+            const reviewBlock = node('div', 'knowledge-review-list');
+            reviewBlock.append(node('strong', '', 'Antwort-Review'));
+            reviewCards.forEach((item) => {
+              const card = node('article', `knowledge-review-card${item.isCorrect ? ' is-correct' : ' is-wrong'}`);
+              card.append(node('span', '', item.isCorrect ? 'Richtig' : 'Nachschärfen'));
+              card.append(node('h3', '', item.question));
+              card.append(node('p', '', item.explanation));
+              const detail = node('small', '', item.isCorrect
+                ? `Deine Antwort: ${item.selectedLabel}`
+                : `Deine Antwort: ${item.selectedLabel} · Korrekt: ${item.correctLabel}`);
+              card.append(detail);
+              reviewBlock.append(card);
+            });
+            result.append(reviewBlock);
+          }
 
           const safety = node('div', 'notice check-safety');
           safety.append(node('strong', '', 'Wichtig'));
@@ -324,7 +354,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             clear(result);
             result.append(node('span', 'badge mint', 'Bereit'));
             result.append(node('h2', '', 'Deine Auswertung erscheint hier.'));
-            result.append(node('p', '', 'Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil, drei nächste Schritte und passende Quellen.'));
+            result.append(node('p', '', 'Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil, nächste Schritte, Lernfelder und passende Quellen.'));
             renderQuestion();
           });
           result.append(restart);
@@ -380,9 +410,73 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           });
         };
 
+        const renderKnowledgeResult = (check) => {
+          const reviewed = check.questions.map((question) => {
+            const selectedIndex = state.answers[check.id][question.id];
+            const selected = question.options[selectedIndex];
+            const correct = question.options[question.correctIndex];
+            return {
+              question,
+              selectedIndex,
+              selectedLabel: selected?.label || 'Keine Antwort',
+              correctLabel: correct?.label || '',
+              isCorrect: selectedIndex === question.correctIndex,
+              explanation: question.explanation,
+            };
+          });
+          const correctCount = reviewed.filter((item) => item.isCorrect).length;
+          const score = Math.round((correctCount / check.questions.length) * check.maxScore);
+          const profile = profileFor(check.profiles, score);
+          const wrong = reviewed.filter((item) => !item.isCorrect);
+          const misses = {};
+          wrong.forEach(({ question }) => {
+            const category = question.category || 'general';
+            misses[category] = (misses[category] || 0) + 1;
+          });
+          const learningCards = Object.entries(misses)
+            .sort((a, b) => b[1] - a[1])
+            .map(([key, count]) => {
+              const item = check.categories?.[key] || { label: 'Gesundheitswissen', summary: 'Einige Grundlagen verdienen noch Aufmerksamkeit.' };
+              return { ...item, badge: `${count} Frage${count === 1 ? '' : 'n'}` };
+            });
+
+          if (!learningCards.length) {
+            learningCards.push({
+              label: 'Starke Rundumsicht',
+              summary: 'Du hast alle Fragen richtig beantwortet. Nutze die Artikel eher zum Vertiefen als zum Grundlagenlernen.',
+              badge: '0 Fehler',
+              articlePaths: profile.articlePaths || [],
+            });
+          }
+
+          const articlePaths = unique([
+            ...(profile.articlePaths || []),
+            ...learningCards.flatMap((item) => item.articlePaths || []),
+            ...wrong.flatMap(({ question }) => question.articlePaths || []),
+          ]);
+          const sourceIds = unique([
+            ...(profile.sourceIds || []),
+            ...wrong.flatMap(({ question }) => question.sourceIds || []),
+            ...(check.sourceIds || []),
+          ]);
+
+          renderResultShell({
+            check,
+            score,
+            maxScore: check.maxScore,
+            profile,
+            steps: profile.nextSteps || [],
+            articles: articleByPaths(articlePaths),
+            sources: sourceByIds(sourceIds),
+            learningCards,
+            reviewCards: reviewed,
+          });
+        };
+
         const renderResult = () => {
           const check = HEALTH_CHECKS[state.active];
-          if (check.id === 'stress') renderStressResult(check);
+          if (check.type === 'knowledge') renderKnowledgeResult(check);
+          else if (check.id === 'stress') renderStressResult(check);
           else renderMicronutrientResult(check);
         };
 

@@ -439,7 +439,7 @@ function bootPortal() {
     const momusPlan = planFromSources(momusAccess, momusLink, momusHub, userDoc);
     const kairosPlan = planFromSources(kairosAccess, kairosLink, userDoc);
 
-    text('portal-san', displayNumber(balance.san, ' SAN'));
+    text('portal-san', displayNumber(balance.san, ' VAL'));
     text('portal-xp', displayNumber(balance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
     text('portal-wallet', userDoc.wallet_address ? `${userDoc.wallet_address.slice(0, 6)}...${userDoc.wallet_address.slice(-4)}` : 'Nicht verbunden');
     text('portal-linked-apps', `${linkedCount}/3`);
@@ -479,10 +479,10 @@ function bootPortal() {
     renderList(
       'portal-ledger-list',
       ledger.map((entry) => ({
-        title: `${num(entry.amount)} SAN | ${entry.description || entry.type || 'Transaktion'}`,
+        title: `${num(entry.amount)} VAL | ${entry.description || entry.type || 'Transaktion'}`,
         meta: displayDate(entry.created_at),
       })),
-      'Noch keine SAN-Transaktionen.',
+      'Noch keine VAL-Transaktionen.',
     );
   }
 

@@ -107,7 +107,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </p>
         </div>
 
-        <!-- SAN KAUFEN -->
+        <!-- VAL KAUFEN -->
         <div data-reveal style="margin-top:2.5rem">
           <h2>VAL kaufen</h2>
           <p class="muted">Kaufen Sie Valus-Guthaben und lösen Sie es für Rabatte ein.</p>
@@ -135,7 +135,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </p>
         </div>
 
-        <!-- STRESS RESET MIT SAN -->
+        <!-- STRESS RESET MIT VAL -->
         <div class="wallet-card san-redeem-card" data-reveal style="margin-top:2rem">
           <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
             <div style="flex:1;min-width:200px">
@@ -257,9 +257,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       // Digistore24 Pakete (muss mit Cloud Functions übereinstimmen)
       const PACKAGES = {
-        san_10: { san: 10, eur: 7.50, label: '10 SAN' },
-        san_25: { san: 25, eur: 18.75, label: '25 SAN' },
-        san_50: { san: 50, eur: 37.50, label: '50 SAN' },
+        san_10: { san: 10, eur: 7.50, label: '10 VAL' },
+        san_25: { san: 25, eur: 18.75, label: '25 VAL' },
+        san_50: { san: 50, eur: 37.50, label: '50 VAL' },
       };
 
       // ── View helpers ──────────────────────────────────────────
@@ -293,7 +293,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         if (!input || !preview) return;
         input.addEventListener('input', () => {
           const xp = parseInt(input.value) || 0;
-          preview.textContent = `${Math.floor(xp / 100)} SAN`;
+          preview.textContent = `${Math.floor(xp / 100)} VAL`;
         });
       };
 
@@ -410,7 +410,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               return `<div class="ledger-item">
                 <span class="ledger-desc">${data.description || data.type || 'Transaktion'}</span>
                 <span class="ledger-date">${date}</span>
-                <span class="ledger-san ${cls}">${sign}${data.amount} SAN</span>
+                <span class="ledger-san ${cls}">${sign}${data.amount} VAL</span>
               </div>`;
             }).join('');
           }
@@ -418,7 +418,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           $('ledger-list').innerHTML = '<p class="muted">Transaktionen konnten nicht geladen werden.</p>';
         }
 
-        // SAN kaufen → Digistore24
+        // VAL kaufen → Digistore24
         document.querySelectorAll('.san-package-card').forEach(card => {
           card.addEventListener('click', async () => {
             const packageId = card.dataset.package;
