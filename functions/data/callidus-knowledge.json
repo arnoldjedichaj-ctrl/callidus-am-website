@@ -1,0 +1,243 @@
+{
+  "sources": [
+    {
+      "id": "pss-cohen-1983",
+      "title": "A global measure of perceived stress",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6668417/",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "who-stress-guide",
+      "title": "Doing what matters in times of stress",
+      "url": "https://www.who.int/publications/i/item/9789240003927",
+      "type": "Behörde"
+    },
+    {
+      "id": "breathwork-meta-2023",
+      "title": "Effect of breathwork on stress and mental health",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36624160/",
+      "type": "Review"
+    },
+    {
+      "id": "slow-breathing-hrv-2022",
+      "title": "Effects of voluntary slow breathing on heart rate and heart rate variability",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35623448/",
+      "type": "Review"
+    },
+    {
+      "id": "cdc-sleep",
+      "title": "About Sleep",
+      "url": "https://www.cdc.gov/sleep/about/index.html",
+      "type": "Behörde"
+    },
+    {
+      "id": "physical-activity-mental-health-review",
+      "title": "Physical activity and depression and anxiety disorders",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10546525/",
+      "type": "Review"
+    },
+    {
+      "id": "nih-vitamin-d",
+      "title": "Vitamin D - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "nih-magnesium",
+      "title": "Magnesium - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "nih-vitamin-b12",
+      "title": "Vitamin B12 - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "nih-iron",
+      "title": "Iron - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "nih-zinc",
+      "title": "Zinc - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "dge-vitamin-b12",
+      "title": "Vitamin B12 Referenzwerte",
+      "url": "https://www.dge.de/wissenschaft/referenzwerte/vitamin-b12/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "bfr-max-supplements",
+      "title": "Aktualisierte Höchstmengenvorschläge für Vitamine und Mineralstoffe",
+      "url": "https://www.bfr.bund.de/stellungnahme/aktualisierte-hoechstmengenvorschlaege-fuer-vitamine-und-mineralstoffe-in-nahrungsergaenzungsmitteln-und-angereicherten-lebensmitteln/",
+      "type": "Verbraucher-/Risikohinweis"
+    },
+    {
+      "id": "nccih-ashwagandha",
+      "title": "Ashwagandha: Usefulness and Safety",
+      "url": "https://www.nccih.nih.gov/health/ashwagandha",
+      "type": "Behörde"
+    },
+    {
+      "id": "nih-probiotics",
+      "title": "Probiotics - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/",
+      "type": "Referenzwert"
+    },
+    {
+      "id": "fiber-gut-review",
+      "title": "Dietary fiber intervention on gut microbiota composition in healthy adults",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29757343/",
+      "type": "Review"
+    },
+    {
+      "id": "issn-protein-exercise",
+      "title": "International Society of Sports Nutrition Position Stand: protein and exercise",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28642676/",
+      "type": "Review"
+    }
+  ],
+  "entries": [
+    {
+      "title": "Stress-Check",
+      "path": "/gesundheits-checks/",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": ["Stress", "Selbstcheck", "Regeneration"],
+      "text": "Der Stress-Check fragt nach Überforderung, Gedankenkarussell, körperlicher Anspannung, Schlaf, Erholung, Kontrollgefühl, innerer Unruhe und fehlenden Pausen. Er ist eine Orientierung zur Stresslast und keine Diagnose. Ergebnisse: stabile Stresslage, erhöhte Stresslast oder hohe Belastung mit nächsten Schritten.",
+      "sourceIds": ["pss-cohen-1983", "who-stress-guide", "cdc-sleep"]
+    },
+    {
+      "title": "Mikronährstoff-Radar",
+      "path": "/gesundheits-checks/",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": ["Mikronährstoffe", "Vitamin D", "B12", "Magnesium", "Eisen"],
+      "text": "Das Mikronährstoff-Radar bewertet Lebensstil, Ernährung, Tageslicht, Omega-3-Quellen, Protein, Blutungs- oder Schwangerschaftsfaktoren, Magen-Darm- und Medikamentenfaktoren, Symptome, Sport/Stress und Laborwerte. Es zeigt Aufmerksamkeitsbereiche wie Vitamin D, B12, Eisen/Folat, Magnesium, Omega-3 und Jod/Zink, aber keinen Mangelbefund.",
+      "sourceIds": ["nih-vitamin-d", "nih-magnesium", "nih-vitamin-b12", "nih-iron", "nih-zinc", "dge-vitamin-b12", "bfr-max-supplements"]
+    },
+    {
+      "title": "3 einfache Atemtechniken für Energie & Stressabbau",
+      "path": "/3-atemtechniken-fur-mehr-energie/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Atmung", "Stress", "Energie"],
+      "text": "Atemübungen können als niedrigschwellige Routine helfen, Anspannung zu reduzieren und den Körper in Richtung Ruhe zu bewegen. Callidus empfiehlt kurze, wiederholbare Übungen mit langer Ausatmung und klarer Grenze: keine Therapie, sondern Alltagspraxis.",
+      "sourceIds": ["breathwork-meta-2023", "slow-breathing-hrv-2022", "who-stress-guide"]
+    },
+    {
+      "title": "Sport als Stress-Killer",
+      "path": "/sport-als-stress-killer/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Bewegung", "Stress", "Gehirn"],
+      "text": "Bewegung wird bei Callidus als Stressventil und Energiehebel eingeordnet. Schon einfache Routinen wie Gehen oder kurze Trainingseinheiten können helfen, Spannung abzubauen und mentale Klarheit zu fördern.",
+      "sourceIds": ["physical-activity-mental-health-review", "who-stress-guide"]
+    },
+    {
+      "title": "Der Schlaf-Reset",
+      "path": "/der-schlaf-reset/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Schlaf", "Regeneration", "Abendroutine"],
+      "text": "Der Schlaf-Reset betont Schlafrhythmus, Abendroutine, Reizreduktion und Regeneration. Callidus stellt Schlaf als Basis für Energie, Stimmung, Training und Stressregulation dar.",
+      "sourceIds": ["cdc-sleep", "who-stress-guide"]
+    },
+    {
+      "title": "Der digitale Detox",
+      "path": "/der-digitale-detox/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Digital Detox", "Stress", "Schlaf"],
+      "text": "Digital Detox bedeutet bei Callidus keine Technikfeindlichkeit, sondern bewusste Reizsteuerung. Ziel ist weniger Dauerinput, bessere Erholung und klarere Abendgrenzen.",
+      "sourceIds": ["cdc-sleep", "who-stress-guide"]
+    },
+    {
+      "title": "Die Kraft des Magnesiums",
+      "path": "/die-kraft-des-magnesiums/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Magnesium", "Muskeln", "Nerven", "Supplemente"],
+      "text": "Magnesium wird als Mineralstoff für Muskeln und Nerven eingeordnet. Callidus betont Lebensmittelquellen, Verträglichkeit und vorsichtigen Umgang mit Supplementen statt pauschaler Hochdosierung.",
+      "sourceIds": ["nih-magnesium", "bfr-max-supplements"]
+    },
+    {
+      "title": "Vitamin D: Das Sonnenhormon",
+      "path": "/vitamin-d-das-sonnenhormon/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Vitamin D", "Tageslicht", "Immunsystem"],
+      "text": "Vitamin D wird mit Tageslicht, Knochenstoffwechsel und Immunsystem verbunden. Callidus empfiehlt keine blinde Hochdosierung, sondern bei Verdacht Laborwerte und sichere Einordnung.",
+      "sourceIds": ["nih-vitamin-d", "bfr-max-supplements"]
+    },
+    {
+      "title": "Pflanzliches Protein für Kraftaufbau",
+      "path": "/protein-wissen-fur-kraftaufbau/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Protein", "Muskelaufbau", "Vegan", "B12"],
+      "text": "Pflanzliches Protein kann Kraftaufbau unterstützen, wenn Menge, Qualität und Mahlzeitenstruktur passen. Bei veganer Ernährung bleibt Vitamin B12 ein kritischer Nährstoff, der gezielt supplementiert werden muss.",
+      "sourceIds": ["issn-protein-exercise", "dge-vitamin-b12", "nih-vitamin-b12"]
+    },
+    {
+      "title": "Darmgesundheit mit Akazienfaser",
+      "path": "/darmgesundheit-mit-akazienfaser/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Darm", "Ballaststoffe", "Probiotika", "Mikrobiom"],
+      "text": "Callidus ordnet Ballaststoffe und Probiotika als mögliche Unterstützung für das Darmmilieu ein. Die Wirkung ist individuell und bei Probiotika häufig stamm- und anwendungsabhängig.",
+      "sourceIds": ["fiber-gut-review", "nih-probiotics"]
+    },
+    {
+      "title": "Ashwagandha",
+      "path": "/ashwagandha/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": ["Ashwagandha", "Stress", "Schlaf", "Adaptogene"],
+      "text": "Ashwagandha wird als pflanzlicher Stoff im Kontext Stress und Schlaf erwähnt. Callidus sollte Nutzen und Sicherheit zurückhaltend darstellen, besonders bei Schwangerschaft, Leberproblemen, Medikamenten oder Vorerkrankungen.",
+      "sourceIds": ["nccih-ashwagandha"]
+    },
+    {
+      "title": "Quellen & Methodik",
+      "path": "/quellen-methodik/",
+      "kind": "page",
+      "app": "callidus",
+      "topics": ["Quellen", "Methodik", "Transparenz", "KI"],
+      "text": "Callidus legt offen, dass Inhalte redaktionell und KI-unterstützt entstehen können. Quellenboxen zeigen zentrale fachliche Grundlagen. Fachreviews werden nur behauptet, wenn echte Prüfdaten vorliegen.",
+      "sourceIds": []
+    },
+    {
+      "title": "NEXUS App",
+      "path": "/nexus-app/",
+      "kind": "product",
+      "app": "nexus",
+      "topics": ["NEXUS", "App", "KI-Coach", "Ernährung", "Training"],
+      "text": "NEXUS ist der digitale Gesundheitsbegleiter von Callidus. Die App verbindet Ernährung, Training, Regeneration, Fotoanalyse, Wochenpläne, KI-Koch, Berichte und Chat. Medizinische Diagnose wird nicht ersetzt.",
+      "sourceIds": []
+    },
+    {
+      "title": "Stress Reset",
+      "path": "/stress-reset-kurs/",
+      "kind": "course",
+      "app": "callidus",
+      "topics": ["Stress Reset", "Kurs", "Routinen", "Regeneration"],
+      "text": "Der Stress Reset ist ein Callidus-Angebot mit Ressourcen, Journalen und Modulen zur Entlastung, Atem- und Reflexionsroutinen. Er ist als Alltagshilfe positioniert, nicht als medizinische Behandlung.",
+      "sourceIds": ["who-stress-guide", "cdc-sleep"]
+    },
+    {
+      "title": "MOMUS Beiträge",
+      "path": "/ratgeber/",
+      "kind": "satire",
+      "app": "momus",
+      "topics": ["MOMUS", "Satire", "Mindset"],
+      "text": "MOMUS-Inhalte sind als satirische oder spiegelnde Beiträge einzuordnen. Sie dürfen nicht als medizinische, psychologische oder ernährungswissenschaftliche Anleitung verstanden werden.",
+      "sourceIds": []
+    }
+  ]
+}

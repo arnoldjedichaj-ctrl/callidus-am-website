@@ -1,0 +1,279 @@
+{
+  "stress": {
+    "id": "stress",
+    "label": "Stress-Check",
+    "eyebrow": "2-Minuten-Check",
+    "headline": "Wie hoch ist deine aktuelle Stresslast?",
+    "lede": "Dieser Check ist von etablierten Stress-Selbsteinschätzungen inspiriert. Er ersetzt keine Diagnose, macht aber sichtbar, wo dein Nervensystem gerade eher stabil, angespannt oder überlastet wirkt.",
+    "maxScore": 32,
+    "scale": [
+      { "label": "Nie", "value": 0 },
+      { "label": "Selten", "value": 1 },
+      { "label": "Manchmal", "value": 2 },
+      { "label": "Oft", "value": 3 },
+      { "label": "Sehr oft", "value": 4 }
+    ],
+    "questions": [
+      { "id": "overload", "text": "Wie oft hattest du in den letzten 14 Tagen das Gefühl, dass dir alles zu viel wird?" },
+      { "id": "rumination", "text": "Wie oft kreisen deine Gedanken weiter, obwohl du eigentlich abschalten möchtest?" },
+      { "id": "tension", "text": "Wie oft meldet sich Stress körperlich, etwa durch Nacken, Kiefer, Magen oder Druckgefühl?" },
+      { "id": "sleep", "text": "Wie oft wachst du morgens nicht erholt auf?" },
+      { "id": "recovery", "text": "Wie oft brauchst du lange, um nach Belastung wieder runterzufahren?" },
+      { "id": "control", "text": "Wie oft hast du das Gefühl, die Kontrolle über deinen Tag zu verlieren?" },
+      { "id": "arousal", "text": "Wie oft spürst du innere Unruhe, Herzklopfen oder mentale Blockade?" },
+      { "id": "daylight", "text": "Wie oft fehlen dir Tageslicht, Bewegungspausen oder kurze echte Erholung im Alltag?" }
+    ],
+    "profiles": [
+      {
+        "id": "stable",
+        "min": 0,
+        "max": 9,
+        "title": "Stabile Stresslage",
+        "summary": "Deine Antworten sprechen aktuell eher für eine tragfähige Regenerationsreserve. Das Ziel ist, diese Reserve zu schützen, bevor der Alltag sie still abbaut.",
+        "nextSteps": [
+          "Halte eine feste Schlaf- und Aufstehzeit so gut wie möglich stabil.",
+          "Plane täglich eine kurze Bewegungspause im Tageslicht ein.",
+          "Nutze Atemübungen präventiv, nicht erst im roten Bereich."
+        ],
+        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/gehen-als-training/", "/der-schlaf-reset/"],
+        "sourceIds": ["pss-cohen-1983", "who-stress-guide", "cdc-sleep"]
+      },
+      {
+        "id": "elevated",
+        "min": 10,
+        "max": 18,
+        "title": "Erhöhte Stresslast",
+        "summary": "Dein System wirkt belastet, aber noch gut beeinflussbar. Entscheidend sind jetzt kleine Entlastungen, die wiederholt funktionieren.",
+        "nextSteps": [
+          "Setze heute eine 3-Minuten-Atempause mit langer Ausatmung.",
+          "Reduziere eine vermeidbare Reizquelle am Abend, zum Beispiel späte Bildschirmzeit.",
+          "Lege eine klare Mini-Grenze fest: eine Aufgabe weniger, eine Pause bewusst."
+        ],
+        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/der-digitale-detox/", "/sport-als-stress-killer/"],
+        "sourceIds": ["breathwork-meta-2023", "slow-breathing-hrv-2022", "who-stress-guide"]
+      },
+      {
+        "id": "high",
+        "min": 19,
+        "max": 32,
+        "title": "Hohe Belastung",
+        "summary": "Deine Antworten zeigen eine deutlich erhöhte Stresslast. Das ist kein Befund, aber ein ernstzunehmendes Signal, Erholung zu priorisieren und bei anhaltender Belastung Unterstützung einzubeziehen.",
+        "nextSteps": [
+          "Wähle für die nächsten 24 Stunden nur eine stabilisierende Maßnahme: Schlaf, ruhiger Spaziergang oder Atemübung.",
+          "Sprich mit einer vertrauten Person über die aktuelle Belastung, statt sie nur intern zu managen.",
+          "Wenn Beschwerden stark sind, länger anhalten oder Angst, Brustdruck, Schwindel oder Selbstgefährdung dazukommen, bitte medizinisch oder psychologisch abklären lassen."
+        ],
+        "articlePaths": ["/der-schlaf-reset/", "/die-kunst-des-mentalen-resets/", "/sport-als-stress-killer/"],
+        "sourceIds": ["pss-cohen-1983", "who-stress-guide", "cdc-sleep"]
+      }
+    ],
+    "safetyNote": "Dieser Check misst keine Erkrankung. Bei akuten Beschwerden, Panik, Brustdruck, Ohnmacht, Selbstgefährdung oder anhaltender Überlastung bitte professionelle Hilfe nutzen."
+  },
+  "micronutrients": {
+    "id": "micronutrients",
+    "label": "Mikronährstoff-Radar",
+    "eyebrow": "2-Minuten-Radar",
+    "headline": "Welche Nährstoffbereiche verdienen Aufmerksamkeit?",
+    "lede": "Das Radar bewertet Lebensstil-, Ernährungs- und Risikosignale. Es kann keinen Mangel feststellen; dafür sind Laborwerte und medizinische Einordnung nötig.",
+    "nutrients": {
+      "vitaminD": {
+        "label": "Vitamin D",
+        "summary": "Relevant bei wenig Tageslicht, überwiegend Innenraum-Alltag und geringer Zufuhr über Lebensmittel.",
+        "nextSteps": [
+          "Tageslicht bewusst einplanen, ohne Sonnenbrand zu riskieren.",
+          "Bei Verdacht den 25-OH-D-Wert ärztlich/labordiagnostisch prüfen lassen.",
+          "Supplemente nur im sicheren Rahmen und nicht dauerhaft hochdosiert ohne Kontrolle nutzen."
+        ],
+        "articlePaths": ["/vitamin-d-das-sonnenhormon/", "/der-schlaf-reset/"],
+        "sourceIds": ["nih-vitamin-d", "bfr-max-supplements"]
+      },
+      "b12": {
+        "label": "Vitamin B12",
+        "summary": "Besonders wichtig bei veganer Ernährung, sehr wenig tierischen Lebensmitteln oder bestimmten Magen-Darm- und Medikamentenfaktoren.",
+        "nextSteps": [
+          "Bei veganer Ernährung B12 gezielt supplementieren.",
+          "Bei Unsicherheit B12-Status mit geeigneten Laborparametern prüfen lassen.",
+          "Müdigkeit oder neurologische Beschwerden nicht nur über Ernährung erklären."
+        ],
+        "articlePaths": ["/protein-wissen-fur-kraftaufbau/", "/der-unsichtbare-teller/"],
+        "sourceIds": ["nih-vitamin-b12", "dge-vitamin-b12"]
+      },
+      "ironFolate": {
+        "label": "Eisen/Folat",
+        "summary": "Auffällig bei starker Blutung, Schwangerschaft/Kinderwunsch, sehr einseitiger Ernährung oder Müdigkeit mit Leistungsknick.",
+        "nextSteps": [
+          "Eisen nicht blind hochdosiert einnehmen, sondern Ferritin und Blutbild prüfen lassen.",
+          "Hülsenfrüchte, Vollkorn, grünes Gemüse und Vitamin-C-Quellen sinnvoll kombinieren.",
+          "Bei Schwangerschaft, starker Blutung oder anhaltender Müdigkeit ärztlich abklären."
+        ],
+        "articlePaths": ["/vitamin-c-mythen/", "/gesundheit-im-familien-alltag/"],
+        "sourceIds": ["nih-iron", "bfr-max-supplements"]
+      },
+      "magnesium": {
+        "label": "Magnesium",
+        "summary": "Relevant bei hoher Belastung, viel Sport/Schwitzen, Muskelkrämpfen oder sehr geringer Nuss-, Samen- und Vollkornzufuhr.",
+        "nextSteps": [
+          "Magnesiumreiche Lebensmittel wie Kerne, Nüsse, Vollkorn, Hülsenfrüchte und grünes Gemüse prüfen.",
+          "Krämpfe, Herzrhythmusgefühl oder starke Beschwerden nicht selbst diagnostizieren.",
+          "Bei Supplementen auf elementares Magnesium und Verträglichkeit achten."
+        ],
+        "articlePaths": ["/die-kraft-des-magnesiums/", "/der-innere-akku/"],
+        "sourceIds": ["nih-magnesium", "bfr-max-supplements"]
+      },
+      "omega3": {
+        "label": "Omega-3",
+        "summary": "Ein Aufmerksamkeitspunkt, wenn Fisch, Algenöl, Leinsamen, Chiasamen oder Walnüsse kaum vorkommen.",
+        "nextSteps": [
+          "Regelmäßige Omega-3-Quellen in den Speiseplan aufnehmen.",
+          "Bei pflanzlicher Ernährung DHA/EPA über Algenöl als Option prüfen.",
+          "Blutverdünner, Operationen oder Erkrankungen vor Supplementen ärztlich einordnen lassen."
+        ],
+        "articlePaths": ["/der-unsichtbare-teller/", "/gesundheit-im-familien-alltag/"],
+        "sourceIds": ["bfr-max-supplements"]
+      },
+      "zincIodine": {
+        "label": "Jod/Zink",
+        "summary": "Relevant bei wenig Meeresfisch, wenig Milchprodukten, veganer Ernährung, sehr einseitiger Kost oder häufiger Infektanfälligkeit.",
+        "nextSteps": [
+          "Jodsalz, geeignete Proteinquellen und zinkreiche Lebensmittel bewusst prüfen.",
+          "Algenprodukte wegen stark schwankender Jodgehalte nicht unkritisch dosieren.",
+          "Bei Schilddrüsenerkrankungen Jodfragen medizinisch abklären."
+        ],
+        "articlePaths": ["/der-unsichtbare-teller/", "/protein-wissen-fur-kraftaufbau/"],
+        "sourceIds": ["nih-zinc", "bfr-max-supplements"]
+      }
+    },
+    "profiles": [
+      {
+        "id": "steady",
+        "min": 0,
+        "max": 8,
+        "title": "Ruhiges Radar",
+        "summary": "Es zeigen sich keine starken Risikosignale. Sinnvoll ist vor allem, die Basis aus Vielfalt, Schlaf, Tageslicht und regelmäßigen Mahlzeiten stabil zu halten."
+      },
+      {
+        "id": "watch",
+        "min": 9,
+        "max": 18,
+        "title": "Gezielt hinschauen",
+        "summary": "Einige Antworten deuten auf Nährstoffbereiche hin, die du gezielt prüfen und über Ernährung oder Laborwerte besser einordnen kannst."
+      },
+      {
+        "id": "focus",
+        "min": 19,
+        "max": 80,
+        "title": "Klare Aufmerksamkeit",
+        "summary": "Mehrere Signale bündeln sich. Das ist kein Mangelbefund, aber ein guter Anlass für strukturierte Ernährung, passende Laborwerte und fachliche Einordnung."
+      }
+    ],
+    "questions": [
+      {
+        "id": "diet",
+        "type": "single",
+        "text": "Welche Ernährungsform beschreibt deinen Alltag am besten?",
+        "options": [
+          { "label": "Mischkost mit regelmäßigen tierischen und pflanzlichen Lebensmitteln", "scores": {} },
+          { "label": "Vegetarisch", "scores": { "b12": 2, "ironFolate": 1, "zincIodine": 1 } },
+          { "label": "Vegan", "scores": { "b12": 5, "ironFolate": 2, "zincIodine": 2, "omega3": 2 } },
+          { "label": "Sehr einseitig oder oft Mahlzeiten ersetzt/ausgelassen", "scores": { "b12": 1, "ironFolate": 2, "magnesium": 2, "zincIodine": 2 } }
+        ]
+      },
+      {
+        "id": "plants",
+        "type": "single",
+        "text": "Wie oft kommen Gemüse, Obst, Vollkorn, Hülsenfrüchte, Nüsse oder Kerne vor?",
+        "options": [
+          { "label": "Täglich und abwechslungsreich", "scores": {} },
+          { "label": "Mehrmals pro Woche, aber nicht konstant", "scores": { "magnesium": 1, "ironFolate": 1, "zincIodine": 1 } },
+          { "label": "Selten oder sehr unregelmäßig", "scores": { "magnesium": 3, "ironFolate": 3, "zincIodine": 2 } }
+        ]
+      },
+      {
+        "id": "daylight",
+        "type": "single",
+        "text": "Wie viel Tageslicht bekommst du an typischen Werktagen?",
+        "options": [
+          { "label": "Meist mehr als 45 Minuten draußen", "scores": {} },
+          { "label": "Kurz auf Wegen, sonst viel drinnen", "scores": { "vitaminD": 2 } },
+          { "label": "Fast gar nicht", "scores": { "vitaminD": 4 } }
+        ]
+      },
+      {
+        "id": "omega",
+        "type": "single",
+        "text": "Wie regelmäßig hast du Fisch, Algenöl, Leinsamen, Chiasamen oder Walnüsse im Plan?",
+        "options": [
+          { "label": "Mehrmals pro Woche", "scores": {} },
+          { "label": "Gelegentlich", "scores": { "omega3": 1 } },
+          { "label": "Selten oder nie", "scores": { "omega3": 4 } }
+        ]
+      },
+      {
+        "id": "protein",
+        "type": "single",
+        "text": "Wie oft enthält eine Mahlzeit eine klare Proteinquelle?",
+        "options": [
+          { "label": "Meist zwei- bis dreimal täglich", "scores": {} },
+          { "label": "Einmal täglich", "scores": { "zincIodine": 1, "ironFolate": 1 } },
+          { "label": "Unregelmäßig oder kaum bewusst", "scores": { "zincIodine": 2, "b12": 1, "ironFolate": 1 } }
+        ]
+      },
+      {
+        "id": "blood",
+        "type": "single",
+        "text": "Trifft aktuell etwas davon zu?",
+        "options": [
+          { "label": "Nein oder nicht relevant", "scores": {} },
+          { "label": "Starke oder lange Menstruation", "scores": { "ironFolate": 4 } },
+          { "label": "Schwangerschaft, Stillzeit oder Kinderwunsch", "scores": { "ironFolate": 3, "vitaminD": 1, "zincIodine": 1 } },
+          { "label": "Möchte ich nicht beantworten", "scores": {} }
+        ]
+      },
+      {
+        "id": "gutMeds",
+        "type": "multi",
+        "text": "Gibt es Magen-Darm- oder Medikamentenfaktoren?",
+        "options": [
+          { "label": "Keine davon", "exclusive": true, "scores": {} },
+          { "label": "Chronische Magen-Darm-Beschwerden oder Resorptionsprobleme", "scores": { "b12": 2, "ironFolate": 2, "magnesium": 1 } },
+          { "label": "Metformin, Protonenpumpenhemmer oder ähnliche Langzeitmedikation", "scores": { "b12": 2, "magnesium": 1 } },
+          { "label": "Häufige Durchfälle oder sehr restriktive Diäten", "scores": { "magnesium": 2, "zincIodine": 1, "ironFolate": 1 } }
+        ]
+      },
+      {
+        "id": "signals",
+        "type": "multi",
+        "text": "Welche Signale bemerkst du häufiger?",
+        "options": [
+          { "label": "Keine davon", "exclusive": true, "scores": {} },
+          { "label": "Muskelkrämpfe oder starkes Zucken", "scores": { "magnesium": 3 } },
+          { "label": "Müdigkeit, Blässe oder Leistungsknick", "scores": { "ironFolate": 2, "b12": 1, "vitaminD": 1 } },
+          { "label": "Infektanfälligkeit oder schlechte Wundheilung", "scores": { "zincIodine": 2, "vitaminD": 1 } },
+          { "label": "Brüchige Nägel, Haarausfall oder rissige Mundwinkel", "scores": { "ironFolate": 2, "zincIodine": 1, "b12": 1 } }
+        ]
+      },
+      {
+        "id": "stressSport",
+        "type": "single",
+        "text": "Wie stark belasten dich Sport, Schwitzen, Stress oder Alkohol aktuell?",
+        "options": [
+          { "label": "Niedrig bis moderat", "scores": {} },
+          { "label": "Phasenweise hoch", "scores": { "magnesium": 1, "vitaminD": 1 } },
+          { "label": "Sehr hoch oder fast täglich", "scores": { "magnesium": 3, "zincIodine": 1, "omega3": 1 } }
+        ]
+      },
+      {
+        "id": "labs",
+        "type": "single",
+        "text": "Gibt es aktuelle Laborwerte oder gezielte Supplemente?",
+        "options": [
+          { "label": "Ja, Werte sind aktuell geprüft und unauffällig", "scores": { "vitaminD": -1, "b12": -1, "ironFolate": -1, "magnesium": -1 } },
+          { "label": "Ich supplementiere einiges, aber ohne aktuelle Werte", "scores": { "bfr": 1, "vitaminD": 1, "ironFolate": 1 } },
+          { "label": "Keine aktuellen Werte und keine klare Strategie", "scores": { "vitaminD": 1, "b12": 1, "ironFolate": 1, "magnesium": 1 } }
+        ]
+      }
+    ],
+    "sourceIds": ["nih-vitamin-d", "nih-magnesium", "nih-vitamin-b12", "nih-iron", "nih-zinc", "dge-vitamin-b12", "bfr-max-supplements"],
+    "safetyNote": "Dieses Radar ist keine Labordiagnostik. Bitte Eisen, Vitamin D, B12 oder hochdosierte Supplemente nicht dauerhaft blind einnehmen; bei Beschwerden, Schwangerschaft, Medikamenten oder Erkrankungen fachlich abklären lassen."
+  }
+}
