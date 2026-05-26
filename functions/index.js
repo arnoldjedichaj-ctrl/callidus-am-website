@@ -3,12 +3,15 @@ const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
 const admin = require("firebase-admin");
 const { FieldValue } = require("firebase-admin/firestore");
+const crypto = require("crypto");
+const callidusKnowledge = require("./data/callidus-knowledge.json");
 
 admin.initializeApp();
 
 const db = admin.firestore();
 const geminiApiKey = defineSecret("GEMINI_API_KEY");
 const DEFAULT_MODEL = "gemini-2.5-flash";
+const SOURCE_BY_ID = new Map(callidusKnowledge.sources.map((source) => [source.id, source]));
 
 const PLAN_SCHEMA = {
   type: "OBJECT",
@@ -372,6 +375,191 @@ async function callGemini({ apiKey, model, prompt }) {
   return normalizePlan(extractJson(text));
 }
 
+async function callGeminiText({ apiKey, model, prompt }) {
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }],
+        },
+      ],
+      generationConfig: {
+        temperature: 0.25,
+        maxOutputTokens: 520,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    logger.error("Gemini chat request failed", { status: response.status, detail: detail.slice(0, 600) });
+    throw new Error("Gemini chat failed");
+  }
+
+  const payload = await response.json();
+  return cleanString(
+    ensureArray(payload.candidates?.[0]?.content?.parts)
+      .map((part) => part.text || "")
+      .join(" ")
+      .trim(),
+    1800,
+  );
+}
+
+const CHAT_STOPWORDS = new Set([
+  "aber", "alle", "also", "auch", "auf", "aus", "bei", "bin", "bitte", "das", "dass", "den", "der", "die", "dir",
+  "ein", "eine", "einem", "einen", "er", "es", "für", "gibt", "habe", "hat", "ich", "im", "in", "ist", "kann",
+  "mein", "meine", "mit", "nach", "nicht", "oder", "sich", "sie", "sind", "und", "was", "wenn", "wie", "wir",
+  "zu", "zum", "zur",
+]);
+
+function normalizeSearch(value) {
+  return cleanString(value, 5000)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function searchTokens(value) {
+  return normalizeSearch(value)
+    .split(/\s+/)
+    .filter((token) => token.length >= 3 && !CHAT_STOPWORDS.has(token))
+    .slice(0, 18);
+}
+
+function scoreKnowledgeEntry(tokens, entry, pagePath) {
+  const title = normalizeSearch(entry.title);
+  const topics = normalizeSearch((entry.topics || []).join(" "));
+  const body = normalizeSearch(entry.text);
+  let score = entry.path && pagePath && entry.path === pagePath ? 8 : 0;
+  tokens.forEach((token) => {
+    if (title.includes(token)) score += 5;
+    if (topics.includes(token)) score += 4;
+    if (body.includes(token)) score += 1;
+  });
+  return score;
+}
+
+function retrieveCallidusKnowledge(message, pagePath) {
+  const tokens = searchTokens(message);
+  if (!tokens.length && !pagePath) return [];
+  return callidusKnowledge.entries
+    .map((entry) => ({ ...entry, score: scoreKnowledgeEntry(tokens, entry, pagePath) }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+}
+
+function sourceKey(source) {
+  return `${source.type || ""}:${source.url || source.path || source.title}`;
+}
+
+function collectChatSources(entries) {
+  const sources = [];
+  entries.slice(0, 4).forEach((entry) => {
+    sources.push({
+      title: entry.title,
+      url: entry.path,
+      type: entry.app === "momus" ? "Callidus Satire" : "Callidus",
+    });
+  });
+  entries.flatMap((entry) => entry.sourceIds || []).forEach((id) => {
+    const source = SOURCE_BY_ID.get(id);
+    if (source) sources.push(source);
+  });
+  const seen = new Set();
+  return sources.filter((source) => {
+    const key = sourceKey(source);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).slice(0, 8);
+}
+
+function sanitizeChatHistory(history) {
+  return ensureArray(history).slice(-6).map((item) => ({
+    role: cleanEnum(item.role, ["user", "assistant"], "user"),
+    text: cleanString(item.text, 500),
+  })).filter((item) => item.text);
+}
+
+function buildCallidusChatPrompt({ message, history, entries, sources }) {
+  const context = entries.map((entry, index) => [
+    `Quelle ${index + 1}: ${entry.title}`,
+    `Pfad: ${entry.path}`,
+    `Typ: ${entry.kind}; App: ${entry.app}`,
+    `Themen: ${(entry.topics || []).join(", ")}`,
+    `Inhalt: ${entry.text}`,
+  ].join("\n")).join("\n\n");
+  const sourceList = sources.map((source) => `${source.title} (${source.type || "Quelle"}): ${source.url}`).join("\n");
+  const historyText = history.map((item) => `${item.role}: ${item.text}`).join("\n");
+  return [
+    "Du bist der Callidus Assistent auf callidus-am.de.",
+    "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 Wörter.",
+    "Nutze ausschließlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
+    "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche Abklärung.",
+    "Gesundheitsgrenzen: keine Diagnose, keine Therapieanweisung, keine individuelle Dosierung. Bei akuten oder starken Beschwerden professionelle Hilfe empfehlen.",
+    "MOMUS-Inhalte immer als Satire oder Mindset-Spiegel kennzeichnen.",
+    "Nenne am Ende nicht alle Links im Fließtext; die Oberfläche zeigt Quellen separat.",
+    historyText ? `Bisheriger Chat:\n${historyText}` : "",
+    `Callidus-Kontext:\n${context || "Kein passender Kontext gefunden."}`,
+    `Quellenliste:\n${sourceList || "Keine externen Quellen."}`,
+    `Nutzerfrage: ${message}`,
+  ].filter(Boolean).join("\n\n");
+}
+
+function fallbackChatAnswer(entries) {
+  if (!entries.length) {
+    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
+  }
+  const lead = entries[0];
+  const related = entries.slice(1, 3).map((entry) => entry.title).join(", ");
+  return [
+    `In der Callidus-Wissensbasis passt dazu vor allem „${lead.title}“.`,
+    lead.text,
+    related ? `Auch relevant: ${related}.` : "",
+    "Das ist Orientierung und ersetzt keine medizinische Beratung oder Laborwerte.",
+  ].filter(Boolean).join(" ");
+}
+
+function publicChatSessionId(value) {
+  const clean = cleanString(value, 120) || "anon";
+  return crypto.createHash("sha256").update(clean).digest("hex").slice(0, 48);
+}
+
+async function enforcePublicChatRate(sessionId) {
+  const day = todayKey();
+  const ref = db.collection("public_chat_rate").doc(`${day}_${publicChatSessionId(sessionId)}`);
+  const snap = await ref.get();
+  const count = snap.exists ? Number(snap.data().count || 0) : 0;
+  if (count >= 30) {
+    throw new HttpsError("resource-exhausted", "Bitte später erneut fragen. Das Tageslimit für diesen Browser ist erreicht.");
+  }
+  await ref.set({
+    count: FieldValue.increment(1),
+    day,
+    updated_at: FieldValue.serverTimestamp(),
+  }, { merge: true });
+}
+
+function safetyAnswerFor(message) {
+  const text = normalizeSearch(message);
+  if (/(suizid|selbstmord|selbstverletz|nicht mehr leben|leben beenden|akute gefahr)/.test(text)) {
+    return "Das klingt akut belastend. Bitte suche jetzt direkte Hilfe: in Deutschland 112 bei unmittelbarer Gefahr oder den ärztlichen Bereitschaftsdienst 116117. Wenn Selbstgefährdung im Raum steht, bleib bitte nicht allein und kontaktiere sofort eine vertraute Person oder professionelle Hilfe.";
+  }
+  if (/(brustschmerz|brustdruck|atemnot|ohnmacht|schlaganfall|laehmung|lähmung|starke blutung|vergiftung)/.test(text)) {
+    return "Bei solchen akuten oder potenziell ernsten Beschwerden ist eine Website nicht der richtige Ort für Abklärung. Bitte nutze umgehend medizinische Hilfe, bei Notfällen die 112.";
+  }
+  return "";
+}
+
 exports.generateSportEnergyPlan = onCall(
   {
     region: "us-central1",
@@ -508,5 +696,85 @@ exports.getSportEnergyPlan = onCall(
       model: latest.model || "",
       createdAt: latest.created_at_iso || safeTimestamp(latest.created_at),
     };
+  },
+);
+
+exports.askCallidus = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 45,
+    memory: "512MiB",
+    secrets: [geminiApiKey],
+    cors: [
+      "https://www.callidus-am.de",
+      "https://callidus-am.de",
+      "http://127.0.0.1:4321",
+      "http://localhost:4321",
+    ],
+  },
+  async (request) => {
+    const message = cleanString(request.data?.message, 700);
+    if (!message || message.length < 3) {
+      throw new HttpsError("invalid-argument", "Bitte eine Frage eingeben.");
+    }
+
+    const sessionId = cleanString(request.data?.sessionId, 120);
+    await enforcePublicChatRate(sessionId);
+
+    const pagePath = cleanString(request.data?.pagePath, 160);
+    const history = sanitizeChatHistory(request.data?.history);
+    const safetyAnswer = safetyAnswerFor(message);
+    const entries = retrieveCallidusKnowledge(message, pagePath);
+    const sources = collectChatSources(entries);
+    const safetyNotice = "Callidus ersetzt keine medizinische Beratung. Bei starken, akuten oder anhaltenden Beschwerden bitte professionelle Hilfe nutzen.";
+
+    if (safetyAnswer) {
+      return {
+        answer: safetyAnswer,
+        sources,
+        safetyNotice,
+        provider: "safety",
+      };
+    }
+
+    if (!entries.length) {
+      return {
+        answer: fallbackChatAnswer(entries),
+        sources,
+        safetyNotice,
+        provider: "retrieval",
+      };
+    }
+
+    const apiKey = geminiApiKey.value();
+    const model = process.env.GEMINI_MODEL || DEFAULT_MODEL;
+    if (!apiKey) {
+      return {
+        answer: fallbackChatAnswer(entries),
+        sources,
+        safetyNotice,
+        provider: "retrieval",
+      };
+    }
+
+    try {
+      const prompt = buildCallidusChatPrompt({ message, history, entries, sources });
+      const answer = await callGeminiText({ apiKey, model, prompt });
+      return {
+        answer: answer || fallbackChatAnswer(entries),
+        sources,
+        safetyNotice,
+        provider: "gemini",
+        model,
+      };
+    } catch (error) {
+      logger.warn("Callidus assistant fell back to retrieval", { error: error.message });
+      return {
+        answer: fallbackChatAnswer(entries),
+        sources,
+        safetyNotice,
+        provider: "retrieval",
+      };
+    }
   },
 );

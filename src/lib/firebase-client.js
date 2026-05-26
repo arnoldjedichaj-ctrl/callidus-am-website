@@ -24,3 +24,4 @@ export const redeemSanitas = () => httpsCallable(fns, 'redeemSanitas');
 export const linkWalletAddress = () => httpsCallable(fns, 'linkWalletAddress');
 export const convertXpToSanitas = () => httpsCallable(fns, 'convertXpToSanitas');
 export const generateSportEnergyPlan = () => httpsCallable(fns, 'generateSportEnergyPlan');
+export const askCallidus = () => httpsCallable(fns, 'askCallidus');

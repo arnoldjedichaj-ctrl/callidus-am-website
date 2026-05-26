@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import knowledgeSources from '../../data/knowledge-sources.json';
+import articleSources from '../../data/article-sources.json';
+import { allArticles } from '../../data/all-articles.js';
+
+const title = 'Quellen & Methodik | callidus A&M';
+const description = 'Wie callidus A&M KI-unterstützte Gesundheitsinhalte einordnet, belegt und von medizinischer Beratung abgrenzt.';
+const sourceUsage = new Map();
+Object.values(articleSources).flat().forEach((entry) => {
+  sourceUsage.set(entry.sourceId, (sourceUsage.get(entry.sourceId) || 0) + 1);
+});
+const articleMap = new Map(allArticles.map((article) => [article.slug, article]));
+const sourcedArticles = Object.entries(articleSources)
+  .map(([slug, entries]) => ({ article: articleMap.get(slug), entries }))
+  .filter((item) => item.article);
+const groupedSources = Object.entries(
+  knowledgeSources.reduce((groups, source) => {
+    groups[source.type] = groups[source.type] || [];
+    groups[source.type].push(source);
+    return groups;
+  }, {})
+).sort(([a], [b]) => a.localeCompare(b, 'de'));
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">Transparenz</p>
+        <h1>Quellen, Grenzen und redaktionelle Methodik.</h1>
+        <p class="lede">
+          callidus A&M nutzt KI als redaktionelles Werkzeug. Gesundheitsinhalte werden deshalb
+          schrittweise mit externen Quellen verknüpft und klar von medizinischer Beratung getrennt.
+        </p>
+      </div>
+      <div class="method-metrics" data-reveal="2" aria-label="Quellenstatus">
+        <div>
+          <strong>{knowledgeSources.length}</strong>
+          <span>kuratierte Quellen</span>
+        </div>
+        <div>
+          <strong>{sourcedArticles.length}</strong>
+          <span>Artikel mit Quellenbox</span>
+        </div>
+        <div>
+          <strong>0</strong>
+          <span>behauptete Fachreviews ohne echte Prüfdaten</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container method-grid">
+      <article class="method-card" data-reveal>
+        <span class="badge mint">01</span>
+        <h2>KI-Unterstützung offenlegen</h2>
+        <p>
+          Viele bestehende Inhalte sind redaktionell und KI-unterstützt entstanden. Das wird nicht
+          als ärztliche Prüfung ausgegeben. Fachreview-Hinweise werden erst ergänzt, wenn echte
+          prüfende Personen, Datum und Rolle vorliegen.
+        </p>
+      </article>
+      <article class="method-card" data-reveal="2">
+        <span class="badge gold">02</span>
+        <h2>Quellen nach Anspruch wählen</h2>
+        <p>
+          Für Grundlagen bevorzugen wir Behörden, Fachgesellschaften, Referenzwerte und Reviews.
+          Primärstudien werden dort ergänzt, wo ein konkretes Messinstrument oder ein spezifischer
+          Forschungsbefund eingeordnet wird.
+        </p>
+      </article>
+      <article class="method-card" data-reveal="3">
+        <span class="badge blue">03</span>
+        <h2>Keine Diagnose im Web</h2>
+        <p>
+          Checks und Chatbot geben Orientierung. Sie diagnostizieren keine Erkrankung, ersetzen keine
+          Laborwerte und geben keine individuelle Therapie- oder Dosierungsanweisung.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="eyebrow">Quellenbasis</p>
+        <h2>Kuratierte Startquellen</h2>
+        <p class="lede">Diese Quellen tragen aktuell Quiz, Chatbot und die ersten Quellenboxen.</p>
+      </div>
+      <div class="source-group-stack">
+        {groupedSources.map(([type, sources]) => (
+          <section class="source-group" data-reveal>
+            <h3>{type}</h3>
+            <div class="source-card-grid">
+              {sources.map((source) => (
+                <a class="source-card" href={source.url} target="_blank" rel="noopener">
+                  <span>{source.topics.slice(0, 3).join(' · ')}</span>
+                  <strong>{source.title}</strong>
+                  <p>{source.summary}</p>
+                  <small>{sourceUsage.get(source.id) || 0} Artikelzuordnungen</small>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="eyebrow">Artikelstatus</p>
+        <h2>Erste Quellenboxen</h2>
+      </div>
+      <div class="method-article-list" data-reveal="2">
+        {sourcedArticles.map(({ article, entries }) => (
+          <a href={article.path}>
+            <strong>{article.title.replace(' | callidus A&M', '')}</strong>
+            <span>{entries.length} Quellen</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,154 @@
+[
+  {
+    "id": "pss-cohen-1983",
+    "title": "A global measure of perceived stress",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/6668417/",
+    "type": "Primärstudie",
+    "topics": ["Stress", "Selbstcheck", "Psychometrie"],
+    "summary": "Originalarbeit zur Perceived Stress Scale als Fragebogen für subjektiv erlebten Stress."
+  },
+  {
+    "id": "who-stress-guide",
+    "title": "Doing what matters in times of stress",
+    "url": "https://www.who.int/publications/i/item/9789240003927",
+    "type": "Behörde",
+    "topics": ["Stress", "Selbsthilfe", "Psychoedukation"],
+    "summary": "WHO-Leitfaden mit alltagstauglichen Stressbewältigungsübungen und klarer Abgrenzung zu medizinischer Behandlung."
+  },
+  {
+    "id": "breathwork-meta-2023",
+    "title": "Effect of breathwork on stress and mental health",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36624160/",
+    "type": "Review",
+    "topics": ["Atmung", "Stress", "Mentale Gesundheit"],
+    "summary": "Meta-Analyse randomisierter Studien zu Atemübungen, Stress und mentaler Gesundheit."
+  },
+  {
+    "id": "slow-breathing-hrv-2022",
+    "title": "Effects of voluntary slow breathing on heart rate and heart rate variability",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35623448/",
+    "type": "Review",
+    "topics": ["Atmung", "Herzratenvariabilität", "Regeneration"],
+    "summary": "Systematische Übersichtsarbeit und Meta-Analyse zu langsamer Atmung und HRV-Markern."
+  },
+  {
+    "id": "cdc-sleep",
+    "title": "About Sleep",
+    "url": "https://www.cdc.gov/sleep/about/index.html",
+    "type": "Behörde",
+    "topics": ["Schlaf", "Regeneration", "Stress"],
+    "summary": "CDC-Übersicht zu Schlafdauer, Schlafqualität und gesundheitlicher Bedeutung von Schlaf."
+  },
+  {
+    "id": "physical-activity-mental-health-review",
+    "title": "Physical activity and depression and anxiety disorders",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10546525/",
+    "type": "Review",
+    "topics": ["Bewegung", "Stress", "Mentale Gesundheit"],
+    "summary": "Review-of-Reviews zur Verbindung von körperlicher Aktivität mit Depression und Angst."
+  },
+  {
+    "id": "nih-vitamin-d",
+    "title": "Vitamin D - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Vitamin D", "Mikronährstoffe", "Knochen", "Immunsystem"],
+    "summary": "NIH-Fachinformation zu Vitamin-D-Quellen, Status, Referenzwerten und Sicherheit."
+  },
+  {
+    "id": "nih-magnesium",
+    "title": "Magnesium - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Magnesium", "Muskeln", "Nerven", "Mikronährstoffe"],
+    "summary": "NIH-Fachinformation zu Magnesium, Zufuhr, Lebensmitteln, Supplementen und Sicherheit."
+  },
+  {
+    "id": "nih-vitamin-b12",
+    "title": "Vitamin B12 - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Vitamin B12", "Vegane Ernährung", "Mikronährstoffe"],
+    "summary": "NIH-Fachinformation zu Vitamin B12, Risikogruppen, Laborbezug und Zufuhr."
+  },
+  {
+    "id": "nih-iron",
+    "title": "Iron - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Eisen", "Mikronährstoffe", "Müdigkeit"],
+    "summary": "NIH-Fachinformation zu Eisen, Eisenstatus, Risikogruppen, Zufuhr und Sicherheit."
+  },
+  {
+    "id": "nih-zinc",
+    "title": "Zinc - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Zink", "Immunsystem", "Mikronährstoffe"],
+    "summary": "NIH-Fachinformation zu Zink, Statusmarkern, Zufuhr und Sicherheit."
+  },
+  {
+    "id": "dge-vitamin-b12",
+    "title": "Vitamin B12 Referenzwerte",
+    "url": "https://www.dge.de/wissenschaft/referenzwerte/vitamin-b12/",
+    "type": "Referenzwert",
+    "topics": ["Vitamin B12", "Vegane Ernährung", "DGE"],
+    "summary": "DGE-Referenzwerte und Hinweis, dass vegan lebende Menschen Vitamin B12 supplementieren müssen."
+  },
+  {
+    "id": "bfr-max-supplements",
+    "title": "Aktualisierte Höchstmengenvorschläge für Vitamine und Mineralstoffe",
+    "url": "https://www.bfr.bund.de/stellungnahme/aktualisierte-hoechstmengenvorschlaege-fuer-vitamine-und-mineralstoffe-in-nahrungsergaenzungsmitteln-und-angereicherten-lebensmitteln/",
+    "type": "Verbraucher-/Risikohinweis",
+    "topics": ["Nahrungsergänzung", "Sicherheit", "Überdosierung"],
+    "summary": "BfR-Einordnung zu Höchstmengen für Nahrungsergänzungsmittel und angereicherte Lebensmittel."
+  },
+  {
+    "id": "nccih-ashwagandha",
+    "title": "Ashwagandha: Usefulness and Safety",
+    "url": "https://www.nccih.nih.gov/health/ashwagandha",
+    "type": "Behörde",
+    "topics": ["Ashwagandha", "Stress", "Schlaf", "Sicherheit"],
+    "summary": "NCCIH-Fachseite zur möglichen Wirkung und Sicherheit von Ashwagandha-Präparaten."
+  },
+  {
+    "id": "nih-probiotics",
+    "title": "Probiotics - Health Professional Fact Sheet",
+    "url": "https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/",
+    "type": "Referenzwert",
+    "topics": ["Darm", "Probiotika", "Mikrobiom"],
+    "summary": "NIH-Fachinformation zu Probiotika, potenziellen Anwendungen, Grenzen und Sicherheit."
+  },
+  {
+    "id": "fiber-gut-review",
+    "title": "Dietary fiber intervention on gut microbiota composition in healthy adults",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29757343/",
+    "type": "Review",
+    "topics": ["Darm", "Ballaststoffe", "Mikrobiom"],
+    "summary": "Systematische Übersichtsarbeit und Meta-Analyse zu Ballaststoffen und Darmmikrobiota."
+  },
+  {
+    "id": "issn-protein-exercise",
+    "title": "International Society of Sports Nutrition Position Stand: protein and exercise",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28642676/",
+    "type": "Review",
+    "topics": ["Protein", "Training", "Muskelaufbau"],
+    "summary": "Positionspapier zu Proteinzufuhr, Training und Anpassungsprozessen."
+  },
+  {
+    "id": "gemini-grounding-docs",
+    "title": "Grounding with Google Search",
+    "url": "https://ai.google.dev/gemini-api/docs/grounding",
+    "type": "Technische Dokumentation",
+    "topics": ["Chatbot", "KI", "Websuche"],
+    "summary": "Google-Dokumentation zu Gemini-Grounding mit Google Search; für Callidus als spätere v2-Option vorgesehen."
+  },
+  {
+    "id": "firebase-callable-docs",
+    "title": "Call functions from your app",
+    "url": "https://firebase.google.com/docs/functions/callable",
+    "type": "Technische Dokumentation",
+    "topics": ["Firebase", "Chatbot", "Backend"],
+    "summary": "Firebase-Dokumentation zu HTTPS Callable Functions."
+  }
+]

@@ -4,6 +4,8 @@ import inventory from '../data/inventory.json';
 import images from '../data/images.json';
 import specialPages from '../data/special-pages.json';
 import legalPages from '../data/legal-pages.json';
+import articleSources from '../data/article-sources.json';
+import knowledgeSources from '../data/knowledge-sources.json';
 import structure from '../data/site-structure.json';
 import { categoryForLang } from '../data/i18n.js';
 import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
@@ -13,6 +15,7 @@ import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
 const articles = allArticles;
 
 const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
+const knowledgeSourceMap = new Map(knowledgeSources.map((source) => [source.id, source]));
 const customSpecialPages = {
   'nexus-app': {
     slug: 'nexus-app',
@@ -122,6 +125,14 @@ export function getStaticPaths() {
 
 const { page } = Astro.props;
 const article = articles.find((item) => item.slug === page.slug);
+const articleSourceEntries = article
+  ? (articleSources[article.slug] || [])
+      .map((entry) => {
+        const source = knowledgeSourceMap.get(entry.sourceId);
+        return source ? { ...source, ...entry } : null;
+      })
+      .filter(Boolean)
+  : [];
 const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
 const legalPage = legalPages.find((item) => item.slug === page.slug);
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
@@ -297,6 +308,7 @@ const articleJsonLd = article ? {
   headline: title,
   description: page.description || article.description,
   image: mainImage ? new URL(mainImage, 'https://www.callidus-am.de').href : undefined,
+  citation: articleSourceEntries.length ? articleSourceEntries.map((source) => source.url) : undefined,
   inLanguage: 'de-DE',
   author: { '@type': 'Organization', name: 'callidus A&M' },
   publisher: {
@@ -518,6 +530,28 @@ const articleJsonLd = article ? {
                 <strong>Hinweis:</strong>
                 <p>Dieser Gesundheitsartikel ersetzt keine medizinische Beratung. Bei Beschwerden, Medikamenten oder Vorerkrankungen bitte fachlichen Rat einholen.</p>
               </div>
+              {articleSourceEntries.length > 0 && (
+                <aside class="article-source-box" aria-labelledby="article-source-heading">
+                  <div>
+                    <span class="badge gold">Quellen</span>
+                    <h2 id="article-source-heading">Quellen & Einordnung</h2>
+                    <p>
+                      Dieser Beitrag ist redaktionell und KI-unterstützt entstanden. Die folgenden Quellen
+                      ordnen zentrale Aussagen ein; sie ersetzen keine individuelle fachliche Prüfung.
+                    </p>
+                  </div>
+                  <div class="article-source-list">
+                    {articleSourceEntries.map((source) => (
+                      <a href={source.url} target="_blank" rel="noopener">
+                        <span>{source.type}</span>
+                        <strong>{source.title}</strong>
+                        {source.claimNote && <small>{source.claimNote}</small>}
+                      </a>
+                    ))}
+                  </div>
+                  <a class="button" href="/quellen-methodik/">Methodik ansehen</a>
+                </aside>
+              )}
             </div>
           </div>
           {related.length > 0 && (

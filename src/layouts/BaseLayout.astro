@@ -27,7 +27,7 @@ const labels = lang === 'en'
       socialOpen: (label) => `Open ${label}`,
       cookieLabel: 'Cookie notice',
       cookieTitle: 'Cookies & external content',
-      cookieTextBefore: 'This website is completely tracking-free by default. Cookies and data are only transferred to third-party providers when you load embedded YouTube videos or the newsletter form.',
+      cookieTextBefore: 'This website is tracking-free by default. Data is transferred to third-party providers only when you load embedded YouTube videos, the newsletter form, or actively use the chatbot.',
       cookieTextMore: 'More information is available in our',
       cookiePrivacy: 'privacy policy',
       cookieDecline: 'Necessary only',
@@ -45,7 +45,7 @@ const labels = lang === 'en'
       socialOpen: (label) => `${label} öffnen`,
       cookieLabel: 'Cookie-Hinweis',
       cookieTitle: 'Cookies & externe Inhalte',
-      cookieTextBefore: 'Diese Webseite ist standardmäßig komplett tracking-frei. Erst wenn Sie eingebettete YouTube-Videos oder das Newsletter-Formular laden, werden Cookies und Daten von Drittanbietern übertragen.',
+      cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn Sie eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzen, werden Daten an Drittanbieter übertragen.',
       cookieTextMore: 'Mehr Infos in unserer',
       cookiePrivacy: 'Datenschutzerklärung',
       cookieDecline: 'Nur Notwendige',
@@ -107,6 +107,7 @@ const navGroups = [
     items: [
       { href: t.paths.sport ?? '/sport-energie/', label: t.nav.sport ?? 'Sport & Energie' },
       { href: t.paths.recommendations, label: t.nav.recommendations },
+      { href: t.paths.checks ?? '/gesundheits-checks/', label: t.nav.checks ?? 'Checks' },
       { href: t.paths.course, label: t.nav.course },
       { href: t.paths.apps, label: t.nav.apps },
     ],
@@ -116,6 +117,7 @@ const navGroups = [
     items: [
       { href: t.paths.portal, label: t.nav.portal },
       { href: t.paths.valus ?? '/valus/', label: 'Valus' },
+      { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
     ],
   },
 ];
@@ -260,6 +262,7 @@ const socialIcons = {
       <nav class="legal-nav" aria-label={t.legalLabel}>
         <a href={t.paths.legal}>{t.legal.imprint}</a>
         <a href={t.paths.privacy}>{t.legal.privacy}</a>
+        <a href={t.paths.methodology ?? '/quellen-methodik/'}>{t.nav.methodology ?? 'Quellen'}</a>
         <a href={t.paths.terms}>{t.legal.terms}</a>
       </nav>
     </footer>
@@ -278,6 +281,45 @@ const socialIcons = {
           <button type="button" class="button primary" data-cookie-accept>{labels.cookieAccept}</button>
         </div>
       </div>
+    </div>
+    <div class="callidus-assistant" data-callidus-assistant>
+      <button
+        class="assistant-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="callidus-assistant-panel"
+        data-assistant-toggle
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v6A3.5 3.5 0 0 1 16.5 15H11l-4.5 4v-4A2.5 2.5 0 0 1 4 12.5v-7Z"></path>
+          <path d="M8 7h8M8 10.5h5"></path>
+        </svg>
+        <span>Assistent</span>
+      </button>
+      <section class="assistant-panel" id="callidus-assistant-panel" aria-label="Callidus Assistent" hidden>
+        <header>
+          <div>
+            <strong>Callidus Assistent</strong>
+            <small>Antwortet aus Callidus-Wissen und kuratierten Quellen.</small>
+          </div>
+          <button type="button" aria-label="Assistent schließen" data-assistant-close>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M18 6 6 18M6 6l12 12"></path>
+            </svg>
+          </button>
+        </header>
+        <div class="assistant-messages" data-assistant-messages aria-live="polite"></div>
+        <form class="assistant-form" data-assistant-form>
+          <label>
+            <span>Frage</span>
+            <textarea name="message" rows="2" maxlength="700" placeholder="Frage zu Stress, Schlaf, Mikronährstoffen oder NEXUS"></textarea>
+          </label>
+          <button class="button primary" type="submit" data-assistant-submit>Fragen</button>
+        </form>
+        <p class="assistant-privacy">
+          Keine Diagnose. Fragen werden zur Antwort an Firebase/Gemini übertragen.
+        </p>
+      </section>
     </div>
     <button class="back-to-top" type="button" aria-label={labels.backToTop}>
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -379,6 +421,143 @@ const socialIcons = {
         };
         initWalletBadge();
         document.addEventListener('astro:page-load', initWalletBadge);
+      })();
+    </script>
+    <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
+      (() => {
+        const SESSION_KEY = 'callidus-assistant-session';
+        const setupAssistant = () => {
+          const root = document.querySelector('[data-callidus-assistant]');
+          if (!root || root.dataset.ready) return;
+          root.dataset.ready = 'true';
+
+          const toggle = root.querySelector('[data-assistant-toggle]');
+          const close = root.querySelector('[data-assistant-close]');
+          const panel = root.querySelector('.assistant-panel');
+          const messages = root.querySelector('[data-assistant-messages]');
+          const form = root.querySelector('[data-assistant-form]');
+          const input = form?.querySelector('textarea');
+          const submit = root.querySelector('[data-assistant-submit]');
+          const history = [];
+          let callable = null;
+
+          const sessionId = (() => {
+            const existing = localStorage.getItem(SESSION_KEY);
+            if (existing) return existing;
+            const fresh = `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+            localStorage.setItem(SESSION_KEY, fresh);
+            return fresh;
+          })();
+
+          const setOpen = (open) => {
+            panel.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            root.classList.toggle('is-open', open);
+            if (open) window.setTimeout(() => input?.focus(), 60);
+          };
+
+          const appendMessage = ({ role, text, sources = [], safetyNotice = '', pending = false }) => {
+            const item = document.createElement('article');
+            item.className = `assistant-message assistant-message-${role}${pending ? ' is-pending' : ''}`;
+            const body = document.createElement('p');
+            body.textContent = text;
+            item.append(body);
+            if (sources.length) {
+              const sourceBox = document.createElement('div');
+              sourceBox.className = 'assistant-sources';
+              const label = document.createElement('strong');
+              label.textContent = 'Quellen';
+              sourceBox.append(label);
+              sources.slice(0, 5).forEach((source) => {
+                const link = document.createElement('a');
+                link.href = source.url || '#';
+                if (!String(source.url || '').startsWith('/')) {
+                  link.target = '_blank';
+                  link.rel = 'noopener';
+                }
+                const type = document.createElement('span');
+                type.textContent = source.type || 'Quelle';
+                const title = document.createElement('b');
+                title.textContent = source.title || source.url;
+                link.append(type, title);
+                sourceBox.append(link);
+              });
+              item.append(sourceBox);
+            }
+            if (safetyNotice) {
+              const safety = document.createElement('small');
+              safety.className = 'assistant-safety';
+              safety.textContent = safetyNotice;
+              item.append(safety);
+            }
+            messages.append(item);
+            messages.scrollTop = messages.scrollHeight;
+            return item;
+          };
+
+          const loadCallable = async () => {
+            if (callable) return callable;
+            const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
+            const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
+            const fns = getFunctions(app, 'us-central1');
+            callable = httpsCallable(fns, 'askCallidus');
+            return callable;
+          };
+
+          appendMessage({
+            role: 'assistant',
+            text: 'Frag mich zu Stress, Schlaf, Mikronährstoffen, NEXUS oder den Callidus-Artikeln. Ich antworte mit Quellen, wenn die Wissensbasis dazu etwas hergibt.',
+          });
+
+          toggle?.addEventListener('click', () => setOpen(panel.hidden));
+          close?.addEventListener('click', () => setOpen(false));
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !panel.hidden) setOpen(false);
+          });
+
+          form?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const message = (input?.value || '').trim();
+            if (!message) return;
+            appendMessage({ role: 'user', text: message });
+            history.push({ role: 'user', text: message });
+            input.value = '';
+            submit.disabled = true;
+            submit.textContent = 'Antwortet...';
+            const pending = appendMessage({ role: 'assistant', text: 'Ich suche in der Callidus-Wissensbasis...', pending: true });
+            try {
+              const ask = await loadCallable();
+              const response = await ask({
+                message,
+                history: history.slice(-6),
+                pagePath: window.location.pathname,
+                sessionId,
+              });
+              const payload = response.data || {};
+              pending.remove();
+              appendMessage({
+                role: 'assistant',
+                text: payload.answer || 'Ich konnte gerade keine Antwort erzeugen.',
+                sources: payload.sources || [],
+                safetyNotice: payload.safetyNotice || '',
+              });
+              history.push({ role: 'assistant', text: payload.answer || '' });
+            } catch (_) {
+              pending.remove();
+              appendMessage({
+                role: 'assistant',
+                text: 'Der Assistent ist gerade nicht erreichbar. Bitte versuche es später erneut oder nutze die Quellen- und Check-Seiten.',
+              });
+            } finally {
+              submit.disabled = false;
+              submit.textContent = 'Fragen';
+            }
+          });
+        };
+
+        setupAssistant();
+        document.addEventListener('astro:page-load', setupAssistant);
       })();
     </script>
     <script is:inline>

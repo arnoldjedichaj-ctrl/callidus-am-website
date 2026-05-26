@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import healthChecks from '../../data/health-checks.json';
+import knowledgeSources from '../../data/knowledge-sources.json';
+import { allArticles } from '../../data/all-articles.js';
+
+const title = '2-Minuten Gesundheits-Checks | callidus A&M';
+const description = 'Stress-Check und Mikronährstoff-Radar von callidus A&M: sofortige Auswertung, Quellen und passende nächste Schritte ohne E-Mail-Gate.';
+const sourceIndex = Object.fromEntries(knowledgeSources.map((source) => [source.id, source]));
+const articleIndex = Object.fromEntries(allArticles.map((article) => [
+  article.path,
+  {
+    title: article.title,
+    description: article.description || article.h2?.[0] || '',
+    path: article.path,
+  },
+]));
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section health-check-hero">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">Callidus Checks</p>
+        <h1>Kurze Checks. Sofort klare nächste Schritte.</h1>
+        <p class="lede">
+          Starte mit Stress oder Mikronährstoffen. Die Auswertung bleibt direkt sichtbar,
+          ohne E-Mail-Schranke und ohne Diagnoseversprechen.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#check-tool">Check starten</a>
+          <a class="button" href="/quellen-methodik/">Quellen & Methodik</a>
+        </div>
+      </div>
+      <div class="check-principles" data-reveal="2" aria-label="Prinzipien der Gesundheits-Checks">
+        <div>
+          <span>01</span>
+          <strong>Orientierung statt Diagnose</strong>
+          <p>Die Ergebnisse zeigen Muster und Aufmerksamkeitspunkte, keine Laborwerte oder Befunde.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <strong>Sofortiger Nutzen</strong>
+          <p>Score, Profil, nächste Schritte, passende Artikel und Quellen erscheinen direkt.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <strong>Quellen sichtbar</strong>
+          <p>Jede Auswertung verlinkt auf die wichtigsten fachlichen Grundlagen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="check-tool">
+    <div class="container">
+      <div class="health-check-shell" data-health-checks data-reveal>
+        <div class="check-tabs" role="tablist" aria-label="Gesundheits-Check auswählen">
+          {Object.values(healthChecks).map((check, index) => (
+            <button
+              type="button"
+              class={`check-tab${index === 0 ? ' is-active' : ''}`}
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              data-check-tab={check.id}
+            >
+              <span>{check.eyebrow}</span>
+              <strong>{check.label}</strong>
+            </button>
+          ))}
+        </div>
+
+        <div class="check-workspace">
+          <div class="check-stage" data-check-stage aria-live="polite"></div>
+          <aside class="check-result" data-check-result aria-live="polite">
+            <span class="badge mint">Bereit</span>
+            <h2>Deine Auswertung erscheint hier.</h2>
+            <p>
+              Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil,
+              drei nächste Schritte und passende Quellen.
+            </p>
+          </aside>
+        </div>
+      </div>
+
+      <noscript>
+        <div class="notice" style="margin-top:1rem;">
+          <strong>JavaScript erforderlich:</strong>
+          <p>Die interaktiven Checks benötigen JavaScript, damit die Auswertung direkt im Browser berechnet werden kann.</p>
+        </div>
+      </noscript>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ HEALTH_CHECKS: healthChecks, SOURCES: sourceIndex, ARTICLES: articleIndex }}>
+    (() => {
+      const setupHealthChecks = () => {
+        const root = document.querySelector('[data-health-checks]');
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = 'true';
+
+        const tabs = Array.from(root.querySelectorAll('[data-check-tab]'));
+        const stage = root.querySelector('[data-check-stage]');
+        const result = root.querySelector('[data-check-result]');
+        const checkIds = Object.keys(HEALTH_CHECKS);
+        const nutrientOrder = ['vitaminD', 'b12', 'ironFolate', 'magnesium', 'omega3', 'zincIodine'];
+        const state = {
+          active: checkIds[0],
+          index: 0,
+          answers: Object.fromEntries(checkIds.map((id) => [id, {}])),
+        };
+
+        const clear = (node) => {
+          while (node?.firstChild) node.removeChild(node.firstChild);
+        };
+        const node = (tag, className, textValue) => {
+          const el = document.createElement(tag);
+          if (className) el.className = className;
+          if (textValue !== undefined) el.textContent = textValue;
+          return el;
+        };
+        const unique = (items) => Array.from(new Set(items.filter(Boolean)));
+        const sourceByIds = (ids) => unique(ids).map((id) => SOURCES[id]).filter(Boolean);
+        const articleByPaths = (paths) => unique(paths).map((path) => ARTICLES[path]).filter(Boolean);
+        const profileFor = (profiles, score) => profiles.find((profile) => score >= profile.min && score <= profile.max) || profiles[0];
+
+        const hasAnswer = (checkId, question) => {
+          const answer = state.answers[checkId][question.id];
+          return Array.isArray(answer) ? answer.length > 0 : Number.isInteger(answer);
+        };
+
+        const applyTabs = () => {
+          tabs.forEach((tab) => {
+            const active = tab.dataset.checkTab === state.active;
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', String(active));
+          });
+        };
+
+        const setAnswer = (check, question, optionIndex, input) => {
+          const answers = state.answers[check.id];
+          if (question.type === 'multi') {
+            const current = Array.isArray(answers[question.id]) ? answers[question.id].slice() : [];
+            const option = question.options[optionIndex];
+            if (option.exclusive) {
+              answers[question.id] = input.checked ? [optionIndex] : [];
+            } else {
+              let next = current.filter((index) => !question.options[index]?.exclusive);
+              if (input.checked && !next.includes(optionIndex)) next.push(optionIndex);
+              if (!input.checked) next = next.filter((index) => index !== optionIndex);
+              answers[question.id] = next;
+            }
+          } else {
+            answers[question.id] = optionIndex;
+          }
+          renderQuestion();
+        };
+
+        const optionListFor = (check, question) => {
+          if (check.id === 'stress') return check.scale.map((item) => ({ ...item, scores: { stress: item.value } }));
+          return question.options || [];
+        };
+
+        const renderQuestion = () => {
+          const check = HEALTH_CHECKS[state.active];
+          const questions = check.questions;
+          const question = questions[state.index];
+          const progress = Math.round(((state.index + 1) / questions.length) * 100);
+          clear(stage);
+          applyTabs();
+
+          const header = node('div', 'check-question-head');
+          const meta = node('div', 'check-progress-meta');
+          meta.append(node('span', 'badge mint', check.eyebrow));
+          meta.append(node('small', '', `Frage ${state.index + 1} von ${questions.length}`));
+          header.append(meta);
+          header.append(node('h2', '', check.headline));
+          header.append(node('p', '', check.lede));
+          const bar = node('div', 'check-progress');
+          const barFill = node('span');
+          barFill.style.width = `${progress}%`;
+          bar.append(barFill);
+          header.append(bar);
+          stage.append(header);
+
+          const questionCard = node('article', 'check-question-card');
+          questionCard.append(node('h3', '', question.text));
+
+          const optionsWrap = node('div', check.id === 'stress' ? 'check-options check-options-scale' : 'check-options');
+          const answer = state.answers[check.id][question.id];
+          optionListFor(check, question).forEach((option, optionIndex) => {
+            const label = node('label', 'check-option');
+            const input = document.createElement('input');
+            input.type = question.type === 'multi' ? 'checkbox' : 'radio';
+            input.name = `${check.id}-${question.id}`;
+            input.value = String(optionIndex);
+            input.checked = Array.isArray(answer) ? answer.includes(optionIndex) : answer === optionIndex;
+            if (input.checked) label.classList.add('is-selected');
+            input.addEventListener('change', () => setAnswer(check, question, optionIndex, input));
+            const text = node('span');
+            text.append(node('strong', '', option.label));
+            if (option.description) text.append(node('small', '', option.description));
+            label.append(input, text);
+            optionsWrap.append(label);
+          });
+          questionCard.append(optionsWrap);
+
+          const status = node('p', 'check-status');
+          status.hidden = true;
+          questionCard.append(status);
+
+          const nav = node('div', 'check-nav');
+          const back = node('button', 'button');
+          back.type = 'button';
+          back.textContent = 'Zurück';
+          back.disabled = state.index === 0;
+          back.addEventListener('click', () => {
+            state.index = Math.max(0, state.index - 1);
+            renderQuestion();
+          });
+          const next = node('button', 'button primary');
+          next.type = 'button';
+          next.textContent = state.index === questions.length - 1 ? 'Auswertung anzeigen' : 'Weiter';
+          next.addEventListener('click', () => {
+            if (!hasAnswer(check.id, question)) {
+              status.textContent = 'Bitte wähle eine Antwort aus.';
+              status.hidden = false;
+              return;
+            }
+            if (state.index === questions.length - 1) {
+              renderResult();
+              result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              return;
+            }
+            state.index += 1;
+            renderQuestion();
+          });
+          nav.append(back, next);
+          questionCard.append(nav);
+          stage.append(questionCard);
+        };
+
+        const renderSources = (sources, container) => {
+          if (!sources.length) return;
+          const block = node('div', 'check-source-list');
+          block.append(node('strong', '', 'Quellen der Auswertung'));
+          sources.slice(0, 6).forEach((source) => {
+            const link = node('a');
+            link.href = source.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.append(node('span', '', source.type));
+            link.append(node('b', '', source.title));
+            block.append(link);
+          });
+          container.append(block);
+        };
+
+        const renderArticles = (articles, container) => {
+          if (!articles.length) return;
+          const block = node('div', 'check-article-list');
+          block.append(node('strong', '', 'Passende Callidus-Artikel'));
+          articles.slice(0, 4).forEach((article) => {
+            const link = node('a');
+            link.href = article.path;
+            link.append(node('b', '', article.title.replace(' | callidus A&M', '')));
+            if (article.description) link.append(node('span', '', article.description));
+            block.append(link);
+          });
+          container.append(block);
+        };
+
+        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards }) => {
+          clear(result);
+          result.classList.add('has-result');
+          result.append(node('span', 'badge gold', check.label));
+          result.append(node('h2', '', profile.title));
+          result.append(node('p', '', profile.summary));
+          const meter = node('div', 'check-score');
+          const scoreText = node('strong', '', `${score} / ${maxScore}`);
+          const scoreLabel = node('span', '', check.id === 'stress' ? 'Stresslast' : 'Radar-Summe');
+          const line = node('div', 'check-score-line');
+          const fill = node('span');
+          fill.style.width = `${Math.min(100, Math.round((score / maxScore) * 100))}%`;
+          line.append(fill);
+          meter.append(scoreText, scoreLabel, line);
+          result.append(meter);
+
+          if (nutrientCards?.length) {
+            const nutrientBlock = node('div', 'nutrient-focus-list');
+            nutrientBlock.append(node('strong', '', 'Top-3-Aufmerksamkeitsbereiche'));
+            nutrientCards.forEach(({ key, item, score: nutrientScore }) => {
+              const card = node('article', 'nutrient-focus-card');
+              card.append(node('span', '', `${nutrientScore} Punkte`));
+              card.append(node('h3', '', item.label));
+              card.append(node('p', '', item.summary));
+              nutrientBlock.append(card);
+            });
+            result.append(nutrientBlock);
+          }
+
+          const stepBlock = node('div', 'check-step-list');
+          stepBlock.append(node('strong', '', 'Nächste sinnvolle Schritte'));
+          const list = node('ol');
+          steps.slice(0, 3).forEach((step) => list.append(node('li', '', step)));
+          stepBlock.append(list);
+          result.append(stepBlock);
+
+          renderArticles(articles, result);
+          renderSources(sources, result);
+
+          const safety = node('div', 'notice check-safety');
+          safety.append(node('strong', '', 'Wichtig'));
+          safety.append(node('p', '', check.safetyNote));
+          result.append(safety);
+
+          const restart = node('button', 'button');
+          restart.type = 'button';
+          restart.textContent = 'Check erneut starten';
+          restart.addEventListener('click', () => {
+            state.index = 0;
+            state.answers[check.id] = {};
+            result.classList.remove('has-result');
+            clear(result);
+            result.append(node('span', 'badge mint', 'Bereit'));
+            result.append(node('h2', '', 'Deine Auswertung erscheint hier.'));
+            result.append(node('p', '', 'Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil, drei nächste Schritte und passende Quellen.'));
+            renderQuestion();
+          });
+          result.append(restart);
+        };
+
+        const renderStressResult = (check) => {
+          const score = check.questions.reduce((sum, question) => {
+            const optionIndex = state.answers[check.id][question.id];
+            return sum + (check.scale[optionIndex]?.value || 0);
+          }, 0);
+          const profile = profileFor(check.profiles, score);
+          renderResultShell({
+            check,
+            score,
+            maxScore: check.maxScore,
+            profile,
+            steps: profile.nextSteps,
+            articles: articleByPaths(profile.articlePaths || []),
+            sources: sourceByIds(profile.sourceIds || []),
+          });
+        };
+
+        const renderMicronutrientResult = (check) => {
+          const scores = Object.fromEntries(Object.keys(check.nutrients).map((key) => [key, 0]));
+          check.questions.forEach((question) => {
+            const answer = state.answers[check.id][question.id];
+            const indexes = Array.isArray(answer) ? answer : [answer];
+            indexes.filter(Number.isInteger).forEach((index) => {
+              const option = question.options[index];
+              Object.entries(option?.scores || {}).forEach(([key, value]) => {
+                if (key in scores) scores[key] = Math.max(0, scores[key] + Number(value || 0));
+              });
+            });
+          });
+          const total = Object.values(scores).reduce((sum, value) => sum + value, 0);
+          const profile = profileFor(check.profiles, total);
+          const top = nutrientOrder
+            .map((key, order) => ({ key, item: check.nutrients[key], score: scores[key] || 0, order }))
+            .sort((a, b) => (b.score - a.score) || (a.order - b.order))
+            .slice(0, 3);
+          const steps = top.flatMap(({ item }) => item.nextSteps || []).slice(0, 3);
+          const articles = articleByPaths(top.flatMap(({ item }) => item.articlePaths || []));
+          const sources = sourceByIds(unique([...top.flatMap(({ item }) => item.sourceIds || []), ...(check.sourceIds || [])]));
+          renderResultShell({
+            check,
+            score: total,
+            maxScore: 40,
+            profile,
+            steps,
+            articles,
+            sources,
+            nutrientCards: top,
+          });
+        };
+
+        const renderResult = () => {
+          const check = HEALTH_CHECKS[state.active];
+          if (check.id === 'stress') renderStressResult(check);
+          else renderMicronutrientResult(check);
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            state.active = tab.dataset.checkTab;
+            state.index = 0;
+            renderQuestion();
+          });
+        });
+
+        renderQuestion();
+      };
+
+      setupHealthChecks();
+      document.addEventListener('astro:page-load', setupHealthChecks);
+    })();
+  </script>
+</BaseLayout>

@@ -1,0 +1,166 @@
+{
+  "3-atemtechniken-fur-mehr-energie": [
+    {
+      "sourceId": "breathwork-meta-2023",
+      "claimNote": "Einordnung zu Atemübungen, Stress und mentaler Gesundheit."
+    },
+    {
+      "sourceId": "slow-breathing-hrv-2022",
+      "claimNote": "Grundlage für Aussagen zu langsamer Atmung und parasympathischer Regulation."
+    },
+    {
+      "sourceId": "who-stress-guide",
+      "claimNote": "Alltagsnahe Stressbewältigung ohne Diagnoseversprechen."
+    }
+  ],
+  "ashwagandha": [
+    {
+      "sourceId": "nccih-ashwagandha",
+      "claimNote": "Nutzen und Sicherheit von Ashwagandha-Präparaten werden zurückhaltend eingeordnet."
+    }
+  ],
+  "darmgesundheit-mit-akazienfaser": [
+    {
+      "sourceId": "fiber-gut-review",
+      "claimNote": "Ballaststoffe können Zusammensetzung und Stoffwechselaktivität der Darmmikrobiota beeinflussen."
+    },
+    {
+      "sourceId": "nih-probiotics",
+      "claimNote": "Probiotika wirken stamm- und anwendungsabhängig; pauschale Versprechen werden vermieden."
+    }
+  ],
+  "das-protokoll-zur-neuro-resilienz": [
+    {
+      "sourceId": "physical-activity-mental-health-review",
+      "claimNote": "Bewegung wird als ein Baustein mentaler Gesundheit eingeordnet."
+    },
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Schlafqualität und Schlafdauer als Regenerationsfaktoren."
+    }
+  ],
+  "der-digitale-detox": [
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Schlaf und Regeneration als Ziel digitaler Entlastung."
+    },
+    {
+      "sourceId": "who-stress-guide",
+      "claimNote": "Stressbewältigung durch bewusste Aufmerksamkeit und alltagstaugliche Routinen."
+    }
+  ],
+  "der-energie-reset": [
+    {
+      "sourceId": "physical-activity-mental-health-review",
+      "claimNote": "Bewegung als niedrigschwelliger Hebel für Stimmung und Belastbarkeit."
+    },
+    {
+      "sourceId": "who-stress-guide",
+      "claimNote": "Stressregulation über kleine, wiederholbare Alltagsschritte."
+    }
+  ],
+  "der-ganzheitliche-bodybuilding-plan": [
+    {
+      "sourceId": "issn-protein-exercise",
+      "claimNote": "Protein und Training werden als gemeinsame Faktoren für Anpassungsprozesse eingeordnet."
+    },
+    {
+      "sourceId": "nih-magnesium",
+      "claimNote": "Magnesiumbezug für Muskeln und Nerven."
+    }
+  ],
+  "der-innere-akku": [
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Schlaf als Grundlage für Erholung und Leistungsfähigkeit."
+    },
+    {
+      "sourceId": "issn-protein-exercise",
+      "claimNote": "Ernährung und Proteinversorgung im Trainingskontext."
+    }
+  ],
+  "der-schlaf-reset": [
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Schlafdauer, Schlafqualität und gesundheitliche Bedeutung von Schlaf."
+    },
+    {
+      "sourceId": "who-stress-guide",
+      "claimNote": "Stressreduktion als Teil der Abendroutine."
+    }
+  ],
+  "die-kraft-des-magnesiums": [
+    {
+      "sourceId": "nih-magnesium",
+      "claimNote": "Referenzdaten zu Magnesium, Quellen, Supplementen und Sicherheit."
+    },
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Sicherheitshinweis zu Nahrungsergänzung und Höchstmengen."
+    }
+  ],
+  "gehen-als-training": [
+    {
+      "sourceId": "physical-activity-mental-health-review",
+      "claimNote": "Niedrigschwellige Bewegung wird als Belastbarkeits- und Mental-Health-Faktor eingeordnet."
+    }
+  ],
+  "gesundheit-im-familien-alltag": [
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Schlaf und Regeneration als Basis alltagstauglicher Gesundheit."
+    },
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Supplemente ersetzen keine ausgewogene Ernährung und sollten sicher dosiert werden."
+    }
+  ],
+  "protein-wissen-fur-kraftaufbau": [
+    {
+      "sourceId": "issn-protein-exercise",
+      "claimNote": "Proteinbedarf und Training im Kontext Muskelaufbau."
+    },
+    {
+      "sourceId": "dge-vitamin-b12",
+      "claimNote": "B12 als kritischer Nährstoff bei veganer Ernährung."
+    }
+  ],
+  "sport-als-stress-killer": [
+    {
+      "sourceId": "physical-activity-mental-health-review",
+      "claimNote": "Bewegung als Faktor für Stress- und Stimmungslage."
+    },
+    {
+      "sourceId": "who-stress-guide",
+      "claimNote": "Stressbewältigung ohne medizinische Diagnose."
+    }
+  ],
+  "vitamin-d-das-sonnenhormon": [
+    {
+      "sourceId": "nih-vitamin-d",
+      "claimNote": "Referenzdaten zu Vitamin D, Status, Quellen und Sicherheit."
+    },
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Sicherheitshinweis zu Supplementierung und Höchstmengen."
+    }
+  ],
+  "vitamin-c-mythen": [
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Einordnung, dass Nahrungsergänzung nicht nach dem Prinzip 'viel hilft viel' bewertet werden sollte."
+    }
+  ],
+  "vitamin-a-wachter-der-sehkraft": [
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Sicherheitsrahmen für fettlösliche Vitamine und Supplemente."
+    }
+  ],
+  "vitamin-e-der-zellschutzer": [
+    {
+      "sourceId": "bfr-max-supplements",
+      "claimNote": "Sicherheitsrahmen für Nahrungsergänzung und Überversorgung."
+    }
+  ]
+}
