@@ -279,6 +279,21 @@ function bootPortal() {
     }
   }
 
+  async function getValusBalanceFallback() {
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'getSanitasBalance');
+      const result = await callable({});
+      const raw = result.data?.balance || result.data?.balances || result.data || {};
+      return {
+        san: raw.san ?? raw.val ?? raw.valus ?? 0,
+        xp: raw.xp ?? raw.current_xp ?? raw.total_xp ?? 0,
+      };
+    } catch (error) {
+      console.warn('Portal balance callable failed', error);
+      return {};
+    }
+  }
+
   function setupAuthHandlers() {
     if (root.dataset.authReady) return;
     root.dataset.authReady = 'true';
@@ -427,6 +442,7 @@ function bootPortal() {
       docsData([...base, 'sanitas_ledger'], { orderBy: 'created_at', limit: 5 }),
     ]);
 
+    const resolvedBalance = Object.keys(balance).length ? balance : await getValusBalanceFallback();
     const nexusToday = nexusContext.today || nexusStats || {};
     const momusShield = momusContext.energy_shield || {};
     const momusPhoenix = momusContext.phoenix || {};
@@ -439,8 +455,8 @@ function bootPortal() {
     const momusPlan = planFromSources(momusAccess, momusLink, momusHub, userDoc);
     const kairosPlan = planFromSources(kairosAccess, kairosLink, userDoc);
 
-    text('portal-san', displayNumber(balance.san, ' VAL'));
-    text('portal-xp', displayNumber(balance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
+    text('portal-san', displayNumber(resolvedBalance.san, ' VAL'));
+    text('portal-xp', displayNumber(resolvedBalance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
     text('portal-wallet', userDoc.wallet_address ? `${userDoc.wallet_address.slice(0, 6)}...${userDoc.wallet_address.slice(-4)}` : 'Nicht verbunden');
     text('portal-linked-apps', `${linkedCount}/3`);
 

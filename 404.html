@@ -92,18 +92,34 @@ Keine Diagnose. Fragen werden zur Antwort an Firebase/Gemini übertragen.
             const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
             const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
             const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
+            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
             const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
             const auth = getAuth(app);
             const db = getFirestore(app);
+            const fns = getFunctions(app, 'us-central1');
+            const setBadge = (value) => {
+              const badge = document.getElementById('nav-san-balance');
+              if (!badge) return;
+              const san = Number(value || 0);
+              badge.textContent = Number.isFinite(san) ? san.toFixed(0) : '0';
+              badge.hidden = false;
+            };
+            const refreshViaCallable = async () => {
+              try {
+                const result = await httpsCallable(fns, 'getSanitasBalance')({});
+                const raw = result.data?.balance || result.data?.balances || result.data || {};
+                setBadge(raw.san ?? raw.val ?? raw.valus ?? 0);
+              } catch (_) {}
+            };
             onAuthStateChanged(auth, (user) => {
               const badge = document.getElementById('nav-san-balance');
               if (!badge) return;
               if (!user) { badge.hidden = true; return; }
+              refreshViaCallable();
               onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
                 const san = snap.exists() ? (snap.data().san || 0) : 0;
-                badge.textContent = san;
-                badge.hidden = false;
-              });
+                setBadge(san);
+              }, refreshViaCallable);
             });
           } catch (_) {}
         };
