@@ -75,6 +75,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div>
             <p class="eyebrow">Valus Wallet</p>
             <h1 id="user-greeting">Willkommen</h1>
+            <p class="wallet-account-meta" id="wallet-account-id"></p>
           </div>
           <button id="btn-logout" class="button" style="align-self:flex-start">Abmelden</button>
         </div>
@@ -92,6 +93,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <span class="balance-sub">100 XP → 1 VAL</span>
           </div>
         </div>
+        <p id="balance-error" class="form-error wallet-balance-error" hidden></p>
 
         <!-- WALLET ADDRESS -->
         <div class="wallet-card" data-reveal="3" style="margin-top:1.5rem">
@@ -210,12 +212,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .form-link { background: none; border: none; color: var(--muted); cursor: pointer; font-size: .85rem; text-decoration: underline; padding: 0; }
 
     .wallet-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .wallet-account-meta { color: var(--muted); font-size: .82rem; margin: .35rem 0 0; overflow-wrap: anywhere; }
 
     .balance-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
     .balance-card { display: flex; flex-direction: column; gap: .35rem; }
     .balance-label { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
     .balance-amount { font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .balance-sub { font-size: .78rem; color: var(--muted); }
+    .wallet-balance-error { margin: .75rem 0 0; }
 
     .san-packages { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
     .san-package-card { display: flex; flex-direction: column; gap: .4rem; position: relative; }
@@ -322,6 +326,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           if (!user) { show('view-auth'); return; }
           show('view-dashboard');
           $('user-greeting').textContent = `Hallo, ${user.displayName || user.email?.split('@')[0] || 'Mitglied'}`;
+          const shortUid = `${user.uid.slice(0, 8)}...${user.uid.slice(-4)}`;
+          $('wallet-account-id').textContent = user.email
+            ? `Eingeloggt als ${user.email} · Konto ${shortUid}`
+            : `Eingeloggt mit Konto ${shortUid}`;
           loadDashboard(user, db, fns, { doc, getDoc, collection, query, orderBy, limit, getDocs, httpsCallable });
         });
 
@@ -372,15 +380,43 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       async function loadDashboard(user, db, fns, helpers) {
         const { doc, getDoc, collection, query, orderBy, limit, getDocs, httpsCallable } = helpers;
 
-        // Balance
+        const normalizeBalance = (payload = {}) => {
+          const raw = payload.balance || payload.balances || payload;
+          const san = Number(raw.san ?? raw.val ?? raw.valus ?? 0);
+          const xp = Number(raw.xp ?? raw.current_xp ?? raw.total_xp ?? 0);
+          return {
+            san: Number.isFinite(san) ? san : 0,
+            xp: Number.isFinite(xp) ? xp : 0,
+          };
+        };
+        const renderBalance = (bal) => {
+          $('san-balance').textContent = bal.san.toFixed(0);
+          $('xp-balance').textContent = bal.xp.toFixed(0);
+        };
+
+        // Balance: erst Firestore, dann Callable-Fallback. So wird aus einem Lesefehler nicht still "0".
         try {
+          setError('balance-error', '');
           const balSnap = await getDoc(doc(db, 'users', user.uid, 'balances', 'current'));
-          const bal = balSnap.exists() ? balSnap.data() : { san: 0, xp: 0 };
-          $('san-balance').textContent = (bal.san || 0).toFixed(0);
-          $('xp-balance').textContent = (bal.xp || 0).toFixed(0);
-        } catch (_) {
-          $('san-balance').textContent = '0';
-          $('xp-balance').textContent = '0';
+          if (balSnap.exists()) {
+            renderBalance(normalizeBalance(balSnap.data()));
+          } else {
+            const fn = httpsCallable(fns, 'getSanitasBalance');
+            const result = await fn({});
+            renderBalance(normalizeBalance(result.data || {}));
+          }
+        } catch (directErr) {
+          try {
+            const fn = httpsCallable(fns, 'getSanitasBalance');
+            const result = await fn({});
+            renderBalance(normalizeBalance(result.data || {}));
+            setError('balance-error', '');
+          } catch (callableErr) {
+            $('san-balance').textContent = '—';
+            $('xp-balance').textContent = '—';
+            setError('balance-error', 'Guthaben konnte nicht geladen werden. Bitte abmelden, neu anmelden oder Support mit der oben sichtbaren Konto-ID kontaktieren.');
+            console.error('Balance load failed', directErr, callableErr);
+          }
         }
 
         // Wallet address
