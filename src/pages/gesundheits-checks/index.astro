@@ -92,6 +92,41 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
     </div>
   </section>
 
+  <section class="section band check-knowledge-section" id="vitamin-kompendium">
+    <div class="container check-knowledge-panel">
+      <div data-reveal>
+        <p class="eyebrow">Wissen zum Nachlesen</p>
+        <h2>Vitamin-Kompendium als nächster Lernschritt.</h2>
+        <p class="lede">
+          Passt sehr gut hierher: Nach dem Health IQ oder dem Mikronährstoff-Radar sieht man sofort,
+          wo noch Fragen offen sind. Das kostenlose Kompendium bündelt die Grundlagen zu Vitaminen,
+          Funktionen und sinnvoller Einordnung.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/assets/documents/001-vitamin-kompendium.pdf" target="_blank" rel="noopener">Kompendium öffnen</a>
+          <a class="button" href="/vitamin-d-das-sonnenhormon/">Vitamin-Wissen lesen</a>
+        </div>
+      </div>
+      <div class="check-knowledge-list" data-reveal="2" aria-label="Inhalte des Vitamin-Kompendiums">
+        <article>
+          <span>01</span>
+          <h3>13 essenzielle Vitamine</h3>
+          <p>Basiswissen zu Aufgaben, Quellen und typischen Versorgungsthemen.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Einordnung statt Schnellschuss</h3>
+          <p>Warum Symptome, Ernährung und Laborwerte zusammen betrachtet werden sollten.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Weiterlernen mit Callidus</h3>
+          <p>Passend zu Health IQ, Mikronährstoff-Radar und den Quellenboxen der Artikel.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <script is:inline define:vars={{ HEALTH_CHECKS: healthChecks, SOURCES: sourceIndex, ARTICLES: articleIndex }}>
     (() => {
       const setupHealthChecks = () => {
