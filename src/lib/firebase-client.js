@@ -24,4 +24,6 @@ export const redeemValus = () => httpsCallable(fns, 'redeemValus');
 export const linkWalletAddress = () => httpsCallable(fns, 'linkWalletAddress');
 export const convertNexusXpToValus = () => httpsCallable(fns, 'convertNexusXpToValus');
 export const generateSportEnergyPlan = () => httpsCallable(fns, 'generateSportEnergyPlan');
+export const saveSportCoachLog = () => httpsCallable(fns, 'saveSportCoachLog');
+export const getSportCoachLogs = () => httpsCallable(fns, 'getSportCoachLogs');
 export const askCallidus = () => httpsCallable(fns, 'askCallidus');

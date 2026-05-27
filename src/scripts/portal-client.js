@@ -16,6 +16,17 @@ function bootPortal() {
     fns: null,
     user: null,
   };
+  const coachJournal = {
+    plan: {},
+    planId: '',
+    weekKey: weekKeyFromDate(new Date()),
+    activeWeek: null,
+    previousWeek: null,
+    recentWeeks: [],
+    loading: false,
+    saving: false,
+    dirty: false,
+  };
   const XP_PER_VALUS = 1000;
 
   const $ = (id) => document.getElementById(id);
@@ -47,6 +58,39 @@ function bootPortal() {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${date.getFullYear()}-${month}-${day}`;
+  }
+
+  function startOfCoachWeek(date = new Date()) {
+    const copy = new Date(date);
+    copy.setHours(12, 0, 0, 0);
+    const day = copy.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    copy.setDate(copy.getDate() + diff);
+    return copy;
+  }
+
+  function dateFromWeekKey(weekKey) {
+    const [year, month, day] = String(weekKey || '').split('-').map((part) => Number.parseInt(part, 10));
+    if (!Number.isFinite(year) || !Number.isFinite(month) || !Number.isFinite(day)) return startOfCoachWeek();
+    return new Date(year, month - 1, day, 12);
+  }
+
+  function weekKeyFromDate(date = new Date()) {
+    return isoLocalDate(startOfCoachWeek(date));
+  }
+
+  function shiftWeekKey(weekKey, offsetWeeks) {
+    const date = dateFromWeekKey(weekKey);
+    date.setDate(date.getDate() + (offsetWeeks * 7));
+    return weekKeyFromDate(date);
+  }
+
+  function displayWeekRange(weekKey) {
+    const start = dateFromWeekKey(weekKey);
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+    const format = { day: '2-digit', month: '2-digit' };
+    return `${start.toLocaleDateString('de-DE', format)} - ${end.toLocaleDateString('de-DE', format)}`;
   }
 
   function coachCalendarDays(startDate = new Date()) {
@@ -924,6 +968,397 @@ function bootPortal() {
     container.appendChild(grid);
   }
 
+  function coachLogEntryId(item = {}, exercise = {}, dayIndex = 0, exerciseIndex = 0) {
+    const raw = [
+      item.day || `tag-${dayIndex + 1}`,
+      item.focus || 'training',
+      exercise.key || exercise.title || `uebung-${exerciseIndex + 1}`,
+      exerciseIndex + 1,
+    ].join('-');
+    return raw
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 120);
+  }
+
+  function plannedCoachExercises(plan = {}) {
+    const items = Array.isArray(plan.weeklyTraining) ? plan.weeklyTraining : [];
+    return items.flatMap((item, dayIndex) => {
+      const exercises = resolveExercises(item);
+      return exercises.map((exercise, exerciseIndex) => ({
+        item,
+        exercise,
+        dayIndex,
+        exerciseIndex,
+        id: coachLogEntryId(item, exercise, dayIndex, exerciseIndex),
+      }));
+    });
+  }
+
+  function findCoachLogEntry(entries = [], planned = {}) {
+    return entries.find((entry) => entry.id === planned.id)
+      || entries.find((entry) => (
+        String(entry.day || '') === String(planned.item?.day || '')
+        && String(entry.exerciseName || '').toLowerCase() === String(planned.exercise?.title || '').toLowerCase()
+      ))
+      || {};
+  }
+
+  function displayLogValue(value) {
+    return value == null || value === '' ? '' : String(value);
+  }
+
+  function previousLogText(entry = {}) {
+    if (!entry || !Object.keys(entry).length) return 'Letzte Woche: noch kein Eintrag';
+    const load = [];
+    if (entry.weightKg != null) load.push(displayNumber(entry.weightKg, ' kg'));
+    if (entry.sets != null) load.push(`${entry.sets} S.`);
+    if (entry.reps != null) load.push(`${entry.reps} Wdh.`);
+    if (entry.durationSec != null) load.push(`${entry.durationSec} Sek.`);
+    if (!load.length && entry.note) return 'Letzte Woche: Notiz vorhanden';
+    return load.length ? `Letzte Woche: ${load.join(' x ')}` : 'Letzte Woche: gespeichert';
+  }
+
+  function createJournalNumberField(labelText, field, value, attrs = {}) {
+    const label = document.createElement('label');
+    label.className = 'portal-journal-field';
+    const span = document.createElement('span');
+    span.textContent = labelText;
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.inputMode = attrs.step && attrs.step !== '1' ? 'decimal' : 'numeric';
+    input.min = String(attrs.min ?? 0);
+    input.max = String(attrs.max ?? 999);
+    input.step = String(attrs.step || 1);
+    input.dataset.field = field;
+    input.value = displayLogValue(value);
+    label.append(span, input);
+    return label;
+  }
+
+  function appendJournalSummary(container, plan = {}) {
+    clearNode(container);
+    const planned = plannedCoachExercises(plan).length;
+    const entries = Array.isArray(coachJournal.activeWeek?.entries) ? coachJournal.activeWeek.entries : [];
+    const completed = entries.filter((entry) => entry.completed).length;
+    const volume = entries.reduce((sum, entry) => {
+      const sets = Number(entry.sets);
+      const reps = Number(entry.reps);
+      const weight = Number(entry.weightKg);
+      if (!Number.isFinite(sets) || !Number.isFinite(reps) || !Number.isFinite(weight)) return sum;
+      return sum + (sets * reps * weight);
+    }, 0);
+    [
+      { label: 'Woche', value: displayWeekRange(coachJournal.weekKey) },
+      { label: 'Uebungen', value: planned ? `${completed}/${planned}` : '-' },
+      { label: 'Volumen', value: volume ? displayNumber(volume, ' kg') : '-' },
+    ].forEach((item) => {
+      const node = document.createElement('div');
+      const label = document.createElement('span');
+      const value = document.createElement('strong');
+      label.textContent = item.label;
+      value.textContent = item.value;
+      node.append(label, value);
+      container.appendChild(node);
+    });
+  }
+
+  function renderCoachJournal() {
+    const body = $('coach-journal-body');
+    const summary = $('coach-journal-summary');
+    const note = $('coach-journal-weekly-note');
+    const saveButton = $('coach-journal-save');
+    const hasPlan = coachJournal.plan && Object.keys(coachJournal.plan).length > 0;
+    if (!body || !summary) return;
+
+    if (!hasPlan) {
+      appendEmpty(summary, 'Erstelle zuerst einen Trainingsplan.');
+      appendEmpty(body, 'Nach der Planerstellung kannst du hier Gewicht, Saetze und Wiederholungen dokumentieren.');
+      if (note) {
+        note.value = '';
+        note.disabled = true;
+      }
+      if (saveButton) saveButton.disabled = true;
+      return;
+    }
+
+    appendJournalSummary(summary, coachJournal.plan);
+    if (note) {
+      note.disabled = false;
+      note.value = coachJournal.activeWeek?.weeklyNote || '';
+    }
+    if (saveButton) saveButton.disabled = coachJournal.loading || coachJournal.saving;
+
+    if (coachJournal.loading) {
+      appendEmpty(body, 'Trainingsjournal wird geladen...');
+      return;
+    }
+
+    const items = Array.isArray(coachJournal.plan.weeklyTraining) ? coachJournal.plan.weeklyTraining : [];
+    if (!items.length) {
+      appendEmpty(body, 'Der aktuelle Plan enthaelt noch keine Trainingstage.');
+      if (saveButton) saveButton.disabled = true;
+      return;
+    }
+
+    clearNode(body);
+    const activeEntries = Array.isArray(coachJournal.activeWeek?.entries) ? coachJournal.activeWeek.entries : [];
+    const previousEntries = Array.isArray(coachJournal.previousWeek?.entries) ? coachJournal.previousWeek.entries : [];
+    items.forEach((item, dayIndex) => {
+      const dayCard = document.createElement('article');
+      dayCard.className = 'portal-journal-day';
+
+      const head = document.createElement('div');
+      head.className = 'portal-journal-day-head';
+      const title = document.createElement('strong');
+      title.textContent = item.focus || 'Training';
+      const meta = document.createElement('span');
+      meta.textContent = [item.day, item.duration].filter(Boolean).join(' | ');
+      head.append(title);
+      if (meta.textContent) head.append(meta);
+      dayCard.appendChild(head);
+
+      const exercises = resolveExercises(item);
+      if (!exercises.length) {
+        const empty = document.createElement('span');
+        empty.className = 'portal-empty';
+        empty.textContent = 'Keine konkreten Uebungen fuer diesen Tag.';
+        dayCard.appendChild(empty);
+      }
+
+      exercises.forEach((exercise, exerciseIndex) => {
+        const planned = {
+          item,
+          exercise,
+          dayIndex,
+          exerciseIndex,
+          id: coachLogEntryId(item, exercise, dayIndex, exerciseIndex),
+        };
+        const entry = findCoachLogEntry(activeEntries, planned);
+        const previous = findCoachLogEntry(previousEntries, planned);
+        const row = document.createElement('div');
+        row.className = 'portal-journal-row';
+        row.dataset.coachLogEntry = 'true';
+        row.dataset.entryId = planned.id;
+        row.dataset.day = item.day || `Tag ${dayIndex + 1}`;
+        row.dataset.focus = item.focus || '';
+        row.dataset.exerciseName = exercise.title;
+        row.dataset.exerciseKey = exercise.key || exercise.title;
+        row.dataset.sortKey = String((dayIndex * 10) + exerciseIndex);
+
+        const exerciseNode = document.createElement('div');
+        exerciseNode.className = 'portal-journal-exercise';
+        const name = document.createElement('strong');
+        name.textContent = exercise.title;
+        const previousText = document.createElement('small');
+        previousText.textContent = previousLogText(previous);
+        exerciseNode.append(name, previousText);
+
+        const complete = document.createElement('label');
+        complete.className = 'portal-journal-complete';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.dataset.field = 'completed';
+        checkbox.checked = Boolean(entry.completed);
+        const checkboxText = document.createElement('span');
+        checkboxText.textContent = 'Erledigt';
+        complete.append(checkbox, checkboxText);
+
+        const noteField = document.createElement('label');
+        noteField.className = 'portal-journal-field portal-journal-field-wide';
+        const noteLabel = document.createElement('span');
+        noteLabel.textContent = 'Notiz';
+        const noteInput = document.createElement('input');
+        noteInput.type = 'text';
+        noteInput.maxLength = 240;
+        noteInput.dataset.field = 'note';
+        noteInput.value = entry.note || '';
+        noteField.append(noteLabel, noteInput);
+
+        row.append(
+          exerciseNode,
+          createJournalNumberField('kg', 'weightKg', entry.weightKg, { max: 500, step: 0.5 }),
+          createJournalNumberField('Saetze', 'sets', entry.sets, { max: 20 }),
+          createJournalNumberField('Wdh.', 'reps', entry.reps, { max: 500 }),
+          createJournalNumberField('Sek.', 'durationSec', entry.durationSec, { max: 7200 }),
+          complete,
+          noteField,
+        );
+        dayCard.appendChild(row);
+      });
+      body.appendChild(dayCard);
+    });
+  }
+
+  function parseOptionalLogNumber(value, integer = false) {
+    const clean = String(value || '').replace(',', '.').trim();
+    if (!clean) return null;
+    const parsed = Number(clean);
+    if (!Number.isFinite(parsed)) return null;
+    return integer ? Math.round(parsed) : Math.round(parsed * 10) / 10;
+  }
+
+  function collectCoachJournalEntries() {
+    const controls = Array.from(document.querySelectorAll('#coach-journal-body input, #coach-journal-weekly-note'));
+    const invalid = controls.find((control) => !control.checkValidity());
+    if (invalid) {
+      invalid.reportValidity();
+      return null;
+    }
+    return Array.from(document.querySelectorAll('[data-coach-log-entry="true"]')).map((row) => {
+      const field = (name) => row.querySelector(`[data-field="${name}"]`);
+      return {
+        id: row.dataset.entryId,
+        day: row.dataset.day,
+        focus: row.dataset.focus,
+        exerciseName: row.dataset.exerciseName,
+        exerciseKey: row.dataset.exerciseKey,
+        sortKey: parseOptionalLogNumber(row.dataset.sortKey, true) || 0,
+        weightKg: parseOptionalLogNumber(field('weightKg')?.value),
+        sets: parseOptionalLogNumber(field('sets')?.value, true),
+        reps: parseOptionalLogNumber(field('reps')?.value, true),
+        durationSec: parseOptionalLogNumber(field('durationSec')?.value, true),
+        note: String(field('note')?.value || '').trim().slice(0, 240),
+        completed: Boolean(field('completed')?.checked),
+      };
+    });
+  }
+
+  function hasCoachJournalEntryValue(entry = {}) {
+    return Boolean(
+      entry.completed ||
+      entry.note ||
+      entry.weightKg != null ||
+      entry.sets != null ||
+      entry.reps != null ||
+      entry.durationSec != null,
+    );
+  }
+
+  function coachJournalErrorMessage(error) {
+    const code = error?.code || '';
+    if (code.includes('unauthenticated')) return 'Bitte erneut einloggen.';
+    if (code.includes('invalid-argument')) return error.message || 'Bitte Trainingswerte pruefen.';
+    if (code.includes('not-found')) return 'Die Trainingsjournal-Funktion ist noch nicht deployt.';
+    return 'Trainingsjournal konnte gerade nicht gespeichert oder geladen werden.';
+  }
+
+  async function loadCoachJournal(user) {
+    const hasPlan = coachJournal.plan && Object.keys(coachJournal.plan).length > 0;
+    if (!user || !hasPlan) {
+      coachJournal.activeWeek = null;
+      coachJournal.previousWeek = null;
+      coachJournal.recentWeeks = [];
+      coachJournal.dirty = false;
+      renderCoachJournal();
+      return;
+    }
+    coachJournal.loading = true;
+    renderCoachJournal();
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'getSportCoachLogs');
+      const response = await callable({ weekKey: coachJournal.weekKey, historyLimit: 12 });
+      const payload = response.data || {};
+      coachJournal.activeWeek = payload.activeWeek || null;
+      coachJournal.previousWeek = payload.previousWeek || null;
+      coachJournal.recentWeeks = Array.isArray(payload.recentWeeks) ? payload.recentWeeks : [];
+      coachJournal.dirty = false;
+      setStatus('coach-journal-status', '');
+    } catch (error) {
+      console.warn('Coach journal read failed', error);
+      coachJournal.activeWeek = null;
+      coachJournal.previousWeek = null;
+      coachJournal.recentWeeks = [];
+      setStatus('coach-journal-status', coachJournalErrorMessage(error), 'error');
+    } finally {
+      coachJournal.loading = false;
+      renderCoachJournal();
+    }
+  }
+
+  async function saveCoachJournal(user) {
+    const hasPlan = coachJournal.plan && Object.keys(coachJournal.plan).length > 0;
+    if (!user || !hasPlan || coachJournal.saving) return;
+    const entries = collectCoachJournalEntries();
+    if (!entries) return;
+    const savedEntries = entries.filter(hasCoachJournalEntryValue);
+    const weeklyNote = String($('coach-journal-weekly-note')?.value || '').trim().slice(0, 700);
+    const button = $('coach-journal-save');
+    coachJournal.saving = true;
+    if (button) button.disabled = true;
+    setStatus('coach-journal-status', 'Speichere Trainingswoche...', '');
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'saveSportCoachLog');
+      const response = await callable({
+        weekKey: coachJournal.weekKey,
+        planId: coachJournal.planId,
+        entries: savedEntries,
+        weeklyNote,
+      });
+      coachJournal.activeWeek = {
+        weekKey: coachJournal.weekKey,
+        planId: coachJournal.planId,
+        entries: savedEntries,
+        weeklyNote,
+        updatedAt: response.data?.updatedAt || new Date().toISOString(),
+      };
+      coachJournal.dirty = false;
+      setStatus('coach-journal-status', 'Trainingswoche gespeichert.', 'ok');
+    } catch (error) {
+      console.warn('Coach journal save failed', error);
+      setStatus('coach-journal-status', coachJournalErrorMessage(error), 'error');
+    } finally {
+      coachJournal.saving = false;
+      if (button) button.disabled = false;
+      renderCoachJournal();
+    }
+  }
+
+  function canLeaveCoachJournalWeek() {
+    if (!coachJournal.dirty) return true;
+    return window.confirm('Du hast ungespeicherte Trainingswerte. Woche trotzdem wechseln?');
+  }
+
+  function markCoachJournalDirty() {
+    if (!coachJournal.plan || !Object.keys(coachJournal.plan).length) return;
+    coachJournal.dirty = true;
+    setStatus('coach-journal-status', 'Noch nicht gespeicherte Aenderungen.', '');
+  }
+
+  function setupCoachJournalHandlers() {
+    const journal = $('coach-journal-body')?.closest('.portal-training-journal');
+    if (!journal || journal.dataset.ready === 'true') return;
+    journal.dataset.ready = 'true';
+    journal.addEventListener('input', (event) => {
+      if (event.target?.matches('input, textarea')) markCoachJournalDirty();
+    });
+    journal.addEventListener('change', (event) => {
+      if (event.target?.matches('input, textarea')) markCoachJournalDirty();
+    });
+    $('coach-journal-save')?.addEventListener('click', () => saveCoachJournal(state.user));
+    $('coach-journal-prev')?.addEventListener('click', async () => {
+      if (!canLeaveCoachJournalWeek()) return;
+      coachJournal.weekKey = shiftWeekKey(coachJournal.weekKey, -1);
+      coachJournal.dirty = false;
+      await loadCoachJournal(state.user);
+    });
+    $('coach-journal-next')?.addEventListener('click', async () => {
+      if (!canLeaveCoachJournalWeek()) return;
+      coachJournal.weekKey = shiftWeekKey(coachJournal.weekKey, 1);
+      coachJournal.dirty = false;
+      await loadCoachJournal(state.user);
+    });
+    $('coach-journal-today')?.addEventListener('click', async () => {
+      if (!canLeaveCoachJournalWeek()) return;
+      coachJournal.weekKey = weekKeyFromDate(new Date());
+      coachJournal.dirty = false;
+      await loadCoachJournal(state.user);
+    });
+  }
+
   function appendNutritionSummary(container, nutrition = {}) {
     if (!nutrition.dailyTarget && !nutrition.hydration) return;
     const node = document.createElement('div');
@@ -1099,6 +1534,7 @@ function bootPortal() {
     try {
       localStorage.setItem(key, JSON.stringify({
         plan: payload.plan || null,
+        planId: payload.planId || '',
         provider: payload.provider || 'gemini',
         model: payload.model || '',
         createdAt: payload.createdAt || new Date().toISOString(),
@@ -1160,12 +1596,20 @@ function bootPortal() {
         const response = await callable({ preferences, calendarDays: coachCalendarDays() });
         const payload = response.data || {};
         renderCoachPlan(payload.plan, {
+          planId: payload.planId || '',
           provider: 'gemini',
           model: payload.model || 'Gemini',
           createdAt: payload.createdAt || new Date().toISOString(),
         });
+        coachJournal.plan = payload.plan || {};
+        coachJournal.planId = payload.planId || '';
+        coachJournal.activeWeek = null;
+        coachJournal.previousWeek = null;
+        coachJournal.dirty = false;
+        renderCoachJournal();
         saveCoachCache(user, {
           plan: payload.plan,
+          planId: payload.planId || '',
           provider: 'gemini',
           model: payload.model || 'Gemini',
           createdAt: payload.createdAt || new Date().toISOString(),
@@ -1219,6 +1663,7 @@ function bootPortal() {
     if (!Object.keys(plan).length && callablePlan?.plan) {
       latest = {
         plan: callablePlan.plan,
+        plan_id: callablePlan.planId || '',
         provider: callablePlan.provider,
         model: callablePlan.model,
         created_at_iso: callablePlan.createdAt,
@@ -1226,6 +1671,7 @@ function bootPortal() {
       plan = callablePlan.plan;
       saveCoachCache(user, {
         plan,
+        planId: callablePlan.planId || '',
         provider: callablePlan.provider,
         model: callablePlan.model,
         createdAt: callablePlan.createdAt,
@@ -1236,6 +1682,7 @@ function bootPortal() {
     if (!Object.keys(plan).length && cachedPlan?.plan) {
       latest = {
         plan: cachedPlan.plan,
+        plan_id: cachedPlan.planId || '',
         provider: cachedPlan.provider,
         model: cachedPlan.model,
         created_at_iso: cachedPlan.createdAt,
@@ -1252,16 +1699,21 @@ function bootPortal() {
     text('coach-context-kairos', kairosProfile.tone || kairosProfile.mode || (Object.keys(kairosProfile).length ? 'Aktiv' : 'Basis'));
     text('coach-context-kairos-sub', kairosProfile.focus || kairosProfile.intention || 'Profil und Kontext');
     text('coach-context-plan', Object.keys(plan).length ? 'Aktiv' : '-');
-    text('coach-context-plan-sub', displayDateTime(latest.created_at) || 'Noch kein gespeicherter Plan');
+    text('coach-context-plan-sub', displayDateTime(latest.created_at || latest.created_at_iso) || 'Noch kein gespeicherter Plan');
 
     const currentPreferences = preferences.current || preferences;
     if (!options.skipFormSetup) setCoachFormValues(currentPreferences);
     renderCoachPlan(plan, {
+      planId: latest.plan_id || latest.planId || latest.id || '',
       provider: latest.provider,
       model: latest.model,
       createdAt: latest.created_at || latest.created_at_iso,
     });
     setupCoachHandlers(user);
+    setupCoachJournalHandlers();
+    coachJournal.plan = plan || {};
+    coachJournal.planId = latest.plan_id || latest.planId || latest.id || '';
+    await loadCoachJournal(user);
   }
 
   async function loadAppDetail(user, appId) {

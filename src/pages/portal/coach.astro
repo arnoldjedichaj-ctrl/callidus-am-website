@@ -215,6 +215,46 @@ const equipmentOptions = [
             <div class="portal-insight portal-checkin" id="coach-plan-checkin">
               Naechster Check-in: nach der ersten erfassten Trainingswoche.
             </div>
+
+            <section class="portal-plan-block portal-training-journal" aria-labelledby="coach-journal-title">
+              <div class="portal-journal-head">
+                <div>
+                  <h3 id="coach-journal-title">Trainingsjournal</h3>
+                  <p class="portal-mini">
+                    Dokumentiere pro Woche Gewicht, Saetze, Wiederholungen und kurze Notizen.
+                  </p>
+                </div>
+                <div class="portal-journal-week-controls" aria-label="Woche wechseln">
+                  <button class="portal-icon-button" id="coach-journal-prev" type="button" aria-label="Vorige Woche">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+                  </button>
+                  <button class="portal-week-button" id="coach-journal-today" type="button">Diese Woche</button>
+                  <button class="portal-icon-button" id="coach-journal-next" type="button" aria-label="Naechste Woche">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="portal-journal-summary" id="coach-journal-summary">
+                <span class="portal-empty">Erstelle zuerst einen Trainingsplan.</span>
+              </div>
+              <div id="coach-journal-body" class="portal-journal-body">
+                <span class="portal-empty">Noch kein Trainingsjournal vorhanden.</span>
+              </div>
+
+              <label class="portal-journal-note">
+                <span>Wochen-Notiz</span>
+                <textarea id="coach-journal-weekly-note" rows="3" maxlength="700" placeholder="Was lief gut? Wo war es zu viel? Was willst du naechste Woche anpassen?"></textarea>
+              </label>
+
+              <p id="coach-journal-status" class="portal-coach-status" hidden></p>
+              <div class="portal-auth-actions">
+                <button class="button primary" id="coach-journal-save" type="button" disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.2 17 19 7" /></svg>
+                  Woche speichern
+                </button>
+              </div>
+            </section>
           </section>
         </div>
       </PortalGate>

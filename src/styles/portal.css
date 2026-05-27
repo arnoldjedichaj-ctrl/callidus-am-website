@@ -868,6 +868,198 @@
   margin: 0;
 }
 
+.portal-training-journal {
+  min-height: 0;
+  background: linear-gradient(150deg, rgba(var(--gold-rgb), .08), rgba(var(--mint-rgb), .045));
+}
+
+.portal-journal-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .8rem;
+  align-items: flex-start;
+}
+
+.portal-journal-week-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+}
+
+.portal-icon-button,
+.portal-week-button {
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  color: var(--text);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.portal-icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  padding: 0;
+}
+
+.portal-icon-button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portal-week-button {
+  padding: .55rem .8rem;
+}
+
+.portal-icon-button:hover,
+.portal-week-button:hover {
+  border-color: rgba(var(--gold-rgb), .5);
+  background: rgba(var(--gold-rgb), .12);
+}
+
+.portal-icon-button:focus-visible,
+.portal-week-button:focus-visible,
+.portal-journal-row input:focus-visible,
+.portal-journal-note textarea:focus-visible {
+  outline: 3px solid rgba(var(--gold-rgb), .35);
+  outline-offset: 2px;
+}
+
+.portal-journal-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .6rem;
+}
+
+.portal-journal-summary div {
+  display: grid;
+  gap: .15rem;
+  min-height: 4.4rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  padding: .65rem .7rem;
+}
+
+.portal-journal-summary span,
+.portal-journal-exercise small,
+.portal-journal-day-head span,
+.portal-journal-field span,
+.portal-journal-note span {
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.portal-journal-summary strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.portal-journal-body {
+  display: grid;
+  gap: .75rem;
+}
+
+.portal-journal-day {
+  display: grid;
+  gap: .65rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  padding: .75rem;
+}
+
+.portal-journal-day-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .4rem .7rem;
+  align-items: baseline;
+}
+
+.portal-journal-day-head strong,
+.portal-journal-exercise strong {
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.portal-journal-row {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1.2fr) repeat(4, minmax(4.7rem, .55fr)) auto minmax(10rem, 1fr);
+  gap: .5rem;
+  align-items: end;
+  border-top: 1px solid var(--line);
+  padding-top: .65rem;
+}
+
+.portal-journal-day-head + .portal-journal-row {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.portal-journal-exercise {
+  display: grid;
+  gap: .22rem;
+  align-self: center;
+}
+
+.portal-journal-field,
+.portal-journal-note {
+  display: grid;
+  gap: .28rem;
+  min-width: 0;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.portal-journal-field input,
+.portal-journal-note textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: var(--bg-soft);
+  color: var(--text);
+  padding: .58rem .65rem;
+  font: inherit;
+}
+
+.portal-journal-note textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.portal-journal-complete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  color: var(--text);
+  padding: .45rem .6rem;
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.portal-journal-complete input {
+  width: 1rem;
+  min-height: 1rem;
+  accent-color: var(--mint);
+}
+
 @media (max-width: 960px) {
   .portal-hero,
   .portal-grid-2,
@@ -878,6 +1070,17 @@
 
   .portal-hero {
     align-items: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .portal-journal-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .portal-journal-exercise,
+  .portal-journal-field-wide {
+    grid-column: 1 / -1;
   }
 }
 
@@ -912,4 +1115,21 @@
   .portal-exercise-card {
     grid-template-columns: 1fr;
   }
+
+  .portal-journal-head {
+    display: grid;
+  }
+
+  .portal-journal-week-controls {
+    width: 100%;
+  }
+
+  .portal-week-button {
+    flex: 1;
+  }
+
+  .portal-journal-summary {
+    grid-template-columns: 1fr;
+  }
+
 }

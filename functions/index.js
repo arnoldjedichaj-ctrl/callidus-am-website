@@ -346,6 +346,100 @@ function normalizePlan(plan) {
   };
 }
 
+function sanitizeWeekKey(value) {
+  const key = cleanString(value, 20);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(key)) {
+    throw new HttpsError("invalid-argument", "Ungueltiger Wochenwert.");
+  }
+  const parsed = new Date(`${key}T00:00:00.000Z`);
+  if (Number.isNaN(parsed.getTime()) || isoDate(parsed) !== key) {
+    throw new HttpsError("invalid-argument", "Ungueltiger Wochenwert.");
+  }
+  if (parsed.getUTCDay() !== 1) {
+    throw new HttpsError("invalid-argument", "Die Trainingswoche muss mit einem Montag beginnen.");
+  }
+  return key;
+}
+
+function previousWeekKey(weekKey) {
+  const parsed = new Date(`${weekKey}T00:00:00.000Z`);
+  parsed.setUTCDate(parsed.getUTCDate() - 7);
+  return isoDate(parsed);
+}
+
+function optionalNumber(value, min, max, decimals = 0) {
+  if (value == null || value === "") return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < min || parsed > max) {
+    throw new HttpsError("invalid-argument", "Trainingswerte liegen ausserhalb des erlaubten Bereichs.");
+  }
+  const factor = 10 ** decimals;
+  return Math.round(parsed * factor) / factor;
+}
+
+function optionalInt(value, min, max) {
+  const parsed = optionalNumber(value, min, max, 0);
+  return parsed == null ? null : Math.round(parsed);
+}
+
+function sanitizeSportCoachLogEntry(entry = {}, index = 0) {
+  const exerciseName = cleanString(entry.exerciseName, 120);
+  if (!exerciseName) return null;
+  return {
+    id: cleanString(entry.id, 140) || `entry_${index + 1}`,
+    day: cleanString(entry.day, 80),
+    focus: cleanString(entry.focus, 140),
+    exerciseName,
+    exerciseKey: cleanString(entry.exerciseKey, 120),
+    sortKey: optionalInt(entry.sortKey, 0, 999) ?? index,
+    sets: optionalInt(entry.sets, 0, 20),
+    reps: optionalInt(entry.reps, 0, 500),
+    weightKg: optionalNumber(entry.weightKg, 0, 500, 1),
+    durationSec: optionalInt(entry.durationSec, 0, 7200),
+    note: cleanString(entry.note, 240),
+    completed: Boolean(entry.completed),
+  };
+}
+
+function hasSportCoachLogValue(entry = {}) {
+  return Boolean(
+    entry.completed ||
+    entry.note ||
+    entry.sets != null ||
+    entry.reps != null ||
+    entry.weightKg != null ||
+    entry.durationSec != null,
+  );
+}
+
+function sanitizeSportCoachLogPayload(input = {}) {
+  const weekKey = sanitizeWeekKey(input.weekKey);
+  const entries = ensureArray(input.entries)
+    .slice(0, 60)
+    .map(sanitizeSportCoachLogEntry)
+    .filter((entry) => entry && hasSportCoachLogValue(entry));
+  return {
+    weekKey,
+    planId: cleanString(input.planId, 120),
+    entries,
+    weeklyNote: cleanString(input.weeklyNote, 700),
+  };
+}
+
+function formatSportCoachLog(docSnap) {
+  if (!docSnap || !docSnap.exists) return null;
+  const data = docSnap.data() || {};
+  return {
+    weekKey: data.week_key || docSnap.id,
+    planId: data.plan_id || "",
+    entries: ensureArray(data.entries).slice(0, 60),
+    weeklyNote: data.weekly_note || "",
+    entryCount: data.entry_count || ensureArray(data.entries).length,
+    updatedAt: data.updated_at_iso || safeTimestamp(data.updated_at),
+    createdAt: data.created_at_iso || safeTimestamp(data.created_at),
+  };
+}
+
 async function callGemini({ apiKey, model, prompt }) {
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
   const response = await fetch(endpoint, {
@@ -1047,6 +1141,7 @@ exports.generateSportEnergyPlan = onCall(
     const planId = `plan_${Date.now()}`;
     const createdAt = new Date().toISOString();
     const record = {
+      plan_id: planId,
       plan,
       preferences,
       context_summary: context,
@@ -1103,10 +1198,86 @@ exports.getSportEnergyPlan = onCall(
 
     return {
       plan: latest.plan || null,
+      planId: latest.plan_id || "",
       preferences: preferences.current || preferences || null,
       provider: latest.provider || "",
       model: latest.model || "",
       createdAt: latest.created_at_iso || safeTimestamp(latest.created_at),
+    };
+  },
+);
+
+exports.saveSportCoachLog = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    if (!request.auth?.uid) {
+      throw new HttpsError("unauthenticated", "Bitte einloggen.");
+    }
+
+    const payload = sanitizeSportCoachLogPayload(request.data || {});
+    const uid = request.auth.uid;
+    const now = new Date().toISOString();
+    const logRef = db
+      .collection("users")
+      .doc(uid)
+      .collection("sport_coach_logs")
+      .doc(payload.weekKey);
+    const existing = await logRef.get();
+
+    await logRef.set({
+      week_key: payload.weekKey,
+      plan_id: payload.planId,
+      entries: payload.entries,
+      weekly_note: payload.weeklyNote,
+      entry_count: payload.entries.length,
+      created_at: existing.exists ? (existing.data()?.created_at || FieldValue.serverTimestamp()) : FieldValue.serverTimestamp(),
+      created_at_iso: existing.exists ? (existing.data()?.created_at_iso || now) : now,
+      updated_at: FieldValue.serverTimestamp(),
+      updated_at_iso: now,
+    });
+
+    return {
+      ok: true,
+      weekKey: payload.weekKey,
+      updatedAt: now,
+    };
+  },
+);
+
+exports.getSportCoachLogs = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    if (!request.auth?.uid) {
+      throw new HttpsError("unauthenticated", "Bitte einloggen.");
+    }
+
+    const weekKey = sanitizeWeekKey(request.data?.weekKey);
+    const historyLimit = boundedInt(request.data?.historyLimit, 8, 1, 24);
+    const logsRef = db
+      .collection("users")
+      .doc(request.auth.uid)
+      .collection("sport_coach_logs");
+    const previousKey = previousWeekKey(weekKey);
+    const [activeSnap, previousSnap, recentSnap] = await Promise.all([
+      logsRef.doc(weekKey).get(),
+      logsRef.doc(previousKey).get(),
+      logsRef.orderBy("week_key", "desc").limit(historyLimit).get(),
+    ]);
+
+    return {
+      activeWeek: formatSportCoachLog(activeSnap),
+      previousWeek: formatSportCoachLog(previousSnap),
+      recentWeeks: recentSnap.docs.map(formatSportCoachLog).filter(Boolean),
     };
   },
 );
