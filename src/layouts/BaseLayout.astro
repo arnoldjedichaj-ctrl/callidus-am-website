@@ -416,10 +416,7 @@ const socialIcons = {
             const pickValus = (payload = {}) => {
               const raw = payload.balance || payload.balances || payload;
               const user = payload.user || payload.userDoc || {};
-              const canonical = numericValues(raw.valus, raw.val);
-              if (canonical.some((value) => value > 0) || raw.valus_legacy_migrated) {
-                return Math.max(0, ...canonical, 0);
-              }
+              const canonical = Math.max(0, ...numericValues(raw.valus, raw.val), 0);
               const legacy = numericValues(
                 raw.san,
                 raw.valus_balance,
@@ -446,7 +443,11 @@ const socialIcons = {
                 user.balance?.val,
                 user.balance?.san,
               );
-              return Math.max(0, ...canonical, ...legacy, 0);
+              const legacyValue = Math.max(0, ...legacy, 0);
+              if (raw.valus_legacy_migrated || (canonical > 0 && canonical >= legacyValue)) {
+                return canonical;
+              }
+              return canonical + legacyValue;
             };
             const setBadge = (value) => {
               const badge = document.getElementById('nav-valus-balance');

@@ -632,8 +632,10 @@ function legacyValusFromSources(balance = {}, user = {}) {
 
 function valusFromSources(balance = {}, user = {}) {
   const canonical = canonicalValusFromBalance(balance);
-  if (canonical > 0 || balance.valus_legacy_migrated) return canonical;
-  return Math.max(canonical, legacyValusFromSources(balance, user));
+  if (balance.valus_legacy_migrated) return canonical;
+  const legacy = legacyValusFromSources(balance, user);
+  if (canonical > 0 && canonical >= legacy) return canonical;
+  return canonical + legacy;
 }
 
 function xpFromSources(balance = {}, user = {}) {
@@ -654,6 +656,34 @@ function publicBalance(balance = {}, user = {}) {
       monthlyValusLimit: MONTHLY_VALUS_LIMIT,
       source: "nexus",
     },
+  };
+}
+
+function ledgerDate(entry = {}) {
+  const value = entry.created_at || entry.timestamp || entry.date;
+  const date = value?.toDate?.() || (value ? new Date(value) : null);
+  return date && !Number.isNaN(date.getTime()) ? date : null;
+}
+
+function cleanValusText(value) {
+  return String(value || "")
+    .replace(new RegExp(["Sani", "tas"].join(""), "gi"), "Valus")
+    .replace(/\bSAN\b/g, "VAL")
+    .trim();
+}
+
+function publicLedgerEntry(docSnap, source = "valus") {
+  const entry = docSnap.data() || {};
+  const date = ledgerDate(entry);
+  return {
+    id: docSnap.id,
+    source,
+    type: cleanValusText(entry.type || "transaction"),
+    description: cleanValusText(entry.description || entry.type || "Transaktion"),
+    amount: numberValue(entry.amount ?? entry.valus ?? entry.val ?? entry.san ?? entry.valus_amount, 0),
+    xp_amount: numberValue(entry.xp_amount, 0),
+    created_at: date ? date.toISOString() : null,
+    timestamp: date ? date.getTime() : 0,
   };
 }
 
@@ -705,6 +735,36 @@ exports.getValusBalance = onCall(
       convertedThisMonth,
       remainingMonthlyValus: Math.max(0, MONTHLY_VALUS_LIMIT - convertedThisMonth),
     };
+  },
+);
+
+exports.getValusLedger = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 20,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const limitValue = Number.parseInt(request.data?.limit, 10);
+    const entryLimit = Number.isFinite(limitValue) ? Math.min(Math.max(limitValue, 1), 50) : 20;
+    const userRef = db.collection("users").doc(uid);
+    const legacyLedgerName = ["sani", "tas_ledger"].join("");
+
+    const [valusSnap, legacySnap] = await Promise.all([
+      userRef.collection("valus_ledger").orderBy("created_at", "desc").limit(entryLimit).get(),
+      userRef.collection(legacyLedgerName).orderBy("created_at", "desc").limit(entryLimit).get().catch(() => ({ docs: [] })),
+    ]);
+
+    const entries = [
+      ...valusSnap.docs.map((docSnap) => publicLedgerEntry(docSnap, "valus")),
+      ...legacySnap.docs.map((docSnap) => publicLedgerEntry(docSnap, "legacy")),
+    ]
+      .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+      .slice(0, entryLimit);
+
+    return { entries };
   },
 );
 

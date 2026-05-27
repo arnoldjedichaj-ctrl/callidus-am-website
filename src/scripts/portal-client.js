@@ -94,7 +94,7 @@ function bootPortal() {
 
   function valusFromSources(balance = {}, user = {}) {
     const canonical = maxNumberValue(balance.valus, balance.val);
-    if (canonical > 0 || balance.valus_legacy_migrated) return canonical;
+    if (balance.valus_legacy_migrated) return canonical;
     const legacy = maxNumberValue(
       balance.san,
       balance.valus_balance,
@@ -121,7 +121,8 @@ function bootPortal() {
       user.balance?.val,
       user.balance?.san,
     );
-    return Math.max(canonical, legacy);
+    if (canonical > 0 && canonical >= legacy) return canonical;
+    return canonical + legacy;
   }
 
   function displayNumber(value, unit = '') {
@@ -363,6 +364,17 @@ function bootPortal() {
     } catch (error) {
       console.warn('Portal balance callable failed', error);
       return {};
+    }
+  }
+
+  async function getValusLedgerFallback(limit = 5) {
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'getValusLedger');
+      const result = await callable({ limit });
+      return Array.isArray(result.data?.entries) ? result.data.entries : [];
+    } catch (error) {
+      console.warn('Portal ledger callable failed', error);
+      return [];
     }
   }
 
@@ -625,9 +637,12 @@ function bootPortal() {
     ];
     renderList('portal-integration-list', integrationItems, 'Noch keine App-Verbindung sichtbar.');
 
+    const callableLedger = await getValusLedgerFallback(5);
+    const ledgerEntries = callableLedger.length ? callableLedger : mergeLedgerEntries(valusLedger, legacyLedger);
+
     renderList(
       'portal-ledger-list',
-      mergeLedgerEntries(valusLedger, legacyLedger).slice(0, 5).map((entry) => ({
+      ledgerEntries.slice(0, 5).map((entry) => ({
         title: `${num(entry.amount ?? entry.valus ?? entry.val ?? entry.san)} VAL | ${cleanLedgerDescription(entry.description || entry.type) || 'Transaktion'}`,
         meta: displayDate(entry.created_at || entry.timestamp || entry.date),
       })),

@@ -389,7 +389,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         };
         const valusFromSources = (balance = {}, userDoc = {}) => {
           const canonical = maxNumberValue(balance.valus, balance.val);
-          if (canonical > 0 || balance.valus_legacy_migrated) return canonical;
+          if (balance.valus_legacy_migrated) return canonical;
           const legacy = maxNumberValue(
             balance.san,
             balance.valus_balance,
@@ -416,7 +416,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             userDoc.balance?.val,
             userDoc.balance?.san,
           );
-          return Math.max(canonical, legacy);
+          if (canonical > 0 && canonical >= legacy) return canonical;
+          return canonical + legacy;
         };
         const normalizeBalance = (payload = {}) => {
           const raw = payload.balance || payload.balances || payload;
@@ -484,44 +485,57 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           if (walletAddr) {
             $('wallet-address-display').textContent = `${walletAddr.slice(0,6)}...${walletAddr.slice(-4)}`;
             $('btn-connect-wallet').textContent = 'Wallet wechseln';
+          } else if (!window.ethereum) {
+            $('wallet-address-display').textContent = 'Keine Browser-Wallet erkannt.';
+            $('btn-connect-wallet').textContent = 'Wallet erstellen';
           }
         } catch (_) {}
 
         // Ledger
-        try {
-          const legacyLedgerName = ['sani', 'tas_ledger'].join('');
-          const [valusSnap, legacySnap] = await Promise.all([
-            getDocs(query(collection(db, 'users', user.uid, 'valus_ledger'), orderBy('created_at', 'desc'), limit(20))),
-            getDocs(query(collection(db, 'users', user.uid, legacyLedgerName), orderBy('created_at', 'desc'), limit(20))).catch(() => ({ docs: [], empty: true })),
-          ]);
+        const renderLedger = (entries = []) => {
           const list = $('ledger-list');
-          const entries = [...valusSnap.docs, ...legacySnap.docs]
-            .map(d => ({ id: d.id, ...d.data() }))
-            .sort((a, b) => ledgerTime(b) - ledgerTime(a))
-            .slice(0, 20);
           if (!entries.length) {
             list.innerHTML = '<p class="muted">Noch keine Transaktionen.</p>';
-          } else {
-            list.innerHTML = entries.map(data => {
-              const amount = entryAmount(data);
-              const sign = amount > 0 ? '+' : '';
-              const cls = amount > 0 ? 'plus' : 'minus';
-              const date = data.created_at?.toDate?.()?.toLocaleDateString('de-DE') || '-';
-              const rawDate = data.timestamp || data.date;
-              const parsedDate = rawDate ? new Date(rawDate) : null;
-              const fallbackDate = parsedDate && !Number.isNaN(parsedDate.getTime())
-                ? parsedDate.toLocaleDateString('de-DE')
-                : '';
-              const description = cleanLedgerDescription(data.description || data.type) || 'Transaktion';
-              return `<div class="ledger-item">
-                <span class="ledger-desc">${escapeHtml(description)}</span>
-                <span class="ledger-date">${escapeHtml(date || fallbackDate || '-')}</span>
-                <span class="ledger-valus ${cls}">${sign}${amount} VAL</span>
-              </div>`;
-            }).join('');
+            return;
           }
-        } catch (_) {
-          $('ledger-list').innerHTML = '<p class="muted">Transaktionen konnten nicht geladen werden.</p>';
+          list.innerHTML = entries.map(data => {
+            const amount = entryAmount(data);
+            const sign = amount > 0 ? '+' : '';
+            const cls = amount > 0 ? 'plus' : 'minus';
+            const rawDate = data.created_at || data.timestamp || data.date;
+            const parsedDate = data.created_at?.toDate?.() || (rawDate ? new Date(rawDate) : null);
+            const date = parsedDate && !Number.isNaN(parsedDate.getTime())
+              ? parsedDate.toLocaleDateString('de-DE')
+              : '-';
+            const description = cleanLedgerDescription(data.description || data.type) || 'Transaktion';
+            return `<div class="ledger-item">
+              <span class="ledger-desc">${escapeHtml(description)}</span>
+              <span class="ledger-date">${escapeHtml(date)}</span>
+              <span class="ledger-valus ${cls}">${sign}${amount} VAL</span>
+            </div>`;
+          }).join('');
+        };
+
+        try {
+          const fn = httpsCallable(fns, 'getValusLedger');
+          const result = await fn({ limit: 20 });
+          renderLedger(result.data?.entries || []);
+        } catch (callableErr) {
+          try {
+            const legacyLedgerName = ['sani', 'tas_ledger'].join('');
+            const [valusSnap, legacySnap] = await Promise.all([
+              getDocs(query(collection(db, 'users', user.uid, 'valus_ledger'), orderBy('created_at', 'desc'), limit(20))),
+              getDocs(query(collection(db, 'users', user.uid, legacyLedgerName), orderBy('created_at', 'desc'), limit(20))).catch(() => ({ docs: [], empty: true })),
+            ]);
+            const entries = [...valusSnap.docs, ...legacySnap.docs]
+              .map(d => ({ id: d.id, ...d.data() }))
+              .sort((a, b) => ledgerTime(b) - ledgerTime(a))
+              .slice(0, 20);
+            renderLedger(entries);
+          } catch (directErr) {
+            $('ledger-list').innerHTML = '<p class="muted">Transaktionen konnten nicht geladen werden.</p>';
+            console.error('Ledger load failed', callableErr, directErr);
+          }
         }
 
         // VAL kaufen → Digistore24
@@ -584,7 +598,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         // Wallet verbinden (MetaMask)
         $('btn-connect-wallet')?.addEventListener('click', async () => {
           if (!window.ethereum) {
-            alert('Kein Ethereum-Wallet gefunden. Bitte installieren Sie MetaMask.');
+            $('wallet-address-display').textContent = 'Keine Browser-Wallet erkannt. MetaMask öffnet in einem neuen Tab.';
+            const opened = window.open('https://metamask.io/download/', '_blank', 'noopener,noreferrer');
+            if (!opened) alert('Bitte MetaMask installieren: https://metamask.io/download/');
             return;
           }
           try {
