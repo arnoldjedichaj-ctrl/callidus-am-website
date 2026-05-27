@@ -496,6 +496,8 @@ const socialIcons = {
           const submit = root.querySelector('[data-assistant-submit]');
           const history = [];
           let callable = null;
+          let suppressToggleClick = false;
+          const POSITION_KEY = 'callidus-assistant-y';
 
           const sessionId = (() => {
             const existing = localStorage.getItem(SESSION_KEY);
@@ -511,6 +513,71 @@ const socialIcons = {
             root.classList.toggle('is-open', open);
             if (open) window.setTimeout(() => input?.focus(), 60);
           };
+
+          const clampAssistantY = (value) => {
+            const toggleHeight = toggle?.offsetHeight || 56;
+            const minY = 72;
+            const maxY = Math.max(minY, window.innerHeight - toggleHeight - 18);
+            return Math.min(maxY, Math.max(minY, value));
+          };
+
+          const applyAssistantY = (value, persist = true) => {
+            const nextY = clampAssistantY(value);
+            root.style.top = `${nextY}px`;
+            root.style.bottom = 'auto';
+            if (persist) localStorage.setItem(POSITION_KEY, String(Math.round(nextY)));
+          };
+
+          const storedY = Number(localStorage.getItem(POSITION_KEY));
+          if (Number.isFinite(storedY)) {
+            window.requestAnimationFrame(() => applyAssistantY(storedY, false));
+          }
+
+          const setupAssistantDrag = () => {
+            if (!toggle || toggle.dataset.dragReady) return;
+            toggle.dataset.dragReady = 'true';
+            toggle.addEventListener('pointerdown', (event) => {
+              if (event.button !== undefined && event.button !== 0) return;
+              const startY = event.clientY;
+              const startTop = root.getBoundingClientRect().top;
+              let moved = false;
+
+              const onPointerMove = (moveEvent) => {
+                const deltaY = moveEvent.clientY - startY;
+                if (!moved && Math.abs(deltaY) < 6) return;
+                moved = true;
+                root.classList.add('is-dragging');
+                applyAssistantY(startTop + deltaY, false);
+                moveEvent.preventDefault();
+              };
+
+              const onPointerEnd = () => {
+                document.removeEventListener('pointermove', onPointerMove);
+                document.removeEventListener('pointerup', onPointerEnd);
+                document.removeEventListener('pointercancel', onPointerEnd);
+                root.classList.remove('is-dragging');
+                if (moved) {
+                  const currentY = Number.parseFloat(root.style.top);
+                  if (Number.isFinite(currentY)) {
+                    localStorage.setItem(POSITION_KEY, String(Math.round(currentY)));
+                  }
+                  suppressToggleClick = true;
+                  window.setTimeout(() => { suppressToggleClick = false; }, 0);
+                }
+              };
+
+              toggle.setPointerCapture?.(event.pointerId);
+              document.addEventListener('pointermove', onPointerMove, { passive: false });
+              document.addEventListener('pointerup', onPointerEnd, { once: true });
+              document.addEventListener('pointercancel', onPointerEnd, { once: true });
+            });
+          };
+
+          setupAssistantDrag();
+          window.addEventListener('resize', () => {
+            const currentY = Number.parseFloat(root.style.top);
+            if (Number.isFinite(currentY)) applyAssistantY(currentY);
+          });
 
           const appendMessage = ({ role, text, sources = [], safetyNotice = '', pending = false }) => {
             const item = document.createElement('article');
@@ -566,7 +633,14 @@ const socialIcons = {
             text: 'Frag mich zu Stress, Schlaf, Mikronährstoffen, NEXUS oder den Callidus-Artikeln. Ich antworte mit Quellen, wenn die Wissensbasis dazu etwas hergibt.',
           });
 
-          toggle?.addEventListener('click', () => setOpen(panel.hidden));
+          toggle?.addEventListener('click', (event) => {
+            if (suppressToggleClick) {
+              event.preventDefault();
+              event.stopPropagation();
+              return;
+            }
+            setOpen(panel.hidden);
+          });
           close?.addEventListener('click', () => setOpen(false));
           document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && !panel.hidden) setOpen(false);

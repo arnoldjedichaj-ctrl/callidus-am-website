@@ -34,8 +34,8 @@
       {
         "heading": "2. Hosting",
         "paragraphs": [
-          "Wir hosten die Inhalte unserer Website bei folgendem Anbieter: IONOS Anbieter ist die IONOS SE, Elgendorfer Str. 57, 56410 Montabaur (nachfolgend IONOS). Wenn Sie unsere Website besuchen, erfasst IONOS verschiedene Logfiles inklusive Ihrer IP-Adressen. Details entnehmen Sie der Datenschutzerklärung von IONOS: https://www.ionos.de/terms-gtc/terms-privacy. Die Verwendung von IONOS erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.",
-          "Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar."
+          "Die statischen Website-Inhalte werden über GitHub Pages bereitgestellt. Anbieter ist GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Website verarbeitet GitHub technische Zugriffsdaten, insbesondere IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei, Referrer sowie Browser- und Betriebssysteminformationen, um die Website auszuliefern und die Sicherheit des Dienstes zu gewährleisten. GitHub weist darauf hin, dass bei Besuch einer GitHub-Pages-Website die IP-Adresse zu Sicherheitszwecken protokolliert wird.",
+          "Die Nutzung von GitHub Pages erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in einer sicheren, schnellen und zuverlässigen Bereitstellung unserer Website. Weitere Informationen finden Sie unter https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages und https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement."
         ]
       },
       {
@@ -110,10 +110,8 @@
       {
         "heading": "6. Analyse-Tools",
         "paragraphs": [
-          "und Werbung IONOS WebAnalytics Diese Website nutzt die Analysedienste von IONOS WebAnalytics (im Folgenden: IONOS). Anbieter ist die 1&1 IONOS SE, Elgendorfer Straße 57, D – 56410 Montabaur. Im Rahmen der Analysen mit IONOS können u. a. Besucherzahlen und –verhalten (z. B. Anzahl der Seitenaufrufe, Dauer eines Webseitenbesuchs, Absprungraten), Besucherquellen (d. h., von welcher Seite der Besucher kommt), Besucherstandorte sowie technische Daten (Browser- und Betriebssystemversionen) analysiert werden.",
-          "Zu diesem Zweck speichert IONOS insbesondere folgende Daten: Referrer (zuvor besuchte Webseite) angeforderte Webseite oder Datei Browsertyp und Browserversion verwendetes Betriebssystem verwendeter Gerätetyp Uhrzeit des Zugriffs IP-Adresse in anonymisierter Form (wird nur zur Feststellung des Orts des Zugriffs verwendet) Die Datenerfassung erfolgt laut IONOS vollständig anonymisiert, sodass sie nicht zu einzelnen Personen zurückverfolgt werden kann. Cookies werden von IONOS WebAnalytics nicht gespeichert.",
-          "Die Speicherung und Analyse der Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der statistischen Analyse des Nutzerverhaltens, um sowohl sein Webangebot als auch seine Werbung zu optimieren. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs.",
-          "1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar. Weitere Informationen zur Datenerfassung und Verarbeitung durch IONOS WebAnalytics entnehmen Sie der Datenschutzerklaerung von IONOS unter folgendem Link: https://www.ionos.de/terms-gtc/datenschutzerklaerung/"
+          "und Werbung Wir setzen auf dieser Website derzeit kein eigenes Tracking wie Google Analytics oder vergleichbare WebAnalytics-Dienste ein. Die Website ist trackingarm gestaltet; technisch notwendige Server- und Sicherheitsprotokolle entstehen beim Hosting über GitHub Pages.",
+          "Sofern künftig Analyse- oder Marketingtools eingesetzt werden, werden diese erst nach entsprechender Einwilligung aktiviert und in dieser Datenschutzerklärung transparent benannt."
         ]
       },
       {
