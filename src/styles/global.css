@@ -180,7 +180,7 @@ img { display: block; max-width: 100%; }
   transition: background 160ms, border-color 160ms;
 }
 .wallet-nav-btn:hover { background: rgba(245,247,233,.16); border-color: rgba(131,137,97,.5); }
-.san-nav-badge {
+.valus-nav-badge {
   position: absolute;
   top: -.25rem;
   right: -.25rem;

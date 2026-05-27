@@ -1,4 +1,5 @@
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const functionsV1 = require("firebase-functions/v1");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
 const admin = require("firebase-admin");
@@ -12,6 +13,14 @@ const db = admin.firestore();
 const geminiApiKey = defineSecret("GEMINI_API_KEY");
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const SOURCE_BY_ID = new Map(callidusKnowledge.sources.map((source) => [source.id, source]));
+const CALLABLE_CORS = [
+  "https://www.callidus-am.de",
+  "https://callidus-am.de",
+  "http://127.0.0.1:4321",
+  "http://localhost:4321",
+];
+const XP_PER_VALUS = 1000;
+const MONTHLY_VALUS_LIMIT = 10;
 
 const PLAN_SCHEMA = {
   type: "OBJECT",
@@ -559,6 +568,298 @@ function safetyAnswerFor(message) {
   }
   return "";
 }
+
+function requireAuth(request) {
+  if (!request.auth?.uid) {
+    throw new HttpsError("unauthenticated", "Bitte einloggen.");
+  }
+  return request.auth.uid;
+}
+
+function monthKey(date = new Date()) {
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  return `${date.getUTCFullYear()}-${month}`;
+}
+
+function numberValue(value, fallback = 0) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function valusFromBalance(balance = {}) {
+  return numberValue(balance.valus ?? balance.val ?? balance.san, 0);
+}
+
+function xpFromSources(balance = {}, user = {}) {
+  return numberValue(
+    balance.xp ?? balance.current_xp ?? user.current_xp ?? user.total_xp,
+    0,
+  );
+}
+
+function publicBalance(balance = {}, user = {}) {
+  const valus = valusFromBalance(balance);
+  return {
+    valus,
+    val: valus,
+    xp: xpFromSources(balance, user),
+    rate: {
+      xpPerValus: XP_PER_VALUS,
+      monthlyValusLimit: MONTHLY_VALUS_LIMIT,
+      source: "nexus",
+    },
+  };
+}
+
+function parseValusAmount(data = {}) {
+  const parsed = Number.parseInt(data.valusAmount, 10);
+  if (!Number.isFinite(parsed)) return 0;
+  return Math.min(500, Math.max(0, parsed));
+}
+
+const VALUS_PACKAGES = {
+  valus_10: { amount: 10, env: "VALUS_CHECKOUT_10_URL" },
+  valus_25: { amount: 25, env: "VALUS_CHECKOUT_25_URL" },
+  valus_50: { amount: 50, env: "VALUS_CHECKOUT_50_URL" },
+};
+
+exports.getValusBalance = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 20,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const userRef = db.collection("users").doc(uid);
+    const [userSnap, balanceSnap, monthSnap] = await Promise.all([
+      userRef.get(),
+      userRef.collection("balances").doc("current").get(),
+      userRef.collection("valus_conversions").doc(monthKey()).get(),
+    ]);
+    const user = userSnap.exists ? userSnap.data() : {};
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    const convertedThisMonth = numberValue(monthSnap.data()?.valus, 0);
+
+    return {
+      balance: publicBalance(balance, user),
+      convertedThisMonth,
+      remainingMonthlyValus: Math.max(0, MONTHLY_VALUS_LIMIT - convertedThisMonth),
+    };
+  },
+);
+
+exports.convertNexusXpToValus = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const source = cleanString(request.data?.source || "nexus", 20).toLowerCase();
+    if (source !== "nexus") {
+      throw new HttpsError("failed-precondition", "Aktuell kann nur NEXUS-XP in VAL umgewandelt werden.");
+    }
+
+    const xpAmount = Number.parseInt(request.data?.xpAmount, 10);
+    if (!Number.isFinite(xpAmount)) {
+      throw new HttpsError("invalid-argument", "Bitte NEXUS-XP-Betrag eingeben.");
+    }
+    if (xpAmount < XP_PER_VALUS) {
+      throw new HttpsError("invalid-argument", `Minimum ${XP_PER_VALUS} NEXUS-XP.`);
+    }
+    if (xpAmount > XP_PER_VALUS * MONTHLY_VALUS_LIMIT) {
+      throw new HttpsError("invalid-argument", `Maximal ${XP_PER_VALUS * MONTHLY_VALUS_LIMIT} NEXUS-XP pro Monat.`);
+    }
+    if (xpAmount % XP_PER_VALUS !== 0) {
+      throw new HttpsError("invalid-argument", `Bitte in ${XP_PER_VALUS}-XP-Schritten umwandeln.`);
+    }
+
+    const valusAmount = Math.floor(xpAmount / XP_PER_VALUS);
+    const userRef = db.collection("users").doc(uid);
+    const balanceRef = userRef.collection("balances").doc("current");
+    const conversionRef = userRef.collection("valus_conversions").doc(monthKey());
+    const ledgerRef = userRef.collection("valus_ledger").doc();
+
+    const result = await db.runTransaction(async (transaction) => {
+      const [userSnap, balanceSnap, conversionSnap] = await Promise.all([
+        transaction.get(userRef),
+        transaction.get(balanceRef),
+        transaction.get(conversionRef),
+      ]);
+      const user = userSnap.exists ? userSnap.data() : {};
+      const balance = balanceSnap.exists ? balanceSnap.data() : {};
+      const availableXp = xpFromSources(balance, user);
+      const alreadyConverted = numberValue(conversionSnap.data()?.valus, 0);
+      const remainingValus = MONTHLY_VALUS_LIMIT - alreadyConverted;
+
+      if (valusAmount > remainingValus) {
+        throw new HttpsError("resource-exhausted", `Monatslimit erreicht. Verfuegbar sind noch ${Math.max(0, remainingValus)} VAL.`);
+      }
+      if (availableXp < xpAmount) {
+        throw new HttpsError("failed-precondition", `Nicht genug NEXUS-XP vorhanden. Aktuell verfuegbar: ${availableXp} XP.`);
+      }
+
+      const nextXp = availableXp - xpAmount;
+      const nextValus = valusFromBalance(balance) + valusAmount;
+      const balancePayload = {
+        valus: nextValus,
+        val: nextValus,
+        xp: nextXp,
+        current_xp: nextXp,
+        xp_source: "nexus",
+        updated_at: FieldValue.serverTimestamp(),
+      };
+
+      transaction.set(balanceRef, balancePayload, { merge: true });
+      transaction.set(userRef, {
+        current_xp: nextXp,
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      transaction.set(conversionRef, {
+        source: "nexus",
+        valus: FieldValue.increment(valusAmount),
+        xp: FieldValue.increment(xpAmount),
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      transaction.set(ledgerRef, {
+        type: "nexus_xp_conversion",
+        source: "nexus",
+        amount: valusAmount,
+        xp_amount: xpAmount,
+        description: "NEXUS-XP in VAL umgewandelt",
+        created_at: FieldValue.serverTimestamp(),
+      });
+
+      return {
+        balance: {
+          valus: nextValus,
+          val: nextValus,
+          xp: nextXp,
+          rate: {
+            xpPerValus: XP_PER_VALUS,
+            monthlyValusLimit: MONTHLY_VALUS_LIMIT,
+            source: "nexus",
+          },
+        },
+        convertedValus: valusAmount,
+        convertedXp: xpAmount,
+        remainingMonthlyValus: remainingValus - valusAmount,
+      };
+    });
+
+    return result;
+  },
+);
+
+exports.getValusCheckoutUrl = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 20,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    requireAuth(request);
+    const packageId = cleanString(request.data?.packageId, 40);
+    const selected = VALUS_PACKAGES[packageId];
+    if (!selected) {
+      throw new HttpsError("invalid-argument", "Unbekanntes VAL-Paket.");
+    }
+    const url = process.env[selected.env];
+    if (!url) {
+      throw new HttpsError("failed-precondition", "Checkout ist noch nicht konfiguriert.");
+    }
+    return { url, packageId, valus: selected.amount };
+  },
+);
+
+exports.redeemValus = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const productId = cleanString(request.data?.productId, 80) || "stress_reset_kurs";
+    const valusAmount = parseValusAmount(request.data || {});
+    if (valusAmount < 1) {
+      throw new HttpsError("invalid-argument", "Bitte VAL-Betrag eingeben.");
+    }
+
+    const userRef = db.collection("users").doc(uid);
+    const balanceRef = userRef.collection("balances").doc("current");
+    const redemptionRef = userRef.collection("valus_redemptions").doc();
+    const ledgerRef = userRef.collection("valus_ledger").doc();
+    const redemptionCode = crypto.randomBytes(8).toString("hex");
+
+    await db.runTransaction(async (transaction) => {
+      const balanceSnap = await transaction.get(balanceRef);
+      const balance = balanceSnap.exists ? balanceSnap.data() : {};
+      const currentValus = valusFromBalance(balance);
+      if (currentValus < valusAmount) {
+        throw new HttpsError("failed-precondition", `Nicht genug VAL vorhanden. Aktuell verfuegbar: ${currentValus} VAL.`);
+      }
+      const nextValus = currentValus - valusAmount;
+      transaction.set(balanceRef, {
+        valus: nextValus,
+        val: nextValus,
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      transaction.set(redemptionRef, {
+        product_id: productId,
+        valus_amount: valusAmount,
+        code: redemptionCode,
+        status: "created",
+        created_at: FieldValue.serverTimestamp(),
+      });
+      transaction.set(ledgerRef, {
+        type: "redemption",
+        product_id: productId,
+        amount: -valusAmount,
+        description: `VAL fuer ${productId} eingesetzt`,
+        created_at: FieldValue.serverTimestamp(),
+      });
+    });
+
+    return {
+      code: redemptionCode,
+      discountUrl: `https://www.callidus-am.de/stress-reset-kurs/?valus=${encodeURIComponent(redemptionCode)}`,
+    };
+  },
+);
+
+exports.linkWalletAddress = functionsV1
+  .region("us-central1")
+  .https.onCall(async (data, context) => {
+    if (!context.auth?.uid) {
+      throw new functionsV1.https.HttpsError("unauthenticated", "Bitte einloggen.");
+    }
+    const uid = context.auth.uid;
+    const address = cleanString(data?.address, 80);
+    const message = cleanString(data?.message, 300);
+    const signature = cleanString(data?.signature, 300);
+    if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+      throw new functionsV1.https.HttpsError("invalid-argument", "Ungueltige Wallet-Adresse.");
+    }
+    if (!message || !signature) {
+      throw new functionsV1.https.HttpsError("invalid-argument", "Wallet-Signatur fehlt.");
+    }
+
+    await db.collection("users").doc(uid).set({
+      wallet_address: address,
+      wallet_signature: signature,
+      wallet_message: message,
+      wallet_linked_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    return { address };
+  });
 
 exports.generateSportEnergyPlan = onCall(
   {

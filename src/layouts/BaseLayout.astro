@@ -225,7 +225,7 @@ const socialIcons = {
             <rect x="2" y="5" width="20" height="14" rx="2"></rect>
             <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
           </svg>
-          <span id="nav-san-balance" class="san-nav-badge" hidden>0</span>
+          <span id="nav-valus-balance" class="valus-nav-badge" hidden>0</span>
         </a>
         <button class="theme-toggle" type="button" aria-label={labels.toggleTheme} aria-pressed="false">
           <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -410,27 +410,27 @@ const socialIcons = {
             const db = getFirestore(app);
             const fns = getFunctions(app, 'us-central1');
             const setBadge = (value) => {
-              const badge = document.getElementById('nav-san-balance');
+              const badge = document.getElementById('nav-valus-balance');
               if (!badge) return;
-              const san = Number(value || 0);
-              badge.textContent = Number.isFinite(san) ? san.toFixed(0) : '0';
+              const valus = Number(value || 0);
+              badge.textContent = Number.isFinite(valus) ? valus.toFixed(0) : '0';
               badge.hidden = false;
             };
             const refreshViaCallable = async () => {
               try {
-                const result = await httpsCallable(fns, 'getSanitasBalance')({});
+                const result = await httpsCallable(fns, 'getValusBalance')({});
                 const raw = result.data?.balance || result.data?.balances || result.data || {};
                 setBadge(raw.san ?? raw.val ?? raw.valus ?? 0);
               } catch (_) {}
             };
             onAuthStateChanged(auth, (user) => {
-              const badge = document.getElementById('nav-san-balance');
+              const badge = document.getElementById('nav-valus-balance');
               if (!badge) return;
               if (!user) { badge.hidden = true; return; }
               refreshViaCallable();
               onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
-                const san = snap.exists() ? (snap.data().san || 0) : 0;
-                setBadge(san);
+                const data = snap.exists() ? snap.data() : {};
+                setBadge(data.valus ?? data.val ?? data.san ?? 0);
               }, refreshViaCallable);
             });
           } catch (_) {}

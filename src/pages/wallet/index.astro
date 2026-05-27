@@ -11,7 +11,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <!-- AUTH VIEWS -->
       <div id="view-loading" class="wallet-view" style="text-align:center;padding:4rem 0">
-        <div class="san-spinner"></div>
+        <div class="valus-spinner"></div>
         <p class="muted" style="margin-top:1rem">Lade...</p>
       </div>
 
@@ -84,13 +84,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="grid balance-grid" data-reveal="2" style="margin-top:1.5rem">
           <div class="wallet-card balance-card">
             <span class="balance-label">VAL-Guthaben</span>
-            <span class="balance-amount" id="san-balance">—</span>
+            <span class="balance-amount" id="valus-balance">—</span>
             <span class="balance-sub">1 VAL = 1,00 € Rabatt</span>
           </div>
           <div class="wallet-card balance-card">
             <span class="balance-label">XP-Punkte</span>
             <span class="balance-amount" id="xp-balance">—</span>
-            <span class="balance-sub">100 XP → 1 VAL</span>
+            <span class="balance-sub">1000 XP → 1 VAL</span>
           </div>
         </div>
         <p id="balance-error" class="form-error wallet-balance-error" hidden></p>
@@ -113,32 +113,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div data-reveal style="margin-top:2.5rem">
           <h2>VAL kaufen</h2>
           <p class="muted">Kaufen Sie Valus-Guthaben und lösen Sie es für Rabatte ein.</p>
-          <div class="grid san-packages" style="margin-top:1rem">
-            <button class="wallet-card san-package-card" data-package="san_10" data-san="10" data-eur="7.50">
-              <span class="san-amount">10 VAL</span>
-              <span class="san-price">7,50 €</span>
-              <span class="san-value-note">= 10,00 € Rabattwert</span>
+          <div class="grid valus-packages" style="margin-top:1rem">
+            <button class="wallet-card valus-package-card" data-package="valus_10" data-valus="10" data-eur="7.50">
+              <span class="valus-amount">10 VAL</span>
+              <span class="valus-price">7,50 €</span>
+              <span class="valus-value-note">= 10,00 € Rabattwert</span>
             </button>
-            <button class="wallet-card san-package-card" data-package="san_25" data-san="25" data-eur="18.75">
-              <span class="san-badge">Beliebt</span>
-              <span class="san-amount">25 VAL</span>
-              <span class="san-price">18,75 €</span>
-              <span class="san-value-note">= 25,00 € Rabattwert</span>
+            <button class="wallet-card valus-package-card" data-package="valus_25" data-valus="25" data-eur="18.75">
+              <span class="valus-badge">Beliebt</span>
+              <span class="valus-amount">25 VAL</span>
+              <span class="valus-price">18,75 €</span>
+              <span class="valus-value-note">= 25,00 € Rabattwert</span>
             </button>
-            <button class="wallet-card san-package-card" data-package="san_50" data-san="50" data-eur="37.50">
-              <span class="san-amount">50 VAL</span>
-              <span class="san-price">37,50 €</span>
-              <span class="san-value-note">= 50,00 € Rabattwert</span>
+            <button class="wallet-card valus-package-card" data-package="valus_50" data-valus="50" data-eur="37.50">
+              <span class="valus-amount">50 VAL</span>
+              <span class="valus-price">37,50 €</span>
+              <span class="valus-value-note">= 50,00 € Rabattwert</span>
             </button>
           </div>
-          <p id="san-purchase-error" class="form-error" hidden style="margin-top:.75rem"></p>
+          <p id="valus-purchase-error" class="form-error" hidden style="margin-top:.75rem"></p>
           <p class="muted" style="font-size:.75rem;margin-top:.5rem">
             * Sie werden nach dem Klick sicher zu Digistore24 weitergeleitet (SSL-verschlüsselt).
           </p>
         </div>
 
         <!-- STRESS RESET MIT VAL -->
-        <div class="wallet-card san-redeem-card" data-reveal style="margin-top:2rem">
+        <div class="wallet-card valus-redeem-card" data-reveal style="margin-top:2rem">
           <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
             <div style="flex:1;min-width:200px">
               <span class="badge gold">Exklusiv</span>
@@ -146,7 +146,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <p class="muted" style="font-size:.9rem">Lösen Sie VAL als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit VAL.</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px">
-              <div class="san-redeem-input">
+              <div class="valus-redeem-input">
                 <label style="font-size:.8rem;color:var(--muted)">VAL einsetzen</label>
                 <input type="number" id="redeem-amount" min="1" max="50" value="10" style="width:80px;text-align:center" />
               </div>
@@ -160,9 +160,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <!-- XP UMWANDELN -->
         <div class="wallet-card" data-reveal style="margin-top:1.5rem">
           <h3 style="margin:0 0 .5rem">XP in VAL umwandeln</h3>
-          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">100 XP = 1 VAL · Max. 10 VAL pro Monat</p>
+          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">1000 XP = 1 VAL · Max. 10 VAL pro Monat</p>
           <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-            <input type="number" id="xp-convert-amount" min="100" max="1000" step="100" value="100" style="width:100px" />
+            <input type="number" id="xp-convert-amount" min="1000" max="10000" step="1000" value="1000" style="width:120px" />
             <span class="muted" style="font-size:.875rem">XP → <strong id="xp-convert-preview">1 VAL</strong></span>
             <button id="btn-xp-convert" class="button">Umwandeln</button>
           </div>
@@ -221,27 +221,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .balance-sub { font-size: .78rem; color: var(--muted); }
     .wallet-balance-error { margin: .75rem 0 0; }
 
-    .san-packages { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-    .san-package-card { display: flex; flex-direction: column; gap: .4rem; position: relative; }
-    .san-package-card[disabled] { opacity: .65; cursor: progress; }
-    .san-amount { font-size: 1.5rem; font-weight: 700; }
-    .san-price { font-size: 1.1rem; color: var(--gold); font-weight: 600; }
-    .san-value-note { font-size: .78rem; color: var(--muted); }
-    .san-badge { position: absolute; top: .75rem; right: .75rem; background: var(--gold); color: var(--on-accent); font-size: .7rem; font-weight: 700; padding: .15rem .5rem; border-radius: 999px; text-transform: uppercase; }
+    .valus-packages { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .valus-package-card { display: flex; flex-direction: column; gap: .4rem; position: relative; }
+    .valus-package-card[disabled] { opacity: .65; cursor: progress; }
+    .valus-amount { font-size: 1.5rem; font-weight: 700; }
+    .valus-price { font-size: 1.1rem; color: var(--gold); font-weight: 600; }
+    .valus-value-note { font-size: .78rem; color: var(--muted); }
+    .valus-badge { position: absolute; top: .75rem; right: .75rem; background: var(--gold); color: var(--on-accent); font-size: .7rem; font-weight: 700; padding: .15rem .5rem; border-radius: 999px; text-transform: uppercase; }
 
-    .san-redeem-card { border-color: rgba(var(--gold-rgb),.3); }
-    .san-redeem-input { display: flex; flex-direction: column; gap: .25rem; align-items: flex-end; }
-    .san-redeem-input input { padding: .4rem .6rem; border: 1px solid var(--line); border-radius: .375rem; background: var(--bg-soft); color: var(--text); }
+    .valus-redeem-card { border-color: rgba(var(--gold-rgb),.3); }
+    .valus-redeem-input { display: flex; flex-direction: column; gap: .25rem; align-items: flex-end; }
+    .valus-redeem-input input { padding: .4rem .6rem; border: 1px solid var(--line); border-radius: .375rem; background: var(--bg-soft); color: var(--text); }
 
     .ledger-list { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
     .ledger-item { display: flex; justify-content: space-between; align-items: center; padding: .75rem 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: .625rem; font-size: .875rem; }
     .ledger-item .ledger-desc { color: var(--text); }
-    .ledger-item .ledger-san { font-weight: 700; }
-    .ledger-item .ledger-san.plus { color: var(--mint); }
-    .ledger-item .ledger-san.minus { color: var(--coral); }
+    .ledger-item .ledger-valus { font-weight: 700; }
+    .ledger-item .ledger-valus.plus { color: var(--mint); }
+    .ledger-item .ledger-valus.minus { color: var(--coral); }
     .ledger-item .ledger-date { color: var(--muted); font-size: .78rem; }
 
-    .san-spinner { width: 2.5rem; height: 2.5rem; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto; }
+    .valus-spinner { width: 2.5rem; height: 2.5rem; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .muted { color: var(--muted); }
@@ -261,9 +261,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       // Digistore24 Pakete (muss mit Cloud Functions übereinstimmen)
       const PACKAGES = {
-        san_10: { san: 10, eur: 7.50, label: '10 VAL' },
-        san_25: { san: 25, eur: 18.75, label: '25 VAL' },
-        san_50: { san: 50, eur: 37.50, label: '50 VAL' },
+        valus_10: { valus: 10, eur: 7.50, label: '10 VAL' },
+        valus_25: { valus: 25, eur: 18.75, label: '25 VAL' },
+        valus_50: { valus: 50, eur: 37.50, label: '50 VAL' },
       };
 
       // ── View helpers ──────────────────────────────────────────
@@ -297,7 +297,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         if (!input || !preview) return;
         input.addEventListener('input', () => {
           const xp = parseInt(input.value) || 0;
-          preview.textContent = `${Math.floor(xp / 100)} VAL`;
+          preview.textContent = `${Math.floor(xp / 1000)} VAL`;
         });
       };
 
@@ -382,40 +382,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         const normalizeBalance = (payload = {}) => {
           const raw = payload.balance || payload.balances || payload;
-          const san = Number(raw.san ?? raw.val ?? raw.valus ?? 0);
+          const valus = Number(raw.valus ?? raw.val ?? raw.san ?? 0);
           const xp = Number(raw.xp ?? raw.current_xp ?? raw.total_xp ?? 0);
           return {
-            san: Number.isFinite(san) ? san : 0,
+            valus: Number.isFinite(valus) ? valus : 0,
             xp: Number.isFinite(xp) ? xp : 0,
           };
         };
         const renderBalance = (bal) => {
-          $('san-balance').textContent = bal.san.toFixed(0);
+          $('valus-balance').textContent = bal.valus.toFixed(0);
           $('xp-balance').textContent = bal.xp.toFixed(0);
         };
 
-        // Balance: erst Firestore, dann Callable-Fallback. So wird aus einem Lesefehler nicht still "0".
+        // Balance: erst Callable, dann Firestore-Fallback. Die Function kann NEXUS-XP aus dem User-Dokument mitrechnen.
         try {
           setError('balance-error', '');
-          const balSnap = await getDoc(doc(db, 'users', user.uid, 'balances', 'current'));
-          if (balSnap.exists()) {
-            renderBalance(normalizeBalance(balSnap.data()));
-          } else {
-            const fn = httpsCallable(fns, 'getSanitasBalance');
-            const result = await fn({});
-            renderBalance(normalizeBalance(result.data || {}));
-          }
-        } catch (directErr) {
+          const fn = httpsCallable(fns, 'getValusBalance');
+          const result = await fn({});
+          renderBalance(normalizeBalance(result.data || {}));
+        } catch (callableErr) {
           try {
-            const fn = httpsCallable(fns, 'getSanitasBalance');
-            const result = await fn({});
-            renderBalance(normalizeBalance(result.data || {}));
+            const balSnap = await getDoc(doc(db, 'users', user.uid, 'balances', 'current'));
+            renderBalance(normalizeBalance(balSnap.exists() ? balSnap.data() : {}));
             setError('balance-error', '');
-          } catch (callableErr) {
-            $('san-balance').textContent = '—';
+          } catch (directErr) {
+            $('valus-balance').textContent = '—';
             $('xp-balance').textContent = '—';
             setError('balance-error', 'Guthaben konnte nicht geladen werden. Bitte abmelden, neu anmelden oder Support mit der oben sichtbaren Konto-ID kontaktieren.');
-            console.error('Balance load failed', directErr, callableErr);
+            console.error('Balance load failed', callableErr, directErr);
           }
         }
 
@@ -431,7 +425,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         // Ledger
         try {
-          const ledgerRef = collection(db, 'users', user.uid, 'sanitas_ledger');
+          const ledgerRef = collection(db, 'users', user.uid, 'valus_ledger');
           const q = query(ledgerRef, orderBy('created_at', 'desc'), limit(20));
           const snap = await getDocs(q);
           const list = $('ledger-list');
@@ -446,7 +440,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               return `<div class="ledger-item">
                 <span class="ledger-desc">${data.description || data.type || 'Transaktion'}</span>
                 <span class="ledger-date">${date}</span>
-                <span class="ledger-san ${cls}">${sign}${data.amount} VAL</span>
+                <span class="ledger-valus ${cls}">${sign}${data.amount} VAL</span>
               </div>`;
             }).join('');
           }
@@ -455,21 +449,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         }
 
         // VAL kaufen → Digistore24
-        document.querySelectorAll('.san-package-card').forEach(card => {
+        document.querySelectorAll('.valus-package-card').forEach(card => {
           card.addEventListener('click', async () => {
             const packageId = card.dataset.package;
-            setError('san-purchase-error', '');
+            setError('valus-purchase-error', '');
             card.disabled = true;
             card.setAttribute('aria-busy', 'true');
             try {
-              const fn = httpsCallable(fns, 'getSanitasCheckoutUrl');
+              const fn = httpsCallable(fns, 'getValusCheckoutUrl');
               const result = await fn({ packageId });
               if (result.data?.url) {
                 window.location.href = result.data.url;
               }
             } catch (err) {
               const detail = err?.message || err?.details || 'Bitte versuchen Sie es erneut.';
-              setError('san-purchase-error', `Checkout konnte nicht gestartet werden: ${detail}`);
+              setError('valus-purchase-error', `Checkout konnte nicht gestartet werden: ${detail}`);
               console.error(err);
             } finally {
               card.disabled = false;
@@ -482,11 +476,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         $('btn-redeem')?.addEventListener('click', async () => {
           setError('redeem-error', '');
           setSuccess('redeem-result', '');
-          const sanAmount = parseInt($('redeem-amount')?.value || '0');
-          if (sanAmount < 1) { setError('redeem-error', 'Bitte Betrag eingeben.'); return; }
+          const valusAmount = parseInt($('redeem-amount')?.value || '0');
+          if (valusAmount < 1) { setError('redeem-error', 'Bitte Betrag eingeben.'); return; }
           try {
-            const fn = httpsCallable(fns, 'redeemSanitas');
-            const result = await fn({ productId: 'stress_reset_kurs', sanAmount });
+            const fn = httpsCallable(fns, 'redeemValus');
+            const result = await fn({ productId: 'stress_reset_kurs', valusAmount });
             if (result.data?.discountUrl) {
               setSuccess('redeem-result', `Ihr Rabattlink wurde erstellt. Sie werden weitergeleitet...`);
               setTimeout(() => window.open(result.data.discountUrl, '_blank'), 1500);
@@ -500,10 +494,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         $('btn-xp-convert')?.addEventListener('click', async () => {
           setError('xp-error', '');
           const xpAmount = parseInt($('xp-convert-amount')?.value || '0');
-          if (xpAmount < 100) { setError('xp-error', 'Minimum 100 XP.'); return; }
+          if (xpAmount < 1000) { setError('xp-error', 'Minimum 1000 XP.'); return; }
+          if (xpAmount % 1000 !== 0) { setError('xp-error', 'Bitte in 1000-XP-Schritten umwandeln.'); return; }
           try {
-            const fn = httpsCallable(fns, 'convertXpToSanitas');
-            await fn({ xpAmount });
+            const fn = httpsCallable(fns, 'convertNexusXpToValus');
+            await fn({ xpAmount, source: 'nexus' });
             window.location.reload();
           } catch (err) {
             setError('xp-error', err.message || 'Umwandlung fehlgeschlagen.');

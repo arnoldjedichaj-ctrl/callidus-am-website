@@ -16,6 +16,7 @@ function bootPortal() {
     fns: null,
     user: null,
   };
+  const XP_PER_VALUS = 1000;
 
   const $ = (id) => document.getElementById(id);
   const text = (id, value) => {
@@ -85,6 +86,17 @@ function bootPortal() {
     const parsed = Number(value);
     if (!Number.isFinite(parsed)) return String(value);
     return `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: 1 }).format(parsed)}${unit}`;
+  }
+
+  function normalizeBalance(payload = {}) {
+    const raw = payload.balance || payload.balances || payload;
+    const valus = num(raw.valus ?? raw.val ?? raw.san);
+    const xp = num(raw.xp ?? raw.current_xp ?? raw.total_xp);
+    return {
+      valus,
+      xp,
+      hasXp: raw.xp != null || raw.current_xp != null || raw.total_xp != null,
+    };
   }
 
   function displayDate(value) {
@@ -281,17 +293,68 @@ function bootPortal() {
 
   async function getValusBalanceFallback() {
     try {
-      const callable = state.api.httpsCallable(state.fns, 'getSanitasBalance');
+      const callable = state.api.httpsCallable(state.fns, 'getValusBalance');
       const result = await callable({});
-      const raw = result.data?.balance || result.data?.balances || result.data || {};
-      return {
-        san: raw.san ?? raw.val ?? raw.valus ?? 0,
-        xp: raw.xp ?? raw.current_xp ?? raw.total_xp ?? 0,
-      };
+      return normalizeBalance(result.data || {});
     } catch (error) {
       console.warn('Portal balance callable failed', error);
       return {};
     }
+  }
+
+  function setupValusConversion() {
+    const form = $('portal-xp-convert-form');
+    const input = $('portal-xp-convert-amount');
+    const preview = $('portal-xp-convert-preview');
+    const button = $('portal-xp-convert-button');
+    if (!form || !input || !preview || !button) return;
+
+    const updatePreview = () => {
+      const xpAmount = Number.parseInt(input.value, 10) || 0;
+      preview.textContent = `${xpAmount} XP = ${Math.floor(xpAmount / XP_PER_VALUS)} VAL`;
+    };
+    if (!input.dataset.previewBound) {
+      input.dataset.previewBound = 'true';
+      input.addEventListener('input', updatePreview);
+      updatePreview();
+    }
+
+    if (form.dataset.bound) return;
+    form.dataset.bound = 'true';
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const xpAmount = Number.parseInt(input.value, 10) || 0;
+      if (xpAmount < XP_PER_VALUS) {
+        setStatus('portal-xp-convert-status', `Minimum ${XP_PER_VALUS} NEXUS-XP.`, 'error');
+        return;
+      }
+      if (xpAmount % XP_PER_VALUS !== 0) {
+        setStatus('portal-xp-convert-status', `Bitte in ${XP_PER_VALUS}-XP-Schritten umwandeln.`, 'error');
+        return;
+      }
+
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      setStatus('portal-xp-convert-status', 'Wandle NEXUS-XP in VAL um...', 'pending');
+      try {
+        const callable = state.api.httpsCallable(state.fns, 'convertNexusXpToValus');
+        const result = await callable({ xpAmount, source: 'nexus' });
+        const balance = normalizeBalance(result.data || {});
+        text('portal-valus', displayNumber(balance.valus, ' VAL'));
+        text('portal-xp', displayNumber(balance.xp, ' XP'));
+        setStatus(
+          'portal-xp-convert-status',
+          `${xpAmount} NEXUS-XP wurden in ${Math.floor(xpAmount / XP_PER_VALUS)} VAL umgewandelt.`,
+          'ok',
+        );
+        if (state.user) await loadOverview(state.user);
+      } catch (error) {
+        setStatus('portal-xp-convert-status', error?.message || 'Umwandlung fehlgeschlagen.', 'error');
+      } finally {
+        button.disabled = false;
+        button.removeAttribute('aria-busy');
+      }
+    });
   }
 
   function setupAuthHandlers() {
@@ -439,10 +502,13 @@ function bootPortal() {
       docData(...base, 'linked_apps', 'nexus'),
       docData(...base, 'linked_apps', 'momus'),
       docData(...base, 'linked_apps', 'kairos'),
-      docsData([...base, 'sanitas_ledger'], { orderBy: 'created_at', limit: 5 }),
+      docsData([...base, 'valus_ledger'], { orderBy: 'created_at', limit: 5 }),
     ]);
 
-    const resolvedBalance = Object.keys(balance).length ? balance : await getValusBalanceFallback();
+    const resolvedBalance = Object.keys(balance).length ? normalizeBalance(balance) : await getValusBalanceFallback();
+    const visibleXp = resolvedBalance.hasXp
+      ? resolvedBalance.xp
+      : (userDoc.current_xp ?? userDoc.total_xp);
     const nexusToday = nexusContext.today || nexusStats || {};
     const momusShield = momusContext.energy_shield || {};
     const momusPhoenix = momusContext.phoenix || {};
@@ -455,10 +521,11 @@ function bootPortal() {
     const momusPlan = planFromSources(momusAccess, momusLink, momusHub, userDoc);
     const kairosPlan = planFromSources(kairosAccess, kairosLink, userDoc);
 
-    text('portal-san', displayNumber(resolvedBalance.san, ' VAL'));
-    text('portal-xp', displayNumber(resolvedBalance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
+    text('portal-valus', displayNumber(resolvedBalance.valus, ' VAL'));
+    text('portal-xp', displayNumber(visibleXp, ' XP'));
     text('portal-wallet', userDoc.wallet_address ? `${userDoc.wallet_address.slice(0, 6)}...${userDoc.wallet_address.slice(-4)}` : 'Nicht verbunden');
     text('portal-linked-apps', `${linkedCount}/3`);
+    setupValusConversion();
 
     setPill('portal-nexus-status', statusFrom(nexusHub, nexusContext, Object.keys(nexusStats).length > 0));
     setPill('portal-momus-status', statusFrom(momusHub, momusContext, Object.keys(momusStats).length > 0));

@@ -39,13 +39,22 @@ const firebaseConfig = {
         <div class="portal-kpi-grid" data-reveal="2" style="margin-top:1.25rem">
           <div class="portal-kpi">
             <span>VAL</span>
-            <strong id="portal-san">-</strong>
+            <strong id="portal-valus">-</strong>
             <small>Einloesbares Valus-Guthaben</small>
           </div>
-          <div class="portal-kpi">
+          <div class="portal-kpi portal-xp-kpi">
             <span>XP</span>
             <strong id="portal-xp">-</strong>
-            <small>App-Aktivitaet und Umwandlung</small>
+            <small>NEXUS-Aktivitaet und Umwandlung</small>
+            <form class="portal-convert-form" id="portal-xp-convert-form">
+              <label for="portal-xp-convert-amount">NEXUS-XP in VAL</label>
+              <div class="portal-convert-row">
+                <input id="portal-xp-convert-amount" type="number" min="1000" max="10000" step="1000" value="1000" />
+                <button class="button" id="portal-xp-convert-button" type="submit">Umwandeln</button>
+              </div>
+              <small id="portal-xp-convert-preview">1000 XP = 1 VAL</small>
+              <p class="portal-convert-status" id="portal-xp-convert-status" hidden></p>
+            </form>
           </div>
           <div class="portal-kpi">
             <span>Wallet</span>

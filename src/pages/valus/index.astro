@@ -67,8 +67,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
         <div class="val-stat-sep" aria-hidden="true"></div>
         <div class="val-stat">
-          <span class="val-stat-v">100 XP</span>
-          <span class="val-stat-l">= 1 VAL via App-Aktivität</span>
+          <span class="val-stat-v">1000 XP</span>
+          <span class="val-stat-l">= 1 VAL via NEXUS-Aktivität</span>
         </div>
         <div class="val-stat-sep" aria-hidden="true"></div>
         <div class="val-stat">
@@ -89,7 +89,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="val-ways" data-reveal="3">
 
         <div class="val-card">
-          <div class="val-card-icon" style="background:rgba(var(--san-gold-rgb),.12)">
+          <div class="val-card-icon" style="background:rgba(var(--valus-gold-rgb),.12)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
               <rect x="2" y="5" width="20" height="14" rx="2"/>
               <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/>
@@ -115,9 +115,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div class="val-card-num">02</div>
           <h3>Verdienen</h3>
-          <p>Sammle XP durch die Nutzung der callidus Apps. Täglich einloggen, Mahlzeiten tracken, Bewegung erfassen — alles bringt XP.</p>
+          <p>Sammle XP durch die Nutzung der NEXUS App. Täglich einloggen, Mahlzeiten tracken, Bewegung erfassen — alles bringt XP. MOMUS folgt nach der Freischaltung.</p>
           <div class="val-table">
-            <div class="val-row"><span>100 XP</span><span class="val-price-val">→ 1 VAL</span></div>
+            <div class="val-row"><span>1000 XP</span><span class="val-price-val">→ 1 VAL</span></div>
             <div class="val-row"><span>Max. pro Monat</span><span class="val-price-val">→ 10 VAL</span></div>
             <div class="val-row"><span>NEXUS App</span><span class="val-price-val">XP-Quelle</span></div>
           </div>
@@ -285,15 +285,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
        ═══════════════════════════════════════════════════════════ -->
   <style>
     :root {
-      --san-gold: #C9A84C;
-      --san-gold-light: #E8C96A;
-      --san-gold-dark: #A07830;
-      --san-gold-rgb: 201, 168, 76;
+      --valus-gold: #C9A84C;
+      --valus-gold-light: #E8C96A;
+      --valus-gold-dark: #A07830;
+      --valus-gold-rgb: 201, 168, 76;
     }
     html[data-theme="dark"] {
-      --san-gold: #E8C96A;
-      --san-gold-light: #F5DC8C;
-      --san-gold-dark: #C9A84C;
+      --valus-gold: #E8C96A;
+      --valus-gold-light: #F5DC8C;
+      --valus-gold-dark: #C9A84C;
     }
 
     /* ── Hero ───────────────────────────────────────────────── */
@@ -349,7 +349,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       text-transform: uppercase; letter-spacing: .06em;
     }
     .val-pill {
-      background: var(--san-gold); color: #1a1200;
+      background: var(--valus-gold); color: #1a1200;
       font-size: .7rem; font-weight: 800; padding: .22rem .65rem;
       border-radius: 999px; letter-spacing: .08em;
     }
@@ -358,20 +358,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       line-height: 1.05; font-weight: 800; margin: 0 0 1.25rem;
       letter-spacing: -.02em;
     }
-    .val-h1 em { font-style: normal; color: var(--san-gold); }
+    .val-h1 em { font-style: normal; color: var(--valus-gold); }
     .val-claim { font-size: 1.1rem; color: var(--muted); line-height: 1.65; margin-bottom: 2rem; }
     .val-claim strong { color: var(--text); }
     .val-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; }
     .val-btn-gold {
-      background: var(--san-gold); color: #1a1200; border: none; font-weight: 700;
-      box-shadow: 0 4px 20px rgba(var(--san-gold-rgb),.45);
+      background: var(--valus-gold); color: #1a1200; border: none; font-weight: 700;
+      box-shadow: 0 4px 20px rgba(var(--valus-gold-rgb),.45);
     }
-    .val-btn-gold:hover { background: var(--san-gold-light); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(var(--san-gold-rgb),.55); }
-    .val-btn-ghost { border: 1px solid rgba(var(--san-gold-rgb),.4); color: var(--san-gold); }
-    .val-btn-ghost:hover { background: rgba(var(--san-gold-rgb),.08); }
+    .val-btn-gold:hover { background: var(--valus-gold-light); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(var(--valus-gold-rgb),.55); }
+    .val-btn-ghost { border: 1px solid rgba(var(--valus-gold-rgb),.4); color: var(--valus-gold); }
+    .val-btn-ghost:hover { background: rgba(var(--valus-gold-rgb),.08); }
 
     /* ── Stats bar ──────────────────────────────────────────── */
-    .val-stats-bar { background: var(--san-gold); color: #1a1200; padding: 1.25rem 0; }
+    .val-stats-bar { background: var(--valus-gold); color: #1a1200; padding: 1.25rem 0; }
     html[data-theme="dark"] .val-stats-bar {
       background: rgba(201,168,76,.12);
       border-block: 1px solid rgba(201,168,76,.2);
@@ -396,37 +396,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       position: relative; transition: box-shadow .25s, border-color .25s, transform .25s;
     }
     .val-card:hover {
-      box-shadow: 0 14px 44px rgba(var(--san-gold-rgb),.16);
-      border-color: rgba(var(--san-gold-rgb),.3);
+      box-shadow: 0 14px 44px rgba(var(--valus-gold-rgb),.16);
+      border-color: rgba(var(--valus-gold-rgb),.3);
       transform: translateY(-3px);
     }
     .val-card-featured {
-      border-color: rgba(var(--san-gold-rgb),.45);
-      box-shadow: 0 8px 32px rgba(var(--san-gold-rgb),.12);
+      border-color: rgba(var(--valus-gold-rgb),.45);
+      box-shadow: 0 8px 32px rgba(var(--valus-gold-rgb),.12);
     }
     .val-featured-badge {
       position: absolute; top: 1rem; right: 1rem;
-      background: var(--san-gold); color: #1a1200;
+      background: var(--valus-gold); color: #1a1200;
       font-size: .7rem; font-weight: 800; padding: .2rem .65rem; border-radius: 999px;
     }
     .val-card-icon {
       width: 3rem; height: 3rem; border-radius: .75rem;
       display: flex; align-items: center; justify-content: center;
     }
-    .val-card-icon svg { width: 1.4rem; height: 1.4rem; color: var(--san-gold); }
+    .val-card-icon svg { width: 1.4rem; height: 1.4rem; color: var(--valus-gold); }
     .val-card-num { font-size: .7rem; font-weight: 800; color: var(--muted); letter-spacing: .1em; }
     .val-card h3 { font-size: 1.2rem; margin: 0; }
     .val-card p { color: var(--muted); font-size: .9rem; margin: 0; line-height: 1.6; }
     .val-table { display: flex; flex-direction: column; gap: .35rem; margin-top: .25rem; border-top: 1px solid var(--line); padding-top: .75rem; }
     .val-row { display: flex; justify-content: space-between; font-size: .82rem; gap: .5rem; }
-    .val-price-buy { color: var(--san-gold); font-weight: 600; }
+    .val-price-buy { color: var(--valus-gold); font-weight: 600; }
     .val-price-val { color: var(--mint); font-weight: 600; font-size: .8rem; }
     .val-card-link {
       margin-top: .5rem; display: inline-flex; align-items: center;
-      font-size: .875rem; font-weight: 600; color: var(--san-gold); text-decoration: none;
-      border-bottom: 1px solid rgba(var(--san-gold-rgb),.3); padding-bottom: .1rem; width: fit-content;
+      font-size: .875rem; font-weight: 600; color: var(--valus-gold); text-decoration: none;
+      border-bottom: 1px solid rgba(var(--valus-gold-rgb),.3); padding-bottom: .1rem; width: fit-content;
     }
-    .val-card-link:hover { border-bottom-color: var(--san-gold); }
+    .val-card-link:hover { border-bottom-color: var(--valus-gold); }
 
     /* ── Redeem section ─────────────────────────────────────── */
     .val-redeem-section { background: var(--bg-soft); }
@@ -440,14 +440,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
     .val-redeem-icon svg { width: 1.1rem; height: 1.1rem; }
     .val-redeem-icon.mint { background: rgba(var(--mint-rgb),.12); color: var(--mint); }
-    .val-redeem-icon.gold { background: rgba(var(--san-gold-rgb),.12); color: var(--san-gold); }
+    .val-redeem-icon.gold { background: rgba(var(--valus-gold-rgb),.12); color: var(--valus-gold); }
     .val-redeem-icon.blue { background: rgba(var(--blue-rgb),.12); color: var(--blue); }
     .val-redeem-item strong { display: block; margin-bottom: .2rem; }
     .val-redeem-item p { margin: 0; font-size: .875rem; color: var(--muted); }
     .val-rule-note {
       margin-top: 1.25rem; font-size: .8rem; color: var(--muted);
-      background: rgba(var(--san-gold-rgb),.06);
-      border: 1px solid rgba(var(--san-gold-rgb),.18);
+      background: rgba(var(--valus-gold-rgb),.06);
+      border: 1px solid rgba(var(--valus-gold-rgb),.18);
       border-radius: .625rem; padding: .625rem 1rem;
     }
 
@@ -460,8 +460,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       transition: transform .2s, box-shadow .2s;
     }
     .val-vc-mid {
-      border-color: rgba(var(--san-gold-rgb),.4);
-      box-shadow: 0 4px 20px rgba(var(--san-gold-rgb),.12);
+      border-color: rgba(var(--valus-gold-rgb),.4);
+      box-shadow: 0 4px 20px rgba(var(--valus-gold-rgb),.12);
       transform: scale(1.03);
     }
     .val-vc-top { display: flex; justify-content: space-between; align-items: center; }
@@ -475,12 +475,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
     .val-vc-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--san-gold-dark), var(--san-gold-light));
+      background: linear-gradient(90deg, var(--valus-gold-dark), var(--valus-gold-light));
       border-radius: 999px;
       animation: vcFill 1.8s ease-out forwards;
     }
     @keyframes vcFill { from { width: 0%; } }
-    .val-vc-note { font-size: .78rem; color: var(--san-gold); font-weight: 600; }
+    .val-vc-note { font-size: .78rem; color: var(--valus-gold); font-weight: 600; }
     .val-vc-saving {
       display: flex; align-items: center; gap: .4rem;
       font-size: .78rem; color: var(--mint); font-weight: 600;

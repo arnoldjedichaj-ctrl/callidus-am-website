@@ -19,9 +19,9 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const fns = getFunctions(app, 'us-central1');
 
-export const getSanitasBalance = () => httpsCallable(fns, 'getSanitasBalance');
-export const redeemSanitas = () => httpsCallable(fns, 'redeemSanitas');
+export const getValusBalance = () => httpsCallable(fns, 'getValusBalance');
+export const redeemValus = () => httpsCallable(fns, 'redeemValus');
 export const linkWalletAddress = () => httpsCallable(fns, 'linkWalletAddress');
-export const convertXpToSanitas = () => httpsCallable(fns, 'convertXpToSanitas');
+export const convertNexusXpToValus = () => httpsCallable(fns, 'convertNexusXpToValus');
 export const generateSportEnergyPlan = () => httpsCallable(fns, 'generateSportEnergyPlan');
 export const askCallidus = () => httpsCallable(fns, 'askCallidus');

@@ -194,6 +194,10 @@
   padding: 1rem;
 }
 
+.portal-xp-kpi {
+  gap: .55rem;
+}
+
 .portal-kpi span,
 .portal-metric span {
   color: var(--muted);
@@ -214,6 +218,57 @@
 .portal-metric small {
   color: var(--muted);
   line-height: 1.4;
+}
+
+.portal-convert-form {
+  display: grid;
+  gap: .45rem;
+  margin-top: .35rem;
+}
+
+.portal-convert-form label {
+  color: var(--text);
+  font-size: .8rem;
+  font-weight: 900;
+}
+
+.portal-convert-row {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, .8fr) minmax(7rem, 1fr);
+  gap: .45rem;
+}
+
+.portal-convert-row input {
+  width: 100%;
+  min-height: 2.6rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: var(--bg-soft);
+  color: var(--text);
+  padding: .5rem .65rem;
+  font: inherit;
+  font-weight: 800;
+}
+
+.portal-convert-row .button {
+  min-height: 2.6rem;
+  justify-content: center;
+  padding-inline: .75rem;
+}
+
+.portal-convert-status {
+  margin: 0;
+  color: var(--coral);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
+.portal-convert-status[data-state="ok"] {
+  color: var(--mint);
+}
+
+.portal-convert-status[data-state="pending"] {
+  color: var(--gold);
 }
 
 .portal-app-grid {
