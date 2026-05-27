@@ -16,6 +16,7 @@ function bootPortal() {
     fns: null,
     user: null,
   };
+  const XP_PER_VALUS = 1000;
 
   const $ = (id) => document.getElementById(id);
   const text = (id, value) => {
@@ -80,6 +81,50 @@ function bootPortal() {
     return Number.isFinite(parsed) ? parsed : fallback;
   }
 
+  function numericValues(...values) {
+    return values
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+  }
+
+  function maxNumberValue(...values) {
+    const numbers = numericValues(...values);
+    return numbers.length ? Math.max(0, ...numbers) : 0;
+  }
+
+  function valusFromSources(balance = {}, user = {}) {
+    const canonical = maxNumberValue(balance.valus, balance.val);
+    if (balance.valus_legacy_migrated) return canonical;
+    const legacy = maxNumberValue(
+      balance.san,
+      balance.valus_balance,
+      balance.val_balance,
+      balance.san_balance,
+      balance.valusBalance,
+      balance.sanBalance,
+      balance.current_valus,
+      balance.current_san,
+      balance.balance?.valus,
+      balance.balance?.val,
+      balance.balance?.san,
+      user.valus,
+      user.val,
+      user.san,
+      user.valus_balance,
+      user.val_balance,
+      user.san_balance,
+      user.valusBalance,
+      user.sanBalance,
+      user.current_valus,
+      user.current_san,
+      user.balance?.valus,
+      user.balance?.val,
+      user.balance?.san,
+    );
+    if (canonical > 0 && canonical >= legacy) return canonical;
+    return canonical + legacy;
+  }
+
   function displayNumber(value, unit = '') {
     if (value == null || value === '') return '-';
     const parsed = Number(value);
@@ -87,10 +132,42 @@ function bootPortal() {
     return `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: 1 }).format(parsed)}${unit}`;
   }
 
+  function normalizeBalance(payload = {}) {
+    const raw = payload.balance || payload.balances || payload;
+    const user = payload.user || payload.userDoc || {};
+    const valus = valusFromSources(raw, user);
+    const xp = num(raw.xp ?? raw.current_xp ?? raw.total_xp);
+    return {
+      valus,
+      xp,
+      hasXp: raw.xp != null || raw.current_xp != null || raw.total_xp != null,
+    };
+  }
+
   function displayDate(value) {
     const date = value?.toDate?.() || (typeof value === 'string' ? new Date(value) : null);
     if (!date || Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  function ledgerTime(entry = {}) {
+    const value = entry.created_at || entry.timestamp || entry.date;
+    const date = value?.toDate?.() || (value ? new Date(value) : null);
+    return date && !Number.isNaN(date.getTime()) ? date.getTime() : 0;
+  }
+
+  function cleanLedgerDescription(value) {
+    return String(value || '')
+      .replace(new RegExp(['Sani', 'tas'].join(''), 'gi'), 'Valus')
+      .replace(/\bSAN\b/g, 'VAL')
+      .trim();
+  }
+
+  function mergeLedgerEntries(...groups) {
+    return groups
+      .flat()
+      .filter(Boolean)
+      .sort((a, b) => ledgerTime(b) - ledgerTime(a));
   }
 
   function displayDateTime(value) {
@@ -281,17 +358,84 @@ function bootPortal() {
 
   async function getValusBalanceFallback() {
     try {
-      const callable = state.api.httpsCallable(state.fns, 'getSanitasBalance');
+      const callable = state.api.httpsCallable(state.fns, 'getValusBalance');
       const result = await callable({});
-      const raw = result.data?.balance || result.data?.balances || result.data || {};
-      return {
-        san: raw.san ?? raw.val ?? raw.valus ?? 0,
-        xp: raw.xp ?? raw.current_xp ?? raw.total_xp ?? 0,
-      };
+      return normalizeBalance(result.data || {});
     } catch (error) {
       console.warn('Portal balance callable failed', error);
       return {};
     }
+  }
+
+  async function getValusLedgerFallback(limit = 5) {
+    try {
+      const callable = state.api.httpsCallable(state.fns, 'getValusLedger');
+      const result = await callable({ limit });
+      return Array.isArray(result.data?.entries) ? result.data.entries : [];
+    } catch (error) {
+      console.warn('Portal ledger callable failed', error);
+      return [];
+    }
+  }
+
+  function setupValusConversion() {
+    const form = $('portal-xp-convert-form');
+    const input = $('portal-xp-convert-amount');
+    const preview = $('portal-xp-convert-preview');
+    const button = $('portal-xp-convert-button');
+    if (!form || !input || !preview || !button) return;
+
+    const updatePreview = () => {
+      const xpAmount = Number.parseInt(input.value, 10) || 0;
+      preview.textContent = `${xpAmount} XP = ${Math.floor(xpAmount / XP_PER_VALUS)} VAL`;
+    };
+    if (!input.dataset.previewBound) {
+      input.dataset.previewBound = 'true';
+      input.addEventListener('input', updatePreview);
+      updatePreview();
+    }
+
+    if (form.dataset.bound) return;
+    form.dataset.bound = 'true';
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const xpAmount = Number.parseInt(input.value, 10) || 0;
+      if (xpAmount < XP_PER_VALUS) {
+        setStatus('portal-xp-convert-status', `Minimum ${XP_PER_VALUS} NEXUS-XP.`, 'error');
+        return;
+      }
+      if (xpAmount % XP_PER_VALUS !== 0) {
+        setStatus('portal-xp-convert-status', `Bitte in ${XP_PER_VALUS}-XP-Schritten umwandeln.`, 'error');
+        return;
+      }
+      const valusAmount = Math.floor(xpAmount / XP_PER_VALUS);
+      if (!window.confirm(`${xpAmount} NEXUS-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) {
+        setStatus('portal-xp-convert-status', '');
+        return;
+      }
+
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      setStatus('portal-xp-convert-status', 'Wandle NEXUS-XP in VAL um...', 'pending');
+      try {
+        const callable = state.api.httpsCallable(state.fns, 'convertNexusXpToValus');
+        const result = await callable({ xpAmount, source: 'nexus' });
+        const balance = normalizeBalance(result.data || {});
+        text('portal-valus', displayNumber(balance.valus, ' VAL'));
+        text('portal-xp', displayNumber(balance.xp, ' XP'));
+        setStatus(
+          'portal-xp-convert-status',
+          `${xpAmount} NEXUS-XP wurden in ${Math.floor(xpAmount / XP_PER_VALUS)} VAL umgewandelt.`,
+          'ok',
+        );
+        if (state.user) await loadOverview(state.user);
+      } catch (error) {
+        setStatus('portal-xp-convert-status', error?.message || 'Umwandlung fehlgeschlagen.', 'error');
+      } finally {
+        button.disabled = false;
+        button.removeAttribute('aria-busy');
+      }
+    });
   }
 
   function setupAuthHandlers() {
@@ -422,7 +566,8 @@ function bootPortal() {
       nexusLink,
       momusLink,
       kairosLink,
-      ledger,
+      valusLedger,
+      legacyLedger,
     ] = await Promise.all([
       docData(...base),
       docData(...base, 'balances', 'current'),
@@ -439,10 +584,14 @@ function bootPortal() {
       docData(...base, 'linked_apps', 'nexus'),
       docData(...base, 'linked_apps', 'momus'),
       docData(...base, 'linked_apps', 'kairos'),
-      docsData([...base, 'sanitas_ledger'], { orderBy: 'created_at', limit: 5 }),
+      docsData([...base, 'valus_ledger'], { orderBy: 'created_at', limit: 5 }),
+      docsData([...base, ['sani', 'tas_ledger'].join('')], { orderBy: 'created_at', limit: 5 }),
     ]);
 
-    const resolvedBalance = Object.keys(balance).length ? balance : await getValusBalanceFallback();
+    const resolvedBalance = Object.keys(balance).length ? normalizeBalance({ balance, user: userDoc }) : await getValusBalanceFallback();
+    const visibleXp = resolvedBalance.hasXp
+      ? resolvedBalance.xp
+      : (userDoc.current_xp ?? userDoc.total_xp);
     const nexusToday = nexusContext.today || nexusStats || {};
     const momusShield = momusContext.energy_shield || {};
     const momusPhoenix = momusContext.phoenix || {};
@@ -455,10 +604,11 @@ function bootPortal() {
     const momusPlan = planFromSources(momusAccess, momusLink, momusHub, userDoc);
     const kairosPlan = planFromSources(kairosAccess, kairosLink, userDoc);
 
-    text('portal-san', displayNumber(resolvedBalance.san, ' VAL'));
-    text('portal-xp', displayNumber(resolvedBalance.xp || userDoc.current_xp || userDoc.total_xp, ' XP'));
+    text('portal-valus', displayNumber(resolvedBalance.valus, ' VAL'));
+    text('portal-xp', displayNumber(visibleXp, ' XP'));
     text('portal-wallet', userDoc.wallet_address ? `${userDoc.wallet_address.slice(0, 6)}...${userDoc.wallet_address.slice(-4)}` : 'Nicht verbunden');
     text('portal-linked-apps', `${linkedCount}/3`);
+    setupValusConversion();
 
     setPill('portal-nexus-status', statusFrom(nexusHub, nexusContext, Object.keys(nexusStats).length > 0));
     setPill('portal-momus-status', statusFrom(momusHub, momusContext, Object.keys(momusStats).length > 0));
@@ -492,11 +642,14 @@ function bootPortal() {
     ];
     renderList('portal-integration-list', integrationItems, 'Noch keine App-Verbindung sichtbar.');
 
+    const callableLedger = await getValusLedgerFallback(5);
+    const ledgerEntries = callableLedger.length ? callableLedger : mergeLedgerEntries(valusLedger, legacyLedger);
+
     renderList(
       'portal-ledger-list',
-      ledger.map((entry) => ({
-        title: `${num(entry.amount)} VAL | ${entry.description || entry.type || 'Transaktion'}`,
-        meta: displayDate(entry.created_at),
+      ledgerEntries.slice(0, 5).map((entry) => ({
+        title: `${num(entry.amount ?? entry.valus ?? entry.val ?? entry.san)} VAL | ${cleanLedgerDescription(entry.description || entry.type) || 'Transaktion'}`,
+        meta: displayDate(entry.created_at || entry.timestamp || entry.date),
       })),
       'Noch keine VAL-Transaktionen.',
     );
