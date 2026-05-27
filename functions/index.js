@@ -914,7 +914,6 @@ exports.redeemValus = onCall(
     const userRef = db.collection("users").doc(uid);
     const balanceRef = userRef.collection("balances").doc("current");
     const redemptionRef = userRef.collection("valus_redemptions").doc();
-    const ledgerRef = userRef.collection("valus_ledger").doc();
     const redemptionCode = crypto.randomBytes(8).toString("hex");
 
     await db.runTransaction(async (transaction) => {
@@ -928,31 +927,19 @@ exports.redeemValus = onCall(
       if (currentValus < valusAmount) {
         throw new HttpsError("failed-precondition", `Nicht genug VAL vorhanden. Aktuell verfuegbar: ${currentValus} VAL.`);
       }
-      const nextValus = currentValus - valusAmount;
-      transaction.set(balanceRef, {
-        valus: nextValus,
-        val: nextValus,
-        valus_legacy_migrated: true,
-        updated_at: FieldValue.serverTimestamp(),
-      }, { merge: true });
       transaction.set(redemptionRef, {
         product_id: productId,
         valus_amount: valusAmount,
         code: redemptionCode,
-        status: "created",
-        created_at: FieldValue.serverTimestamp(),
-      });
-      transaction.set(ledgerRef, {
-        type: "redemption",
-        product_id: productId,
-        amount: -valusAmount,
-        description: `VAL fuer ${productId} eingesetzt`,
+        status: "pending_purchase",
+        note: "VAL wird erst nach bestaetigtem Kauf abgezogen.",
         created_at: FieldValue.serverTimestamp(),
       });
     });
 
     return {
       code: redemptionCode,
+      status: "pending_purchase",
       discountUrl: `https://www.callidus-am.de/stress-reset-kurs/?valus=${encodeURIComponent(redemptionCode)}`,
     };
   },

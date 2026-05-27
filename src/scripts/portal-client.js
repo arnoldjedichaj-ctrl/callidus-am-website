@@ -408,6 +408,11 @@ function bootPortal() {
         setStatus('portal-xp-convert-status', `Bitte in ${XP_PER_VALUS}-XP-Schritten umwandeln.`, 'error');
         return;
       }
+      const valusAmount = Math.floor(xpAmount / XP_PER_VALUS);
+      if (!window.confirm(`${xpAmount} NEXUS-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) {
+        setStatus('portal-xp-convert-status', '');
+        return;
+      }
 
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');

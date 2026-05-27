@@ -572,7 +572,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             const fn = httpsCallable(fns, 'redeemValus');
             const result = await fn({ productId: 'stress_reset_kurs', valusAmount });
             if (result.data?.discountUrl) {
-              setSuccess('redeem-result', `Ihr Rabattlink wurde erstellt. Sie werden weitergeleitet...`);
+              setSuccess('redeem-result', `Ihr Rabattlink wurde erstellt. VAL werden erst nach bestaetigtem Kauf abgezogen. Sie werden weitergeleitet...`);
               setTimeout(() => window.open(result.data.discountUrl, '_blank'), 1500);
             }
           } catch (err) {
@@ -586,6 +586,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           const xpAmount = parseInt($('xp-convert-amount')?.value || '0');
           if (xpAmount < 1000) { setError('xp-error', 'Minimum 1000 XP.'); return; }
           if (xpAmount % 1000 !== 0) { setError('xp-error', 'Bitte in 1000-XP-Schritten umwandeln.'); return; }
+          const valusAmount = Math.floor(xpAmount / 1000);
+          if (!window.confirm(`${xpAmount} NEXUS-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) return;
           try {
             const fn = httpsCallable(fns, 'convertNexusXpToValus');
             await fn({ xpAmount, source: 'nexus' });
@@ -598,9 +600,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         // Wallet verbinden (MetaMask)
         $('btn-connect-wallet')?.addEventListener('click', async () => {
           if (!window.ethereum) {
-            $('wallet-address-display').textContent = 'Keine Browser-Wallet erkannt. MetaMask öffnet in einem neuen Tab.';
-            const opened = window.open('https://metamask.io/download/', '_blank', 'noopener,noreferrer');
-            if (!opened) alert('Bitte MetaMask installieren: https://metamask.io/download/');
+            $('wallet-address-display').textContent = 'Keine Browser-Wallet erkannt. MetaMask wird geoeffnet.';
+            window.location.href = 'https://metamask.io/download/';
             return;
           }
           try {
