@@ -81,6 +81,49 @@ function bootPortal() {
     return Number.isFinite(parsed) ? parsed : fallback;
   }
 
+  function numericValues(...values) {
+    return values
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value));
+  }
+
+  function maxNumberValue(...values) {
+    const numbers = numericValues(...values);
+    return numbers.length ? Math.max(0, ...numbers) : 0;
+  }
+
+  function valusFromSources(balance = {}, user = {}) {
+    const canonical = maxNumberValue(balance.valus, balance.val);
+    if (canonical > 0 || balance.valus_legacy_migrated) return canonical;
+    const legacy = maxNumberValue(
+      balance.san,
+      balance.valus_balance,
+      balance.val_balance,
+      balance.san_balance,
+      balance.valusBalance,
+      balance.sanBalance,
+      balance.current_valus,
+      balance.current_san,
+      balance.balance?.valus,
+      balance.balance?.val,
+      balance.balance?.san,
+      user.valus,
+      user.val,
+      user.san,
+      user.valus_balance,
+      user.val_balance,
+      user.san_balance,
+      user.valusBalance,
+      user.sanBalance,
+      user.current_valus,
+      user.current_san,
+      user.balance?.valus,
+      user.balance?.val,
+      user.balance?.san,
+    );
+    return Math.max(canonical, legacy);
+  }
+
   function displayNumber(value, unit = '') {
     if (value == null || value === '') return '-';
     const parsed = Number(value);
@@ -90,7 +133,8 @@ function bootPortal() {
 
   function normalizeBalance(payload = {}) {
     const raw = payload.balance || payload.balances || payload;
-    const valus = num(raw.valus ?? raw.val ?? raw.san);
+    const user = payload.user || payload.userDoc || {};
+    const valus = valusFromSources(raw, user);
     const xp = num(raw.xp ?? raw.current_xp ?? raw.total_xp);
     return {
       valus,
@@ -103,6 +147,26 @@ function bootPortal() {
     const date = value?.toDate?.() || (typeof value === 'string' ? new Date(value) : null);
     if (!date || Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  function ledgerTime(entry = {}) {
+    const value = entry.created_at || entry.timestamp || entry.date;
+    const date = value?.toDate?.() || (value ? new Date(value) : null);
+    return date && !Number.isNaN(date.getTime()) ? date.getTime() : 0;
+  }
+
+  function cleanLedgerDescription(value) {
+    return String(value || '')
+      .replace(new RegExp(['Sani', 'tas'].join(''), 'gi'), 'Valus')
+      .replace(/\bSAN\b/g, 'VAL')
+      .trim();
+  }
+
+  function mergeLedgerEntries(...groups) {
+    return groups
+      .flat()
+      .filter(Boolean)
+      .sort((a, b) => ledgerTime(b) - ledgerTime(a));
   }
 
   function displayDateTime(value) {
@@ -485,7 +549,8 @@ function bootPortal() {
       nexusLink,
       momusLink,
       kairosLink,
-      ledger,
+      valusLedger,
+      legacyLedger,
     ] = await Promise.all([
       docData(...base),
       docData(...base, 'balances', 'current'),
@@ -503,9 +568,10 @@ function bootPortal() {
       docData(...base, 'linked_apps', 'momus'),
       docData(...base, 'linked_apps', 'kairos'),
       docsData([...base, 'valus_ledger'], { orderBy: 'created_at', limit: 5 }),
+      docsData([...base, ['sani', 'tas_ledger'].join('')], { orderBy: 'created_at', limit: 5 }),
     ]);
 
-    const resolvedBalance = Object.keys(balance).length ? normalizeBalance(balance) : await getValusBalanceFallback();
+    const resolvedBalance = Object.keys(balance).length ? normalizeBalance({ balance, user: userDoc }) : await getValusBalanceFallback();
     const visibleXp = resolvedBalance.hasXp
       ? resolvedBalance.xp
       : (userDoc.current_xp ?? userDoc.total_xp);
@@ -561,9 +627,9 @@ function bootPortal() {
 
     renderList(
       'portal-ledger-list',
-      ledger.map((entry) => ({
-        title: `${num(entry.amount)} VAL | ${entry.description || entry.type || 'Transaktion'}`,
-        meta: displayDate(entry.created_at),
+      mergeLedgerEntries(valusLedger, legacyLedger).slice(0, 5).map((entry) => ({
+        title: `${num(entry.amount ?? entry.valus ?? entry.val ?? entry.san)} VAL | ${cleanLedgerDescription(entry.description || entry.type) || 'Transaktion'}`,
+        meta: displayDate(entry.created_at || entry.timestamp || entry.date),
       })),
       'Noch keine VAL-Transaktionen.',
     );

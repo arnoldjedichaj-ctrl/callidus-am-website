@@ -586,8 +586,54 @@ function numberValue(value, fallback = 0) {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function valusFromBalance(balance = {}) {
-  return numberValue(balance.valus ?? balance.val ?? balance.san, 0);
+function numberValues(...values) {
+  return values
+    .map((value) => Number(value))
+    .filter((value) => Number.isFinite(value));
+}
+
+function maxNumberValue(...values) {
+  const numbers = numberValues(...values);
+  return numbers.length ? Math.max(0, ...numbers) : 0;
+}
+
+function canonicalValusFromBalance(balance = {}) {
+  return maxNumberValue(balance.valus, balance.val);
+}
+
+function legacyValusFromSources(balance = {}, user = {}) {
+  return maxNumberValue(
+    balance.san,
+    balance.valus_balance,
+    balance.val_balance,
+    balance.san_balance,
+    balance.valusBalance,
+    balance.sanBalance,
+    balance.current_valus,
+    balance.current_san,
+    balance.balance?.valus,
+    balance.balance?.val,
+    balance.balance?.san,
+    user.valus,
+    user.val,
+    user.san,
+    user.valus_balance,
+    user.val_balance,
+    user.san_balance,
+    user.valusBalance,
+    user.sanBalance,
+    user.current_valus,
+    user.current_san,
+    user.balance?.valus,
+    user.balance?.val,
+    user.balance?.san,
+  );
+}
+
+function valusFromSources(balance = {}, user = {}) {
+  const canonical = canonicalValusFromBalance(balance);
+  if (canonical > 0 || balance.valus_legacy_migrated) return canonical;
+  return Math.max(canonical, legacyValusFromSources(balance, user));
 }
 
 function xpFromSources(balance = {}, user = {}) {
@@ -598,7 +644,7 @@ function xpFromSources(balance = {}, user = {}) {
 }
 
 function publicBalance(balance = {}, user = {}) {
-  const valus = valusFromBalance(balance);
+  const valus = valusFromSources(balance, user);
   return {
     valus,
     val: valus,
@@ -641,9 +687,21 @@ exports.getValusBalance = onCall(
     const user = userSnap.exists ? userSnap.data() : {};
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
     const convertedThisMonth = numberValue(monthSnap.data()?.valus, 0);
+    const normalizedBalance = publicBalance(balance, user);
+    const canonicalValus = canonicalValusFromBalance(balance);
+
+    if (normalizedBalance.valus > canonicalValus && !balance.valus_legacy_migrated) {
+      await userRef.collection("balances").doc("current").set({
+        valus: normalizedBalance.valus,
+        val: normalizedBalance.valus,
+        valus_legacy_migrated: true,
+        legacy_valus_migrated_at: FieldValue.serverTimestamp(),
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+    }
 
     return {
-      balance: publicBalance(balance, user),
+      balance: normalizedBalance,
       convertedThisMonth,
       remainingMonthlyValus: Math.max(0, MONTHLY_VALUS_LIMIT - convertedThisMonth),
     };
@@ -704,13 +762,14 @@ exports.convertNexusXpToValus = onCall(
       }
 
       const nextXp = availableXp - xpAmount;
-      const nextValus = valusFromBalance(balance) + valusAmount;
+      const nextValus = valusFromSources(balance, user) + valusAmount;
       const balancePayload = {
         valus: nextValus,
         val: nextValus,
         xp: nextXp,
         current_xp: nextXp,
         xp_source: "nexus",
+        valus_legacy_migrated: true,
         updated_at: FieldValue.serverTimestamp(),
       };
 
@@ -799,9 +858,13 @@ exports.redeemValus = onCall(
     const redemptionCode = crypto.randomBytes(8).toString("hex");
 
     await db.runTransaction(async (transaction) => {
-      const balanceSnap = await transaction.get(balanceRef);
+      const [userSnap, balanceSnap] = await Promise.all([
+        transaction.get(userRef),
+        transaction.get(balanceRef),
+      ]);
+      const user = userSnap.exists ? userSnap.data() : {};
       const balance = balanceSnap.exists ? balanceSnap.data() : {};
-      const currentValus = valusFromBalance(balance);
+      const currentValus = valusFromSources(balance, user);
       if (currentValus < valusAmount) {
         throw new HttpsError("failed-precondition", `Nicht genug VAL vorhanden. Aktuell verfuegbar: ${currentValus} VAL.`);
       }
@@ -809,6 +872,7 @@ exports.redeemValus = onCall(
       transaction.set(balanceRef, {
         valus: nextValus,
         val: nextValus,
+        valus_legacy_migrated: true,
         updated_at: FieldValue.serverTimestamp(),
       }, { merge: true });
       transaction.set(redemptionRef, {

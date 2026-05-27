@@ -116,6 +116,7 @@ const navGroups = [
     label: 'callidus',
     items: [
       { href: t.paths.portal, label: t.nav.portal },
+      { href: t.paths.wallet ?? '/wallet/', label: t.nav.wallet ?? 'Wallet' },
       { href: t.paths.valus ?? '/valus/', label: 'Valus' },
       { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
     ],
@@ -409,6 +410,44 @@ const socialIcons = {
             const auth = getAuth(app);
             const db = getFirestore(app);
             const fns = getFunctions(app, 'us-central1');
+            const numericValues = (...values) => values
+              .map((value) => Number(value))
+              .filter((value) => Number.isFinite(value));
+            const pickValus = (payload = {}) => {
+              const raw = payload.balance || payload.balances || payload;
+              const user = payload.user || payload.userDoc || {};
+              const canonical = numericValues(raw.valus, raw.val);
+              if (canonical.some((value) => value > 0) || raw.valus_legacy_migrated) {
+                return Math.max(0, ...canonical, 0);
+              }
+              const legacy = numericValues(
+                raw.san,
+                raw.valus_balance,
+                raw.val_balance,
+                raw.san_balance,
+                raw.valusBalance,
+                raw.sanBalance,
+                raw.current_valus,
+                raw.current_san,
+                raw.balance?.valus,
+                raw.balance?.val,
+                raw.balance?.san,
+                user.valus,
+                user.val,
+                user.san,
+                user.valus_balance,
+                user.val_balance,
+                user.san_balance,
+                user.valusBalance,
+                user.sanBalance,
+                user.current_valus,
+                user.current_san,
+                user.balance?.valus,
+                user.balance?.val,
+                user.balance?.san,
+              );
+              return Math.max(0, ...canonical, ...legacy, 0);
+            };
             const setBadge = (value) => {
               const badge = document.getElementById('nav-valus-balance');
               if (!badge) return;
@@ -419,8 +458,7 @@ const socialIcons = {
             const refreshViaCallable = async () => {
               try {
                 const result = await httpsCallable(fns, 'getValusBalance')({});
-                const raw = result.data?.balance || result.data?.balances || result.data || {};
-                setBadge(raw.san ?? raw.val ?? raw.valus ?? 0);
+                setBadge(pickValus(result.data || {}));
               } catch (_) {}
             };
             onAuthStateChanged(auth, (user) => {
@@ -430,7 +468,8 @@ const socialIcons = {
               refreshViaCallable();
               onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
                 const data = snap.exists() ? snap.data() : {};
-                setBadge(data.valus ?? data.val ?? data.san ?? 0);
+                setBadge(pickValus(data));
+                refreshViaCallable();
               }, refreshViaCallable);
             });
           } catch (_) {}
