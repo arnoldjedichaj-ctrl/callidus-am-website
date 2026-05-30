@@ -502,6 +502,15 @@
   grid-template-columns: minmax(320px, .82fr) minmax(0, 1.18fr);
 }
 
+.portal-coach-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.portal-coach-settings {
+  padding-bottom: 1rem;
+}
+
 .portal-coach-form {
   display: grid;
   gap: .9rem;
@@ -511,6 +520,14 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: .75rem;
+}
+
+.portal-coach-settings .portal-form-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portal-coach-settings .portal-coach-form textarea {
+  min-height: 4.6rem;
 }
 
 .portal-coach-form label,
@@ -607,6 +624,50 @@
   align-items: flex-start;
 }
 
+.portal-coach-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .65rem;
+}
+
+.portal-coach-tab {
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  color: var(--text);
+  padding: .55rem .85rem;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.portal-coach-tab:hover,
+.portal-coach-tab.is-active {
+  border-color: rgba(var(--gold-rgb), .55);
+  background: rgba(var(--gold-rgb), .13);
+}
+
+.portal-coach-tab.is-active {
+  color: var(--olive);
+}
+
+.portal-coach-tab:focus-visible {
+  outline: 3px solid rgba(var(--gold-rgb), .35);
+  outline-offset: 2px;
+}
+
+.portal-plan-panels {
+  display: grid;
+  gap: .85rem;
+}
+
+.portal-plan-panels [hidden] {
+  display: none !important;
+}
+
 .portal-plan-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -635,6 +696,12 @@
 
 .portal-plan-block h3 {
   font-size: 1rem;
+}
+
+.portal-recovery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
 }
 
 .portal-plan-content {
@@ -1071,6 +1138,11 @@
   .portal-hero {
     align-items: start;
   }
+
+  .portal-coach-settings .portal-form-grid,
+  .portal-recovery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
@@ -1105,6 +1177,20 @@
       "nutrition"
       "recovery"
       "safety";
+  }
+
+  .portal-coach-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .portal-coach-tab {
+    width: 100%;
+  }
+
+  .portal-coach-settings .portal-form-grid,
+  .portal-recovery-grid {
+    grid-template-columns: 1fr;
   }
 
   .portal-training-head {

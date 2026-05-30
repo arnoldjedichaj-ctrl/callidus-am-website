@@ -16,7 +16,7 @@ const firebaseConfig = {
 const equipmentOptions = [
   ['bodyweight', 'Eigengewicht'],
   ['dumbbells', 'Hanteln'],
-  ['bands', 'Baender'],
+  ['bands', 'Bänder'],
   ['gym', 'Fitnessstudio'],
   ['bike', 'Rad / Ergometer'],
 ];
@@ -24,7 +24,7 @@ const equipmentOptions = [
 
 <BaseLayout
   title="Sport & Energie Coach | Callidus Portal"
-  description="Geschuetzter Gemini-Coach fuer individuelle Trainingsplaene, Ernaehrung und Regeneration aus App-Daten und Nutzerangaben."
+  description="Geschützter Coach für individuelle Trainingspläne, Ernährung und Regeneration aus App-Daten und Nutzerangaben."
   lang="de"
 >
   <section class="section portal-section">
@@ -36,12 +36,12 @@ const equipmentOptions = [
             <h1>Dein Plan aus Daten und Alltag.</h1>
             <p class="lede portal-copy">
               Der Coach verbindet freigegebene App-Signale mit deinen Angaben und bereitet daraus
-              Training, Ernaehrung, Regeneration und den naechsten Check-in vor.
+              Training, Ernährung, Regeneration und den nächsten Check-in vor.
             </p>
           </div>
           <div>
             <div class="portal-pill-stack portal-pill-stack-end">
-              <span class="portal-pill" id="coach-gemini-state" data-state="pending">Gemini vorbereitet</span>
+              <span class="portal-pill" id="coach-gemini-state" data-state="pending">KI bereit</span>
               <span class="portal-pill portal-plan-pill" id="coach-plan-state" data-state="off">Noch kein Plan</span>
             </div>
             <nav class="portal-subnav" aria-label="Portal Bereiche">
@@ -57,7 +57,7 @@ const equipmentOptions = [
           <div class="portal-metric">
             <span>NEXUS</span>
             <strong id="coach-context-nexus">-</strong>
-            <small id="coach-context-nexus-sub">Tageswerte und Ernaehrung</small>
+            <small id="coach-context-nexus-sub">Tageswerte und Ernährung</small>
           </div>
           <div class="portal-metric">
             <span>MOMUS</span>
@@ -76,29 +76,29 @@ const equipmentOptions = [
           </div>
         </div>
 
-        <div class="portal-grid-2 portal-coach-layout" data-reveal style="margin-top:1rem">
-          <section class="portal-panel">
+        <div class="portal-coach-stack" data-reveal style="margin-top:1rem">
+          <section class="portal-panel portal-coach-settings">
             <h2>Coach-Fragebogen</h2>
             <p class="portal-mini">
-              Kurz genug fuer den Alltag, konkret genug fuer einen brauchbaren Plan.
+              Kurz genug für den Alltag, konkret genug für einen brauchbaren Plan.
             </p>
             <form id="coach-preferences-form" class="portal-coach-form">
               <div class="portal-form-grid">
                 <label>
                   <span>Ziel</span>
                   <select name="goal" required>
-                    <option value="">Bitte waehlen</option>
+                    <option value="">Bitte wählen</option>
                     <option value="energy">Mehr Energie im Alltag</option>
-                    <option value="fat_loss">Koerperfett reduzieren</option>
+                    <option value="fat_loss">Körperfett reduzieren</option>
                     <option value="muscle_gain">Muskeln aufbauen</option>
                     <option value="endurance">Ausdauer verbessern</option>
-                    <option value="stress_resilience">Stressresistenz staerken</option>
+                    <option value="stress_resilience">Stressresistenz stärken</option>
                   </select>
                 </label>
                 <label>
                   <span>Trainingslevel</span>
                   <select name="level" required>
-                    <option value="">Bitte waehlen</option>
+                    <option value="">Bitte wählen</option>
                     <option value="beginner">Einsteiger</option>
                     <option value="returning">Wiedereinstieg</option>
                     <option value="intermediate">Fortgeschritten</option>
@@ -114,17 +114,17 @@ const equipmentOptions = [
                   <input name="minutesPerSession" type="number" inputmode="numeric" min="10" max="120" value="35" required />
                 </label>
                 <label>
-                  <span>Ernaehrungsziel</span>
+                  <span>Ernährungsziel</span>
                   <select name="nutritionGoal" required>
                     <option value="balanced">Ausgewogen und stabil</option>
                     <option value="high_protein">Protein betonen</option>
                     <option value="light_digestive">Leicht verdaulich</option>
-                    <option value="performance">Trainingsernergie auffuellen</option>
+                    <option value="performance">Trainingsenergie auffüllen</option>
                     <option value="calorie_control">Kalorien bewusster steuern</option>
                   </select>
                 </label>
                 <label>
-                  <span>Ernaehrungsform</span>
+                  <span>Ernährungsform</span>
                   <select name="dietStyle">
                     <option value="mixed">Mischkost</option>
                     <option value="vegetarian">Vegetarisch</option>
@@ -148,13 +148,13 @@ const equipmentOptions = [
               </fieldset>
 
               <label>
-                <span>Unvertraeglichkeiten oder Lebensmittel, die nicht passen</span>
-                <input name="intolerances" type="text" maxlength="240" placeholder="z. B. Laktose, Gluten, Nuesse" />
+                <span>Unverträglichkeiten oder Lebensmittel, die nicht passen</span>
+                <input name="intolerances" type="text" maxlength="240" placeholder="z. B. Laktose, Gluten, Nüsse" />
               </label>
 
               <label>
-                <span>Einschraenkungen, Schmerzen oder Vorsichtspunkte</span>
-                <textarea name="restrictions" rows="3" maxlength="520" placeholder="z. B. Knie, Ruecken, Blutdruck, Schwangerschaft, Medikamente"></textarea>
+                <span>Einschränkungen, Schmerzen oder Vorsichtspunkte</span>
+                <textarea name="restrictions" rows="3" maxlength="520" placeholder="z. B. Knie, Rücken, Blutdruck, Schwangerschaft, Medikamente"></textarea>
               </label>
 
               <label>
@@ -166,9 +166,9 @@ const equipmentOptions = [
               <div class="portal-auth-actions">
                 <button class="button primary" id="coach-generate-plan" type="submit">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M8 8v8M16 8v8M4 10v4M20 10v4" /></svg>
-                  Plan mit Gemini erstellen
+                  Plan erstellen
                 </button>
-                <a class="button" href="/sport-energie/">Oeffentliches Beispiel</a>
+                <a class="button" href="/sport-energie/">Öffentliches Beispiel</a>
               </div>
             </form>
           </section>
@@ -179,82 +179,92 @@ const equipmentOptions = [
                 <h2>Aktueller Plan</h2>
                 <p class="portal-mini" id="coach-plan-updated">Noch kein gespeicherter Plan.</p>
               </div>
-              <span class="portal-pill" id="coach-plan-source" data-state="off">MVP</span>
             </div>
             <p class="portal-insight" id="coach-plan-summary">
-              Sobald die Gemini-Funktion aktiv ist, erscheint hier dein individueller Sport-&-Energie-Plan.
+              Sobald die Coach-Funktion aktiv ist, erscheint hier dein individueller Sport-&-Energie-Plan.
             </p>
 
-            <div class="portal-plan-grid">
-              <section class="portal-plan-block">
+            <div class="portal-insight portal-checkin" id="coach-plan-checkin">
+              Nächster Check-in: nach der ersten erfassten Trainingswoche.
+            </div>
+
+            <div class="portal-coach-tabs" role="tablist" aria-label="Planbereiche">
+              <button class="portal-coach-tab is-active" type="button" role="tab" id="coach-tab-training" data-coach-tab="training" aria-controls="coach-panel-training" aria-selected="true">Training</button>
+              <button class="portal-coach-tab" type="button" role="tab" id="coach-tab-nutrition" data-coach-tab="nutrition" aria-controls="coach-panel-nutrition" aria-selected="false">Ernährung</button>
+              <button class="portal-coach-tab" type="button" role="tab" id="coach-tab-recovery" data-coach-tab="recovery" aria-controls="coach-panel-recovery" aria-selected="false">Regeneration</button>
+              <button class="portal-coach-tab" type="button" role="tab" id="coach-tab-journal" data-coach-tab="journal" aria-controls="coach-panel-journal" aria-selected="false">Journal</button>
+            </div>
+
+            <div class="portal-plan-panels">
+              <section class="portal-plan-block" id="coach-panel-training" data-coach-panel="training" role="tabpanel" aria-labelledby="coach-tab-training">
                 <h3>Training</h3>
                 <div id="coach-plan-training" class="portal-plan-content">
                   <span class="portal-empty">Noch kein Trainingsplan vorhanden.</span>
                 </div>
               </section>
-              <section class="portal-plan-block">
-                <h3>Ernaehrung</h3>
+              <section class="portal-plan-block" id="coach-panel-nutrition" data-coach-panel="nutrition" role="tabpanel" aria-labelledby="coach-tab-nutrition" hidden>
+                <h3>Ernährung</h3>
                 <div id="coach-plan-nutrition" class="portal-plan-content">
-                  <span class="portal-empty">Noch kein Ernaehrungsplan vorhanden.</span>
+                  <span class="portal-empty">Noch kein Ernährungsplan vorhanden.</span>
                 </div>
               </section>
-              <section class="portal-plan-block">
-                <h3>Regeneration</h3>
-                <ul id="coach-plan-recovery" class="portal-list">
-                  <li><span class="portal-empty">Noch keine Regenerationshinweise.</span></li>
-                </ul>
+              <section class="portal-plan-block" id="coach-panel-recovery" data-coach-panel="recovery" role="tabpanel" aria-labelledby="coach-tab-recovery" hidden>
+                <div class="portal-recovery-grid">
+                  <div>
+                    <h3>Regeneration</h3>
+                    <ul id="coach-plan-recovery" class="portal-list">
+                      <li><span class="portal-empty">Noch keine Regenerationshinweise.</span></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3>Sicherheit</h3>
+                    <ul id="coach-plan-safety" class="portal-list">
+                      <li><span class="portal-empty">Hinweise erscheinen nach der Planerstellung.</span></li>
+                    </ul>
+                  </div>
+                </div>
               </section>
-              <section class="portal-plan-block">
-                <h3>Sicherheit</h3>
-                <ul id="coach-plan-safety" class="portal-list">
-                  <li><span class="portal-empty">Hinweise erscheinen nach der Planerstellung.</span></li>
-                </ul>
+
+              <section class="portal-plan-block portal-training-journal" id="coach-panel-journal" data-coach-panel="journal" role="tabpanel" aria-labelledby="coach-tab-journal" hidden>
+                <div class="portal-journal-head">
+                  <div>
+                    <h3 id="coach-journal-title">Trainingsjournal</h3>
+                    <p class="portal-mini">
+                      Dokumentiere pro Woche Gewicht, Sätze, Wiederholungen und kurze Notizen.
+                    </p>
+                  </div>
+                  <div class="portal-journal-week-controls" aria-label="Woche wechseln">
+                    <button class="portal-icon-button" id="coach-journal-prev" type="button" aria-label="Vorige Woche">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+                    </button>
+                    <button class="portal-week-button" id="coach-journal-today" type="button">Diese Woche</button>
+                    <button class="portal-icon-button" id="coach-journal-next" type="button" aria-label="Nächste Woche">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="portal-journal-summary" id="coach-journal-summary">
+                  <span class="portal-empty">Erstelle zuerst einen Trainingsplan.</span>
+                </div>
+                <div id="coach-journal-body" class="portal-journal-body">
+                  <span class="portal-empty">Noch kein Trainingsjournal vorhanden.</span>
+                </div>
+
+                <label class="portal-journal-note">
+                  <span>Wochen-Notiz</span>
+                  <textarea id="coach-journal-weekly-note" rows="3" maxlength="700" placeholder="Was lief gut? Wo war es zu viel? Was willst du nächste Woche anpassen?"></textarea>
+                </label>
+
+                <p id="coach-journal-status" class="portal-coach-status" hidden></p>
+                <div class="portal-auth-actions">
+                  <button class="button primary" id="coach-journal-save" type="button" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.2 17 19 7" /></svg>
+                    Woche speichern
+                  </button>
+                </div>
               </section>
             </div>
-
-            <div class="portal-insight portal-checkin" id="coach-plan-checkin">
-              Naechster Check-in: nach der ersten erfassten Trainingswoche.
-            </div>
-
-            <section class="portal-plan-block portal-training-journal" aria-labelledby="coach-journal-title">
-              <div class="portal-journal-head">
-                <div>
-                  <h3 id="coach-journal-title">Trainingsjournal</h3>
-                  <p class="portal-mini">
-                    Dokumentiere pro Woche Gewicht, Saetze, Wiederholungen und kurze Notizen.
-                  </p>
-                </div>
-                <div class="portal-journal-week-controls" aria-label="Woche wechseln">
-                  <button class="portal-icon-button" id="coach-journal-prev" type="button" aria-label="Vorige Woche">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
-                  </button>
-                  <button class="portal-week-button" id="coach-journal-today" type="button">Diese Woche</button>
-                  <button class="portal-icon-button" id="coach-journal-next" type="button" aria-label="Naechste Woche">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
-                  </button>
-                </div>
-              </div>
-
-              <div class="portal-journal-summary" id="coach-journal-summary">
-                <span class="portal-empty">Erstelle zuerst einen Trainingsplan.</span>
-              </div>
-              <div id="coach-journal-body" class="portal-journal-body">
-                <span class="portal-empty">Noch kein Trainingsjournal vorhanden.</span>
-              </div>
-
-              <label class="portal-journal-note">
-                <span>Wochen-Notiz</span>
-                <textarea id="coach-journal-weekly-note" rows="3" maxlength="700" placeholder="Was lief gut? Wo war es zu viel? Was willst du naechste Woche anpassen?"></textarea>
-              </label>
-
-              <p id="coach-journal-status" class="portal-coach-status" hidden></p>
-              <div class="portal-auth-actions">
-                <button class="button primary" id="coach-journal-save" type="button" disabled>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.2 17 19 7" /></svg>
-                  Woche speichern
-                </button>
-              </div>
-            </section>
           </section>
         </div>
       </PortalGate>

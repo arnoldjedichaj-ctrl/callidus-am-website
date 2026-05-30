@@ -749,21 +749,21 @@ function bootPortal() {
     {
       key: 'squat',
       title: 'Kniebeuge',
-      cue: 'Huefte nach hinten, Knie folgen den Fussspitzen.',
+      cue: 'Hüfte nach hinten, Knie folgen den Fußspitzen.',
       aliases: ['kniebeuge', 'squat', 'hocke'],
       icon: 'squat',
     },
     {
       key: 'row',
       title: 'Rudern',
-      cue: 'Brust lang, Ellenbogen nah am Koerper zurueckziehen.',
+      cue: 'Brust lang, Ellenbogen nah am Körper zurückziehen.',
       aliases: ['rudern', 'band-rudern', 'hantelrudern', 'rows'],
       icon: 'row',
     },
     {
       key: 'pushup',
-      title: 'Liegestuetz',
-      cue: 'Koerper als Linie, Haende unter den Schultern.',
+      title: 'Liegestütz',
+      cue: 'Körper als Linie, Hände unter den Schultern.',
       aliases: ['liegestuetz', 'push-up', 'pushup', 'auf knien'],
       icon: 'pushup',
     },
@@ -777,42 +777,42 @@ function bootPortal() {
     {
       key: 'lunge',
       title: 'Ausfallschritt',
-      cue: 'Vorderer Fuss stabil, Oberkoerper aufrecht.',
+      cue: 'Vorderer Fuß stabil, Oberkörper aufrecht.',
       aliases: ['ausfallschritt', 'lunge', 'lunges'],
       icon: 'lunge',
     },
     {
       key: 'press',
-      title: 'Schulterdruecken',
-      cue: 'Gewicht kontrolliert ueber Kopf, Bauch bleibt fest.',
+      title: 'Schulterdrücken',
+      cue: 'Gewicht kontrolliert über Kopf, Bauch bleibt fest.',
       aliases: ['schulterdruecken', 'press', 'overhead'],
       icon: 'press',
     },
     {
       key: 'bridge',
       title: 'Glute Bridge',
-      cue: 'Fersen in den Boden, Huefte kontrolliert anheben.',
+      cue: 'Fersen in den Boden, Hüfte kontrolliert anheben.',
       aliases: ['glute bridge', 'hueftbruecke', 'hip bridge'],
       icon: 'bridge',
     },
     {
       key: 'mountain',
       title: 'Mountain Climber',
-      cue: 'Stuetz stabil halten, Knie rhythmisch nach vorn.',
+      cue: 'Stütz stabil halten, Knie rhythmisch nach vorn.',
       aliases: ['mountain climber', 'climber'],
       icon: 'mountain',
     },
     {
       key: 'walk',
       title: 'Spaziergang',
-      cue: 'Locker starten, Tempo so waehlen, dass Atmung ruhig bleibt.',
+      cue: 'Locker starten, Tempo so wählen, dass Atmung ruhig bleibt.',
       aliases: ['spaziergang', 'gehen', 'walking', 'zone 2'],
       icon: 'walk',
     },
     {
       key: 'bike',
       title: 'Rad / Ergometer',
-      cue: 'Gleichmaessig treten, Intensitaet bewusst niedrig halten.',
+      cue: 'Gleichmäßig treten, Intensität bewusst niedrig halten.',
       aliases: ['rad', 'ergometer', 'bike', 'fahrrad'],
       icon: 'bike',
     },
@@ -942,7 +942,7 @@ function bootPortal() {
   }
 
   function cleanExerciseName(value) {
-    return shortText(value || 'Uebung', 40);
+    return shortText(value || 'Übung', 40);
   }
 
   function renderExerciseCards(container, exercises) {
@@ -1053,7 +1053,7 @@ function bootPortal() {
     }, 0);
     [
       { label: 'Woche', value: displayWeekRange(coachJournal.weekKey) },
-      { label: 'Uebungen', value: planned ? `${completed}/${planned}` : '-' },
+      { label: 'Übungen', value: planned ? `${completed}/${planned}` : '-' },
       { label: 'Volumen', value: volume ? displayNumber(volume, ' kg') : '-' },
     ].forEach((item) => {
       const node = document.createElement('div');
@@ -1076,7 +1076,7 @@ function bootPortal() {
 
     if (!hasPlan) {
       appendEmpty(summary, 'Erstelle zuerst einen Trainingsplan.');
-      appendEmpty(body, 'Nach der Planerstellung kannst du hier Gewicht, Saetze und Wiederholungen dokumentieren.');
+      appendEmpty(body, 'Nach der Planerstellung kannst du hier Gewicht, Sätze und Wiederholungen dokumentieren.');
       if (note) {
         note.value = '';
         note.disabled = true;
@@ -1099,7 +1099,7 @@ function bootPortal() {
 
     const items = Array.isArray(coachJournal.plan.weeklyTraining) ? coachJournal.plan.weeklyTraining : [];
     if (!items.length) {
-      appendEmpty(body, 'Der aktuelle Plan enthaelt noch keine Trainingstage.');
+      appendEmpty(body, 'Der aktuelle Plan enthält noch keine Trainingstage.');
       if (saveButton) saveButton.disabled = true;
       return;
     }
@@ -1125,7 +1125,7 @@ function bootPortal() {
       if (!exercises.length) {
         const empty = document.createElement('span');
         empty.className = 'portal-empty';
-        empty.textContent = 'Keine konkreten Uebungen fuer diesen Tag.';
+        empty.textContent = 'Keine konkreten Übungen für diesen Tag.';
         dayCard.appendChild(empty);
       }
 
@@ -1181,7 +1181,7 @@ function bootPortal() {
         row.append(
           exerciseNode,
           createJournalNumberField('kg', 'weightKg', entry.weightKg, { max: 500, step: 0.5 }),
-          createJournalNumberField('Saetze', 'sets', entry.sets, { max: 20 }),
+          createJournalNumberField('Sätze', 'sets', entry.sets, { max: 20 }),
           createJournalNumberField('Wdh.', 'reps', entry.reps, { max: 500 }),
           createJournalNumberField('Sek.', 'durationSec', entry.durationSec, { max: 7200 }),
           complete,
@@ -1241,8 +1241,8 @@ function bootPortal() {
   function coachJournalErrorMessage(error) {
     const code = error?.code || '';
     if (code.includes('unauthenticated')) return 'Bitte erneut einloggen.';
-    if (code.includes('invalid-argument')) return error.message || 'Bitte Trainingswerte pruefen.';
-    if (code.includes('not-found')) return 'Die Trainingsjournal-Funktion ist noch nicht deployt.';
+    if (code.includes('invalid-argument')) return error.message || 'Bitte Trainingswerte prüfen.';
+    if (code.includes('not-found')) return 'Die Trainingsjournal-Funktion ist noch nicht bereit.';
     return 'Trainingsjournal konnte gerade nicht gespeichert oder geladen werden.';
   }
 
@@ -1325,7 +1325,7 @@ function bootPortal() {
   function markCoachJournalDirty() {
     if (!coachJournal.plan || !Object.keys(coachJournal.plan).length) return;
     coachJournal.dirty = true;
-    setStatus('coach-journal-status', 'Noch nicht gespeicherte Aenderungen.', '');
+    setStatus('coach-journal-status', 'Noch nicht gespeicherte Änderungen.', '');
   }
 
   function setupCoachJournalHandlers() {
@@ -1357,6 +1357,27 @@ function bootPortal() {
       coachJournal.dirty = false;
       await loadCoachJournal(state.user);
     });
+  }
+
+  function showCoachPanel(target = 'training') {
+    document.querySelectorAll('[data-coach-tab]').forEach((tab) => {
+      const active = tab.dataset.coachTab === target;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-coach-panel]').forEach((panel) => {
+      panel.hidden = panel.dataset.coachPanel !== target;
+    });
+  }
+
+  function setupCoachTabs() {
+    const tabs = Array.from(document.querySelectorAll('[data-coach-tab]'));
+    if (!tabs.length || tabs[0].dataset.ready === 'true') return;
+    tabs.forEach((tab) => {
+      tab.dataset.ready = 'true';
+      tab.addEventListener('click', () => showCoachPanel(tab.dataset.coachTab || 'training'));
+    });
+    showCoachPanel('training');
   }
 
   function appendNutritionSummary(container, nutrition = {}) {
@@ -1452,9 +1473,8 @@ function bootPortal() {
 
     text('coach-plan-summary', plan.summary || 'Plan gespeichert.');
     text('coach-plan-updated', meta.createdAt ? `Erstellt am ${displayDateTime(meta.createdAt)}` : 'Plan gespeichert.');
-    text('coach-plan-checkin', plan.nextCheckIn ? `Naechster Check-in: ${plan.nextCheckIn}` : 'Naechster Check-in: nach der ersten Trainingswoche.');
+      text('coach-plan-checkin', plan.nextCheckIn ? `Nächster Check-in: ${plan.nextCheckIn}` : 'Nächster Check-in: nach der ersten Trainingswoche.');
     setPill('coach-plan-state', { state: 'ok', label: 'Plan aktiv' });
-    setPill('coach-plan-source', { state: meta.provider === 'gemini' ? 'ok' : 'pending', label: meta.model || 'Gemini' });
 
     const trainingNode = $('coach-plan-training');
     if (trainingNode) {
@@ -1499,7 +1519,7 @@ function bootPortal() {
       const nutrition = plan.nutritionPlan || {};
       if (!renderWeeklyNutrition(nutritionNode, nutrition)) renderDailyNutrition(nutritionNode, nutrition);
       if (!nutritionNode.children.length) {
-        appendEmpty(nutritionNode, 'Noch kein Ernaehrungsplan vorhanden.');
+        appendEmpty(nutritionNode, 'Noch kein Ernährungsplan vorhanden.');
       }
     }
 
@@ -1570,11 +1590,11 @@ function bootPortal() {
 
   function coachErrorMessage(error) {
     const code = error?.code || '';
-    if (code.includes('not-found')) return 'Die Gemini-Funktion ist noch nicht deployt. Die Oberflaeche ist bereit, der Serverteil fehlt noch.';
-    if (code.includes('failed-precondition')) return 'Die Gemini-Funktion ist deployt, aber noch nicht voll konfiguriert. Bitte GEMINI_API_KEY als Secret setzen.';
+    if (code.includes('not-found')) return 'Die Coach-Funktion ist noch nicht bereit. Die Oberfläche ist vorbereitet, der Serverteil fehlt noch.';
+    if (code.includes('failed-precondition')) return 'Die Coach-Funktion ist bereit, aber noch nicht voll konfiguriert. Bitte GEMINI_API_KEY als Secret setzen.';
     if (code.includes('unauthenticated')) return 'Bitte erneut einloggen.';
-    if (code.includes('invalid-argument')) return error.message || 'Bitte die Pflichtfelder pruefen.';
-    return 'Plan konnte gerade nicht erstellt werden. Bitte spaeter erneut versuchen.';
+    if (code.includes('invalid-argument')) return error.message || 'Bitte die Pflichtfelder prüfen.';
+    return 'Plan konnte gerade nicht erstellt werden. Bitte später erneut versuchen.';
   }
 
   function setupCoachHandlers(user) {
@@ -1586,10 +1606,10 @@ function bootPortal() {
       const button = $('coach-generate-plan');
       const preferences = collectCoachPreferences(form);
       if (!preferences.goal || !preferences.level) {
-        setStatus('coach-status', 'Bitte Ziel und Trainingslevel auswaehlen.', 'error');
+        setStatus('coach-status', 'Bitte Ziel und Trainingslevel auswählen.', 'error');
         return;
       }
-      setStatus('coach-status', 'Gemini erstellt deinen Plan...', '');
+      setStatus('coach-status', 'Der Coach erstellt deinen Plan...', '');
       if (button) button.disabled = true;
       try {
         const callable = state.api.httpsCallable(state.fns, 'generateSportEnergyPlan');
@@ -1615,12 +1635,12 @@ function bootPortal() {
           createdAt: payload.createdAt || new Date().toISOString(),
           preferences,
         });
-        setPill('coach-gemini-state', { state: 'ok', label: 'Gemini aktiv' });
+        setPill('coach-gemini-state', { state: 'ok', label: 'KI aktiv' });
         setStatus('coach-status', 'Plan wurde erstellt und gespeichert.', 'ok');
         await loadCoach(user, { skipFormSetup: true });
       } catch (error) {
         console.warn('Coach generation failed', error);
-        setPill('coach-gemini-state', { state: 'pending', label: 'Function pruefen' });
+        setPill('coach-gemini-state', { state: 'pending', label: 'Funktion prüfen' });
         setStatus('coach-status', coachErrorMessage(error), 'error');
       } finally {
         if (button) button.disabled = false;
@@ -1710,6 +1730,7 @@ function bootPortal() {
       createdAt: latest.created_at || latest.created_at_iso,
     });
     setupCoachHandlers(user);
+    setupCoachTabs();
     setupCoachJournalHandlers();
     coachJournal.plan = plan || {};
     coachJournal.planId = latest.plan_id || latest.planId || latest.id || '';
