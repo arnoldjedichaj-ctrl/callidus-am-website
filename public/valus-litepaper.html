@@ -3,130 +3,1229 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valus (VAL) — Litepaper</title>
+<meta name="description" content="Valus (VAL) Litepaper: experimenteller Memecoin auf Base, Tokenomics, Contract-Adresse, Abgrenzung zum internen VAL-Guthaben und Risikohinweise.">
+<meta property="og:title" content="Valus (VAL) - Litepaper">
+<meta property="og:description" content="Ein experimenteller Memecoin auf der Base-Blockchain. Kein Investment, kein Nutzenversprechen, hohes Risiko bis zum Totalverlust.">
+<meta property="og:image" content="/assets/valus-coin.png">
+<title>Valus (VAL) - Litepaper</title>
 <style>
-  :root{
-    --gold:#C9A84C; --gold-light:#E8C96A; --gold-dark:#A07830;
-    --bg:#0e0d0b; --panel:#16140f; --line:#2a2620; --text:#ece7da; --muted:#9c958380;
-    --muted:#9c9583;
+  :root {
+    --bg: #090908;
+    --bg-soft: #11100d;
+    --paper: #18150f;
+    --paper-2: #201b12;
+    --line: rgba(232, 201, 106, .18);
+    --line-soft: rgba(255, 255, 255, .11);
+    --text: #f4efe3;
+    --muted: #b8ad98;
+    --muted-2: #857b69;
+    --gold: #c9a84c;
+    --gold-light: #f1d574;
+    --gold-dark: #8c6424;
+    --mint: #81d3a2;
+    --blue: #79a9ff;
+    --coral: #ff8d6d;
+    --shadow: 0 24px 70px rgba(0, 0, 0, .45);
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased;
+
+  * { box-sizing: border-box; }
+
+  html {
+    background: var(--bg);
+    scroll-behavior: smooth;
   }
-  .wrap{max-width:820px; margin:0 auto; padding:clamp(1.5rem,5vw,4rem) clamp(1.2rem,5vw,3.5rem);}
-  .hero{text-align:center; padding-bottom:2.5rem; border-bottom:1px solid var(--line); margin-bottom:2.5rem;}
-  .pill{display:inline-block; background:var(--gold); color:#1a1200; font-weight:800;
-    font-size:.72rem; letter-spacing:.12em; padding:.3rem .8rem; border-radius:999px;}
-  h1{font-size:clamp(2.4rem,7vw,3.6rem); margin:1.2rem 0 .4rem; letter-spacing:-.02em;
-    background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); -webkit-background-clip:text;
-    background-clip:text; -webkit-text-fill-color:transparent;}
-  .sub{color:var(--muted); font-size:.95rem; letter-spacing:.05em;}
-  .warn{background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.35);
-    border-radius:.9rem; padding:1.1rem 1.4rem; font-size:.9rem; margin:2rem 0;}
-  .warn strong{color:var(--gold-light);}
-  h2{font-size:1.45rem; margin:2.6rem 0 .8rem; color:var(--gold-light);}
-  p{margin:.7rem 0;}
-  a{color:var(--gold-light);}
-  table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem;}
-  th,td{text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--line);}
-  th{color:var(--muted); font-weight:600; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
-  tr:last-child td{border-bottom:none; font-weight:800; color:var(--gold-light);}
-  td.num{text-align:right; font-variant-numeric:tabular-nums;}
-  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.82rem;
-    background:var(--panel); border:1px solid var(--line); border-radius:.5rem;
-    padding:.5rem .7rem; word-break:break-all; display:inline-block;}
-  ul{padding-left:1.1rem;} li{margin:.35rem 0;}
-  .foot{margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--line);
-    color:var(--muted); font-size:.82rem; text-align:center;}
-  .meme{font-style:italic; color:var(--gold); text-align:center; margin-top:1.2rem;}
-  @media print{body{background:#fff; color:#1a1a1a;} h1{-webkit-text-fill-color:var(--gold-dark);}
-    .warn{background:#faf6ea;} a{color:var(--gold-dark);} th,td{border-color:#ddd;}}
+
+  body {
+    margin: 0;
+    color: var(--text);
+    background:
+      linear-gradient(180deg, rgba(201, 168, 76, .08), transparent 28rem),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 96px),
+      var(--bg);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(115deg, rgba(129, 211, 162, .08), transparent 32%),
+      linear-gradient(245deg, rgba(121, 169, 255, .09), transparent 34%),
+      radial-gradient(circle at 50% -15%, rgba(241, 213, 116, .14), transparent 36%);
+  }
+
+  a { color: var(--gold-light); }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 4px;
+  }
+
+  p { margin: 0; }
+
+  .site-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 72px;
+    padding: .85rem 0;
+  }
+
+  .brand-link,
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand-link {
+    gap: .65rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(201, 168, 76, .06);
+    box-shadow: 0 12px 32px rgba(201, 168, 76, .18);
+    overflow: hidden;
+  }
+
+  .brand-mark img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(201, 168, 76, .24));
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+  }
+
+  .nav-link {
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  .nav-link:hover { color: var(--text); }
+
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(280px, .76fr);
+    gap: clamp(2rem, 6vw, 5.25rem);
+    align-items: center;
+    min-height: calc(100vh - 72px);
+    min-height: calc(100svh - 72px);
+    padding: clamp(2.25rem, 7vw, 5.5rem) 0 clamp(2.75rem, 7vw, 5.8rem);
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: min(36vw, 420px);
+    bottom: 1.4rem;
+    width: 12rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(241, 213, 116, .6), transparent);
+  }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    color: var(--gold-light);
+    font-size: .77rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .kicker::before {
+    content: "";
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 6px rgba(129, 211, 162, .1);
+  }
+
+  h1 {
+    max-width: 10ch;
+    margin: .85rem 0 1.15rem;
+    font-size: clamp(3.3rem, 10vw, 8.8rem);
+    line-height: .84;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  h1 span {
+    display: block;
+    color: transparent;
+    background: linear-gradient(100deg, var(--gold-light), #fff1a6 35%, var(--gold-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .hero-lead {
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: clamp(1.03rem, 2.2vw, 1.28rem);
+  }
+
+  .hero-lead strong { color: var(--text); }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    margin-top: 1.8rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    min-height: 46px;
+    padding: .72rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--text);
+    background: rgba(255, 255, 255, .04);
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+
+  .button svg { width: 1rem; height: 1rem; }
+
+  .button.primary {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: #1a1200;
+    box-shadow: 0 18px 42px rgba(201, 168, 76, .22);
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(241, 213, 116, .42);
+    background: rgba(255, 255, 255, .07);
+  }
+
+  .button.primary:hover {
+    background: linear-gradient(135deg, #ffe892, var(--gold));
+  }
+
+  .coin-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: min(58vw, 520px);
+    isolation: isolate;
+  }
+
+  .coin-stage::before {
+    content: "";
+    position: absolute;
+    inset: clamp(.2rem, 2vw, 2rem);
+    z-index: -1;
+    border: 1px solid rgba(241, 213, 116, .22);
+    border-radius: 50%;
+    background:
+      conic-gradient(from 15deg, transparent, rgba(241, 213, 116, .18), transparent, rgba(121, 169, 255, .13), transparent),
+      radial-gradient(circle, rgba(241, 213, 116, .12), transparent 63%);
+    box-shadow: inset 0 0 46px rgba(241, 213, 116, .08);
+  }
+
+  .coin-stage::after {
+    content: "";
+    position: absolute;
+    inset: 11%;
+    z-index: -1;
+    border-radius: 50%;
+    border: 1px dashed rgba(241, 213, 116, .24);
+    animation: haloSpin 24s linear infinite;
+  }
+
+  .coin-orbit {
+    display: grid;
+    place-items: center;
+    width: min(86vw, 500px);
+    aspect-ratio: 1;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    animation: coinFloat 7s ease-in-out infinite;
+  }
+
+  .coin-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45)) drop-shadow(0 0 32px rgba(241, 213, 116, .2));
+    transform-style: preserve-3d;
+    animation: coinTurn 18s linear infinite;
+  }
+
+  .coin-caption {
+    position: absolute;
+    right: 0;
+    bottom: 6%;
+    max-width: 17rem;
+    padding: .85rem 1rem;
+    border: 1px solid rgba(129, 211, 162, .28);
+    border-radius: 8px;
+    background: rgba(9, 9, 8, .72);
+    color: var(--mint);
+    font-size: .86rem;
+    font-weight: 800;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .85rem;
+    margin-top: -1.4rem;
+    padding-bottom: clamp(2.8rem, 6vw, 4.5rem);
+  }
+
+  .fact-card {
+    min-height: 9.6rem;
+    padding: 1.05rem;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .045);
+  }
+
+  .fact-card svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    color: var(--gold-light);
+  }
+
+  .fact-card strong {
+    display: block;
+    margin-top: .8rem;
+    font-size: 1.05rem;
+  }
+
+  .fact-card span {
+    display: block;
+    margin-top: .3rem;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.45;
+  }
+
+  .section {
+    padding: clamp(3rem, 7vw, 5.8rem) 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+
+  .section.band {
+    background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, .75fr) minmax(280px, .55fr);
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: end;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .eyebrow {
+    margin-bottom: .65rem;
+    color: var(--gold-light);
+    font-size: .78rem;
+    font-weight: 900;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: .98;
+    letter-spacing: 0;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+
+  .section-copy {
+    color: var(--muted);
+    max-width: 58ch;
+  }
+
+  .warning-panel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    padding: clamp(1rem, 3vw, 1.4rem);
+    border: 1px solid rgba(255, 141, 109, .42);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(255, 141, 109, .12), rgba(201, 168, 76, .06));
+  }
+
+  .warning-icon {
+    display: grid;
+    place-items: center;
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 8px;
+    background: rgba(255, 141, 109, .16);
+    color: var(--coral);
+  }
+
+  .warning-icon svg { width: 1.3rem; height: 1.3rem; }
+
+  .warning-panel strong { color: var(--text); }
+
+  .warning-panel p + p { margin-top: .75rem; }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, .68fr) minmax(300px, .52fr);
+    gap: clamp(1.5rem, 5vw, 3.2rem);
+    align-items: start;
+  }
+
+  .prose {
+    color: var(--muted);
+    max-width: 72ch;
+  }
+
+  .prose p + p,
+  .prose ul + p,
+  .prose p + ul {
+    margin-top: 1rem;
+  }
+
+  .prose strong { color: var(--text); }
+
+  .callout {
+    padding: 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(201, 168, 76, .065);
+  }
+
+  .callout strong {
+    display: block;
+    color: var(--gold-light);
+    margin-bottom: .3rem;
+  }
+
+  .not-list {
+    display: grid;
+    gap: .7rem;
+    margin-top: 1rem;
+  }
+
+  .not-item {
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+    padding: .85rem;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px;
+    background: rgba(255,255,255,.035);
+  }
+
+  .not-item svg {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: .22rem;
+    color: var(--coral);
+  }
+
+  .tokenomics {
+    display: grid;
+    grid-template-columns: minmax(280px, .85fr) minmax(280px, 1fr);
+    gap: clamp(1.4rem, 4vw, 2.4rem);
+    align-items: center;
+  }
+
+  .supply-dial {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(100%, 420px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 50%;
+    background:
+      conic-gradient(var(--gold-light) 0 40%, var(--blue) 40% 65%, var(--mint) 65% 85%, #d9b26a 85% 95%, var(--coral) 95% 100%);
+    box-shadow: var(--shadow);
+  }
+
+  .supply-dial::before {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid rgba(255,255,255,.1);
+  }
+
+  .supply-dial::after {
+    content: "";
+    position: absolute;
+    inset: 28%;
+    border-radius: 50%;
+    background: url("/assets/valus-coin-cutout.png") center / contain no-repeat;
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,.36));
+  }
+
+  .supply-label {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 47%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(9, 9, 8, .84);
+    text-align: center;
+    box-shadow: inset 0 0 0 1px rgba(241, 213, 116, .18);
+  }
+
+  .supply-label strong {
+    display: block;
+    font-size: clamp(1.7rem, 5vw, 3rem);
+    line-height: 1;
+    color: var(--gold-light);
+  }
+
+  .supply-label span {
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .allocation-list {
+    display: grid;
+    gap: .7rem;
+  }
+
+  .allocation-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .9rem;
+    align-items: center;
+    padding: .85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+  }
+
+  .allocation-row:last-child { border-bottom: 0; }
+
+  .allocation-name {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    min-width: 0;
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .dot {
+    width: .7rem;
+    height: .7rem;
+    border-radius: 50%;
+    flex: 0 0 auto;
+  }
+
+  .allocation-meta {
+    color: var(--muted);
+    font-size: .9rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bar {
+    grid-column: 1 / -1;
+    height: .45rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+  }
+
+  .bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .85rem;
+  }
+
+  .data-item {
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px;
+    background: rgba(255,255,255,.035);
+  }
+
+  .data-item span {
+    display: block;
+    color: var(--muted-2);
+    font-size: .76rem;
+    font-weight: 900;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .data-item strong {
+    display: block;
+    margin-top: .35rem;
+    color: var(--text);
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+  }
+
+  .contract-box {
+    margin-top: 1rem;
+    padding: .95rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(201, 168, 76, .06);
+  }
+
+  .contract-address {
+    display: block;
+    padding: .78rem;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 6px;
+    background: rgba(0,0,0,.25);
+    color: var(--gold-light);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .9rem;
+    overflow-wrap: anywhere;
+  }
+
+  .copy-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .75rem;
+  }
+
+  .copy-feedback {
+    min-height: 1.45rem;
+    color: var(--mint);
+    font-size: .86rem;
+    font-weight: 800;
+  }
+
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .9rem;
+  }
+
+  .risk-card {
+    padding: 1.05rem;
+    min-height: 11rem;
+    border: 1px solid rgba(255, 141, 109, .24);
+    border-radius: 8px;
+    background: rgba(255,255,255,.035);
+  }
+
+  .risk-card svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--coral);
+  }
+
+  .risk-card strong {
+    display: block;
+    margin-top: .75rem;
+    color: var(--text);
+  }
+
+  .risk-card p {
+    margin-top: .35rem;
+    color: var(--muted);
+    font-size: .92rem;
+  }
+
+  .quote-band {
+    padding: clamp(1.4rem, 4vw, 2rem);
+    border: 1px solid rgba(241, 213, 116, .22);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(201, 168, 76, .12), rgba(121, 169, 255, .05)),
+      rgba(255,255,255,.035);
+    text-align: center;
+  }
+
+  .quote-band p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--text);
+    font-size: clamp(1.25rem, 3vw, 2.2rem);
+    line-height: 1.18;
+    font-weight: 900;
+  }
+
+  .legal-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem 0 3rem;
+    color: var(--muted);
+    font-size: .9rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    justify-content: flex-end;
+  }
+
+  @keyframes coinFloat {
+    0%, 100% { transform: translateY(0) rotate(-1.2deg) scale(1); }
+    50% { transform: translateY(-14px) rotate(1.2deg) scale(1.015); }
+  }
+
+  @keyframes coinTurn {
+    0% {
+      transform: rotateY(-16deg) rotateZ(-2deg);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45)) drop-shadow(0 0 30px rgba(241, 213, 116, .18));
+    }
+    25% {
+      transform: rotateY(0deg) rotateZ(1deg);
+      filter: drop-shadow(0 34px 68px rgba(0, 0, 0, .48)) drop-shadow(0 0 42px rgba(241, 213, 116, .28));
+    }
+    50% {
+      transform: rotateY(16deg) rotateZ(2deg);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45)) drop-shadow(0 0 30px rgba(241, 213, 116, .18));
+    }
+    75% {
+      transform: rotateY(0deg) rotateZ(-1deg);
+      filter: drop-shadow(0 34px 68px rgba(0, 0, 0, .48)) drop-shadow(0 0 42px rgba(241, 213, 116, .28));
+    }
+    100% {
+      transform: rotateY(-16deg) rotateZ(-2deg);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45)) drop-shadow(0 0 30px rgba(241, 213, 116, .18));
+    }
+  }
+
+  @keyframes haloSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: .001ms !important;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .hero,
+    .section-head,
+    .split,
+    .tokenomics {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: 0;
+      padding-top: 1.3rem;
+    }
+
+    .coin-stage { min-height: auto; margin-top: 1.2rem; }
+    .coin-orbit { width: min(70vw, 340px); }
+    .coin-caption {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: min(92%, 19rem);
+      margin-top: -1.65rem;
+    }
+
+    .quick-grid,
+    .risk-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-shell { width: min(100% - 24px, 1180px); }
+
+    .topbar {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: .2rem;
+    }
+
+    .nav-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    h1 { font-size: clamp(3rem, 18vw, 4.6rem); }
+
+    .hero-actions,
+    .copy-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .button { width: 100%; }
+
+    .quick-grid,
+    .risk-grid,
+    .data-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .allocation-row {
+      grid-template-columns: 1fr;
+      gap: .4rem;
+    }
+
+    .allocation-meta { text-align: left; }
+
+    .legal-footer {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links { justify-content: flex-start; }
+  }
+
+  @media print {
+    body {
+      background: #fff;
+      color: #161616;
+    }
+
+    body::before,
+    .topbar,
+    .hero-actions,
+    .copy-row,
+    .coin-stage::before,
+    .coin-stage::after {
+      display: none;
+    }
+
+    .site-shell { width: 100%; padding: 0 1.4cm; }
+    .hero { min-height: 0; grid-template-columns: 1fr; }
+    .section, .legal-footer { border-color: #ddd; }
+    .fact-card, .data-item, .risk-card, .warning-panel, .callout, .quote-band, .contract-box { border-color: #ddd; background: #fff; color: #161616; }
+    .prose, .section-copy, .fact-card span, .risk-card p, .data-item span, .legal-footer { color: #333; }
+    a { color: #6e4b12; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
+  <header class="site-shell topbar">
+    <a class="brand-link" href="/">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="eager" decoding="async">
+      </span>
+      <span>Callidus A&amp;M</span>
+    </a>
+    <nav class="nav-actions" aria-label="Litepaper Navigation">
+      <a class="nav-link" href="/valus/">Valus</a>
+      <a class="nav-link" href="/krypto-hinweis/">Krypto-Hinweis</a>
+    </nav>
+  </header>
 
-  <div class="hero">
-    <span class="pill">VAL · BASE</span>
-    <h1>Valus</h1>
-    <div class="sub">Litepaper · Version 1.0 · Juni 2026</div>
-  </div>
+  <main>
+    <section class="site-shell hero" aria-labelledby="title">
+      <div>
+        <p class="kicker">Litepaper v1.0 - Juni 2026</p>
+        <h1 id="title"><span>Valus</span></h1>
+        <p class="hero-lead">
+          Valus (VAL) ist ein experimenteller Memecoin auf der <strong>Base-Blockchain</strong>.
+          Das hier ist kein Investment-Pitch, sondern die kompakte, transparente Dokumentation:
+          Tokenomics, Contract, Abgrenzung und Risiken.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#contract">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect width="14" height="10" x="5" y="11" rx="2"/><path d="M12 15v2"/></svg>
+            Contract prüfen
+          </a>
+          <a class="button" href="#risiken">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+            Risiken lesen
+          </a>
+        </div>
+      </div>
 
-  <div class="warn">
-    ⚠️ <strong>Wichtiger Hinweis — bitte zuerst lesen.</strong>
-    Valus (VAL) ist ein reiner <strong>Memecoin ohne inneren Wert, ohne Nutzen, ohne
-    Roadmap-Versprechen und ohne jegliche Gewinnerwartung</strong>. Dieses Dokument ist
-    <strong>kein</strong> Kryptowerte-Whitepaper im Sinne der EU-Verordnung MiCAR und
-    <strong>kein</strong> Wertpapierprospekt. Es stellt kein Angebot, keine Anlageberatung
-    und keine Kaufaufforderung dar. Der Erwerb von Krypto-Assets ist hochriskant und kann
-    zum <strong>Totalverlust</strong> führen.
-  </div>
+      <div class="coin-stage">
+        <div class="coin-orbit">
+          <img class="coin-image" src="/assets/valus-coin-cutout.png" alt="Goldene Valus-Münze mit großem V und Callidus-Schriftzug" width="500" height="500" loading="eager" decoding="async">
+        </div>
+        <div class="coin-caption">21.000.000 VAL - fix, experimentell, ohne Gewinnversprechen.</div>
+      </div>
+    </section>
 
-  <h2>1. Was ist Valus?</h2>
-  <p>Valus (VAL) ist ein experimenteller Community- und Spaß-Token auf der
-  <strong>Base-Blockchain</strong> (Layer-2 von Ethereum). Er dient ausschließlich
-  Unterhaltungszwecken und als digitales Maskottchen einer Community rund um das Thema
-  „Gesundheit mit einem Augenzwinkern". Er verkörpert keinen Anspruch auf Leistungen,
-  Gewinne, Dividenden oder Stimmrechte.</p>
+    <section class="site-shell quick-grid" aria-label="Kurzfassung">
+      <article class="fact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <strong>Memecoin</strong>
+        <span>Unterhaltung und Community-Symbol, kein innerer Wert und kein Anspruch auf Leistungen.</span>
+      </article>
+      <article class="fact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        <strong>Base</strong>
+        <span>ERC-20 Token auf Base, der Ethereum-Layer-2-Chain mit Chain-ID 8453.</span>
+      </article>
+      <article class="fact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        <strong>Kein Investment</strong>
+        <span>Keine Rendite, keine Dividende, keine Gewinnerwartung, keine Kaufaufforderung.</span>
+      </article>
+      <article class="fact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-5"/></svg>
+        <strong>21 Mio. fix</strong>
+        <span>Gesamtangebot 21.000.000 VAL. Kein Mint nach Deployment vorgesehen.</span>
+      </article>
+    </section>
 
-  <h2>2. Abgrenzung zum internen „VAL"-Guthaben</h2>
-  <p>Auf der Website callidus-am.de existiert ein gleichnamiges, <strong>internes
-  Rabatt-/Guthabensystem „VAL"</strong>. Dieses ist ein nicht-übertragbarer, serverseitig
-  geführter Gutscheinwert und steht in <strong>keinerlei Verbindung</strong> zum hier
-  beschriebenen Blockchain-Token. Es gibt keinen Umtausch und keinen Wertzusammenhang
-  zwischen beiden.</p>
+    <section class="section band" id="hinweis">
+      <div class="site-shell">
+        <div class="warning-panel">
+          <span class="warning-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+          </span>
+          <div>
+            <p><strong>Wichtiger Hinweis - bitte zuerst lesen.</strong></p>
+            <p>
+              Valus (VAL) ist ein reiner <strong>Memecoin ohne inneren Wert, ohne Nutzen, ohne Roadmap-Versprechen und ohne jegliche Gewinnerwartung</strong>.
+              Dieses Dokument ist <strong>kein</strong> Kryptowerte-Whitepaper im Sinne der EU-Verordnung MiCAR und <strong>kein</strong> Wertpapierprospekt.
+              Es stellt kein Angebot, keine Anlageberatung und keine Kaufaufforderung dar.
+            </p>
+            <p>Der Erwerb von Krypto-Assets ist hochriskant und kann zum <strong>Totalverlust</strong> führen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>3. Tokenomics</h2>
-  <table>
-    <thead><tr><th>Position</th><th class="num">Anteil</th><th class="num">Menge (VAL)</th></tr></thead>
-    <tbody>
-      <tr><td>Community &amp; Ökosystem</td><td class="num">40 %</td><td class="num">8.400.000</td></tr>
-      <tr><td>Firmenreserve</td><td class="num">25 %</td><td class="num">5.250.000</td></tr>
-      <tr><td>Liquidität (später)</td><td class="num">20 %</td><td class="num">4.200.000</td></tr>
-      <tr><td>Partner &amp; Kooperationen</td><td class="num">10 %</td><td class="num">2.100.000</td></tr>
-      <tr><td>Gründer / Team</td><td class="num">5 %</td><td class="num">1.050.000</td></tr>
-      <tr><td>Gesamtangebot</td><td class="num">100 %</td><td class="num">21.000.000</td></tr>
-    </tbody>
-  </table>
-  <ul>
-    <li><strong>Gesamtangebot:</strong> 21.000.000 VAL — fix. Keine weiteren Token erzeugbar (kein Mint nach Deployment).</li>
-    <li><strong>Verkaufsgebühr:</strong> Beim Start <strong>0 %</strong>. Der Smart Contract erlaubt eine optionale, technisch auf <strong>max. 10 %</strong> gedeckelte Gebühr auf DEX-Verkäufe an die Projekt-Wallet. Eine Aktivierung würde transparent kommuniziert.</li>
-  </ul>
+    <section class="section">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">01 - Einordnung</p>
+          <h2>Was ist Valus?</h2>
+        </div>
+        <p class="section-copy">
+          Kurz gesagt: ein digitales Maskottchen mit Blockchain-Adresse. Nicht mehr und nicht weniger.
+        </p>
+      </div>
+      <div class="site-shell split">
+        <div class="prose">
+          <p>
+            Valus (VAL) ist ein experimenteller Community- und Spaß-Token auf der Base-Blockchain.
+            Er dient ausschließlich Unterhaltungszwecken und als digitales Maskottchen einer Community rund um
+            das Thema Gesundheit mit einem Augenzwinkern.
+          </p>
+          <p>
+            Valus verkörpert <strong>keinen</strong> Anspruch auf Leistungen, Gewinne, Dividenden, Stimmrechte,
+            Rückzahlung, Beteiligung oder Zugriff auf Produkte von Callidus A&amp;M.
+          </p>
+        </div>
+        <aside class="callout">
+          <strong>Warum so direkt?</strong>
+          <p>Weil Transparenz bei Krypto wichtiger ist als Hype. Dieses Litepaper soll erklären, abgrenzen und Risiken sichtbar machen.</p>
+        </aside>
+      </div>
+    </section>
 
-  <h2>4. Technische Daten</h2>
-  <ul>
-    <li><strong>Blockchain:</strong> Base (EVM, Chain-ID 8453)</li>
-    <li><strong>Standard:</strong> ERC-20 · <strong>Dezimalstellen:</strong> 18</li>
-    <li><strong>Name / Kürzel:</strong> Valus / VAL</li>
-    <li><strong>Offizielle Contract-Adresse:</strong><br>
-      <span class="addr">0x5a584243E6D3f27F6bE8C055fc5fd96e1Dc41F9F</span></li>
-    <li><strong>Quellcode:</strong> öffentlich verifiziert (Sourcify, optional BaseScan)</li>
-  </ul>
-  <div class="warn">Interagiere ausschließlich mit der oben genannten offiziellen
-  Contract-Adresse. Adressen aus Nachrichten, Werbung oder unbekannten Quellen sind mit
-  höchster Vorsicht zu behandeln (Betrugs-/Fake-Token-Risiko).</div>
+    <section class="section band">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">02 - Abgrenzung</p>
+          <h2>Nicht das interne VAL-Guthaben.</h2>
+        </div>
+        <p class="section-copy">
+          Auf callidus-am.de existiert zusätzlich ein internes Rabatt- und Guthabensystem mit dem Kürzel VAL.
+          Das ist rechtlich und technisch etwas anderes.
+        </p>
+      </div>
+      <div class="site-shell split">
+        <div class="prose">
+          <p>
+            Das interne <strong>VAL-Guthaben</strong> auf dieser Website ist ein nicht übertragbarer,
+            serverseitig geführter Gutscheinwert. Es steht in <strong>keinerlei Verbindung</strong> zum
+            hier beschriebenen Blockchain-Token Valus (VAL).
+          </p>
+          <p>
+            Es gibt keinen Umtausch, keinen Wertzusammenhang und keine technische Brücke zwischen internem
+            Website-Guthaben und Blockchain-Token.
+          </p>
+        </div>
+        <div class="not-list" aria-label="Was Valus nicht ist">
+          <div class="not-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p><strong>Kein Rabattguthaben:</strong> Der Blockchain-Token kann nicht für Callidus-Produkte eingelöst werden.</p>
+          </div>
+          <div class="not-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p><strong>Kein Finanzprodukt:</strong> Kein Anteil, keine Rendite, kein Stimmrecht, kein Anspruch.</p>
+          </div>
+          <div class="not-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <p><strong>Kein Versprechen:</strong> Es gibt keine garantierte Entwicklung, Listung, Liquidität oder Nutzung.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>5. Risikohinweise</h2>
-  <ul>
-    <li><strong>Totalverlust:</strong> Kurse schwanken extrem; vollständiger Verlust jederzeit möglich.</li>
-    <li><strong>Keine Verwahrung:</strong> Das Projekt hat keinen Zugriff auf Wallet, Private Keys oder Seed Phrase. Sicherheit liegt allein bei dir.</li>
-    <li><strong>Smart-Contract-Risiko:</strong> Fehler/Lücken nicht ausschließbar. Transaktionen sind unwiderruflich.</li>
-    <li><strong>Externe Plattformen:</strong> Handel nur auf dezentralen Börsen Dritter; keine Haftung dafür.</li>
-    <li><strong>Unveränderlichkeit:</strong> Wallet-Adressen und Transaktionen werden dauerhaft öffentlich gespeichert und sind nicht löschbar.</li>
-  </ul>
+    <section class="section" id="tokenomics">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">03 - Tokenomics</p>
+          <h2>21 Millionen VAL. Fix.</h2>
+        </div>
+        <p class="section-copy">
+          Die Verteilung ist bewusst einfach gehalten. Die Grafik zeigt die geplanten Kategorien und ihre relativen Anteile.
+        </p>
+      </div>
 
-  <h2>6. Rechtliches</h2>
-  <p>Dieses Dokument begründet keine vertraglichen Ansprüche und stellt keine Finanz-,
-  Rechts- oder Steuerberatung dar. Bei Fragen wende dich an entsprechende Fachberater.</p>
-  <p><strong>Verantwortlich:</strong> Arnold Jedich · Callidus A&amp;M ·
-  Gerstenstraße 12, 86356 Neusäß · info@callidus-am.de</p>
+      <div class="site-shell tokenomics">
+        <div class="supply-dial" aria-label="Tokenomics: Community 40 Prozent, Firmenreserve 25 Prozent, Liquidität 20 Prozent, Partner 10 Prozent, Gründer und Team 5 Prozent">
+          <div class="supply-label">
+            <div>
+              <strong>21M</strong>
+              <span>VAL Supply</span>
+            </div>
+          </div>
+        </div>
 
-  <p class="meme">Valus ist ein Memecoin. Nimm ihn nicht ernster als einen Internet-Witz.</p>
+        <div class="allocation-list">
+          <div class="allocation-row">
+            <div class="allocation-name"><span class="dot" style="background:var(--gold-light)"></span>Community &amp; Ökosystem</div>
+            <div class="allocation-meta">40 % - 8.400.000 VAL</div>
+            <div class="bar"><span style="width:40%;background:var(--gold-light)"></span></div>
+          </div>
+          <div class="allocation-row">
+            <div class="allocation-name"><span class="dot" style="background:var(--blue)"></span>Firmenreserve</div>
+            <div class="allocation-meta">25 % - 5.250.000 VAL</div>
+            <div class="bar"><span style="width:25%;background:var(--blue)"></span></div>
+          </div>
+          <div class="allocation-row">
+            <div class="allocation-name"><span class="dot" style="background:var(--mint)"></span>Liquidität, später</div>
+            <div class="allocation-meta">20 % - 4.200.000 VAL</div>
+            <div class="bar"><span style="width:20%;background:var(--mint)"></span></div>
+          </div>
+          <div class="allocation-row">
+            <div class="allocation-name"><span class="dot" style="background:#d9b26a"></span>Partner &amp; Kooperationen</div>
+            <div class="allocation-meta">10 % - 2.100.000 VAL</div>
+            <div class="bar"><span style="width:10%;background:#d9b26a"></span></div>
+          </div>
+          <div class="allocation-row">
+            <div class="allocation-name"><span class="dot" style="background:var(--coral)"></span>Gründer / Team</div>
+            <div class="allocation-meta">5 % - 1.050.000 VAL</div>
+            <div class="bar"><span style="width:5%;background:var(--coral)"></span></div>
+          </div>
+        </div>
+      </div>
 
-  <div class="foot">© 2026 Callidus A&amp;M · Valus (VAL) Litepaper v1.0</div>
-</div>
+      <div class="site-shell" style="margin-top:2rem">
+        <div class="callout">
+          <strong>Gebührenhinweis</strong>
+          <p>
+            Beim Start beträgt die Verkaufsgebühr 0 %. Der Smart Contract erlaubt eine optionale,
+            technisch auf maximal 10 % gedeckelte Gebühr auf DEX-Verkäufe an die Projekt-Wallet.
+            Eine Aktivierung würde transparent kommuniziert.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="contract">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">04 - Technische Daten</p>
+          <h2>Adresse prüfen, dann erst interagieren.</h2>
+        </div>
+        <p class="section-copy">
+          Bei Memecoins ist die Contract-Adresse wichtiger als jedes Logo. Fake-Token können ähnlich aussehen.
+        </p>
+      </div>
+      <div class="site-shell split">
+        <div class="data-grid">
+          <div class="data-item"><span>Blockchain</span><strong>Base</strong></div>
+          <div class="data-item"><span>Chain-ID</span><strong>8453</strong></div>
+          <div class="data-item"><span>Standard</span><strong>ERC-20</strong></div>
+          <div class="data-item"><span>Dezimalstellen</span><strong>18</strong></div>
+          <div class="data-item"><span>Name</span><strong>Valus</strong></div>
+          <div class="data-item"><span>Kürzel</span><strong>VAL</strong></div>
+        </div>
+        <div>
+          <div class="contract-box">
+            <p class="eyebrow">Offizielle Contract-Adresse</p>
+            <code class="contract-address" id="contract-address">0x5a584243E6D3f27F6bE8C055fc5fd96e1Dc41F9F</code>
+            <div class="copy-row">
+              <button class="button" type="button" id="copy-contract">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Adresse kopieren
+              </button>
+              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <p class="section-copy" style="margin-top:1rem">
+            Der Quellcode ist öffentlich verifiziert, etwa über Sourcify und optional BaseScan. Interagiere ausschließlich mit dieser Adresse.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="risiken">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">05 - Risiken</p>
+          <h2>Der Witz kann teuer werden.</h2>
+        </div>
+        <p class="section-copy">
+          Wer mit Krypto-Assets interagiert, trägt das volle Risiko selbst. Diese Punkte sind nicht dekorativ, sondern wesentlich.
+        </p>
+      </div>
+
+      <div class="site-shell risk-grid">
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <strong>Totalverlust</strong>
+          <p>Kurse können extrem schwanken. Ein vollständiger Verlust ist jederzeit möglich.</p>
+        </article>
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2 2 21"/><path d="M7 7a5 5 0 0 1 7 7"/><path d="M17.7 10.7A10 10 0 0 1 22 12s-3.5 7-10 7c-1.6 0-3-.4-4.3-1"/><path d="M3.3 5.3A10.6 10.6 0 0 0 2 12s1.2 2.4 3.4 4.3"/></svg>
+          <strong>Keine Verwahrung</strong>
+          <p>Das Projekt hat keinen Zugriff auf Wallet, Private Keys oder Seed Phrase. Sicherheit liegt bei dir.</p>
+        </article>
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18 22 12 16 6"/><path d="M8 6 2 12l6 6"/><path d="m14 4-4 16"/></svg>
+          <strong>Smart-Contract-Risiko</strong>
+          <p>Fehler oder Lücken können nicht ausgeschlossen werden. Transaktionen sind unwiderruflich.</p>
+        </article>
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9-9"/><path d="M20 13a9 9 0 0 1-9 9"/><path d="M4 4v7h7"/><path d="M20 20v-7h-7"/></svg>
+          <strong>Externe Plattformen</strong>
+          <p>Handel findet nur auf dezentralen Börsen Dritter statt. Dafür wird keine Haftung übernommen.</p>
+        </article>
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-2-2h-4l-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
+          <strong>Öffentliche Daten</strong>
+          <p>Wallet-Adressen und Transaktionen werden dauerhaft öffentlich gespeichert und sind nicht löschbar.</p>
+        </article>
+        <article class="risk-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 3a9 9 0 1 0 9 9"/><path d="M19 3v6h-6"/></svg>
+          <strong>Fake-Token-Risiko</strong>
+          <p>Verwende nur die offizielle Contract-Adresse. Nachrichten, Ads oder fremde Links können betrügerisch sein.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="site-shell quote-band">
+        <p>Valus ist ein Memecoin. Nimm ihn nicht ernster als einen Internet-Witz - und schon gar nicht als Investment.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-shell section-head">
+        <div>
+          <p class="eyebrow">06 - Rechtliches</p>
+          <h2>Kein Prospekt. Keine Beratung.</h2>
+        </div>
+        <p class="section-copy">
+          Dieses Dokument begründet keine vertraglichen Ansprüche und stellt keine Finanz-, Rechts- oder Steuerberatung dar.
+        </p>
+      </div>
+      <div class="site-shell prose">
+        <p>
+          Bei Fragen zu steuerlichen, rechtlichen oder finanziellen Auswirkungen wende dich an entsprechend qualifizierte Fachberater.
+          Callidus A&amp;M übernimmt keine Haftung für Entscheidungen, die auf Basis dieses Dokuments oder externer Informationen getroffen werden.
+        </p>
+        <p>
+          <strong>Verantwortlich:</strong> Arnold Jedich - Callidus A&amp;M - Gerstenstraße 12, 86356 Neusäß - info@callidus-am.de
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-shell legal-footer">
+    <div>© 2026 Callidus A&amp;M - Valus (VAL) Litepaper v1.0</div>
+    <div class="footer-links">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+      <a href="/krypto-hinweis/">Krypto-Hinweis</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const copyButton = document.getElementById('copy-contract');
+      const address = document.getElementById('contract-address')?.textContent?.trim();
+      const feedback = document.getElementById('copy-feedback');
+
+      if (!copyButton || !address || !feedback) return;
+
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(address);
+          feedback.textContent = 'Kopiert.';
+        } catch {
+          feedback.textContent = 'Adresse bitte manuell markieren.';
+        }
+
+        window.setTimeout(() => {
+          feedback.textContent = '';
+        }, 2400);
+      });
+    })();
+  </script>
 </body>
 </html>
