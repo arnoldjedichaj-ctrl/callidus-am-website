@@ -19,7 +19,7 @@ const CALLABLE_CORS = [
   "http://127.0.0.1:4321",
   "http://localhost:4321",
 ];
-const XP_PER_VALUS = 1000;
+const XP_PER_VALUS = 10000;
 const MONTHLY_VALUS_LIMIT = 10;
 
 const PLAN_SCHEMA = {

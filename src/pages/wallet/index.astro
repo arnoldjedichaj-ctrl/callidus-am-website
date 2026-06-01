@@ -90,7 +90,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="wallet-card balance-card">
             <span class="balance-label">XP-Punkte</span>
             <span class="balance-amount" id="xp-balance">—</span>
-            <span class="balance-sub">1000 XP → 1 VAL</span>
+            <span class="balance-sub">10000 XP → 1 VAL</span>
           </div>
         </div>
         <p id="balance-error" class="form-error wallet-balance-error" hidden></p>
@@ -160,9 +160,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <!-- XP UMWANDELN -->
         <div class="wallet-card" data-reveal style="margin-top:1.5rem">
           <h3 style="margin:0 0 .5rem">XP in VAL umwandeln</h3>
-          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">1000 XP = 1 VAL · Max. 10 VAL pro Monat</p>
+          <p class="muted" style="font-size:.9rem;margin-bottom:1rem">10000 XP = 1 VAL · Max. 10 VAL pro Monat</p>
           <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-            <input type="number" id="xp-convert-amount" min="1000" max="10000" step="1000" value="1000" style="width:120px" />
+            <input type="number" id="xp-convert-amount" min="10000" max="100000" step="10000" value="10000" style="width:120px" />
             <span class="muted" style="font-size:.875rem">XP → <strong id="xp-convert-preview">1 VAL</strong></span>
             <button id="btn-xp-convert" class="button">Umwandeln</button>
           </div>
@@ -297,7 +297,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         if (!input || !preview) return;
         input.addEventListener('input', () => {
           const xp = parseInt(input.value) || 0;
-          preview.textContent = `${Math.floor(xp / 1000)} VAL`;
+          preview.textContent = `${Math.floor(xp / 10000)} VAL`;
         });
       };
 
@@ -584,9 +584,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         $('btn-xp-convert')?.addEventListener('click', async () => {
           setError('xp-error', '');
           const xpAmount = parseInt($('xp-convert-amount')?.value || '0');
-          if (xpAmount < 1000) { setError('xp-error', 'Minimum 1000 XP.'); return; }
-          if (xpAmount % 1000 !== 0) { setError('xp-error', 'Bitte in 1000-XP-Schritten umwandeln.'); return; }
-          const valusAmount = Math.floor(xpAmount / 1000);
+          if (xpAmount < 10000) { setError('xp-error', 'Minimum 10000 XP.'); return; }
+          if (xpAmount % 10000 !== 0) { setError('xp-error', 'Bitte in 10000-XP-Schritten umwandeln.'); return; }
+          const valusAmount = Math.floor(xpAmount / 10000);
           if (!window.confirm(`${xpAmount} NEXUS-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) return;
           try {
             const fn = httpsCallable(fns, 'convertNexusXpToValus');

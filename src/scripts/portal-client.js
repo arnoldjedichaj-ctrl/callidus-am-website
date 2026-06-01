@@ -27,7 +27,7 @@ function bootPortal() {
     saving: false,
     dirty: false,
   };
-  const XP_PER_VALUS = 1000;
+  const XP_PER_VALUS = 10000;
 
   const $ = (id) => document.getElementById(id);
   const text = (id, value) => {
