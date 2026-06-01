@@ -35,7 +35,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <span class="val-pill">VAL</span>
             <span>Valus · Guthaben-System</span>
           </div>
-          <h1 class="val-h1">Gesundheit,<br/>die sich<br/><em>auszahlt.</em></h1>
+          <h1 class="val-h1">Gesundheit,<br/>die sich<br/><em>lohnt.</em></h1>
           <p class="val-claim">
             Valus (VAL) ist das Wert-System von callidus A&M.<br/>
             <strong>1 VAL = 1,00 € Rabatt</strong> auf Kurse, Premium und mehr.
@@ -97,7 +97,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div class="val-card-num">01</div>
           <h3>Kaufen</h3>
-          <p>Erwerbe VAL-Pakete direkt über Digistore24. Der Kaufpreis liegt <strong>unter dem Einlösewert</strong> — du kaufst mit sofortigem Gewinn.</p>
+          <p>Erwerbe VAL-Pakete direkt über Digistore24. Der Kaufpreis liegt <strong>unter dem Einlösewert</strong> — so sparst du bei jeder Einlösung.</p>
           <div class="val-table">
             <div class="val-row"><span>10 VAL</span><span class="val-price-buy">7,50 €</span><span class="val-price-val">→ 10 € Wert</span></div>
             <div class="val-row"><span>25 VAL</span><span class="val-price-buy">18,75 €</span><span class="val-price-val">→ 25 € Wert</span></div>
@@ -258,8 +258,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
         </div>
       </div>
+
+      <!-- Neutraler, versprechensfreier Hinweis auf den unabhängigen Blockchain-Token -->
+      <div class="val-coin-disclaimer" data-reveal="4">
+        <p>
+          <strong>Hinweis:</strong> Unabhängig vom hier beschriebenen VAL-Guthaben existiert ein
+          separater, experimenteller Blockchain-Token namens „Valus“ (VAL) auf der Base-Blockchain.
+          Dieser Token steht in <strong>keinerlei Verbindung</strong> zum internen VAL-Guthaben,
+          ist <strong>kein Investment</strong> und beinhaltet keinerlei Gewinnversprechen.
+          Der Handel mit Krypto-Assets erfolgt ausschließlich über externe Plattformen Dritter und
+          ist hochriskant bis hin zum Totalverlust. Details:
+          <a href="/valus-litepaper.html">Litepaper</a> ·
+          <a href="/krypto-hinweis/">Krypto-Hinweis &amp; Haftungsausschluss</a>.
+        </p>
+      </div>
     </div>
   </section>
+
+  <style>
+    .val-coin-disclaimer {
+      margin-top: 2rem;
+      font-size: .82rem;
+      line-height: 1.6;
+      color: var(--muted);
+      background: rgba(var(--valus-gold-rgb),.05);
+      border: 1px solid rgba(var(--valus-gold-rgb),.18);
+      border-radius: .75rem;
+      padding: 1rem 1.25rem;
+    }
+    .val-coin-disclaimer a { color: var(--valus-gold); font-weight: 600; }
+  </style>
 
   <!-- ═══════════════════════════════════════════════════════════
        CTA
