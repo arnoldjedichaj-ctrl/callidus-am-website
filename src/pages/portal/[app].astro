@@ -45,7 +45,7 @@ const titles = listTitles[app.id] || listTitles.nexus;
             ))}
           </nav>
           <div class="portal-app-titlebar" style="margin-bottom:2rem">
-            <img src={app.icon} alt="" width="96" height="96" loading="lazy" style="opacity:.6" />
+            <img class={app.id === 'kairos' ? 'portal-app-title-logo-kairos' : undefined} src={app.icon} alt="" width={app.id === 'kairos' ? 160 : 96} height="96" loading="lazy" style="opacity:.6" />
             <div>
               <p class="eyebrow">{app.eyebrow}</p>
               <h1>{app.name}</h1>
@@ -66,7 +66,7 @@ const titles = listTitles[app.id] || listTitles.nexus;
       <PortalGate firebaseConfig={firebaseConfig} view="app" app={app.id}>
         <div class="portal-hero" data-reveal>
           <div class="portal-app-titlebar">
-            <img src={app.icon} alt="" width="96" height="96" loading="eager" />
+            <img class={app.id === 'kairos' ? 'portal-app-title-logo-kairos' : undefined} src={app.icon} alt="" width={app.id === 'kairos' ? 160 : 96} height="96" loading="eager" />
             <div>
               <p class="eyebrow">{app.eyebrow}</p>
               <h1>{app.name}</h1>
