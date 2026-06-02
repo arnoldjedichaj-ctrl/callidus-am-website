@@ -2,6 +2,6 @@
   "title": "Callidus App-Handbücher",
   "description": "Benutzerhandbücher für NEXUS und MOMUS, eingebunden aus der bereitgestellten HTML-Datei.",
   "sourceFile": "C:/Users/marga/Callidus Handbuch.html",
-  "publicPath": "/handbuch/callidus-handbuch.html",
+  "publicPath": "/handbuch/callidus-handbuch.html?v=kairos-sidebar-20260602",
   "apps": ["NEXUS", "MOMUS", "KAIROS"]
 }
