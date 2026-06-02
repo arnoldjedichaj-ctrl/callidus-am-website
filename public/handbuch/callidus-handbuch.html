@@ -619,13 +619,37 @@ strong { color: rgba(232,240,234,.95); font-weight: 700; }
 .app-tab.kairos-tab.active span { color: #8b5cf6; }
 .app-tab.kairos-tab.active img { box-shadow: 0 0 0 2px rgba(139,92,246,.5); }
 
-.sidebar-body.kairos-bg { background: #f5f7e9; }
-.sidebar-body.kairos-bg .sidebar-search input { background: rgba(139,92,246,.08); }
+.sidebar-body.kairos-bg {
+  background: #f5f7e9;
+  scrollbar-color: rgba(139,92,246,.34) transparent;
+}
+.sidebar-body.kairos-bg .sidebar-search {
+  border-bottom-color: rgba(38,48,38,.1);
+}
+.sidebar-body.kairos-bg .sidebar-search input {
+  background: rgba(139,92,246,.08);
+  border-color: rgba(139,92,246,.18);
+  color: #263026;
+}
 .sidebar-body.kairos-bg .sidebar-search input:focus { border-color: rgba(139,92,246,.4); }
+.sidebar-body.kairos-bg .sidebar-search input::placeholder { color: rgba(38,48,38,.46); }
+.sidebar-body.kairos-bg .search-ico { color: rgba(38,48,38,.44); }
+.sidebar-body.kairos-bg #navKairos .nav-link { color: rgba(38,48,38,.72); }
+.sidebar-body.kairos-bg #navKairos .nav-link:hover {
+  color: #263026;
+  background: rgba(139,92,246,.08);
+}
+.sidebar-body.kairos-bg #navKairos .nav-num { color: rgba(38,48,38,.42); }
 
 .nav-section-label.kairos-accent { color: rgba(139,92,246,.6); }
 .nav-link.active-kairos { color: #8b5cf6; border-left-color: #8b5cf6; background: rgba(139,92,246,.07); font-weight: 700; }
 .nav-link.active-kairos .nav-num { color: rgba(139,92,246,.5); }
+.sidebar-body.kairos-bg #navKairos .nav-link.active-kairos {
+  color: #8b5cf6;
+  border-left-color: #8b5cf6;
+  background: rgba(139,92,246,.1);
+}
+.sidebar-body.kairos-bg #navKairos .nav-link.active-kairos .nav-num { color: rgba(139,92,246,.62); }
 
 .kairos-cover {
   background: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(139,92,246,.15) 0%, transparent 65%),
