@@ -1,4 +1,4 @@
-const { onCall, HttpsError } = require("firebase-functions/v2/https");
+﻿const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const functionsV1 = require("firebase-functions/v1");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
@@ -515,7 +515,7 @@ async function callGeminiText({ apiKey, model, prompt }) {
 
 const CHAT_STOPWORDS = new Set([
   "aber", "alle", "also", "auch", "auf", "aus", "bei", "bin", "bitte", "das", "dass", "den", "der", "die", "dir",
-  "ein", "eine", "einem", "einen", "er", "es", "für", "gibt", "habe", "hat", "ich", "im", "in", "ist", "kann",
+  "ein", "eine", "einem", "einen", "er", "es", "fÃ¼r", "gibt", "habe", "hat", "ich", "im", "in", "ist", "kann",
   "mein", "meine", "mit", "nach", "nicht", "oder", "sich", "sie", "sind", "und", "was", "wenn", "wie", "wir",
   "zu", "zum", "zur",
 ]);
@@ -540,13 +540,35 @@ function searchTokens(value) {
 function scoreKnowledgeEntry(tokens, entry, pagePath) {
   const title = normalizeSearch(entry.title);
   const topics = normalizeSearch((entry.topics || []).join(" "));
+  const keywords = normalizeSearch((entry.keywords || []).join(" "));
+  const summary = normalizeSearch(entry.summary);
   const body = normalizeSearch(entry.text);
+  const wantsVideo = tokens.some((token) => ["video", "videos", "film", "filme", "youtube"].includes(token));
+  const wantsProduct = tokens.some((token) => ["produkt", "produkte", "affiliate", "empfehlung", "shop"].includes(token));
+  const intentTokens = new Set(["video", "videos", "film", "filme", "youtube", "produkt", "produkte", "affiliate", "empfehlung", "shop"]);
   let score = entry.path && pagePath && entry.path === pagePath ? 8 : 0;
+  let contentScore = 0;
   tokens.forEach((token) => {
-    if (title.includes(token)) score += 5;
-    if (topics.includes(token)) score += 4;
-    if (body.includes(token)) score += 1;
+    if (intentTokens.has(token)) return;
+    let tokenScore = 0;
+    if (title.includes(token)) tokenScore += 5;
+    if (topics.includes(token)) tokenScore += 4;
+    if (keywords.includes(token)) tokenScore += 4;
+    if (summary.includes(token)) tokenScore += 2;
+    if (body.includes(token)) tokenScore += 1;
+    score += tokenScore;
+    contentScore += tokenScore;
   });
+  if (wantsVideo) {
+    if (entry.kind === "video-card" && contentScore > 0) score += 12;
+    if (entry.kind === "supplement-card" && contentScore > 0 && (keywords.includes("video") || body.includes("passendes video"))) score += 10;
+    if (entry.kind === "knowledge-hub" && body.includes("video")) score += 4;
+    if (entry.kind === "affiliate-product" && !body.includes("video")) score -= 4;
+  }
+  if (wantsProduct) {
+    if (entry.kind === "affiliate-product" && contentScore > 0) score += 10;
+    if (entry.kind === "supplement-card" && contentScore > 0 && body.includes("produktempfehlung")) score += 3;
+  }
   return score;
 }
 
@@ -567,10 +589,19 @@ function sourceKey(source) {
 function collectChatSources(entries) {
   const sources = [];
   entries.slice(0, 4).forEach((entry) => {
+    const type = entry.kind === "affiliate-product"
+      ? "Produkt"
+      : entry.kind === "supplement-card"
+        ? "Gesundheits-Wissen"
+        : entry.kind === "knowledge-hub"
+          ? "Callidus"
+          : entry.app === "momus"
+            ? "Callidus Satire"
+            : "Callidus";
     sources.push({
       title: entry.title,
       url: entry.path,
-      type: entry.app === "momus" ? "Callidus Satire" : "Callidus",
+      type,
     });
   });
   entries.flatMap((entry) => entry.sourceIds || []).forEach((id) => {
@@ -605,12 +636,12 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
   const historyText = history.map((item) => `${item.role}: ${item.text}`).join("\n");
   return [
     "Du bist der Callidus Assistent auf callidus-am.de.",
-    "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 Wörter.",
-    "Nutze ausschließlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
-    "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche Abklärung.",
+    "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 WÃ¶rter.",
+    "Nutze ausschlieÃŸlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
+    "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche AbklÃ¤rung.",
     "Gesundheitsgrenzen: keine Diagnose, keine Therapieanweisung, keine individuelle Dosierung. Bei akuten oder starken Beschwerden professionelle Hilfe empfehlen.",
     "MOMUS-Inhalte immer als Satire oder Mindset-Spiegel kennzeichnen.",
-    "Nenne am Ende nicht alle Links im Fließtext; die Oberfläche zeigt Quellen separat.",
+    "Nenne am Ende nicht alle Links im FlieÃŸtext; die OberflÃ¤che zeigt Quellen separat.",
     historyText ? `Bisheriger Chat:\n${historyText}` : "",
     `Callidus-Kontext:\n${context || "Kein passender Kontext gefunden."}`,
     `Quellenliste:\n${sourceList || "Keine externen Quellen."}`,
@@ -620,12 +651,12 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
 
 function fallbackChatAnswer(entries) {
   if (!entries.length) {
-    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
+    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, MikronÃ¤hrstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
   }
   const lead = entries[0];
   const related = entries.slice(1, 3).map((entry) => entry.title).join(", ");
   return [
-    `In der Callidus-Wissensbasis passt dazu vor allem „${lead.title}“.`,
+    `In der Callidus-Wissensbasis passt dazu vor allem â€ž${lead.title}â€œ.`,
     lead.text,
     related ? `Auch relevant: ${related}.` : "",
     "Das ist Orientierung und ersetzt keine medizinische Beratung oder Laborwerte.",
@@ -643,7 +674,7 @@ async function enforcePublicChatRate(sessionId) {
   const snap = await ref.get();
   const count = snap.exists ? Number(snap.data().count || 0) : 0;
   if (count >= 30) {
-    throw new HttpsError("resource-exhausted", "Bitte später erneut fragen. Das Tageslimit für diesen Browser ist erreicht.");
+    throw new HttpsError("resource-exhausted", "Bitte spÃ¤ter erneut fragen. Das Tageslimit fÃ¼r diesen Browser ist erreicht.");
   }
   await ref.set({
     count: FieldValue.increment(1),
@@ -655,10 +686,10 @@ async function enforcePublicChatRate(sessionId) {
 function safetyAnswerFor(message) {
   const text = normalizeSearch(message);
   if (/(suizid|selbstmord|selbstverletz|nicht mehr leben|leben beenden|akute gefahr)/.test(text)) {
-    return "Das klingt akut belastend. Bitte suche jetzt direkte Hilfe: in Deutschland 112 bei unmittelbarer Gefahr oder den ärztlichen Bereitschaftsdienst 116117. Wenn Selbstgefährdung im Raum steht, bleib bitte nicht allein und kontaktiere sofort eine vertraute Person oder professionelle Hilfe.";
+    return "Das klingt akut belastend. Bitte suche jetzt direkte Hilfe: in Deutschland 112 bei unmittelbarer Gefahr oder den Ã¤rztlichen Bereitschaftsdienst 116117. Wenn SelbstgefÃ¤hrdung im Raum steht, bleib bitte nicht allein und kontaktiere sofort eine vertraute Person oder professionelle Hilfe.";
   }
-  if (/(brustschmerz|brustdruck|atemnot|ohnmacht|schlaganfall|laehmung|lähmung|starke blutung|vergiftung)/.test(text)) {
-    return "Bei solchen akuten oder potenziell ernsten Beschwerden ist eine Website nicht der richtige Ort für Abklärung. Bitte nutze umgehend medizinische Hilfe, bei Notfällen die 112.";
+  if (/(brustschmerz|brustdruck|atemnot|ohnmacht|schlaganfall|laehmung|lÃ¤hmung|starke blutung|vergiftung)/.test(text)) {
+    return "Bei solchen akuten oder potenziell ernsten Beschwerden ist eine Website nicht der richtige Ort fÃ¼r AbklÃ¤rung. Bitte nutze umgehend medizinische Hilfe, bei NotfÃ¤llen die 112.";
   }
   return "";
 }
@@ -1361,3 +1392,4 @@ exports.askCallidus = onCall(
     }
   },
 );
+

@@ -563,7 +563,7 @@ const articleJsonLd = article ? {
                             ))}
                           </div>
                         </div>
-                        <a class="button" href="/videothek/">Zur Videothek</a>
+                        <a class="button" href={video.supplementCardId ? `/wissenskarten/#wissen-${video.supplementCardId}` : '/wissenskarten/'}>Zum Gesundheits-Wissen</a>
                       </div>
                     </article>
                   ))}

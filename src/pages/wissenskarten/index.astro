@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import cards from '../../data/supplement-cards.json';
+import videos from '../../data/videos.json';
 
-const title = 'Supplement Wissenskarten – callidus A&M';
-const description = 'Kompakte Steckbriefe zu über 30 Nahrungsergänzungsmitteln: Wirkung, Dosierung, beste Form, Kombinationen und Kontraindikationen auf einen Blick.';
+const title = 'Gesundheits-Wissen: Supplemente, Videos & Empfehlungen – callidus A&M';
+const description = 'Kompakte Gesundheitskarten zu Nahrungsergänzungsmitteln mit Wirkung, Dosierung, wissenschaftlichem Stand, passenden Videos und Empfehlungen auf einen Blick.';
+const videosByCard = new Map(
+  videos
+    .filter((video) => video.supplementCardId)
+    .map((video) => [video.supplementCardId, video])
+);
+const sourceLabel = (count: number) => `${count} ${count === 1 ? 'Quelle' : 'Studien'}`;
 
 const accentColors: Record<string, string> = {
   mint:  'rgba(63,127,90,.18)',
@@ -19,11 +26,12 @@ const accentColors: Record<string, string> = {
   <section class="section wk-hero">
     <div class="container">
       <div data-reveal>
-        <p class="eyebrow">Supplement Bibliothek</p>
-        <h1>Wissenskarten</h1>
+        <p class="eyebrow">Gesundheits-Wissen</p>
+        <h1>Supplemente verstehen. Video, Steckbrief und Empfehlung an einem Ort.</h1>
         <p class="lede">
-          Strukturiertes Wissen zu den wichtigsten Nahrungsergänzungsmitteln –
-          Wirkung, Dosierung, beste Form und Wechselwirkungen auf einen Blick.
+          Strukturiertes Wissen zu den wichtigsten Nahrungsergänzungsmitteln:
+          Wirkung, Dosierung, beste Form, Wechselwirkungen, passende Deep-Dives
+          und Produkthinweise in einem zusammenhängenden Bereich.
         </p>
       </div>
 
@@ -59,12 +67,15 @@ const accentColors: Record<string, string> = {
   <section class="section wk-section">
     <div class="wk-track-outer" id="wk-track-outer">
       <div class="wk-track" id="wk-track">
-        {cards.map((card) => (
+        {cards.map((card) => {
+          const cardVideo = videosByCard.get(card.id);
+          return (
           <article
             class={`wk-card accent-${card.accent}`}
             data-category={card.category}
-            data-search={`${card.name} ${card.subtitle} ${card.summary} ${card.category} ${card.wirkung.join(' ')}`}
+            data-search={`${card.name} ${card.subtitle} ${card.summary} ${card.category} ${card.wirkung.join(' ')} ${card.affiliate_provider || ''} ${cardVideo ? `${cardVideo.title} ${cardVideo.summary} ${cardVideo.keywords?.join(' ') || ''}` : ''}`}
             data-id={card.id}
+            id={`wissen-${card.id}`}
           >
             <!-- Card visual header -->
             <div class="wk-visual" style={`background: linear-gradient(145deg, ${accentColors[card.accent] ?? 'rgba(131,137,97,.15)'}, transparent 70%);`}>
@@ -140,6 +151,36 @@ const accentColors: Record<string, string> = {
                   <p class="wk-dt wk-dt-science">{card.wissenschaft}</p>
                 </div>
 
+                {cardVideo && (
+                  <div class="wk-video-block">
+                    <div class="article-video-thumb" data-video-embed data-youtube-id={cardVideo.youtubeId} data-title={cardVideo.title}>
+                      <img src={cardVideo.thumbnail} alt="" loading="lazy" decoding="async" />
+                      <div class="video-frame-overlay">
+                        <span class="video-status-pill">{cardVideo.youtubeId ? 'Video laden' : cardVideo.statusLabel}</span>
+                        <strong>{cardVideo.youtubeId ? 'YouTube datenschutzfreundlich laden' : 'Deep-Dive ist vorbereitet'}</strong>
+                        <p>{cardVideo.youtubeId ? 'Erst nach Zustimmung wird eine Verbindung zu YouTube aufgebaut.' : 'Nach dem Upload wird hier die YouTube-ID ergänzt.'}</p>
+                        {cardVideo.youtubeId && <button class="button primary video-consent-load" type="button" data-load-youtube>Video laden</button>}
+                      </div>
+                    </div>
+                    <div class="wk-video-copy">
+                      <span class="badge gold">{cardVideo.topicType}</span>
+                      <h3>{cardVideo.title}</h3>
+                      <p>{cardVideo.summary}</p>
+                      <div class="video-evidence compact">
+                        <strong>Quellen: {sourceLabel(cardVideo.sources?.length || 0)}</strong>
+                        <div class="video-source-links">
+                          {cardVideo.sources?.map((source) => (
+                            <a href={source.url} target="_blank" rel="noopener">
+                              <span>{source.type}</span>
+                              <b>{source.publisher}</b>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {card.affiliate_url && (
                   <div class="wk-cta-row">
                     <a
@@ -162,7 +203,8 @@ const accentColors: Record<string, string> = {
               </div>
             </div>
           </article>
-        ))}
+          );
+        })}
 
         <!-- Empty state -->
         <div class="wk-empty" id="wk-empty" hidden>
@@ -184,7 +226,7 @@ const accentColors: Record<string, string> = {
     </div>
     <p class="wk-hint">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-      Ziehen, scrollen oder Pfeile · Karte anklicken für vollständigen Steckbrief
+      Ziehen, scrollen oder Pfeile · Karte anklicken für vollständigen Gesundheits-Steckbrief
     </p>
   </section>
 
@@ -503,6 +545,42 @@ const accentColors: Record<string, string> = {
   font-size: .8rem;
 }
 
+.wk-video-block {
+  display: grid;
+  grid-template-columns: minmax(260px, .95fr) minmax(0, 1.05fr);
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(var(--gold-rgb), .26);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(var(--gold-rgb), .11), rgba(var(--mint-rgb), .055));
+}
+.wk-video-block .article-video-thumb {
+  min-height: 13rem;
+}
+.wk-video-copy {
+  display: grid;
+  align-content: start;
+  gap: .7rem;
+}
+.wk-video-copy h3,
+.wk-video-copy p {
+  margin: 0;
+}
+.wk-video-copy h3 {
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  line-height: 1.15;
+}
+.wk-video-copy p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+@media (max-width: 720px) {
+  .wk-video-block {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* CTA row */
 .wk-cta-row { margin-top: .5rem; margin-bottom: .5rem; }
 .wk-affiliate-btn {
@@ -629,6 +707,45 @@ const accentColors: Record<string, string> = {
 
 <script is:inline>
 (() => {
+  const setupVideoEmbeds = () => {
+    const consentStore = window.callidusCookieConsent;
+    const canLoadExternal = () => {
+      try {
+        return consentStore?.get?.() === 'accepted';
+      } catch (_) {
+        return false;
+      }
+    };
+    document.querySelectorAll('[data-video-embed]').forEach((wrapper) => {
+      if (wrapper.dataset.videoReady === 'true') return;
+      wrapper.dataset.videoReady = 'true';
+      const youtubeId = wrapper.dataset.youtubeId;
+      const title = wrapper.dataset.title || 'Callidus Video';
+      if (!youtubeId) return;
+      const loadVideo = () => {
+        if (wrapper.dataset.loaded === 'true') return;
+        wrapper.dataset.loaded = 'true';
+        wrapper.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+        iframe.title = title;
+        iframe.loading = 'lazy';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        wrapper.append(iframe);
+      };
+      if (canLoadExternal()) {
+        loadVideo();
+        return;
+      }
+      wrapper.querySelector('[data-load-youtube]')?.addEventListener('click', () => {
+        consentStore?.set?.('accepted');
+        loadVideo();
+      });
+    });
+  };
+  setupVideoEmbeds();
+
   /* ── DOM refs ───────────────────────────────────────────────── */
   const outer    = document.getElementById('wk-track-outer');
   const track    = document.getElementById('wk-track');
@@ -834,6 +951,7 @@ const accentColors: Record<string, string> = {
 
   /* ── ASTRO PAGE LOAD ────────────────────────────────────────── */
   document.addEventListener('astro:page-load', () => {
+    setupVideoEmbeds();
     allCards     = Array.from(track.querySelectorAll('.wk-card'));
     visibleCards = [...allCards];
     currentIndex = 0;

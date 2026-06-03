@@ -31,7 +31,7 @@ const description = `Kuratierte Empfehlungen im Bereich ${category.title} von ca
     <div class="container">
       <div class="product-grid">
         {products.map((item, index) => (
-          <article class="card product-card" data-reveal={String((index % 3) + 1)}>
+          <article class="card product-card" id={`produkt-${item.id}`} data-reveal={String((index % 3) + 1)}>
             <div class="card-body">
               <span class={`badge ${item.accent}`}>{item.provider}</span>
               <h2>{item.title}</h2>

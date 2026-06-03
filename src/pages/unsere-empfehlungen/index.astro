@@ -78,6 +78,7 @@ const providers = [...new Set(recommendations.products.map((item) => item.provid
         {recommendations.products.map((item, index) => (
           <article
             class="card product-card"
+            id={`produkt-${item.id}`}
             data-recommendation-card
             data-category={item.category}
             data-provider={item.provider}

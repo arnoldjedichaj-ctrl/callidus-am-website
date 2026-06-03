@@ -1384,7 +1384,7 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
   .home-check-panel { grid-template-columns: 1fr; }
   .home-check-actions { justify-content: flex-start; }
   .hero, .split { grid-template-columns: 1fr; min-height: auto; }
-  .article-layout, .legal-layout, .article-video-card, .videothek-hero { grid-template-columns: 1fr; }
+  .article-layout, .legal-layout, .article-video-card { grid-template-columns: 1fr; }
   .filter-panel, .app-cards { grid-template-columns: 1fr; }
   .toc { position: static; }
   h1 { max-width: 12ch; }
@@ -1955,15 +1955,6 @@ html[data-theme="dark"] .check-knowledge-list article { background: rgba(255,255
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: .9rem;
 }
-.videothek-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, .58fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: center;
-}
-.videothek-hero h1 {
-  max-width: 12ch;
-}
 .video-metrics {
   display: grid;
   gap: .75rem;
@@ -1982,12 +1973,6 @@ html[data-theme="dark"] .check-knowledge-list article { background: rgba(255,255
 .video-metrics span {
   color: var(--muted);
   font-weight: 850;
-}
-.videothek-category-grid {
-  margin-top: 1.4rem;
-}
-.videothek-filter {
-  margin-bottom: 1rem;
 }
 .video-grid {
   display: grid;
@@ -2114,9 +2099,6 @@ html[data-theme="dark"] .check-knowledge-list article { background: rgba(255,255
   padding: 1rem;
   text-align: center;
   background: var(--panel);
-}
-.videothek-notice {
-  margin-top: 1.5rem;
 }
 .video-evidence.compact {
   padding: .75rem;
