@@ -6,6 +6,7 @@ import specialPages from '../data/special-pages.json';
 import legalPages from '../data/legal-pages.json';
 import articleSources from '../data/article-sources.json';
 import knowledgeSources from '../data/knowledge-sources.json';
+import videos from '../data/videos.json';
 import structure from '../data/site-structure.json';
 import { categoryForLang } from '../data/i18n.js';
 import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
@@ -125,6 +126,9 @@ export function getStaticPaths() {
 
 const { page } = Astro.props;
 const article = articles.find((item) => item.slug === page.slug);
+const articleVideos = article
+  ? videos.filter((video) => video.status !== 'hidden' && (video.relatedArticleSlugs || []).includes(article.slug))
+  : [];
 const articleSourceEntries = article
   ? (articleSources[article.slug] || [])
       .map((entry) => {
@@ -170,6 +174,7 @@ const category = rawCategory ? categoryForLang(rawCategory, 'de') : null;
 const related = article && rawCategory
   ? articles.filter((item) => item.slug !== article.slug && categorize(item).slug === rawCategory.slug).slice(0, 3)
   : [];
+const videoSourceLabel = (count) => `${count} ${count === 1 ? 'Studie' : 'Studien'}`;
 const baseSpecialLinks = specialPage?.links?.filter((link) => link.label && link.href) || [];
 const brevoSignupLink = specialPages
   .find((item) => item.slug === 'stress-reset-kurs')
@@ -530,6 +535,40 @@ const articleJsonLd = article ? {
                 <strong>Hinweis:</strong>
                 <p>Dieser Gesundheitsartikel ersetzt keine medizinische Beratung. Bei Beschwerden, Medikamenten oder Vorerkrankungen bitte fachlichen Rat einholen.</p>
               </div>
+              {articleVideos.length > 0 && (
+                <aside class="article-video-strip" aria-label="Passende Videos">
+                  <span class="badge gold">Video</span>
+                  <h2>Passender Deep-Dive</h2>
+                  {articleVideos.map((video) => (
+                    <article class="article-video-card">
+                      <div class="article-video-thumb" data-video-embed data-youtube-id={video.youtubeId} data-title={video.title}>
+                        {video.thumbnail && <img src={video.thumbnail} alt="" loading="lazy" decoding="async" />}
+                        <div class="video-frame-overlay">
+                          <span class="video-status-pill">{video.youtubeId ? 'Video laden' : video.statusLabel}</span>
+                          <strong>{video.youtubeId ? 'YouTube datenschutzfreundlich laden' : 'Video folgt'}</strong>
+                          {video.youtubeId && <button class="button primary video-consent-load" type="button" data-load-youtube>Video laden</button>}
+                        </div>
+                      </div>
+                      <div class="article-video-body">
+                        <h3>{video.title}</h3>
+                        <p>{video.summary}</p>
+                        <div class="video-evidence compact">
+                          <strong>Quellen: {videoSourceLabel(video.sources?.length || 0)}</strong>
+                          <div class="video-source-links">
+                            {(video.sources || []).slice(0, 4).map((source) => (
+                              <a href={source.url} target="_blank" rel="noopener">
+                                <span>{source.type}</span>
+                                <b>{source.publisher}</b>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                        <a class="button" href="/videothek/">Zur Videothek</a>
+                      </div>
+                    </article>
+                  ))}
+                </aside>
+              )}
               {articleSourceEntries.length > 0 && (
                 <aside class="article-source-box" aria-labelledby="article-source-heading">
                   <div>
@@ -749,4 +788,48 @@ const articleJsonLd = article ? {
       </style>
     </>
   )}
+  <script is:inline>
+    (() => {
+      const COOKIE_KEY = 'callidus-cookie-consent';
+      const setupVideoEmbeds = () => {
+        document.querySelectorAll('[data-video-embed]').forEach((wrapper) => {
+          if (wrapper.dataset.embedReady) return;
+          wrapper.dataset.embedReady = 'true';
+          const youtubeId = wrapper.dataset.youtubeId;
+          const title = wrapper.dataset.title || 'Callidus Video';
+          if (!youtubeId) return;
+
+          const mount = () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+            iframe.title = title;
+            iframe.loading = 'lazy';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            wrapper.innerHTML = '';
+            wrapper.append(iframe);
+            wrapper.classList.add('is-loaded');
+          };
+
+          if (localStorage.getItem(COOKIE_KEY) === 'all') {
+            mount();
+            return;
+          }
+
+          wrapper.querySelector('[data-load-youtube]')?.addEventListener('click', () => {
+            localStorage.setItem(COOKIE_KEY, 'all');
+            document.documentElement.dataset.consent = 'all';
+            window.dispatchEvent(new CustomEvent('callidus-consent', { detail: 'all' }));
+            mount();
+          });
+
+          window.addEventListener('callidus-consent', (event) => {
+            if (event.detail === 'all') mount();
+          });
+        });
+      };
+      setupVideoEmbeds();
+      document.addEventListener('astro:page-load', setupVideoEmbeds);
+    })();
+  </script>
 </BaseLayout>

@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import videos from '../../data/videos.json';
+import structure from '../../data/site-structure.json';
+import { categoryForLang } from '../../data/i18n.js';
+import { allArticles } from '../../data/all-articles.js';
+
+const lang = 'de';
+const title = 'Videothek: Gesundheitswissen in Deep-Dives | callidus A&M';
+const description = 'Wissenschaftlich eingeordnete Wissensvideos zu Supplements, Vitaminen, Mythen und Koerperwissen - sortiert nach den Callidus-Kategorien.';
+const visibleVideos = videos.filter((video) => video.status !== 'hidden');
+const articleMap = new Map(allArticles.map((article) => [article.slug, article]));
+const categoryMap = new Map(structure.categories.map((category) => [category.slug, categoryForLang(category, lang)]));
+const categoryCounts = structure.categories.map((category) => ({
+  ...categoryForLang(category, lang),
+  count: visibleVideos.filter((video) => video.category === category.slug).length,
+}));
+const publishedCount = visibleVideos.filter((video) => video.youtubeId).length;
+const plannedCount = visibleVideos.length - publishedCount;
+const sourceLabel = (count) => `${count} ${count === 1 ? 'Studie' : 'Studien'}`;
+const statusFilterLabels = [
+  { value: '', label: 'Alle Videos' },
+  { value: 'ready', label: 'Abspielbar' },
+  { value: 'planned', label: 'Video folgt' },
+];
+---
+<BaseLayout lang={lang} alternatePath="/en/" title={title} description={description}>
+  <section class="section videothek-hero-section">
+    <div class="container videothek-hero">
+      <div data-reveal>
+        <p class="eyebrow">Videothek</p>
+        <h1>Gesundheitswissen für Nicht-Leser.</h1>
+        <p class="lede">
+          Kurze Deep-Dives erklaeren, was ein Supplement im Koerper macht, was belegt ist,
+          wo Grenzen liegen und welche Mythen Sie ruhig vergessen können.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#videos">Videos ansehen</a>
+          <a class="button" href="/quellen-methodik/">Quellen-Methodik</a>
+        </div>
+      </div>
+      <div class="video-metrics" data-reveal="2" aria-label="Videothek Status">
+        <div>
+          <strong>{visibleVideos.length}</strong>
+          <span>Deep-Dives vorbereitet</span>
+        </div>
+        <div>
+          <strong>{plannedCount}</strong>
+          <span>in Produktion</span>
+        </div>
+        <div>
+          <strong>{visibleVideos.reduce((sum, video) => sum + (video.sources?.length || 0), 0)}</strong>
+          <span>verlinkte Nachweise</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Orientierung</p>
+      <h2 data-reveal="2">Nach Callidus-Kategorien sortiert.</h2>
+      <div class="grid videothek-category-grid">
+        {categoryCounts.map((category, index) => (
+          <a class="card" href={`/videothek/#videos`} data-video-category-link={category.slug} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${category.accent}`}>{category.count} Videos</span>
+              <h3>{category.title}</h3>
+              <p>{category.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="videos">
+    <div class="container">
+      <form class="ratgeber-filter videothek-filter" data-video-filter data-reveal aria-label="Videos filtern">
+        <label>
+          <span>Suche</span>
+          <input type="search" name="query" placeholder="Spermidin, Mythos, Autophagie..." autocomplete="off" />
+        </label>
+        <label>
+          <span>Bereich</span>
+          <select name="category">
+            <option value="">Alle Bereiche</option>
+            {structure.categories.map((category) => (
+              <option value={category.slug}>{categoryForLang(category, lang).title}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Status</span>
+          <select name="status">
+            {statusFilterLabels.map((item) => <option value={item.value}>{item.label}</option>)}
+          </select>
+        </label>
+        <button type="reset">Zurücksetzen</button>
+      </form>
+      <p class="filter-count" data-video-count>{visibleVideos.length} Videos</p>
+
+      <div class="video-grid" aria-live="polite">
+        {visibleVideos.map((video, index) => {
+          const category = categoryMap.get(video.category) || categoryMap.get(structure.categories[0].slug);
+          const relatedArticles = (video.relatedArticleSlugs || [])
+            .map((slug) => articleMap.get(slug))
+            .filter(Boolean);
+          const searchable = [
+            video.title,
+            video.subtitle,
+            video.summary,
+            video.topicType,
+            ...(video.keywords || []),
+            ...(video.benefits || []),
+            ...(video.risks || []),
+            ...(video.myths || []),
+          ].join(' ').toLowerCase();
+          return (
+            <article
+              class="video-library-card"
+              data-video-card
+              data-category={video.category}
+              data-status={video.youtubeId ? 'ready' : 'planned'}
+              data-search={searchable}
+              data-reveal={String((index % 3) + 1)}
+            >
+              <div class="video-frame" data-video-embed data-youtube-id={video.youtubeId} data-title={video.title}>
+                {video.thumbnail && <img src={video.thumbnail} alt="" loading="lazy" decoding="async" />}
+                <div class="video-frame-overlay">
+                  <span class="video-status-pill">{video.youtubeId ? 'Video laden' : video.statusLabel}</span>
+                  <strong>{video.youtubeId ? 'YouTube datenschutzfreundlich laden' : 'Deep-Dive ist vorbereitet'}</strong>
+                  <p>{video.youtubeId ? 'Erst nach Zustimmung wird eine Verbindung zu YouTube aufgebaut.' : 'Nach dem Upload wird hier die YouTube-ID ergänzt.'}</p>
+                  {video.youtubeId && <button class="button primary video-consent-load" type="button" data-load-youtube>Video laden</button>}
+                </div>
+              </div>
+              <div class="video-info">
+                <span class={`badge ${category.accent}`}>{category.title}</span>
+                <h2>{video.title}</h2>
+                <p>{video.summary}</p>
+                <div class="video-meta-line">
+                  <span>{video.topicType}</span>
+                  <span>{video.duration}</span>
+                  <span>{video.format}</span>
+                </div>
+                <div class="video-points" aria-label="Einordnung">
+                  <div>
+                    <strong>Im Video</strong>
+                    <ul>
+                      {(video.benefits || []).slice(0, 2).map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                  <div>
+                    <strong>Grenzen</strong>
+                    <ul>
+                      {(video.risks || []).slice(0, 2).map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+                <div class="video-evidence">
+                  <strong>Quellen: {sourceLabel(video.sources?.length || 0)}</strong>
+                  <div class="video-source-links">
+                    {(video.sources || []).map((source) => (
+                      <a href={source.url} target="_blank" rel="noopener">
+                        <span>{source.type}</span>
+                        <b>{source.publisher}</b>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                {relatedArticles.length > 0 && (
+                  <div class="video-related">
+                    <strong>Passender Artikel</strong>
+                    {relatedArticles.map((article) => <a href={article.path}>{article.title}</a>)}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      <p class="video-empty" data-video-empty hidden>Keine Videos für diese Filter gefunden.</p>
+      <div class="notice videothek-notice">
+        <strong>Medizinischer Hinweis:</strong>
+        <p>Die Videos dienen der Aufklaerung und ersetzen keine Diagnose oder individuelle medizinische Beratung.</p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const COOKIE_KEY = 'callidus-cookie-consent';
+
+      const setupVideoEmbeds = () => {
+        document.querySelectorAll('[data-video-embed]').forEach((wrapper) => {
+          if (wrapper.dataset.embedReady) return;
+          wrapper.dataset.embedReady = 'true';
+          const youtubeId = wrapper.dataset.youtubeId;
+          const title = wrapper.dataset.title || 'Callidus Video';
+          if (!youtubeId) return;
+
+          const mount = () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+            iframe.title = title;
+            iframe.loading = 'lazy';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            wrapper.innerHTML = '';
+            wrapper.append(iframe);
+            wrapper.classList.add('is-loaded');
+          };
+
+          if (localStorage.getItem(COOKIE_KEY) === 'all') {
+            mount();
+            return;
+          }
+
+          wrapper.querySelector('[data-load-youtube]')?.addEventListener('click', () => {
+            localStorage.setItem(COOKIE_KEY, 'all');
+            document.documentElement.dataset.consent = 'all';
+            window.dispatchEvent(new CustomEvent('callidus-consent', { detail: 'all' }));
+            mount();
+          });
+
+          window.addEventListener('callidus-consent', (event) => {
+            if (event.detail === 'all') mount();
+          });
+        });
+      };
+
+      const setupVideoFilter = () => {
+        const form = document.querySelector('[data-video-filter]');
+        const cards = Array.from(document.querySelectorAll('[data-video-card]'));
+        const count = document.querySelector('[data-video-count]');
+        const empty = document.querySelector('[data-video-empty]');
+        if (!form || form.dataset.ready) return;
+        form.dataset.ready = 'true';
+
+        const apply = () => {
+          const query = (form.query.value || '').trim().toLowerCase();
+          const category = form.category.value;
+          const status = form.status.value;
+          let visible = 0;
+
+          cards.forEach((card) => {
+            const show = (!query || card.dataset.search.includes(query)) &&
+              (!category || card.dataset.category === category) &&
+              (!status || card.dataset.status === status);
+            card.hidden = !show;
+            if (show) visible += 1;
+          });
+
+          if (count) count.textContent = `${visible} ${visible === 1 ? 'Video' : 'Videos'}`;
+          if (empty) empty.hidden = visible !== 0;
+        };
+
+        document.querySelectorAll('[data-video-category-link]').forEach((link) => {
+          link.addEventListener('click', () => {
+            window.setTimeout(() => {
+              form.category.value = link.dataset.videoCategoryLink || '';
+              apply();
+            }, 0);
+          });
+        });
+
+        form.addEventListener('input', apply);
+        form.addEventListener('reset', () => window.setTimeout(apply, 0));
+        apply();
+      };
+
+      setupVideoEmbeds();
+      setupVideoFilter();
+      document.addEventListener('astro:page-load', () => {
+        setupVideoEmbeds();
+        setupVideoFilter();
+      });
+    })();
+  </script>
+</BaseLayout>

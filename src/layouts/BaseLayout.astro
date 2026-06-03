@@ -21,6 +21,7 @@ const labels = lang === 'en'
       knowledge: 'Knowledge',
       health: 'Health',
       knowledgeCards: 'Knowledge cards',
+      videoLibrary: 'Video library',
       menuOpen: 'Open menu',
       walletOpen: 'Open Valus Wallet',
       toggleTheme: 'Toggle dark mode',
@@ -39,6 +40,7 @@ const labels = lang === 'en'
       knowledge: 'Wissen',
       health: 'Gesundheit',
       knowledgeCards: 'Wissenskarten',
+      videoLibrary: 'Videothek',
       menuOpen: 'Menü öffnen',
       walletOpen: 'Valus Wallet öffnen',
       toggleTheme: 'Darkmode umschalten',
@@ -98,6 +100,7 @@ const navGroups = [
     label: labels.knowledge,
     items: [
       { href: t.paths.guide, label: t.nav.guide },
+      { href: '/videothek/', label: labels.videoLibrary },
       { href: '/wissenskarten/', label: labels.knowledgeCards },
       { href: t.paths.lexicon, label: t.nav.lexicon },
     ],

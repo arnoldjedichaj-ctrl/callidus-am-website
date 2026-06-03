@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "spermidin-autophagie-longevity",
+    "title": "Spermidin im Check: Autophagie, Longevity und was Humanstudien wirklich zeigen",
+    "subtitle": "Ein wissenschaftlich vorsichtiger Deep Dive zu Nutzen, Grenzen, Mythen und Food-first-Praxis.",
+    "category": "zukunft-gesundheit",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "ca. 4 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/original/036-wp-content-uploads-go-x-u-63e95552-976a-409b-8f4a-0cf5883343b8-l0-t45-w2000-h1764-image-1366x1205.png",
+    "summary": "Spermidin ist biologisch spannend, aber kein bewiesener Anti-Aging-Zaubertrick. Das Video ordnet Autophagie, Lebensmittelquellen, Supplemente und die bisher vorsichtigen Humanstudien ein.",
+    "benefits": [
+      "Kommt natürlich in Lebensmitteln wie Weizenkeimen, Soja, Pilzen und gereiftem Käse vor.",
+      "Ist in der Zellbiologie mit Autophagie und Zell-Homöostase verbunden.",
+      "Eignet sich als Beispiel für evidenzbasierte Longevity-Einordnung ohne Hype."
+    ],
+    "risks": [
+      "Humanstudien zeigen bisher keine robusten klinischen Anti-Aging-Effekte.",
+      "Supplemente ersetzen Schlaf, Bewegung, proteinreiche Ernährung und Stressregulation nicht.",
+      "Bei Schwangerschaft, Krankheit, Allergien oder Medikamenten vorher fachlich abklären."
+    ],
+    "myths": [
+      "Mythos: Spermidin verjüngt garantiert.",
+      "Mythos: Mehr Kapseln bedeuten automatisch mehr Wirkung.",
+      "Mythos: Autophagie lässt sich nur über Supplements aktivieren."
+    ],
+    "relatedArticleSlugs": ["metformin-vs-spermidin"],
+    "keywords": ["spermidin", "autophagie", "longevity", "biohacking", "supplement", "weizenkeim", "polyamine"],
+    "sources": [
+      {
+        "title": "Effects of Spermidine Supplementation on Cognition and Biomarkers in Older Adults With Subjective Cognitive Decline",
+        "publisher": "JAMA Network Open",
+        "type": "Randomisierte klinische Studie",
+        "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2792725",
+        "note": "12 Monate Supplementierung verbesserten Gedächtnis und Biomarker gegenüber Placebo nicht."
+      },
+      {
+        "title": "High-Dose Spermidine Supplementation Does Not Increase Spermidine Levels in Blood Plasma and Saliva",
+        "publisher": "Nutrients / PMC",
+        "type": "Randomisierte Crossover-Studie",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10143675/",
+        "note": "15 mg pro Tag erhoehten kurzfristig Plasma- oder Speichel-Spermidin nicht."
+      },
+      {
+        "title": "Supplementation of spermidine at 40 mg/day has minimal effects on circulating polyamines",
+        "publisher": "Nutrition Research",
+        "type": "Explorative doppelblinde RCT",
+        "url": "https://www.sciencedirect.com/science/article/pii/S027153172400126X",
+        "note": "40 mg pro Tag zeigten in aelteren Maennern nur minimale Effekte auf zirkulierende Polyamine."
+      },
+      {
+        "title": "POLYCAD: randomised trial of spermidine treatment versus placebo",
+        "publisher": "ClinicalTrials.gov",
+        "type": "Laufende Studie",
+        "url": "https://www.clinicaltrials.gov/study/NCT05459961",
+        "note": "Kardiovaskuläre Studie läuft; Abschluss wird für August 2026 erwartet."
+      }
+    ]
+  }
+]
