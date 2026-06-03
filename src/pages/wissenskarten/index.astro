@@ -547,7 +547,7 @@ const accentColors: Record<string, string> = {
 
 .wk-video-block {
   display: grid;
-  grid-template-columns: minmax(260px, .95fr) minmax(0, 1.05fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
   margin: 1rem 0;
   padding: 1rem;
@@ -556,12 +556,17 @@ const accentColors: Record<string, string> = {
   background: linear-gradient(135deg, rgba(var(--gold-rgb), .11), rgba(var(--mint-rgb), .055));
 }
 .wk-video-block .article-video-thumb {
-  min-height: 13rem;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
 }
 .wk-video-copy {
   display: grid;
   align-content: start;
   gap: .7rem;
+}
+.wk-video-copy .video-evidence {
+  max-width: 100%;
 }
 .wk-video-copy h3,
 .wk-video-copy p {
@@ -575,12 +580,6 @@ const accentColors: Record<string, string> = {
   color: var(--muted);
   line-height: 1.55;
 }
-@media (max-width: 720px) {
-  .wk-video-block {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* CTA row */
 .wk-cta-row { margin-top: .5rem; margin-bottom: .5rem; }
 .wk-affiliate-btn {
@@ -868,6 +867,15 @@ const accentColors: Record<string, string> = {
     });
   };
 
+  const centerCard = (card, behavior = 'smooth') => {
+    if (!card) return;
+    const oRect = outer.getBoundingClientRect();
+    const cRect = card.getBoundingClientRect();
+    const visibleInset = Math.max(16, (oRect.width - cRect.width) / 2);
+    const target = outer.scrollLeft + (cRect.left - oRect.left) - visibleInset;
+    outer.scrollTo({ left: Math.max(0, target), behavior });
+  };
+
   // Attach directly to each expand/close button – avoids any event bubbling issues
   const bindCardButtons = () => {
     track.querySelectorAll('.wk-expand-btn').forEach(btn => {
@@ -885,14 +893,8 @@ const accentColors: Record<string, string> = {
           detail.hidden = false;
           fresh.setAttribute('aria-expanded', 'true');
           card.classList.add('wk-expanded');
-          // Scroll card into view after CSS width-transition (260 ms)
-          setTimeout(() => {
-            const oRect = outer.getBoundingClientRect();
-            const cRect = card.getBoundingClientRect();
-            if (cRect.left < oRect.left + 8) {
-              outer.scrollTo({ left: outer.scrollLeft + cRect.left - oRect.left - 16, behavior: 'smooth' });
-            }
-          }, 280);
+          // Center after the width transition so expanded media stays visible.
+          setTimeout(() => centerCard(card), 280);
         }
       });
     });

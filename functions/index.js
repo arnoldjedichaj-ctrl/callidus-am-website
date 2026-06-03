@@ -514,10 +514,10 @@ async function callGeminiText({ apiKey, model, prompt }) {
 }
 
 const CHAT_STOPWORDS = new Set([
-  "aber", "alle", "also", "auch", "auf", "aus", "bei", "bin", "bitte", "das", "dass", "den", "der", "die", "dir",
-  "ein", "eine", "einem", "einen", "er", "es", "fÃ¼r", "gibt", "habe", "hat", "ich", "im", "in", "ist", "kann",
+  "aber", "alle", "alles", "also", "auch", "auf", "aus", "bei", "bin", "bitte", "das", "dass", "den", "der", "die", "dir",
+  "ein", "eine", "einem", "einen", "er", "es", "finde", "finden", "fuer", "für", "gibt", "habe", "hat", "ich", "im", "in", "ist", "kann",
   "mein", "meine", "mit", "nach", "nicht", "oder", "sich", "sie", "sind", "und", "was", "wenn", "wie", "wir",
-  "zu", "zum", "zur",
+  "zu", "zum", "zur", "zeige",
 ]);
 
 function normalizeSearch(value) {
@@ -575,10 +575,13 @@ function scoreKnowledgeEntry(tokens, entry, pagePath) {
 function retrieveCallidusKnowledge(message, pagePath) {
   const tokens = searchTokens(message);
   if (!tokens.length && !pagePath) return [];
-  return callidusKnowledge.entries
+  const scored = callidusKnowledge.entries
     .map((entry) => ({ ...entry, score: scoreKnowledgeEntry(tokens, entry, pagePath) }))
     .filter((entry) => entry.score > 0)
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => b.score - a.score);
+  const minimumScore = Math.max(3, (scored[0]?.score || 0) - 8);
+  return scored
+    .filter((entry) => entry.score >= minimumScore)
     .slice(0, 5);
 }
 
@@ -636,12 +639,12 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
   const historyText = history.map((item) => `${item.role}: ${item.text}`).join("\n");
   return [
     "Du bist der Callidus Assistent auf callidus-am.de.",
-    "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 WÃ¶rter.",
-    "Nutze ausschlieÃŸlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
-    "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche AbklÃ¤rung.",
+    "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 Wörter.",
+    "Nutze ausschließlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
+    "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche Abklärung.",
     "Gesundheitsgrenzen: keine Diagnose, keine Therapieanweisung, keine individuelle Dosierung. Bei akuten oder starken Beschwerden professionelle Hilfe empfehlen.",
     "MOMUS-Inhalte immer als Satire oder Mindset-Spiegel kennzeichnen.",
-    "Nenne am Ende nicht alle Links im FlieÃŸtext; die OberflÃ¤che zeigt Quellen separat.",
+    "Nenne am Ende nicht alle Links im Fließtext; die Oberfläche zeigt Quellen separat.",
     historyText ? `Bisheriger Chat:\n${historyText}` : "",
     `Callidus-Kontext:\n${context || "Kein passender Kontext gefunden."}`,
     `Quellenliste:\n${sourceList || "Keine externen Quellen."}`,
@@ -651,16 +654,32 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
 
 function fallbackChatAnswer(entries) {
   if (!entries.length) {
-    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, MikronÃ¤hrstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
+    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
   }
   const lead = entries[0];
-  const related = entries.slice(1, 3).map((entry) => entry.title).join(", ");
+  const excerpt = sentenceExcerpt(lead.text, 520);
+  const related = entries.slice(1, 3).filter((entry) => entry.score >= lead.score - 3).map((entry) => entry.title).join(", ");
   return [
-    `In der Callidus-Wissensbasis passt dazu vor allem â€ž${lead.title}â€œ.`,
-    lead.text,
+    `In der Callidus-Wissensbasis passt dazu vor allem „${lead.title}“.`,
+    excerpt,
     related ? `Auch relevant: ${related}.` : "",
     "Das ist Orientierung und ersetzt keine medizinische Beratung oder Laborwerte.",
   ].filter(Boolean).join(" ");
+}
+
+function sentenceExcerpt(text, maxLength = 520) {
+  const clean = cleanString(text, maxLength + 120).replace(/\s+/g, " ").replace(/\.\./g, ".");
+  if (clean.length <= maxLength) return clean;
+  const clipped = clean.slice(0, maxLength);
+  const boundary = Math.max(clipped.lastIndexOf(". "), clipped.lastIndexOf("! "), clipped.lastIndexOf("? "));
+  if (boundary >= 160) return clipped.slice(0, boundary + 1);
+  return `${clipped.replace(/[\s,;:.-]+$/, "")}...`;
+}
+
+function isUsefulChatAnswer(answer) {
+  const clean = cleanString(answer, 1000);
+  const words = clean.split(/\s+/).filter(Boolean);
+  return words.length >= 18 && /[.!?]$/.test(clean);
 }
 
 function publicChatSessionId(value) {
@@ -1374,12 +1393,14 @@ exports.askCallidus = onCall(
     try {
       const prompt = buildCallidusChatPrompt({ message, history, entries, sources });
       const answer = await callGeminiText({ apiKey, model, prompt });
+      const hasUsefulAnswer = isUsefulChatAnswer(answer);
+      const finalAnswer = hasUsefulAnswer ? answer : fallbackChatAnswer(entries);
       return {
-        answer: answer || fallbackChatAnswer(entries),
+        answer: finalAnswer,
         sources,
         safetyNotice,
-        provider: "gemini",
-        model,
+        provider: hasUsefulAnswer ? "gemini" : "retrieval",
+        model: hasUsefulAnswer ? model : undefined,
       };
     } catch (error) {
       logger.warn("Callidus assistant fell back to retrieval", { error: error.message });
