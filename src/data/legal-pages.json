@@ -142,7 +142,7 @@
       {
         "heading": "9. Datenschutz in den Callidus Apps (NEXUS, MOMUS, KAIROS)",
         "paragraphs": [
-          "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 24. Mai 2026.",
+          "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 11. Juni 2026.",
           "Verantwortliche Stelle ist die im Abschnitt „Hinweis zur verantwortlichen Stelle\" genannte Callidus A&M, Arnold Jedich. Bei Fragen zum Datenschutz in den Apps erreichen Sie uns unter info@callidus-am.de.",
           "Die Apps nutzen die Firebase-Plattform von Google (Google Ireland Limited bzw. Google LLC). Ihre Konto- und Nutzungsdaten werden in unserem zugriffsgeschützten Firebase-/Google-Cloud-Projekt gespeichert und ausschließlich zur Bereitstellung der App-Funktionen verarbeitet.",
           "Die Nutzung der Apps ist freiwillig. Sensible Funktionen (z. B. Gesundheitsanalysen sowie Dokument- und Fotoanalysen) werden erst nach Ihrer ausdrücklichen Einwilligung aktiviert und können jederzeit mit Wirkung für die Zukunft widerrufen werden."
@@ -173,7 +173,16 @@
         ]
       },
       {
-        "heading": "13. Foto- und Gesichtsanalyse",
+        "heading": "13. KI-Companion und Check-ins in KAIROS",
+        "paragraphs": [
+          "KAIROS bietet tägliche Check-ins (Intention, Stimmungswert, Abend-Reflexion), ein Tagebuch mit Diktierfunktion und ein KI-gestütztes Gespräch (KI-Companion). Check-ins, Reflexionen und Tagebucheinträge können Rückschlüsse auf Ihr seelisches Wohlbefinden zulassen und gehören damit zu den besonderen Kategorien personenbezogener Daten. Die Eingabe ist freiwillig; die Verarbeitung erfolgt auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO.",
+          "KI-Antworten erzeugt KAIROS nur, wenn Sie der Funktion „KI-Antworten (Gemini)\" ausdrücklich zugestimmt haben (beim Onboarding oder jederzeit im Setup). In diesem Fall werden Ihre Chat-Nachricht sowie – abhängig von Ihren weiteren Einwilligungen – Auszüge Ihrer letzten Check-ins, Tagebucheinträge, gespeicherten Memories, Kalendertermine und Hub-Daten über unsere Cloud Function (Region Frankfurt, europe-west3) an den KI-Dienst Google Gemini übertragen. Ohne diese Einwilligung antwortet KAIROS ausschließlich mit lokaler Logik; es werden keine Inhalte an Gemini übermittelt.",
+          "Die Übermittlung an Gemini kann eine Verarbeitung in den USA umfassen; diese stützen wir auf Ihre ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO sowie die im Abschnitt „Auftragsverarbeitung und Drittlandübermittlung\" genannten Garantien. Wir nutzen die Gemini-API als kostenpflichtigen Dienst; übermittelte Inhalte werden von Google vertragsgemäß nicht zum Training der KI-Modelle verwendet. Eine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO findet nicht statt.",
+          "Den Geräte-Kalender liest KAIROS nur nach Ihrer Freigabe; die Auswertung (z. B. Hinweise auf volle Tage) erfolgt lokal auf Ihrem Gerät. Termine werden nur dann als KI-Kontext übertragen, wenn Sie dem separat zugestimmt haben. Jede Einwilligung können Sie jederzeit im Setup mit Wirkung für die Zukunft widerrufen; Erteilung und Widerruf werden in der App mit Zeitstempel protokolliert."
+        ]
+      },
+      {
+        "heading": "14. Foto- und Gesichtsanalyse",
         "paragraphs": [
           "MOMUS bietet eine optionale Funktion zur Foto- bzw. Gesichtsanalyse (z. B. eine Alterungs-Simulation). Hierfür wird das von Ihnen ausgewählte Foto einmalig an den Dienst FAL AI mit Sitz in den USA übertragen und dort verarbeitet.",
           "FAL AI verarbeitet das Foto als Auftragsverarbeiter und speichert es nach Angaben des Anbieters nicht dauerhaft. Das Analyseergebnis wird auf Ihrem Gerät bzw. in Ihrem Konto gespeichert. Eine Weitergabe an weitere Dritte über FAL AI hinaus erfolgt nicht.",
@@ -181,7 +190,7 @@
         ]
       },
       {
-        "heading": "14. App-Verknüpfung (Companion-Hub)",
+        "heading": "15. App-Verknüpfung (Companion-Hub)",
         "paragraphs": [
           "Unsere Apps können auf Ihren Wunsch miteinander verbunden werden (Companion-Hub), damit z. B. KAIROS auf zusammengefasste Daten aus NEXUS oder MOMUS zugreifen kann. Diese Verknüpfung ist optional und standardmäßig deaktiviert.",
           "Erst wenn Sie den Hub aktivieren, werden Zusammenfassungen (z. B. Tagesstatistiken, Schritt- und Aktivitätswerte sowie Statusinformationen) in Ihrem persönlichen Konto-Bereich gespeichert und zwischen den Apps ausgetauscht. Solange der Hub deaktiviert ist, verbleibt die jeweilige Auswertung – soweit technisch möglich – lokal auf Ihrem Gerät.",
@@ -189,39 +198,39 @@
         ]
       },
       {
-        "heading": "15. Nutzungs- und Geräteanalyse",
+        "heading": "16. Nutzungs- und Geräteanalyse",
         "paragraphs": [
           "MOMUS bietet eine optionale Analyse Ihrer Geräte- und App-Nutzung (z. B. Bildschirmzeit, Nutzung pro App-Kategorie, Nachtnutzung), um Ihnen Hinweise zu Ihren „Energie-Lecks\" zu geben. Diese Auswertung erfolgt standardmäßig nur lokal auf Ihrem Gerät.",
           "Nur wenn Sie den Companion-Hub aktiviert haben, werden ausschließlich Zusammenfassungen dieser Auswertung in Ihrem privaten Konto-Bereich gespeichert. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO."
         ]
       },
       {
-        "heading": "16. Abonnements und In-App-Käufe",
+        "heading": "17. Abonnements und In-App-Käufe",
         "paragraphs": [
           "Premium-Funktionen können Sie über ein Abonnement bzw. einen In-App-Kauf erwerben. Die Zahlungsabwicklung erfolgt über den jeweiligen App-Store (Google Play bzw. Apple App Store); wir erhalten keine vollständigen Zahlungsdaten.",
           "Zur Freischaltung und zum Schutz vor Missbrauch verarbeiten wir Kauf- und Verifizierungsdaten (z. B. Produkt-ID, Bestell-/Order-ID, Kauf-Token, Status und Ablaufdatum). Die Prüfung des Kaufs erfolgt serverseitig über eine gesicherte Funktion. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO."
         ]
       },
       {
-        "heading": "17. Benachrichtigungen und Spracheingabe",
+        "heading": "18. Benachrichtigungen und Spracheingabe",
         "paragraphs": [
           "Mit Ihrer Zustimmung senden wir Push-Benachrichtigungen über Firebase Cloud Messaging (Google). Hierzu wird ein gerätebezogenes Token verarbeitet. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; Sie können Benachrichtigungen in den System- oder App-Einstellungen deaktivieren.",
           "Für die optionale Spracheingabe (Diktierfunktion) wird das Mikrofon genutzt. Die Spracherkennung erfolgt über den Spracherkennungsdienst Ihres Betriebssystems (Google bzw. Apple) und nur, während Sie die Funktion aktiv nutzen."
         ]
       },
       {
-        "heading": "18. Auftragsverarbeitung und Drittlandübermittlung",
+        "heading": "19. Auftragsverarbeitung und Drittlandübermittlung",
         "paragraphs": [
           "Zur Bereitstellung der Apps setzen wir externe Dienstleister als Auftragsverarbeiter ein, insbesondere Google (Firebase Authentication, Firestore-Datenbank, Cloud Functions, Cloud Messaging sowie Gemini) und FAL AI für die optionale Fotoanalyse. Mit diesen Anbietern bestehen bzw. werden Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO geschlossen.",
           "Dabei kann es zu einer Übermittlung personenbezogener Daten in die USA kommen. Soweit für den Empfänger keine Zertifizierung nach dem EU-US Data Privacy Framework vorliegt, stützen wir die Übermittlung auf die Standardvertragsklauseln der EU-Kommission und/oder – bei sensiblen Funktionen – auf Ihre ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO."
         ]
       },
       {
-        "heading": "19. Speicherdauer, Ihre Rechte und Kontolöschung",
+        "heading": "20. Speicherdauer, Ihre Rechte und Kontolöschung",
         "paragraphs": [
           "Wir speichern Ihre App-Daten, solange Ihr Konto besteht bzw. solange dies für die genannten Zwecke erforderlich ist. Sie können Ihre in den Apps gespeicherten Daten jederzeit über die Export-Funktion in den Einstellungen herunterladen (Recht auf Datenübertragbarkeit, Art. 20 DSGVO).",
-          "Sie können Ihr Konto und die zugehörigen Daten jederzeit über die Funktion „Konto löschen\" in den App-Einstellungen dauerhaft löschen. Ihnen stehen zudem die in dieser Datenschutzerklärung genannten Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Aufsichtsbehörde zu.",
-          "Erteilte Einwilligungen (z. B. für Gesundheits-, Dokument- oder Fotoanalysen) können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt."
+          "Sie können Ihr Konto und die zugehörigen Daten jederzeit über die Funktion „Konto löschen\" in den App-Einstellungen dauerhaft löschen. Eine Schritt-für-Schritt-Anleitung finden Sie unter www.callidus-am.de/konto-loeschen. Ihnen stehen zudem die in dieser Datenschutzerklärung genannten Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Aufsichtsbehörde zu.",
+          "Erteilte Einwilligungen (z. B. für Gesundheits-, Dokument-, Foto- oder KI-Analysen) können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt."
         ]
       }
     ]
@@ -235,7 +244,8 @@
       {
         "heading": "",
         "paragraphs": [
-          "Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App löschen. Die Löschung ist dauerhaft und kann nicht rückgängig gemacht werden. Diese Seite beschreibt den Vorgang für die Apps MOMUS und KAIROS."
+          "Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App löschen. Die Löschung ist dauerhaft und kann nicht rückgängig gemacht werden. Diese Seite beschreibt den Vorgang für die Apps MOMUS und KAIROS.",
+          "Tipp: In KAIROS kannst du unter Setup → „Was KAIROS speichert\" auch einzelne Datenkategorien gezielt löschen und dir unter „Datenschutz & Datenrechte\" vorab einen vollständigen Datenexport (JSON) erstellen."
         ]
       },
       {
@@ -253,9 +263,9 @@
         "heading": "Konto in KAIROS löschen",
         "paragraphs": [
           "1. Öffne die KAIROS App auf deinem Gerät.",
-          "2. Tippe auf Einstellungen (Zahnrad-Symbol).",
-          "3. Wähle Konto löschen.",
-          "4. Bestätige die Sicherheitsabfrage. Dein Konto, alle Gesprächsverläufe, Tagebucheinträge, Erinnerungen und Hub-Verlinkungen werden unwiderruflich gelöscht.",
+          "2. Tippe unten auf den Tab Setup (Zahnrad-Symbol).",
+          "3. Scrolle zum Abschnitt Datenschutz & Datenrechte.",
+          "4. Tippe auf Konto löschen und bestätige die Sicherheitsabfrage. Dein Konto, alle Check-ins, Gesprächsverläufe, Tagebucheinträge, Erinnerungen und Hub-Verlinkungen werden unwiderruflich gelöscht.",
           "Die Löschung erfolgt sofort. Firebase Authentication und alle Firestore-Dokumente unter deiner Nutzer-ID werden vollständig entfernt."
         ]
       },
@@ -264,7 +274,7 @@
         "paragraphs": [
           "Bei der Kontolöschung in MOMUS werden folgende Daten dauerhaft gelöscht: Profildaten (Name, Alter, Geschlecht, Körperdaten), alle täglichen Energie-Logs, Energie-Analysen und KI-Berichte, Dokumente und gespeicherte Artikel, Phoenix-Path-Verlauf und Streak-Daten sowie alle mit KAIROS synchronisierten Daten.",
           "Hinweis zu In-App-Käufen: Das aktive Abo wird über Google Play oder den Apple App Store verwaltet und muss dort separat gekündigt werden.",
-          "Bei der Kontolöschung in KAIROS werden gelöscht: Profildaten und Authentifizierungsdaten, alle Gesprächsverläufe und KI-Antworten, Tagebucheinträge und Gedächtnis-Einträge, Erinnerungen und Kalenderverknüpfungen sowie Hub-Verlinkungen zu NEXUS und MOMUS."
+          "Bei der Kontolöschung in KAIROS werden gelöscht: Profildaten und Authentifizierungsdaten, alle täglichen Check-ins (Intentionen, Stimmungen, Reflexionen), alle Gesprächsverläufe und KI-Antworten, Tagebucheinträge und Gedächtnis-Einträge, Erinnerungen und Kalenderverknüpfungen, Einwilligungs- und Audit-Protokolle sowie Hub-Verlinkungen zu NEXUS und MOMUS."
         ]
       },
       {
