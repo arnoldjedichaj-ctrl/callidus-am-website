@@ -238,14 +238,25 @@
   {
     "slug": "konto-loeschen",
     "title": "Konto löschen",
-    "lead": "Anleitung zum Löschen deines Kontos und deiner Daten in den Callidus Apps MOMUS und KAIROS.",
+    "lead": "Anleitung zum Löschen deines Kontos und deiner Daten in den Callidus Apps NEXUS, MOMUS und KAIROS.",
     "originalUrl": "https://www.callidus-am.de/konto-loeschen/",
     "sections": [
       {
         "heading": "",
         "paragraphs": [
-          "Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App löschen. Die Löschung ist dauerhaft und kann nicht rückgängig gemacht werden. Diese Seite beschreibt den Vorgang für die Apps MOMUS und KAIROS.",
-          "Tipp: In KAIROS kannst du unter Setup → „Was KAIROS speichert\" auch einzelne Datenkategorien gezielt löschen und dir unter „Datenschutz & Datenrechte\" vorab einen vollständigen Datenexport (JSON) erstellen."
+          "Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App löschen. Die Löschung ist dauerhaft und kann nicht rückgängig gemacht werden. Diese Seite beschreibt den Vorgang für die Apps NEXUS, MOMUS und KAIROS.",
+          "Tipp: In NEXUS und KAIROS kannst du in den Einstellungen vorab einen vollständigen Datenexport (JSON) erstellen; in KAIROS lassen sich unter „Was KAIROS speichert\" auch einzelne Datenkategorien gezielt löschen."
+        ]
+      },
+      {
+        "heading": "Konto in NEXUS löschen",
+        "paragraphs": [
+          "1. Öffne die NEXUS App auf deinem Gerät.",
+          "2. Öffne über das Menü-Symbol (☰) das Seitenmenü.",
+          "3. Wähle Einstellungen.",
+          "4. Scrolle nach unten und tippe auf Konto löschen.",
+          "5. Bestätige die Sicherheitsabfrage. Dein Konto und alle zugehörigen Daten werden unwiderruflich gelöscht.",
+          "Die Löschung erfolgt sofort. Firebase Authentication und alle Firestore-Dokumente unter deiner Nutzer-ID werden vollständig entfernt."
         ]
       },
       {
@@ -272,6 +283,7 @@
       {
         "heading": "Welche Daten werden gelöscht?",
         "paragraphs": [
+          "Bei der Kontolöschung in NEXUS werden folgende Daten dauerhaft gelöscht: Profil- und Authentifizierungsdaten, Körper- und Gesundheitsangaben, tägliche Wohlbefindens- und Journal-Einträge, Ernährungs- und Mahlzeiten-Protokolle, aufgezeichnete Aktivitäten und Workout-Routen, Gesundheits-Dashboards und KI-Auswertungen, Chat-Verläufe, Einwilligungs- und Audit-Protokolle sowie Hub-Verlinkungen zu MOMUS und KAIROS.",
           "Bei der Kontolöschung in MOMUS werden folgende Daten dauerhaft gelöscht: Profildaten (Name, Alter, Geschlecht, Körperdaten), alle täglichen Energie-Logs, Energie-Analysen und KI-Berichte, Dokumente und gespeicherte Artikel, Phoenix-Path-Verlauf und Streak-Daten sowie alle mit KAIROS synchronisierten Daten.",
           "Hinweis zu In-App-Käufen: Das aktive Abo wird über Google Play oder den Apple App Store verwaltet und muss dort separat gekündigt werden.",
           "Bei der Kontolöschung in KAIROS werden gelöscht: Profildaten und Authentifizierungsdaten, alle täglichen Check-ins (Intentionen, Stimmungen, Reflexionen), alle Gesprächsverläufe und KI-Antworten, Tagebucheinträge und Gedächtnis-Einträge, Erinnerungen und Kalenderverknüpfungen, Einwilligungs- und Audit-Protokolle sowie Hub-Verlinkungen zu NEXUS und MOMUS."
