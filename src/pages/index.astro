@@ -7,6 +7,7 @@ import specialPages from '../data/special-pages.json';
 import structure from '../data/site-structure.json';
 import { homeCopy, categoryForLang } from '../data/i18n.js';
 import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articles.js';
+import { portalAppList } from '../data/portal.js';
 
 // Alle Artikel inkl. Momus-Beiträge fließen in die Kategorie-Counts.
 const articles = allArticles;
@@ -42,6 +43,11 @@ const compassItems = [
   position: item.position,
   shortTitle: item.shortTitle,
 })).filter((item) => item.slug);
+const compassApps = portalAppList.map((app) => ({
+  ...app,
+  href: app.appHref || app.href,
+  status: app.comingSoon ? 'bald' : 'aktiv',
+}));
 const featured = getWeeklyFeatured(structure.categories);
 const brevoSignupLink = specialPages
   .find((page) => page.slug === 'stress-reset-kurs')
@@ -75,15 +81,26 @@ const resources = [
           <div class="compass-track" aria-hidden="true"></div>
           <div class="compass-track compass-track-inner" aria-hidden="true"></div>
           <img class="hero-logo" src={logoPath} alt="callidus A&M Logo" width="320" height="320" />
-          <div class="compass-orbit" aria-label="Themenbereiche">
+          <div class="compass-orbit" aria-label="callidus Universum aus Apps und Themenbereichen">
             {compassItems.map((category, index) => (
-              <div class={`compass-anchor compass-anchor-${index}`} aria-hidden="false">
-                <a class={`compass-label ${category.accent}`} href={category.path}>
+              <div class={`compass-anchor compass-anchor-${index}`}>
+                <a class={`compass-label ${category.accent}`} href={category.path} aria-label={`${category.title}: ${category.count} ${copy.contentLabel} ansehen`}>
                   <span class="compass-dot" aria-hidden="true"></span>
-                  <span>{category.shortTitle}</span>
+                  <span class="planet-title">{category.shortTitle}</span>
+                  <span class="planet-meta">{category.count} {copy.contentLabel}</span>
                 </a>
               </div>
             ))}
+            <div class="compass-app-orbit" aria-label="callidus Apps">
+              {compassApps.map((app, index) => (
+                <div class={`compass-app-anchor compass-app-anchor-${index}`}>
+                  <a class={`compass-app ${app.color}`} href={app.href} aria-label={`${app.name} App ${app.status}`}>
+                    <span>{app.name}</span>
+                    <small>{app.status}</small>
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </figure>
