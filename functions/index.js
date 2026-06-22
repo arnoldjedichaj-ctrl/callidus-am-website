@@ -640,6 +640,8 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
   return [
     "Du bist der Callidus Assistent auf callidus-am.de.",
     "Antworte auf Deutsch, klar, freundlich und knapp. Maximal 150 Wörter.",
+    "Erklaere Fachbegriffe sofort in einfachen Worten, zum Beispiel: Autophagie = Zell-Recycling.",
+    "Wenn eine Frage nach Problem, Loesung, Vor-/Nachteilen oder Einordnung klingt, strukturiere die Antwort danach.",
     "Nutze ausschließlich den Kontext und die Quellenliste. Erfinde keine Studien, Links, Produktversprechen oder medizinischen Diagnosen.",
     "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche Abklärung.",
     "Gesundheitsgrenzen: keine Diagnose, keine Therapieanweisung, keine individuelle Dosierung. Bei akuten oder starken Beschwerden professionelle Hilfe empfehlen.",
@@ -657,7 +659,9 @@ function fallbackChatAnswer(entries) {
     return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
   }
   const lead = entries[0];
-  const excerpt = sentenceExcerpt(lead.text, 520);
+  const normalizedLead = normalizeSearch(lead.text);
+  const excerptLimit = normalizedLead.includes("problem") && normalizedLead.includes("losung") ? 700 : 520;
+  const excerpt = sentenceExcerpt(lead.text, excerptLimit);
   const related = entries.slice(1, 3).filter((entry) => entry.score >= lead.score - 3).map((entry) => entry.title).join(", ");
   return [
     `In der Callidus-Wissensbasis passt dazu vor allem „${lead.title}“.`,
