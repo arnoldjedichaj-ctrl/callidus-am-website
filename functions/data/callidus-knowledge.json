@@ -125,6 +125,30 @@
       "title": "POLYCAD: randomised trial of spermidine treatment versus placebo",
       "url": "https://www.clinicaltrials.gov/study/NCT05459961",
       "type": "Laufende Studie"
+    },
+    {
+      "id": "video-fisetin-zombie-zellen-longevity-1",
+      "title": "Fisetin is a senotherapeutic that extends health and lifespan",
+      "url": "https://doi.org/10.1016/j.ebiom.2018.09.015",
+      "type": "Präklinische Studie"
+    },
+    {
+      "id": "video-fisetin-zombie-zellen-longevity-2",
+      "title": "The Effects of Fisetin on Reducing Biological Aging: A Pilot Study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39269340/",
+      "type": "Pilotstudie"
+    },
+    {
+      "id": "video-fisetin-zombie-zellen-longevity-3",
+      "title": "Fisetin as a senotherapeutic agent: Evidence and perspectives for age-related diseases",
+      "url": "https://doi.org/10.1016/j.mad.2024.111995",
+      "type": "Review"
+    },
+    {
+      "id": "video-fisetin-zombie-zellen-longevity-4",
+      "title": "ClinicalTrials.gov Fisetin studies",
+      "url": "https://clinicaltrials.gov/search?term=fisetin",
+      "type": "Studienregister"
     }
   ],
   "entries": [
@@ -391,7 +415,7 @@
         "Affiliate",
         "Empfehlungen"
       ],
-      "text": "Die Seite Gesundheits-Wissen bündelt Supplement-Steckbriefe, passende Deep-Dive-Videos, wissenschaftliche Quellen und Produktempfehlungen. Videos hängen direkt an der passenden Karte, zum Beispiel Spermidin.",
+      "text": "Die Seite Gesundheits-Wissen bündelt Supplement-Steckbriefe, passende Deep-Dive-Videos, wissenschaftliche Quellen und Produktempfehlungen. Videos hängen direkt an der passenden Karte, zum Beispiel Spermidin und Fisetin.",
       "sourceIds": []
     },
     {
@@ -549,17 +573,30 @@
       "topics": [
         "Fisetin",
         "Longevity",
-        "Der zelluläre Frühjahrsputz",
+        "Zombie-Zellen einfach erklärt",
         "Amazon",
-        "Senolytische Wirkung (Zombie-Zellen beseitigen)",
-        "Antioxidativer Zellschutz",
-        "Neuroprotektion (Gedächtnis & Lernen)",
-        "Entzündungshemmung",
-        "Autophagie-Unterstützung"
+        "Was es ist: gelber Pflanzenstoff",
+        "Zombie-Zellen = müde Problemzellen",
+        "Problem: viel Labor-Hype",
+        "Lösung: Menschenstudien abwarten",
+        "Supplemente nüchtern prüfen",
+        "fisetin",
+        "senolytikum",
+        "zombie-zellen",
+        "longevity",
+        "flavonol",
+        "biohacking",
+        "supplement",
+        "erdbeeren",
+        "problem lösung",
+        "Video"
       ],
-      "text": "Fisetin: Natürliches Bioflavonoid aus der Erdbeere – potenzielles Senolytikum, das alternde Zellen eliminiert. Kategorie: Longevity. Wirkungen/Einordnung: Senolytische Wirkung (Zombie-Zellen beseitigen), Antioxidativer Zellschutz, Neuroprotektion (Gedächtnis & Lernen), Entzündungshemmung, Autophagie-Unterstützung. Dosierung: 100–500 mg täglich oder zyklisch (z. B. 2–3 Tage pro Monat in hoher Dosis – wie in Studien). Beste Form: Hochreines Fisetin in Kapseln, vegan und GMO-frei, mit Bioverfügbarkeits-Optimierung. Kombinationen: NMN (umfassendes Longevity-Protokoll), Quercetin (synergistische senolytische Wirkung). Kontraindikationen: Schwangerschaft & Stillzeit: nicht empfohlen, Immunsuppressiva: mögliche Wechselwirkungen. Wissenschaftlicher Stand: Präklinisch sehr vielversprechend. Erste Humanstudien laufen. Fisetin gehört zu den potentesten natürlichen Senolytika in der Forschung.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "Fisetin einfach erklärt: Fisetin ist ein gelber Pflanzenstoff aus Erdbeeren, Äpfeln, Zwiebeln, Trauben und Gurken. Fachlich gehört es zu den Flavonolen. Zombie-Zellen bedeutet einfach: alte, müde Problemzellen, die störende Signale senden können. Problem: Um Fisetin gibt es viel Longevity-Hype, aber die stärksten Daten stammen bisher aus Zell- und Tiermodellen. Studien mit Menschen sind noch früh; Dosis, Zielgruppe, Nutzen und Langzeitsicherheit sind nicht ausreichend geklärt. Lösung: zuerst Ernährung, Bewegung, Schlaf und Stressregulation; Supplemente nur nüchtern prüfen. Bei Kapseln auf klare Milligramm-Angabe, Herkunft, Reinheit und wenige Zusatzstoffe achten. Kontraindikationen: Schwangerschaft und Stillzeit nicht empfohlen; bei Immunsuppressiva, Blutverdünnern, Krebsdiagnosen, geplanten OPs oder chronischen Erkrankungen fachlich abklären. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: Fisetin einfach erklärt: Zombie-Zellen, Longevity-Hype und was Studien wirklich zeigen. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: Das Video erklärt Fisetin in einfacher Sprache, trennt Problem und Lösung und ordnet die Studienlage vorsichtig ein.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "video-fisetin-zombie-zellen-longevity-1",
+        "video-fisetin-zombie-zellen-longevity-2",
+        "video-fisetin-zombie-zellen-longevity-3",
+        "video-fisetin-zombie-zellen-longevity-4"
       ]
     },
     {

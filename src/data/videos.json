@@ -28,8 +28,18 @@
       "Mythos: Mehr Kapseln bedeuten automatisch mehr Wirkung.",
       "Mythos: Zell-Recycling lässt sich nur über Supplements aktivieren."
     ],
-    "relatedArticleSlugs": ["metformin-vs-spermidin"],
-    "keywords": ["spermidin", "autophagie", "longevity", "biohacking", "supplement", "weizenkeim", "polyamine"],
+    "relatedArticleSlugs": [
+      "metformin-vs-spermidin"
+    ],
+    "keywords": [
+      "spermidin",
+      "autophagie",
+      "longevity",
+      "biohacking",
+      "supplement",
+      "weizenkeim",
+      "polyamine"
+    ],
     "sources": [
       {
         "title": "Effects of Spermidine Supplementation on Cognition and Biomarkers in Older Adults With Subjective Cognitive Decline",
@@ -58,6 +68,77 @@
         "type": "Laufende Studie",
         "url": "https://www.clinicaltrials.gov/study/NCT05459961",
         "note": "Kardiovaskuläre Studie läuft; Abschluss wird für August 2026 erwartet."
+      }
+    ]
+  },
+  {
+    "slug": "fisetin-zombie-zellen-longevity",
+    "title": "Fisetin einfach erklärt: Zombie-Zellen, Longevity-Hype und was Studien wirklich zeigen",
+    "subtitle": "Was Fisetin ist, warum müde Zellen spannend sind und warum Humanstudien noch vorsichtig machen.",
+    "category": "zukunft-gesundheit",
+    "supplementCardId": "fisetin",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:47 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/fisetin-normalos-thumbnail.png",
+    "summary": "Fisetin ist ein gelber Pflanzenstoff aus Erdbeeren und anderen Lebensmitteln. Das Video erklärt Zombie-Zellen als müde Zellen, trennt Labor- und Tierdaten von Menschen-Belegen und zeigt die alltagstaugliche Lösung: Hype bremsen, Basis stärken, Supplemente nüchtern prüfen.",
+    "benefits": [
+      "Fisetin kommt natürlich in Erdbeeren, Äpfeln, Zwiebeln, Trauben und Gurken vor.",
+      "Zombie-Zellen werden einfach erklärt: alte, träge Zellen, die störende Signale senden können.",
+      "Problem und Lösung werden getrennt: Forschung spannend, Menschen-Belege früh, Basis zuerst."
+    ],
+    "risks": [
+      "Die stärksten Daten stammen bisher aus Zell- und Tiermodellen; Human-Evidenz ist noch früh.",
+      "Hohe Dosierungen sind keine allgemeine Alltagsempfehlung.",
+      "Bei Schwangerschaft, Medikamenten, Erkrankungen, Immunsuppression oder geplanten Operationen vorher fachlich abklären."
+    ],
+    "myths": [
+      "Mythos: Fisetin räumt garantiert Zombie-Zellen beim Menschen weg.",
+      "Mythos: Mehr Kapseln bedeuten automatisch mehr Wirkung.",
+      "Mythos: Natürlich heißt automatisch sicher und bewiesen."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "fisetin",
+      "senolytikum",
+      "zombie-zellen",
+      "longevity",
+      "flavonol",
+      "biohacking",
+      "supplement",
+      "erdbeeren"
+    ],
+    "sources": [
+      {
+        "title": "Fisetin is a senotherapeutic that extends health and lifespan",
+        "publisher": "EBioMedicine",
+        "type": "Präklinische Studie",
+        "url": "https://doi.org/10.1016/j.ebiom.2018.09.015",
+        "note": "Zell- und Tierdaten zeigen senotherapeutische Effekte; das ist noch kein Human-Wirkversprechen."
+      },
+      {
+        "title": "The Effects of Fisetin on Reducing Biological Aging: A Pilot Study",
+        "publisher": "Alternative Therapies in Health and Medicine",
+        "type": "Pilotstudie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39269340/",
+        "note": "Kleine Human-Pilotdaten zu biologischen Altersmarkern; vorsichtig und vorläufig einordnen."
+      },
+      {
+        "title": "Fisetin as a senotherapeutic agent: Evidence and perspectives for age-related diseases",
+        "publisher": "Mechanisms of Ageing and Development",
+        "type": "Review",
+        "url": "https://doi.org/10.1016/j.mad.2024.111995",
+        "note": "Übersicht betont Potenzial, aber auch offene Fragen zu Human-Evidenz, Dosis und Sicherheit."
+      },
+      {
+        "title": "ClinicalTrials.gov Fisetin studies",
+        "publisher": "ClinicalTrials.gov",
+        "type": "Studienregister",
+        "url": "https://clinicaltrials.gov/search?term=fisetin",
+        "note": "Mehrere Humanstudien zu Fisetin laufen; Ergebnisse zu Nutzen, Dosis und Sicherheit stehen noch aus."
       }
     ]
   }
