@@ -141,5 +141,357 @@
         "note": "Mehrere Humanstudien zu Fisetin laufen; Ergebnisse zu Nutzen, Dosis und Sicherheit stehen noch aus."
       }
     ]
+  },
+  {
+    "slug": "coenzym-q10-mitochondrien-energie",
+    "title": "Coenzym Q10 einfach erklärt: Zellenergie, Herz und was Supplements wirklich leisten",
+    "subtitle": "Was Q10 in den Mitochondrien macht, warum Alter und Statine Thema sind und wo der Hype endet.",
+    "category": "zukunft-gesundheit",
+    "supplementCardId": "coenzym-q10",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "4:34 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/coenzym-q10-normalos-thumbnail.png",
+    "summary": "Coenzym Q10 ist ein körpereigener Zellstoff für die Energieproduktion. Das Video erklärt Mitochondrien als kleine Kraftwerke, ordnet Herz- und Statin-Themen vorsichtig ein und zeigt die praktische Lösung: Status, Medikamente und Qualität nüchtern prüfen.",
+    "benefits": [
+      "Q10 hilft in den Mitochondrien dabei, Energie aus Nahrung nutzbar zu machen.",
+      "Die Forschung zu Herzinsuffizienz ist interessant, ersetzt aber keine Herztherapie.",
+      "Bei Statinen ist Q10 ein diskutiertes Thema, die Studienlage bleibt gemischt."
+    ],
+    "risks": [
+      "Q10 ist kein schneller Energie-Booster und kein Ersatz für Schlaf, Ernährung oder Behandlung.",
+      "Bei Blutverdünnern, Herzmedikamenten, Schwangerschaft oder chronischen Erkrankungen vorher fachlich abklären.",
+      "Produkte unterscheiden sich stark in Form, Dosierung und Qualität."
+    ],
+    "myths": [
+      "Mythos: Q10 wirkt wie Koffein.",
+      "Mythos: Wer Statine nimmt, braucht automatisch Q10.",
+      "Mythos: Ubiquinol ist immer für alle besser."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "coenzym q10",
+      "q10",
+      "ubiquinon",
+      "ubiquinol",
+      "mitochondrien",
+      "zellenergie",
+      "statine",
+      "herz"
+    ],
+    "sources": [
+      {
+        "title": "Coenzyme Q10",
+        "publisher": "NCCIH / NIH",
+        "type": "Behördenübersicht",
+        "url": "https://www.nccih.nih.gov/health/coenzyme-q10",
+        "note": "Überblick zu Q10, Sicherheit und begrenzter Evidenz für viele Anwendungen."
+      },
+      {
+        "title": "The Effect of Coenzyme Q10 on Morbidity and Mortality in Chronic Heart Failure",
+        "publisher": "JACC: Heart Failure",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1016/j.jchf.2014.06.008",
+        "note": "Q-SYMBIO untersuchte Q10 ergänzend zur Standardtherapie bei chronischer Herzinsuffizienz."
+      },
+      {
+        "title": "Coenzyme Q10 supplementation for statin-associated muscle symptoms",
+        "publisher": "Atherosclerosis / PubMed",
+        "type": "Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30371340/",
+        "note": "Die Studienlage zu Statin-assoziierten Muskelsymptomen bleibt nicht eindeutig."
+      },
+      {
+        "title": "Coenzyme Q10 and Heart Failure",
+        "publisher": "Circulation: Heart Failure",
+        "type": "Review",
+        "url": "https://doi.org/10.1161/CIRCHEARTFAILURE.115.002639",
+        "note": "Review ordnet Mechanismus, Herzinsuffizienz-Daten und offene Fragen ein."
+      }
+    ]
+  },
+  {
+    "slug": "nmn-nad-zellenergie-longevity",
+    "title": "NMN einfach erklärt: NAD+, Zellenergie und warum Longevity-Belege noch früh sind",
+    "subtitle": "Was NMN mit NAD+ zu tun hat, warum es spannend ist und warum Menschenstudien noch vorsichtig machen.",
+    "category": "zukunft-gesundheit",
+    "supplementCardId": "nmn",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "4:20 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/nmn-normalos-thumbnail.png",
+    "summary": "NMN ist eine Vorstufe von NAD+, einem wichtigen Helferstoff für Zellenergie und Reparaturprozesse. Das Video erklärt den Mechanismus einfach, trennt Tier- und Menschenbelege und zeigt die Lösung: Hype bremsen, Studienlage prüfen, Sicherheit ernst nehmen.",
+    "benefits": [
+      "NMN kann NAD+-Stoffwechsel beeinflussen, der für Zellenergie wichtig ist.",
+      "Erste Humanstudien zeigen biologische Signale, aber keine bewiesene allgemeine Verjüngung.",
+      "Qualität, Zielgruppe, Dosis und Langzeitsicherheit sind entscheidende offene Punkte."
+    ],
+    "risks": [
+      "Longevity-Wirkungen beim Menschen sind nicht robust bewiesen.",
+      "Langzeitsicherheit, optimale Dosis und Zielgruppen sind noch nicht ausreichend geklärt.",
+      "Bei Krebsdiagnosen, Schwangerschaft, Medikamenten oder chronischen Erkrankungen fachlich abklären."
+    ],
+    "myths": [
+      "Mythos: NMN verjüngt sicher.",
+      "Mythos: Mehr NAD+ bedeutet automatisch mehr Gesundheit.",
+      "Mythos: Tierstudien reichen für eine Alltagsempfehlung."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "nmn",
+      "nad+",
+      "longevity",
+      "mitochondrien",
+      "sirtuine",
+      "zellenergie",
+      "anti aging"
+    ],
+    "sources": [
+      {
+        "title": "Nicotinamide mononucleotide increases muscle insulin sensitivity in prediabetic women",
+        "publisher": "Science",
+        "type": "Randomisierte klinische Studie",
+        "url": "https://doi.org/10.1126/science.abe9985",
+        "note": "Humanstudie mit metabolischem Signal, aber keine allgemeine Anti-Aging-Garantie."
+      },
+      {
+        "title": "Nicotinamide mononucleotide supplementation enhances aerobic capacity in amateur runners",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1186/s12970-021-00442-4",
+        "note": "Untersuchte NMN und aerobe Kapazität in Kombination mit Training."
+      },
+      {
+        "title": "Chronic nicotinamide mononucleotide supplementation elevates blood NAD+ levels and alters muscle function",
+        "publisher": "npj Aging",
+        "type": "Klinische Studie",
+        "url": "https://doi.org/10.1038/s41514-022-00084-z",
+        "note": "NMN erhöhte NAD+-bezogene Marker; klinische Bedeutung bleibt einzuordnen."
+      },
+      {
+        "title": "Efficacy and safety of NMN supplementation in healthy middle-aged adults",
+        "publisher": "GeroScience",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1007/s11357-022-00705-1",
+        "note": "Kurzfristige Humanstudie; Langzeitnutzen und Zielgruppen bleiben offen."
+      }
+    ]
+  },
+  {
+    "slug": "magnesium-nerven-muskeln-schlaf",
+    "title": "Magnesium einfach erklärt: Muskeln, Nerven, Schlaf und welche Form sinnvoll ist",
+    "subtitle": "Warum Magnesium wichtig ist, warum Blutwerte täuschen können und warum nicht jede Form gleich ist.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "magnesium",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "4:28 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/magnesium-normalos-thumbnail.png",
+    "summary": "Magnesium ist ein Mineralstoff für Muskeln, Nerven, Energie und viele Enzyme. Das Video erklärt es ohne Fachchinesisch, trennt Mangel, Stress und Supplement-Hype und zeigt die Lösung: Lebensmittel, passende Form, Verträglichkeit und Medikamentenabstand.",
+    "benefits": [
+      "Magnesium ist an vielen Enzymprozessen beteiligt, unter anderem Muskeln, Nerven und Energie.",
+      "Lebensmittel wie Kerne, Nüsse, Hülsenfrüchte und Vollkorn sind die Basis.",
+      "Gut lösliche Formen sind oft verträglicher als Magnesiumoxid."
+    ],
+    "risks": [
+      "Zu viel Magnesium aus Supplementen kann Durchfall und bei Nierenproblemen Risiken verursachen.",
+      "Magnesium kann die Aufnahme mancher Medikamente stören, etwa Schilddrüsenhormone oder bestimmte Antibiotika.",
+      "Blutwerte zeigen Magnesiumstatus nur begrenzt, weil viel Magnesium in Zellen und Knochen sitzt."
+    ],
+    "myths": [
+      "Mythos: Jeder Krampf ist Magnesiummangel.",
+      "Mythos: Magnesiumoxid ist automatisch die beste Form.",
+      "Mythos: Viel Magnesium macht besseren Schlaf garantiert."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "magnesium",
+      "mineralstoff",
+      "muskeln",
+      "nerven",
+      "schlaf",
+      "bisglycinat",
+      "citrat"
+    ],
+    "sources": [
+      {
+        "title": "Magnesium - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
+        "note": "Magnesium ist Cofaktor in über 300 Enzymsystemen; Formen und Sicherheit werden eingeordnet."
+      },
+      {
+        "title": "Effects of magnesium supplementation on blood pressure",
+        "publisher": "Hypertension",
+        "type": "Meta-Analyse randomisierter Studien",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27402922/",
+        "note": "Magnesium senkte Blutdruck in Studien nur moderat und kontextabhängig."
+      },
+      {
+        "title": "Evidence-based guideline update: complementary treatments for episodic migraine prevention",
+        "publisher": "Neurology",
+        "type": "Leitlinienupdate",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22529203/",
+        "note": "Magnesium wird bei Migräne-Prophylaxe als mögliche Option eingeordnet."
+      },
+      {
+        "title": "Oral magnesium supplementation for insomnia in older adults",
+        "publisher": "BMC Complementary Medicine and Therapies",
+        "type": "Systematische Übersicht",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33865376/",
+        "note": "Schlafdaten sind begrenzt; Nutzen ist nicht für alle belegt."
+      }
+    ]
+  },
+  {
+    "slug": "vitamin-d3-k2-sonne-knochen-immunsystem",
+    "title": "Vitamin D3 + K2 einfach erklärt: Sonne, Knochen, Immunsystem und der Kalzium-Mythos",
+    "subtitle": "Was Vitamin D wirklich macht, wofür K2 wichtig ist und warum hohe Dosen nicht automatisch besser sind.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "vitamin-d3-k2",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "4:23 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/vitamin-d3-k2-normalos-thumbnail.png",
+    "summary": "Vitamin D ist ein fettlösliches Vitamin und Hormon-Vorläufer, wichtig für Kalzium, Knochen, Muskeln und Immunsystem. K2 ist für Blutgerinnung und Knochenproteine relevant. Das Video erklärt den Kalzium-Mythos, Laborwerte, Dosierung und Risiken ohne Heilversprechen.",
+    "benefits": [
+      "Vitamin D hilft dem Körper, Kalzium aufzunehmen und ist wichtig für Knochen und Muskeln.",
+      "Vitamin K ist an Blutgerinnung und Knochenproteinen beteiligt.",
+      "Laborwert, Sonnenexposition, Ernährung und Risiko entscheiden mehr als pauschale Hochdosierung."
+    ],
+    "risks": [
+      "Zu viel Vitamin D kann Kalzium im Blut erhöhen und ernsthafte Nebenwirkungen verursachen.",
+      "Vitamin K kann mit Warfarin und ähnlichen Blutverdünnern relevant interagieren.",
+      "K2 macht hohe Vitamin-D-Dosen nicht automatisch sicher."
+    ],
+    "myths": [
+      "Mythos: Jeder braucht 10.000 IE Vitamin D täglich.",
+      "Mythos: K2 schiebt Kalzium garantiert an die richtige Stelle.",
+      "Mythos: Mehr Vitamin D bedeutet automatisch besseres Immunsystem."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "vitamin d3",
+      "vitamin k2",
+      "knochen",
+      "immunsystem",
+      "kalzium",
+      "mk7",
+      "sonne"
+    ],
+    "sources": [
+      {
+        "title": "Vitamin D - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+        "note": "Vitamin D, Bedarf, Status, Toxizität und Interaktionen werden eingeordnet."
+      },
+      {
+        "title": "Vitamin K - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
+        "note": "Vitamin K1, K2, Blutgerinnung, Knochenproteine und Warfarin-Thema."
+      },
+      {
+        "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
+        "publisher": "New England Journal of Medicine",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1056/NEJMoa1809944",
+        "note": "VITAL zeigte keine pauschale Prävention von Krebs oder Herz-Kreislauf-Erkrankungen."
+      },
+      {
+        "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+        "publisher": "New England Journal of Medicine",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1056/NEJMoa2202106",
+        "note": "In nicht ausgewählten Erwachsenen zeigte Vitamin D keine pauschale Frakturprävention."
+      }
+    ]
+  },
+  {
+    "slug": "omega-3-epa-dha-herz-gehirn",
+    "title": "Omega-3 einfach erklärt: EPA, DHA, Gehirn, Herz und warum Fischöl nicht gleich Fischöl ist",
+    "subtitle": "Was EPA und DHA im Körper machen, warum Studien gemischt sind und worauf man bei Öl achtet.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "omega-3",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "4:33 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/omega-3-normalos-thumbnail.png",
+    "summary": "Omega-3-Fettsäuren EPA und DHA sind wichtige Bausteine für Zellmembranen, Gehirn und Herz-Kreislauf-Stoffwechsel. Das Video erklärt den Unterschied zwischen Fisch, Fischöl und Medikamentenstudien, ordnet REDUCE-IT, STRENGTH und VITAL ein und zeigt Qualitätskriterien.",
+    "benefits": [
+      "EPA und DHA sind Bausteine von Zellmembranen und spielen bei Entzündungsauflösung und Triglyceriden eine Rolle.",
+      "Fetter Fisch und Algenöl sind zentrale Quellen; ALA aus Pflanzen wird nur begrenzt umgewandelt.",
+      "Produktqualität, Oxidation, EPA/DHA-Menge und Kontext sind wichtiger als Marketing."
+    ],
+    "risks": [
+      "Allgemeine Fischöl-Supplemente verhindern Herzinfarkte nicht pauschal bei allen Menschen.",
+      "Hohe Dosen können bei Risikopersonen Vorhofflimmern oder Blutungsfragen relevanter machen.",
+      "Bei Blutverdünnern, Fischallergie, OPs oder Herzrhythmusstörungen fachlich abklären."
+    ],
+    "myths": [
+      "Mythos: Jede Fischölkapsel schützt das Herz.",
+      "Mythos: ALA aus Leinöl ersetzt EPA und DHA vollständig.",
+      "Mythos: Ranziges Öl ist nur ein Geschmacksproblem."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "omega-3",
+      "epa",
+      "dha",
+      "fischöl",
+      "algenöl",
+      "herz",
+      "gehirn",
+      "triglyceride"
+    ],
+    "sources": [
+      {
+        "title": "Omega-3 Fatty Acids - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+        "note": "Quellen, Formen, Bioverfügbarkeit, Sicherheit und Herz-Kreislauf-Evidenz."
+      },
+      {
+        "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
+        "publisher": "New England Journal of Medicine",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1056/NEJMoa1812792",
+        "note": "REDUCE-IT untersuchte hochdosiertes verschreibungspflichtiges EPA bei Hochrisikopatienten."
+      },
+      {
+        "title": "Effect of High-Dose Omega-3 Fatty Acids vs Corn Oil on Major Adverse Cardiovascular Events",
+        "publisher": "JAMA",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1001/jama.2020.22258",
+        "note": "STRENGTH fand keinen Vorteil für ein hochdosiertes EPA/DHA-Präparat bei Hochrisikopatienten."
+      },
+      {
+        "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
+        "publisher": "New England Journal of Medicine",
+        "type": "Randomisierte Studie",
+        "url": "https://doi.org/10.1056/NEJMoa1811403",
+        "note": "VITAL zeigte keine pauschale Primärprävention von Herz-Kreislauf-Erkrankung oder Krebs."
+      }
+    ]
   }
 ]

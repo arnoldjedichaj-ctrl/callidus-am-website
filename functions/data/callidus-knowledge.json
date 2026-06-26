@@ -149,6 +149,126 @@
       "title": "ClinicalTrials.gov Fisetin studies",
       "url": "https://clinicaltrials.gov/search?term=fisetin",
       "type": "Studienregister"
+    },
+    {
+      "id": "video-coenzym-q10-mitochondrien-energie-1",
+      "title": "Coenzyme Q10",
+      "url": "https://www.nccih.nih.gov/health/coenzyme-q10",
+      "type": "Behördenübersicht"
+    },
+    {
+      "id": "video-coenzym-q10-mitochondrien-energie-2",
+      "title": "The Effect of Coenzyme Q10 on Morbidity and Mortality in Chronic Heart Failure",
+      "url": "https://doi.org/10.1016/j.jchf.2014.06.008",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-coenzym-q10-mitochondrien-energie-3",
+      "title": "Coenzyme Q10 supplementation for statin-associated muscle symptoms",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30371340/",
+      "type": "Meta-Analyse"
+    },
+    {
+      "id": "video-coenzym-q10-mitochondrien-energie-4",
+      "title": "Coenzyme Q10 and Heart Failure",
+      "url": "https://doi.org/10.1161/CIRCHEARTFAILURE.115.002639",
+      "type": "Review"
+    },
+    {
+      "id": "video-nmn-nad-zellenergie-longevity-1",
+      "title": "Nicotinamide mononucleotide increases muscle insulin sensitivity in prediabetic women",
+      "url": "https://doi.org/10.1126/science.abe9985",
+      "type": "Randomisierte klinische Studie"
+    },
+    {
+      "id": "video-nmn-nad-zellenergie-longevity-2",
+      "title": "Nicotinamide mononucleotide supplementation enhances aerobic capacity in amateur runners",
+      "url": "https://doi.org/10.1186/s12970-021-00442-4",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-nmn-nad-zellenergie-longevity-3",
+      "title": "Chronic nicotinamide mononucleotide supplementation elevates blood NAD+ levels and alters muscle function",
+      "url": "https://doi.org/10.1038/s41514-022-00084-z",
+      "type": "Klinische Studie"
+    },
+    {
+      "id": "video-nmn-nad-zellenergie-longevity-4",
+      "title": "Efficacy and safety of NMN supplementation in healthy middle-aged adults",
+      "url": "https://doi.org/10.1007/s11357-022-00705-1",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-magnesium-nerven-muskeln-schlaf-1",
+      "title": "Magnesium - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
+      "type": "Behördenübersicht"
+    },
+    {
+      "id": "video-magnesium-nerven-muskeln-schlaf-2",
+      "title": "Effects of magnesium supplementation on blood pressure",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27402922/",
+      "type": "Meta-Analyse randomisierter Studien"
+    },
+    {
+      "id": "video-magnesium-nerven-muskeln-schlaf-3",
+      "title": "Evidence-based guideline update: complementary treatments for episodic migraine prevention",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22529203/",
+      "type": "Leitlinienupdate"
+    },
+    {
+      "id": "video-magnesium-nerven-muskeln-schlaf-4",
+      "title": "Oral magnesium supplementation for insomnia in older adults",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33865376/",
+      "type": "Systematische Übersicht"
+    },
+    {
+      "id": "video-vitamin-d3-k2-sonne-knochen-immunsystem-1",
+      "title": "Vitamin D - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+      "type": "Behördenübersicht"
+    },
+    {
+      "id": "video-vitamin-d3-k2-sonne-knochen-immunsystem-2",
+      "title": "Vitamin K - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
+      "type": "Behördenübersicht"
+    },
+    {
+      "id": "video-vitamin-d3-k2-sonne-knochen-immunsystem-3",
+      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
+      "url": "https://doi.org/10.1056/NEJMoa1809944",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-vitamin-d3-k2-sonne-knochen-immunsystem-4",
+      "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+      "url": "https://doi.org/10.1056/NEJMoa2202106",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-omega-3-epa-dha-herz-gehirn-1",
+      "title": "Omega-3 Fatty Acids - Health Professional Fact Sheet",
+      "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+      "type": "Behördenübersicht"
+    },
+    {
+      "id": "video-omega-3-epa-dha-herz-gehirn-2",
+      "title": "Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia",
+      "url": "https://doi.org/10.1056/NEJMoa1812792",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-omega-3-epa-dha-herz-gehirn-3",
+      "title": "Effect of High-Dose Omega-3 Fatty Acids vs Corn Oil on Major Adverse Cardiovascular Events",
+      "url": "https://doi.org/10.1001/jama.2020.22258",
+      "type": "Randomisierte Studie"
+    },
+    {
+      "id": "video-omega-3-epa-dha-herz-gehirn-4",
+      "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer",
+      "url": "https://doi.org/10.1056/NEJMoa1811403",
+      "type": "Randomisierte Studie"
     }
   ],
   "entries": [
@@ -432,11 +552,26 @@
         "Nervensystem & mentale Ruhe",
         "Schlafqualität verbessern",
         "Energiestoffwechsel",
-        "Blutdruckregulation"
+        "Blutdruckregulation",
+        "magnesium",
+        "mineralstoff",
+        "muskeln",
+        "nerven",
+        "schlaf",
+        "bisglycinat",
+        "citrat",
+        "Video",
+        "Wissensvideo",
+        "normal erklärt",
+        "Problem Lösung"
       ],
-      "text": "Magnesium: Beteiligt an über 300 enzymatischen Prozessen – essenziell für Nerven, Muskeln und erholsamen Schlaf. Kategorie: Mineralstoff. Wirkungen/Einordnung: Muskelentspannung & -funktion, Nervensystem & mentale Ruhe, Schlafqualität verbessern, Energiestoffwechsel, Blutdruckregulation. Dosierung: 300–400 mg elementares Magnesium täglich, idealerweise abends eingenommen. Beste Form: Magnesiumbisglycinat – magenfreundlich, hoch bioverfügbar und ohne laxativen Effekt. Kombinationen: Vitamin B6 (verbessert die zelluläre Aufnahme), Vitamin D (synergistische Wirkung auf Knochen & Nerven). Kontraindikationen: Schwere Niereninsuffizienz: nur nach ärztlicher Rücksprache. Wissenschaftlicher Stand: Sehr gut erforscht. Klare Evidenz bei Mangelversorgung. Weit verbreiteter Mikronährstoffmangel in der Bevölkerung – Schätzungen gehen von 30–50 % aus.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "Magnesium: Beteiligt an über 300 enzymatischen Prozessen – essenziell für Nerven, Muskeln und erholsamen Schlaf. Kategorie: Mineralstoff. Wirkungen/Einordnung: Muskelentspannung & -funktion, Nervensystem & mentale Ruhe, Schlafqualität verbessern, Energiestoffwechsel, Blutdruckregulation. Dosierung: 300–400 mg elementares Magnesium täglich, idealerweise abends eingenommen. Beste Form: Magnesiumbisglycinat – magenfreundlich, hoch bioverfügbar und ohne laxativen Effekt. Kombinationen: Vitamin B6 (verbessert die zelluläre Aufnahme), Vitamin D (synergistische Wirkung auf Knochen & Nerven). Kontraindikationen: Schwere Niereninsuffizienz: nur nach ärztlicher Rücksprache. Wissenschaftlicher Stand: Sehr gut erforscht. Klare Evidenz bei Mangelversorgung. Weit verbreiteter Mikronährstoffmangel in der Bevölkerung – Schätzungen gehen von 30–50 % aus.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: Magnesium einfach erklärt: Muskeln, Nerven, Schlaf und welche Form sinnvoll ist. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: Magnesium ist ein Mineralstoff für Muskeln, Nerven, Energie und viele Enzyme. Das Video erklärt es ohne Fachchinesisch, trennt Mangel, Stress und Supplement-Hype und zeigt die Lösung: Lebensmittel, passende Form, Verträglichkeit und Medikamentenabstand.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "bfr-max-supplements",
+        "video-magnesium-nerven-muskeln-schlaf-1",
+        "video-magnesium-nerven-muskeln-schlaf-2",
+        "video-magnesium-nerven-muskeln-schlaf-3",
+        "video-magnesium-nerven-muskeln-schlaf-4"
       ]
     },
     {
@@ -474,11 +609,26 @@
         "Knochen- & Zahngesundheit",
         "Stimmung & mentale Gesundheit",
         "Muskelkraft",
-        "Hormonbalance"
+        "Hormonbalance",
+        "vitamin d3",
+        "vitamin k2",
+        "knochen",
+        "immunsystem",
+        "kalzium",
+        "mk7",
+        "sonne",
+        "Video",
+        "Wissensvideo",
+        "normal erklärt",
+        "Problem Lösung"
       ],
-      "text": "Vitamin D3 + K2: Vitamin D reguliert über 1.000 Gene. K2 sorgt dafür, dass Kalzium dorthin gelangt, wo es hingehört. Kategorie: Vitamin. Wirkungen/Einordnung: Immunsystem & Infektabwehr, Knochen- & Zahngesundheit, Stimmung & mentale Gesundheit, Muskelkraft, Hormonbalance. Dosierung: 1.000–5.000 IE Vitamin D3 täglich, zusammen mit 100–200 µg Vitamin K2 (MK-7) und fetthaltiger Mahlzeit. Beste Form: Öltropfen oder Softgels – die fettlösliche Form wird deutlich besser absorbiert als Tabletten. Kombinationen: Magnesium (aktiviert Vitamin D im Körper), Omega-3 (synergistisch für Entzündungsregulation). Kontraindikationen: Hyperkalzämie, Granulomatöse Erkrankungen (Sarkoidose), Bei hohen Dosen: Blutspiegel kontrollieren lassen. Wissenschaftlicher Stand: Sehr gut erforscht. Vitamin-D-Mangel ist in Mitteleuropa weit verbreitet (>60 % der Bevölkerung im Winter). K2 verhindert Kalzifizierung der Arterien.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "Vitamin D3 + K2: Vitamin D reguliert über 1.000 Gene. K2 sorgt dafür, dass Kalzium dorthin gelangt, wo es hingehört. Kategorie: Vitamin. Wirkungen/Einordnung: Immunsystem & Infektabwehr, Knochen- & Zahngesundheit, Stimmung & mentale Gesundheit, Muskelkraft, Hormonbalance. Dosierung: 1.000–5.000 IE Vitamin D3 täglich, zusammen mit 100–200 µg Vitamin K2 (MK-7) und fetthaltiger Mahlzeit. Beste Form: Öltropfen oder Softgels – die fettlösliche Form wird deutlich besser absorbiert als Tabletten. Kombinationen: Magnesium (aktiviert Vitamin D im Körper), Omega-3 (synergistisch für Entzündungsregulation). Kontraindikationen: Hyperkalzämie, Granulomatöse Erkrankungen (Sarkoidose), Bei hohen Dosen: Blutspiegel kontrollieren lassen. Wissenschaftlicher Stand: Sehr gut erforscht. Vitamin-D-Mangel ist in Mitteleuropa weit verbreitet (>60 % der Bevölkerung im Winter). K2 verhindert Kalzifizierung der Arterien.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: Vitamin D3 + K2 einfach erklärt: Sonne, Knochen, Immunsystem und der Kalzium-Mythos. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: Vitamin D ist ein fettlösliches Vitamin und Hormon-Vorläufer, wichtig für Kalzium, Knochen, Muskeln und Immunsystem. K2 ist für Blutgerinnung und Knochenproteine relevant. Das Video erklärt den Kalzium-Mythos, Laborwerte, Dosierung und Risiken ohne Heilversprechen.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "bfr-max-supplements",
+        "video-vitamin-d3-k2-sonne-knochen-immunsystem-1",
+        "video-vitamin-d3-k2-sonne-knochen-immunsystem-2",
+        "video-vitamin-d3-k2-sonne-knochen-immunsystem-3",
+        "video-vitamin-d3-k2-sonne-knochen-immunsystem-4"
       ]
     },
     {
@@ -537,11 +687,27 @@
         "Entzündungshemmung im gesamten Körper",
         "Herz-Kreislauf-Gesundheit",
         "Sehkraft (DHA)",
-        "Stimmung & Depression"
+        "Stimmung & Depression",
+        "omega-3",
+        "epa",
+        "dha",
+        "fischöl",
+        "algenöl",
+        "herz",
+        "gehirn",
+        "triglyceride",
+        "Video",
+        "Wissensvideo",
+        "normal erklärt",
+        "Problem Lösung"
       ],
-      "text": "Omega-3 (EPA & DHA): EPA und DHA sind Bausteine jeder Körperzelle – stark entzündungshemmend und essenziell für das Gehirn. Kategorie: Fettsäure. Wirkungen/Einordnung: Gehirnfunktion & Konzentration, Entzündungshemmung im gesamten Körper, Herz-Kreislauf-Gesundheit, Sehkraft (DHA), Stimmung & Depression. Dosierung: 1–3 g EPA+DHA täglich, mit fetthaltiger Mahlzeit für optimale Absorption. Beste Form: Hochwertiges Fischöl (Triglycerid-Form) oder Algenöl (vegan) – auf Reinheit und TOTOX-Wert achten. Kombinationen: Vitamin D3 (synergistisch für Entzündungsregulation), Vitamin E (schützt Omega-3 vor Oxidation). Kontraindikationen: Blutverdünnende Medikamente: ärztliche Rücksprache, Bei geplanter OP: 2 Wochen vorher absetzen. Wissenschaftlicher Stand: Einer der am besten erforschten Nährstoffe. Starke Evidenz für kardiovaskuläre Gesundheit, mentale Gesundheit und Entzündungsregulation.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "Omega-3 (EPA & DHA): EPA und DHA sind Bausteine jeder Körperzelle – stark entzündungshemmend und essenziell für das Gehirn. Kategorie: Fettsäure. Wirkungen/Einordnung: Gehirnfunktion & Konzentration, Entzündungshemmung im gesamten Körper, Herz-Kreislauf-Gesundheit, Sehkraft (DHA), Stimmung & Depression. Dosierung: 1–3 g EPA+DHA täglich, mit fetthaltiger Mahlzeit für optimale Absorption. Beste Form: Hochwertiges Fischöl (Triglycerid-Form) oder Algenöl (vegan) – auf Reinheit und TOTOX-Wert achten. Kombinationen: Vitamin D3 (synergistisch für Entzündungsregulation), Vitamin E (schützt Omega-3 vor Oxidation). Kontraindikationen: Blutverdünnende Medikamente: ärztliche Rücksprache, Bei geplanter OP: 2 Wochen vorher absetzen. Wissenschaftlicher Stand: Einer der am besten erforschten Nährstoffe. Starke Evidenz für kardiovaskuläre Gesundheit, mentale Gesundheit und Entzündungsregulation.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: Omega-3 einfach erklärt: EPA, DHA, Gehirn, Herz und warum Fischöl nicht gleich Fischöl ist. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: Omega-3-Fettsäuren EPA und DHA sind wichtige Bausteine für Zellmembranen, Gehirn und Herz-Kreislauf-Stoffwechsel. Das Video erklärt den Unterschied zwischen Fisch, Fischöl und Medikamentenstudien, ordnet REDUCE-IT, STRENGTH und VITAL ein und zeigt Qualitätskriterien.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "bfr-max-supplements",
+        "video-omega-3-epa-dha-herz-gehirn-1",
+        "video-omega-3-epa-dha-herz-gehirn-2",
+        "video-omega-3-epa-dha-herz-gehirn-3",
+        "video-omega-3-epa-dha-herz-gehirn-4"
       ]
     },
     {
@@ -558,11 +724,26 @@
         "Zelluläre Energieproduktion (Mitochondrien)",
         "DNA-Reparatur unterstützen",
         "Sirtuin-Aktivierung (Anti-Aging-Enzyme)",
-        "Metabolismus & Insulinsensitivität"
+        "Metabolismus & Insulinsensitivität",
+        "nmn",
+        "nad+",
+        "longevity",
+        "mitochondrien",
+        "sirtuine",
+        "zellenergie",
+        "anti aging",
+        "Video",
+        "Wissensvideo",
+        "normal erklärt",
+        "Problem Lösung"
       ],
-      "text": "NMN: NMN erhöht den NAD+-Spiegel – ein Schlüsselcofaktor für zelluläre Energieproduktion und DNA-Reparatur. Kategorie: Longevity. Wirkungen/Einordnung: NAD+-Spiegel erhöhen, Zelluläre Energieproduktion (Mitochondrien), DNA-Reparatur unterstützen, Sirtuin-Aktivierung (Anti-Aging-Enzyme), Metabolismus & Insulinsensitivität. Dosierung: 250–500 mg täglich, morgens nüchtern oder mit Mahlzeit (Forschung noch im Gange). Beste Form: Reines NMN-Pulver oder Kapseln von verifizierten Herstellern mit Reinheitszertifikat. Kombinationen: Resveratrol (aktiviert Sirtuine synergistisch), TMG/Betain (verhindert Methylgruppenverbrauch). Kontraindikationen: Schwangerschaft & Stillzeit: nicht empfohlen (fehlende Studien), Krebserkrankungen: ärztliche Rücksprache. Wissenschaftlicher Stand: Vielversprechend, aber noch frühe Forschungsphase bei Menschen. Tierstudien zeigen beeindruckende Ergebnisse. Erste Humanstudien positiv.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "NMN: NMN erhöht den NAD+-Spiegel – ein Schlüsselcofaktor für zelluläre Energieproduktion und DNA-Reparatur. Kategorie: Longevity. Wirkungen/Einordnung: NAD+-Spiegel erhöhen, Zelluläre Energieproduktion (Mitochondrien), DNA-Reparatur unterstützen, Sirtuin-Aktivierung (Anti-Aging-Enzyme), Metabolismus & Insulinsensitivität. Dosierung: 250–500 mg täglich, morgens nüchtern oder mit Mahlzeit (Forschung noch im Gange). Beste Form: Reines NMN-Pulver oder Kapseln von verifizierten Herstellern mit Reinheitszertifikat. Kombinationen: Resveratrol (aktiviert Sirtuine synergistisch), TMG/Betain (verhindert Methylgruppenverbrauch). Kontraindikationen: Schwangerschaft & Stillzeit: nicht empfohlen (fehlende Studien), Krebserkrankungen: ärztliche Rücksprache. Wissenschaftlicher Stand: Vielversprechend, aber noch frühe Forschungsphase bei Menschen. Tierstudien zeigen beeindruckende Ergebnisse. Erste Humanstudien positiv.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: NMN einfach erklärt: NAD+, Zellenergie und warum Longevity-Belege noch früh sind. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: NMN ist eine Vorstufe von NAD+, einem wichtigen Helferstoff für Zellenergie und Reparaturprozesse. Das Video erklärt den Mechanismus einfach, trennt Tier- und Menschenbelege und zeigt die Lösung: Hype bremsen, Studienlage prüfen, Sicherheit ernst nehmen.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "bfr-max-supplements",
+        "video-nmn-nad-zellenergie-longevity-1",
+        "video-nmn-nad-zellenergie-longevity-2",
+        "video-nmn-nad-zellenergie-longevity-3",
+        "video-nmn-nad-zellenergie-longevity-4"
       ]
     },
     {
@@ -647,11 +828,27 @@
         "Herzmuskel-Unterstützung",
         "Antioxidativer Zellschutz",
         "Statin-Nebenwirkungen reduzieren",
-        "Fertilität (Eizell- & Spermienqualität)"
+        "Fertilität (Eizell- & Spermienqualität)",
+        "coenzym q10",
+        "q10",
+        "ubiquinon",
+        "ubiquinol",
+        "mitochondrien",
+        "zellenergie",
+        "statine",
+        "herz",
+        "Video",
+        "Wissensvideo",
+        "normal erklärt",
+        "Problem Lösung"
       ],
-      "text": "Coenzym Q10: Unverzichtbarer Cofaktor in der Energieerzeugung jeder Zelle – nimmt mit dem Alter ab. Kategorie: Longevity. Wirkungen/Einordnung: Zelluläre Energieproduktion (ATP), Herzmuskel-Unterstützung, Antioxidativer Zellschutz, Statin-Nebenwirkungen reduzieren, Fertilität (Eizell- & Spermienqualität). Dosierung: 100–300 mg täglich, mit einer fetthaltigen Mahlzeit (fettlöslich). Beste Form: Ubiquinol (reduzierte Form) – deutlich besser bioverfügbar als Ubiquinon, besonders ab 40+. Kombinationen: Omega-3 (gemeinsam für Herzgesundheit), Selen (synergistisch für Antioxidationsschutz). Kontraindikationen: Blutverdünner (Warfarin): Dosis kann beeinflusst werden – ärztliche Kontrolle, Kann Blutdruck leicht senken. Wissenschaftlicher Stand: Gut erforscht, besonders für Herzinsuffizienz und als Begleitschutz bei Statin-Therapie. Ubiquinol-Studien zeigen überlegene Bioverfügbarkeit.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar.",
+      "text": "Coenzym Q10: Unverzichtbarer Cofaktor in der Energieerzeugung jeder Zelle – nimmt mit dem Alter ab. Kategorie: Longevity. Wirkungen/Einordnung: Zelluläre Energieproduktion (ATP), Herzmuskel-Unterstützung, Antioxidativer Zellschutz, Statin-Nebenwirkungen reduzieren, Fertilität (Eizell- & Spermienqualität). Dosierung: 100–300 mg täglich, mit einer fetthaltigen Mahlzeit (fettlöslich). Beste Form: Ubiquinol (reduzierte Form) – deutlich besser bioverfügbar als Ubiquinon, besonders ab 40+. Kombinationen: Omega-3 (gemeinsam für Herzgesundheit), Selen (synergistisch für Antioxidationsschutz). Kontraindikationen: Blutverdünner (Warfarin): Dosis kann beeinflusst werden – ärztliche Kontrolle, Kann Blutdruck leicht senken. Wissenschaftlicher Stand: Gut erforscht, besonders für Herzinsuffizienz und als Begleitschutz bei Statin-Therapie. Ubiquinol-Studien zeigen überlegene Bioverfügbarkeit.. Passende Produktempfehlung vorhanden: Amazon. Affiliate-Link ist auf der Gesundheits-Wissen-Karte sichtbar. Passendes Video: Coenzym Q10 einfach erklärt: Zellenergie, Herz und was Supplements wirklich leisten. Status: Video folgt. YouTube-ID: noch nicht hinterlegt. Zusammenfassung: Coenzym Q10 ist ein körpereigener Zellstoff für die Energieproduktion. Das Video erklärt Mitochondrien als kleine Kraftwerke, ordnet Herz- und Statin-Themen vorsichtig ein und zeigt die praktische Lösung: Status, Medikamente und Qualität nüchtern prüfen.",
       "sourceIds": [
-        "bfr-max-supplements"
+        "bfr-max-supplements",
+        "video-coenzym-q10-mitochondrien-energie-1",
+        "video-coenzym-q10-mitochondrien-energie-2",
+        "video-coenzym-q10-mitochondrien-energie-3",
+        "video-coenzym-q10-mitochondrien-energie-4"
       ]
     },
     {
