@@ -493,5 +493,338 @@
         "note": "VITAL zeigte keine pauschale Primärprävention von Herz-Kreislauf-Erkrankung oder Krebs."
       }
     ]
+  },
+  {
+    "slug": "zink-normalos-wissen",
+    "title": "Zink einfach erklärt: Immunsystem, Wundheilung und warum mehr nicht besser ist",
+    "subtitle": "Zink ist ein Spurenelement: klein in der Menge, groß in der Funktion. Das Video erklärt ohne Fachchinesisch, was Zink im Körper macht, was bei Erkältungen wirklich belegt ist und warum langfristig hohe Dosen problematisch sein können.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "zink",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:21 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/zink-normalos-thumbnail.png",
+    "summary": "Zink ist ein Spurenelement: klein in der Menge, groß in der Funktion. Das Video erklärt ohne Fachchinesisch, was Zink im Körper macht, was bei Erkältungen wirklich belegt ist und warum langfristig hohe Dosen problematisch sein können.",
+    "benefits": [
+      "Enzyme sind kleine Arbeitsmaschinen im Körper. Zink steckt in vielen davon.",
+      "Zink hilft bei Eiweißaufbau, Wundheilung, Abwehr und dem Geschmacks- und Geruchssinn.",
+      "Kerne, Hülsenfrüchte, Hafer, Käse, Fleisch und Meeresfrüchte können Zink liefern."
+    ],
+    "risks": [
+      "Kupfer im Blick",
+      "Antibiotika-Abstand",
+      "Eisen/Calcium trennen",
+      "Nase nicht sprühen"
+    ],
+    "myths": [
+      "Mehr Zink ist nicht mehr Abwehr"
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "zink",
+      "zink",
+      "supplement",
+      "gesundheits-wissen",
+      "callidus"
+    ],
+    "sources": [
+      {
+        "title": "Zinc - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Referenzwert",
+        "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
+        "note": "Zink ist wichtig fuer Enzyme, Immunfunktion, Wundheilung, DNA und Geschmack."
+      },
+      {
+        "title": "Zinc for prevention and treatment of the common cold",
+        "publisher": "Cochrane Database of Systematic Reviews",
+        "type": "Systematische Uebersicht",
+        "url": "https://doi.org/10.1002/14651858.CD014914.pub2",
+        "note": "Zink kann Erkaeltungsdauer moeglicherweise etwas verkuerzen; Evidenzsicherheit ist niedrig."
+      },
+      {
+        "title": "Zinc for acute viral respiratory tract infections in adults",
+        "publisher": "BMJ Open / PubMed",
+        "type": "Systematische Uebersicht",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34728441/",
+        "note": "Gemischte Effekte und haeufiger milde Nebenwirkungen wie Uebelkeit oder Mundreizungen."
+      },
+      {
+        "title": "Health risks from excessive zinc",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Sicherheitshinweis",
+        "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/#h8",
+        "note": "Langfristig zu viel Zink kann Kupfermangel und Wechselwirkungen beguenstigen."
+      }
+    ]
+  },
+  {
+    "slug": "vitamin-c-normalos-wissen",
+    "title": "Vitamin C einfach erklärt: Kollagen, Immunsystem und der Erkältungs-Mythos",
+    "subtitle": "Vitamin C ist wichtig für Kollagen, Abwehr, Antioxidantien und Eisenaufnahme. Das Video ordnet einfach ein, warum es kein Erkältungs-Schutzschild ist und warum Megadosen meistens keine clevere Lösung sind.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "vitamin-c",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:13 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/vitamin-c-normalos-thumbnail.png",
+    "summary": "Vitamin C ist wichtig für Kollagen, Abwehr, Antioxidantien und Eisenaufnahme. Das Video ordnet einfach ein, warum es kein Erkältungs-Schutzschild ist und warum Megadosen meistens keine clevere Lösung sind.",
+    "benefits": [
+      "Vitamin C wird nicht wie Fett gespeichert. Der Körper hält es aktiv im Gleichgewicht.",
+      "Kollagen stabilisiert Haut, Gefäße, Zahnfleisch, Bindegewebe und Wundheilung.",
+      "Paprika, Kiwi, Beeren, Zitrusfrüchte, Kohl und Brokkoli liefern Vitamin C alltagstauglich."
+    ],
+    "risks": [
+      "Magen/Darm?",
+      "Nierensteine?",
+      "Eisen hoch?",
+      "Megadosen meiden"
+    ],
+    "myths": [
+      "Nach Beginn oft zu spät"
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "vitamin-c",
+      "vitamin c",
+      "supplement",
+      "gesundheits-wissen",
+      "callidus"
+    ],
+    "sources": [
+      {
+        "title": "Vitamin C - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Referenzwert",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
+        "note": "Vitamin C ist relevant fuer Kollagen, Antioxidantien, Immunfunktion und Eisenaufnahme."
+      },
+      {
+        "title": "Vitamin C for preventing and treating the common cold",
+        "publisher": "Cochrane / PubMed",
+        "type": "Systematische Uebersicht",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23440782/",
+        "note": "Routine-Supplementierung verhindert Erkaeltungen meist nicht, kann Dauer leicht verkuerzen."
+      },
+      {
+        "title": "Vitamin C absorption and high-dose excretion",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Pharmakokinetik",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/#h3",
+        "note": "Bei hohen oralen Dosen sinkt die anteilige Aufnahme und mehr wird ausgeschieden."
+      },
+      {
+        "title": "Health Risks from Excessive Vitamin C",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Sicherheitshinweis",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/#h9",
+        "note": "Hohe Dosen koennen Durchfall, Uebelkeit, Bauchkraempfe und bei Risikogruppen Probleme machen."
+      }
+    ]
+  },
+  {
+    "slug": "vitamin-b-komplex-normalos-wissen",
+    "title": "Vitamin-B-Komplex einfach erklärt: Energie, Nerven und warum aktiv nicht automatisch besser heißt",
+    "subtitle": "B-Vitamine sind keine Energiepillen, sondern Helferstoffe im Stoffwechsel. Das Video erklärt die acht B-Vitamine einfach, ordnet aktive Formen, Homocystein und B12-Risiken ein und warnt vor unnötig hohen B6-Dosen.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "vitamin-b-komplex",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:29 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/vitamin-b-komplex-normalos-thumbnail.png",
+    "summary": "B-Vitamine sind keine Energiepillen, sondern Helferstoffe im Stoffwechsel. Das Video erklärt die acht B-Vitamine einfach, ordnet aktive Formen, Homocystein und B12-Risiken ein und warnt vor unnötig hohen B6-Dosen.",
+    "benefits": [
+      "B1, B2, B3, B5, B6, B7, B9 und B12 arbeiten an vielen Stoffwechselwegen mit.",
+      "B-Vitamine helfen, Nahrung in nutzbare Prozesse zu verwandeln. Die Energie kommt aus Essen.",
+      "Vollkorn, Hülsenfrüchte, Eier, Fisch, Fleisch, Milchprodukte und Gemüse decken verschiedene B-Vitamine ab."
+    ],
+    "risks": [
+      "B6 nicht hoch stapeln",
+      "B12-Risiko prüfen",
+      "Folat + B12",
+      "Medikamente beachten"
+    ],
+    "myths": [],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "vitamin-b-komplex",
+      "b-komplex",
+      "supplement",
+      "gesundheits-wissen",
+      "callidus"
+    ],
+    "sources": [
+      {
+        "title": "Vitamin B6 - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Referenzwert",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/",
+        "note": "B6 ist an vielen Enzymreaktionen beteiligt; zu viel kann Nervenprobleme verursachen."
+      },
+      {
+        "title": "Vitamin B12 - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Referenzwert",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/",
+        "note": "B12 ist wichtig fuer Nerven, Blutbildung und DNA-Synthese; vegane Ernaehrung erhoeht Risiko."
+      },
+      {
+        "title": "Folate - Health Professional Fact Sheet",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Referenzwert",
+        "url": "https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/",
+        "note": "Hohe Folsaeure kann B12-Probleme verdecken oder verschlechtern."
+      },
+      {
+        "title": "Effect of folic acid and B vitamins on cardiovascular events",
+        "publisher": "JAMA / PubMed",
+        "type": "Randomisierte Studie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18460663/",
+        "note": "Homocystein-Senkung bedeutet nicht automatisch weniger Herz-Kreislauf-Ereignisse."
+      }
+    ]
+  },
+  {
+    "slug": "ashwagandha-normalos-wissen",
+    "title": "Ashwagandha einfach erklärt: Stress, Schlaf und warum natürlich nicht automatisch harmlos ist",
+    "subtitle": "Ashwagandha ist eine ayurvedische Wurzel, die oft bei Stress und Schlaf beworben wird. Das Video erklärt Adaptogene normalsprachlich, ordnet die Studienlage vorsichtig ein und zeigt klare Sicherheitsgrenzen.",
+    "category": "geist-stress-schlaf",
+    "supplementCardId": "ashwagandha",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:16 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/ashwagandha-normalos-thumbnail.png",
+    "summary": "Ashwagandha ist eine ayurvedische Wurzel, die oft bei Stress und Schlaf beworben wird. Das Video erklärt Adaptogene normalsprachlich, ordnet die Studienlage vorsichtig ein und zeigt klare Sicherheitsgrenzen.",
+    "benefits": [
+      "Ashwagandha heißt botanisch Withania somnifera und wird meist als Extrakt genutzt.",
+      "Die Idee: Stressantwort unterstützen. Das ist etwas anderes als Menschen einfach müde zu machen.",
+      "Studien nutzen bestimmte Extrakte und Dosen. Ein beliebiges Produkt ist nicht automatisch gleichwertig."
+    ],
+    "risks": [
+      "Schwangerschaft meiden",
+      "Schilddrüse?",
+      "Leberzeichen?",
+      "Sedativa/Immunsystem"
+    ],
+    "myths": [
+      "Natürlich heißt nicht risikofrei"
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "ashwagandha",
+      "ashwagandha",
+      "supplement",
+      "gesundheits-wissen",
+      "callidus"
+    ],
+    "sources": [
+      {
+        "title": "Ashwagandha: Is it helpful for stress, anxiety, or sleep?",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behoerdenuebersicht",
+        "url": "https://ods.od.nih.gov/factsheets/Ashwagandha-HealthProfessional/",
+        "note": "Kleine RCTs zeigen Signale bei Stress und Schlaf; Langzeitdaten und Sicherheit bleiben wichtig."
+      },
+      {
+        "title": "Effect of Ashwagandha extract on sleep",
+        "publisher": "PLOS ONE / PubMed",
+        "type": "Systematische Uebersicht",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34559859/",
+        "note": "Schlafeffekte waren klein bis moderat und staerker bei Menschen mit Schlafproblemen."
+      },
+      {
+        "title": "Ashwagandha for mental and physical conditions",
+        "publisher": "Journal of Herbal Medicine",
+        "type": "Systematische Uebersicht",
+        "url": "https://doi.org/10.1016/j.hermed.2021.100434",
+        "note": "Stress- und Cortisol-Signale sind interessant, aber heterogene kurze Studien begrenzen die Aussage."
+      },
+      {
+        "title": "Ashwagandha safety, liver and thyroid considerations",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Sicherheitshinweis",
+        "url": "https://ods.od.nih.gov/factsheets/Ashwagandha-HealthProfessional/#h4",
+        "note": "Moegliche Leber-, Schilddruesen-, Schwangerschafts- und Medikamententhemen beachten."
+      }
+    ]
+  },
+  {
+    "slug": "reishi-normalos-wissen",
+    "title": "Reishi einfach erklärt: Vitalpilz, Immunsystem und warum mehr Forschung nötig ist",
+    "subtitle": "Reishi, auch Ganoderma lucidum oder Ling Zhi, ist ein traditioneller Vitalpilz. Das Video erklärt Beta-Glucane und Immunmodulation einfach, trennt Labor- und Menschenbelege und zeigt wichtige Sicherheitsgrenzen.",
+    "category": "geist-stress-schlaf",
+    "supplementCardId": "reishi",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "ready",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:06 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/reishi-normalos-thumbnail.png",
+    "summary": "Reishi, auch Ganoderma lucidum oder Ling Zhi, ist ein traditioneller Vitalpilz. Das Video erklärt Beta-Glucane und Immunmodulation einfach, trennt Labor- und Menschenbelege und zeigt wichtige Sicherheitsgrenzen.",
+    "benefits": [
+      "Reishi ist ein holziger Pilz. In Produkten stecken Extrakte, Pulver oder Sporen.",
+      "Das Immunsystem ist kein Lautstärke-Regler. Reishi wird eher als Modulator untersucht.",
+      "Produkte unterscheiden sich stark. Name, Pilzteil und Extraktionsart sind wichtig."
+    ],
+    "risks": [
+      "Blutverdünner?",
+      "Immunsuppression?",
+      "Leberzeichen?",
+      "OP geplant?"
+    ],
+    "myths": [
+      "Pilz der Unsterblichkeit?"
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "reishi",
+      "reishi",
+      "supplement",
+      "gesundheits-wissen",
+      "callidus"
+    ],
+    "sources": [
+      {
+        "title": "Medicinal Mushrooms (PDQ): Reishi",
+        "publisher": "National Cancer Institute",
+        "type": "Behoerdenuebersicht",
+        "url": "https://www.cancer.gov/about-cancer/treatment/cam/hp/mushrooms-pdq#_85",
+        "note": "Reishi wird traditionell genutzt; Produkte sind nicht als Krebsbehandlung zugelassen."
+      },
+      {
+        "title": "Reishi Mushroom",
+        "publisher": "Memorial Sloan Kettering Cancer Center",
+        "type": "Klinische Uebersicht",
+        "url": "https://www.mskcc.org/cancer-care/integrative-medicine/herbs/reishi-mushroom",
+        "note": "Beta-Glucane und Triterpene sind zentrale Inhaltsstoffgruppen; Produktqualitaet variiert."
+      },
+      {
+        "title": "Ganoderma lucidum mushroom for cardiovascular risk factors",
+        "publisher": "Cochrane / PubMed",
+        "type": "Systematische Uebersicht",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25686270/",
+        "note": "Kleine RCTs stuetzten Reishi nicht klar fuer kardiovaskulaere Risikofaktoren bei Typ-2-Diabetes."
+      },
+      {
+        "title": "Reishi adverse reactions and interactions",
+        "publisher": "Memorial Sloan Kettering Cancer Center",
+        "type": "Sicherheitshinweis",
+        "url": "https://www.mskcc.org/cancer-care/integrative-medicine/herbs/reishi-mushroom",
+        "note": "Nebenwirkungen, Leberberichte und Interaktionen mit Blutverduennern beachten."
+      }
+    ]
   }
 ]
