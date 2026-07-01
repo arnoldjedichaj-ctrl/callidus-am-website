@@ -1,0 +1,1191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const basics = [
+  {
+    label: 'Wallet',
+    title: 'Dein digitaler Schlüsselbund',
+    text: 'Eine Wallet verwahrt keine Coins wie ein Tresor. Sie verwaltet die Schlüssel, mit denen du Transaktionen unterschreibst.',
+  },
+  {
+    label: 'Blockchain',
+    title: 'Ein öffentliches Kassenbuch',
+    text: 'Transaktionen werden in einem Netzwerk gespeichert. Viele Dinge sind sichtbar, aber niemand kann einfach eine fertige Zahlung zurückholen.',
+  },
+  {
+    label: 'Token',
+    title: 'Eine Marke auf einer Chain',
+    text: 'Ein Token ist ein digitaler Eintrag nach festen Regeln. Sein Wert entsteht nicht automatisch, sondern nur durch Nachfrage, Nutzen und Vertrauen.',
+  },
+  {
+    label: 'DEX',
+    title: 'Ein Markt ohne Bankfiliale',
+    text: 'Auf dezentralen Börsen handelst du direkt mit Smart Contracts. Das ist offen, aber Fehler landen bei dir.',
+  },
+];
+
+const checklist = [
+  {
+    title: 'Tokenomics',
+    text: 'Wie viele Token gibt es? Gibt es Nachminting? Wer besitzt die größten Anteile? Sind Team- oder Reserve-Bestände nachvollziehbar?',
+  },
+  {
+    title: 'Nutzen',
+    text: 'Hat der Token einen echten Zweck oder lebt er nur von Aufmerksamkeit? Bei Memecoins ist fehlender Nutzen normal, aber genau deshalb ist das Risiko höher.',
+  },
+  {
+    title: 'Liquidität',
+    text: 'Kann man überhaupt kaufen und verkaufen, ohne den Preis stark zu bewegen? Wenig Liquidität macht Ein- und Ausstieg riskanter.',
+  },
+  {
+    title: 'Contract',
+    text: 'Stimmt die offizielle Contract-Adresse? Ist der Code verifiziert? Gibt es versteckte Steuern, Sperren oder Funktionen, die den Handel beeinflussen?',
+  },
+  {
+    title: 'Halter-Verteilung',
+    text: 'Wenn wenige Wallets sehr viel besitzen, können einzelne Verkäufe den Kurs stark drücken. Das nennt man Whale-Risiko.',
+  },
+  {
+    title: 'Versprechen',
+    text: 'Garantierte Rendite, sichere Gewinne oder Druck zum schnellen Kaufen sind rote Flaggen. Krypto bleibt Risiko, auch wenn es freundlich aussieht.',
+  },
+  {
+    title: 'Gebühren',
+    text: 'Prüfe Gas, Bridge-Kosten, DEX-Gebühren und Slippage. Ein kleiner Kauf kann durch Nebenkosten deutlich teurer werden.',
+  },
+  {
+    title: 'Eigenverantwortung',
+    text: 'Seed Phrase, Zieladresse und Netzwerk müssen stimmen. Es gibt meist keinen Kundendienst, der eine falsche Transaktion repariert.',
+  },
+];
+
+const redFlags = [
+  'Niemand erklärt die Tokenomics klar.',
+  'Die Contract-Adresse wird nur in Chats oder Screenshots geteilt.',
+  'Es gibt Gewinnversprechen oder Zeitdruck.',
+  'Einzelne Wallets halten auffällig große Anteile.',
+  'Du musst erst weitere Gebühren zahlen, um angebliche Gewinne auszuzahlen.',
+  'Die Community verbietet kritische Fragen.',
+];
+
+const sources = [
+  {
+    label: 'Ethereum.org: Gas und Gebühren',
+    href: 'https://ethereum.org/developers/docs/gas/',
+  },
+  {
+    label: 'Ethereum.org: Blockchain Bridges',
+    href: 'https://ethereum.org/bridges/',
+  },
+  {
+    label: 'Investor.gov: Crypto Assets',
+    href: 'https://www.investor.gov/additional-resources/spotlight/crypto-assets',
+  },
+  {
+    label: 'Callidus: Krypto-Hinweis',
+    href: '/krypto-hinweis/',
+  },
+  {
+    label: 'Valus Litepaper',
+    href: '/valus-litepaper.html',
+  },
+];
+---
+
+<BaseLayout
+  title="Krypto einfach erklärt | callidus A&M"
+  description="Ein leicht verständlicher Krypto-Leitfaden zu Wallets, Bridges, Gas-Gebühren, Tokenomics, Memecoins und Eigenverantwortung."
+  lang="de"
+  ogImage="/assets/valus-coin.png"
+>
+  <article class="crypto-education">
+    <section class="crypto-hero" aria-labelledby="crypto-title">
+      <div class="crypto-container crypto-hero-grid">
+        <div class="crypto-hero-copy" data-reveal>
+          <p class="crypto-eyebrow">Krypto ohne Hype</p>
+          <h1 id="crypto-title">Verstehen, bevor du verbindest.</h1>
+          <p class="crypto-lead">
+            Diese Seite erklärt Krypto so, dass man kein Technikstudium braucht:
+            Wallets, Bridges, Gebühren, Tokenomics, Memecoins und warum du selbst
+            Verantwortung trägst. Nicht als Kaufempfehlung, sondern als Schutz vor
+            falscher Sicherheit.
+          </p>
+          <div class="crypto-actions" aria-label="Schnelle Einstiege">
+            <a class="crypto-button crypto-button-primary" href="#checkliste">Checkliste lesen</a>
+            <a class="crypto-button" href="#bridge">Bridge verstehen</a>
+            <a class="crypto-button" href="/valus-litepaper.html">Valus Litepaper</a>
+          </div>
+        </div>
+
+        <div class="crypto-visual" role="img" aria-label="Animierte Darstellung einer Krypto-Transaktion von Wallet über Bridge zu Base" data-reveal="2">
+          <div class="crypto-visual-top">
+            <span>Wallet</span>
+            <span>Bridge</span>
+            <span>Base</span>
+          </div>
+          <div class="crypto-network-map">
+            <div class="crypto-node">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M16 13h3"></path><path d="M6 10h7"></path></svg>
+              <strong>Schlüssel</strong>
+            </div>
+            <div class="crypto-lane">
+              <span class="crypto-packet crypto-packet-one"></span>
+              <span class="crypto-packet crypto-packet-two"></span>
+            </div>
+            <div class="crypto-node crypto-node-bridge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"></path><path d="M7 8l-3 4 3 4"></path><path d="M17 8l3 4-3 4"></path><path d="M8 17c2-2 6-2 8 0"></path><path d="M8 7c2 2 6 2 8 0"></path></svg>
+              <strong>Wechsel</strong>
+            </div>
+            <div class="crypto-lane crypto-lane-second">
+              <span class="crypto-packet crypto-packet-three"></span>
+            </div>
+            <div class="crypto-node">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="9" y="14" width="6" height="6" rx="1"></rect><path d="M10 7h4"></path><path d="M12 10v4"></path></svg>
+              <strong>Netzwerk</strong>
+            </div>
+            <img class="crypto-coin" src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="eager" decoding="async" />
+          </div>
+          <p class="crypto-visual-note">Jeder Schritt braucht die richtige Chain, die richtige Adresse und etwas native Coin für Gebühren.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-facts" aria-label="Kernaussagen">
+      <div class="crypto-container crypto-fact-grid">
+        <div class="crypto-fact">
+          <strong>Keine Bank</strong>
+          <span>Du unterschreibst selbst. Es gibt normalerweise keine Rückbuchung.</span>
+        </div>
+        <div class="crypto-fact">
+          <strong>Gebühren sind normal</strong>
+          <span>Netzwerke verlangen Gas, damit Transaktionen verarbeitet werden.</span>
+        </div>
+        <div class="crypto-fact">
+          <strong>Memecoin ist Risiko</strong>
+          <span>Spaß schützt nicht vor Verlust. Aufmerksamkeit ist kein Fundament.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section" id="grundlagen">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">Grundlagen</p>
+        <h2>Vier Begriffe, die alles leichter machen.</h2>
+        <p>
+          Krypto wirkt kompliziert, weil viele Worte gleichzeitig auftauchen.
+          Fang mit diesen vier Bildern an, dann wird der Rest deutlich ruhiger.
+        </p>
+      </div>
+      <div class="crypto-container crypto-basics-grid">
+        {basics.map((item) => (
+          <article class="crypto-info-card">
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-band" id="memecoin">
+      <div class="crypto-container crypto-split">
+        <div>
+          <p class="crypto-eyebrow">Memecoins</p>
+          <h2>Ein Witz kann trotzdem echtes Geld kosten.</h2>
+        </div>
+        <div class="crypto-prose">
+          <p>
+            Ein Memecoin kann Community, Symbol und Spaß sein. Das ist nicht automatisch schlecht.
+            Gefährlich wird es, wenn aus einem Witz plötzlich eine Gewinnerwartung wird.
+            Viele Memecoins haben keinen inneren Wert, keinen echten Nutzen und keine stabile Nachfrage.
+          </p>
+          <p>
+            Valus (VAL) wird im Litepaper bewusst als experimenteller Memecoin ohne Nutzen- und
+            Gewinnversprechen beschrieben. Genau diese Klarheit sollte auch bei anderen Memecoins
+            dein Mindeststandard sein: Was ist es, was ist es nicht, und welches Risiko bleibt bei dir?
+          </p>
+          <div class="crypto-link-row">
+            <a class="crypto-button crypto-button-primary" href="/valus-litepaper.html">Litepaper öffnen</a>
+            <a class="crypto-button" href="/krypto-hinweis/">Risiko-Hinweis lesen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section" id="checkliste">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">Vor dem Kauf</p>
+        <h2>Worauf du bei Tokenomics, Nutzen und Risiken achten solltest.</h2>
+        <p>
+          Diese Liste ist keine Anlageberatung. Sie ist eine Bremse gegen Hektik.
+          Wenn du die Punkte nicht beantworten kannst, ist das ein Signal zum Innehalten.
+        </p>
+      </div>
+      <div class="crypto-container crypto-check-grid">
+        {checklist.map((item, index) => (
+          <article class="crypto-check-card">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-band" id="bridge">
+      <div class="crypto-container crypto-split crypto-bridge-layout">
+        <div>
+          <p class="crypto-eyebrow">Bridge</p>
+          <h2>Warum muss man manchmal bridgeen?</h2>
+          <p class="crypto-section-copy">
+            Blockchains sind wie eigene Länder mit eigenen Regeln. Token bewegen sich nicht einfach
+            frei von Ethereum nach Base, Solana oder eine andere Chain. Eine Bridge ist die technische
+            Übergangsstelle zwischen diesen Welten.
+          </p>
+        </div>
+        <div class="crypto-bridge-flow" aria-label="Ablauf einer Bridge">
+          <div class="crypto-flow-step">
+            <strong>1. Ausgangs-Chain</strong>
+            <span>Dein Guthaben liegt auf Netzwerk A.</span>
+          </div>
+          <div class="crypto-flow-arrow" aria-hidden="true"></div>
+          <div class="crypto-flow-step">
+            <strong>2. Bridge</strong>
+            <span>Ein Smart Contract sperrt oder überträgt Werte.</span>
+          </div>
+          <div class="crypto-flow-arrow" aria-hidden="true"></div>
+          <div class="crypto-flow-step">
+            <strong>3. Ziel-Chain</strong>
+            <span>Du kannst auf Netzwerk B interagieren.</span>
+          </div>
+        </div>
+      </div>
+      <div class="crypto-container crypto-note-grid">
+        <div class="crypto-note">
+          <h3>Warum kostet das etwas?</h3>
+          <p>Weil auf mindestens einem Netzwerk eine echte Transaktion ausgeführt wird. Je nach Bridge können mehrere Schritte, Wartezeiten und Servicekosten entstehen.</p>
+        </div>
+        <div class="crypto-note">
+          <h3>Warum ist das riskant?</h3>
+          <p>Bridges verbinden Systeme. Fehler im Smart Contract, falsche Bedienung oder ein Angriff auf die Bridge können zu Verlusten führen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section" id="gebuehren">
+      <div class="crypto-container crypto-split">
+        <div>
+          <p class="crypto-eyebrow">Gas</p>
+          <h2>Warum zahlt man Gebühren, wenn man etwas überweist?</h2>
+        </div>
+        <div class="crypto-prose">
+          <p>
+            Bei einer Bank bezahlt oft die Bankinfrastruktur im Hintergrund. Bei einer Blockchain
+            bezahlt der Absender direkt das Netzwerk. Diese Gebühr heißt häufig Gas.
+            Sie bezahlt Rechenarbeit, verhindert Spam und sorgt dafür, dass deine Transaktion in
+            einen Block aufgenommen werden kann.
+          </p>
+          <p>
+            Wichtig: Du brauchst meistens die native Coin der jeweiligen Chain für Gebühren.
+            Auf Base ist das zum Beispiel ETH auf Base. Ein Token allein reicht oft nicht, um ihn
+            zu bewegen, wenn kein Gas vorhanden ist.
+          </p>
+          <div class="crypto-formula" aria-label="Einfache Gas-Formel">
+            <span>Gas</span>
+            <strong>=</strong>
+            <span>Netzwerk-Arbeit</span>
+            <strong>+</strong>
+            <span>Auslastung</span>
+            <strong>+</strong>
+            <span>Dringlichkeit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-band" id="verantwortung">
+      <div class="crypto-container crypto-split">
+        <div>
+          <p class="crypto-eyebrow">Eigenverantwortung</p>
+          <h2>Keine Bank heißt auch: kein Sicherheitsnetz wie gewohnt.</h2>
+        </div>
+        <div class="crypto-prose">
+          <p>
+            Krypto gibt dir mehr direkte Kontrolle. Das ist der Reiz, aber auch die Last.
+            Wenn du an eine falsche Adresse sendest, deine Seed Phrase teilst oder auf einen
+            falschen Token klickst, kann das Geld dauerhaft weg sein.
+          </p>
+          <p>
+            Denk daran wie bei Gesundheit und Wohlbefinden: Niemand kann täglich für dich
+            schlafen, essen, trainieren oder Grenzen setzen. Andere können erklären und warnen,
+            aber die Entscheidung und die Sorgfalt liegen am Ende bei dir.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section" id="routine">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">5-Minuten-Routine</p>
+        <h2>Bevor du kaufst, sendest oder eine Wallet verbindest.</h2>
+        <p>Eine einfache Routine schützt nicht vor jedem Risiko, aber sie verhindert viele teure Alltagsfehler.</p>
+      </div>
+      <div class="crypto-container crypto-routine">
+        <div><strong>1</strong><span>Offizielle Website und Contract-Adresse vergleichen.</span></div>
+        <div><strong>2</strong><span>Netzwerk prüfen: Ethereum, Base, Polygon oder etwas anderes?</span></div>
+        <div><strong>3</strong><span>Gebühren, Slippage und Bridge-Kosten vor dem Klick ansehen.</span></div>
+        <div><strong>4</strong><span>Erst eine kleine Testtransaktion senden, wenn der Betrag wichtig ist.</span></div>
+        <div><strong>5</strong><span>Nie Seed Phrase, Private Key oder Bildschirmfreigabe herausgeben.</span></div>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-warning-section">
+      <div class="crypto-container crypto-split">
+        <div>
+          <p class="crypto-eyebrow">Warnsignale</p>
+          <h2>Wenn du das siehst, geh langsamer.</h2>
+        </div>
+        <ul class="crypto-red-flags">
+          {redFlags.map((item) => (
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path></svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-final">
+      <div class="crypto-container crypto-final-panel">
+        <img src="/assets/valus-coin-cutout.png" alt="Goldene Valus-Münze" width="500" height="500" loading="lazy" decoding="async" />
+        <div>
+          <p class="crypto-eyebrow">Merksatz</p>
+          <h2>Erst verstehen, dann klicken.</h2>
+          <p>
+            Krypto braucht keine Bank. Genau deshalb braucht es mehr Aufmerksamkeit:
+            Contract prüfen, Chain prüfen, Gebühren prüfen, Risiko akzeptieren.
+            Wenn ein Projekt nicht klar erklärt, was es ist, ist das bereits eine Antwort.
+          </p>
+          <div class="crypto-link-row">
+            <a class="crypto-button crypto-button-primary" href="/valus-litepaper.html">Zum Valus Litepaper</a>
+            <a class="crypto-button" href="#checkliste">Zur Checkliste</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-sources" aria-labelledby="crypto-sources-title">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">Weiterlesen</p>
+        <h2 id="crypto-sources-title">Quellen und Hinweise.</h2>
+        <p>Diese Seite ersetzt keine Finanz-, Rechts- oder Steuerberatung. Sie ist ein Einstieg in die Begriffe und Risiken.</p>
+      </div>
+      <div class="crypto-container crypto-source-list">
+        {sources.map((source) => (
+          <a href={source.href} target={source.href.startsWith('http') ? '_blank' : undefined} rel={source.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+            <span>{source.label}</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+          </a>
+        ))}
+      </div>
+    </section>
+  </article>
+
+  <style>
+    .crypto-education {
+      --crypto-ink: var(--text);
+      --crypto-muted: var(--muted);
+      --crypto-panel: var(--panel);
+      --crypto-line: var(--line);
+      --crypto-blue: #2f6f8f;
+      --crypto-blue-rgb: 47, 111, 143;
+      --crypto-orange: #b86436;
+      --crypto-orange-rgb: 184, 100, 54;
+      --crypto-gold: var(--gold);
+      --crypto-mint: var(--mint);
+      color: var(--crypto-ink);
+    }
+
+    html[data-theme="dark"] .crypto-education {
+      --crypto-blue: #84d7ff;
+      --crypto-blue-rgb: 132, 215, 255;
+      --crypto-orange: #ff9a6f;
+      --crypto-orange-rgb: 255, 154, 111;
+    }
+
+    .crypto-container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .crypto-hero,
+    .crypto-section {
+      padding: 5rem 0;
+    }
+
+    .crypto-hero {
+      border-bottom: 1px solid var(--crypto-line);
+      background:
+        linear-gradient(120deg, rgba(var(--blue-rgb), .11), transparent 38%),
+        linear-gradient(180deg, rgba(var(--gold-rgb), .10), transparent 62%);
+    }
+
+    .crypto-hero-grid,
+    .crypto-split {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(320px, 1.05fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .crypto-eyebrow {
+      margin: 0 0 .8rem;
+      color: var(--crypto-blue);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .crypto-hero h1,
+    .crypto-section h2 {
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.02;
+    }
+
+    .crypto-hero h1 {
+      max-width: 10ch;
+      font-size: 4.85rem;
+    }
+
+    .crypto-section h2 {
+      max-width: 13ch;
+      font-size: 3.15rem;
+    }
+
+    .crypto-lead,
+    .crypto-section-head p,
+    .crypto-section-copy,
+    .crypto-prose p,
+    .crypto-final-panel p {
+      color: var(--crypto-muted);
+      font-size: 1.05rem;
+      line-height: 1.72;
+    }
+
+    .crypto-lead {
+      max-width: 64ch;
+      margin: 1.25rem 0 0;
+      font-size: 1.18rem;
+    }
+
+    .crypto-actions,
+    .crypto-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.6rem;
+    }
+
+    .crypto-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .75rem 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      color: var(--crypto-ink);
+      background: rgba(var(--blue-rgb), .06);
+      text-decoration: none;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease, color 200ms ease;
+    }
+
+    .crypto-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(var(--blue-rgb), .44);
+      background: rgba(var(--blue-rgb), .12);
+    }
+
+    .crypto-button:focus-visible,
+    .crypto-source-list a:focus-visible {
+      outline: 3px solid var(--crypto-blue);
+      outline-offset: 4px;
+    }
+
+    .crypto-button-primary {
+      border-color: transparent;
+      background: var(--crypto-orange);
+      color: #fffaf2;
+      box-shadow: 0 16px 34px rgba(var(--crypto-orange-rgb), .22);
+    }
+
+    .crypto-button-primary:hover {
+      border-color: transparent;
+      background: #9f542c;
+      color: #fffaf2;
+    }
+
+    html[data-theme="dark"] .crypto-button-primary:hover {
+      background: #ffab84;
+      color: #1d100a;
+    }
+
+    .crypto-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      padding: 1.15rem;
+      border: 1px solid rgba(var(--blue-rgb), .24);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(var(--blue-rgb), .10), rgba(var(--gold-rgb), .08)),
+        var(--crypto-panel);
+      box-shadow: 0 24px 70px rgba(58, 64, 38, .13);
+    }
+
+    .crypto-visual-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .5rem;
+      color: var(--crypto-muted);
+      font-size: .74rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .crypto-network-map {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr .7fr 1fr .7fr 1fr;
+      gap: .8rem;
+      align-items: center;
+      min-height: 310px;
+      margin-top: 1.1rem;
+    }
+
+    .crypto-node {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      gap: .7rem;
+      min-height: 134px;
+      padding: 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .58);
+      text-align: center;
+    }
+
+    html[data-theme="dark"] .crypto-node {
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .crypto-node svg,
+    .crypto-red-flags svg,
+    .crypto-source-list svg {
+      width: 1.55rem;
+      height: 1.55rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .crypto-node svg {
+      color: var(--crypto-blue);
+    }
+
+    .crypto-node strong {
+      font-size: .95rem;
+    }
+
+    .crypto-node-bridge {
+      border-color: rgba(var(--crypto-orange-rgb), .30);
+    }
+
+    .crypto-lane {
+      position: relative;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(var(--blue-rgb), .2), rgba(var(--gold-rgb), .6), rgba(var(--blue-rgb), .2));
+    }
+
+    .crypto-lane::before,
+    .crypto-lane::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: .48rem;
+      height: .48rem;
+      border-radius: 50%;
+      background: var(--crypto-blue);
+      transform: translateY(-50%);
+    }
+
+    .crypto-lane::before { left: 0; }
+    .crypto-lane::after { right: 0; }
+
+    .crypto-packet {
+      position: absolute;
+      top: 50%;
+      width: .9rem;
+      height: .9rem;
+      border: 2px solid var(--crypto-orange);
+      border-radius: 50%;
+      background: var(--crypto-panel);
+      box-shadow: 0 0 0 6px rgba(var(--crypto-orange-rgb), .08);
+      transform: translate(-50%, -50%);
+      animation: cryptoPacket 3.4s ease-in-out infinite;
+    }
+
+    .crypto-packet-two {
+      animation-delay: 1.1s;
+    }
+
+    .crypto-packet-three {
+      animation-delay: .65s;
+    }
+
+    .crypto-coin {
+      position: absolute;
+      right: 6%;
+      bottom: 6%;
+      width: 118px;
+      aspect-ratio: 1;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .25));
+      animation: cryptoCoinFloat 6s ease-in-out infinite;
+    }
+
+    .crypto-visual-note {
+      margin: 0;
+      color: var(--crypto-muted);
+      font-size: .94rem;
+      line-height: 1.5;
+    }
+
+    .crypto-facts {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--crypto-line);
+      background: rgba(var(--blue-rgb), .055);
+    }
+
+    .crypto-fact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .85rem;
+    }
+
+    .crypto-fact {
+      min-height: 96px;
+      padding: 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-fact strong,
+    .crypto-info-card h3,
+    .crypto-check-card h3,
+    .crypto-note h3 {
+      display: block;
+      margin: 0 0 .35rem;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .crypto-fact span,
+    .crypto-info-card p,
+    .crypto-check-card p,
+    .crypto-note p,
+    .crypto-routine span,
+    .crypto-red-flags span {
+      color: var(--crypto-muted);
+      line-height: 1.58;
+    }
+
+    .crypto-section-head {
+      max-width: 820px;
+      margin-bottom: 2rem;
+    }
+
+    .crypto-section-head h2 {
+      max-width: 15ch;
+    }
+
+    .crypto-basics-grid,
+    .crypto-check-grid,
+    .crypto-note-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .9rem;
+    }
+
+    .crypto-info-card,
+    .crypto-check-card,
+    .crypto-note {
+      min-height: 100%;
+      padding: 1.05rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+    }
+
+    .crypto-info-card:hover,
+    .crypto-check-card:hover,
+    .crypto-note:hover {
+      transform: translateY(-3px);
+      border-color: rgba(var(--blue-rgb), .38);
+      background: rgba(var(--blue-rgb), .07);
+    }
+
+    .crypto-info-card span,
+    .crypto-check-card span {
+      display: inline-flex;
+      margin-bottom: .8rem;
+      color: var(--crypto-blue);
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .crypto-band {
+      border-block: 1px solid var(--crypto-line);
+      background:
+        linear-gradient(135deg, rgba(var(--blue-rgb), .08), transparent 46%),
+        rgba(var(--gold-rgb), .055);
+    }
+
+    .crypto-prose p {
+      margin: 0;
+    }
+
+    .crypto-prose p + p {
+      margin-top: 1rem;
+    }
+
+    .crypto-check-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .crypto-check-card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 1rem;
+      align-items: start;
+    }
+
+    .crypto-check-card span {
+      grid-row: span 2;
+      width: 2.4rem;
+      height: 2.4rem;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border-radius: 8px;
+      background: rgba(var(--blue-rgb), .10);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .crypto-bridge-layout {
+      align-items: start;
+    }
+
+    .crypto-bridge-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: .7rem;
+      align-items: stretch;
+    }
+
+    .crypto-flow-step {
+      min-height: 150px;
+      padding: 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-flow-step strong {
+      display: block;
+      margin-bottom: .45rem;
+    }
+
+    .crypto-flow-step span {
+      color: var(--crypto-muted);
+      line-height: 1.55;
+    }
+
+    .crypto-flow-arrow {
+      position: relative;
+      width: 42px;
+      align-self: center;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--crypto-orange);
+      overflow: visible;
+    }
+
+    .crypto-flow-arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      width: .65rem;
+      height: .65rem;
+      border-top: 3px solid var(--crypto-orange);
+      border-right: 3px solid var(--crypto-orange);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .crypto-flow-arrow::before {
+      content: "";
+      position: absolute;
+      inset: -4px auto -4px 0;
+      width: 18px;
+      border-radius: 999px;
+      background: rgba(var(--crypto-orange-rgb), .26);
+      animation: cryptoArrowPulse 2.8s ease-in-out infinite;
+    }
+
+    .crypto-note-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1.4rem;
+    }
+
+    .crypto-formula {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border: 1px solid rgba(var(--crypto-orange-rgb), .30);
+      border-radius: 8px;
+      background: rgba(var(--crypto-orange-rgb), .08);
+    }
+
+    .crypto-formula span,
+    .crypto-formula strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: .45rem .7rem;
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      font-weight: 850;
+    }
+
+    .crypto-formula strong {
+      color: var(--crypto-orange);
+    }
+
+    .crypto-routine {
+      display: grid;
+      gap: .75rem;
+      counter-reset: routine;
+    }
+
+    .crypto-routine div {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: .8rem;
+      align-items: center;
+      min-height: 76px;
+      padding: .9rem 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-routine strong {
+      display: grid;
+      place-items: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 8px;
+      background: var(--crypto-blue);
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .crypto-warning-section {
+      border-block: 1px solid rgba(var(--crypto-orange-rgb), .24);
+      background: rgba(var(--crypto-orange-rgb), .07);
+    }
+
+    .crypto-red-flags {
+      display: grid;
+      gap: .7rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .crypto-red-flags li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: .7rem;
+      align-items: start;
+      padding: .9rem;
+      border: 1px solid rgba(var(--crypto-orange-rgb), .26);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-red-flags svg {
+      width: 1.18rem;
+      height: 1.18rem;
+      margin-top: .18rem;
+      color: var(--crypto-orange);
+    }
+
+    .crypto-final {
+      padding-top: 0;
+    }
+
+    .crypto-final-panel {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: center;
+      padding: 1.4rem;
+      border: 1px solid rgba(var(--blue-rgb), .24);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(var(--blue-rgb), .08), rgba(var(--gold-rgb), .08)),
+        var(--crypto-panel);
+    }
+
+    .crypto-final-panel img {
+      width: 150px;
+      aspect-ratio: 1;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 30px rgba(0, 0, 0, .22));
+    }
+
+    .crypto-final-panel h2 {
+      font-size: 2.4rem;
+      max-width: none;
+    }
+
+    .crypto-source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .crypto-source-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      min-height: 62px;
+      padding: .9rem 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      color: var(--crypto-ink);
+      text-decoration: none;
+      font-weight: 850;
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+    }
+
+    .crypto-source-list a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(var(--blue-rgb), .4);
+      background: rgba(var(--blue-rgb), .08);
+    }
+
+    .crypto-source-list svg {
+      flex: 0 0 auto;
+      width: 1.1rem;
+      height: 1.1rem;
+      color: var(--crypto-blue);
+    }
+
+    @keyframes cryptoPacket {
+      0%, 100% { left: 8%; opacity: .55; }
+      50% { left: 92%; opacity: 1; }
+    }
+
+    @keyframes cryptoCoinFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    @keyframes cryptoArrowPulse {
+      0%, 100% { transform: translateX(0); opacity: .2; }
+      50% { transform: translateX(22px); opacity: .7; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .crypto-packet,
+      .crypto-coin,
+      .crypto-flow-arrow::before {
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .crypto-hero-grid,
+      .crypto-split {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-hero h1 {
+        max-width: 12ch;
+        font-size: 3.55rem;
+      }
+
+      .crypto-section h2 {
+        max-width: 15ch;
+        font-size: 2.55rem;
+      }
+
+      .crypto-basics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .crypto-bridge-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-flow-arrow {
+        width: 3px;
+        height: 34px;
+        justify-self: center;
+      }
+
+      .crypto-flow-arrow::after {
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -1px;
+        transform: translateX(-50%) rotate(135deg);
+      }
+
+      .crypto-flow-arrow::before {
+        inset: 0 -4px auto -4px;
+        width: auto;
+        height: 18px;
+        animation-name: cryptoArrowPulseDown;
+      }
+
+      @keyframes cryptoArrowPulseDown {
+        0%, 100% { transform: translateY(0); opacity: .2; }
+        50% { transform: translateY(18px); opacity: .7; }
+      }
+    }
+
+    @media (max-width: 720px) {
+      .crypto-container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .crypto-hero,
+      .crypto-section {
+        padding: 3.4rem 0;
+      }
+
+      .crypto-hero h1 {
+        font-size: 2.65rem;
+      }
+
+      .crypto-section h2 {
+        font-size: 2.05rem;
+      }
+
+      .crypto-lead {
+        font-size: 1.02rem;
+      }
+
+      .crypto-actions,
+      .crypto-link-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .crypto-button {
+        width: 100%;
+      }
+
+      .crypto-visual {
+        min-height: 0;
+      }
+
+      .crypto-network-map {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .crypto-lane {
+        width: 4px;
+        height: 42px;
+        justify-self: center;
+      }
+
+      .crypto-lane::before,
+      .crypto-lane::after {
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .crypto-lane::before { top: 0; }
+      .crypto-lane::after { top: 100%; }
+
+      .crypto-packet {
+        left: 50%;
+        animation-name: cryptoPacketDown;
+      }
+
+      .crypto-coin {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        justify-self: center;
+        width: 92px;
+      }
+
+      .crypto-fact-grid,
+      .crypto-basics-grid,
+      .crypto-check-grid,
+      .crypto-note-grid,
+      .crypto-source-list {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-check-card {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-check-card span {
+        margin-bottom: .8rem;
+      }
+
+      .crypto-final-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-final-panel img {
+        width: 108px;
+      }
+
+      @keyframes cryptoPacketDown {
+        0%, 100% { top: 8%; opacity: .55; }
+        50% { top: 92%; opacity: 1; }
+      }
+    }
+  </style>
+</BaseLayout>

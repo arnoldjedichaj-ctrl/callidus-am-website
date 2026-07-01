@@ -232,6 +232,13 @@
     box-shadow: 0 18px 42px rgba(201, 168, 76, .22);
   }
 
+  .button.education {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+    color: #07100d;
+    box-shadow: 0 18px 42px rgba(121, 169, 255, .20);
+  }
+
   .button:hover {
     transform: translateY(-2px);
     border-color: rgba(241, 213, 116, .42);
@@ -240,6 +247,11 @@
 
   .button.primary:hover {
     background: linear-gradient(135deg, #ffe892, var(--gold));
+  }
+
+  .button.education:hover {
+    background: linear-gradient(135deg, #9fc0ff, #9be1b7);
+    color: #07100d;
   }
 
   .coin-stage {
@@ -414,6 +426,28 @@
   .warning-panel strong { color: var(--text); }
 
   .warning-panel p + p { margin-top: .75rem; }
+
+  .education-callout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: clamp(1rem, 3vw, 1.25rem);
+    border: 1px solid rgba(121, 169, 255, .34);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(121, 169, 255, .12), rgba(129, 211, 162, .08));
+  }
+
+  .education-callout strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: .2rem;
+  }
+
+  .education-callout p { color: var(--muted); }
+
+  .education-callout .button { white-space: nowrap; }
 
   .split {
     display: grid;
@@ -824,6 +858,10 @@
 
     .button { width: 100%; }
 
+    .education-callout {
+      grid-template-columns: 1fr;
+    }
+
     .quick-grid,
     .risk-grid,
     .data-grid {
@@ -878,6 +916,7 @@
     </a>
     <nav class="nav-actions" aria-label="Litepaper Navigation">
       <a class="nav-link" href="/valus/">Valus</a>
+      <a class="nav-link" href="/krypto-verstehen/">Krypto verstehen</a>
       <a class="nav-link" href="/krypto-hinweis/">Krypto-Hinweis</a>
     </nav>
   </header>
@@ -893,6 +932,10 @@
           Tokenomics, Contract, Abgrenzung und Risiken.
         </p>
         <div class="hero-actions">
+          <a class="button education" href="/krypto-verstehen/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2"/><path d="M8 7h7"/><path d="M8 11h8"/></svg>
+            Krypto verstehen
+          </a>
           <a class="button primary" href="#contract">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect width="14" height="10" x="5" y="11" rx="2"/><path d="M12 15v2"/></svg>
             Contract prüfen
@@ -950,6 +993,13 @@
             </p>
             <p>Der Erwerb von Krypto-Assets ist hochriskant und kann zum <strong>Totalverlust</strong> führen.</p>
           </div>
+        </div>
+        <div class="education-callout">
+          <div>
+            <strong>Krypto-Grundlagen vor dem Klick verstehen.</strong>
+            <p>Wallets, Bridges, Gas-Gebühren, Tokenomics und Memecoin-Risiken werden auf einer eigenen Seite einfach und ohne Hype erklärt.</p>
+          </div>
+          <a class="button education" href="/krypto-verstehen/">Zur Krypto-Erklärung</a>
         </div>
       </div>
     </section>
@@ -1201,6 +1251,7 @@
     <div class="footer-links">
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
+      <a href="/krypto-verstehen/">Krypto verstehen</a>
       <a href="/krypto-hinweis/">Krypto-Hinweis</a>
     </div>
   </footer>
