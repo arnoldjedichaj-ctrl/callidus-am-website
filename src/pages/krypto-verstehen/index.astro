@@ -24,6 +24,163 @@ const basics = [
   },
 ];
 
+const commonChains = [
+  {
+    name: 'Bitcoin',
+    coin: 'BTC',
+    type: 'Layer 1',
+    note: 'Ursprüngliche Kryptowährung; Gebühren werden in BTC bezahlt.',
+    href: 'https://bitcoin.org/en/how-it-works',
+  },
+  {
+    name: 'Ethereum',
+    coin: 'ETH',
+    type: 'Layer 1 / Smart Contracts',
+    note: 'ETH ist Gas-Coin für Transaktionen und Smart Contracts.',
+    href: 'https://ethereum.org/developers/docs/gas/',
+  },
+  {
+    name: 'Base',
+    coin: 'ETH',
+    type: 'Ethereum Layer 2',
+    note: 'Auf Base brauchst du ETH auf Base, nicht ETH auf Ethereum Mainnet.',
+    href: 'https://docs.base.org/base-chain/network-information',
+  },
+  {
+    name: 'Arbitrum One',
+    coin: 'ETH',
+    type: 'Ethereum Layer 2',
+    note: 'Rollup-Netzwerk; Gas wird typischerweise in ETH bezahlt.',
+    href: 'https://docs.arbitrum.io/',
+  },
+  {
+    name: 'OP Mainnet',
+    coin: 'ETH',
+    type: 'Ethereum Layer 2',
+    note: 'Optimism/OP-Stack-Netzwerk; ETH ist der übliche Gas-Coin.',
+    href: 'https://docs.optimism.io/',
+  },
+  {
+    name: 'Polygon PoS',
+    coin: 'POL',
+    type: 'EVM Chain',
+    note: 'POL ist der Nachfolger von MATIC im Polygon-Ökosystem.',
+    href: 'https://polygon.technology/',
+  },
+  {
+    name: 'BNB Smart Chain',
+    coin: 'BNB',
+    type: 'EVM Chain',
+    note: 'BNB wird für Gas auf BNB Smart Chain benötigt.',
+    href: 'https://docs.bnbchain.org/',
+  },
+  {
+    name: 'Solana',
+    coin: 'SOL',
+    type: 'Layer 1',
+    note: 'SOL bezahlt Transaktionen und Account-Rent/Fees im Solana-Netzwerk.',
+    href: 'https://solana.com/docs/core/fees',
+  },
+  {
+    name: 'Avalanche C-Chain',
+    coin: 'AVAX',
+    type: 'EVM Chain',
+    note: 'AVAX wird als native Coin für Gebühren im Avalanche-Netzwerk genutzt.',
+    href: 'https://docs.avax.network/',
+  },
+  {
+    name: 'Cardano',
+    coin: 'ADA',
+    type: 'Layer 1',
+    note: 'ADA ist die native Coin für Transaktionen und Staking.',
+    href: 'https://docs.cardano.org/',
+  },
+  {
+    name: 'XRP Ledger',
+    coin: 'XRP',
+    type: 'Payment Chain',
+    note: 'XRP wird für Gebühren und Reserve-Anforderungen im Ledger verwendet.',
+    href: 'https://xrpl.org/',
+  },
+  {
+    name: 'TRON',
+    coin: 'TRX',
+    type: 'Layer 1',
+    note: 'TRX deckt Bandbreite, Energie und Gebühren im TRON-Netzwerk ab.',
+    href: 'https://developers.tron.network/',
+  },
+  {
+    name: 'Polkadot',
+    coin: 'DOT',
+    type: 'Multi-Chain Netzwerk',
+    note: 'DOT wird für Governance, Staking und Netzwerkfunktionen genutzt.',
+    href: 'https://wiki.polkadot.network/',
+  },
+  {
+    name: 'Cosmos Hub',
+    coin: 'ATOM',
+    type: 'Interchain Hub',
+    note: 'ATOM ist die native Coin des Cosmos Hub.',
+    href: 'https://hub.cosmos.network/',
+  },
+  {
+    name: 'Near Protocol',
+    coin: 'NEAR',
+    type: 'Layer 1',
+    note: 'NEAR bezahlt Transaktionen und Speicher im Netzwerk.',
+    href: 'https://docs.near.org/',
+  },
+  {
+    name: 'Sui',
+    coin: 'SUI',
+    type: 'Move Layer 1',
+    note: 'SUI wird für Gas, Storage Fund und Staking verwendet.',
+    href: 'https://docs.sui.io/',
+  },
+  {
+    name: 'Aptos',
+    coin: 'APT',
+    type: 'Move Layer 1',
+    note: 'APT ist die native Coin für Gas und Staking.',
+    href: 'https://aptos.dev/',
+  },
+  {
+    name: 'TON',
+    coin: 'TON',
+    type: 'Layer 1',
+    note: 'Toncoin wird für Gebühren und Netzwerkfunktionen genutzt.',
+    href: 'https://docs.ton.org/',
+  },
+  {
+    name: 'Algorand',
+    coin: 'ALGO',
+    type: 'Layer 1',
+    note: 'ALGO ist native Coin für Gebühren, Governance und Staking-ähnliche Funktionen.',
+    href: 'https://developer.algorand.org/docs/',
+  },
+  {
+    name: 'Stellar',
+    coin: 'XLM',
+    type: 'Payment Chain',
+    note: 'XLM wird für kleine Gebühren und Mindestreserven benötigt.',
+    href: 'https://developers.stellar.org/docs/',
+  },
+  {
+    name: 'Litecoin',
+    coin: 'LTC',
+    type: 'Payment Chain',
+    note: 'LTC ist native Coin und bezahlt Transaktionsgebühren.',
+    href: 'https://litecoin.org/',
+  },
+  {
+    name: 'Dogecoin',
+    coin: 'DOGE',
+    type: 'Payment / Meme Chain',
+    note: 'DOGE ist native Coin; auch Meme-Coins können eigene Chains haben.',
+    href: 'https://dogecoin.com/',
+  },
+];
+
 const checklist = [
   {
     title: 'Tokenomics',
@@ -68,6 +225,121 @@ const redFlags = [
   'Die Community verbietet kritische Fragen.',
 ];
 
+const glossaryTerms = [
+  {
+    term: 'Native Coin',
+    text: 'Die Grundwährung einer Blockchain. Sie bezahlt meistens Gas oder Netzwerkgebühren, zum Beispiel ETH auf Ethereum oder SOL auf Solana.',
+  },
+  {
+    term: 'Token',
+    text: 'Ein digitaler Vermögenswert, der auf einer bestehenden Chain läuft. Ein Token ist nicht automatisch die Gas-Währung dieser Chain.',
+  },
+  {
+    term: 'Gas',
+    text: 'Gebühr für Rechenarbeit im Netzwerk. Ohne passenden Gas-Coin kann eine Wallet oft nichts senden, auch wenn Token vorhanden sind.',
+  },
+  {
+    term: 'Gwei',
+    text: 'Kleine Einheit von ETH, in der Gaspreise auf Ethereum und vielen EVM-Netzwerken angezeigt werden.',
+  },
+  {
+    term: 'Seed Phrase',
+    text: 'Die Wiederherstellungswörter deiner Wallet. Wer sie hat, kann deine Wallet kontrollieren. Niemals teilen.',
+  },
+  {
+    term: 'Private Key',
+    text: 'Der geheime Schlüssel zu einer Adresse. Noch sensibler als ein Passwort, weil es meist keine Rücksetzung gibt.',
+  },
+  {
+    term: 'Public Address',
+    text: 'Die öffentliche Empfangsadresse. Man darf sie teilen, sollte aber wissen, dass Transaktionen oft öffentlich sichtbar sind.',
+  },
+  {
+    term: 'Smart Contract',
+    text: 'Programm auf der Blockchain. Es führt Regeln automatisch aus, kann aber Fehler oder gefährliche Funktionen enthalten.',
+  },
+  {
+    term: 'Contract-Adresse',
+    text: 'Die eindeutige Adresse eines Tokens oder Smart Contracts. Bei Memecoins wichtiger als Logo, Name oder Chat-Link.',
+  },
+  {
+    term: 'DEX',
+    text: 'Dezentrale Börse. Du handelst direkt mit Smart Contracts statt über eine klassische Börse mit Kundendienst.',
+  },
+  {
+    term: 'Liquidity Pool',
+    text: 'Ein Topf aus zwei oder mehr Assets, aus dem eine DEX Handel ermöglicht. Wenig Liquidität bedeutet mehr Preisrutsch.',
+  },
+  {
+    term: 'Slippage',
+    text: 'Unterschied zwischen erwartetem Preis und tatsächlichem Ausführungspreis. Bei kleinen Memecoins oft ein echtes Problem.',
+  },
+  {
+    term: 'Bridge',
+    text: 'Verbindung zwischen Chains. Sie bewegt Werte technisch zwischen Netzwerken, bringt aber zusätzliche Kosten und Risiken.',
+  },
+  {
+    term: 'Layer 1',
+    text: 'Eigenständige Basis-Blockchain wie Bitcoin, Ethereum oder Solana.',
+  },
+  {
+    term: 'Layer 2',
+    text: 'Netzwerk, das auf einer Basis-Chain aufsetzt, etwa Base, Arbitrum oder OP Mainnet auf Ethereum.',
+  },
+  {
+    term: 'Rollup',
+    text: 'Layer-2-Technik, die viele Transaktionen bündelt und auf einer Layer 1 absichert.',
+  },
+  {
+    term: 'Block Explorer',
+    text: 'Suchmaschine für Blockchain-Daten. Dort prüfst du Transaktionen, Contract-Adressen und Wallet-Aktivität.',
+  },
+  {
+    term: 'Tokenomics',
+    text: 'Die wirtschaftlichen Regeln eines Tokens: Menge, Verteilung, Gebühren, Sperrfristen, Minting und Anreize.',
+  },
+  {
+    term: 'Circulating Supply',
+    text: 'Menge der Token, die aktuell im Umlauf ist. Nicht immer gleich der maximalen Gesamtmenge.',
+  },
+  {
+    term: 'Market Cap',
+    text: 'Preis mal umlaufende Menge. Bei geringer Liquidität kann diese Zahl größer wirken, als sie praktisch handelbar ist.',
+  },
+  {
+    term: 'FDV',
+    text: 'Fully Diluted Valuation: theoretischer Wert, wenn alle Token im Umlauf wären. Hilft, versteckte Verwässerung zu erkennen.',
+  },
+  {
+    term: 'Rug Pull',
+    text: 'Betrug oder Projektabbruch, bei dem Liquidität, Vertrauen oder Tokenwert plötzlich verschwinden.',
+  },
+  {
+    term: 'Honeypot',
+    text: 'Token, den man kaufen, aber nicht oder kaum verkaufen kann. Deshalb immer Contract und kleine Testbeträge prüfen.',
+  },
+  {
+    term: 'Approval',
+    text: 'Erlaubnis, dass ein Smart Contract Token aus deiner Wallet bewegen darf. Alte Approvals regelmäßig widerrufen.',
+  },
+  {
+    term: 'Staking',
+    text: 'Token werden zur Netzwerksicherheit oder Teilnahme hinterlegt. Renditen sind nicht risikofrei.',
+  },
+  {
+    term: 'Validator',
+    text: 'Teilnehmer, der Transaktionen prüft oder Blöcke produziert. Je nach Netzwerk braucht er Stake, Hardware oder Reputation.',
+  },
+  {
+    term: 'Oracle',
+    text: 'Datenquelle, die externe Informationen wie Preise in Smart Contracts bringt. Falsche Daten können große Schäden auslösen.',
+  },
+  {
+    term: 'MEV',
+    text: 'Wert, der durch Sortieren oder Einschieben von Transaktionen entstehen kann. Für Nutzer zeigt sich das oft als schlechterer Preis.',
+  },
+];
+
 const sources = [
   {
     label: 'Ethereum.org: Gas und Gebühren',
@@ -80,6 +352,26 @@ const sources = [
   {
     label: 'Investor.gov: Crypto Assets',
     href: 'https://www.investor.gov/additional-resources/spotlight/crypto-assets',
+  },
+  {
+    label: 'Bitcoin.org: Grundlagen',
+    href: 'https://bitcoin.org/en/how-it-works',
+  },
+  {
+    label: 'Solana: Gebühren',
+    href: 'https://solana.com/docs/core/fees',
+  },
+  {
+    label: 'Base: Netzwerkdaten',
+    href: 'https://docs.base.org/base-chain/network-information',
+  },
+  {
+    label: 'Avalanche Docs',
+    href: 'https://docs.avax.network/',
+  },
+  {
+    label: 'Cardano Docs',
+    href: 'https://docs.cardano.org/',
   },
   {
     label: 'Callidus: Krypto-Hinweis',
@@ -113,39 +405,63 @@ const sources = [
           <div class="crypto-actions" aria-label="Schnelle Einstiege">
             <a class="crypto-button crypto-button-primary" href="#checkliste">Checkliste lesen</a>
             <a class="crypto-button" href="#bridge">Bridge verstehen</a>
+            <a class="crypto-button" href="#chains">Chains & Coins</a>
+            <a class="crypto-button" href="#begriffe">Glossar</a>
             <a class="crypto-button" href="/valus-litepaper.html">Valus Litepaper</a>
           </div>
         </div>
 
-        <div class="crypto-visual" role="img" aria-label="Animierte Darstellung einer Krypto-Transaktion von Wallet über Bridge zu Base" data-reveal="2">
-          <div class="crypto-visual-top">
-            <span>Wallet</span>
-            <span>Bridge</span>
-            <span>Base</span>
+        <div class="crypto-visual" role="img" aria-label="Animierte Darstellung: Wallet sendet einen Token von Ethereum über eine Bridge nach Base und zahlt dabei Gas" data-reveal="2">
+          <div class="crypto-visual-title">
+            <span>Beispiel: Token von Ethereum nach Base bringen</span>
+            <strong>Bridge + Gas + richtige Chain</strong>
           </div>
-          <div class="crypto-network-map">
-            <div class="crypto-node">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M16 13h3"></path><path d="M6 10h7"></path></svg>
-              <strong>Schlüssel</strong>
+
+          <div class="crypto-transfer-stage">
+            <section class="crypto-chain-card crypto-chain-source" aria-label="Ausgangsnetzwerk Ethereum">
+              <span class="crypto-chain-label">Ausgangs-Chain</span>
+              <strong>Ethereum</strong>
+              <small>Wallet hält Token auf Netzwerk A</small>
+              <div class="crypto-wallet-mini">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M16 13h3"></path><path d="M6 10h7"></path></svg>
+                <span>Wallet signiert</span>
+              </div>
+              <div class="crypto-gas-chip">Gas hier: ETH</div>
+            </section>
+
+            <div class="crypto-bridge-column" aria-label="Bridge-Schritt">
+              <div class="crypto-route-line" aria-hidden="true">
+                <span class="crypto-moving-token">
+                  <img src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="eager" decoding="async" />
+                </span>
+              </div>
+              <div class="crypto-bridge-device">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"></path><path d="M7 8l-3 4 3 4"></path><path d="M17 8l3 4-3 4"></path><path d="M8 17c2-2 6-2 8 0"></path><path d="M8 7c2 2 6 2 8 0"></path></svg>
+                <strong>Bridge</strong>
+                <span>sperrt, prägt oder überträgt</span>
+              </div>
             </div>
-            <div class="crypto-lane">
-              <span class="crypto-packet crypto-packet-one"></span>
-              <span class="crypto-packet crypto-packet-two"></span>
-            </div>
-            <div class="crypto-node crypto-node-bridge">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"></path><path d="M7 8l-3 4 3 4"></path><path d="M17 8l3 4-3 4"></path><path d="M8 17c2-2 6-2 8 0"></path><path d="M8 7c2 2 6 2 8 0"></path></svg>
-              <strong>Wechsel</strong>
-            </div>
-            <div class="crypto-lane crypto-lane-second">
-              <span class="crypto-packet crypto-packet-three"></span>
-            </div>
-            <div class="crypto-node">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="9" y="14" width="6" height="6" rx="1"></rect><path d="M10 7h4"></path><path d="M12 10v4"></path></svg>
-              <strong>Netzwerk</strong>
-            </div>
-            <img class="crypto-coin" src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="eager" decoding="async" />
+
+            <section class="crypto-chain-card crypto-chain-target" aria-label="Zielnetzwerk Base">
+              <span class="crypto-chain-label">Ziel-Chain</span>
+              <strong>Base</strong>
+              <small>Token liegt danach auf Netzwerk B</small>
+              <div class="crypto-wallet-mini">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="9" y="14" width="6" height="6" rx="1"></rect><path d="M10 7h4"></path><path d="M12 10v4"></path></svg>
+                <span>Neues Netzwerk prüfen</span>
+              </div>
+              <div class="crypto-gas-chip">Gas danach: ETH auf Base</div>
+            </section>
           </div>
-          <p class="crypto-visual-note">Jeder Schritt braucht die richtige Chain, die richtige Adresse und etwas native Coin für Gebühren.</p>
+
+          <ol class="crypto-visual-steps" aria-label="Bridge-Ablauf in vier Schritten">
+            <li><strong>1</strong><span>Wallet fragt: welches Netzwerk?</span></li>
+            <li><strong>2</strong><span>Du unterschreibst die Bridge-Transaktion.</span></li>
+            <li><strong>3</strong><span>Gebühr wird in der nativen Coin bezahlt.</span></li>
+            <li><strong>4</strong><span>Auf der Ziel-Chain brauchst du wieder Gas.</span></li>
+          </ol>
+
+          <p class="crypto-visual-note">Der häufigste Fehler: Token sind auf der richtigen Adresse, aber auf der falschen Chain oder ohne native Coin für die nächste Gebühr.</p>
         </div>
       </div>
     </section>
@@ -303,6 +619,42 @@ const sources = [
       </div>
     </section>
 
+    <section class="crypto-section crypto-band" id="chains">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">Netzwerke</p>
+        <h2>Gängige Blockchains und ihre nativen Coins.</h2>
+        <p>
+          Wichtig: Die native Coin ist die Währung, die du für Gebühren auf genau dieser
+          Chain brauchst. Ein Token wie USDC, VAL oder ein Memecoin kann auf derselben Chain
+          liegen, bezahlt aber normalerweise nicht automatisch die Netzwerkgebühr.
+        </p>
+      </div>
+      <div class="crypto-container">
+        <div class="crypto-chain-table" role="table" aria-label="Gängige Blockchains und native Coins">
+          <div class="crypto-chain-head" role="row">
+            <span role="columnheader">Blockchain</span>
+            <span role="columnheader">Native Coin</span>
+            <span role="columnheader">Typ</span>
+            <span role="columnheader">Merken</span>
+          </div>
+          {commonChains.map((chain) => (
+            <a class="crypto-chain-row" href={chain.href} target="_blank" rel="noopener noreferrer" role="row">
+              <span role="cell">
+                <strong>{chain.name}</strong>
+              </span>
+              <span role="cell" class="crypto-chain-coin">{chain.coin}</span>
+              <span role="cell">{chain.type}</span>
+              <span role="cell">{chain.note}</span>
+            </a>
+          ))}
+        </div>
+        <p class="crypto-table-note">
+          Diese Übersicht ist eine praktische Auswahl gängiger Netzwerke, keine vollständige Weltkarte aller Chains.
+          Prüfe vor einer Transaktion immer das konkrete Netzwerk in deiner Wallet.
+        </p>
+      </div>
+    </section>
+
     <section class="crypto-section crypto-band" id="verantwortung">
       <div class="crypto-container crypto-split">
         <div>
@@ -336,6 +688,25 @@ const sources = [
         <div><strong>3</strong><span>Gebühren, Slippage und Bridge-Kosten vor dem Klick ansehen.</span></div>
         <div><strong>4</strong><span>Erst eine kleine Testtransaktion senden, wenn der Betrag wichtig ist.</span></div>
         <div><strong>5</strong><span>Nie Seed Phrase, Private Key oder Bildschirmfreigabe herausgeben.</span></div>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-band" id="begriffe">
+      <div class="crypto-container crypto-section-head">
+        <p class="crypto-eyebrow">Begriffe</p>
+        <h2>Glossar für die Wörter, die ständig fallen.</h2>
+        <p>
+          Wenn ein Projekt diese Begriffe benutzt, sollte es sie auch verständlich erklären können.
+          Unklare Sprache ist bei Krypto selten ein gutes Zeichen.
+        </p>
+      </div>
+      <div class="crypto-container crypto-glossary-grid">
+        {glossaryTerms.map((item) => (
+          <article class="crypto-glossary-card">
+            <h3>{item.term}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </div>
     </section>
 
@@ -538,7 +909,7 @@ const sources = [
     .crypto-visual {
       position: relative;
       overflow: hidden;
-      min-height: 420px;
+      min-height: 500px;
       padding: 1.15rem;
       border: 1px solid rgba(var(--blue-rgb), .24);
       border-radius: 8px;
@@ -548,46 +919,96 @@ const sources = [
       box-shadow: 0 24px 70px rgba(58, 64, 38, .13);
     }
 
-    .crypto-visual-top {
+    .crypto-visual-title {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .5rem;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: .8rem;
+      align-items: center;
+      padding-bottom: .9rem;
+      border-bottom: 1px solid var(--crypto-line);
+    }
+
+    .crypto-visual-title span {
       color: var(--crypto-muted);
-      font-size: .74rem;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .crypto-visual-title strong {
+      color: var(--crypto-blue);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .crypto-transfer-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(170px, 1fr) minmax(200px, .86fr) minmax(170px, 1fr);
+      gap: .9rem;
+      align-items: stretch;
+      min-height: 270px;
+      margin: 1rem 0;
+    }
+
+    .crypto-chain-card,
+    .crypto-bridge-device {
+      position: relative;
+      z-index: 2;
+      min-height: 240px;
+      padding: 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .58);
+    }
+
+    html[data-theme="dark"] .crypto-chain-card,
+    html[data-theme="dark"] .crypto-bridge-device {
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .crypto-chain-card {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .crypto-chain-label {
+      color: var(--crypto-blue);
+      font-size: .72rem;
       font-weight: 900;
       letter-spacing: .1em;
       text-transform: uppercase;
     }
 
-    .crypto-network-map {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr .7fr 1fr .7fr 1fr;
-      gap: .8rem;
-      align-items: center;
-      min-height: 310px;
-      margin-top: 1.1rem;
+    .crypto-chain-card strong {
+      font-size: 1.55rem;
+      line-height: 1.1;
     }
 
-    .crypto-node {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      place-items: center;
-      gap: .7rem;
-      min-height: 134px;
-      padding: 1rem;
+    .crypto-chain-card small {
+      color: var(--crypto-muted);
+      line-height: 1.45;
+    }
+
+    .crypto-wallet-mini {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin-top: auto;
+      min-height: 48px;
+      padding: .65rem;
       border: 1px solid var(--crypto-line);
       border-radius: 8px;
-      background: rgba(255, 255, 255, .58);
-      text-align: center;
+      background: var(--crypto-panel);
+      color: var(--crypto-muted);
+      font-size: .86rem;
+      font-weight: 800;
     }
 
-    html[data-theme="dark"] .crypto-node {
-      background: rgba(255, 255, 255, .045);
-    }
-
-    .crypto-node svg,
+    .crypto-wallet-mini svg,
+    .crypto-bridge-device svg,
     .crypto-red-flags svg,
     .crypto-source-list svg {
       width: 1.55rem;
@@ -599,70 +1020,142 @@ const sources = [
       stroke-linejoin: round;
     }
 
-    .crypto-node svg {
+    .crypto-wallet-mini svg,
+    .crypto-bridge-device svg {
       color: var(--crypto-blue);
+      flex: 0 0 auto;
     }
 
-    .crypto-node strong {
-      font-size: .95rem;
+    .crypto-gas-chip {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 34px;
+      padding: .35rem .6rem;
+      border: 1px solid rgba(var(--crypto-orange-rgb), .28);
+      border-radius: 8px;
+      background: rgba(var(--crypto-orange-rgb), .10);
+      color: var(--crypto-orange);
+      font-size: .82rem;
+      font-weight: 900;
     }
 
-    .crypto-node-bridge {
-      border-color: rgba(var(--crypto-orange-rgb), .30);
-    }
-
-    .crypto-lane {
+    .crypto-bridge-column {
       position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 240px;
+    }
+
+    .crypto-route-line {
+      position: absolute;
+      left: -50%;
+      right: -50%;
+      top: 50%;
       height: 4px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(var(--blue-rgb), .2), rgba(var(--gold-rgb), .6), rgba(var(--blue-rgb), .2));
-    }
-
-    .crypto-lane::before,
-    .crypto-lane::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: .48rem;
-      height: .48rem;
-      border-radius: 50%;
-      background: var(--crypto-blue);
+      background: linear-gradient(90deg, rgba(var(--blue-rgb), .18), rgba(var(--crypto-orange-rgb), .74), rgba(var(--blue-rgb), .18));
       transform: translateY(-50%);
     }
 
-    .crypto-lane::before { left: 0; }
-    .crypto-lane::after { right: 0; }
-
-    .crypto-packet {
+    .crypto-route-line::before,
+    .crypto-route-line::after {
+      content: "";
       position: absolute;
       top: 50%;
-      width: .9rem;
-      height: .9rem;
-      border: 2px solid var(--crypto-orange);
+      width: .85rem;
+      height: .85rem;
+      border-radius: 50%;
+      background: var(--crypto-orange);
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 8px rgba(var(--crypto-orange-rgb), .10);
+    }
+
+    .crypto-route-line::before { left: 0; }
+    .crypto-route-line::after { right: 0; }
+
+    .crypto-moving-token {
+      position: absolute;
+      top: 50%;
+      left: 4%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 4.2rem;
+      height: 4.2rem;
+      border: 1px solid rgba(var(--gold-rgb), .36);
       border-radius: 50%;
       background: var(--crypto-panel);
-      box-shadow: 0 0 0 6px rgba(var(--crypto-orange-rgb), .08);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, .18);
       transform: translate(-50%, -50%);
-      animation: cryptoPacket 3.4s ease-in-out infinite;
+      animation: cryptoBridgeTransfer 7s ease-in-out infinite;
     }
 
-    .crypto-packet-two {
-      animation-delay: 1.1s;
-    }
-
-    .crypto-packet-three {
-      animation-delay: .65s;
-    }
-
-    .crypto-coin {
-      position: absolute;
-      right: 6%;
-      bottom: 6%;
-      width: 118px;
-      aspect-ratio: 1;
+    .crypto-moving-token img {
+      width: 82%;
+      height: 82%;
       object-fit: contain;
-      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .25));
-      animation: cryptoCoinFloat 6s ease-in-out infinite;
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .25));
+    }
+
+    .crypto-bridge-device {
+      display: grid;
+      place-items: center;
+      gap: .45rem;
+      width: min(100%, 190px);
+      min-height: 172px;
+      border-color: rgba(var(--crypto-orange-rgb), .36);
+      text-align: center;
+      box-shadow: 0 16px 38px rgba(var(--crypto-orange-rgb), .12);
+    }
+
+    .crypto-bridge-device strong {
+      font-size: 1.15rem;
+    }
+
+    .crypto-bridge-device span {
+      color: var(--crypto-muted);
+      font-size: .86rem;
+      line-height: 1.35;
+    }
+
+    .crypto-visual-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .6rem;
+      margin: 0 0 .9rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .crypto-visual-steps li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: .5rem;
+      align-items: start;
+      min-height: 72px;
+      padding: .65rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: rgba(var(--blue-rgb), .06);
+    }
+
+    .crypto-visual-steps strong {
+      display: grid;
+      place-items: center;
+      width: 1.55rem;
+      height: 1.55rem;
+      border-radius: 6px;
+      background: var(--crypto-blue);
+      color: #fff;
+      font-size: .78rem;
+      line-height: 1;
+    }
+
+    .crypto-visual-steps span {
+      color: var(--crypto-muted);
+      font-size: .82rem;
+      line-height: 1.35;
     }
 
     .crypto-visual-note {
@@ -863,6 +1356,78 @@ const sources = [
       margin-top: 1.4rem;
     }
 
+    .crypto-chain-table {
+      display: grid;
+      overflow: hidden;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-chain-head,
+    .crypto-chain-row {
+      display: grid;
+      grid-template-columns: minmax(160px, 1fr) minmax(92px, .42fr) minmax(140px, .72fr) minmax(260px, 1.42fr);
+      gap: .9rem;
+      align-items: center;
+      padding: .85rem 1rem;
+    }
+
+    .crypto-chain-head {
+      background: rgba(var(--blue-rgb), .10);
+      color: var(--crypto-blue);
+      font-size: .74rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .crypto-chain-row {
+      min-height: 68px;
+      border-top: 1px solid var(--crypto-line);
+      color: var(--crypto-muted);
+      text-decoration: none;
+      transition: background 200ms ease, color 200ms ease;
+    }
+
+    .crypto-chain-row:hover {
+      background: rgba(var(--blue-rgb), .07);
+      color: var(--crypto-ink);
+    }
+
+    .crypto-chain-row:focus-visible {
+      outline: 3px solid var(--crypto-blue);
+      outline-offset: -3px;
+    }
+
+    .crypto-chain-row strong {
+      color: var(--crypto-ink);
+      font-size: 1rem;
+    }
+
+    .crypto-chain-coin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-width: 4.4rem;
+      min-height: 2rem;
+      padding: .28rem .58rem;
+      border: 1px solid rgba(var(--crypto-orange-rgb), .28);
+      border-radius: 8px;
+      background: rgba(var(--crypto-orange-rgb), .10);
+      color: var(--crypto-orange);
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .crypto-table-note {
+      margin: .85rem 0 0;
+      color: var(--crypto-muted);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
     .crypto-formula {
       display: flex;
       flex-wrap: wrap;
@@ -951,6 +1516,34 @@ const sources = [
       color: var(--crypto-orange);
     }
 
+    .crypto-glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .85rem;
+    }
+
+    .crypto-glossary-card {
+      min-height: 100%;
+      padding: 1rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-glossary-card h3 {
+      margin: 0 0 .45rem;
+      color: var(--crypto-ink);
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .crypto-glossary-card p {
+      margin: 0;
+      color: var(--crypto-muted);
+      font-size: .92rem;
+      line-height: 1.58;
+    }
+
     .crypto-final {
       padding-top: 0;
     }
@@ -1015,14 +1608,22 @@ const sources = [
       color: var(--crypto-blue);
     }
 
-    @keyframes cryptoPacket {
-      0%, 100% { left: 8%; opacity: .55; }
-      50% { left: 92%; opacity: 1; }
-    }
-
-    @keyframes cryptoCoinFloat {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
+    @keyframes cryptoBridgeTransfer {
+      0%, 100% {
+        left: 4%;
+        opacity: .75;
+        transform: translate(-50%, -50%) scale(.92);
+      }
+      42% {
+        left: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+      70% {
+        left: 96%;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(.98);
+      }
     }
 
     @keyframes cryptoArrowPulse {
@@ -1031,8 +1632,7 @@ const sources = [
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .crypto-packet,
-      .crypto-coin,
+      .crypto-moving-token,
       .crypto-flow-arrow::before {
         animation: none !important;
       }
@@ -1055,6 +1655,44 @@ const sources = [
       }
 
       .crypto-basics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .crypto-transfer-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-route-line {
+        left: 50%;
+        right: auto;
+        top: -1.4rem;
+        bottom: -1.4rem;
+        width: 4px;
+        height: auto;
+        transform: translateX(-50%);
+      }
+
+      .crypto-route-line::before,
+      .crypto-route-line::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .crypto-route-line::before { top: 0; }
+      .crypto-route-line::after { top: auto; bottom: 0; }
+
+      .crypto-moving-token {
+        left: 50%;
+        top: 4%;
+        animation-name: cryptoBridgeTransferDown;
+      }
+
+      .crypto-bridge-device {
+        width: min(100%, 320px);
+      }
+
+      .crypto-visual-steps,
+      .crypto-glossary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -1086,6 +1724,24 @@ const sources = [
       @keyframes cryptoArrowPulseDown {
         0%, 100% { transform: translateY(0); opacity: .2; }
         50% { transform: translateY(18px); opacity: .7; }
+      }
+
+      @keyframes cryptoBridgeTransferDown {
+        0%, 100% {
+          top: 4%;
+          opacity: .75;
+          transform: translate(-50%, -50%) scale(.92);
+        }
+        42% {
+          top: 50%;
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.06);
+        }
+        70% {
+          top: 96%;
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(.98);
+        }
       }
     }
 
@@ -1125,45 +1781,54 @@ const sources = [
         min-height: 0;
       }
 
-      .crypto-network-map {
+      .crypto-visual-title {
         grid-template-columns: 1fr;
-        min-height: 0;
       }
 
-      .crypto-lane {
-        width: 4px;
-        height: 42px;
-        justify-self: center;
+      .crypto-visual-title strong {
+        white-space: normal;
       }
 
-      .crypto-lane::before,
-      .crypto-lane::after {
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .crypto-chain-card,
+      .crypto-bridge-device {
+        min-height: 190px;
       }
 
-      .crypto-lane::before { top: 0; }
-      .crypto-lane::after { top: 100%; }
-
-      .crypto-packet {
-        left: 50%;
-        animation-name: cryptoPacketDown;
+      .crypto-moving-token {
+        width: 3.4rem;
+        height: 3.4rem;
       }
 
-      .crypto-coin {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        justify-self: center;
-        width: 92px;
+      .crypto-visual-steps {
+        grid-template-columns: 1fr;
       }
 
       .crypto-fact-grid,
       .crypto-basics-grid,
       .crypto-check-grid,
       .crypto-note-grid,
+      .crypto-glossary-grid,
       .crypto-source-list {
         grid-template-columns: 1fr;
+      }
+
+      .crypto-chain-head {
+        display: none;
+      }
+
+      .crypto-chain-row {
+        grid-template-columns: 1fr;
+        gap: .45rem;
+        align-items: start;
+        padding: 1rem;
+      }
+
+      .crypto-chain-row span {
+        min-width: 0;
+      }
+
+      .crypto-chain-coin {
+        min-width: 0;
       }
 
       .crypto-check-card {
@@ -1180,11 +1845,6 @@ const sources = [
 
       .crypto-final-panel img {
         width: 108px;
-      }
-
-      @keyframes cryptoPacketDown {
-        0%, 100% { top: 8%; opacity: .55; }
-        50% { top: 92%; opacity: 1; }
       }
     }
   </style>
