@@ -1,0 +1,1714 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const introSteps = [
+  { num: 'Schritt 1', title: 'Wallet erstellen', text: 'Deine digitale Geldbörse — und warum die 12 Wörter so wichtig sind.' },
+  { num: 'Schritt 2', title: 'Wallet verbinden', text: 'Mit einer Börse verbinden — wie bei MetaMask & Co.' },
+  { num: 'Schritt 3', title: 'Coin kaufen', text: 'Euro gegen VAL tauschen und Gebühren verstehen.' },
+  { num: 'Schritt 4', title: 'Coin bridgen', text: 'Von Ethereum nach Polygon — inkl. Netzwerkgebühr (Gas).' },
+  { num: 'Schritt 5', title: 'Überweisen', text: 'VAL sicher an eine andere Adresse senden — mit Adress-Check.' },
+];
+---
+
+<BaseLayout
+  title="Krypto-Training: Übe Wallet, Kauf & Bridge ohne Risiko | callidus A&M"
+  description="Interaktive Übungsumgebung: Wallet erstellen, Seed-Phrase sichern, Coins kaufen, bridgen und sicher überweisen – Schritt für Schritt, ohne echtes Geld."
+  lang="de"
+  ogImage="/assets/valus-coin.png"
+>
+  <article class="crypto-training" id="ct-app">
+    <div class="ct-container">
+
+      <div class="ct-badge-row">
+        <span class="ct-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          Übungsmodus — kein echtes Geld
+        </span>
+      </div>
+
+      <!-- ===== Intro ===== -->
+      <section class="ct-intro" id="ct-intro" aria-label="Einführung in das Krypto-Training">
+        <div class="ct-intro-grid">
+          <div>
+            <p class="ct-eyebrow">Krypto-Training</p>
+            <h1>Krypto verstehen, indem du es selbst machst.</h1>
+            <p class="ct-lead">
+              Kein Risiko, kein echtes Geld: In dieser Übungsumgebung erstellst du eine Wallet,
+              kaufst den Übungs-Coin <strong>Valus (VAL)</strong>, bridgst ihn auf eine andere
+              Blockchain und überweist ihn — Schritt für Schritt, mit Hinweisen bei jedem Klick.
+            </p>
+            <button class="ct-btn ct-btn-primary ct-btn-lg" data-action="start">Training starten</button>
+            <p class="ct-small">Dauer ca. 10 Minuten · Du kannst nichts kaputt machen.</p>
+          </div>
+          <div class="ct-intro-coin" aria-hidden="true">
+            <img src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="eager" decoding="async" />
+          </div>
+        </div>
+        <div class="ct-steps-grid">
+          {introSteps.map((s) => (
+            <div class="ct-step-card">
+              <span>{s.num}</span>
+              <strong>{s.title}</strong>
+              <p>{s.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ===== Training ===== -->
+      <section class="ct-train" id="ct-train" hidden aria-label="Interaktiver Trainings-Simulator">
+        <div class="ct-progress-head">
+          <div class="ct-progress-labels">
+            <strong id="ct-step-title"></strong>
+            <span id="ct-step-count"></span>
+          </div>
+          <div class="ct-progressbar"><i id="ct-progress-fill"></i></div>
+        </div>
+
+        <div class="ct-layout">
+          <div class="ct-sim">
+            <div class="ct-chrome" aria-hidden="true">
+              <span class="ct-dots"><i></i><i></i><i></i></span>
+              <span class="ct-url">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                demo.valus-boerse.de
+              </span>
+            </div>
+            <div class="ct-sim-body" id="ct-sim-body" aria-live="polite"></div>
+            <div class="ct-popup-backdrop" id="ct-popup" hidden>
+              <div class="ct-popup" role="dialog" aria-label="Übungs-Wallet">
+                <div class="ct-popup-head"><span>W</span> Deine Übungs-Wallet</div>
+                <div id="ct-popup-body"></div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="ct-side">
+            <div class="ct-panel">
+              <h2>Dein Übungsguthaben</h2>
+              <div class="ct-bal"><span>Euro</span><strong id="ct-bal-eur"></strong></div>
+              <div class="ct-bal"><span><i class="ct-dot ct-dot-eth"></i>VAL · Ethereum</span><strong id="ct-bal-eth"></strong></div>
+              <div class="ct-bal"><span><i class="ct-dot ct-dot-poly"></i>VAL · Polygon</span><strong id="ct-bal-poly"></strong></div>
+            </div>
+            <div class="ct-panel">
+              <h2>Deine Schritte</h2>
+              <ol class="ct-checklist" id="ct-checklist"></ol>
+            </div>
+            <div class="ct-panel ct-lern">
+              <h2>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2Z"></path></svg>
+                Gut zu wissen
+              </h2>
+              <p id="ct-lern-text"></p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== Zertifikat ===== -->
+      <section class="ct-done" id="ct-done" hidden aria-label="Trainings-Abschluss">
+        <div class="ct-done-card">
+          <img src="/assets/valus-coin-cutout.png" alt="" width="500" height="500" loading="lazy" decoding="async" />
+          <p class="ct-eyebrow">callidus A&amp;M · Krypto-Training</p>
+          <h2>Geschafft — du hast den kompletten Weg selbst geklickt.</h2>
+          <p class="ct-done-text">
+            Wallet erstellt, Seed-Phrase gesichert, verbunden, gekauft, gebridgt und sicher
+            überwiesen. Abgeschlossen am <span id="ct-done-date"></span>.
+          </p>
+          <div class="ct-done-badges">
+            <span>✓ Seed-Phrase verstanden</span>
+            <span>✓ Wallet verbunden</span>
+            <span>✓ Gebühren &amp; Gas</span>
+            <span>✓ Adress-Check</span>
+          </div>
+          <div class="ct-done-actions">
+            <button class="ct-btn ct-btn-primary" data-action="restart">Training wiederholen</button>
+            <a class="ct-btn" href="/krypto-verstehen/">Zurück zum Krypto-Leitfaden</a>
+          </div>
+        </div>
+        <p class="ct-small ct-done-note">
+          Denk daran: Das hier war eine Simulation. Bei echtem Krypto gilt — nur Beträge einsetzen,
+          deren Verlust du verkraften kannst.
+        </p>
+      </section>
+
+      <p class="ct-disclaimer">
+        Übungsumgebung — kein echtes Geld, keine echte Blockchain, keine Anlageberatung.
+        Mehr dazu im <a href="/krypto-hinweis/">Krypto-Hinweis</a> und im <a href="/krypto-verstehen/">Krypto-Leitfaden</a>.
+      </p>
+    </div>
+  </article>
+
+  <script>
+    function boot() {
+      const app = document.getElementById('ct-app') as HTMLElement | null;
+      if (!app || app.dataset.booted) return;
+      app.dataset.booted = '1';
+
+      const START_EUR = 250;
+      const state = {
+        phase: 'intro',
+        buyAmount: 0,
+        quizWrong: false,
+        wrongAddr: false,
+        addrChecked: false,
+        spent: 0,
+        valEth: 0,
+        valPoly: 0,
+      };
+      let timer: ReturnType<typeof setTimeout> | null = null;
+
+      const fmt = (n: number) => n.toFixed(2).replace('.', ',');
+      const esc = (s: string) => s;
+
+      const stepOf = (p: string) => {
+        if (p.indexOf('w1') === 0) return 1;
+        if (p.indexOf('c2') === 0) return 2;
+        if (p.indexOf('b3') === 0) return 3;
+        if (p.indexOf('br4') === 0) return 4;
+        return 5;
+      };
+
+      const STEP_TITLES = ['', 'Wallet erstellen', 'Wallet verbinden', 'Valus kaufen', 'Auf Polygon bridgen', 'Sicher überweisen'];
+      const STEP_LABELS = ['Wallet erstellen', 'Wallet verbinden', 'Coin kaufen', 'Coin bridgen', 'Überweisen'];
+      const SEED = ['apfel', 'wolke', 'tiger', 'fluss', 'honig', 'stern', 'brise', 'wald', 'anker', 'lampe', 'salz', 'vogel'];
+
+      const LERN: Record<string, string> = {
+        w1_create: 'Eine Wallet speichert nicht die Coins selbst, sondern deine Schlüssel. Die Coins „liegen“ immer auf der Blockchain.',
+        w1_seed: 'Papier schlägt Cloud: Die Seed-Phrase gehört nie in ein Foto, einen Chat oder einen Passwort-Manager mit Cloud-Sync.',
+        w1_quiz: 'Wallets fragen einzelne Wörter ab, damit du merkst, ob deine Sicherung wirklich vollständig ist.',
+        c2_connect: 'Phishing-Seiten imitieren echte Börsen mit fast identischen Adressen. Prüfe die URL bei jedem Besuch.',
+        c2_popup: '„Verbinden“ heißt nur: Die Seite sieht deine Adresse. Gefährlich wird es erst, wenn du Transaktionen signierst.',
+        b3_amount: 'Fang klein an. Der erste Kauf ist zum Lernen da, nicht zum Reichwerden.',
+        b3_confirm: 'Börsen verdienen an Gebühren. 1,5 % klingt wenig — vergleiche trotzdem immer mehrere Anbieter.',
+        b3_pending: 'Echte Käufe brauchen je nach Netzwerk Sekunden bis Minuten.',
+        b3_quiz: '„Not your keys, not your coins“: Nur was in deiner eigenen Wallet liegt, gehört wirklich dir.',
+        br4_setup: 'Jede Blockchain ist ein eigenes Netzwerk. Eine Bridge ist die „Fähre“ dazwischen.',
+        br4_gas: 'Gas schwankt mit der Auslastung des Netzwerks. Nachts oder am Wochenende ist es oft günstiger.',
+        br4_pending: 'Bridges sind technisch komplex — nutze in echt nur etablierte, geprüfte Anbieter.',
+        br4_quiz: 'Die Gebühr geht an die Validatoren des Netzwerks — nicht an die Börse oder die Wallet-App.',
+        s5_addr: 'Krypto-Adressen sind lang und kryptisch — genau deshalb ist der Zeichen-Vergleich Pflicht.',
+        s5_confirm: 'Profis senden bei großen Beträgen erst eine Mini-Testüberweisung und dann den Rest.',
+        s5_sign: 'Deine Signatur ist endgültig. Es gibt keine Hotline, die eine Krypto-Überweisung zurückholen kann.',
+        s5_pending: 'Auf Polygon dauert eine Überweisung nur wenige Sekunden.',
+      };
+
+      const el = (id: string) => document.getElementById(id) as HTMLElement;
+
+      function go(phase: string, extra?: Record<string, unknown>) {
+        state.quizWrong = false;
+        Object.assign(state, extra || {}, { phase });
+        render();
+      }
+
+      const hint = (html: string) => `<div class="ct-hint"><span aria-hidden="true">👆</span><span>${html}</span></div>`;
+      const wrongBox = (html: string) => `<div class="ct-wrong">${html}</div>`;
+      const pendingBlock = (title: string, sub?: string) => `
+        <div class="ct-center ct-pending">
+          <div class="ct-pending-title">${title}</div>
+          ${sub ? `<p class="ct-note">${sub}</p>` : ''}
+          <div class="ct-loadbar"><i></i></div>
+        </div>`;
+      const quizBlock = (q: string, opts: { label: string; ok?: boolean }[], intro?: string, lead?: string) => `
+        ${intro ? `<div class="ct-success">${intro}</div>` : ''}
+        <div class="ct-quiz-chip">Kurzes Quiz</div>
+        <h3>${q}</h3>
+        ${lead ? `<p class="ct-note">${lead}</p>` : ''}
+        <div class="ct-quiz-options">
+          ${opts.map((o, i) => `<button class="ct-btn ct-quiz-btn" data-action="quiz" data-ok="${o.ok ? '1' : ''}">${o.label}</button>`).join('')}
+        </div>
+        ${state.quizWrong ? wrongBox(quizWrongText()) : ''}`;
+
+      let quizNext = '';
+      let quizWrongMsg = '';
+      const quizWrongText = () => quizWrongMsg;
+
+      function simHTML(p: string): string {
+        const buyFee = state.buyAmount * 0.015;
+        const buyVal = (state.buyAmount - buyFee) / 2.5;
+        const eur = START_EUR - state.spent;
+
+        if (p === 'w1_create') {
+          return `
+            <div class="ct-center">
+              <div class="ct-big-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+              </div>
+              <h3>Willkommen bei der Valus Übungs-Börse</h3>
+              <p class="ct-note">Um Krypto zu besitzen, brauchst du zuerst eine <strong>Wallet</strong> — deine persönliche digitale Geldbörse. Sie gehört nur dir, nicht der Börse.</p>
+              <button class="ct-btn ct-btn-primary" data-action="createWallet">Neue Wallet erstellen</button>
+              ${hint('<strong>Klicke hier.</strong> Keine Sorge — alles hier ist eine Simulation.')}
+            </div>`;
+        }
+
+        if (p === 'w1_seed') {
+          return `
+            <h3>Deine Seed-Phrase</h3>
+            <p class="ct-note">Diese 12 Wörter sind der <strong>Generalschlüssel</strong> zu deiner Wallet. Wer sie kennt, besitzt dein Geld. Notiere sie auf Papier — niemals als Foto oder in der Cloud.</p>
+            <div class="ct-seed-grid">
+              ${SEED.map((w, i) => `<div class="ct-seed-word"><span>${i + 1}</span><strong>${w}</strong></div>`).join('')}
+            </div>
+            <div class="ct-warn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span><strong>Merke:</strong> Kein seriöser Anbieter fragt dich jemals nach deiner Seed-Phrase. Wer danach fragt, will dich betrügen.</span>
+            </div>
+            <div class="ct-actions"><button class="ct-btn ct-btn-primary" data-action="seedNoted">Ich habe die 12 Wörter notiert</button></div>`;
+        }
+
+        if (p === 'w1_quiz') {
+          quizNext = 'c2_connect';
+          quizWrongMsg = 'Nicht ganz — schau nochmal genau hin. Bei einer echten Wallet müsstest du jetzt deine Notizen zücken. Genau dafür sind sie da!';
+          return quizBlock(
+            'Welches war Wort Nr. 3 deiner Seed-Phrase?',
+            [{ label: 'honig' }, { label: 'tiger', ok: true }, { label: 'fluss' }],
+            '',
+            'So prüfen echte Wallets, ob du die Wörter wirklich gesichert hast.'
+          );
+        }
+
+        if (p === 'c2_connect' || p === 'c2_popup') {
+          return `
+            <div class="ct-dapp-head">
+              <div class="ct-dapp-brand">
+                <img src="/assets/valus-coin-cutout.png" alt="" width="40" height="40" />
+                <strong>Valus Börse</strong>
+              </div>
+              <button class="ct-btn ct-btn-primary" data-action="connect" ${p === 'c2_popup' ? 'disabled' : ''}>Wallet verbinden</button>
+            </div>
+            ${p === 'c2_connect' ? hint('<strong>Bevor du klickst:</strong> Wirf einen Blick auf die Adresszeile oben. Stimmt die Adresse? Ist das 🔒 da? Dann klicke „Wallet verbinden“.') : ''}
+            <div class="ct-market-card">
+              <div>
+                <strong>Valus (VAL)</strong>
+                <p class="ct-note">Der Übungs-Coin dieser Simulation. Kurs: <strong>2,50&nbsp;€</strong></p>
+              </div>
+              <p class="ct-note ct-market-locked">Verbinde deine Wallet, um zu handeln.</p>
+            </div>`;
+        }
+
+        if (p.indexOf('b3') === 0) {
+          let inner = '';
+          if (p === 'b3_amount') {
+            inner = `
+              <p class="ct-label">Wie viel möchtest du tauschen?</p>
+              <div class="ct-amounts">
+                ${[50, 100, 250].map((a) => `<button class="ct-btn ct-amount-btn" data-action="amount" data-amt="${a}">${fmt(a)} €</button>`).join('')}
+              </div>
+              ${hint(`<strong>Wähle einen Betrag.</strong> Dein Übungsguthaben: <strong>${fmt(eur)} €</strong>`)}`;
+          } else if (p === 'b3_confirm') {
+            inner = `
+              <div class="ct-summary">
+                <div><span>Betrag</span><span>${fmt(state.buyAmount)} €</span></div>
+                <div><span>Börsen-Gebühr (1,5 %)</span><span>− ${fmt(buyFee)} €</span></div>
+                <div class="ct-summary-strong"><span>Du erhältst</span><span>${fmt(buyVal)} VAL</span></div>
+              </div>
+              <p class="ct-note">Die VAL landen in deiner Wallet auf der <strong>Ethereum</strong>-Blockchain.</p>
+              <div class="ct-actions">
+                <button class="ct-btn ct-btn-primary" data-action="buyConfirm">Jetzt kaufen</button>
+                <button class="ct-btn" data-action="backToAmount">Betrag ändern</button>
+              </div>`;
+          } else if (p === 'b3_pending') {
+            inner = pendingBlock('Kauf wird ausgeführt …');
+          } else if (p === 'b3_quiz') {
+            quizNext = 'br4_setup';
+            quizWrongMsg = 'Nicht ganz. Die Coins liegen in <strong>deiner Wallet</strong> auf der Ethereum-Blockchain — nicht auf einem Bankkonto und nicht „bei der Börse“.';
+            inner = quizBlock(
+              'Wo liegen deine VAL jetzt?',
+              [
+                { label: 'Auf meinem Bankkonto — die Börse hat sie überwiesen.' },
+                { label: 'In meiner Wallet, auf der Ethereum-Blockchain.', ok: true },
+                { label: 'Bei der Börse in einem Schließfach.' },
+              ],
+              `✅ Geschafft! Du besitzt jetzt <strong>${fmt(buyVal)} VAL</strong>.`
+            );
+          }
+          return `
+            <div class="ct-dapp-head">
+              <div class="ct-dapp-brand">
+                <img src="/assets/valus-coin-cutout.png" alt="" width="40" height="40" />
+                <div>
+                  <strong>Valus kaufen</strong>
+                  <p class="ct-note">1 VAL = <strong>2,50 €</strong> · Gebühr 1,5 %</p>
+                </div>
+              </div>
+            </div>
+            ${inner}`;
+        }
+
+        if (p.indexOf('br4') === 0) {
+          let inner = '';
+          if (p === 'br4_setup' || p === 'br4_gas') {
+            inner = `
+              <div class="ct-bridge-row">
+                <div class="ct-bridge-chain">
+                  <span>Von</span>
+                  <strong>Ethereum</strong>
+                  <em>${fmt(state.valEth)} VAL</em>
+                </div>
+                <svg class="ct-bridge-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                <div class="ct-bridge-chain ct-bridge-chain-target">
+                  <span>Nach</span>
+                  <strong>Polygon</strong>
+                  <em>${fmt(state.valPoly)} VAL</em>
+                </div>
+              </div>
+              <div class="ct-summary"><div><span>Betrag</span><span>20,00 VAL</span></div></div>
+              <div class="ct-actions">
+                <button class="ct-btn ct-btn-primary" data-action="bridgeStart" ${p === 'br4_gas' ? 'disabled' : ''}>Bridge starten</button>
+              </div>
+              ${p === 'br4_setup' ? hint('<strong>Klicke „Bridge starten“.</strong> Gleich öffnet sich deine Wallet — dort bestätigst du die Transaktion.') : ''}`;
+          } else if (p === 'br4_pending') {
+            inner = pendingBlock('Bridge läuft …', 'Die Coins werden auf Ethereum „eingeschlossen“ und auf Polygon neu ausgegeben. Das dauert in echt einige Minuten.');
+          } else if (p === 'br4_quiz') {
+            quizNext = 's5_addr';
+            quizWrongMsg = 'Nicht ganz. Gas geht an das <strong>Netzwerk</strong> — die vielen Computer, die deine Transaktion prüfen und in die Blockchain schreiben.';
+            inner = quizBlock(
+              'Wofür hast du die Netzwerkgebühr (Gas) bezahlt?',
+              [
+                { label: 'An die Valus Börse, als Provision.' },
+                { label: 'An meine Wallet-App, für den Service.' },
+                { label: 'An das Netzwerk, das die Transaktion prüft und verarbeitet.', ok: true },
+              ],
+              '✅ Bridge abgeschlossen! <strong>20,00 VAL</strong> liegen jetzt auf Polygon.'
+            );
+          }
+          return `
+            <div class="ct-screen-head">
+              <h3>Bridge — Coins zwischen Blockchains bewegen</h3>
+              <p class="ct-note">Deine VAL liegen auf Ethereum. Auf <strong>Polygon</strong> sind Überweisungen viel günstiger — also „bridgen“ wir einen Teil hinüber.</p>
+            </div>
+            ${inner}`;
+        }
+
+        if (p.indexOf('s5') === 0) {
+          let inner = '';
+          if (p === 's5_addr') {
+            inner = `
+              <p class="ct-label">Empfänger wählen</p>
+              <div class="ct-addr-options">
+                <button class="ct-addr-btn" data-action="pickUnknown">
+                  <strong>Adresse aus dem Chat-Verlauf</strong>
+                  <code>0x8F3aB2e91cD47f6A03d5E28b9a1F70c4D6E2C41d</code>
+                </button>
+                <button class="ct-addr-btn ct-addr-verified" data-action="pickLena">
+                  <strong>Lena <em>✓ persönlich verifiziert</em></strong>
+                  <code>0x8F3aB2e91cD47f6A03d5E28b9a1F70c4D6E2C41b</code>
+                </button>
+              </div>
+              ${state.wrongAddr
+                ? wrongBox('<strong>⚠️ Stopp — Lernmoment!</strong> Diese Adresse endet auf <code>…C41d</code>, Lenas echte Adresse auf <code>…C41b</code>. Schadsoftware tauscht kopierte Adressen oft unbemerkt aus. Krypto-Überweisungen kann <strong>niemand rückgängig machen</strong> — wähle den verifizierten Kontakt.')
+                : hint('<strong>Schau genau hin:</strong> Beide Adressen sehen fast gleich aus. Vergleiche die letzten Zeichen, bevor du wählst.')}`;
+          } else if (p === 's5_confirm' || p === 's5_sign') {
+            inner = `
+              <div class="ct-summary">
+                <div><span>Empfänger</span><span>Lena</span></div>
+                <div><span>Adresse</span><span class="ct-addr-code"><strong>0x8F3a</strong>B2e91cD47f6A03d5E28b9a1F70c4D6E2<strong>C41b</strong></span></div>
+                <div><span>Betrag</span><span>10,00 VAL</span></div>
+                <div><span>Netzwerkgebühr (Polygon)</span><span>≈ 0,02 €</span></div>
+              </div>
+              <p class="ct-note">Zum Vergleich: Auf Ethereum hätte das ≈ 0,85 € gekostet. Deshalb haben wir gebridgt!</p>
+              <label class="ct-check">
+                <input type="checkbox" id="ct-addr-check" ${state.addrChecked ? 'checked' : ''} />
+                <span>Ich habe die <strong>ersten und letzten 4 Zeichen</strong> der Adresse geprüft.</span>
+              </label>
+              <div class="ct-actions">
+                <button class="ct-btn ct-btn-primary" data-action="sendClick" ${state.addrChecked && p === 's5_confirm' ? '' : 'disabled'}>10,00 VAL senden</button>
+              </div>
+              ${!state.addrChecked ? hint('<strong>Erst prüfen, dann senden.</strong> Setze das Häkchen oben.') : ''}`;
+          } else if (p === 's5_pending') {
+            inner = pendingBlock('Überweisung läuft …');
+          }
+          return `
+            <div class="ct-screen-head">
+              <h3>VAL überweisen</h3>
+              <p class="ct-note">Deine Aufgabe: Sende <strong>10,00 VAL</strong> (Polygon) an deine Freundin <strong>Lena</strong>.</p>
+            </div>
+            ${inner}`;
+        }
+
+        return '';
+      }
+
+      function popupHTML(p: string): string {
+        if (p === 'c2_popup') {
+          return `
+            <p class="ct-label">Verbindungsanfrage von</p>
+            <p class="ct-popup-site">🔒 demo.valus-boerse.de</p>
+            <div class="ct-summary">
+              <div><span>Konto</span><span>Übungs-Konto (0x71Fe…9aD2)</span></div>
+            </div>
+            <p class="ct-note">Die Seite darf deine Adresse und deinen Kontostand sehen — <strong>nicht</strong> dein Geld bewegen.</p>
+            <div class="ct-actions">
+              <button class="ct-btn" data-action="popupCancel">Ablehnen</button>
+              <button class="ct-btn ct-btn-primary" data-action="popupConnect">Verbinden</button>
+            </div>`;
+        }
+        if (p === 'br4_gas') {
+          return `
+            <p class="ct-label">Transaktion bestätigen</p>
+            <div class="ct-summary">
+              <div><span>Aktion</span><span>Bridge: ETH → Polygon</span></div>
+              <div><span>Betrag</span><span>20,00 VAL</span></div>
+              <div><span>Netzwerkgebühr (Gas)</span><span>≈ 0,85 €</span></div>
+            </div>
+            <p class="ct-note"><strong>Was ist Gas?</strong> Eine kleine Gebühr an das Netzwerk, das deine Transaktion verarbeitet — wie Porto für einen Brief.</p>
+            <div class="ct-actions">
+              <button class="ct-btn" data-action="popupCancel">Ablehnen</button>
+              <button class="ct-btn ct-btn-primary" data-action="gasConfirm">Bestätigen</button>
+            </div>`;
+        }
+        if (p === 's5_sign') {
+          return `
+            <p class="ct-label">Überweisung signieren</p>
+            <div class="ct-summary">
+              <div><span>An</span><span>0x8F3a…C41b</span></div>
+              <div><span>Betrag</span><span>10,00 VAL</span></div>
+              <div><span>Netzwerk</span><span>Polygon</span></div>
+            </div>
+            <p class="ct-note">Mit deiner Signatur gibst du die Transaktion endgültig frei. <strong>Danach gibt es kein Zurück.</strong></p>
+            <div class="ct-actions">
+              <button class="ct-btn" data-action="popupCancel">Ablehnen</button>
+              <button class="ct-btn ct-btn-primary" data-action="signConfirm">Signieren</button>
+            </div>`;
+        }
+        return '';
+      }
+
+      function render() {
+        const p = state.phase;
+        el('ct-intro').hidden = p !== 'intro';
+        el('ct-train').hidden = p === 'intro' || p === 'done';
+        el('ct-done').hidden = p !== 'done';
+
+        if (p === 'intro') return;
+
+        if (p === 'done') {
+          const today = new Date();
+          const monate = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+          el('ct-done-date').textContent = `${today.getDate()}. ${monate[today.getMonth()]} ${today.getFullYear()}`;
+          el('ct-done').scrollIntoView({ block: 'start', behavior: 'smooth' });
+          return;
+        }
+
+        const stepNum = stepOf(p);
+        el('ct-step-title').textContent = STEP_TITLES[stepNum];
+        el('ct-step-count').textContent = `Schritt ${stepNum} von 5`;
+        el('ct-progress-fill').style.width = `${Math.round(((stepNum - 1) / 5) * 100)}%`;
+
+        el('ct-sim-body').innerHTML = simHTML(p);
+
+        const popupOpen = p === 'c2_popup' || p === 'br4_gas' || p === 's5_sign';
+        el('ct-popup').hidden = !popupOpen;
+        if (popupOpen) el('ct-popup-body').innerHTML = popupHTML(p);
+
+        el('ct-bal-eur').textContent = `${fmt(START_EUR - state.spent)} €`;
+        el('ct-bal-eth').textContent = fmt(state.valEth);
+        el('ct-bal-poly').textContent = fmt(state.valPoly);
+
+        el('ct-checklist').innerHTML = STEP_LABELS.map((label, i) => {
+          const n = i + 1;
+          const done = n < stepNum;
+          const active = n === stepNum;
+          return `<li class="${done ? 'is-done' : ''} ${active ? 'is-active' : ''}"><span>${done ? '✓' : n}</span>${label}</li>`;
+        }).join('');
+
+        el('ct-lern-text').innerHTML = LERN[p] || 'Klicke dich in deinem Tempo durch — du kannst nichts falsch machen.';
+      }
+
+      function delay(ms: number, fn: () => void) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(fn, ms);
+      }
+
+      const actions: Record<string, (btn: HTMLElement) => void> = {
+        start: () => {
+          go('w1_create');
+          el('ct-train').scrollIntoView({ block: 'start', behavior: 'smooth' });
+        },
+        createWallet: () => go('w1_seed'),
+        seedNoted: () => go('w1_quiz'),
+        quiz: (btn) => {
+          if (btn.dataset.ok) {
+            go(quizNext);
+          } else {
+            state.quizWrong = true;
+            render();
+          }
+        },
+        connect: () => go('c2_popup'),
+        popupConnect: () => go('b3_amount'),
+        popupCancel: () => {
+          if (state.phase === 'c2_popup') go('c2_connect');
+          else if (state.phase === 'br4_gas') go('br4_setup');
+          else go('s5_confirm');
+        },
+        amount: (btn) => go('b3_confirm', { buyAmount: Number(btn.dataset.amt) }),
+        backToAmount: () => go('b3_amount'),
+        buyConfirm: () => {
+          go('b3_pending');
+          delay(1800, () => {
+            const fee = state.buyAmount * 0.015;
+            state.spent += state.buyAmount;
+            state.valEth += (state.buyAmount - fee) / 2.5;
+            go('b3_quiz');
+          });
+        },
+        bridgeStart: () => go('br4_gas'),
+        gasConfirm: () => {
+          go('br4_pending');
+          delay(2600, () => {
+            state.valEth -= 20;
+            state.valPoly += 20;
+            state.spent += 0.85;
+            go('br4_quiz');
+          });
+        },
+        pickUnknown: () => {
+          state.wrongAddr = true;
+          render();
+        },
+        pickLena: () => go('s5_confirm', { wrongAddr: false }),
+        sendClick: () => {
+          if (state.addrChecked) go('s5_sign');
+        },
+        signConfirm: () => {
+          go('s5_pending');
+          delay(2000, () => {
+            state.valPoly -= 10;
+            state.spent += 0.02;
+            go('done');
+          });
+        },
+        restart: () => {
+          if (timer) clearTimeout(timer);
+          Object.assign(state, {
+            phase: 'intro', buyAmount: 0, quizWrong: false, wrongAddr: false,
+            addrChecked: false, spent: 0, valEth: 0, valPoly: 0,
+          });
+          render();
+          el('ct-intro').scrollIntoView({ block: 'start', behavior: 'smooth' });
+        },
+      };
+
+      app.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest('[data-action]') as HTMLElement | null;
+        if (!btn || btn.hasAttribute('disabled')) return;
+        const fn = actions[btn.dataset.action || ''];
+        if (fn) fn(btn);
+      });
+
+      app.addEventListener('change', (e) => {
+        const t = e.target as HTMLInputElement;
+        if (t && t.id === 'ct-addr-check') {
+          state.addrChecked = t.checked;
+          render();
+        }
+      });
+
+      render();
+      void esc;
+    }
+
+    document.addEventListener('astro:page-load', boot);
+    boot();
+  </script>
+
+  <style is:global>
+    .crypto-training {
+      --ct-green: var(--mint);
+      --ct-green-rgb: 63, 127, 90;
+      --ct-green-ink: #ffffff;
+      --ct-orange: #b86436;
+      --ct-orange-rgb: 184, 100, 54;
+      --ct-blue: #2f6f8f;
+      --ct-poly: #8247e5;
+      color: var(--text);
+      padding: 3.2rem 0 4rem;
+    }
+
+    html[data-theme="dark"] .crypto-training {
+      --ct-green-rgb: 114, 242, 180;
+      --ct-green-ink: #0b2015;
+      --ct-orange: #ff9a6f;
+      --ct-orange-rgb: 255, 154, 111;
+      --ct-blue: #84d7ff;
+      --ct-poly: #a983f2;
+    }
+
+    .crypto-training .ct-container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .crypto-training h1,
+    .crypto-training h2,
+    .crypto-training h3 {
+      margin: 0;
+      line-height: 1.08;
+    }
+
+    .crypto-training .ct-badge-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .crypto-training .ct-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border: 1px solid rgba(var(--ct-orange-rgb), .35);
+      border-radius: 999px;
+      background: rgba(var(--ct-orange-rgb), .10);
+      color: var(--ct-orange);
+      font-size: .85rem;
+      font-weight: 850;
+    }
+
+    .crypto-training .ct-badge svg {
+      width: 1rem;
+      height: 1rem;
+      flex: 0 0 auto;
+    }
+
+    .crypto-training svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .crypto-training .ct-eyebrow {
+      margin: 0 0 .8rem;
+      color: var(--ct-blue);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .crypto-training .ct-intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(200px, .8fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .crypto-training h1 {
+      max-width: 16ch;
+      font-size: 3.6rem;
+    }
+
+    .crypto-training .ct-lead {
+      max-width: 58ch;
+      margin: 1.2rem 0 1.6rem;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.7;
+    }
+
+    .crypto-training .ct-small {
+      margin: .8rem 0 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .crypto-training .ct-intro-coin {
+      display: grid;
+      place-items: center;
+    }
+
+    .crypto-training .ct-intro-coin img {
+      width: min(100%, 230px);
+      aspect-ratio: 1;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 36px rgba(0, 0, 0, .25));
+      animation: ctCoinFloat 4.5s ease-in-out infinite;
+    }
+
+    @keyframes ctCoinFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    .crypto-training .ct-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .85rem;
+      margin-top: 2.6rem;
+    }
+
+    .crypto-training .ct-step-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .crypto-training .ct-step-card span {
+      display: block;
+      margin-bottom: .4rem;
+      color: var(--ct-blue);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .crypto-training .ct-step-card strong {
+      display: block;
+      margin-bottom: .3rem;
+    }
+
+    .crypto-training .ct-step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+
+    .crypto-training .ct-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .7rem 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 850;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .crypto-training .ct-btn:hover:not([disabled]) {
+      transform: translateY(-2px);
+      border-color: rgba(var(--ct-green-rgb), .5);
+    }
+
+    .crypto-training .ct-btn:focus-visible {
+      outline: 3px solid var(--ct-blue);
+      outline-offset: 3px;
+    }
+
+    .crypto-training .ct-btn[disabled] {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .crypto-training .ct-btn-primary {
+      border-color: transparent;
+      background: var(--ct-green);
+      color: var(--ct-green-ink);
+      box-shadow: 0 14px 30px rgba(var(--ct-green-rgb), .25);
+    }
+
+    .crypto-training .ct-btn-lg {
+      min-height: 54px;
+      padding: .9rem 2rem;
+      border-radius: 999px;
+      font-size: 1.08rem;
+      animation: ctPulse 1.8s infinite;
+    }
+
+    @keyframes ctPulse {
+      0% { box-shadow: 0 0 0 0 rgba(var(--ct-green-rgb), .45); }
+      70% { box-shadow: 0 0 0 14px rgba(var(--ct-green-rgb), 0); }
+      100% { box-shadow: 0 0 0 0 rgba(var(--ct-green-rgb), 0); }
+    }
+
+    /* Training layout */
+
+    .crypto-training .ct-progress-head {
+      margin-bottom: 1.2rem;
+    }
+
+    .crypto-training .ct-progress-labels {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .8rem;
+      margin-bottom: .5rem;
+    }
+
+    .crypto-training .ct-progress-labels strong {
+      font-size: 1.25rem;
+    }
+
+    .crypto-training .ct-progress-labels span {
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    .crypto-training .ct-progressbar {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(var(--ct-green-rgb), .16);
+      overflow: hidden;
+    }
+
+    .crypto-training .ct-progressbar i {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--ct-green);
+      transition: width 500ms ease;
+    }
+
+    .crypto-training .ct-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    /* Simulator */
+
+    .crypto-training .ct-sim {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, .10);
+    }
+
+    .crypto-training .ct-chrome {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: .6rem .9rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(var(--gold-rgb), .08);
+    }
+
+    .crypto-training .ct-dots {
+      display: flex;
+      gap: .32rem;
+    }
+
+    .crypto-training .ct-dots i {
+      width: .68rem;
+      height: .68rem;
+      border-radius: 50%;
+      background: #e0655a;
+    }
+
+    .crypto-training .ct-dots i:nth-child(2) { background: #e0b74f; }
+    .crypto-training .ct-dots i:nth-child(3) { background: #7cc47f; }
+
+    .crypto-training .ct-url {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      flex: 1;
+      max-width: 340px;
+      padding: .35rem .8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .crypto-training .ct-url svg {
+      width: .8rem;
+      height: .8rem;
+      color: var(--ct-green);
+    }
+
+    .crypto-training .ct-sim-body {
+      min-height: 420px;
+      padding: 1.6rem;
+    }
+
+    .crypto-training .ct-sim-body h3 {
+      margin-bottom: .6rem;
+      font-size: 1.45rem;
+    }
+
+    .crypto-training .ct-note {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    .crypto-training .ct-note strong {
+      color: var(--text);
+    }
+
+    .crypto-training .ct-label {
+      margin: 0 0 .7rem;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .crypto-training .ct-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+      text-align: center;
+    }
+
+    .crypto-training .ct-center .ct-note {
+      max-width: 46ch;
+    }
+
+    .crypto-training .ct-big-icon {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1.1rem;
+      border-radius: 20px;
+      background: rgba(var(--ct-green-rgb), .14);
+      color: var(--ct-green);
+    }
+
+    .crypto-training .ct-big-icon svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .crypto-training .ct-hint {
+      display: flex;
+      gap: .55rem;
+      align-items: flex-start;
+      max-width: 52ch;
+      margin-top: 1.1rem;
+      padding: .75rem .9rem;
+      border: 1px solid rgba(var(--ct-orange-rgb), .35);
+      border-radius: 8px;
+      background: rgba(var(--ct-orange-rgb), .09);
+      color: var(--text);
+      font-size: .9rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .crypto-training .ct-warn {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+      margin: 1.1rem 0;
+      padding: .8rem .9rem;
+      border: 1px solid rgba(var(--ct-orange-rgb), .4);
+      border-radius: 8px;
+      background: rgba(var(--ct-orange-rgb), .1);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .crypto-training .ct-warn svg {
+      flex: 0 0 auto;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: .1rem;
+      color: var(--ct-orange);
+    }
+
+    .crypto-training .ct-wrong {
+      margin-top: 1rem;
+      padding: .8rem .9rem;
+      border: 1px solid rgba(var(--ct-orange-rgb), .4);
+      border-radius: 8px;
+      background: rgba(var(--ct-orange-rgb), .1);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .crypto-training .ct-success {
+      margin-bottom: 1.1rem;
+      padding: .7rem .9rem;
+      border: 1px solid rgba(var(--ct-green-rgb), .4);
+      border-radius: 8px;
+      background: rgba(var(--ct-green-rgb), .12);
+      font-weight: 700;
+    }
+
+    .crypto-training .ct-seed-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .55rem;
+      margin: 1.1rem 0;
+    }
+
+    .crypto-training .ct-seed-word {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .7rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(var(--gold-rgb), .07);
+    }
+
+    .crypto-training .ct-seed-word span {
+      display: grid;
+      place-items: center;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: rgba(var(--ct-green-rgb), .15);
+      color: var(--ct-green);
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .crypto-training .ct-seed-word strong {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .92rem;
+    }
+
+    .crypto-training .ct-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1.1rem;
+    }
+
+    .crypto-training .ct-quiz-chip {
+      display: inline-block;
+      margin-bottom: .7rem;
+      padding: .25rem .7rem;
+      border: 1px solid rgba(var(--blue-rgb), .35);
+      border-radius: 999px;
+      color: var(--ct-blue);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .crypto-training .ct-quiz-options {
+      display: grid;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .crypto-training .ct-quiz-btn {
+      justify-content: flex-start;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .crypto-training .ct-dapp-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .9rem;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .crypto-training .ct-dapp-brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .crypto-training .ct-dapp-brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .crypto-training .ct-dapp-brand strong {
+      font-size: 1.1rem;
+    }
+
+    .crypto-training .ct-dapp-brand .ct-note {
+      margin: 0;
+      font-size: .85rem;
+    }
+
+    .crypto-training .ct-market-card {
+      display: grid;
+      gap: .6rem;
+      margin-top: 1.1rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(var(--blue-rgb), .05);
+    }
+
+    .crypto-training .ct-market-card .ct-note {
+      margin: 0;
+    }
+
+    .crypto-training .ct-market-locked {
+      font-style: italic;
+    }
+
+    .crypto-training .ct-amounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+    }
+
+    .crypto-training .ct-amount-btn {
+      min-width: 110px;
+      font-size: 1.05rem;
+    }
+
+    .crypto-training .ct-summary {
+      display: grid;
+      gap: 0;
+      margin: 1rem 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(var(--gold-rgb), .06);
+      overflow: hidden;
+    }
+
+    .crypto-training .ct-summary > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .65rem .9rem;
+      font-size: .95rem;
+    }
+
+    .crypto-training .ct-summary > div + div {
+      border-top: 1px solid var(--line);
+    }
+
+    .crypto-training .ct-summary span:first-child {
+      color: var(--muted);
+    }
+
+    .crypto-training .ct-summary span:last-child {
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .crypto-training .ct-summary-strong {
+      background: rgba(var(--ct-green-rgb), .1);
+    }
+
+    .crypto-training .ct-addr-code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .8rem;
+      word-break: break-all;
+    }
+
+    .crypto-training .ct-addr-code strong {
+      color: var(--ct-green);
+    }
+
+    .crypto-training .ct-pending {
+      min-height: 300px;
+    }
+
+    .crypto-training .ct-pending-title {
+      margin-bottom: .6rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .crypto-training .ct-loadbar {
+      position: relative;
+      width: min(100%, 320px);
+      height: 8px;
+      margin-top: .6rem;
+      border-radius: 999px;
+      background: rgba(var(--ct-green-rgb), .15);
+      overflow: hidden;
+    }
+
+    .crypto-training .ct-loadbar i {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 38%;
+      border-radius: 999px;
+      background: var(--ct-green);
+      animation: ctBar 1.3s ease-in-out infinite;
+    }
+
+    @keyframes ctBar {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(280%); }
+    }
+
+    .crypto-training .ct-bridge-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: .9rem;
+      align-items: center;
+      margin: 1.1rem 0;
+    }
+
+    .crypto-training .ct-bridge-chain {
+      padding: .9rem 1rem;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      text-align: center;
+    }
+
+    .crypto-training .ct-bridge-chain span {
+      display: block;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .crypto-training .ct-bridge-chain strong {
+      display: block;
+      margin: .15rem 0;
+      font-size: 1.15rem;
+    }
+
+    .crypto-training .ct-bridge-chain em {
+      font-style: normal;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .88rem;
+    }
+
+    .crypto-training .ct-bridge-chain-target {
+      border-color: rgba(var(--ct-green-rgb), .5);
+    }
+
+    .crypto-training .ct-bridge-arrow {
+      width: 1.6rem;
+      height: 1.6rem;
+      color: var(--ct-orange);
+    }
+
+    .crypto-training .ct-addr-options {
+      display: grid;
+      gap: .7rem;
+    }
+
+    .crypto-training .ct-addr-btn {
+      display: grid;
+      gap: .3rem;
+      padding: .85rem 1rem;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .crypto-training .ct-addr-btn:hover {
+      border-color: rgba(var(--ct-green-rgb), .55);
+      background: rgba(var(--ct-green-rgb), .06);
+    }
+
+    .crypto-training .ct-addr-btn strong {
+      font-size: .95rem;
+    }
+
+    .crypto-training .ct-addr-btn em {
+      margin-left: .4rem;
+      color: var(--ct-green);
+      font-size: .78rem;
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .crypto-training .ct-addr-btn code {
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .78rem;
+      word-break: break-all;
+    }
+
+    .crypto-training .ct-wrong code {
+      font-weight: 800;
+      color: var(--ct-orange);
+    }
+
+    .crypto-training .ct-check {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+      margin: 1rem 0 0;
+      font-size: .95rem;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .crypto-training .ct-check input {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: .12rem;
+      accent-color: var(--ct-green);
+      cursor: pointer;
+    }
+
+    /* Wallet-Popup */
+
+    .crypto-training .ct-popup-backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(10, 16, 12, .45);
+      backdrop-filter: blur(2px);
+    }
+
+    .crypto-training .ct-popup {
+      width: min(100%, 400px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .3);
+      animation: ctPopIn 240ms ease both;
+    }
+
+    @keyframes ctPopIn {
+      from { opacity: 0; transform: translateY(14px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .crypto-training .ct-popup-head {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--line);
+      font-weight: 850;
+    }
+
+    .crypto-training .ct-popup-head span {
+      display: grid;
+      place-items: center;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 8px;
+      background: var(--ct-green);
+      color: var(--ct-green-ink);
+      font-size: .85rem;
+      font-weight: 900;
+    }
+
+    .crypto-training #ct-popup-body {
+      padding: 1rem;
+    }
+
+    .crypto-training .ct-popup-site {
+      margin: 0 0 .9rem;
+      font-weight: 800;
+    }
+
+    .crypto-training #ct-popup-body .ct-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Sidebar */
+
+    .crypto-training .ct-side {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .crypto-training .ct-panel {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .crypto-training .ct-panel h2 {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      margin: 0 0 .8rem;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .crypto-training .ct-panel h2 svg {
+      width: 1rem;
+      height: 1rem;
+      color: var(--ct-orange);
+    }
+
+    .crypto-training .ct-bal {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      padding: .5rem 0;
+      font-size: .92rem;
+    }
+
+    .crypto-training .ct-bal + .ct-bal {
+      border-top: 1px solid var(--line);
+    }
+
+    .crypto-training .ct-bal span:first-child {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      color: var(--muted);
+    }
+
+    .crypto-training .ct-bal strong {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .crypto-training .ct-dot {
+      width: .6rem;
+      height: .6rem;
+      border-radius: 50%;
+    }
+
+    .crypto-training .ct-dot-eth { background: var(--ct-blue); }
+    .crypto-training .ct-dot-poly { background: var(--ct-poly); }
+
+    .crypto-training .ct-checklist {
+      display: grid;
+      gap: .45rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .crypto-training .ct-checklist li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .45rem .55rem;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .crypto-training .ct-checklist li span {
+      display: grid;
+      place-items: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--panel);
+      font-size: .74rem;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .crypto-training .ct-checklist li.is-active {
+      border-color: rgba(var(--ct-green-rgb), .45);
+      background: rgba(var(--ct-green-rgb), .08);
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .crypto-training .ct-checklist li.is-active span {
+      border-color: var(--ct-green);
+      color: var(--ct-green);
+    }
+
+    .crypto-training .ct-checklist li.is-done span {
+      border-color: transparent;
+      background: var(--ct-green);
+      color: var(--ct-green-ink);
+    }
+
+    .crypto-training .ct-lern p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .crypto-training .ct-lern p strong {
+      color: var(--text);
+    }
+
+    /* Zertifikat */
+
+    .crypto-training .ct-done-card {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.4rem 1.6rem;
+      border: 1px solid rgba(var(--ct-green-rgb), .35);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(var(--ct-green-rgb), .08), rgba(var(--gold-rgb), .08)),
+        var(--panel);
+      text-align: center;
+    }
+
+    .crypto-training .ct-done-card img {
+      width: 130px;
+      aspect-ratio: 1;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 16px 30px rgba(0, 0, 0, .22));
+    }
+
+    .crypto-training .ct-done-card h2 {
+      max-width: 22ch;
+      margin: 0 auto;
+      font-size: 2.1rem;
+    }
+
+    .crypto-training .ct-done-text {
+      max-width: 52ch;
+      margin: 1rem auto 1.4rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .crypto-training .ct-done-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .55rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .crypto-training .ct-done-badges span {
+      padding: .4rem .8rem;
+      border: 1px solid rgba(var(--ct-green-rgb), .4);
+      border-radius: 999px;
+      background: rgba(var(--ct-green-rgb), .1);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    .crypto-training .ct-done-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .7rem;
+    }
+
+    .crypto-training .ct-done-note {
+      max-width: 60ch;
+      margin: 1.2rem auto 0;
+      text-align: center;
+    }
+
+    .crypto-training .ct-disclaimer {
+      max-width: 70ch;
+      margin: 3rem auto 0;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .crypto-training .ct-disclaimer a {
+      color: var(--ct-blue);
+      font-weight: 800;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .crypto-training .ct-intro-coin img,
+      .crypto-training .ct-btn-lg,
+      .crypto-training .ct-loadbar i,
+      .crypto-training .ct-popup {
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .crypto-training .ct-intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-training .ct-intro-coin {
+        order: -1;
+      }
+
+      .crypto-training .ct-intro-coin img {
+        width: 150px;
+      }
+
+      .crypto-training h1 {
+        font-size: 2.7rem;
+      }
+
+      .crypto-training .ct-steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .crypto-training .ct-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-training .ct-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .crypto-training .ct-side .ct-lern {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .crypto-training {
+        padding-top: 2.2rem;
+      }
+
+      .crypto-training h1 {
+        font-size: 2.2rem;
+      }
+
+      .crypto-training .ct-steps-grid,
+      .crypto-training .ct-side {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-training .ct-seed-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .crypto-training .ct-sim-body {
+        padding: 1.1rem;
+        min-height: 380px;
+      }
+
+      .crypto-training .ct-bridge-row {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-training .ct-bridge-arrow {
+        justify-self: center;
+        transform: rotate(90deg);
+      }
+
+      .crypto-training .ct-done-card h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</BaseLayout>

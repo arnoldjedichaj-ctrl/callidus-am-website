@@ -1,0 +1,209 @@
+{
+  "id": "callidus-health-compass",
+  "storageKey": "callidus-health-compass-result",
+  "updatedLabel": "04. Juli 2026",
+  "title": "Callidus Gesundheits-Kompass",
+  "shortTitle": "Gesundheits-Kompass",
+  "description": "Ein kurzer öffentlicher Orientierungstest für Stress, Schlaf, Bewegung, Ernährung und Energie. Die Auswertung bleibt im Browser und kann später im Portal weitergeführt werden.",
+  "dimensions": {
+    "stress": {
+      "label": "Stress",
+      "eyebrow": "Geist & Seele",
+      "accent": "mint",
+      "summary": "Mentale Last, Gedankenkarussell und fehlende Erholung stehen im Vordergrund.",
+      "categoryPath": "/ratgeber/#geist-seele",
+      "appPath": "/portal/coach/",
+      "articles": [
+        "/3-atemtechniken-fur-mehr-energie/",
+        "/die-kunst-des-mentalen-resets/",
+        "/sport-als-stress-killer/"
+      ],
+      "tips": [
+        "Plane heute eine 3-Minuten-Atempause mit langer Ausatmung.",
+        "Reduziere eine vermeidbare Reizquelle am Abend.",
+        "Setze eine kleine Grenze: eine Aufgabe weniger, eine Pause bewusst."
+      ]
+    },
+    "sleep": {
+      "label": "Schlaf",
+      "eyebrow": "Regeneration",
+      "accent": "blue",
+      "summary": "Erholung, Abendroutine und digitale Reize verdienen zuerst Aufmerksamkeit.",
+      "categoryPath": "/ratgeber/#geist-seele",
+      "appPath": "/portal/nexus/",
+      "articles": [
+        "/der-schlaf-reset/",
+        "/der-digitale-detox/",
+        "/der-innere-akku/"
+      ],
+      "tips": [
+        "Lege für heute eine feste Abschaltzeit für Bildschirmreize fest.",
+        "Halte Aufstehzeit und Licht am Morgen möglichst konstant.",
+        "Nutze Schlaf nicht als Perfektionsthema, sondern als wiederholbare Basis."
+      ]
+    },
+    "movement": {
+      "label": "Bewegung",
+      "eyebrow": "Sport & Energie",
+      "accent": "gold",
+      "summary": "Kurze alltagstaugliche Bewegung kann gerade mehr bewirken als ein großer Trainingsplan.",
+      "categoryPath": "/sport-energie/",
+      "appPath": "/portal/coach/",
+      "articles": [
+        "/gehen-als-training/",
+        "/10-minuten-morgen-workout/",
+        "/sport-als-stress-killer/"
+      ],
+      "tips": [
+        "Starte mit 10 Minuten Gehen oder einem kurzen Morgen-Workout.",
+        "Kopple Bewegung an einen bestehenden Moment: nach dem Kaffee, nach der Arbeit, vor dem Abendessen.",
+        "Regelmäßigkeit zählt zuerst, Intensität später."
+      ]
+    },
+    "nutrition": {
+      "label": "Ernährung",
+      "eyebrow": "Körper & Ernährung",
+      "accent": "coral",
+      "summary": "Mahlzeiten, Protein, Pflanzenvielfalt und Mikronährstoff-Basis sind der nächste Hebel.",
+      "categoryPath": "/ratgeber/#koerper-ernaehrung",
+      "appPath": "/portal/nexus/",
+      "articles": [
+        "/der-unsichtbare-teller/",
+        "/protein-wissen-fur-kraftaufbau/",
+        "/darmgesundheit-mit-akazienfaser/"
+      ],
+      "tips": [
+        "Prüfe heute eine Mahlzeit auf Protein, Pflanzenanteil und Sättigung.",
+        "Ergänze eine einfache Ballaststoffquelle statt den ganzen Plan umzubauen.",
+        "Supplemente erst einordnen, dann kaufen."
+      ]
+    },
+    "energy": {
+      "label": "Energie",
+      "eyebrow": "Alltag & Akku",
+      "accent": "violet",
+      "summary": "Tageslicht, Pausen, Mikronährstoff-Basis und Belastungssteuerung bestimmen deinen Akku.",
+      "categoryPath": "/ratgeber/#sport-energie",
+      "appPath": "/portal/momus/",
+      "articles": [
+        "/der-innere-akku/",
+        "/die-kraft-des-magnesiums/",
+        "/vitamin-d-das-sonnenhormon/"
+      ],
+      "tips": [
+        "Plane heute eine echte Tageslichtpause ein.",
+        "Beobachte, wann Energie fällt: nach Mahlzeiten, nach Bildschirmblöcken oder nach schlechtem Schlaf.",
+        "Nutze Mikronährstoffe als Prüffeld, nicht als Schnelllösung."
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "stress",
+      "dimension": "stress",
+      "text": "Wie stark fühlt sich dein Alltag aktuell mental belastend an?",
+      "options": [
+        { "label": "Ruhig und gut steuerbar", "value": 0 },
+        { "label": "Phasenweise angespannt", "value": 1 },
+        { "label": "Oft voll, gereizt oder schwer abschaltbar", "value": 2 },
+        { "label": "Sehr belastend oder kaum noch regulierbar", "value": 3 }
+      ]
+    },
+    {
+      "id": "sleep",
+      "dimension": "sleep",
+      "text": "Wie erholsam war dein Schlaf in den letzten Tagen?",
+      "options": [
+        { "label": "Meist erholt", "value": 0 },
+        { "label": "Unregelmäßig, aber noch okay", "value": 1 },
+        { "label": "Häufig zu kurz oder nicht erholsam", "value": 2 },
+        { "label": "Deutlich gestört oder dauerhaft müde", "value": 3 }
+      ]
+    },
+    {
+      "id": "movement",
+      "dimension": "movement",
+      "text": "Wie viel Bewegung passt gerade realistisch in deinen Alltag?",
+      "options": [
+        { "label": "Regelmäßig und stabil", "value": 0 },
+        { "label": "Etwas, aber ohne klare Routine", "value": 1 },
+        { "label": "Zu wenig oder sehr unregelmäßig", "value": 2 },
+        { "label": "Fast gar nicht", "value": 3 }
+      ]
+    },
+    {
+      "id": "nutrition",
+      "dimension": "nutrition",
+      "text": "Wie klar ist deine Ernährungsbasis aktuell?",
+      "options": [
+        { "label": "Ausgewogen und bewusst", "value": 0 },
+        { "label": "Im Großen und Ganzen okay", "value": 1 },
+        { "label": "Oft zufällig, einseitig oder gehetzt", "value": 2 },
+        { "label": "Sehr chaotisch oder schwer einzuordnen", "value": 3 }
+      ]
+    },
+    {
+      "id": "energy",
+      "dimension": "energy",
+      "text": "Wie fühlt sich dein Energielevel über den Tag an?",
+      "options": [
+        { "label": "Stabil", "value": 0 },
+        { "label": "Mit kleinen Tiefs", "value": 1 },
+        { "label": "Häufig müde, leer oder unkonzentriert", "value": 2 },
+        { "label": "Sehr niedrig oder stark schwankend", "value": 3 }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "steady",
+      "min": 0,
+      "max": 4,
+      "title": "Stabile Basis",
+      "summary": "Deine Antworten wirken insgesamt tragfähig. Der Kompass zeigt dir vor allem, welche Basis du schützen solltest.",
+      "portalPrompt": "Im Portal kann daraus später ein Verlauf werden: Wiederholung, Trend und passende App-Routinen."
+    },
+    {
+      "id": "focus",
+      "min": 5,
+      "max": 9,
+      "title": "Ein klarer Fokuspunkt",
+      "summary": "Ein Bereich steht im Vordergrund. Jetzt lohnt sich ein kleiner, wiederholbarer nächster Schritt statt ein kompletter Neustart.",
+      "portalPrompt": "Melde dich an, wenn du den Fokus speichern und mit App-Daten, Journal oder Coach weiterführen möchtest."
+    },
+    {
+      "id": "reset",
+      "min": 10,
+      "max": 15,
+      "title": "Reset sinnvoll",
+      "summary": "Mehrere Antworten zeigen Belastung. Der Kompass priorisiert einen Startpunkt und hält die nächsten Schritte bewusst klein.",
+      "portalPrompt": "Im Portal kann der öffentliche Kompass mit NEXUS, MOMUS oder KAIROS verbunden werden, sobald du Daten freigibst."
+    }
+  ],
+  "guidedPaths": [
+    {
+      "title": "7 Tage weniger Stress",
+      "summary": "Atem, Grenzen, digitale Reize und kleine Erholungspausen.",
+      "href": "/3-atemtechniken-fur-mehr-energie/",
+      "accent": "mint"
+    },
+    {
+      "title": "14 Tage mehr Energie",
+      "summary": "Schlaf, Tageslicht, Bewegung und Mikronährstoff-Basis ordnen.",
+      "href": "/der-innere-akku/",
+      "accent": "gold"
+    },
+    {
+      "title": "Schlaf verbessern",
+      "summary": "Abendroutine, Reizmanagement und Erholung pragmatisch starten.",
+      "href": "/der-schlaf-reset/",
+      "accent": "blue"
+    },
+    {
+      "title": "Mikronährstoffe verstehen",
+      "summary": "Vitamin D, Magnesium, B12 und Supplement-Sicherheit sauber einordnen.",
+      "href": "/wissenskarten/",
+      "accent": "coral"
+    }
+  ]
+}

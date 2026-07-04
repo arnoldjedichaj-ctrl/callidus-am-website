@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import healthCompass from '../../data/health-compass.json';
+import { allArticles } from '../../data/all-articles.js';
+
+const title = 'Callidus Gesundheits-Kompass | callidus A&M';
+const description = 'Öffentlicher 2-Minuten-Kompass für Stress, Schlaf, Bewegung, Ernährung und Energie mit direkter Auswertung und Portal-Anschluss.';
+const articleIndex = Object.fromEntries(allArticles.map((article) => [
+  article.path,
+  {
+    title: article.title?.replace(' | callidus A&M', ''),
+    description: article.description || '',
+    path: article.path,
+  },
+]));
+const dimensions = Object.entries(healthCompass.dimensions).map(([id, item]) => ({
+  id,
+  ...item,
+  articleCards: item.articles.map((path) => articleIndex[path]).filter(Boolean),
+}));
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section health-compass-hero">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">Callidus Gesundheits-Kompass</p>
+        <h1>Erst Orientierung. Dann persönliche Begleitung.</h1>
+        <p class="lede">
+          Der öffentliche Kompass zeigt in wenigen Minuten, welcher Bereich gerade Priorität hat:
+          Stress, Schlaf, Bewegung, Ernährung oder Energie. Die eigentliche Personalisierung beginnt danach im Portal.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#kompass-tool">Kompass starten</a>
+          <a class="button" href="/portal/">Im Portal weiterführen</a>
+        </div>
+      </div>
+      <aside class="health-compass-stage-card" data-reveal="2" aria-label="Zweistufiger Callidus Kompass">
+        <div>
+          <span>Stufe 1</span>
+          <strong>Öffentlich</strong>
+          <p>Kurze Fragen, sofortige Einordnung, passende Artikel und erste Tipps ohne Anmeldung.</p>
+        </div>
+        <div>
+          <span>Stufe 2</span>
+          <strong>Portal</strong>
+          <p>Nach Login können Verlauf, App-Daten, Journal, Ziele und Coach-Funktionen zusammenlaufen.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section tight" id="kompass-tool">
+    <div class="container">
+      <div class="health-compass-shell" data-health-compass data-reveal>
+        <div class="health-compass-head">
+          <div>
+            <p class="eyebrow">2-Minuten-Orientierung</p>
+            <h2>Wo stehst du gerade?</h2>
+            <p>
+              Die Auswertung bleibt lokal in deinem Browser. Sie ist keine Diagnose, sondern ein strukturierter Einstieg
+              in passende Callidus-Inhalte.
+            </p>
+          </div>
+          <div class="health-compass-mini-trust" aria-label="Kompass Prinzipien">
+            <span>Keine Diagnose</span>
+            <span>Ohne Anmeldung nutzbar</span>
+            <span>Portal-fähig</span>
+          </div>
+        </div>
+
+        <div class="health-compass-workspace">
+          <div class="health-compass-stage" data-compass-stage aria-live="polite"></div>
+          <aside class="health-compass-result" data-compass-result aria-live="polite">
+            <span class="badge mint">Bereit</span>
+            <h2>Dein Pfad erscheint hier.</h2>
+            <p>
+              Beantworte die fünf Fragen. Danach bekommst du einen Fokusbereich, passende Artikel,
+              direkte Alltagsschritte und den Übergang ins Portal.
+            </p>
+          </aside>
+        </div>
+      </div>
+
+      <noscript>
+        <div class="notice" style="margin-top:1rem;">
+          <strong>JavaScript erforderlich:</strong>
+          <p>Der interaktive Gesundheits-Kompass berechnet die Auswertung direkt im Browser.</p>
+        </div>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Geführte Themenpfade</p>
+      <h2 data-reveal="2">Nicht suchen. Einen nächsten Schritt wählen.</h2>
+      <div class="grid compass-path-grid" style="margin-top:1.5rem;">
+        {healthCompass.guidedPaths.map((path, index) => (
+          <a class="card compass-path-card" href={path.href} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${path.accent}`}>Themenpfad</span>
+              <h3>{path.title}</h3>
+              <p>{path.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Kompass-Bereiche</p>
+      <h2 data-reveal="2">Jeder Fokus führt direkt zu Wissen und App-Kontext.</h2>
+      <div class="compass-dimension-grid" style="margin-top:1.5rem;">
+        {dimensions.map((dimension, index) => (
+          <article class="compass-dimension-card" data-reveal={String((index % 3) + 1)}>
+            <span class={`badge ${dimension.accent}`}>{dimension.eyebrow}</span>
+            <h3>{dimension.label}</h3>
+            <p>{dimension.summary}</p>
+            <div class="compass-dimension-links">
+              {dimension.articleCards.slice(0, 2).map((article) => (
+                <a href={article.path}>{article.title}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ COMPASS: healthCompass, ARTICLES: articleIndex }}>
+    (() => {
+      const setupHealthCompass = () => {
+        const root = document.querySelector('[data-health-compass]');
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = 'true';
+
+        const stage = root.querySelector('[data-compass-stage]');
+        const result = root.querySelector('[data-compass-result]');
+        const dimensions = COMPASS.dimensions;
+        const questions = COMPASS.questions;
+        const state = {
+          index: 0,
+          answers: {},
+        };
+
+        const clear = (target) => {
+          while (target?.firstChild) target.removeChild(target.firstChild);
+        };
+        const node = (tag, className, textValue) => {
+          const el = document.createElement(tag);
+          if (className) el.className = className;
+          if (textValue !== undefined) el.textContent = textValue;
+          return el;
+        };
+        const profileFor = (total) =>
+          COMPASS.profiles.find((profile) => total >= profile.min && total <= profile.max) || COMPASS.profiles[0];
+        const selectedAnswer = (question) => state.answers[question.id];
+
+        const buildProgress = () => {
+          const progress = node('div', 'health-compass-progress');
+          const fill = node('span');
+          fill.style.width = `${Math.round(((state.index + 1) / questions.length) * 100)}%`;
+          progress.append(fill);
+          return progress;
+        };
+
+        const renderQuestion = () => {
+          const question = questions[state.index];
+          clear(stage);
+
+          const header = node('div', 'health-compass-question-head');
+          const meta = node('div', 'check-progress-meta');
+          meta.append(node('span', 'badge mint', `Frage ${state.index + 1} von ${questions.length}`));
+          meta.append(node('small', '', dimensions[question.dimension]?.label || 'Kompass'));
+          header.append(meta);
+          header.append(node('h2', '', question.text));
+          header.append(buildProgress());
+          stage.append(header);
+
+          const options = node('div', 'health-compass-options');
+          question.options.forEach((option, optionIndex) => {
+            const label = node('label', 'health-compass-option');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = question.id;
+            input.value = String(optionIndex);
+            input.checked = selectedAnswer(question) === optionIndex;
+            if (input.checked) label.classList.add('is-selected');
+            input.addEventListener('change', () => {
+              state.answers[question.id] = optionIndex;
+              renderQuestion();
+            });
+            label.append(input, node('span', '', option.label));
+            options.append(label);
+          });
+          stage.append(options);
+
+          const status = node('p', 'check-status');
+          status.hidden = true;
+          stage.append(status);
+
+          const nav = node('div', 'check-nav');
+          const back = node('button', 'button');
+          back.type = 'button';
+          back.textContent = 'Zurück';
+          back.disabled = state.index === 0;
+          back.addEventListener('click', () => {
+            state.index = Math.max(0, state.index - 1);
+            renderQuestion();
+          });
+          const next = node('button', 'button primary');
+          next.type = 'button';
+          next.textContent = state.index === questions.length - 1 ? 'Auswertung anzeigen' : 'Weiter';
+          next.addEventListener('click', () => {
+            if (!Number.isInteger(selectedAnswer(question))) {
+              status.textContent = 'Bitte wähle eine Antwort aus.';
+              status.hidden = false;
+              return;
+            }
+            if (state.index === questions.length - 1) {
+              renderResult();
+              result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              return;
+            }
+            state.index += 1;
+            renderQuestion();
+          });
+          nav.append(back, next);
+          stage.append(nav);
+        };
+
+        const renderArticleLinks = (paths, container) => {
+          const block = node('div', 'health-compass-link-list');
+          block.append(node('strong', '', 'Passende Callidus-Inhalte'));
+          paths.map((path) => ARTICLES[path]).filter(Boolean).slice(0, 4).forEach((article) => {
+            const link = node('a');
+            link.href = article.path;
+            link.append(node('b', '', article.title));
+            if (article.description) link.append(node('span', '', article.description));
+            block.append(link);
+          });
+          container.append(block);
+        };
+
+        const renderResult = () => {
+          const scores = Object.fromEntries(Object.keys(dimensions).map((id) => [id, 0]));
+          questions.forEach((question) => {
+            const optionIndex = state.answers[question.id];
+            const value = question.options[optionIndex]?.value || 0;
+            scores[question.dimension] += value;
+          });
+          const total = Object.values(scores).reduce((sum, value) => sum + value, 0);
+          const focusId = Object.entries(scores).sort((a, b) => b[1] - a[1])[0]?.[0] || 'stress';
+          const focus = dimensions[focusId];
+          const profile = profileFor(total);
+          const saved = {
+            id: COMPASS.id,
+            createdAt: new Date().toISOString(),
+            total,
+            profileId: profile.id,
+            profileTitle: profile.title,
+            focusId,
+            focusLabel: focus.label,
+            answers: state.answers,
+            scores,
+          };
+          try {
+            localStorage.setItem(COMPASS.storageKey, JSON.stringify(saved));
+          } catch (_) {}
+
+          clear(result);
+          result.classList.add('has-result');
+          result.append(node('span', `badge ${focus.accent || 'mint'}`, focus.eyebrow || 'Fokus'));
+          result.append(node('h2', '', profile.title));
+          result.append(node('p', '', profile.summary));
+
+          const score = node('div', 'health-compass-score');
+          score.append(node('strong', '', focus.label));
+          score.append(node('span', '', `Fokusbereich bei ${total} von 15 Kompass-Punkten`));
+          result.append(score);
+
+          const focusBox = node('div', 'health-compass-focus-box');
+          focusBox.append(node('h3', '', `Dein nächster Bereich: ${focus.label}`));
+          focusBox.append(node('p', '', focus.summary));
+          const list = node('ol');
+          focus.tips.slice(0, 3).forEach((tip) => list.append(node('li', '', tip)));
+          focusBox.append(list);
+          result.append(focusBox);
+
+          renderArticleLinks(focus.articles, result);
+
+          const actions = node('div', 'health-compass-result-actions');
+          const portal = node('a', 'button primary', 'Im Portal weiterführen');
+          portal.href = '/portal/';
+          const checks = node('a', 'button', 'Weitere Checks');
+          checks.href = '/gesundheits-checks/';
+          actions.append(portal, checks);
+          result.append(actions);
+
+          const note = node('div', 'notice health-compass-note');
+          note.append(node('strong', '', 'Persönlich wird es nach der Anmeldung'));
+          note.append(node('p', '', profile.portalPrompt));
+          result.append(note);
+        };
+
+        renderQuestion();
+      };
+
+      setupHealthCompass();
+      document.addEventListener('astro:page-load', setupHealthCompass);
+    })();
+  </script>
+</BaseLayout>

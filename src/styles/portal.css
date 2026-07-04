@@ -431,6 +431,41 @@
   font-size: 1.15rem;
 }
 
+.portal-compass-panel {
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr) auto;
+  align-items: center;
+}
+
+.portal-compass-panel h2 {
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.portal-compass-state {
+  display: grid;
+  gap: .3rem;
+  border: 1px solid rgba(var(--mint-rgb), .22);
+  border-radius: .5rem;
+  padding: .9rem;
+  background: rgba(var(--mint-rgb), .06);
+}
+
+.portal-compass-state strong {
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.portal-compass-state small {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.portal-compass-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  justify-content: flex-end;
+}
+
 .portal-list {
   display: grid;
   gap: .55rem;
@@ -1139,9 +1174,13 @@
 @media (max-width: 960px) {
   .portal-hero,
   .portal-grid-2,
+  .portal-compass-panel,
   .portal-coach-layout,
   .portal-app-grid {
     grid-template-columns: 1fr;
+  }
+  .portal-compass-actions {
+    justify-content: flex-start;
   }
 
   .portal-hero {

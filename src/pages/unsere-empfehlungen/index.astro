@@ -5,6 +5,7 @@ import recommendations from '../../data/recommendations.json';
 const title = 'Empfehlungen für ganzheitliche Gesundheit | callidus A&M';
 const description = 'Kuratierte Produktempfehlungen von callidus A&M für Ernährung, Bewegung, mentale Balance und digitale Gesundheit.';
 const providers = [...new Set(recommendations.products.map((item) => item.provider).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de'));
+const callidusScoreFactors = ['Nutzen', 'Evidenz', 'Alltag', 'Preis', 'Risiko', 'Transparenz'];
 ---
 <BaseLayout lang="de" alternatePath="/en/" title={title} description={description}>
   <section class="section">
@@ -23,6 +24,9 @@ const providers = [...new Set(recommendations.products.map((item) => item.provid
         <span class="badge gold">Transparenz</span>
         <h2>Affiliate-Hinweis</h2>
         <p>{recommendations.disclosure}</p>
+        <div class="callidus-score-strip" aria-label="Callidus-Score Prüfbereiche">
+          {callidusScoreFactors.map((factor) => <span>{factor}</span>)}
+        </div>
       </div>
     </div>
   </section>
@@ -89,6 +93,9 @@ const providers = [...new Set(recommendations.products.map((item) => item.provid
               <span class={`badge ${item.accent}`}>{item.categoryTitle}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
+              <div class="callidus-score-strip compact" aria-label="Callidus-Score Prüfbereiche">
+                {callidusScoreFactors.map((factor) => <span>{factor}</span>)}
+              </div>
               <div class="product-meta">
                 <span>{item.provider}</span>
                 <a class="button primary" href={item.url} target="_blank" rel="sponsored nofollow noopener">{item.cta}</a>

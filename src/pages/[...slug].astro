@@ -65,6 +65,13 @@ const customSpecialPages = {
       { type: 'paragraph', text: 'Jedes Produkt, das Sie in unseren Empfehlungen finden, und jeder Ratschlag in unserem Ratgeber hat einen einfachen Ursprung: Wir nutzen und leben es selbst.' },
       { type: 'paragraph', text: 'Wir bieten nur an, was uns persönlich überzeugt hat und was den höchsten Qualitäts- und BIO-Standards entspricht.' },
       { type: 'paragraph', text: 'Unser Ziel ist es, Ihr vertrauenswürdiger Kompass in der oft unübersichtlichen Welt der Gesundheitsprodukte zu sein. Wir freuen uns, Sie auf Ihrem Weg zu mehr Wohlbefinden begleiten zu dürfen.' },
+      { type: 'heading', level: 2, text: 'Wie wir Inhalte prüfen' },
+      { type: 'paragraph', text: 'Gesundheit braucht Vertrauen. Deshalb trennen wir persönliche Erfahrung, redaktionelle Einordnung, Quellenlage und Produktempfehlung sichtbar voneinander.' },
+      { type: 'listItem', text: 'Wir bevorzugen Quellen von Fachgesellschaften, Behörden, wissenschaftlichen Reviews und transparenten Datenbanken.' },
+      { type: 'listItem', text: 'Wir kennzeichnen Grenzen klar: Callidus ersetzt keine Diagnose, keine Therapie und keine individuelle medizinische Beratung.' },
+      { type: 'listItem', text: 'Empfehlungen werden nicht nur nach Nutzen, sondern auch nach Alltagstauglichkeit, Risiko, Preis und Transparenz eingeordnet.' },
+      { type: 'heading', level: 2, text: 'Warum Sie uns vertrauen können' },
+      { type: 'paragraph', text: 'Callidus A&M verbindet praktische Naturheilkunde-Erfahrung, digitale Gesundheitsbegleitung und eine konsequente Quellen-Methodik. Unser Anspruch ist nicht Lautstärke, sondern nachvollziehbare Orientierung.' },
       { type: 'paragraph', text: 'Herzlichst, Arnold & Margarita' },
     ],
   },
@@ -137,6 +144,9 @@ const articleSourceEntries = article
       })
       .filter(Boolean)
   : [];
+const articleUpdatedLabel = article?.publishedAt
+  ? new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' }).format(new Date(article.publishedAt))
+  : 'Juli 2026';
 const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
 const legalPage = legalPages.find((item) => item.slug === page.slug);
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
@@ -173,6 +183,34 @@ const rawCategory = article ? categorize(article) : null;
 const category = rawCategory ? categoryForLang(rawCategory, 'de') : null;
 const related = article && rawCategory
   ? articles.filter((item) => item.slug !== article.slug && categorize(item).slug === rawCategory.slug).slice(0, 3)
+  : [];
+const articleBridgeLinks = article
+  ? [
+      {
+        label: 'Kompass',
+        title: 'Gesundheits-Kompass starten',
+        text: 'Fokus finden und passende Inhalte direkt öffnen.',
+        href: '/gesundheits-kompass/',
+      },
+      {
+        label: 'Check',
+        title: 'Health IQ oder Radar',
+        text: 'Stress, Mikronährstoffe oder Wissen genauer prüfen.',
+        href: '/gesundheits-checks/',
+      },
+      {
+        label: 'Portal',
+        title: 'Im Portal weiterführen',
+        text: 'Verlauf, App-Daten und Coach nach Anmeldung verbinden.',
+        href: '/portal/',
+      },
+      {
+        label: 'Wissen',
+        title: category ? `${category.title} vertiefen` : 'Wissenskarten ansehen',
+        text: 'Passende Karten, Quellen und Empfehlungen ansehen.',
+        href: rawCategory ? `/ratgeber/#${rawCategory.slug}` : '/wissenskarten/',
+      },
+    ]
   : [];
 const videoSourceLabel = (count) => `${count} ${count === 1 ? 'Studie' : 'Studien'}`;
 const baseSpecialLinks = specialPage?.links?.filter((link) => link.label && link.href) || [];
@@ -376,6 +414,26 @@ const articleJsonLd = article ? {
             ))}
           </div>
         )}
+        {article && (
+          <aside class="article-trust-strip" aria-label="Transparenz zu diesem Artikel">
+            <div>
+              <span>Aktualisiert</span>
+              <strong>{articleUpdatedLabel}</strong>
+            </div>
+            <div>
+              <span>Quellenstatus</span>
+              <strong>{articleSourceEntries.length ? `${articleSourceEntries.length} Quellen` : 'Methodik verlinkt'}</strong>
+            </div>
+            <div>
+              <span>Einordnung</span>
+              <strong>Alltag / Prävention / Wissen</strong>
+            </div>
+            <div>
+              <span>Grenze</span>
+              <strong>Keine Diagnose</strong>
+            </div>
+          </aside>
+        )}
       </div>
       {categoryRedirectPath ? (
         <>
@@ -535,6 +593,22 @@ const articleJsonLd = article ? {
                 <strong>Hinweis:</strong>
                 <p>Dieser Gesundheitsartikel ersetzt keine medizinische Beratung. Bei Beschwerden, Medikamenten oder Vorerkrankungen bitte fachlichen Rat einholen.</p>
               </div>
+              <aside class="article-bridge-box" aria-labelledby="article-bridge-heading">
+                <div>
+                  <span class="badge mint">Nächster Schritt</span>
+                  <h2 id="article-bridge-heading">Von Wissen zu Handlung.</h2>
+                  <p>Wähle einen passenden Anschluss: Kompass, Check, Portal oder vertiefendes Gesundheitswissen.</p>
+                </div>
+                <div class="article-bridge-grid">
+                  {articleBridgeLinks.map((link) => (
+                    <a href={link.href}>
+                      <span>{link.label}</span>
+                      <strong>{link.title}</strong>
+                      <small>{link.text}</small>
+                    </a>
+                  ))}
+                </div>
+              </aside>
               {articleVideos.length > 0 && (
                 <aside class="article-video-strip" aria-label="Passende Videos">
                   <span class="badge gold">Video</span>

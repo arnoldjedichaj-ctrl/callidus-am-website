@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PortalGate from '../../components/PortalGate.astro';
 import { portalAppList, portalNavList } from '../../data/portal.js';
+import healthCompass from '../../data/health-compass.json';
 import '../../styles/portal.css';
 
 const firebaseConfig = {
@@ -68,6 +69,32 @@ const firebaseConfig = {
             <small>Sichtbare App-Verbindungen</small>
           </div>
         </div>
+
+        <section
+          class="portal-panel portal-compass-panel"
+          data-portal-compass
+          data-compass-storage-key={healthCompass.storageKey}
+          data-reveal="2"
+          style="margin-top:1rem"
+        >
+          <div>
+            <p class="eyebrow">Gesundheits-Kompass</p>
+            <h2>Öffentliche Orientierung im Portal weiterführen.</h2>
+            <p class="portal-copy" data-portal-compass-copy>
+              Starte den öffentlichen Kompass ohne Anmeldung. Nach dem Login erscheint hier dein letzter Fokusbereich
+              und kann später mit freigegebenen App-Daten, Journal und Coach verbunden werden.
+            </p>
+          </div>
+          <div class="portal-compass-state" data-portal-compass-state>
+            <span class="portal-pill" data-state="pending">Noch kein Kompass-Ergebnis</span>
+            <strong>Bereit für Stufe 1</strong>
+            <small>Öffentlichen Kompass starten und danach hier weiterführen.</small>
+          </div>
+          <div class="portal-compass-actions">
+            <a class="button primary" href="/gesundheits-kompass/#kompass-tool">Kompass starten</a>
+            <a class="button" href="/portal/coach/">Coach öffnen</a>
+          </div>
+        </section>
 
         <div class="portal-app-grid" data-reveal="3" style="margin-top:1rem">
           {portalAppList.map((app) => (
@@ -145,4 +172,40 @@ const firebaseConfig = {
       </PortalGate>
     </div>
   </section>
+  <script is:inline>
+    (() => {
+      const setupPortalCompass = () => {
+        const root = document.querySelector('[data-portal-compass]');
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = 'true';
+        const state = root.querySelector('[data-portal-compass-state]');
+        const copy = root.querySelector('[data-portal-compass-copy]');
+        const key = root.dataset.compassStorageKey;
+        if (!state || !key) return;
+        let result = null;
+        try {
+          result = JSON.parse(localStorage.getItem(key) || 'null');
+        } catch (_) {}
+        if (!result?.focusLabel) return;
+        const date = result.createdAt
+          ? new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium' }).format(new Date(result.createdAt))
+          : 'zuletzt gespeichert';
+        state.innerHTML = '';
+        const pill = document.createElement('span');
+        pill.className = 'portal-pill';
+        pill.dataset.state = 'on';
+        pill.textContent = 'Kompass vorhanden';
+        const title = document.createElement('strong');
+        title.textContent = result.focusLabel;
+        const detail = document.createElement('small');
+        detail.textContent = `${result.profileTitle || 'Auswertung'} · ${result.total ?? '-'} von 15 Punkten · ${date}`;
+        state.append(pill, title, detail);
+        if (copy) {
+          copy.textContent = 'Dein öffentlicher Kompass-Fokus ist lokal gespeichert. Im Portal kann daraus ein Verlauf mit App-Daten, Journal und Coach-Impulsen werden, sobald du Daten freigibst.';
+        }
+      };
+      setupPortalCompass();
+      document.addEventListener('astro:page-load', setupPortalCompass);
+    })();
+  </script>
 </BaseLayout>

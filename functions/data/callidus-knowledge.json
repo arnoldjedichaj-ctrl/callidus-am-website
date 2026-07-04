@@ -393,6 +393,29 @@
   ],
   "entries": [
     {
+      "title": "Callidus Gesundheits-Kompass",
+      "path": "/gesundheits-kompass/",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": [
+        "Gesundheits-Kompass",
+        "Selbstcheck",
+        "Stress",
+        "Schlaf",
+        "Bewegung",
+        "Ernährung",
+        "Energie",
+        "Portal"
+      ],
+      "text": "Der Callidus Gesundheits-Kompass ist der öffentliche zweistufige Einstieg: Besucher beantworten fünf kurze Fragen zu Stress, Schlaf, Bewegung, Ernährung und Energie. Die Auswertung bleibt lokal im Browser, zeigt einen Fokusbereich, passende Artikel und erste Alltagsschritte. Für echte Personalisierung führt der Kompass ins Portal, wo der Verlauf später mit freigegebenen App-Daten aus NEXUS, MOMUS oder KAIROS, Journal und Coach-Funktionen verbunden werden kann. Der Kompass ist Orientierung und keine Diagnose.",
+      "sourceIds": [
+        "who-stress-guide",
+        "cdc-sleep",
+        "physical-activity-mental-health-review",
+        "bfr-max-supplements"
+      ]
+    },
+    {
       "title": "Stress-Check",
       "path": "/gesundheits-checks/",
       "kind": "tool",

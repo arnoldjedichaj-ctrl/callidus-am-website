@@ -13,6 +13,7 @@ const { category } = Astro.props;
 const products = recommendations.products.filter((item) => item.category === category.slug);
 const title = `${category.title}: Empfehlungen | callidus A&M`;
 const description = `Kuratierte Empfehlungen im Bereich ${category.title} von callidus A&M.`;
+const callidusScoreFactors = ['Nutzen', 'Evidenz', 'Alltag', 'Preis', 'Risiko', 'Transparenz'];
 ---
 <BaseLayout lang="de" alternatePath="/unsere-empfehlungen/" title={title} description={description}>
   <section class="section">
@@ -23,6 +24,9 @@ const description = `Kuratierte Empfehlungen im Bereich ${category.title} von ca
       <div class="notice affiliate-disclosure" data-reveal="3">
         <strong>Affiliate-Hinweis:</strong>
         <p>{recommendations.disclosure}</p>
+        <div class="callidus-score-strip" aria-label="Callidus-Score Prüfbereiche">
+          {callidusScoreFactors.map((factor) => <span>{factor}</span>)}
+        </div>
       </div>
     </div>
   </section>
@@ -36,6 +40,9 @@ const description = `Kuratierte Empfehlungen im Bereich ${category.title} von ca
               <span class={`badge ${item.accent}`}>{item.provider}</span>
               <h2>{item.title}</h2>
               <p>{item.description}</p>
+              <div class="callidus-score-strip compact" aria-label="Callidus-Score Prüfbereiche">
+                {callidusScoreFactors.map((factor) => <span>{factor}</span>)}
+              </div>
               <div class="product-meta">
                 <span>{item.affiliate ? 'Affiliate-Link' : 'Externer Link'}</span>
                 <a class="button primary" href={item.url} target="_blank" rel="sponsored nofollow noopener">{item.cta}</a>

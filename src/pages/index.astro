@@ -5,6 +5,7 @@ import inventory from '../data/inventory.json';
 import images from '../data/images.json';
 import specialPages from '../data/special-pages.json';
 import structure from '../data/site-structure.json';
+import healthCompass from '../data/health-compass.json';
 import { homeCopy, categoryForLang } from '../data/i18n.js';
 import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articles.js';
 import { portalAppList } from '../data/portal.js';
@@ -62,6 +63,37 @@ const resources = [
     lead: 'Tragen Sie sich in die E-Mail-Liste ein und erhalten Sie Zugang zu Kompendium, Journal und den ersten Video-Modulen.',
   }
 ].filter(Boolean);
+const guidedPaths = healthCompass.guidedPaths;
+const todayStarts = [
+  {
+    time: '2 Minuten',
+    title: 'Kompass starten',
+    text: 'Stress, Schlaf, Bewegung, Ernährung und Energie schnell einordnen.',
+    href: '/gesundheits-kompass/#kompass-tool',
+    accent: 'mint',
+  },
+  {
+    time: '10 Minuten',
+    title: 'Körper aktivieren',
+    text: 'Ein kurzer Bewegungsimpuls für Energie, Fokus und Alltagstauglichkeit.',
+    href: '/10-minuten-morgen-workout/',
+    accent: 'gold',
+  },
+  {
+    time: 'Heute lesen',
+    title: 'Schlaf priorisieren',
+    text: 'Abendroutine, Reizmanagement und Regeneration als Basis verstehen.',
+    href: '/der-schlaf-reset/',
+    accent: 'blue',
+  },
+  {
+    time: 'Heute testen',
+    title: 'Health IQ prüfen',
+    text: 'Wissen zu Vitaminen, Stress, Schlaf und Supplement-Sicherheit spielerisch testen.',
+    href: '/gesundheits-checks/#check-tool',
+    accent: 'coral',
+  },
+];
 ---
 <BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
   <ShaderBackground />
@@ -72,8 +104,8 @@ const resources = [
         <h1>{copy.headline}</h1>
         <p class="lede">{copy.lede}</p>
         <div class="actions">
-          <a class="button primary" href="/ratgeber/">{copy.primaryCta}</a>
-          <a class="button" href="/gesundheits-checks/">2-Minuten-Checks starten</a>
+          <a class="button primary" href="/gesundheits-kompass/">{copy.primaryCta}</a>
+          <a class="button" href="/ratgeber/">Ratgeber entdecken</a>
         </div>
       </div>
       <figure class="logo-hero-visual" data-reveal="2" aria-label="callidus Gesundheits-Kompass">
@@ -110,16 +142,50 @@ const resources = [
   <section class="section home-check-cta">
     <div class="container home-check-panel" data-reveal>
       <div>
-        <p class="eyebrow">Neu: Callidus Health IQ</p>
-        <h2>Teste dein Gesundheitswissen in 2 Minuten.</h2>
+        <p class="eyebrow">Neu: Callidus Gesundheits-Kompass</p>
+        <h2>Finde deinen nächsten sinnvollen Schritt.</h2>
         <p>
-          Starte den Stress-Check, das Mikronährstoff-Radar oder das Health-IQ-Wissensquiz.
-          Du bekommst sofort eine Auswertung mit Lernfeldern, passenden Artikeln und Quellen.
+          Starte öffentlich ohne Anmeldung, erhalte sofort eine grobe Einordnung und führe
+          deinen Pfad später im Portal mit App-Daten, Verlauf und KI-Begleitung weiter.
         </p>
       </div>
       <div class="home-check-actions" aria-label="Gesundheitschecks starten">
-        <a class="button primary" href="/gesundheits-checks/#check-tool">Quiz starten</a>
-        <a class="button" href="/gesundheits-checks/">Alle Checks ansehen</a>
+        <a class="button primary" href="/gesundheits-kompass/#kompass-tool">Kompass starten</a>
+        <a class="button" href="/gesundheits-checks/">Checks ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight home-today-start">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Heute starten</p>
+      <h2 data-reveal="2">Kleine Einstiege statt lange Suche.</h2>
+      <div class="today-start-grid" style="margin-top:1.5rem;">
+        {todayStarts.map((item, index) => (
+          <a class="today-start-card" href={item.href} data-reveal={String((index % 3) + 1)}>
+            <span class={`badge ${item.accent}`}>{item.time}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band home-guided-paths">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Themenpfade</p>
+      <h2 data-reveal="2">Geführte Wege für Wiederkehr.</h2>
+      <div class="grid" style="margin-top: 1.5rem;">
+        {guidedPaths.map((path, index) => (
+          <a class="card compass-path-card" href={path.href} data-reveal={String((index % 3) + 1)}>
+            <div class="card-body">
+              <span class={`badge ${path.accent}`}>Pfad</span>
+              <h3>{path.title}</h3>
+              <p>{path.summary}</p>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
