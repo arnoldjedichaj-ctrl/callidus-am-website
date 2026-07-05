@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <!-- PROBEBILD Mischstil: Szene "KNURR! Die Bauch-Post" — Küche am Morgen -->
+  <defs>
+    <radialGradient id="licht" cx="0.28" cy="0.22" r="1.1">
+      <stop offset="0" stop-color="#fdf8e4"/>
+      <stop offset="0.5" stop-color="#f6eed2"/>
+      <stop offset="1" stop-color="#e8dcb4"/>
+    </radialGradient>
+    <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfdcea"/>
+      <stop offset="1" stop-color="#e8f0dc"/>
+    </linearGradient>
+    <linearGradient id="holzTisch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c99a62"/>
+      <stop offset="0.12" stop-color="#b9884f"/>
+      <stop offset="1" stop-color="#96683a"/>
+    </linearGradient>
+    <linearGradient id="holzKante" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a5c32"/>
+      <stop offset="1" stop-color="#6f4826"/>
+    </linearGradient>
+    <radialGradient id="messing" cx="0.35" cy="0.3" r="1">
+      <stop offset="0" stop-color="#f0d488"/>
+      <stop offset="0.55" stop-color="#cfa64e"/>
+      <stop offset="1" stop-color="#9a7431"/>
+    </radialGradient>
+    <radialGradient id="ziffernblatt" cx="0.4" cy="0.35" r="1">
+      <stop offset="0" stop-color="#fdfaf0"/>
+      <stop offset="1" stop-color="#ece2c4"/>
+    </radialGradient>
+    <radialGradient id="sonne" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffe9a8" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.62" stop-color="#e8dcb4" stop-opacity="0"/>
+      <stop offset="1" stop-color="#c9b684" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="weich" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="weich2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="papier">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.55 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <!-- Wand mit warmem Licht -->
+  <rect width="1200" height="800" fill="url(#licht)"/>
+
+  <!-- Aquarell-Waschflecken im Hintergrund -->
+  <ellipse cx="220" cy="640" rx="260" ry="180" fill="#9fbf8e" opacity="0.30" filter="url(#weich)"/>
+  <ellipse cx="1010" cy="230" rx="240" ry="190" fill="#e8bd7a" opacity="0.28" filter="url(#weich)"/>
+  <ellipse cx="640" cy="120" rx="300" ry="140" fill="#f3d9a0" opacity="0.30" filter="url(#weich)"/>
+  <ellipse cx="1080" cy="640" rx="220" ry="160" fill="#c98a74" opacity="0.20" filter="url(#weich)"/>
+
+  <!-- Fenster -->
+  <g>
+    <rect x="90" y="90" width="270" height="330" rx="14" fill="#8a6238"/>
+    <rect x="104" y="104" width="242" height="302" rx="8" fill="url(#himmel)"/>
+    <circle cx="180" cy="170" r="80" fill="url(#sonne)"/>
+    <circle cx="180" cy="170" r="30" fill="#ffdf8c"/>
+    <path d="M240 250 q28 -18 56 0 q30 -14 54 4" stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M130 300 q24 -14 48 0" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <line x1="225" y1="104" x2="225" y2="406" stroke="#8a6238" stroke-width="10"/>
+    <line x1="104" y1="255" x2="346" y2="255" stroke="#8a6238" stroke-width="10"/>
+    <!-- Vorhang -->
+    <path d="M78 80 q40 190 -6 350 L46 430 Q80 250 52 84 Z" fill="#b96a55"/>
+    <path d="M372 80 q-40 190 6 350 L404 430 Q370 250 398 84 Z" fill="#b96a55"/>
+    <path d="M84 90 q28 170 -2 330" stroke="#a05643" stroke-width="6" fill="none" opacity="0.6"/>
+    <path d="M366 90 q-28 170 2 330" stroke="#a05643" stroke-width="6" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Lichtstrahl aus dem Fenster -->
+  <path d="M360 140 L760 560 L520 620 L200 300 Z" fill="#fff3c4" opacity="0.22" filter="url(#weich)"/>
+  <g fill="#fff8dc" opacity="0.8">
+    <circle cx="430" cy="330" r="4"/><circle cx="480" cy="390" r="3"/><circle cx="530" cy="350" r="2.5"/>
+    <circle cx="560" cy="440" r="3.5"/><circle cx="620" cy="410" r="2.5"/>
+  </g>
+
+  <!-- Regal mit Deko -->
+  <g>
+    <rect x="880" y="120" width="240" height="14" rx="6" fill="#8a6238"/>
+    <path d="M918 118 q-4 -46 30 -50 q34 4 30 50 Z" fill="#3f7f5a" opacity="0.9"/>
+    <path d="M932 74 q4 -18 16 -22 M948 74 q-2 -16 -12 -24" stroke="#3f7f5a" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="912" y="98" width="72" height="22" rx="8" fill="#b96a55"/>
+    <rect x="1010" y="66" width="46" height="54" rx="8" fill="#436f7a"/>
+    <rect x="1010" y="82" width="46" height="8" fill="#f7f0dc" opacity="0.7"/>
+    <circle cx="1088" cy="96" r="24" fill="#e0b45c"/>
+    <circle cx="1088" cy="96" r="14" fill="#c98d3a"/>
+  </g>
+
+  <!-- Boden -->
+  <rect x="0" y="560" width="1200" height="240" fill="#d9c294"/>
+  <g stroke="#c4ab7c" stroke-width="5" opacity="0.8">
+    <line x1="0" y1="620" x2="1200" y2="612"/>
+    <line x1="0" y1="700" x2="1200" y2="690"/>
+    <line x1="240" y1="560" x2="200" y2="800"/><line x1="640" y1="560" x2="640" y2="800"/><line x1="1000" y1="560" x2="1050" y2="800"/>
+  </g>
+
+  <!-- ===== MIRA (hinter dem Tisch) ===== -->
+  <g>
+    <ellipse cx="760" cy="470" rx="120" ry="26" fill="#6f4826" opacity="0.18" filter="url(#weich2)"/>
+    <!-- Oberkörper: Latzhose über Ringelshirt -->
+    <path d="M672 470 q-10 -96 88 -100 q98 4 88 100 Z" fill="#5877a3"/>
+    <path d="M690 402 q70 -26 140 0 l-6 24 q-64 -22 -128 0 Z" fill="#e8e0cc"/>
+    <g stroke="#c9705c" stroke-width="9">
+      <path d="M694 416 q66 -24 132 0" fill="none"/>
+      <path d="M684 446 q76 -26 152 0" fill="none"/>
+    </g>
+    <rect x="700" y="392" width="22" height="60" rx="10" fill="#5877a3"/>
+    <rect x="798" y="392" width="22" height="60" rx="10" fill="#5877a3"/>
+    <circle cx="711" cy="430" r="6" fill="#e0b45c"/>
+    <circle cx="809" cy="430" r="6" fill="#e0b45c"/>
+    <!-- Arme -->
+    <path d="M678 420 q-40 30 -34 68" stroke="#f2c9a8" stroke-width="26" fill="none" stroke-linecap="round"/>
+    <path d="M842 420 q40 30 34 68" stroke="#f2c9a8" stroke-width="26" fill="none" stroke-linecap="round"/>
+    <!-- Kopf -->
+    <circle cx="760" cy="330" r="64" fill="#f2c9a8"/>
+    <path d="M700 306 q-4 -58 60 -62 q64 4 60 62 q-2 20 -10 26 q6 -40 -50 -44 q-56 4 -50 44 q-8 -6 -10 -26 Z" fill="#6d4a2f"/>
+    <circle cx="760" cy="252" r="26" fill="#6d4a2f"/>
+    <circle cx="748" cy="250" r="7" fill="#8a6238" opacity="0.6"/>
+    <!-- Gesicht: staunend-fröhlich -->
+    <circle cx="738" cy="326" r="8.5" fill="#2e2a26"/>
+    <circle cx="784" cy="326" r="8.5" fill="#2e2a26"/>
+    <circle cx="741" cy="323" r="3" fill="#ffffff"/>
+    <circle cx="787" cy="323" r="3" fill="#ffffff"/>
+    <path d="M726 306 q12 -8 24 -2 M772 304 q12 -6 24 2" stroke="#6d4a2f" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="722" cy="352" rx="11" ry="7" fill="#e09a86" opacity="0.55"/>
+    <ellipse cx="798" cy="352" rx="11" ry="7" fill="#e09a86" opacity="0.55"/>
+    <ellipse cx="761" cy="364" rx="8.5" ry="10" fill="#2e2a26"/>
+    <ellipse cx="761" cy="368" rx="5" ry="5" fill="#c9705c"/>
+  </g>
+
+  <!-- ===== TISCH ===== -->
+  <g>
+    <ellipse cx="600" cy="520" rx="430" ry="52" fill="url(#holzTisch)"/>
+    <ellipse cx="600" cy="514" rx="430" ry="50" fill="#d1a468"/>
+    <path d="M300 508 q120 -14 260 -8 M560 520 q160 -10 300 -2" stroke="#b9884f" stroke-width="4" fill="none" opacity="0.7"/>
+    <path d="M170 520 L172 566 Q600 622 1028 566 L1030 520 Q600 574 170 520 Z" fill="url(#holzKante)"/>
+    <rect x="220" y="566" width="34" height="200" rx="8" fill="#6f4826"/>
+    <rect x="950" y="566" width="34" height="200" rx="8" fill="#6f4826"/>
+  </g>
+
+  <!-- Teller mit Brot -->
+  <g>
+    <ellipse cx="560" cy="512" rx="96" ry="24" fill="#f7f0dc"/>
+    <ellipse cx="560" cy="508" rx="80" ry="18" fill="#ffffff"/>
+    <path d="M512 500 q-6 -34 48 -36 q54 2 48 36 q-2 10 -48 10 q-46 0 -48 -10 Z" fill="#d9a05e"/>
+    <path d="M524 478 q36 -12 72 0" stroke="#b97f42" stroke-width="4" fill="none" opacity="0.7"/>
+    <circle cx="540" cy="486" r="3" fill="#b97f42"/><circle cx="566" cy="482" r="3" fill="#b97f42"/><circle cx="586" cy="488" r="3" fill="#b97f42"/>
+  </g>
+
+  <!-- Tasse mit Dampf -->
+  <g>
+    <path d="M860 476 q-4 42 34 44 q38 -2 34 -44 Z" fill="#436f7a"/>
+    <path d="M928 484 q26 2 22 20 q-4 16 -26 12" stroke="#436f7a" stroke-width="8" fill="none"/>
+    <ellipse cx="894" cy="476" rx="34" ry="9" fill="#2e4f58"/>
+    <path d="M884 452 q-8 -16 4 -30 M904 452 q8 -18 -4 -34" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  </g>
+
+  <!-- ===== CALLI auf dem Tisch ===== -->
+  <g>
+    <ellipse cx="392" cy="514" rx="86" ry="16" fill="#6f4826" opacity="0.25" filter="url(#weich2)"/>
+    <!-- Beinchen -->
+    <path d="M368 496 q-4 14 -14 18 M416 496 q4 14 14 18" stroke="#9a7431" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="350" cy="516" rx="17" ry="8" fill="#8a5c32"/>
+    <ellipse cx="434" cy="516" rx="17" ry="8" fill="#8a5c32"/>
+    <!-- Arme: einer winkt, einer zeigt auf den Brief -->
+    <path d="M322 420 q-30 -18 -34 -48" stroke="#9a7431" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <circle cx="286" cy="368" r="12" fill="#f0d488"/>
+    <path d="M462 424 q34 -10 52 -34" stroke="#9a7431" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <circle cx="518" cy="386" r="12" fill="#f0d488"/>
+    <!-- Körper: Messing-Kompass -->
+    <circle cx="392" cy="420" r="84" fill="url(#messing)"/>
+    <circle cx="392" cy="420" r="66" fill="url(#ziffernblatt)"/>
+    <path d="M338 380 a68 68 0 0 1 40 -26" stroke="#fff8e0" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <!-- Skala-Striche + Himmelsrichtungen -->
+    <g stroke="#9a7431" stroke-width="3.5" opacity="0.8">
+      <line x1="392" y1="358" x2="392" y2="368"/><line x1="392" y1="472" x2="392" y2="482"/>
+      <line x1="330" y1="420" x2="340" y2="420"/><line x1="444" y1="420" x2="454" y2="420"/>
+    </g>
+    <g font-family="Trebuchet MS, Verdana, sans-serif" font-weight="bold" font-size="15" text-anchor="middle" opacity="0.85">
+      <text x="392" y="382" fill="#3f7f5a">N</text>
+      <text x="441" y="426" fill="#a7604f">O</text>
+      <text x="392" y="470" fill="#436f7a">S</text>
+      <text x="345" y="426" fill="#9a7431">W</text>
+    </g>
+    <!-- Gesicht -->
+    <circle cx="372" cy="412" r="9.5" fill="#2e2a26"/>
+    <circle cx="412" cy="412" r="9.5" fill="#2e2a26"/>
+    <circle cx="375" cy="409" r="3.4" fill="#ffffff"/>
+    <circle cx="415" cy="409" r="3.4" fill="#ffffff"/>
+    <ellipse cx="358" cy="432" rx="9" ry="6" fill="#c9705c" opacity="0.5"/>
+    <ellipse cx="426" cy="432" rx="9" ry="6" fill="#c9705c" opacity="0.5"/>
+    <path d="M372 438 q20 18 40 0" stroke="#2e2a26" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Krone/Öse + Nadel-Hut -->
+    <rect x="382" y="322" width="20" height="16" rx="6" fill="#9a7431"/>
+    <g transform="translate(392,312)">
+      <circle r="13" fill="url(#messing)"/>
+      <path d="M4 -6 L46 -34 L14 4 Z" fill="#b95a44"/>
+      <path d="M-4 6 L-46 34 L-14 -4 Z" fill="#436f7a"/>
+      <circle r="6" fill="#fdfaf0"/>
+    </g>
+  </g>
+
+  <!-- ===== Brief "KNURR!" fliegt zwischen Mira und Calli ===== -->
+  <g transform="translate(608,340) rotate(-8)">
+    <path d="M-26 40 q-14 -20 -6 -34 M96 44 q16 -22 8 -38" stroke="#e0b45c" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M0 0 l36 -30 l14 12 l-36 34 Z" fill="#f7f0dc" opacity="0.6"/>
+    <rect x="-16" y="-4" width="104" height="70" rx="8" fill="#fdfaf0" stroke="#c9a86a" stroke-width="4"/>
+    <path d="M-16 4 L36 40 L88 4" stroke="#c9a86a" stroke-width="4" fill="none"/>
+    <circle cx="36" cy="48" r="9" fill="#b95a44"/>
+    <!-- Flügelchen -->
+    <path d="M-16 16 q-26 -6 -34 -24 q22 -2 34 8 Z" fill="#f7f0dc" stroke="#c9a86a" stroke-width="3"/>
+    <path d="M88 16 q26 -6 34 -24 q-22 -2 -34 8 Z" fill="#f7f0dc" stroke="#c9a86a" stroke-width="3"/>
+  </g>
+  <!-- Knall-Stern + Schriftzug -->
+  <g transform="translate(655,242) scale(1.35)">
+    <path d="M0 -54 L12 -16 L52 -20 L20 4 L36 42 L0 20 L-36 42 L-20 4 L-52 -20 L-12 -16 Z" fill="#ffd977" stroke="#e0a83c" stroke-width="4" opacity="0.95"/>
+    <text x="0" y="6" font-family="Trebuchet MS, Verdana, sans-serif" font-weight="bold" font-size="21" fill="#a05028" text-anchor="middle">KNURR!</text>
+  </g>
+
+  <!-- Papierkorn-Textur über allem -->
+  <rect width="1200" height="800" filter="url(#papier)" opacity="0.10"/>
+  <!-- Vignette -->
+  <rect width="1200" height="800" fill="url(#vignette)"/>
+</svg>

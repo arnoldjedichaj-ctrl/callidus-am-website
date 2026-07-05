@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2560">
+  <!-- eBook-Cover Entwurf | Verhältnis 1:1,6 (KDP-Empfehlung 1600x2560) -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef1dc"/>
+      <stop offset="1" stop-color="#f5f7e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="2560" fill="url(#sky)"/>
+
+  <!-- Deko-Kreise -->
+  <circle cx="180" cy="240" r="90" fill="#436f7a" opacity="0.12"/>
+  <circle cx="1440" cy="420" r="130" fill="#a7604f" opacity="0.12"/>
+  <circle cx="1370" cy="1220" r="80" fill="#838961" opacity="0.15"/>
+  <circle cx="200" cy="1350" r="110" fill="#3f7f5a" opacity="0.12"/>
+
+  <!-- Marken-Badge -->
+  <rect x="560" y="150" width="480" height="92" rx="46" fill="#3f7f5a"/>
+  <text x="800" y="212" font-family="Trebuchet MS, Verdana, sans-serif" font-size="52" font-weight="bold" fill="#f5f7e9" text-anchor="middle" letter-spacing="6">callidus KIDS</text>
+
+  <!-- Titel -->
+  <text x="800" y="440" font-family="Trebuchet MS, Verdana, sans-serif" font-size="180" font-weight="bold" fill="#3f7f5a" text-anchor="middle">Kalle</text>
+  <text x="800" y="620" font-family="Trebuchet MS, Verdana, sans-serif" font-size="180" font-weight="bold" fill="#3f7f5a" text-anchor="middle">Kompass</text>
+  <text x="800" y="740" font-family="Trebuchet MS, Verdana, sans-serif" font-size="86" font-weight="bold" fill="#436f7a" text-anchor="middle">und die Körper-Helden</text>
+  <text x="800" y="850" font-family="Georgia, serif" font-style="italic" font-size="54" fill="#20302a" text-anchor="middle">Gesundheit superlustig erklärt · 5–12 Jahre</text>
+
+  <!-- Kalle groß -->
+  <g transform="translate(400,980) scale(1.0)">
+    <ellipse cx="400" cy="720" rx="190" ry="28" fill="#3f7f5a" opacity="0.15"/>
+    <rect x="330" y="600" width="34" height="90" rx="17" fill="#436f7a"/>
+    <rect x="436" y="600" width="34" height="90" rx="17" fill="#436f7a"/>
+    <ellipse cx="340" cy="700" rx="46" ry="22" fill="#a7604f"/>
+    <ellipse cx="460" cy="700" rx="46" ry="22" fill="#a7604f"/>
+    <g stroke="#436f7a" stroke-width="30" stroke-linecap="round" fill="none">
+      <path d="M180 420 Q120 350 140 280"/>
+      <path d="M620 430 Q690 470 700 540"/>
+    </g>
+    <circle cx="140" cy="272" r="26" fill="#f2c9a8"/>
+    <circle cx="702" cy="546" r="26" fill="#f2c9a8"/>
+    <circle cx="400" cy="400" r="240" fill="#3f7f5a"/>
+    <circle cx="400" cy="400" r="205" fill="#eef1dc"/>
+    <g font-family="Trebuchet MS, Verdana, sans-serif" font-weight="bold" font-size="40" text-anchor="middle">
+      <text x="400" y="245" fill="#3f7f5a">N</text>
+      <text x="572" y="414" fill="#a7604f">O</text>
+      <text x="400" y="582" fill="#436f7a">S</text>
+      <text x="228" y="414" fill="#838961">W</text>
+    </g>
+    <circle cx="340" cy="380" r="26" fill="#20302a"/>
+    <circle cx="460" cy="380" r="26" fill="#20302a"/>
+    <circle cx="349" cy="371" r="8" fill="#ffffff"/>
+    <circle cx="469" cy="371" r="8" fill="#ffffff"/>
+    <circle cx="298" cy="440" r="18" fill="#a7604f" opacity="0.35"/>
+    <circle cx="502" cy="440" r="18" fill="#a7604f" opacity="0.35"/>
+    <path d="M330 452 Q400 512 470 452" stroke="#20302a" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <g transform="translate(400,158)">
+      <circle cx="0" cy="0" r="20" fill="#838961"/>
+      <path d="M0 -12 L64 -58 L18 8 Z" fill="#a7604f"/>
+      <path d="M0 12 L-64 58 L-18 -8 Z" fill="#436f7a"/>
+      <circle cx="0" cy="0" r="9" fill="#f5f7e9"/>
+    </g>
+  </g>
+
+  <!-- Nebenfiguren unten -->
+  <!-- Bruno Brokkoli -->
+  <g transform="translate(230,1960)">
+    <rect x="-22" y="40" width="44" height="110" rx="20" fill="#838961"/>
+    <circle cx="-40" cy="10" r="46" fill="#3f7f5a"/>
+    <circle cx="40" cy="10" r="46" fill="#3f7f5a"/>
+    <circle cx="0" cy="-30" r="52" fill="#3f7f5a"/>
+    <circle cx="-14" cy="60" r="7" fill="#20302a"/>
+    <circle cx="14" cy="60" r="7" fill="#20302a"/>
+    <path d="M-14 84 Q0 96 14 84" stroke="#20302a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- Schlecki -->
+  <g transform="translate(1330,1980)">
+    <ellipse cx="0" cy="60" rx="85" ry="95" fill="#d98a9e"/>
+    <circle cx="-28" cy="30" r="12" fill="#20302a"/>
+    <circle cx="28" cy="30" r="12" fill="#20302a"/>
+    <path d="M-30 78 Q0 104 30 78" stroke="#20302a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-34" cy="-40" r="22" fill="#eec3cf"/>
+    <circle cx="0" cy="-52" r="24" fill="#eec3cf"/>
+    <circle cx="34" cy="-40" r="22" fill="#eec3cf"/>
+  </g>
+
+  <!-- Bodenlinie -->
+  <path d="M0 2160 Q800 2080 1600 2160 L1600 2560 L0 2560 Z" fill="#3f7f5a"/>
+  <text x="800" y="2320" font-family="Trebuchet MS, Verdana, sans-serif" font-size="56" font-weight="bold" fill="#f5f7e9" text-anchor="middle">12 Abenteuer · Quiz · Mitmach-Missionen</text>
+  <text x="800" y="2420" font-family="Trebuchet MS, Verdana, sans-serif" font-size="44" fill="#eef1dc" text-anchor="middle" opacity="0.85">callidus A&amp;M · Health Intelligence · callidus-am.de</text>
+</svg>

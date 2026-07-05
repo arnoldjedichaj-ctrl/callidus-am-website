@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- Kalle Kompass – Maskottchen | callidus KIDS | Flat-Style in Markenfarben -->
+  <rect width="800" height="800" fill="#f5f7e9"/>
+
+  <!-- Schatten -->
+  <ellipse cx="400" cy="720" rx="190" ry="28" fill="#3f7f5a" opacity="0.15"/>
+
+  <!-- Beine -->
+  <rect x="330" y="600" width="34" height="90" rx="17" fill="#436f7a"/>
+  <rect x="436" y="600" width="34" height="90" rx="17" fill="#436f7a"/>
+  <ellipse cx="340" cy="700" rx="46" ry="22" fill="#a7604f"/>
+  <ellipse cx="460" cy="700" rx="46" ry="22" fill="#a7604f"/>
+
+  <!-- Arme -->
+  <g stroke="#436f7a" stroke-width="30" stroke-linecap="round" fill="none">
+    <path d="M180 420 Q120 350 140 280"/> <!-- linker Arm winkt -->
+    <path d="M620 430 Q690 470 700 540"/>
+  </g>
+  <circle cx="140" cy="272" r="26" fill="#f2c9a8"/>
+  <circle cx="702" cy="546" r="26" fill="#f2c9a8"/>
+
+  <!-- Kompass-Körper -->
+  <circle cx="400" cy="400" r="240" fill="#3f7f5a"/>
+  <circle cx="400" cy="400" r="205" fill="#eef1dc"/>
+
+  <!-- Himmelsrichtungen -->
+  <g font-family="Trebuchet MS, Verdana, sans-serif" font-weight="bold" font-size="40" text-anchor="middle">
+    <text x="400" y="245" fill="#3f7f5a">N</text>
+    <text x="572" y="414" fill="#a7604f">O</text>
+    <text x="400" y="582" fill="#436f7a">S</text>
+    <text x="228" y="414" fill="#838961">W</text>
+  </g>
+  <g fill="#838961" opacity="0.5">
+    <circle cx="278" cy="278" r="7"/>
+    <circle cx="522" cy="278" r="7"/>
+    <circle cx="278" cy="522" r="7"/>
+    <circle cx="522" cy="522" r="7"/>
+  </g>
+
+  <!-- Gesicht -->
+  <g>
+    <circle cx="340" cy="380" r="26" fill="#20302a"/>
+    <circle cx="460" cy="380" r="26" fill="#20302a"/>
+    <circle cx="349" cy="371" r="8" fill="#ffffff"/>
+    <circle cx="469" cy="371" r="8" fill="#ffffff"/>
+    <circle cx="298" cy="440" r="18" fill="#a7604f" opacity="0.35"/>
+    <circle cx="502" cy="440" r="18" fill="#a7604f" opacity="0.35"/>
+    <path d="M330 452 Q400 512 470 452" stroke="#20302a" stroke-width="14" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Kompassnadel als Hut -->
+  <g transform="translate(400,158)">
+    <circle cx="0" cy="0" r="20" fill="#838961"/>
+    <path d="M0 -12 L64 -58 L18 8 Z" fill="#a7604f"/>
+    <path d="M0 12 L-64 58 L-18 -8 Z" fill="#436f7a"/>
+    <circle cx="0" cy="0" r="9" fill="#f5f7e9"/>
+  </g>
+
+  <!-- Funken -->
+  <g fill="#838961">
+    <path d="M120 160 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 Z"/>
+    <path d="M660 130 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 Z" fill="#a7604f"/>
+    <path d="M700 300 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 Z" fill="#436f7a"/>
+  </g>
+</svg>

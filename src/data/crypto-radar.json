@@ -1,0 +1,160 @@
+{
+  "generatedAt": "2026-07-05T11:38:52.308Z",
+  "checkedAt": "2026-07-05T11:38:52.308Z",
+  "status": "live",
+  "updateCadence": "GitHub Pages baut den Radar regelmäßig aus gecachten RSS-Feeds neu.",
+  "disclaimer": "Automatisch kuratierte Nachrichtenübersicht. Keine Anlageberatung und kein Kaufsignal.",
+  "sources": [
+    {
+      "name": "BTC-ECHO",
+      "language": "de",
+      "homeUrl": "https://www.btc-echo.de/",
+      "feedUrl": "https://www.btc-echo.de/feed/",
+      "status": "ok",
+      "itemCount": 25
+    },
+    {
+      "name": "CoinDesk",
+      "language": "en",
+      "homeUrl": "https://www.coindesk.com/",
+      "feedUrl": "https://www.coindesk.com/arc/outboundfeeds/rss/",
+      "status": "ok",
+      "itemCount": 25
+    },
+    {
+      "name": "Decrypt",
+      "language": "en",
+      "homeUrl": "https://decrypt.co/",
+      "feedUrl": "https://decrypt.co/feed",
+      "status": "ok",
+      "itemCount": 37
+    },
+    {
+      "name": "Cointelegraph",
+      "language": "en",
+      "homeUrl": "https://cointelegraph.com/",
+      "feedUrl": "https://cointelegraph.com/rss",
+      "status": "ok",
+      "itemCount": 29
+    }
+  ],
+  "items": [
+    {
+      "id": "3c1f546fff87",
+      "title": "Frank Schäffler: “Wer die Krypto-Haltefrist kippt, verstößt gegen den Gleichheitssatz”",
+      "url": "https://www.btc-echo.de/schlagzeilen/frank-schaeffler-wer-die-krypto-haltefrist-kippt-verstoesst-gegen-den-gleichheitssatz-233752/",
+      "source": "BTC-ECHO",
+      "sourceUrl": "https://www.btc-echo.de/",
+      "language": "de",
+      "publishedAt": "2026-07-05T10:56:53.000Z",
+      "sourceType": "rss",
+      "category": "Regulierung",
+      "categorySlug": "regulierung",
+      "awareness": "Regeln ändern den Rahmen: wichtig für Plattformen, Steuern und Verfügbarkeit."
+    },
+    {
+      "id": "66f2b49ff485",
+      "title": "Barstool's Portnoy plans to hold bitcoin down to zero after timing it wrong every time",
+      "url": "https://www.coindesk.com/markets/2026/07/05/barstool-s-portnoy-plans-to-hold-bitcoin-down-to-zero-after-timing-it-wrong-every-time",
+      "source": "CoinDesk",
+      "sourceUrl": "https://www.coindesk.com/",
+      "language": "en",
+      "publishedAt": "2026-07-05T06:00:22.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "0c1d7dee9bc4",
+      "title": "Bitcoin to $53K? Exchange Deposits Jump as Analysts Warn of Increased Volatility",
+      "url": "https://decrypt.co/372744/bitcoin-53k-exchange-deposits-jump-analysts-warn-increased-volatility",
+      "source": "Decrypt",
+      "sourceUrl": "https://decrypt.co/",
+      "language": "en",
+      "publishedAt": "2026-07-04T16:57:08.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "73d43b84491f",
+      "title": "Binance outflows triple to $1.2B as ETH withdrawals hit 3-year high",
+      "url": "https://cointelegraph.com/news/binance-outflows-1-23-billion-eth-withdrawals-3-year-high?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "source": "Cointelegraph",
+      "sourceUrl": "https://cointelegraph.com/",
+      "language": "en",
+      "publishedAt": "2026-07-05T08:33:39.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "646b99f159ca",
+      "title": "Metaplanet kauft 2.823 Bitcoin – doch das Treasury-Modell gerät in Bedrängnis",
+      "url": "https://www.btc-echo.de/news/metaplanet-kauft-bitcoin-treasury-modell-in-bedrangnis-233642/",
+      "source": "BTC-ECHO",
+      "sourceUrl": "https://www.btc-echo.de/",
+      "language": "de",
+      "publishedAt": "2026-07-05T09:00:00.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "d716da0c26cd",
+      "title": "Fast eine Million Anleger im Minus – während Trump Hunderte Millionen verdient",
+      "url": "https://www.btc-echo.de/schlagzeilen/fast-eine-million-anleger-im-minus-waehrend-trump-hunderte-millionen-verdient-233741/",
+      "source": "BTC-ECHO",
+      "sourceUrl": "https://www.btc-echo.de/",
+      "language": "de",
+      "publishedAt": "2026-07-05T07:39:48.000Z",
+      "sourceType": "rss",
+      "category": "Memecoins",
+      "categorySlug": "memecoins",
+      "awareness": "Bei Memecoins besonders Tokenomics, Liquidity, Wallet-Verteilung und Hype-Druck prüfen."
+    },
+    {
+      "id": "20af9c25de58",
+      "title": "Vitalik Buterin shares top priorities for new 'Lean Ethereum' strawmap",
+      "url": "https://cointelegraph.com/news/vitalik-buterin-shares-top-priorities-for-new-lean-ethereum-roadmap?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "source": "Cointelegraph",
+      "sourceUrl": "https://cointelegraph.com/",
+      "language": "en",
+      "publishedAt": "2026-07-05T03:50:36.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "44e4e577d2e9",
+      "title": "Moonbeam to pivot from Polkadot to Base, unveils AI agent framework",
+      "url": "https://cointelegraph.com/news/moonbeam-pivots-from-polkadot-to-base-unveils-ai-agent-framework?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "source": "Cointelegraph",
+      "sourceUrl": "https://cointelegraph.com/",
+      "language": "en",
+      "publishedAt": "2026-07-05T00:50:30.000Z",
+      "sourceType": "rss",
+      "category": "Bitcoin & Ethereum",
+      "categorySlug": "bitcoin-ethereum",
+      "awareness": "Große Netzwerke bewegen oft den Markt, sind aber trotzdem kein Kaufsignal."
+    },
+    {
+      "id": "de187a35a579",
+      "title": "Tokenization's next use case is personalized portfolios, NYLIM executive says",
+      "url": "https://www.coindesk.com/business/2026/07/02/tokenization-s-next-use-case-is-personalized-portfolios-nylim-executive-says",
+      "source": "CoinDesk",
+      "sourceUrl": "https://www.coindesk.com/",
+      "language": "en",
+      "publishedAt": "2026-07-04T20:00:00.000Z",
+      "sourceType": "rss",
+      "category": "Markt & Infrastruktur",
+      "categorySlug": "markt-infrastruktur",
+      "awareness": "Als Marktinformation lesen, nicht als Handlungssignal. Erst prüfen, dann entscheiden."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Callis Gesundheits-Kompass - Character Sheets</title>
+    <meta name="description" content="Character Sheets fuer Mira, Noah und Calli aus Callis Gesundheits-Kompass.">
+    <style>
+      :root {
+        --paper: #fffaf0;
+        --cream: #f5efd9;
+        --ink: #223026;
+        --muted: #68705f;
+        --olive: #7d8661;
+        --mint: #3f7f5a;
+        --coral: #b96856;
+        --gold: #b09a58;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+      }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 48px;
+      }
+
+      header {
+        padding: 28px 0 24px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: clamp(44px, 7vw, 82px);
+        line-height: .95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 19px;
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      article {
+        overflow: hidden;
+        border: 1px solid rgba(34, 48, 38, .14);
+        border-radius: 10px;
+        background: var(--paper);
+        box-shadow: 0 18px 45px rgba(34, 48, 38, .14);
+      }
+
+      article img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        background: #fff;
+      }
+
+      .body {
+        padding: 18px;
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      p, li {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .rules {
+        margin-top: 22px;
+        border: 1px solid rgba(63, 127, 90, .22);
+        border-radius: 10px;
+        padding: 20px;
+        background: rgba(63, 127, 90, .08);
+      }
+
+      @media print {
+        body { background: white; }
+        main { width: 100%; padding: 18px; }
+        article { box-shadow: none; break-inside: avoid; }
+      }
+
+      @media (max-width: 900px) {
+        .grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Callis Gesundheits-Kompass</p>
+        <h1>Character Sheets</h1>
+        <p class="lead">Feste Referenz fuer Mira, Noah und Calli. Diese Sheets sollen bei jeder neuen Illustration als visuelle Vorlage verwendet werden.</p>
+      </header>
+
+      <section class="grid" aria-label="Character Sheets">
+        <article>
+          <img src="/assets/media/character-sheets/mira-character-sheet.png" alt="Character Sheet von Mira">
+          <div class="body">
+            <h2>Mira</h2>
+            <p>Neugierig, warm, aufmerksam. Dunkle Locken im hohen Dutt, gelber Haargummi, Jeans-Latzhose, koralle gestreiftes Shirt.</p>
+          </div>
+        </article>
+        <article>
+          <img src="/assets/media/character-sheets/noah-character-sheet.png" alt="Character Sheet von Noah">
+          <div class="body">
+            <h2>Noah</h2>
+            <p>Lustig, erfinderisch, manchmal skeptisch. Kupferrote wuschelige Haare, Sommersprossen, Jeans-Latzhose, gruen gestreiftes Shirt.</p>
+          </div>
+        </article>
+        <article>
+          <img src="/assets/media/character-sheets/calli-character-sheet.png" alt="Character Sheet von Calli Kompass">
+          <div class="body">
+            <h2>Calli</h2>
+            <p>Freundlicher Kompass-Lernbegleiter. Messinggehaeuse, mintgruenes Gesicht, roter Zeiger, kleine Arme und Beine.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="rules">
+        <p class="eyebrow">Regel fuer neue Bilder</p>
+        <ul>
+          <li>Character-Sheet immer als Referenz nutzen.</li>
+          <li>Gesicht, Outfit, Haare, Farben und Proportionen nicht neu erfinden.</li>
+          <li>Nur Pose, Szene, Stimmung und Handlung veraendern.</li>
+          <li>Keine Schrift direkt im Bild erzeugen; Text spaeter im Layout setzen.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

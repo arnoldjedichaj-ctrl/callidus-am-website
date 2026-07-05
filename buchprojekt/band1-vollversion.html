@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Callis Gesundheits-Kompass · Band 1 — Vollversion (Arbeitsstand)</title>
+<meta name="description" content="Vollversion Band 1 der callidus-KIDS-Serie (intern — nicht veröffentlichen): Vorlese-Bilderbuch (5–8) über Körpersignale. Text und alle 16 Illustrationen komplett.">
+<style>
+  :root {
+    --cream: #f7f4e8; --paper: #fffaf0; --ink: #223026; --muted: #5e6757;
+    --olive: #838961; --mint: #3f7f5a; --coral: #a7604f; --blue: #436f7a; --gold: #b09a58;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ebe7d8; color: var(--ink); }
+  .book { width: min(100%, 900px); margin: 0 auto; padding: 24px; }
+  .page {
+    position: relative; display: flex; flex-direction: column; overflow: hidden;
+    min-height: 900px; margin: 0 0 24px; border: 1px solid rgba(34,48,38,.14);
+    border-radius: 10px; background: var(--paper); box-shadow: 0 20px 55px rgba(34,48,38,.18);
+    page-break-after: always;
+  }
+  .art { flex: 0 0 auto; width: 100%; height: 470px; overflow: hidden; background: var(--cream); }
+  .art img, .art svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .txt { flex: 1; padding: 34px 44px 26px; }
+  .pageno { position: absolute; bottom: 12px; right: 20px; color: var(--olive); font-size: 13px; font-family: "Trebuchet MS", sans-serif; }
+  .kap { color: var(--coral); font-weight: 900; text-transform: uppercase; letter-spacing: .1em; font-size: 13px; font-family: "Trebuchet MS", sans-serif; }
+  h2 { margin: 8px 0 14px; font-size: 34px; line-height: 1.05; font-family: "Trebuchet MS", sans-serif; }
+  p { font-size: 19px; line-height: 1.6; margin: 0 0 12px; }
+  .dlg { color: var(--ink); }
+  .muted { color: var(--muted); }
+  .box { border-left: 5px solid; border-radius: 10px; padding: 14px 18px; margin-top: 16px; page-break-inside: avoid; }
+  .box b.t { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; font-family: "Trebuchet MS", sans-serif; }
+  .box p, .box li { font-size: 16.5px; margin: 0 0 4px; }
+  .box ul { margin: 0; padding-left: 20px; }
+  .wusstest { border-color: var(--blue); background: rgba(67,111,122,.08); } .wusstest b.t { color: var(--blue); }
+  .machmit { border-color: var(--mint); background: rgba(63,127,90,.08); } .machmit b.t { color: var(--mint); }
+  .witz { border-color: var(--coral); background: rgba(167,96,79,.08); } .witz b.t { color: var(--coral); }
+  .quiz { border-color: var(--gold); background: rgba(176,154,88,.10); } .quiz b.t { color: var(--gold); }
+  .prompt { margin: 0; padding: 6px 44px; background: #f1eddd; color: #8a8468; font-size: 11.5px; font-family: "Trebuchet MS", sans-serif; }
+  .cover { justify-content: flex-end; min-height: 1000px; color: #fffaf0; padding: 0;
+    background: linear-gradient(180deg, rgba(34,48,38,.10), rgba(34,48,38,.86)),
+      url("/assets/media/gesundheitskompass-kids-cover-concept.png") center / cover; }
+  .cover .txt { padding: 52px; }
+  .cover .mark { display: inline-block; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 7px 14px; background: rgba(34,48,38,.35); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; font-family: "Trebuchet MS", sans-serif; }
+  .cover h1 { margin: 14px 0 0; font-size: 64px; line-height: .98; font-family: "Trebuchet MS", sans-serif; }
+  .cover .band { margin: 14px 0 0; font-size: 24px; color: #fff7df; }
+  .cover .sub { margin: 8px 0 0; font-size: 17px; color: rgba(255,247,223,.85); }
+  .plan { padding: 46px; }
+  .plan h2 { font-size: 30px; }
+  .plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+  .plan-card { border: 1px solid rgba(34,48,38,.12); border-radius: 9px; padding: 14px; background: #fffdf6; }
+  .plan-card strong { font-family: "Trebuchet MS", sans-serif; }
+  .plan-card p { font-size: 14px; line-height: 1.5; color: var(--muted); margin: 6px 0 0; }
+  @media print {
+    body { background: #fff; } .book { width: 100%; padding: 0; }
+    .page { min-height: 100vh; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+  }
+  @media (max-width: 700px) { .art { height: 320px; } .txt { padding: 24px; } h2 { font-size: 27px; } .plan-grid { grid-template-columns: 1fr; } .cover h1 { font-size: 44px; } }
+</style>
+</head>
+<body>
+<main class="book">
+
+  <!-- COVER -->
+  <section class="page cover">
+    <div class="txt">
+      <span class="mark">callidus KIDS · Serie</span>
+      <h1>Callis Gesundheits-Kompass</h1>
+      <p class="band"><strong>Band 1: Hör auf deinen Körper</strong></p>
+      <p class="sub">Eine lustige Vorlesereise für Kinder von 5 bis 8 — mit Calli, dem Kompass, der immer dahin zeigt, wo dein Körper gerade etwas sagen will.</p>
+    </div>
+  </section>
+
+  <!-- SEITE 1: CALLI STELLT SICH VOR -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-02-calli-stellt-sich-vor.png" alt="Calli, der kleine Messing-Kompass, steht auf dem Frühstückstisch in der warmen Morgenküche"></div>
+    <div class="txt">
+      <span class="kap">Zum Kennenlernen</span>
+      <h2>Psst! Hier spricht dein Kompass.</h2>
+      <p class="dlg">Hallo! Ich bin Calli. Ich bin rund, ich glänze, und ich habe eine Nadel, die niemals lügt.</p>
+      <p>Andere Kompasse zeigen nach Norden. Wie langweilig! Meine Nadel zeigt auf etwas viel Besseres: auf <strong>dich</strong>. Genauer gesagt — auf das, was dein Körper dir sagen will. Denn dein Körper redet den ganzen Tag mit dir. Er piepst und knurrt und gähnt und kribbelt.</p>
+      <p>Du hörst das auch? Na dann: Komm mit. Wir gehen auf Signal-Jagd!</p>
+    </div>
+    <span class="pageno">2</span>
+  </section>
+
+  <!-- SEITE 2: KAPITEL 1 -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/gesundheitskompass-kids-cover-concept.png" alt="Mira und Noah stehen auf einer Kompassrose im Garten, Calli schwebt daneben"></div>
+    <div class="txt">
+      <span class="kap">Kapitel 1</span>
+      <h2>Der Tag, an dem der Körper piepste</h2>
+      <p class="dlg">Mira saß am Küchentisch und schaute ihr Brot an. Das Brot schaute nicht zurück. Brote sind in dieser Sache sehr unhöflich.</p>
+      <p class="dlg">Dann machte es leise: <em>piep</em>. Ein kleiner Kompass rollte über den Tisch, verbeugte sich und sagte: „Ich bin Calli. Dein Körper hat mir gerade eine Nachricht geschickt.“</p>
+      <p class="dlg">„Mein Körper kann <em>schreiben</em>?“, fragte Mira.</p>
+      <p class="dlg">„Besser!“, rief Calli. „Er kann knurren, gähnen, zappeln und kribbeln. Du musst nur hinhören. Ich zeige dir, wie.“</p>
+    </div>
+    <span class="pageno">4</span>
+  </section>
+
+  <!-- SEITE 3: KNURR -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-06-knurr-bauch-post.png" alt="Noah lacht am Frühstückstisch und hält sich den Bauch, ein geflügelter Brief fliegt zu Calli, die Katze springt erschrocken vom Sofa"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 1</span>
+      <h2>KNURR! Die Bauch-Post</h2>
+      <p class="dlg">Plötzlich machte es in Noahs Bauch: <strong>KNURRRR.</strong> So laut, dass die Katze vom Sofa fiel.</p>
+      <p class="dlg">„Ah!“, rief Calli. „Bauch-Post! Dein Magen schickt dir einen Brief. Darin steht: <em>Lieber Noah, der Tank ist leer. Bitte Frühstück einwerfen. Dein Magen.</em>“</p>
+      <p>Hunger ist keine Strafe und kein Notfall. Er ist einfach eine Nachricht — und wer sie hört, kann in Ruhe antworten. Zum Beispiel mit einem Brot. Auch wenn Brote unhöflich gucken.</p>
+      <div class="box wusstest"><b class="t">🧠 Wusstest du schon?</b>
+        <p>Dein Magen knurrt, wenn er leer ist und Luft und Säfte durchschwappen. Er ruft sozusagen in einen leeren Raum — darum ist es so schön laut!</p>
+      </div>
+    </div>
+    <span class="pageno">6</span>
+  </section>
+
+  <!-- SEITE 4: SCHLUCKAUF -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-08-hicks-schluckauf.png" alt="Noah hickst überrascht am Frühstückstisch mit Kakaobecher, Calli macht einen Luftsprung"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 2</span>
+      <h2>HICKS! Der Schluckauf-Kobold</h2>
+      <p class="dlg">Noah trank seinen Kakao. Genauer gesagt: Er stürzte ihn hinunter wie ein Feuerwehrschlauch. Und plötzlich — <strong>„HICKS!“</strong></p>
+      <p class="dlg">Mira kicherte. „HICKS!“, machte Noah wieder. Jetzt kicherte sogar die Katze. Also, fast.</p>
+      <p class="dlg">„Kennt ihr den schon?“, lachte Calli. „Unter deinen Lungen wohnt ein Muskel, der ist wie ein Trampolin. Wenn du zu schnell trinkst oder isst, gerät das Trampolin aus dem Takt — und hüpft: hicks, hicks, hicks!“</p>
+      <p>Der Schluckauf ist ein freches, aber harmloses Signal. Es bedeutet: <em>Langsamer, Feuerwehrschlauch!</em> Meistens geht er von ganz allein weg. Wer ihm helfen will: ruhig atmen und in kleinen Schlucken Wasser trinken.</p>
+      <div class="box witz"><b class="t">😂 Callis Lachmuskel-Training</b>
+        <p>Klopft der Schluckauf an die Tür? — Nein. Er kommt IMMER unangemeldet. HICKS!</p>
+      </div>
+    </div>
+    <span class="pageno">8</span>
+  </section>
+
+  <!-- SEITE 5: PIPI-POST -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-10-pipi-post.png" alt="Mira zappelt ungeduldig vor der Badezimmertür, Calli zeigt freundlich auf die Tür"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 3</span>
+      <h2>Die Pipi-Post</h2>
+      <p class="dlg">Nach dem Frühstück baute Mira den höchsten Klotz-Turm ihres Lebens. Sechsundzwanzig Klötze! Aber irgendetwas stimmte nicht: Mira zappelte von einem Bein aufs andere wie ein Storch auf heißem Sand.</p>
+      <p class="dlg">„Miiiira“, sagte Calli. „Ich glaube, du hast Post.“ — „Keine Zeit!“, rief Mira. „Turm!“</p>
+      <p class="dlg">„Das ist Klo-Post“, sagte Calli streng-freundlich. „Deine Blase ist wie ein kleiner Wasserballon. Sie ruft rechtzeitig: <em>Bitte leeren!</em> Und weißt du was? Klo-Post beantwortet man sofort. Der Turm wartet. Versprochen.“</p>
+      <p>Mira flitzte los. Als sie zurückkam, fühlte sich alles besser an — und der Turm stand noch. Klar: Türme können nämlich gar nicht weglaufen. Blasen-Signale schon eher.</p>
+      <div class="box wusstest"><b class="t">🧠 Wusstest du schon?</b>
+        <p>Dein Körper macht aus allem, was du trinkst, am Ende Pipi — so spült er hinaus, was er nicht mehr braucht. Aufs Klo gehen, wenn die Blase ruft, ist gesund. Lange aufhalten mag sie gar nicht.</p>
+      </div>
+    </div>
+    <span class="pageno">10</span>
+  </section>
+
+  <!-- SEITE 6: DURST -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-08-durst-giesskanne.png" alt="Mira gießt eine Blume, die sich freut, Calli reicht ihr ein Glas Wasser auf der Gartenterrasse"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 4</span>
+      <h2>Die Durst-Gießkanne</h2>
+      <p class="dlg">Im Garten ließ eine Blume traurig den Kopf hängen. Mira holte die Gießkanne — und schwupp: Die Blume streckte sich, als hätte sie ausgeschlafen.</p>
+      <p class="dlg">„Siehst du“, sagte Calli, „genau so bist du auch. Wenn dein Mund trocken ist und dein Kopf müde brummt, ruft dein Körper: <em>Gießkanne, bitte!</em> Nur dass deine Gießkanne ein Wasserglas ist.“</p>
+      <p>Wasser ist für fast alles im Körper wichtig: fürs Denken, fürs Rennen, sogar fürs Lachen. Darum gilt: Beim Durst nicht warten — gießen!</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Der Gießkannen-Check</b>
+        <p>Stell dir morgens ein Glas Wasser hin. Immer wenn du trinkst, darfst du einmal so zufrieden schnaufen wie eine frisch gegossene Blume: „Aaaah!“</p>
+      </div>
+    </div>
+    <span class="pageno">12</span>
+  </section>
+
+  <!-- SEITE 7: BUNTER TELLER -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/gesundheitskompass-kids-food-spread-concept.png" alt="Kinder am Tisch mit buntem Teller, freundliche Verdauungs-Rutsche als Fantasiebild"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 5</span>
+      <h2>Der bunte Teller und die Bauch-Sortierstation</h2>
+      <p class="dlg">Mira legte Tomate, Gurke und Vollkornbrot auf den Teller. Noah kniff die Augen zusammen: „Das sieht aus wie eine Ampel, die Hunger hat.“</p>
+      <p>Tief im Bauch sausten die Essensbausteine über eine Rutsche in die Sortierstation. Manche wurden Energie zum Toben. Manche wurden Bausteine zum Wachsen. Und die Ballaststoffe? Die bekamen kleine Besen und kehrten hinterher.</p>
+      <p class="dlg">„Je bunter der Teller“, sagte Calli, „desto mehr verschiedene Päckchen kommen unten an. Bunt essen ist wie ein Überraschungspaket für deinen Körper.“</p>
+      <div class="box witz"><b class="t">😂 Callis Lachmuskel-Training</b>
+        <p>Was macht die Tomate beim Wettrennen, wenn sie hinten liegt? — Sie holt auf. <em>Ketch-up!</em></p>
+      </div>
+    </div>
+    <span class="pageno">14</span>
+  </section>
+
+  <!-- SEITE 8: KRIBBELBEIN -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-16-kribbelbein.png" alt="Noah schüttelt lachend sein eingeschlafenes Bein neben dem Maltisch, kleine Ameisen-Punkte kribbeln daran"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 6</span>
+      <h2>Ameisen-Alarm! Das Kribbelbein</h2>
+      <p class="dlg">Nach dem Essen malten die beiden ein Riesen-Bild. Noah saß dabei die ganze Zeit auf seinem eigenen Bein — Künstler machen so was.</p>
+      <p class="dlg">Als er aufstand, riss er die Augen auf: „AAAH! In meinem Bein wohnen tausend Ameisen!“</p>
+      <p class="dlg">Calli kullerte vor Lachen fast vom Tisch. „Keine Ameisen! Dein Bein war abgeknickt wie ein Gartenschlauch. Da kam der Blut-Lieferservice kaum noch durch. Das Kribbeln heißt: <em>Die Leitungen gehen wieder auf!</em>“</p>
+      <p>Das Signal ist also gar nicht schlimm — es ist die gute Nachricht, dass alles wieder fließt. Am schnellsten hilft: aufstehen, schütteln, stampfen. Und beim nächsten Malen: dem Bein ab und zu Pause gönnen.</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Der Ameisen-Tanz</b>
+        <p>Steh auf und schüttle nacheinander: rechtes Bein, linkes Bein, rechten Arm, linken Arm — und zum Schluss alles gleichzeitig. Sieht albern aus? Perfekt. Genau so geht der Ameisen-Tanz.</p>
+      </div>
+    </div>
+    <span class="pageno">16</span>
+  </section>
+
+  <!-- SEITE 9: ZAPPELBEINE -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-12-zappelbeine.png" alt="Mira und Noah springen ausgelassen über die sonnige Wiese, Calli hüpft hinterher"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 7</span>
+      <h2>Die Zappelbeine</h2>
+      <p class="dlg">Nach dem Essen begannen Noahs Beine unter dem Tisch zu wippen. Erst leise. Dann wie zwei junge Hunde an der Leine.</p>
+      <p class="dlg">„Signal Nummer vier!“, rief Calli. „Zappelbeine! Dein Körper ruft: <em>Ich bin voller Energie — lass mich raus!</em> Wer den ganzen Tag still sitzt, dem platzen fast die Turnschuhe.“</p>
+      <p>Also raus in den Garten: rennen, hüpfen, Purzelbaum. Beim Toben werden Muskeln stärker, Knochen fester — und im Kopf sprühen kleine Gute-Laune-Funken. Deshalb fühlt sich Toben so herrlich an: verschwitzt, aber glücklich.</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Die Tier-Olympiade</b>
+        <ul><li>Froschsprung: 5-mal in die Hocke und hüpfen!</li><li>Bärengang: auf Händen und Füßen durchs Zimmer.</li><li>Flamingo: auf einem Bein stehen und bis 10 zählen.</li></ul>
+      </div>
+    </div>
+    <span class="pageno">18</span>
+  </section>
+
+  <!-- SEITE 10: NIES-TURBO -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-20-nies-turbo.png" alt="Mira niest in die Ellenbeuge, Pusteblumensamen wirbeln durch den Garten, Calli hält sich am Grashalm fest"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 8</span>
+      <h2>HATSCHI! Der Nies-Turbo</h2>
+      <p class="dlg">Draußen im Garten pustete der Wind eine Pusteblume genau vor Miras Nase. „Ha…“, machte Mira. „Haaa…“ — Calli hielt sich an einem Grashalm fest — <strong>„HATSCHIIII!“</strong></p>
+      <p class="dlg">„Wow!“, staunte Calli und sortierte seine Nadel. „Das war der Nies-Turbo! Deine Nase ist nämlich ein Türsteher: Staub, Pollen und Krümel dürfen nicht rein. Und wenn sich doch etwas hineinschummelt — PFFFT! — wirft die Nase es mit Turbo-Kraft wieder hinaus.“</p>
+      <p>Niesen ist also ein Schutz-Signal und völlig in Ordnung. Nur eine Sache ist wichtig: Immer in die Ellenbeuge niesen — so bleibt der Nies-Wind bei dir und pustet niemanden an.</p>
+      <div class="box wusstest"><b class="t">🧠 Wusstest du schon?</b>
+        <p>Beim Niesen schießt die Luft schneller aus dir heraus, als du jemals rennen kannst. Und: Deine Augen machen beim Niesen automatisch zu — das schafft niemand anders herum!</p>
+      </div>
+    </div>
+    <span class="pageno">20</span>
+  </section>
+
+  <!-- SEITE 11: KÖRPER-THERMOSTAT -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-22-koerper-thermostat.png" alt="Mira friert mit Gänsehaut im Planschbecken, Noah schwitzt in der Sonne, Calli steht als kleiner Schiedsrichter dazwischen"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 9</span>
+      <h2>Brrr und Puuuh! Der Körper-Thermostat</h2>
+      <p class="dlg">Am Nachmittag kam das Planschbecken raus. Mira sprang zuerst hinein — „BRRRR!“ Ihre Arme bekamen lauter kleine Hubbel und ihre Zähne klapperten wie ein Kastagnetten-Orchester.</p>
+      <p class="dlg">„Gänsehaut!“, rief Calli. „Dein Körper hat einen eingebauten Thermostat. Ist dir zu kalt, stellt er die Härchen auf und lässt die Muskeln zittern — das ist deine eingebaute Heizung!“</p>
+      <p class="dlg">Noah tobte derweil in der Sonne — und bekam glitzernde Tropfen auf der Stirn. „Und das“, sagte Calli, „ist die eingebaute Kühlung: Schweiß! Die Tröpfchen tragen die Hitze davon wie winzige Kühl-Boten.“</p>
+      <p>Zittern heißt also: <em>Zieh dir was über!</em> Schwitzen heißt: <em>Mach mal Pause und trink was!</em> Dein Thermostat funkt — du musst nur antworten.</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Der Gänsehaut-Forscher</b>
+        <p>Lass beim Händewaschen kühles Wasser über deinen Unterarm laufen und beobachte die Haut ganz genau: Siehst du, wie sich die kleinen Härchen aufstellen? Das ist dein Thermostat bei der Arbeit!</p>
+      </div>
+    </div>
+    <span class="pageno">22</span>
+  </section>
+
+  <!-- SEITE 12: AUA -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-14-aua-reparatur-trupp.png" alt="Noahs Knie mit großem Pflaster, winzige freundliche Helfer mit Werkzeug klettern darauf, Calli dirigiert"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 10</span>
+      <h2>Aua! Der Reparatur-Trupp rückt aus</h2>
+      <p class="dlg">Beim Toben passierte es: Noah rutschte aus und schlug sich das Knie auf. „AUA!“</p>
+      <p class="dlg">„Auch Aua ist eine Nachricht“, sagte Calli sanft. „Sie bedeutet: <em>Hier bitte kurz vorsichtig sein.</em> Und weißt du, was jetzt losgeht? Dein Reparatur-Trupp! Tausende winzige Helfer flicken die Stelle — Tag und Nacht, ganz ohne Werkzeugkasten.“</p>
+      <p>Waschen, Pflaster drauf, einmal kräftig pusten lassen. Den Rest erledigt der Körper von allein. Und die Kruste, die später kommt? Das ist das Baustellen-Dach vom Reparatur-Trupp. Nicht dran knibbeln — die Handwerker mögen das gar nicht!</p>
+      <div class="box wusstest"><b class="t">🧠 Wusstest du schon?</b>
+        <p>Unter einer Kruste wächst schon die ganz neue Haut. Deshalb fällt die Kruste irgendwann von selbst ab — wenn die Baustelle fertig ist.</p>
+      </div>
+    </div>
+    <span class="pageno">24</span>
+  </section>
+
+  <!-- SEITE 13: GEFÜHLS-WETTER -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-16-gefuehls-wetter.png" alt="Mira sitzt nachdenklich am Fenster, über ihr schweben kleine Wetter-Symbole mit Gesichtern, Calli hält einen winzigen Regenschirm"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 11</span>
+      <h2>Das Gefühls-Wetter</h2>
+      <p class="dlg">Am Nachmittag wurde Mira plötzlich still. In ihrem Bauch grummelte es — aber nicht vor Hunger. „Ich glaube, ich bin wütend“, murmelte sie. „Oder traurig. Oder beides.“</p>
+      <p class="dlg">Calli nickte ernst. „Auch Gefühle sind Körpersignale. Ich nenne sie das Gefühls-Wetter: Mal scheint die Freude-Sonne, mal ziehen Wut-Gewitter auf, mal hängt Traurig-Nebel. Und jetzt kommt das Wichtigste …“</p>
+      <p class="dlg">„… jedes Wetter zieht vorbei“, sagte Mira langsam. „Genau!“, strahlte Calli. „Kein Gewitter bleibt für immer. Und über Wetter darf man reden — am besten mit jemandem, der eine gemütliche Regenjacke hat. Mama zum Beispiel.“</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Der Wetterbericht</b>
+        <p>Sag heute Abend deinen eigenen Wetterbericht auf: „In mir war heute … erst Sonne, dann eine kleine Gewitterwolke, dann wieder Sonne.“ Vorlese-Profis dürfen dazu Blitz-Geräusche machen.</p>
+      </div>
+    </div>
+    <span class="pageno">26</span>
+  </section>
+
+  <!-- SEITE 14: MÜDE AUGEN -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/full-28-blinzel-pause.png" alt="Noah reibt sich müde die Augen vor dem Tablet, Calli zeigt einladend zum offenen Fenster"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 12</span>
+      <h2>Die Blinzel-Pause</h2>
+      <p class="dlg">Vor dem Abendessen durfte Noah noch ein Video schauen. Danach noch eins. Und noch ein halbes. Plötzlich rieb er sich die Augen wie ein verschlafener Waschbär.</p>
+      <p class="dlg">„Halt!“, rief Calli. „Augen-Post! Deine Augen sagen: <em>Wir brauchen eine Pause!</em> Weißt du, deine Augenlider sind Scheibenwischer — bei jedem Blinzeln putzen sie die Augen mit einem Mini-Tropfen sauber. Aber beim Bildschirmgucken vergisst du das Blinzeln fast!“</p>
+      <p class="dlg">„Und was mach ich jetzt?“, gähnte Noah. — „Das älteste Augen-Turnen der Welt“, sagte Calli. „Schau aus dem Fenster, ganz weit weg. Deine Augen lieben Weitblick wie deine Beine das Rennen.“</p>
+      <div class="box machmit"><b class="t">🙌 Mach mit: Der Fenster-Weitblick</b>
+        <p>Geh ans Fenster und finde drei Dinge, die ganz weit weg sind: einen Baum, eine Wolke, ein Dach. Bei jedem Ding einmal langsam blinzeln. Deine Augen sagen danach leise Danke.</p>
+      </div>
+    </div>
+    <span class="pageno">28</span>
+  </section>
+
+  <!-- SEITE 15: SCHLAF -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/gesundheitskompass-kids-sleep-spread-concept.png" alt="Ruhige Schlafwerkstatt im Kinderzimmer, warme Nachtstimmung"></div>
+    <div class="txt">
+      <span class="kap">Signal Nr. 13</span>
+      <h2>Gääähn! Die Schlaf-Werkstatt öffnet</h2>
+      <p class="dlg">Am Abend machte Noah ein Geräusch wie ein Nilpferd im Urlaub: „Gäääähn.“</p>
+      <p class="dlg">„Das letzte Signal des Tages!“, flüsterte Calli. „Dein Körper sagt: <em>Werkstatt öffnet gleich.</em> Denn Schlaf ist kein Pauseknopf. Im Schlaf sortiert dein Kopf den ganzen Tag, die Muskeln werden repariert — und das Traum-Kino zeigt seinen Spätfilm.“</p>
+      <p>Darum gehen kluge Körper-Kapitäne abends freiwillig zur Werkstatt: Licht dunkler, Bildschirm weg, Geschichte hören, kuscheln. Immer die gleiche Reihenfolge — wie eine Startrampe in den Schlaf.</p>
+      <div class="box wusstest"><b class="t">🧠 Wusstest du schon?</b>
+        <p>Kinder wachsen hauptsächlich im Schlaf! Wer schläft, wird also wortwörtlich größer. Nimm das, Wachbleiben!</p>
+      </div>
+    </div>
+    <span class="pageno">30</span>
+  </section>
+
+  <!-- SEITE 16: FINALE + QUIZ -->
+  <section class="page">
+    <div class="art"><img src="/assets/media/kinderbuch-scenes/mvp-20-urkunde-finale.png" alt="Calli überreicht Mira und Noah feierlich die Urkunde im Abendgarten"></div>
+    <div class="txt">
+      <span class="kap">Finale</span>
+      <h2>Du bist jetzt Signal-Held!</h2>
+      <p class="dlg">„Dreizehn Signale an einem einzigen Tag!“, staunte Calli. „Knurren, Hicksen, Klo-Post, Durst, bunter Teller, Ameisen-Kribbeln, Zappelbeine, Niesen, Gänsehaut und Schwitzen, Aua, Gefühls-Wetter, müde Augen — und das große Gähnen. Ihr habt ALLE gehört. Damit seid ihr offiziell: <strong>Signal-Helden!</strong>“</p>
+      <div class="box quiz"><b class="t">🧭 Kompass-Check: Das große Band-1-Quiz</b>
+        <ul>
+          <li>1. Was bedeutet KNURR im Bauch? (a) Ein Löwe wohnt dort (b) Bauch-Post: „Tank ist leer!“ (c) Der Bauch übt Musik</li>
+          <li>2. Wer hüpft beim Schluckauf aus dem Takt? (a) Das Muskel-Trampolin unter den Lungen (b) Dein großer Zeh (c) Die Katze</li>
+          <li>3. Was macht man mit Klo-Post? (a) Später lesen (b) Sofort beantworten (c) Dem Turm geben</li>
+          <li>4. Was hilft, wenn der Mund trocken ist und der Kopf brummt? (a) Gießen — also trinken! (b) Lauter reden (c) Warten</li>
+          <li>5. Wohin niest ein Signal-Held? (a) In die Luft (b) In die Ellenbeuge (c) Auf den Kuchen</li>
+          <li>6. Was bedeutet Gänsehaut mit Zittern? (a) Die Heizung deines Körpers läuft (b) Du wirst ein Vogel (c) Nichts</li>
+          <li>7. Was ist die Kruste auf dem Knie? (a) Das Baustellen-Dach vom Reparatur-Trupp (b) Ein Keks (c) Schmutz</li>
+          <li>8. Was macht ein Wut-Gewitter? (a) Es bleibt für immer (b) Es zieht vorbei (c) Es macht Hausaufgaben</li>
+          <li>9. Was passiert in der Schlaf-Werkstatt? (a) Nichts (b) Kopf sortiert, Körper repariert, Traum-Kino läuft (c) Nur Schnarchen</li>
+        </ul>
+        <p style="margin-top:8px"><em>Auflösung: 1b · 2a · 3b · 4a · 5b · 6a · 7a · 8b · 9b — Urkunde verdient!</em></p>
+      </div>
+      <p class="muted" style="margin-top:14px;font-size:15px">Blättere um — deine Urkunde wartet! Mehr für die ganze Familie auf <strong>callidus-am.de</strong></p>
+    </div>
+    <span class="pageno">32</span>
+  </section>
+
+  <!-- SEITE 17: URKUNDE -->
+  <section class="page">
+    <div class="txt" style="display:flex;flex-direction:column;justify-content:center;min-height:860px">
+      <div style="border:6px double var(--gold);border-radius:14px;padding:44px 40px;text-align:center;background:#fffdf4">
+        <span class="kap" style="color:var(--gold)">callidus KIDS · Callis Gesundheits-Kompass</span>
+        <h2 style="font-size:44px;color:var(--mint);margin:16px 0 8px">URKUNDE</h2>
+        <p style="font-size:20px;margin-bottom:22px">für einen echten <strong>Signal-Helden</strong> / eine echte <strong>Signal-Heldin</strong></p>
+        <p style="font-size:22px;border-bottom:2px dotted var(--olive);display:inline-block;min-width:320px;padding:0 16px 6px;color:var(--muted)">(Dein Name)</p>
+        <p style="font-size:19px;margin:22px 0 10px">hat mit Calli alle <strong>13 Körpersignale</strong> gefunden:<br>
+        vom morgendlichen KNURR bis zum großen Gähnen —<br>
+        und weiß jetzt: <em>Der Körper redet. Helden hören zu.</em></p>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:36px;padding:0 12px">
+          <p style="font-size:15px;color:var(--muted);border-top:2px dotted var(--olive);padding-top:6px">Datum</p>
+          <svg viewBox="0 0 100 100" width="92" height="92" aria-label="Callis Siegel"><circle cx="50" cy="50" r="44" fill="#cfa64e"/><circle cx="50" cy="50" r="34" fill="#ece2c4"/><circle cx="41" cy="45" r="5" fill="#223026"/><circle cx="59" cy="45" r="5" fill="#223026"/><path d="M40 58 q10 10 20 0" stroke="#223026" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M50 16 l4 10 -8 0 Z" fill="#b95a44"/></svg>
+          <p style="font-size:15px;color:var(--muted);border-top:2px dotted var(--olive);padding-top:6px">Calli, dein Kompass</p>
+        </div>
+      </div>
+      <p class="muted" style="font-size:14px;text-align:center;margin-top:14px">✂ Zum Ausschneiden — oder als Extra-Blatt beim eBook-Download.</p>
+    </div>
+    <span class="pageno">34</span>
+  </section>
+
+  <!-- SEITE 18: FÜR ELTERN -->
+  <section class="page">
+    <div class="txt" style="padding-top:50px">
+      <span class="kap">Für Eltern & Vorlese-Profis</span>
+      <h2>So wird aus dem Buch ein Familien-Spiel</h2>
+      <p>Schön, dass Sie vorlesen! Dieses Buch will Kinder nicht belehren, sondern ihnen ein einfaches Werkzeug schenken: <strong>Körpersignale bemerken, benennen und beantworten.</strong> Ein paar Ideen, wie daraus mehr wird als eine Gutenacht-Geschichte:</p>
+      <div class="box machmit"><b class="t">🙌 Das Signal-Sammelspiel</b>
+        <ul>
+          <li>Fragen Sie beim Abendessen: „Welches Signal hat dein Körper dir heute geschickt?“</li>
+          <li>Jedes erkannte Signal ist ein Punkt. Dreizehn Punkte = Urkunden-Zeit (Seite 34).</li>
+          <li>Machen Sie mit! Kinder lieben es, wenn Erwachsene zugeben: „Mein Körper hat heute auch gegähnt — schon mittags.“</li>
+        </ul>
+      </div>
+      <div class="box wusstest"><b class="t">🧠 Vorlese-Tipps</b>
+        <ul>
+          <li>Die Kapitel sind einzeln lesbar — beginnen Sie ruhig da, wo es bei Ihnen gerade Thema ist (Klo-Aufschieben, Bildschirm-Diskussion, Einschlaf-Drama).</li>
+          <li>Geräusche mitmachen lassen: KNURR, HICKS, HATSCHI und das Kastagnetten-Zähneklappern sind zum Mitspielen da.</li>
+          <li>Die Mach-mit-Missionen funktionieren am besten sofort nach dem Lesen — sie dauern keine zwei Minuten.</li>
+        </ul>
+      </div>
+      <p class="muted" style="margin-top:18px;font-size:15px"><strong>Wichtiger Hinweis:</strong> Dieses Buch vermittelt allgemeines Gesundheitswissen für Kinder und ersetzt keine ärztliche Beratung, Diagnose oder Behandlung. Bei gesundheitlichen Fragen oder Beschwerden wenden Sie sich bitte an Ihre Kinderärztin oder Ihren Kinderarzt.</p>
+      <p class="muted" style="font-size:15px">© 2026 callidus A&M · callidus-am.de · [Vollversion: Impressum mit ladungsfähiger Anschrift ergänzen — Pflicht in Deutschland.]</p>
+    </div>
+    <span class="pageno">36</span>
+  </section>
+
+  <!-- PRODUKTIONSPLAN -->
+  <section class="page plan">
+    <span class="kap">Interner Produktionsplan (nicht Teil des Buches — vor Veröffentlichung entfernen)</span>
+    <h2>Serie „Callis Gesundheits-Kompass“ — Fahrplan</h2>
+    <p class="muted"><strong>Stand: Vollversion Band 1 — Text UND alle 16 Bilder komplett</strong> (13 neue Aquarell-Szenen + 3 Konzeptbilder, Character-Sheet-treu). 18 Buchseiten ≈ 40 Druckseiten, quadratisch 8,5 × 8,5 Zoll (KDP), Reading Age 5–8. Nächste Schritte: Lektorat/Testvorlesen, Impressum, Print-PDF mit Beschnitt, Kindle-Fassung (Kindle Create), KI-Deklaration bei KDP.</p>
+    <div class="plan-grid">
+      <div class="plan-card"><strong>Band 1 · Hör auf deinen Körper</strong><p>Körpersignale (dieses MVP). Figuren: Calli, Mira, Noah.</p></div>
+      <div class="plan-card"><strong>Band 2 · Das Zucker-Monster</strong><p>Essen &amp; Trinken: Schlecki, die Gemüse-Bande, der Regenbogen-Teller.</p></div>
+      <div class="plan-card"><strong>Band 3 · Der Zappelmotor</strong><p>Bewegung &amp; Energie: Tier-Olympiade, Gute-Laune-Funken, Draußen-Zeit.</p></div>
+      <div class="plan-card"><strong>Band 4 · Die Schlaf-Werkstatt</strong><p>Schlaf &amp; Träume: Traum-Kino, Bibliothekar im Kopf, Startrampe ins Bett.</p></div>
+      <div class="plan-card"><strong>Band 5 · Das Gefühls-Wetter</strong><p>Gefühle: Wut-Gewitter, Angst-Nebel, Freude-Sonne, reden hilft.</p></div>
+      <div class="plan-card"><strong>Band 6 · Die Abwehr-Polizei</strong><p>Hygiene &amp; Schutz: Händewaschen, Zähne, keine Angst vorm Doktor.</p></div>
+    </div>
+    <p class="muted" style="margin-top:18px;font-size:14px">
+      <strong>Bildstil:</strong> Warmes Aquarell wie die drei vorhandenen Konzeptbilder; Calli in jeder Szene (Wiedererkennung), Charakter-Sheet für Calli/Mira/Noah vor Produktion festlegen. Jede Seite trägt hier einen Bildprompt (graue Zeile) für die konsistente Bildproduktion.<br>
+      <strong>KDP-Hinweise:</strong> Durchgehende Bilder = Print-PDF mit Beschnitt (Bleed) nötig; Kindle-Version als Fixed-Layout (Kindle Create / Kids' Book Creator). KI-generierte Bilder müssen bei KDP deklariert werden. Nicht in KDP Select, wenn das eBook auch über callidus-am.de verkauft wird. Medizinisch-pädagogische Prüfung vor Veröffentlichung.
+    </p>
+  </section>
+
+</main>
+</body>
+</html>

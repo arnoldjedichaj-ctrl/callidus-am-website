@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <!-- Kapitel-Illustration: Das Zucker-Monster und die Gemüse-Bande -->
+  <rect width="1200" height="700" fill="#f5f7e9"/>
+  <path d="M0 600 Q600 540 1200 600 L1200 700 L0 700 Z" fill="#eef1dc"/>
+
+  <!-- Regenbogen-Teller -->
+  <g transform="translate(600,560)">
+    <ellipse cx="0" cy="0" rx="300" ry="70" fill="#ffffff" stroke="#838961" stroke-width="6"/>
+    <circle cx="-180" cy="-14" r="34" fill="#a7604f"/>   <!-- Tomate -->
+    <circle cx="-90" cy="-26" r="30" fill="#e0a458"/>    <!-- Orange -->
+    <rect x="-20" y="-46" width="46" height="40" rx="12" fill="#e8c95c"/> <!-- Mais -->
+    <circle cx="110" cy="-24" r="32" fill="#3f7f5a"/>    <!-- Apfel -->
+    <circle cx="196" cy="-12" r="26" fill="#436f7a"/>    <!-- Blaubeere -->
+  </g>
+
+  <!-- Bruno Brokkoli (Bodyguard) -->
+  <g transform="translate(220,380)">
+    <rect x="-34" y="60" width="68" height="160" rx="30" fill="#838961"/>
+    <circle cx="-62" cy="0" r="66" fill="#3f7f5a"/>
+    <circle cx="62" cy="0" r="66" fill="#3f7f5a"/>
+    <circle cx="0" cy="-56" r="76" fill="#3f7f5a"/>
+    <circle cx="-22" cy="92" r="10" fill="#20302a"/>
+    <circle cx="22" cy="92" r="10" fill="#20302a"/>
+    <path d="M-20 126 Q0 142 20 126" stroke="#20302a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <rect x="-90" y="120" width="40" height="16" rx="8" fill="#20302a"/> <!-- Sonnenbrille-Gag: Arm verschränkt -->
+  </g>
+
+  <!-- Karla Karotte (Kommissarin) -->
+  <g transform="translate(430,420)">
+    <path d="M0 -40 L44 60 Q0 200 -44 60 Z" fill="#e0a458"/>
+    <path d="M-20 -46 Q-30 -110 -8 -70 Q0 -120 12 -72 Q34 -108 22 -46 Z" fill="#3f7f5a"/>
+    <circle cx="-12" cy="30" r="8" fill="#20302a"/>
+    <circle cx="12" cy="30" r="8" fill="#20302a"/>
+    <path d="M-12 58 Q0 70 12 58" stroke="#20302a" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="-38" cy="70" r="20" fill="none" stroke="#436f7a" stroke-width="8"/> <!-- Lupe -->
+    <line x1="-52" y1="86" x2="-72" y2="110" stroke="#436f7a" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Schlecki, das Zucker-Monster -->
+  <g transform="translate(950,400)">
+    <ellipse cx="0" cy="80" rx="130" ry="145" fill="#d98a9e"/>
+    <circle cx="-45" cy="40" r="18" fill="#20302a"/>
+    <circle cx="45" cy="40" r="18" fill="#20302a"/>
+    <circle cx="-38" cy="33" r="6" fill="#ffffff"/>
+    <circle cx="52" cy="33" r="6" fill="#ffffff"/>
+    <path d="M-50 110 Q0 150 50 110" stroke="#20302a" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <circle cx="-56" cy="-64" r="34" fill="#eec3cf"/>
+    <circle cx="0" cy="-82" r="38" fill="#eec3cf"/>
+    <circle cx="56" cy="-64" r="34" fill="#eec3cf"/>
+    <!-- Lolli -->
+    <line x1="120" y1="60" x2="160" y2="-30" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="166" cy="-44" r="34" fill="#a7604f"/>
+    <path d="M166 -44 m-22 0 a22 22 0 0 1 44 0" fill="none" stroke="#f5f7e9" stroke-width="6"/>
+  </g>
+
+  <!-- Sprechblase -->
+  <g transform="translate(690,180)">
+    <rect x="-190" y="-70" width="380" height="110" rx="40" fill="#436f7a"/>
+    <path d="M60 38 L100 96 L110 38 Z" fill="#436f7a"/>
+    <text x="0" y="-12" font-family="Trebuchet MS, Verdana, sans-serif" font-size="34" font-weight="bold" fill="#f5f7e9" text-anchor="middle">Iss bunt wie ein</text>
+    <text x="0" y="26" font-family="Trebuchet MS, Verdana, sans-serif" font-size="34" font-weight="bold" fill="#f5f7e9" text-anchor="middle">Regenbogen!</text>
+  </g>
+</svg>

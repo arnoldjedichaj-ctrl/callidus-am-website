@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import cryptoRadarData from '../../data/crypto-radar.json';
 
 const basics = [
   {
@@ -374,6 +375,22 @@ const sources = [
     href: 'https://docs.cardano.org/',
   },
   {
+    label: 'BTC-ECHO RSS',
+    href: 'https://www.btc-echo.de/feed/',
+  },
+  {
+    label: 'CoinDesk RSS',
+    href: 'https://www.coindesk.com/arc/outboundfeeds/rss/',
+  },
+  {
+    label: 'Decrypt RSS',
+    href: 'https://decrypt.co/feed',
+  },
+  {
+    label: 'Cointelegraph RSS',
+    href: 'https://cointelegraph.com/rss',
+  },
+  {
     label: 'Callidus: Krypto-Hinweis',
     href: '/krypto-hinweis/',
   },
@@ -390,6 +407,31 @@ const sources = [
     href: '/valus-litepaper.html',
   },
 ];
+
+const cryptoRadarItems = Array.isArray(cryptoRadarData.items) ? cryptoRadarData.items.slice(0, 9) : [];
+const cryptoRadarTickerItems = cryptoRadarItems.slice(0, 6);
+const cryptoRadarTickerLoop = cryptoRadarTickerItems.length > 0
+  ? [...cryptoRadarTickerItems, ...cryptoRadarTickerItems]
+  : cryptoRadarTickerItems;
+const formatRadarDate = (value) => {
+  if (!value) return 'noch nicht aktualisiert';
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return 'noch nicht aktualisiert';
+  return new Intl.DateTimeFormat('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+};
+const cryptoRadarUpdated = formatRadarDate(cryptoRadarData.generatedAt || cryptoRadarData.checkedAt);
+const cryptoRadarStatusLabel = {
+  live: 'automatisch aktualisiert',
+  partial: 'teilweise aktualisiert',
+  stale: 'letzter bekannter Stand',
+  empty: 'noch ohne Live-Daten',
+}[cryptoRadarData.status] || 'gecachter Stand';
 ---
 
 <BaseLayout
@@ -412,6 +454,7 @@ const sources = [
           </p>
           <div class="crypto-actions" aria-label="Schnelle Einstiege">
             <a class="crypto-button crypto-button-primary" href="#checkliste">Checkliste lesen</a>
+            <a class="crypto-button" href="#krypto-radar">Krypto-Radar</a>
             <a class="crypto-button" href="/krypto-training/">Krypto-Training üben</a>
             <a class="crypto-button" href="/krypto-links/">Sichere Links & Tools</a>
             <a class="crypto-button" href="#bridge">Bridge verstehen</a>
@@ -457,6 +500,81 @@ const sources = [
 
           <p class="crypto-visual-note">Wer deine Schlüssel hat, hat dein Geld. Die Wallet ist nur der Schlüsselbund – das Kassenbuch ist die Blockchain. <a class="ca-next" href="#transaktion">Weiter: Die Transaktion ↓</a></p>
         </div>
+      </div>
+    </section>
+
+    <section class="crypto-section crypto-radar-section" id="krypto-radar" aria-labelledby="crypto-radar-title">
+      <div class="crypto-container">
+        <div class="crypto-radar-head">
+          <div>
+            <p class="crypto-eyebrow">Krypto-Radar</p>
+            <h2 id="crypto-radar-title">Aktuelles, aber ohne Hektik.</h2>
+          </div>
+          <p>
+            Kuratierte Krypto-Meldungen aus öffentlichen Feeds. Der Fokus liegt auf
+            Sicherheit, Regulierung, Wallets, Bridges, Memecoins und großen Netzwerken -
+            nicht auf Kaufdruck.
+          </p>
+        </div>
+
+        <div class="crypto-radar-meta" aria-label="Krypto-Radar Datenstand">
+          <span>{cryptoRadarStatusLabel}</span>
+          <span>Datenstand: {cryptoRadarUpdated}</span>
+          <span>Keine Anlageberatung</span>
+        </div>
+
+        {cryptoRadarTickerItems.length > 0 ? (
+          <div class="crypto-news-ticker" data-crypto-ticker aria-label="Krypto-Radar Kurznachrichten">
+            <div class="crypto-ticker-label">Radar</div>
+            <div class="crypto-ticker-viewport">
+              <div class="crypto-ticker-track">
+                {cryptoRadarTickerLoop.map((item, index) => (
+                  <a
+                    class="crypto-ticker-item"
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-hidden={index >= cryptoRadarTickerItems.length ? 'true' : undefined}
+                    tabindex={index >= cryptoRadarTickerItems.length ? '-1' : undefined}
+                  >
+                    <strong>{item.source}</strong>
+                    <span>{item.title}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <button class="crypto-ticker-control" type="button" aria-pressed="false" data-crypto-ticker-toggle>
+              <svg class="crypto-pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14M16 5v14"></path>
+              </svg>
+              <svg class="crypto-play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7-11-7Z"></path>
+              </svg>
+              <span>Pause</span>
+            </button>
+          </div>
+        ) : (
+          <div class="crypto-radar-empty">
+            <strong>Radar wartet auf die ersten Feeds.</strong>
+            <p>Die Seite bleibt nutzbar. Sobald der nächste GitHub-Pages-Lauf die Feeds erreicht, erscheinen hier aktuelle Meldungen.</p>
+          </div>
+        )}
+
+        {cryptoRadarItems.length > 0 && (
+          <div class="crypto-radar-grid" aria-label="Aktuelle Krypto-Radar Karten">
+            {cryptoRadarItems.slice(0, 6).map((item) => (
+              <a class="crypto-radar-card" href={item.url} target="_blank" rel="noopener noreferrer">
+                <span class={`crypto-radar-pill crypto-radar-pill-${item.categorySlug}`}>{item.category}</span>
+                <h3>{item.title}</h3>
+                <p>{item.awareness}</p>
+                <span class="crypto-radar-card-meta">
+                  <strong>{item.source}</strong>
+                  <time datetime={item.publishedAt}>{formatRadarDate(item.publishedAt)}</time>
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </section>
 
@@ -867,6 +985,28 @@ const sources = [
     </section>
   </article>
 
+  <script is:inline>
+    (() => {
+      const initCryptoTicker = () => {
+        const ticker = document.querySelector('[data-crypto-ticker]');
+        const button = ticker?.querySelector('[data-crypto-ticker-toggle]');
+        if (!ticker || !button || ticker.dataset.ready === 'true') return;
+
+        ticker.dataset.ready = 'true';
+        button.addEventListener('click', () => {
+          const paused = ticker.dataset.paused === 'true';
+          ticker.dataset.paused = paused ? 'false' : 'true';
+          button.setAttribute('aria-pressed', String(!paused));
+          const label = button.querySelector('span');
+          if (label) label.textContent = paused ? 'Pause' : 'Weiter';
+        });
+      };
+
+      initCryptoTicker();
+      document.addEventListener('astro:page-load', initCryptoTicker);
+    })();
+  </script>
+
   <style>
     .crypto-education {
       --crypto-ink: var(--text);
@@ -998,6 +1138,9 @@ const sources = [
     }
 
     .crypto-button:focus-visible,
+    .crypto-radar-card:focus-visible,
+    .crypto-ticker-control:focus-visible,
+    .crypto-ticker-item:focus-visible,
     .crypto-source-list a:focus-visible {
       outline: 3px solid var(--crypto-blue);
       outline-offset: 4px;
@@ -1019,6 +1162,259 @@ const sources = [
     html[data-theme="dark"] .crypto-button-primary:hover {
       background: #ffab84;
       color: #1d100a;
+    }
+
+    .crypto-radar-section {
+      border-bottom: 1px solid var(--crypto-line);
+      background:
+        linear-gradient(120deg, rgba(var(--blue-rgb), .08), transparent 44%),
+        linear-gradient(260deg, rgba(var(--gold-rgb), .09), transparent 55%);
+    }
+
+    .crypto-radar-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(280px, .9fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .crypto-radar-head h2 {
+      max-width: 14ch;
+    }
+
+    .crypto-radar-head p {
+      margin: 0;
+      color: var(--crypto-muted);
+      font-size: 1.05rem;
+      line-height: 1.72;
+    }
+
+    .crypto-radar-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1.5rem;
+    }
+
+    .crypto-radar-meta span,
+    .crypto-radar-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: .38rem .65rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 999px;
+      background: var(--crypto-panel);
+      color: var(--crypto-muted);
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .crypto-news-ticker {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: .85rem;
+      align-items: center;
+      min-height: 66px;
+      margin-top: 1.5rem;
+      padding: .7rem;
+      border: 1px solid rgba(var(--blue-rgb), .28);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .62);
+      box-shadow: 0 18px 48px rgba(58, 64, 38, .11);
+    }
+
+    html[data-theme="dark"] .crypto-news-ticker {
+      background: rgba(9, 16, 23, .58);
+    }
+
+    .crypto-ticker-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: .55rem .85rem;
+      border-radius: 8px;
+      background: var(--crypto-orange);
+      color: #fffaf2;
+      font-size: .78rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .crypto-ticker-viewport {
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .crypto-ticker-track {
+      display: flex;
+      width: max-content;
+      gap: .75rem;
+      animation: cryptoTicker 44s linear infinite;
+    }
+
+    .crypto-news-ticker[data-paused="true"] .crypto-ticker-track {
+      animation-play-state: paused;
+    }
+
+    .crypto-ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      width: min(520px, 70vw);
+      min-height: 42px;
+      padding: .55rem .75rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      color: var(--crypto-ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .crypto-ticker-item strong {
+      flex: 0 0 auto;
+      color: var(--crypto-blue);
+      font-size: .78rem;
+      text-transform: uppercase;
+    }
+
+    .crypto-ticker-item span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      font-weight: 780;
+    }
+
+    .crypto-ticker-control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      min-height: 42px;
+      padding: .55rem .75rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      color: var(--crypto-ink);
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .crypto-ticker-control svg {
+      width: 1rem;
+      height: 1rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .crypto-ticker-control .crypto-play-icon,
+    .crypto-news-ticker[data-paused="true"] .crypto-pause-icon {
+      display: none;
+    }
+
+    .crypto-news-ticker[data-paused="true"] .crypto-play-icon {
+      display: block;
+    }
+
+    .crypto-radar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.3rem;
+    }
+
+    .crypto-radar-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      padding: 1.2rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+      color: var(--crypto-ink);
+      text-decoration: none;
+      box-shadow: 0 16px 44px rgba(58, 64, 38, .08);
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+    }
+
+    .crypto-radar-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(var(--blue-rgb), .42);
+      background: rgba(var(--blue-rgb), .08);
+    }
+
+    .crypto-radar-card h3 {
+      margin: 1rem 0 .7rem;
+      font-size: 1.12rem;
+      line-height: 1.32;
+    }
+
+    .crypto-radar-card p {
+      margin: 0;
+      color: var(--crypto-muted);
+      line-height: 1.62;
+    }
+
+    .crypto-radar-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1.1rem;
+      color: var(--crypto-muted);
+      font-size: .82rem;
+    }
+
+    .crypto-radar-card-meta strong {
+      color: var(--crypto-blue);
+    }
+
+    .crypto-radar-pill-sicherheit {
+      border-color: rgba(var(--crypto-orange-rgb), .34);
+      background: rgba(var(--crypto-orange-rgb), .11);
+      color: var(--crypto-orange);
+    }
+
+    .crypto-radar-pill-regulierung {
+      border-color: rgba(var(--blue-rgb), .34);
+      background: rgba(var(--blue-rgb), .10);
+      color: var(--crypto-blue);
+    }
+
+    .crypto-radar-pill-memecoins {
+      border-color: rgba(var(--gold-rgb), .42);
+      background: rgba(var(--gold-rgb), .12);
+      color: #87690f;
+    }
+
+    .crypto-radar-pill-bridges-wallets,
+    .crypto-radar-pill-stablecoins {
+      border-color: rgba(var(--ca-green-rgb), .42);
+      background: rgba(var(--ca-green-rgb), .13);
+      color: var(--ca-green);
+    }
+
+    .crypto-radar-empty {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border: 1px solid var(--crypto-line);
+      border-radius: 8px;
+      background: var(--crypto-panel);
+    }
+
+    .crypto-radar-empty p {
+      margin: .35rem 0 0;
+      color: var(--crypto-muted);
+      line-height: 1.6;
     }
 
     .crypto-visual {
@@ -2329,9 +2725,15 @@ const sources = [
       80%, 100% { opacity: 1; transform: translate(-50%, 0); }
     }
 
+    @keyframes cryptoTicker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .ca-scene,
-      .ca-scene * {
+      .ca-scene *,
+      .crypto-ticker-track {
         animation: none !important;
       }
     }
@@ -2427,6 +2829,7 @@ const sources = [
       }
 
       .crypto-visual-steps,
+      .crypto-radar-grid,
       .crypto-glossary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -2483,10 +2886,24 @@ const sources = [
       .crypto-fact-grid,
       .crypto-basics-grid,
       .crypto-check-grid,
+      .crypto-radar-grid,
       .crypto-note-grid,
       .crypto-glossary-grid,
       .crypto-source-list {
         grid-template-columns: 1fr;
+      }
+
+      .crypto-radar-head,
+      .crypto-news-ticker {
+        grid-template-columns: 1fr;
+      }
+
+      .crypto-ticker-control {
+        width: 100%;
+      }
+
+      .crypto-ticker-item {
+        width: min(480px, 86vw);
       }
 
       .crypto-chain-head {
