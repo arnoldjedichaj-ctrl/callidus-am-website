@@ -1,6 +1,6 @@
-# MVP: Callis Gesundheits-Kompass - Band 1
+# Produktionsdossier: Callis Gesundheits-Kompass - Band 1
 
-Stand: 2026-07-04
+Stand: 2026-07-05
 
 ## Entscheidung nach deiner Rueckmeldung
 
@@ -8,7 +8,7 @@ Wir trennen das Projekt sinnvoll in eine Buchserie. Band 1 wird kein grosses Sam
 
 - Ziel: Eltern lesen vor, Kinder hoeren zu, lachen mit und merken sich kleine Gesundheitsbilder.
 - Alter: ab ca. 5 zum Vorlesen, Amazon Reading Age voraussichtlich 6-8.
-- Umfang: 64 farbige Innenseiten plus Cover.
+- Umfang: 72 farbige Innenseiten plus Cover als neue Zielgroesse.
 - Figur: Der Kompass heisst ab jetzt Calli, mit C. Das passt besser zu callidus A&M und fuehlt sich markeneigener an.
 - Serie: Spaetere Baende koennen fuer aeltere Kinder tiefer gehen, ohne dass Band 1 zu voll wird.
 
@@ -24,25 +24,41 @@ Ja, die Kombination bleibt sinnvoll:
 - Amazon KDP erlaubt Buchserien. Man muss nicht alle Baende fertig haben, bevor eine Serie angelegt wird.
 - Wichtig: Wenn ein Kindle-eBook in KDP Select angemeldet wird, muss das Kindle-eBook waehrend des 90-Tage-Zeitraums exklusiv im Kindle Store bleiben. Fuer unsere Strategie waere besser: Website-eBook separat anbieten und Amazon zuerst nur als Druckversion nutzen.
 
-## Empfohlener MVP-Umfang
+## Empfohlener Produktumfang
 
 Empfehlung fuer Band 1:
 
 - Reihentitel: Callis Gesundheits-Kompass
 - Bandtitel: Hoer auf deinen Koerper
 - Format: quadratisch, ca. 8.5 x 8.5 Zoll fuer KDP Paperback
-- Umfang: 64 Innenseiten plus Cover
+- Umfang: 72 Innenseiten plus Cover
 - Farbe: Farbdruck, weil Illustrationen ein wichtiger Verkaufsgrund sind
 - Zielgruppe: Vorlesen ab 5, gemeinsame Familienlekture bis etwa 8
 - Amazon Reading Age: 6-8 als Startpunkt
 - Buchruecken: Kein Rueckentext einplanen, solange das Buch unter 79 Seiten bleibt
 
-Warum 64 Seiten:
+Warum 72 Seiten:
 
 - Eltern-Vorlesebuecher duerfen mehr Atem haben als ein reines Erstleseheft.
 - Jedes Kapitel kann ein zusammenhaengendes Thema behalten: Geschichte, Wissen, Mitmachmoment und Mini-Elternhinweis.
-- 64 Seiten wirken wertiger als 48, bleiben aber noch kontrollierbar fuer Farbdruck und Layout.
+- 72 Seiten geben mehr Luft fuer Bilder, Vorlesepausen und Elternseiten.
+- 72 Seiten passen besser zur KDP-Standard-Farboption, falls diese fuer das gewaehlte Format genutzt werden soll. Premium-Farbe bleibt als hochwertigere, aber teurere Option moeglich.
 - Die Serie nimmt Druck heraus: Band 1 muss nicht Schlaf, Essen, Bewegung, Gefuehle, Medien, Immunsystem und Pubertaet komplett erschlagen.
+
+## Preisstrategie
+
+Angemessener Startpreis:
+
+- PDF-eBook direkt auf callidus-am.de: 9,90 EUR.
+- Amazon Paperback, farbiges Print-on-Demand: voraussichtlich 14,90 bis 16,90 EUR.
+- Kindle-eBook nur optional und nicht in KDP Select, solange das eBook auch auf callidus-am.de angeboten wird.
+
+Begruendung:
+
+- 7,99 EUR ist fuer ein farbiges Kinderbuch mit Illustrationen, Quiz, Elternimpulsen und Markenaufbau zu niedrig als Hauptanker.
+- 9,90 EUR wirkt fuer ein direktes PDF-eBook fair, hochwertig und niedrigschwellig.
+- Beim Paperback werden Druckkosten vor Auszahlung abgezogen. Der finale Amazon-Preis muss deshalb mit dem KDP-Kalkulator nach Seitenzahl, Format und Farboption geprueft werden.
+- Wenn Standardfarbe mit 72 Seiten guenstig genug wirkt, ist 14,90 EUR ein guter Einstieg. Wenn Premiumfarbe noetig ist, sind 16,90 EUR realistischer.
 
 ## Serienplan
 
@@ -159,7 +175,7 @@ Jedes Kapitel bleibt thematisch zusammen. Statt viele kleine Gesundheitshappen z
 
 Das macht aus dem Buch kein Lexikon, sondern eine Reise. Kinder behalten Bilder besser als Listen.
 
-## Seitenplan fuer 64 Seiten
+## Seitenplan fuer 72 Seiten
 
 | Seiten | Inhalt | Ziel |
 | --- | --- | --- |
@@ -169,15 +185,15 @@ Das macht aus dem Buch kein Lexikon, sondern eine Reise. Kinder behalten Bilder 
 | 5-12 | Kapitel 1: Der Koerper piepst | Hunger, Durst, Muedigkeit und Unruhe als Nachrichten |
 | 13-20 | Kapitel 2: Die Nachtwerkstatt | Schlaf, Abendroutine, Dunkelheit, Licht und Bildschirmruhe |
 | 21-28 | Kapitel 3: Bauch-Post und bunter Teller | Wasser, Essen, Ballaststoffe, Saettigung und kein Essens-Scham |
-| 29-36 | Kapitel 4: Die Energie-Wackelmaschine | Bewegung, Herz, Muskeln, Kopf wach, 60 Minuten als Alltagsspiel |
+| 29-36 | Kapitel 4: Die Energie-Wackelmaschine | Bewegung, Herz, Muskeln, Kopf wach, Bewegung als Alltagsspiel |
 | 37-44 | Kapitel 5: Wenn innen Wetter ist | Gefuehle benennen, Atmen, Wut, Angst, Hilfe holen |
 | 45-52 | Kapitel 6: Die Seifen-Rutschbahn | Haende waschen, Husten, Niesen, Keime ohne Angstbilder |
-| 53-58 | Kapitel 7: Der Wochen-Kompass | Eine Gewohnheit auswaehlen und als Familie ausprobieren |
-| 59-60 | Elternseiten | Druck rausnehmen, kleine Schritte, keine Diagnosen |
-| 61 | Quellen kindgerecht erklaert | Wissenschaftliche Grundlage sichtbar machen |
-| 62 | Hinweis zu callidus A&M | Marke, Haltung, Bildungsauftrag |
-| 63 | Impressum, Rechte, KI-Hinweis | Veroeffentlichungsnotwendigkeiten |
-| 64 | Rueckseite innen | Ruhiger Abschluss, Serienausblick |
+| 53-60 | Kapitel 7: Der Wochen-Kompass | Eine Gewohnheit auswaehlen und als Familie ausprobieren |
+| 61-64 | Elternseiten | Druck rausnehmen, kleine Schritte, Vorlesen ohne Ermahnen |
+| 65-66 | Quellen kindgerecht erklaert | Wissenschaftliche Grundlage sichtbar machen |
+| 67-68 | Hinweis zu callidus A&M | Marke, Haltung, Bildungsauftrag |
+| 69-70 | Impressum, Rechte, KI-Hinweis | Veroeffentlichungsnotwendigkeiten |
+| 71-72 | Ruhiger Abschluss und Serienausblick | Band 2 vorbereiten, ohne Band 1 zu ueberladen |
 
 ## Beispielkapitel 1
 
@@ -399,7 +415,7 @@ Dieses Kapitel soll nicht kontrollieren. Es soll Sprache geben: Hunger, Durst, S
 
 ## Illustrationsstil
 
-Bereits erzeugte MVP-Bilder:
+Bereits erzeugte Leseprobe-Bilder:
 
 - public/assets/media/gesundheitskompass-kids-cover-concept.png
 - public/assets/media/gesundheitskompass-kids-sleep-spread-concept.png
@@ -420,6 +436,7 @@ Wichtige KDP-Regeln, die im weiteren Projekt beachtet werden muessen:
 
 - KDP Book Series: KDP erlaubt Serien mit eBook, Paperback oder Hardcover. Nicht alle Buecher der Serie muessen fertig sein, bevor man eine Serie anlegt.
 - KDP Paperback Royalty: KDP beschreibt die Formel als Royalty Rate x List Price minus Printing Costs. Die Druckkosten haengen u. a. von Seitenzahl und Tintentyp ab.
+- KDP Print Options: Standardfarbe ist guenstiger, hat aber je nach Format hoehere Mindestseitenzahlen. 72 Seiten sind deshalb der bessere Zielwert. Premiumfarbe kann schon mit weniger Seiten funktionieren, ist aber teurer.
 - AI Content: Text und Bilder, die mit KI erzeugt wurden, muessen beim Veroeffentlichen als AI-generated angegeben werden.
 - Reading Age: Fuer Kinder- und Jugendbuecher sollte die Reading Age gepflegt werden. Amazon nennt 6-8 fuer Early Readers / first chapter books und 9-12 fuer Middle Grade.
 - KDP Select: Nur fuer Kindle-eBooks. Wenn wir das eBook auf callidus-am.de frei oder verkauft anbieten wollen, sollte das Kindle-eBook nicht in KDP Select angemeldet werden.
@@ -448,7 +465,7 @@ Vor Veroeffentlichung sollte eine fachkundige Person den finalen Text medizinisc
 ## Naechste Produktionsschritte
 
 1. Reihentitel und Bandtitel bestaetigen: Callis Gesundheits-Kompass - Hoer auf deinen Koerper.
-2. Vollmanuskript fuer Band 1 im 64-Seiten-Raster ausarbeiten.
+2. Vollmanuskript fuer Band 1 im 72-Seiten-Raster ausarbeiten.
 3. Calli als feste Figur definieren: Charakterblatt, Farben, Mimik, Posen.
 4. 16-20 finale Illustrationen im konsistenten Stil erzeugen.
 5. Printlayout und eBook/PDF-Layout separat setzen.

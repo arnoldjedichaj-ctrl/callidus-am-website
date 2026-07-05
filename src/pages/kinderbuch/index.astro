@@ -3,12 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // callidus KIDS — Buchserie „Callis Gesundheits-Kompass".
 // Zusammengeführtes Konzept (Juli 2026): Vorlese-Bilderbuch 5–8, Figur Calli,
 // Aquarell-Bildstil, Serie mit 6 geplanten Bänden.
-// Kauf-Buttons sind Platzhalter, bis Digistore24-Produkt & Amazon-Listing existieren.
+// Die Seite zeigt bewusst eine Leseprobe, bis Produktseiten/Shop-Links existieren.
 const cover = '/assets/media/gesundheitskompass-kids-cover-concept.png';
-const mvp = '/assets/kinderbuch/callis-kompass-band1-mvp.html';
-const leseprobePdf = '/assets/kinderbuch/leseprobe.pdf';
+const leseprobeHtml = '/assets/kinderbuch/callis-kompass-band1-leseprobe.html';
+const leseprobePdf = '/assets/kinderbuch/callis-kompass-band1-leseprobe.pdf';
 const baende = [
-  { nr: 'Band 1', titel: 'Hör auf deinen Körper', text: 'Körpersignale verstehen: Knurren, Durst, Zappelbeine, Aua, Gefühls-Wetter und Gähnen.', status: 'In Arbeit — MVP fertig', accent: 'mint' },
+  { nr: 'Band 1', titel: 'Hör auf deinen Körper', text: 'Körpersignale verstehen: Knurren, Durst, Zappelbeine, Aua, Gefühls-Wetter und Gähnen.', status: 'Leseprobe fertig', accent: 'mint' },
   { nr: 'Band 2', titel: 'Das Zucker-Monster', text: 'Essen & Trinken mit Schlecki, der Gemüse-Bande und dem Regenbogen-Teller.', status: 'Geplant', accent: 'coral' },
   { nr: 'Band 3', titel: 'Der Zappelmotor', text: 'Bewegung & Energie: Tier-Olympiade und Gute-Laune-Funken.', status: 'Geplant', accent: 'gold' },
   { nr: 'Band 4', titel: 'Die Schlaf-Werkstatt', text: 'Schlaf & Träume: Traum-Kino und die Startrampe ins Bett.', status: 'Geplant', accent: 'blue' },
@@ -25,7 +25,7 @@ const sceneImages = [
 ---
 <BaseLayout
   title="Callis Gesundheits-Kompass — Kinderbuchserie | callidus A&M"
-  description="Callis Gesundheits-Kompass: die callidus-KIDS-Vorlesebuchserie für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“ — mit Bildern auf jeder Seite, Infoboxen und Quiz. Als eBook-Download und bald auf Amazon."
+  description="Callis Gesundheits-Kompass: die callidus-KIDS-Vorlesebuchserie für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“ — mit warmen Aquarellbildern, Infoboxen und Mitmachmomenten. Leseprobe jetzt ansehen; eBook und Paperback sind in Vorbereitung."
   lang="de"
   ogImage={cover}
 >
@@ -37,20 +37,20 @@ const sceneImages = [
         <h1>Callis Gesundheits-Kompass</h1>
         <p class="kb-band"><strong>Band 1: Hör auf deinen Körper</strong></p>
         <p class="lede">
-          Ein warmes, lustiges Vorlese-Bilderbuch für Kinder von 5 bis 8 —
-          mit Bildern auf jeder Seite. Calli, der kleine Kompass, zeigt Mira und Noah,
+          Ein warmes, lustiges Vorlese-Bilderbuch für Kinder von 5 bis 8.
+          Calli, der kleine Kompass, zeigt Mira und Noah,
           was der Körper den ganzen Tag erzählt: vom Bauch-Knurren bis zum Gähnen.
-          Mit Infoboxen, Mach-mit-Missionen und dem großen Kompass-Check-Quiz.
+          Mit Aquarellbildern, Infoboxen, Mach-mit-Missionen und dem großen Kompass-Check-Quiz.
         </p>
         <div class="actions">
-          <a class="button primary" href="#kaufen">Als eBook kaufen (Download)</a>
-          <a class="button" href={mvp}>Bilderbuch-Vorschau ansehen</a>
+          <a class="button primary" href={leseprobeHtml}>Kostenlose Leseprobe ansehen</a>
+          <a class="button" href="#preise">Geplante Ausgaben</a>
         </div>
         <p class="kb-badges">
           <span class="kb-badge mint">Vorlesen ab 5</span>
-          <span class="kb-badge blue">Bild auf jeder Seite</span>
+          <span class="kb-badge blue">Aquarell-Leseprobe</span>
           <span class="kb-badge gold">6 Bände geplant</span>
-          <span class="kb-badge coral">Bald auch auf Amazon</span>
+          <span class="kb-badge coral">Paperback in Vorbereitung</span>
         </p>
       </div>
       <figure class="kb-cover" data-reveal="2">
@@ -66,19 +66,19 @@ const sceneImages = [
       <h2 data-reveal="2">Zuhören, lachen, mitmachen.</h2>
       <div class="kb-grid" data-reveal="3">
         <article class="kb-card mint">
-          <h3>📖 Vorlese-Geschichte</h3>
+          <h3>Vorlese-Geschichte</h3>
           <p>Mira, Noah und Calli erleben einen ganzen Tag voller Körpersignale — in kurzen Kapiteln, perfekt für den Abend.</p>
         </article>
         <article class="kb-card blue">
-          <h3>🧠 Wusstest-du-schon-Boxen</h3>
+          <h3>Wusstest-du-schon-Boxen</h3>
           <p>Kleine Staun-Fakten für neugierige Köpfe: Warum knurrt der Magen? Was ist die Kruste auf dem Knie?</p>
         </article>
         <article class="kb-card gold">
-          <h3>🙌 Mach-mit-Missionen</h3>
+          <h3>Mach-mit-Missionen</h3>
           <p>Gießkannen-Check, Tier-Olympiade, Wetterbericht der Gefühle — kleine Aufgaben für die ganze Familie.</p>
         </article>
         <article class="kb-card coral">
-          <h3>🧭 Kompass-Check-Quiz</h3>
+          <h3>Kompass-Check-Quiz</h3>
           <p>Am Ende wartet das große Quiz — und die Urkunde zum Signal-Helden zum Ausschneiden.</p>
         </article>
       </div>
@@ -107,11 +107,11 @@ const sceneImages = [
   <section class="section" id="szenenbilder">
     <div class="container">
       <p class="eyebrow" data-reveal>Bildproduktion</p>
-      <h2 data-reveal="2">Die neuen Aquarell-Szenen fuer Band 1.</h2>
+      <h2 data-reveal="2">Ein Blick ins Buch.</h2>
       <p class="lede" data-reveal="3">
         Diese Szenen wurden mit den Character-Sheets von Mira, Noah und Calli als
-        feste Referenz erzeugt. Sie sind als Arbeitsbilder fuer MVP und Vollversion
-        gedacht und liegen als einzelne PNG-Dateien im Projekt.
+        fester Referenz erzeugt. Sie zeigen den geplanten Aquarellstil für Band 1;
+        vor dem Druck werden sie noch in finaler Druckauflösung gesetzt.
       </p>
       <div class="kb-scene-gallery" data-reveal="4">
         {sceneImages.map((scene) => (
@@ -141,35 +141,35 @@ const sceneImages = [
           ‚Ah!‘, rief Calli. ‚Bauch-Post! Dein Magen schickt dir einen Brief. Darin steht:
           <em>Lieber Noah, der Tank ist leer. Bitte Frühstück einwerfen. Dein Magen.</em>‘“
         </blockquote>
-        <p>Die Vorschau zeigt 10 komplette Seiten aus Band 1 — mit allen Bildern, Boxen und dem Quiz.</p>
+        <p>Die Leseprobe zeigt 10 gestaltete Seiten aus Band 1 — mit Bildern, Boxen und dem Quiz.</p>
         <div class="actions">
-          <a class="button primary" href={mvp}>Vorschau im Browser öffnen</a>
+          <a class="button primary" href={leseprobeHtml}>Leseprobe im Browser öffnen</a>
           <a class="button" href={leseprobePdf}>Leseprobe als PDF laden</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KAUFEN -->
-  <section class="section" id="kaufen">
+  <!-- PREISE -->
+  <section class="section" id="preise">
     <div class="container">
-      <p class="eyebrow" data-reveal>Hier bekommst du Band 1</p>
-      <h2 data-reveal="2">Zwei Wege zu Calli.</h2>
+      <p class="eyebrow" data-reveal>Geplante Ausgaben</p>
+      <h2 data-reveal="2">Faire Preise, wenn Band 1 fertig ist.</h2>
       <div class="kb-grid kb-grid-2" data-reveal="3">
         <article class="kb-card mint">
-          <h3>Direkt hier als eBook (PDF)</h3>
-          <p>Sofort-Download über Digistore24 — farbig, für Tablet und Ausdruck. Inklusive Urkunde zum Signal-Helden.</p>
-          <p class="kb-price">7,99&nbsp;€</p>
-          <a class="button primary" href="#" aria-disabled="true">Jetzt kaufen (bald verfügbar)</a>
+          <h3>Direkt als PDF-eBook</h3>
+          <p>Farbig, sofort lesbar auf Tablet und Computer, später mit Urkunde zum Ausdrucken. Empfehlung für den Startpreis.</p>
+          <p class="kb-price">9,90&nbsp;€</p>
+          <a class="button primary kb-disabled" href={leseprobeHtml} aria-disabled="true">Noch Leseprobe ansehen</a>
         </article>
         <article class="kb-card gold">
-          <h3>Auf Amazon</h3>
-          <p>Als Taschenbuch (Print-on-Demand) und Kindle-eBook. Erscheint in Kürze als Band 1 der Serie.</p>
-          <p class="kb-price">ab 7,99&nbsp;€</p>
-          <a class="button" href="#" aria-disabled="true">Zu Amazon (bald verfügbar)</a>
+          <h3>Amazon Paperback</h3>
+          <p>Print-on-Demand als farbiges Taschenbuch. Der finale Preis hängt von Seitenzahl, Farboption und Druckkosten ab.</p>
+          <p class="kb-price">14,90-16,90&nbsp;€</p>
+          <a class="button kb-disabled" href={leseprobeHtml} aria-disabled="true">Paperback in Vorbereitung</a>
         </article>
       </div>
-      <p class="kb-note" data-reveal="4">Hinweis: Bücher und eBooks unterliegen in Deutschland der Buchpreisbindung — der Preis ist daher auf allen Kanälen identisch. Dieses Buch vermittelt allgemeines Gesundheitswissen und ersetzt keine ärztliche Beratung.</p>
+      <p class="kb-note" data-reveal="4">Hinweis: Für veröffentlichte Bücher und eBooks gilt in Deutschland je Ausgabe ein gebundener Verkaufspreis. Die finale Kalkulation wird vor Veröffentlichung mit KDP-Druckkosten, Format und Farboption geprüft. Dieses Buch vermittelt allgemeines Gesundheitswissen und ersetzt keine ärztliche Beratung. Die Illustrationen sind digitale Aquarellbilder und werden bei KDP entsprechend deklariert.</p>
     </div>
   </section>
 </BaseLayout>
@@ -179,7 +179,7 @@ const sceneImages = [
   @media (max-width: 820px) { .kb-hero { grid-template-columns: 1fr; } }
   .kb-band { font-size: 1.15rem; color: var(--blue); margin: 0.2rem 0 0.8rem; }
   .kb-band-nr { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin: 0 0 0.4rem; }
-  .kb-cover img, .kb-scene img { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 18px 50px rgba(var(--mint-rgb), 0.25); }
+  .kb-cover img, .kb-scene img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 18px 50px rgba(var(--mint-rgb), 0.25); }
   .kb-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
   .kb-badge { padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: rgba(var(--mint-rgb), 0.12); color: var(--mint); }
   .kb-badge.blue { background: rgba(var(--blue-rgb), 0.12); color: var(--blue); }
@@ -187,14 +187,14 @@ const sceneImages = [
   .kb-badge.gold { background: rgba(var(--gold-rgb), 0.12); color: var(--gold); }
   .kb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
   .kb-grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 760px; }
-  .kb-card { border-radius: 18px; padding: 1.4rem; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .kb-card { border-radius: 8px; padding: 1.4rem; background: var(--bg-soft); border-top: 4px solid var(--mint); }
   .kb-card.coral { border-top-color: var(--coral); }
   .kb-card.blue { border-top-color: var(--blue); }
   .kb-card.gold { border-top-color: var(--gold); }
   .kb-card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
   .kb-card p { margin: 0 0 0.75rem; }
   .kb-scene-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-  .kb-scene-card { overflow: hidden; border-radius: 18px; background: var(--bg-soft); border: 1px solid rgba(var(--mint-rgb), 0.16); box-shadow: 0 18px 42px rgba(var(--mint-rgb), 0.12); }
+  .kb-scene-card { overflow: hidden; border-radius: 8px; background: var(--bg-soft); border: 1px solid rgba(var(--mint-rgb), 0.16); box-shadow: 0 18px 42px rgba(var(--mint-rgb), 0.12); }
   .kb-scene-card img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
   .kb-scene-card div { padding: 0.9rem; }
   .kb-scene-card span { display: block; margin-bottom: 0.25rem; color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -202,4 +202,5 @@ const sceneImages = [
   .kb-price { font-size: 1.6rem; font-weight: 700; color: var(--mint); }
   .kb-quote { border-left: 4px solid var(--coral); margin: 1rem 0; padding: 0.6rem 1.1rem; background: rgba(var(--coral-rgb), 0.07); border-radius: 0 12px 12px 0; font-style: italic; }
   .kb-note { margin-top: 1.4rem; font-size: 0.85rem; opacity: 0.75; max-width: 640px; }
+  .kb-disabled { cursor: default; opacity: 0.82; }
 </style>

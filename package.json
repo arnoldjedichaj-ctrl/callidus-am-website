@@ -15,6 +15,7 @@
     "download:documents": "node scripts/download-documents.mjs",
     "fetch:crypto-radar": "node scripts/fetch-crypto-radar.mjs",
     "fetch:momus": "node scripts/fetch-momus-articles.mjs",
+    "export:kinderbuch-pdf": "node scripts/export-kinderbuch-pdf.mjs",
     "fix:nexus-images:dry": "node scripts/fix-nexus-images.mjs",
     "fix:nexus-images": "node scripts/fix-nexus-images.mjs --write"
   },
