@@ -4,16 +4,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // Kuratierte Krypto-Werkzeuge und offizielle Links.
 // Quelle: geteilte "offizielle links"-Tabelle (web3universe.de). Einige Links
 // enthalten Referral-/Affiliate-Codes des Tabellen-Erstellers.
+// Reihenfolge folgt dem typischen Ablauf: erst Wallet & Kauf, dann Handel &
+// Transfer, dann Analyse-Werkzeuge, dann Ertrag, zuletzt Sicherheit & Risiko.
 const categories = [
   {
-    title: 'Krypto kaufen (Börsen / CEX)',
-    note: 'Zentrale Börsen. Anmeldung, Verifizierung (KYC) und Verwahrung laufen beim Anbieter.',
-    links: [
-      { label: 'Phemex', href: 'https://phemex.com/en/promo/activity/338?referralCode=CVYSP8', ref: true },
-    ],
-  },
-  {
     title: 'Wallets',
+    note: 'Die eigene Wallet ist der Startpunkt. Lade sie nur von der offiziellen Seite.',
     links: [
       { label: 'MetaMask (EVM)', href: 'https://metamask.io/download/' },
       { label: 'Rabby (EVM, Alternative)', href: 'https://rabby.io/' },
@@ -24,49 +20,16 @@ const categories = [
   },
   {
     title: 'Hardware-Wallets',
-    note: 'Für die langfristige Aufbewahrung („HODL“). Kaufe Hardware-Wallets nur direkt beim Hersteller.',
+    note: 'Für die langfristige Aufbewahrung („HODL“). Kaufe nur direkt beim Hersteller.',
     links: [
-      { label: 'Ledger', href: 'https://shop.ledger.com/?r=208899b9b5de', ref: true },
+      { label: 'Ledger', href: 'https://shop.ledger.com/?r=208899b9b5de' },
     ],
   },
   {
-    title: 'DeFi & Portfolio',
+    title: 'Krypto kaufen (Börsen / CEX)',
+    note: 'Zentrale Börsen. Anmeldung, Verifizierung (KYC) und Verwahrung laufen beim Anbieter.',
     links: [
-      { label: 'DeFiLlama', href: 'https://defillama.com/' },
-      { label: 'DeBank (Portfolio-Tracker EVM)', href: 'https://debank.com/' },
-      { label: 'Sonar.watch (Portfolio-Tracker Solana)', href: 'https://sonar.watch/portfolio' },
-      { label: 'Kamino (Lending, Solana)', href: 'https://kamino.com/earn/lend' },
-    ],
-  },
-  {
-    title: 'Steuern',
-    links: [
-      { label: 'CoinTracking', href: 'https://cointracking.info/?ref=M479806', ref: true, note: '10 % Rabatt mit diesem Code.' },
-    ],
-  },
-  {
-    title: 'Rechner & Infos',
-    links: [
-      { label: 'Impermanent-Loss-Rechner (DailyDeFi)', href: 'https://dailydefi.org/tools/impermanent-loss-calculator/' },
-      { label: 'Gas-Gebühren (EthereumPrice)', href: 'https://ethereumprice.org/gas/' },
-      { label: 'Blockchains hinzufügen (Chainlist)', href: 'https://chainlist.org/' },
-      { label: 'Zeitzonen-Umrechner (World Time Buddy)', href: 'https://www.worldtimebuddy.com/' },
-    ],
-  },
-  {
-    title: 'Block-Explorer',
-    links: [
-      { label: 'Etherscan (Ethereum)', href: 'https://etherscan.io/' },
-    ],
-  },
-  {
-    title: 'Kurse & Preis-Informationen',
-    links: [
-      { label: 'CoinGecko', href: 'https://www.coingecko.com/de' },
-      { label: 'CoinMarketCap', href: 'https://coinmarketcap.com/de/' },
-      { label: 'DEXTools', href: 'https://dextools.io/' },
-      { label: 'DexScreener', href: 'https://dexscreener.com/' },
-      { label: 'GeckoTerminal', href: 'https://www.geckoterminal.com/de' },
+      { label: 'Phemex', href: 'https://phemex.com/en/promo/activity/338?referralCode=CVYSP8' },
     ],
   },
   {
@@ -95,17 +58,51 @@ const categories = [
     ],
   },
   {
+    title: 'Kurse & Preis-Informationen',
+    links: [
+      { label: 'CoinGecko', href: 'https://www.coingecko.com/de' },
+      { label: 'CoinMarketCap', href: 'https://coinmarketcap.com/de/' },
+      { label: 'DEXTools', href: 'https://dextools.io/' },
+      { label: 'DexScreener', href: 'https://dexscreener.com/' },
+      { label: 'GeckoTerminal', href: 'https://www.geckoterminal.com/de' },
+    ],
+  },
+  {
+    title: 'DeFi & Portfolio',
+    links: [
+      { label: 'DeFiLlama', href: 'https://defillama.com/' },
+      { label: 'DeBank (Portfolio-Tracker EVM)', href: 'https://debank.com/' },
+      { label: 'Sonar.watch (Portfolio-Tracker Solana)', href: 'https://sonar.watch/portfolio' },
+      { label: 'Kamino (Lending, Solana)', href: 'https://kamino.com/earn/lend' },
+    ],
+  },
+  {
+    title: 'Block-Explorer',
+    links: [
+      { label: 'Etherscan (Ethereum)', href: 'https://etherscan.io/' },
+    ],
+  },
+  {
+    title: 'Rechner & Infos',
+    links: [
+      { label: 'Impermanent-Loss-Rechner (DailyDeFi)', href: 'https://dailydefi.org/tools/impermanent-loss-calculator/' },
+      { label: 'Gas-Gebühren (EthereumPrice)', href: 'https://ethereumprice.org/gas/' },
+      { label: 'Blockchains hinzufügen (Chainlist)', href: 'https://chainlist.org/' },
+      { label: 'Zeitzonen-Umrechner (World Time Buddy)', href: 'https://www.worldtimebuddy.com/' },
+    ],
+  },
+  {
     title: 'LP / Staking',
     links: [
       { label: 'Grass Foundation', href: 'https://grassfoundation.io/stake' },
       { label: 'Infrared', href: 'https://infrared.finance/' },
       { label: 'Honey (Berachain)', href: 'https://honey.berachain.com/' },
-      { label: 'Resolv', href: 'https://app.resolv.xyz/ref/web3universe2023', ref: true },
+      { label: 'Resolv', href: 'https://app.resolv.xyz/ref/web3universe2023' },
       { label: 'Aerodrome (Base)', href: 'https://aerodrome.finance/' },
       { label: 'ExtraFi', href: 'https://app.extrafi.io/farm' },
       { label: 'Velodrome', href: 'https://velodrome.finance/' },
-      { label: 'Turtle Club', href: 'https://app.turtle.club/?ref=WEB32025', ref: true },
-      { label: 'Turtle Club – Katana', href: 'https://app.turtle.club/campaigns/katana?ref=WEB32025', ref: true },
+      { label: 'Turtle Club', href: 'https://app.turtle.club/?ref=WEB32025' },
+      { label: 'Turtle Club – Katana', href: 'https://app.turtle.club/campaigns/katana?ref=WEB32025' },
       { label: 'ether.fi', href: 'https://www.ether.fi/' },
       { label: 'Lido (Liquid Staking)', href: 'https://lido.fi/' },
       { label: 'Marinade (Solana Staking)', href: 'https://app.marinade.finance/manage/' },
@@ -119,15 +116,9 @@ const categories = [
     ],
   },
   {
-    title: 'Futures- / Trading-Plattformen',
-    note: 'Hebel-Trading ist hochriskant und für Einsteiger ungeeignet – ein Totalverlust ist jederzeit möglich.',
-    risk: true,
+    title: 'Steuern',
     links: [
-      { label: 'Hyperliquid (ARB)', href: 'https://app.hyperliquid.xyz/join/WEB3', ref: true, note: '4 % Feediscount mit Invite-Link.' },
-      { label: 'dYdX (ETH)', href: 'https://dydx.exchange/' },
-      { label: 'Paradex', href: 'https://app.paradex.trade/r/Web3Universe', ref: true },
-      { label: 'Ostium', href: 'https://ostium.app/trade?from=SPX&to=USD&ref=1ETXS', ref: true },
-      { label: 'Lighter', href: 'https://app.lighter.xyz/trade/ETH?referral=4QGSFQALMLGX', ref: true },
+      { label: 'CoinTracking', href: 'https://cointracking.info/?ref=M479806', note: '10 % Rabatt mit diesem Code.' },
     ],
   },
   {
@@ -144,6 +135,18 @@ const categories = [
       { label: 'OpenSea (NFT-Marktplatz)', href: 'https://opensea.io/nft-world-official' },
       { label: 'web3universe – Track Record', href: 'https://web3universe.de/track-record' },
       { label: 'web3universe – Track Record (Bitbull)', href: 'https://web3universe.de/track-record-bitbull' },
+    ],
+  },
+  {
+    title: 'Futures- / Trading-Plattformen',
+    note: 'Hebel-Trading ist hochriskant und für Einsteiger ungeeignet – ein Totalverlust ist jederzeit möglich.',
+    risk: true,
+    links: [
+      { label: 'Hyperliquid (ARB)', href: 'https://app.hyperliquid.xyz/join/WEB3', note: '4 % Feediscount mit Invite-Link.' },
+      { label: 'dYdX (ETH)', href: 'https://dydx.exchange/' },
+      { label: 'Paradex', href: 'https://app.paradex.trade/r/Web3Universe' },
+      { label: 'Ostium', href: 'https://ostium.app/trade?from=SPX&to=USD&ref=1ETXS' },
+      { label: 'Lighter', href: 'https://app.lighter.xyz/trade/ETH?referral=4QGSFQALMLGX' },
     ],
   },
 ];
@@ -286,10 +289,7 @@ const totalLinks = categories.reduce((sum, cat) => sum + cat.links.length, 0);
               {cat.links.map((link) => (
                 <li>
                   <a href={link.href} target="_blank" rel="noopener noreferrer nofollow">
-                    <span class="cl-link-main">
-                      <span class="cl-link-label">{link.label}</span>
-                      {link.ref && <span class="cl-ref" title="Enthält einen Referral-Code">Ref</span>}
-                    </span>
+                    <span class="cl-link-label">{link.label}</span>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
                   </a>
                   {link.note && <span class="cl-link-note">{link.note}</span>}
@@ -486,13 +486,13 @@ const totalLinks = categories.reduce((sum, cat) => sum + cat.links.length, 0);
     }
 
     .cl-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      align-items: start;
+      column-count: 3;
+      column-gap: 1rem;
     }
 
     .cl-card {
+      break-inside: avoid;
+      margin-bottom: 1rem;
       padding: 1.15rem;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -561,30 +561,11 @@ const totalLinks = categories.reduce((sum, cat) => sum + cat.links.length, 0);
       outline-offset: 2px;
     }
 
-    .cl-link-main {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      min-width: 0;
-    }
-
     .cl-link-label {
+      min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .cl-ref {
-      flex: 0 0 auto;
-      padding: .1rem .4rem;
-      border: 1px solid rgba(var(--cl-orange-rgb), .4);
-      border-radius: 999px;
-      background: rgba(var(--cl-orange-rgb), .12);
-      color: var(--cl-orange);
-      font-size: .64rem;
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
     }
 
     .cl-linklist svg {
@@ -719,7 +700,10 @@ const totalLinks = categories.reduce((sum, cat) => sum + cat.links.length, 0);
         font-size: 2.8rem;
       }
 
-      .cl-grid,
+      .cl-grid {
+        column-count: 2;
+      }
+
       .cl-rules-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -746,7 +730,10 @@ const totalLinks = categories.reduce((sum, cat) => sum + cat.links.length, 0);
         font-size: 2rem;
       }
 
-      .cl-grid,
+      .cl-grid {
+        column-count: 1;
+      }
+
       .cl-rules-grid {
         grid-template-columns: 1fr;
       }
