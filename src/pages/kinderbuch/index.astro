@@ -1,31 +1,32 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-// callidus KIDS — Buchserie „Callis Gesundheits-Kompass".
-// Zusammengeführtes Konzept (Juli 2026): Vorlese-Bilderbuch 5–8, Figur Calli,
-// Aquarell-Bildstil, Serie mit 6 geplanten Bänden.
-// Die Seite zeigt bewusst eine Leseprobe, bis Produktseiten/Shop-Links existieren.
-const cover = '/assets/media/gesundheitskompass-kids-cover-concept.png';
+// callidus KIDS — Buchserie „Callis Gesundheits-Kompass". Band 1 fertig & erhältlich.
+// Verkauf des PDF-eBooks über Digistore24. Trage unten die Produkt-URL in `digistoreUrl`
+// ein; solange sie leer ist, führen die Kauf-Buttons sicher zur kostenlosen Leseprobe.
+const digistoreUrl = ''; // ← Digistore24-Produktlink hier einsetzen
+const preis = '9,90 €';
+const cover = '/assets/kinderbuch/cover-band1.jpg';
 const leseprobeHtml = '/assets/kinderbuch/callis-kompass-band1-leseprobe.html';
-const leseprobePdf = '/assets/kinderbuch/callis-kompass-band1-leseprobe.pdf';
+const kaufen = digistoreUrl || leseprobeHtml;
+
 const baende = [
-  { nr: 'Band 1', titel: 'Hör auf deinen Körper', text: 'Körpersignale verstehen: Knurren, Durst, Zappelbeine, Aua, Gefühls-Wetter und Gähnen.', status: 'Leseprobe fertig', accent: 'mint' },
-  { nr: 'Band 2', titel: 'Das Zucker-Monster', text: 'Essen & Trinken mit Schlecki, der Gemüse-Bande und dem Regenbogen-Teller.', status: 'Geplant', accent: 'coral' },
+  { nr: 'Band 1', titel: 'Hör auf deinen Körper', text: 'Körpersignale verstehen: Bauch-Post, Durst, Zappelbeine, Gefühls-Wetter, saubere Hände und das große Gähnen.', status: 'Jetzt erhältlich', accent: 'mint' },
+  { nr: 'Band 2', titel: 'Das Zucker-Monster', text: 'Essen & Trinken mit Schlecki, der Gemüse-Bande und dem Regenbogen-Teller.', status: 'In Arbeit', accent: 'coral' },
   { nr: 'Band 3', titel: 'Der Zappelmotor', text: 'Bewegung & Energie: Tier-Olympiade und Gute-Laune-Funken.', status: 'Geplant', accent: 'gold' },
   { nr: 'Band 4', titel: 'Die Schlaf-Werkstatt', text: 'Schlaf & Träume: Traum-Kino und die Startrampe ins Bett.', status: 'Geplant', accent: 'blue' },
   { nr: 'Band 5', titel: 'Das Gefühls-Wetter', text: 'Gefühle: Wut-Gewitter, Angst-Nebel, Freude-Sonne — und warum reden hilft.', status: 'Geplant', accent: 'blue' },
   { nr: 'Band 6', titel: 'Die Abwehr-Polizei', text: 'Hygiene & Schutz: Händewaschen, Zähne und keine Angst vorm Doktor.', status: 'Geplant', accent: 'mint' },
 ];
-// Bewusst nur 4 Highlight-Szenen — die restlichen Buchseiten bleiben eine Überraschung.
 const sceneImages = [
-  { src: '/assets/media/kinderbuch-scenes/web/mvp-02-calli-stellt-sich-vor.jpg', title: 'Calli stellt sich vor', label: 'Aus Band 1' },
-  { src: '/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg', title: 'KNURR! Die Bauch-Post', label: 'Aus Band 1' },
-  { src: '/assets/media/kinderbuch-scenes/web/mvp-12-zappelbeine.jpg', title: 'Die Zappelbeine', label: 'Aus Band 1' },
-  { src: '/assets/media/kinderbuch-scenes/web/full-22-koerper-thermostat.jpg', title: 'Der Körper-Thermostat', label: 'Aus Band 1' },
+  { src: '/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg', title: 'KNURR! Die Bauch-Post', label: 'Kapitel 1' },
+  { src: '/assets/media/kinderbuch-scenes/web/final-34-tier-olympiade.jpg', title: 'Die Tier-Olympiade', label: 'Bewegung' },
+  { src: '/assets/media/kinderbuch-scenes/web/final-16-startrampen-ritual.jpg', title: 'Das Startrampen-Ritual', label: 'Schlaf' },
+  { src: '/assets/media/kinderbuch-scenes/web/mvp-16-gefuehls-wetter.jpg', title: 'Das Gefühls-Wetter', label: 'Gefühle' },
 ];
 ---
 <BaseLayout
-  title="Callis Gesundheits-Kompass — Kinderbuchserie | callidus A&M"
-  description="Callis Gesundheits-Kompass: die callidus-KIDS-Vorlesebuchserie für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“ — mit warmen Aquarellbildern, Infoboxen und Mitmachmomenten. Leseprobe jetzt ansehen; eBook und Paperback sind in Vorbereitung."
+  title="Callis Gesundheits-Kompass · Band 1 — Kinderbuch | callidus A&M"
+  description="Callis Gesundheits-Kompass, Band 1 „Hör auf deinen Körper“: ein warmes Vorlese-Bilderbuch für Kinder von 5 bis 8. Mit Aquarellbildern auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Urkunde. Jetzt als eBook erhältlich."
   lang="de"
   ogImage={cover}
 >
@@ -37,24 +38,29 @@ const sceneImages = [
         <h1>Callis Gesundheits-Kompass</h1>
         <p class="kb-band"><strong>Band 1: Hör auf deinen Körper</strong></p>
         <p class="lede">
-          Ein warmes, lustiges Vorlese-Bilderbuch für Kinder von 5 bis 8.
-          Calli, der kleine Kompass, zeigt Mira und Noah,
-          was der Körper den ganzen Tag erzählt: vom Bauch-Knurren bis zum Gähnen.
-          Mit Aquarellbildern, Infoboxen, Mach-mit-Missionen und dem großen Kompass-Check-Quiz.
+          Dein Körper redet den ganzen Tag mit dir — er knurrt, gähnt, zappelt und kribbelt.
+          Calli, der kleine Kompass, nimmt Mira und Noah mit auf eine warme, lustige Reise
+          durch ihre Körpersignale. Ein Vorlese-Bilderbuch für Kinder von 5 bis 8, mit
+          Aquarellbildern auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Eltern-Impulsen.
         </p>
-        <div class="actions">
-          <a class="button primary" href={leseprobeHtml}>Kostenlose Leseprobe ansehen</a>
-          <a class="button" href="#preise">Geplante Ausgaben</a>
+        <div class="kb-buybar">
+          <div class="kb-buy-price">
+            <span class="kb-price">{preis}</span>
+            <span class="kb-price-sub">PDF-eBook · sofort-Download</span>
+          </div>
+          <a class="button primary" href={kaufen} rel="noopener">Jetzt kaufen</a>
+          <a class="button" href={leseprobeHtml}>Gratis-Leseprobe</a>
         </div>
+        <p class="kb-buy-note">Sichere Abwicklung &amp; Download über Digistore24.</p>
         <p class="kb-badges">
           <span class="kb-badge mint">Vorlesen ab 5</span>
-          <span class="kb-badge blue">Aquarell-Leseprobe</span>
-          <span class="kb-badge gold">6 Bände geplant</span>
-          <span class="kb-badge coral">Paperback in Vorbereitung</span>
+          <span class="kb-badge blue">Bild auf jeder Seite</span>
+          <span class="kb-badge gold">72 Seiten</span>
+          <span class="kb-badge coral">Mit Urkunde</span>
         </p>
       </div>
       <figure class="kb-cover" data-reveal="2">
-        <img src={cover} alt="Buchcover-Konzept: Mira und Noah auf der Kompassrose, Calli der Kompass schwebt daneben" width="512" height="768" loading="eager" />
+        <img src={cover} alt="Buchcover: Callis Gesundheits-Kompass, Band 1 – Mira und Noah auf der Kompassrose, Calli schwebt daneben" width="400" height="640" loading="eager" />
       </figure>
     </div>
   </section>
@@ -70,50 +76,27 @@ const sceneImages = [
           <p>Mira, Noah und Calli erleben einen ganzen Tag voller Körpersignale — in kurzen Kapiteln, perfekt für den Abend.</p>
         </article>
         <article class="kb-card blue">
-          <h3>Wusstest-du-schon-Boxen</h3>
-          <p>Kleine Staun-Fakten für neugierige Köpfe: Warum knurrt der Magen? Was ist die Kruste auf dem Knie?</p>
+          <h3>Callis Schlau-Seiten</h3>
+          <p>Kleine Staun-Fakten für neugierige Köpfe: Warum knurrt der Magen? Warum macht Schlaf schlau?</p>
         </article>
         <article class="kb-card gold">
-          <h3>Mach-mit-Missionen</h3>
-          <p>Gießkannen-Check, Tier-Olympiade, Wetterbericht der Gefühle — kleine Aufgaben für die ganze Familie.</p>
+          <h3>Mach-mit-Ideen</h3>
+          <p>Körper-Radio, Tier-Olympiade, Wetterbericht der Gefühle — kleine Aufgaben für die ganze Familie.</p>
         </article>
         <article class="kb-card coral">
-          <h3>Kompass-Check-Quiz</h3>
-          <p>Am Ende wartet das große Quiz — und die Urkunde zum Signal-Helden zum Ausschneiden.</p>
+          <h3>Eltern-Impulse &amp; Urkunde</h3>
+          <p>Sanfte Tipps für Eltern auf eigenen Seiten — und am Ende die Urkunde zum Signal-Helden zum Ausschneiden.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIE SERIE -->
-  <section class="section" id="serie">
-    <div class="container">
-      <p class="eyebrow" data-reveal>Die Serie</p>
-      <h2 data-reveal="2">Sechs Bände. Ein Kompass.</h2>
-      <p class="lede" data-reveal="3">Statt ein einziges Buch zu überladen, bekommt jedes Thema seinen eigenen Band — dem callidus-Gesundheits-Kompass folgend, vom Körper bis zur Seele.</p>
-      <div class="kb-grid" data-reveal="4">
-        {baende.map((band) => (
-          <article class={`kb-card ${band.accent}`}>
-            <p class="kb-band-nr">{band.nr} · <em>{band.status}</em></p>
-            <h3>{band.titel}</h3>
-            <p>{band.text}</p>
-          </article>
-        ))}
       </div>
     </div>
   </section>
 
   <!-- SZENENBILDER -->
-  <section class="section" id="szenenbilder">
+  <section class="section" id="einblick">
     <div class="container">
-      <p class="eyebrow" data-reveal>Bildproduktion</p>
-      <h2 data-reveal="2">Ein Blick ins Buch.</h2>
-      <p class="lede" data-reveal="3">
-        Diese Szenen wurden mit den Character-Sheets von Mira, Noah und Calli als
-        fester Referenz erzeugt. Sie zeigen den geplanten Aquarellstil für Band 1;
-        vor dem Druck werden sie noch in finaler Druckauflösung gesetzt.
-      </p>
-      <div class="kb-scene-gallery" data-reveal="4">
+      <p class="eyebrow" data-reveal>Ein Blick ins Buch</p>
+      <h2 data-reveal="2">Warme Aquarellbilder auf jeder Seite.</h2>
+      <div class="kb-scene-gallery" data-reveal="3">
         {sceneImages.map((scene) => (
           <article class="kb-scene-card">
             <img src={scene.src} alt={`Illustration: ${scene.title}`} loading="lazy" decoding="async" />
@@ -131,7 +114,7 @@ const sceneImages = [
   <section class="section" id="leseprobe">
     <div class="container kb-hero">
       <figure class="kb-scene" data-reveal>
-        <img src="/assets/media/gesundheitskompass-kids-food-spread-concept.png" alt="Illustration: Kinder am Tisch mit buntem Teller und freundlicher Verdauungs-Rutsche" width="600" height="380" loading="lazy" />
+        <img src="/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg" alt="Illustration: Noah lacht am Frühstückstisch, ein geflügelter Brief fliegt zu Calli" width="600" height="600" loading="lazy" />
       </figure>
       <div data-reveal="2">
         <p class="eyebrow">Leseprobe · Aus Band 1</p>
@@ -139,37 +122,33 @@ const sceneImages = [
         <blockquote class="kb-quote">
           „Plötzlich machte es in Noahs Bauch: <strong>KNURRRR.</strong> So laut, dass die Katze vom Sofa fiel.
           ‚Ah!‘, rief Calli. ‚Bauch-Post! Dein Magen schickt dir einen Brief. Darin steht:
-          <em>Lieber Noah, der Tank ist leer. Bitte Frühstück einwerfen. Dein Magen.</em>‘“
+          <em>Lieber Noah, der Tank wird leer. Bitte demnächst Frühstück einwerfen. Dein Magen.</em>‘“
         </blockquote>
-        <p>Die Leseprobe zeigt 10 gestaltete Seiten aus Band 1 — mit Bildern, Boxen und dem Quiz.</p>
+        <p>Blättere kostenlos durch die ersten Seiten von Band 1 — mit Cover, den ersten Kapiteln und Callis Ton.</p>
         <div class="actions">
-          <a class="button primary" href={leseprobeHtml}>Leseprobe im Browser öffnen</a>
-          <a class="button" href={leseprobePdf}>Leseprobe als PDF laden</a>
+          <a class="button primary" href={leseprobeHtml}>Leseprobe öffnen</a>
+          <a class="button" href={kaufen}>Vollversion kaufen · {preis}</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PREISE -->
-  <section class="section" id="preise">
+  <!-- DIE SERIE -->
+  <section class="section" id="serie">
     <div class="container">
-      <p class="eyebrow" data-reveal>Geplante Ausgaben</p>
-      <h2 data-reveal="2">Faire Preise, wenn Band 1 fertig ist.</h2>
-      <div class="kb-grid kb-grid-2" data-reveal="3">
-        <article class="kb-card mint">
-          <h3>Direkt als PDF-eBook</h3>
-          <p>Farbig, sofort lesbar auf Tablet und Computer, später mit Urkunde zum Ausdrucken. Empfehlung für den Startpreis.</p>
-          <p class="kb-price">9,90&nbsp;€</p>
-          <a class="button primary kb-disabled" href={leseprobeHtml} aria-disabled="true">Noch Leseprobe ansehen</a>
-        </article>
-        <article class="kb-card gold">
-          <h3>Amazon Paperback</h3>
-          <p>Print-on-Demand als farbiges Taschenbuch. Der finale Preis hängt von Seitenzahl, Farboption und Druckkosten ab.</p>
-          <p class="kb-price">14,90-16,90&nbsp;€</p>
-          <a class="button kb-disabled" href={leseprobeHtml} aria-disabled="true">Paperback in Vorbereitung</a>
-        </article>
+      <p class="eyebrow" data-reveal>Die Serie</p>
+      <h2 data-reveal="2">Sechs Bände. Ein Kompass.</h2>
+      <p class="lede" data-reveal="3">Statt ein einziges Buch zu überladen, bekommt jedes Thema seinen eigenen Band — dem callidus-Gesundheits-Kompass folgend, vom Körper bis zur Seele. Band 1 ist da, die nächsten sind in Arbeit.</p>
+      <div class="kb-grid" data-reveal="4">
+        {baende.map((band) => (
+          <article class={`kb-card ${band.accent}`}>
+            <p class="kb-band-nr">{band.nr} · <em>{band.status}</em></p>
+            <h3>{band.titel}</h3>
+            <p>{band.text}</p>
+          </article>
+        ))}
       </div>
-      <p class="kb-note" data-reveal="4">Hinweis: Für veröffentlichte Bücher und eBooks gilt in Deutschland je Ausgabe ein gebundener Verkaufspreis. Die finale Kalkulation wird vor Veröffentlichung mit KDP-Druckkosten, Format und Farboption geprüft. Dieses Buch vermittelt allgemeines Gesundheitswissen und ersetzt keine ärztliche Beratung. Die Illustrationen sind digitale Aquarellbilder und werden bei KDP entsprechend deklariert.</p>
+      <p class="kb-note" data-reveal="4">Dieses Buch vermittelt allgemeines Gesundheitswissen für Familien und ersetzt keine ärztliche Beratung, Diagnose oder Behandlung. Die Illustrationen sind digitale, KI-gestützt erstellte und redaktionell überarbeitete Aquarellbilder.</p>
     </div>
   </section>
 </BaseLayout>
@@ -180,13 +159,17 @@ const sceneImages = [
   .kb-band { font-size: 1.15rem; color: var(--blue); margin: 0.2rem 0 0.8rem; }
   .kb-band-nr { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin: 0 0 0.4rem; }
   .kb-cover img, .kb-scene img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 18px 50px rgba(var(--mint-rgb), 0.25); }
+  .kb-buybar { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.6rem; }
+  .kb-buy-price { display: flex; flex-direction: column; line-height: 1.1; margin-right: 0.4rem; }
+  .kb-price { font-size: 1.9rem; font-weight: 800; color: var(--mint); }
+  .kb-price-sub { font-size: 0.78rem; color: var(--text); opacity: 0.7; }
+  .kb-buy-note { margin-top: 0.6rem; font-size: 0.82rem; opacity: 0.7; }
   .kb-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
   .kb-badge { padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: rgba(var(--mint-rgb), 0.12); color: var(--mint); }
   .kb-badge.blue { background: rgba(var(--blue-rgb), 0.12); color: var(--blue); }
   .kb-badge.coral { background: rgba(var(--coral-rgb), 0.12); color: var(--coral); }
   .kb-badge.gold { background: rgba(var(--gold-rgb), 0.12); color: var(--gold); }
   .kb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
-  .kb-grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 760px; }
   .kb-card { border-radius: 8px; padding: 1.4rem; background: var(--bg-soft); border-top: 4px solid var(--mint); }
   .kb-card.coral { border-top-color: var(--coral); }
   .kb-card.blue { border-top-color: var(--blue); }
@@ -195,12 +178,10 @@ const sceneImages = [
   .kb-card p { margin: 0 0 0.75rem; }
   .kb-scene-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
   .kb-scene-card { overflow: hidden; border-radius: 8px; background: var(--bg-soft); border: 1px solid rgba(var(--mint-rgb), 0.16); box-shadow: 0 18px 42px rgba(var(--mint-rgb), 0.12); }
-  .kb-scene-card img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .kb-scene-card img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 36%; }
   .kb-scene-card div { padding: 0.9rem; }
   .kb-scene-card span { display: block; margin-bottom: 0.25rem; color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; }
   .kb-scene-card strong { display: block; color: var(--text); line-height: 1.25; }
-  .kb-price { font-size: 1.6rem; font-weight: 700; color: var(--mint); }
   .kb-quote { border-left: 4px solid var(--coral); margin: 1rem 0; padding: 0.6rem 1.1rem; background: rgba(var(--coral-rgb), 0.07); border-radius: 0 12px 12px 0; font-style: italic; }
-  .kb-note { margin-top: 1.4rem; font-size: 0.85rem; opacity: 0.75; max-width: 640px; }
-  .kb-disabled { cursor: default; opacity: 0.82; }
+  .kb-note { margin-top: 1.4rem; font-size: 0.85rem; opacity: 0.75; max-width: 720px; }
 </style>
