@@ -1,14 +1,27 @@
 import { createServer } from 'node:http';
 import { createReadStream, existsSync, statSync } from 'node:fs';
-import { access, copyFile, mkdir } from 'node:fs/promises';
-import { extname, join, resolve } from 'node:path';
+import { access, copyFile, mkdir, rm } from 'node:fs/promises';
+import { dirname, extname, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 
-const root = resolve('public');
-const output = resolve('public/assets/kinderbuch/callis-kompass-band1-leseprobe.pdf');
-const browserOutput = resolve('.tmp/kinderbuch-leseprobe.pdf');
-const sourcePath = '/assets/kinderbuch/callis-kompass-band1-leseprobe.html';
-const userDataDir = resolve('.tmp/kinderbuch-pdf-browser');
+const root = resolve('.');
+const isFinal = process.argv.includes('--final');
+const isWorking = process.argv.includes('--working') || process.argv.includes('--arbeitsfassung');
+const basename = isFinal
+  ? 'callis-kompass-band1-kdp-inhalt'
+  : isWorking
+    ? 'callis-kompass-band1-arbeitsfassung'
+    : 'callis-kompass-band1-leseprobe';
+const output = isFinal || isWorking
+  ? resolve(`buchprojekt/kinderbuch-band1/${basename}.pdf`)
+  : resolve(`public/assets/kinderbuch/${basename}.pdf`);
+const browserOutput = resolve(`.tmp/${basename}.pdf`);
+const sourcePath = isFinal
+  ? '/buchprojekt/kinderbuch-band1/callis-kompass-band1-kdp-inhalt.html'
+  : isWorking
+    ? '/buchprojekt/kinderbuch-band1/callis-kompass-band1-arbeitsfassung.html'
+  : '/public/assets/kinderbuch/callis-kompass-band1-leseprobe.html';
+const userDataDir = resolve(`.tmp/kinderbuch-pdf-browser-${process.pid}-${Date.now()}`);
 
 const mimeTypes = new Map([
   ['.html', 'text/html; charset=utf-8'],
@@ -106,9 +119,10 @@ if (!browserPath) {
   throw new Error('No Edge/Chrome executable found. Set CHROME_PATH to export the PDF.');
 }
 
-await mkdir(resolve('public/assets/kinderbuch'), { recursive: true });
+await mkdir(dirname(output), { recursive: true });
 await mkdir(resolve('.tmp'), { recursive: true });
 await mkdir(userDataDir, { recursive: true });
+await rm(browserOutput, { force: true });
 const server = await startServer();
 
 try {

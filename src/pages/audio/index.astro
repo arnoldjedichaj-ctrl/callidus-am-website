@@ -1,0 +1,453 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import audioSessions from '../../data/audio-sessions.json';
+
+const title = 'Audio-Raum: geführte Klarheit, Fokus und Ruhe | callidus A&M';
+const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Fokus, innere Ordnung und ruhige Mikro-Routinen im Alltag.';
+const siteOrigin = 'https://www.callidus-am.de';
+const publishedSessions = audioSessions.filter((session) => session.status === 'published');
+const plannedSessions = audioSessions.filter((session) => session.status === 'planned');
+const featured = publishedSessions[0];
+const audioObjects = publishedSessions.map((session) => ({
+  '@context': 'https://schema.org',
+  '@type': 'AudioObject',
+  name: session.title,
+  description: session.summary,
+  contentUrl: new URL(session.path, siteOrigin).href,
+  duration: `PT${Math.round((session.durationSeconds || 0) / 60)}M`,
+  encodingFormat: 'audio/mpeg',
+  inLanguage: 'de-DE',
+  datePublished: session.publishedAt,
+  publisher: {
+    '@type': 'Organization',
+    name: 'callidus A&M',
+    url: siteOrigin,
+  },
+}));
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  {audioObjects.map((object) => (
+    <script type="application/ld+json" set:html={JSON.stringify(object)}></script>
+  ))}
+
+  <section class="section audio-hero">
+    <div class="container audio-hero-grid">
+      <div data-reveal>
+        <p class="eyebrow">Callidus Audio-Raum</p>
+        <h1>Geführte Klarheit, wenn der Kopf zu voll ist.</h1>
+        <p class="lede">
+          Kuratierte Audio-Sessions für Fokus, innere Ordnung und kurze mentale Reset-Momente.
+          Die erste Folge ist ein 15-Minuten-Klarheitsreset mit Musik, Wellenatmosphäre und ruhiger Führung.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#aktuelle-folge">Jetzt anhören</a>
+          <a class="button" href="#hinweise">Hinweise lesen</a>
+        </div>
+      </div>
+
+      {featured && (
+        <aside class="audio-feature-player" id="aktuelle-folge" data-reveal="2" aria-labelledby="featured-audio-title">
+          <div class="audio-player-topline">
+            <span class={`badge ${featured.accent}`}>{featured.badge}</span>
+            <span>{featured.duration}</span>
+          </div>
+          <h2 id="featured-audio-title">{featured.title}</h2>
+          <p>{featured.summary}</p>
+          <audio class="audio-player" controls preload="metadata" src={featured.path}>
+            Dein Browser kann diese Audio-Datei nicht direkt abspielen.
+          </audio>
+          <div class="audio-waveform" aria-hidden="true">
+            {Array.from({ length: 28 }).map((_, index) => (
+              <span style={`--bar:${(index % 7) + 2}`}></span>
+            ))}
+          </div>
+          <div class="audio-player-actions">
+            <a class="button" href={featured.path} download>Audio herunterladen</a>
+          </div>
+        </aside>
+      )}
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container audio-intro-grid">
+      <article class="audio-principle" data-reveal>
+        <span class="audio-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M7 12h10M10 18h4"></path>
+          </svg>
+        </span>
+        <h2>Sortieren</h2>
+        <p>Die Führung hilft, offene Gedanken aus dem Kopf zu nehmen und in eine ruhigere Reihenfolge zu bringen.</p>
+      </article>
+      <article class="audio-principle" data-reveal="2">
+        <span class="audio-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"></circle>
+            <circle cx="12" cy="12" r="2.6"></circle>
+          </svg>
+        </span>
+        <h2>Fokussieren</h2>
+        <p>Statt alles auf einmal zu wollen, wird am Ende ein einzelner nächster Schritt wichtiger als perfekte Pläne.</p>
+      </article>
+      <article class="audio-principle" data-reveal="3">
+        <span class="audio-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 12 4 4L19 6"></path>
+          </svg>
+        </span>
+        <h2>Handeln</h2>
+        <p>Die Session endet nicht im Schweben, sondern mit einer kleinen, alltagstauglichen Entscheidung.</p>
+      </article>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="section band">
+      <div class="container split audio-detail-split">
+        <div class="sticky-note" data-reveal>
+          <p class="eyebrow">So nutzt du die Folge</p>
+          <h2>15 Minuten, ein ruhiger Ort, keine Leistung.</h2>
+          <p>
+            Setz dich bequem hin, nutze bei Bedarf Kopfhörer und lass das Audio im Hintergrund tragen.
+            Die Folge arbeitet bewusst ohne starkes Luftanhalten oder forcierte Atemtechnik.
+          </p>
+          <p>
+            Wenn sich etwas unangenehm anfühlt, brich die Session ab, öffne die Augen und orientiere dich im Raum.
+          </p>
+        </div>
+        <div class="audio-use-panel" data-reveal="2">
+          <div>
+            <h3>Geeignet für</h3>
+            <ul>
+              {featured.bestFor.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h3>Am Ende soll entstehen</h3>
+            <ul>
+              {featured.outcomes.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h3>Gute Momente dafür</h3>
+            <ul>
+              {featured.listenWhen.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Audiothek</p>
+      <h2 data-reveal="2">Aktuelle und kommende Folgen.</h2>
+      <div class="audio-session-grid">
+        {audioSessions.map((session, index) => (
+          <article class={`audio-session-card audio-session-${session.status}`} data-reveal={String((index % 3) + 1)}>
+            <div class="audio-card-meta">
+              <span class={`badge ${session.accent}`}>{session.badge}</span>
+              <span>{session.duration}</span>
+            </div>
+            <h3>{session.title}</h3>
+            <p>{session.summary}</p>
+            {session.status === 'published' ? (
+              <a class="button" href="#aktuelle-folge">Folge anhören</a>
+            ) : (
+              <span class="audio-coming-soon">In Vorbereitung</span>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="section band" id="hinweise">
+      <div class="container split audio-trust-split">
+        <div data-reveal>
+          <p class="eyebrow">Transparenz</p>
+          <h2>Produktion, Rechte und Einordnung.</h2>
+          <p class="lede">
+            Professionelle Audio-Angebote sollten klar sagen, was sie sind: eine geführte Selbstreflexion,
+            kein Heilversprechen und keine medizinische oder psychotherapeutische Behandlung.
+          </p>
+        </div>
+        <div class="audio-trust-panel" data-reveal="2">
+          <dl>
+            <div>
+              <dt>Stimme</dt>
+              <dd>{featured.production.voice}</dd>
+            </div>
+            <div>
+              <dt>Musik</dt>
+              <dd>
+                <a href={featured.production.musicSource} target="_blank" rel="noopener">
+                  {featured.production.musicTitle} von {featured.production.musicCreator}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>Lizenz</dt>
+              <dd>
+                <a href={featured.production.musicLicenseUrl} target="_blank" rel="noopener">
+                  {featured.production.musicLicense}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>Atmosphäre</dt>
+              <dd>{featured.production.background}</dd>
+            </div>
+            <div>
+              <dt>Skript</dt>
+              <dd>{featured.production.note}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section tight">
+    <div class="container audio-safety" data-reveal>
+      <strong>Wichtiger Hinweis</strong>
+      <p>
+        Die Audio-Sessions dienen der allgemeinen Entspannung, Selbstreflexion und mentalen Orientierung.
+        Sie ersetzen keine Diagnose, Therapie, Notfallhilfe oder ärztliche Beratung. Bitte nicht beim Autofahren,
+        Bedienen von Maschinen oder in Situationen nutzen, die volle Aufmerksamkeit erfordern.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.audio-hero {
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+.audio-hero-grid,
+.audio-detail-split,
+.audio-trust-split {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(320px, .75fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+.audio-hero h1 {
+  max-width: 12ch;
+}
+.audio-feature-player,
+.audio-principle,
+.audio-use-panel,
+.audio-session-card,
+.audio-trust-panel,
+.audio-safety {
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  background: var(--panel);
+  box-shadow: 0 18px 52px rgba(58, 64, 38, .12);
+}
+.audio-feature-player {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.4rem);
+  background:
+    linear-gradient(135deg, rgba(var(--mint-rgb), .10), rgba(var(--gold-rgb), .07)),
+    var(--panel);
+}
+.audio-player-topline,
+.audio-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+.audio-player-topline > span:last-child,
+.audio-card-meta > span:last-child {
+  color: var(--muted);
+  font-size: .84rem;
+  font-weight: 850;
+}
+.audio-feature-player h2,
+.audio-feature-player p,
+.audio-principle h2,
+.audio-principle p,
+.audio-session-card h3,
+.audio-session-card p,
+.audio-safety p {
+  margin: 0;
+}
+.audio-feature-player h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+}
+.audio-player {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--mint);
+}
+.audio-waveform {
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+  align-items: end;
+  gap: .22rem;
+  height: 4.2rem;
+  padding: .7rem;
+  border: 1px solid rgba(var(--mint-rgb), .18);
+  border-radius: .75rem;
+  background: rgba(var(--mint-rgb), .05);
+}
+.audio-waveform span {
+  display: block;
+  height: calc(var(--bar) * .42rem);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--mint), var(--gold));
+  opacity: .78;
+}
+.audio-player-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+}
+.audio-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.audio-principle {
+  display: grid;
+  gap: .75rem;
+  padding: clamp(1rem, 3vw, 1.25rem);
+}
+.audio-icon {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(var(--mint-rgb), .10);
+  color: var(--mint);
+}
+.audio-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+.audio-principle h2 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+.audio-use-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.25rem);
+}
+.audio-use-panel > div {
+  border: 1px solid rgba(var(--mint-rgb), .18);
+  border-radius: .75rem;
+  padding: .9rem;
+  background: rgba(var(--mint-rgb), .045);
+}
+.audio-use-panel h3 {
+  font-size: 1rem;
+}
+.audio-use-panel ul {
+  margin: .65rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.audio-session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.audio-session-card {
+  display: grid;
+  align-content: start;
+  gap: .8rem;
+  padding: clamp(1rem, 3vw, 1.25rem);
+}
+.audio-session-card h3 {
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+}
+.audio-session-planned {
+  background:
+    linear-gradient(135deg, rgba(var(--blue-rgb), .06), rgba(var(--gold-rgb), .04)),
+    var(--panel);
+}
+.audio-coming-soon {
+  justify-self: start;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  padding: .48rem .75rem;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 850;
+}
+.audio-trust-panel {
+  padding: clamp(1rem, 3vw, 1.25rem);
+}
+.audio-trust-panel dl {
+  display: grid;
+  gap: .85rem;
+  margin: 0;
+}
+.audio-trust-panel div {
+  display: grid;
+  gap: .25rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--line);
+}
+.audio-trust-panel div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.audio-trust-panel dt {
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.audio-trust-panel dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.audio-trust-panel a {
+  color: var(--mint);
+  font-weight: 850;
+}
+.audio-safety {
+  padding: clamp(1rem, 3vw, 1.25rem);
+  border-color: rgba(var(--coral-rgb), .24);
+  background:
+    linear-gradient(135deg, rgba(var(--coral-rgb), .08), rgba(var(--gold-rgb), .04)),
+    var(--panel);
+}
+.audio-safety strong {
+  display: block;
+  margin-bottom: .4rem;
+  color: var(--text);
+}
+@media (max-width: 920px) {
+  .audio-hero-grid,
+  .audio-detail-split,
+  .audio-trust-split,
+  .audio-intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .audio-card-meta,
+  .audio-player-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .audio-waveform {
+    grid-template-columns: repeat(14, 1fr);
+  }
+}
+</style>

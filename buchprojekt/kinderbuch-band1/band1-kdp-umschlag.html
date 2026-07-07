@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>KDP-Umschlag Band 1 · 8,5×11 Zoll · 72 Seiten Premium-Farbe</title>
+<style>
+  /* Wrap-Cover: 0.125 Bleed + 8.5 Rück + 0.169 Rücken (72 S. Premium-Farbe) + 8.5 Front + 0.125 Bleed
+     = 17.419 in Breite × 11.25 in Höhe (Trim 11 + 2×0.125) → bei 96dpi: 1672 × 1080 px */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1672.2px; height:1080px; overflow:hidden; }
+  body { font-family:"Trebuchet MS",Verdana,sans-serif; background:#f7f4e8; display:flex; }
+  .back { width:828px; height:1080px; position:relative; background:
+    radial-gradient(circle at 22% 20%, rgba(63,127,90,.14), transparent 34%),
+    radial-gradient(circle at 80% 75%, rgba(176,154,88,.16), transparent 30%),
+    linear-gradient(160deg, #f7f4e8, #efe9d8); padding:96px 84px; }
+  .spine { width:16.2px; height:1080px; background:#3f7f5a; position:relative; }
+  .front { width:828px; height:1080px; position:relative; background:#f7f4e8; }
+  .front img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+  .b-badge { display:inline-block; background:#3f7f5a; color:#f5f7e9; font-weight:900; letter-spacing:5px; font-size:19px; padding:10px 24px; border-radius:999px; text-transform:uppercase; }
+  .b-title { margin-top:34px; font-size:38px; font-weight:900; color:#2c5940; line-height:1.1; }
+  .b-lede { margin-top:22px; font-family:Georgia,serif; font-size:19.5px; line-height:1.6; color:#223026; }
+  .b-quote { margin-top:26px; border-left:5px solid #b09a58; background:rgba(255,250,240,.75); border-radius:0 12px 12px 0; padding:16px 22px; font-family:Georgia,serif; font-style:italic; font-size:18px; line-height:1.55; color:#223026; }
+  .b-list { margin-top:26px; font-family:Georgia,serif; font-size:18px; line-height:1.9; color:#223026; list-style:none; }
+  .b-list li::before { content:"🧭 "; }
+  .b-brand { position:absolute; left:84px; bottom:96px; font-size:16px; color:#838961; font-weight:700; }
+  /* Freihaltefläche für den KDP-ISBN-Barcode: 2 × 1,2 Zoll unten rechts der Rückseite */
+  .barcode { position:absolute; right:60px; bottom:60px; width:192px; height:115px; background:#fffaf0; border:1px dashed rgba(34,48,38,.25); display:grid; place-items:center; font-size:10px; color:#8a8468; }
+</style>
+</head>
+<body>
+  <div class="back">
+    <span class="b-badge">callidus KIDS</span>
+    <h1 class="b-title">Dein Körper redet.<br>Hörst du zu?</h1>
+    <p class="b-lede">Der Bauch knurrt, die Beine zappeln, der Mund gähnt ein Gähn-Tor auf — und mittendrin rollt Calli über den Frühstückstisch: ein kleiner Kompass, dessen Nadel immer dahin zeigt, wo dein Körper gerade etwas sagen will.</p>
+    <div class="b-quote">„Dein Körper schreibt dir ständig Nachrichten. Nur nicht mit Stift. Er knurrt, gähnt, kribbelt, zappelt und flüstert.“ — Calli</div>
+    <ul class="b-list">
+      <li>Eine warme Vorlesegeschichte für Kinder von 5 bis 8</li>
+      <li>Schlau-Seiten, Mitmach-Ideen und Eltern-Impulse</li>
+      <li>Mit Urkunde zum Ausschneiden für Signal-Helden</li>
+    </ul>
+    <p class="b-brand">callidus A&amp;M · Health Intelligence · callidus-am.de</p>
+    <div class="barcode">Freifläche für KDP-Barcode</div>
+  </div>
+  <div class="spine"></div>
+  <div class="front"><img src="bilder/cover-band1-ebook.png" alt=""></div>
+</body>
+</html>

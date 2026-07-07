@@ -1,0 +1,22 @@
+{
+  "title": "Klarheitsreset - Fokus und naechster Schritt",
+  "duration_seconds": 900.0,
+  "voice_provider": "Gemini TTS",
+  "voice": "Sulafat",
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "downloaded_file": "pixabay-grand-project-deep-meditation-192828.mp3",
+    "license_summary": "https://pixabay.com/service/license-summary/"
+  },
+  "additional_background": "Generated ocean/waves ambience with deterministic Python noise bed.",
+  "files": {
+    "voice_wav": "klarheitsreset_voice.wav",
+    "music_wav": "klarheitsreset_music_bed.wav",
+    "waves_wav": "klarheitsreset_waves.wav",
+    "final_wav": "klarheitsreset-callidus-gemini-pixabay-waves-musicplus.wav",
+    "final_mp3": "klarheitsreset-callidus-gemini-pixabay-waves-musicplus.mp3"
+  },
+  "note": "Original German meditation script. Not based on or copied from the YouTube transcript."
+}

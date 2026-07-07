@@ -73,6 +73,13 @@ const todayStarts = [
     accent: 'mint',
   },
   {
+    time: '15 Minuten',
+    title: 'Klarheitsreset hören',
+    text: 'Geführte Audio-Session für Fokus, innere Ordnung und den nächsten Schritt.',
+    href: '/audio/',
+    accent: 'blue',
+  },
+  {
     time: '10 Minuten',
     title: 'Körper aktivieren',
     text: 'Ein kurzer Bewegungsimpuls für Energie, Fokus und Alltagstauglichkeit.',
@@ -156,6 +163,23 @@ const todayStarts = [
     </div>
   </section>
 
+  <section class="section tight home-audio-cta">
+    <div class="container home-audio-panel" data-reveal>
+      <div>
+        <p class="eyebrow">Neu: Audio-Raum</p>
+        <h2>Klarheit hören, bevor du weiterarbeitest.</h2>
+        <p>
+          Die erste geführte Callidus-Audiofolge ist ein 15-Minuten-Klarheitsreset für Fokus,
+          innere Ordnung und einen konkreten nächsten Schritt. Später können hier weitere Folgen
+          für Atemruhe, Schlafübergang und mentale Ausrichtung folgen.
+        </p>
+      </div>
+      <div class="home-audio-actions" aria-label="Callidus Audio-Raum öffnen">
+        <a class="button primary" href="/audio/">Erste Folge anhören</a>
+        <span>15 Minuten · Musik · Wellenatmosphäre</span>
+      </div>
+    </div>
+  </section>
   <section class="section tight home-today-start">
     <div class="container">
       <p class="eyebrow" data-reveal>Heute starten</p>
@@ -299,6 +323,51 @@ const todayStarts = [
     </div>
   </section>
 
+  <style>
+    .home-audio-cta { padding-top: 0; }
+    .home-audio-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(1rem, 4vw, 2rem);
+      align-items: center;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border: 1px solid rgba(var(--blue-rgb), .24);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(var(--blue-rgb), .10), rgba(var(--gold-rgb), .10)), var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .home-audio-panel h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+    }
+    .home-audio-panel p {
+      max-width: 68ch;
+      margin-bottom: 0;
+    }
+    .home-audio-actions {
+      display: grid;
+      justify-items: end;
+      gap: .65rem;
+      min-width: min(100%, 18rem);
+    }
+    .home-audio-actions span {
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 850;
+      text-align: right;
+    }
+    @media (max-width: 760px) {
+      .home-audio-panel {
+        grid-template-columns: 1fr;
+      }
+      .home-audio-actions {
+        justify-items: start;
+      }
+      .home-audio-actions span {
+        text-align: left;
+      }
+    }
+  </style>
+
   <script is:inline>
     (() => {
       /* ── Compass drag-rotation ── */
@@ -347,6 +416,7 @@ const todayStarts = [
       document.addEventListener('astro:page-load', setupCompassDrag);
     })();
   </script>
+
 
   <script is:inline>
     (() => {

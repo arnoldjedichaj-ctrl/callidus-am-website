@@ -1,0 +1,2632 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Callis Gesundheits-Kompass · Band 1 · KDP-Inhalt</title>
+<style>
+  :root {
+    --paper: #fffaf0;
+    --cream: #f7f4e8;
+    --ink: #223026;
+    --muted: #60705d;
+    --mint: #3f7f5a;
+    --blue: #436f7a;
+    --gold: #b09a58;
+    --coral: #a7604f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e8e1cd; color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+  .toolbar { position: sticky; top: 0; z-index: 5; background: rgba(34,48,38,.93); color: #fffaf0; padding: 12px 18px; font-family: "Trebuchet MS", Arial, sans-serif; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .toolbar a { color: #fff4c8; text-decoration: none; font-weight: 700; }
+  .wrap { width: min(100%, 980px); margin: 0 auto; padding: 24px; }
+  .summary { background: #fffaf0; border: 1px solid rgba(34,48,38,.18); border-radius: 8px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 15px 40px rgba(34,48,38,.14); }
+  .summary h1 { margin: 0 0 8px; font-family: "Trebuchet MS", Arial, sans-serif; font-size: 30px; color: var(--mint); }
+  .summary p { margin: 0 0 8px; line-height: 1.55; }
+  .book-page { min-height: 940px; background: var(--paper); border: 1px solid rgba(34,48,38,.16); border-radius: 8px; overflow: hidden; margin: 0 0 26px; box-shadow: 0 24px 60px rgba(34,48,38,.18); position: relative; page-break-after: always; }
+  .art { height: 430px; margin: 0; background: var(--cream); border-bottom: 5px solid var(--mint); overflow: hidden; }
+  .art img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; padding: 6px; background: #fffaf0; }
+  .art.designed-art { display: grid; place-items: center; align-content: center; gap: 18px; padding: 34px; position: relative; isolation: isolate; background:
+    radial-gradient(circle at 20% 25%, rgba(176,154,88,.18), transparent 28%),
+    radial-gradient(circle at 78% 30%, rgba(67,111,122,.16), transparent 24%),
+    linear-gradient(145deg, #fffaf0, #efe9d8); }
+  .wash { position: absolute; border-radius: 999px; filter: blur(.2px); opacity: .56; z-index: -1; }
+  .wash-a { width: 220px; height: 160px; background: rgba(63,127,90,.16); left: 10%; top: 18%; transform: rotate(-10deg); }
+  .wash-b { width: 250px; height: 180px; background: rgba(176,154,88,.16); right: 9%; bottom: 10%; transform: rotate(12deg); }
+  .designed-card { width: min(620px, 92%); min-height: 120px; display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 18px; padding: 20px 24px; border: 1px solid rgba(34,48,38,.16); border-radius: 8px; background: rgba(255,250,240,.82); box-shadow: 0 16px 36px rgba(34,48,38,.10); }
+  .designed-card strong { display: block; color: var(--ink); font-family: "Trebuchet MS", Arial, sans-serif; font-size: 28px; line-height: 1.08; }
+  .designed-kicker { display: block; color: var(--gold); font-family: "Trebuchet MS", Arial, sans-serif; text-transform: uppercase; letter-spacing: 0; font-size: 11px; font-weight: 800; margin-bottom: 6px; }
+  .mini-calli { width: 78px; height: 78px; display: block; filter: drop-shadow(0 6px 8px rgba(34,48,38,.12)); }
+  .designed-card .mini-calli { align-self: center; justify-self: center; }
+  .icon-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .icon-row span { min-width: 70px; padding: 8px 10px; border-radius: 999px; background: rgba(255,250,240,.76); border: 1px solid rgba(34,48,38,.13); color: var(--blue); font-family: "Trebuchet MS", Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0; text-align: center; }
+  .copy { position: relative; overflow: hidden; padding: 28px 44px 54px; }
+  .no-image-page .copy { background:
+    radial-gradient(circle at 88% 72%, rgba(176,154,88,.10), transparent 24%),
+    radial-gradient(circle at 12% 86%, rgba(63,127,90,.08), transparent 20%); }
+  .no-image-page .copy::after { content: ""; position: absolute; right: 38px; bottom: 34px; width: 92px; height: 92px; border: 3px double rgba(176,154,88,.18); border-radius: 50%; background:
+    linear-gradient(90deg, transparent 48%, rgba(67,111,122,.12) 49%, rgba(67,111,122,.12) 51%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(67,111,122,.12) 49%, rgba(67,111,122,.12) 51%, transparent 52%);
+    pointer-events: none; }
+  .page-kicker { margin: 0 0 8px; color: var(--gold); font-family: "Trebuchet MS", Arial, sans-serif; text-transform: uppercase; letter-spacing: 0; font-size: 12px; font-weight: 800; }
+  h2 { margin: 0 0 16px; color: var(--ink); font-family: "Trebuchet MS", Arial, sans-serif; font-size: 30px; line-height: 1.06; }
+  p { font-size: 17px; line-height: 1.48; margin: 0 0 9px; }
+  footer { position: absolute; right: 20px; bottom: 14px; color: rgba(34,48,38,.55); font-family: "Trebuchet MS", Arial, sans-serif; font-size: 13px; }
+  .blue .art { border-bottom-color: var(--blue); }
+  .gold .art { border-bottom-color: var(--gold); }
+  .coral .art { border-bottom-color: var(--coral); }
+  .quiet .art { border-bottom-color: rgba(34,48,38,.25); }
+  .cover-page { min-height: 940px; display: flex; flex-direction: column; justify-content: flex-end; color: #fffaf0; background: linear-gradient(180deg, rgba(255,250,240,.04), rgba(34,48,38,.48)), url('bilder/gesundheitskompass-kids-cover-concept.png') center / cover; }
+  .cover-page .art { display: none; }
+  .cover-page .copy { padding: 58px; background: linear-gradient(180deg, transparent, rgba(34,48,38,.65)); }
+  .cover-page h2 { color: #fffaf0; font-size: 54px; max-width: 620px; }
+  .cover-page p { max-width: 670px; color: rgba(255,250,240,.9); }
+  .fact-page .art, .mission-page .art, .parent-page .art, .appendix-page .art, .intro-page .art { height: 340px; }
+  .short-copy-page .art { height: 470px; }
+  .short-copy-page .art.designed-art { height: 390px; }
+  .long-copy-page .art { height: 390px; }
+  .parent-page .copy, .appendix-page .copy { padding-top: 24px; }
+  .parent-page p, .appendix-page p { font-size: 16px; line-height: 1.44; }
+  .certificate-page { min-height: 760px; display: grid; place-items: center; padding: 46px; background: #fffaf0; }
+  .certificate-cut { position: absolute; top: 14px; left: 18px; color: var(--muted); font-family: "Trebuchet MS", Arial, sans-serif; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+  .certificate { width: 100%; min-height: 520px; border: 6px double var(--gold); border-radius: 12px; padding: 46px 54px; text-align: center; background: #fffdf6; }
+  .cert-brand { font-family: "Trebuchet MS", Arial, sans-serif; text-transform: uppercase; letter-spacing: 0; color: var(--gold); font-size: 12px; margin-bottom: 12px; }
+  .certificate h2 { color: var(--mint); text-transform: uppercase; font-size: 44px; margin-bottom: 12px; }
+  .cert-name { width: 55%; margin: 28px auto; padding-bottom: 8px; border-bottom: 2px dotted rgba(96,112,93,.58); font-size: 24px; color: rgba(96,112,93,.42); }
+  .cert-calli { display: flex; justify-content: center; margin: 18px 0 -22px; }
+  .cert-calli .mini-calli { width: 68px; height: 68px; }
+  .cert-signatures { display: flex; justify-content: space-between; margin-top: 62px; text-align: left; color: var(--muted); }
+  @media print {
+    @page { size: 8.5in 11in; margin: 0; }
+    body { background: #fff; }
+    .toolbar, .summary { display: none; }
+    .wrap { width: 8.5in; padding: 0; margin: 0; }
+    .book-page { width: 8.5in; height: 11in; min-height: auto; margin: 0; border: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; overflow: hidden; }
+    .art { height: 4.75in; }
+    .fact-page .art, .mission-page .art, .parent-page .art, .appendix-page .art, .intro-page .art { height: 3.75in; }
+    .short-copy-page .art { height: 5.1in; }
+    .short-copy-page .art.designed-art { height: 4.25in; }
+    .long-copy-page .art { height: 4.25in; }
+    .copy { padding: .32in .58in .56in; }
+    h2 { font-size: 24pt; }
+    p { font-size: 12.7pt; line-height: 1.38; margin-bottom: 5.5pt; }
+    .parent-page p, .appendix-page p { font-size: 11.8pt; line-height: 1.34; }
+    footer { bottom: .18in; right: .32in; }
+  }
+</style>
+</head>
+<body>
+  <nav class="toolbar">
+    <span>Callis Gesundheits-Kompass · private Arbeitsfassung mit 29 Aquarell-Bildseiten</span>
+    <a href="#seite-60">Zur Urkunde</a>
+  </nav>
+  <main class="wrap">
+    <section class="summary">
+      <h1>KDP-Inhalt ohne Coverseite</h1>
+      <p>Diese private Datei ist fuer den Paperback-Innenteil gedacht. Das Cover wird bei KDP separat hochgeladen; deshalb beginnt die Innenpaginierung hier ohne Cover.</p>
+      <p><strong>Status:</strong> 29 Seiten nutzen Aquarellbilder, 41 Seiten sind bewusst als Layout-/Infoseiten gestaltet. Es gibt keine Platzhalter mehr.</p>
+    </section>
+    
+    <section class="book-page mint intro-page no-image-page short-copy-page" id="seite-2">
+      
+    <figure class="art designed-art intro">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Titelseite</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>OHR</span><span>HERZ</span><span>KARTE</span><span>CALLI</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 1</p>
+        <h2>Titelseite</h2>
+        <p>Für alle Kinder, die manchmal knurren, gähnen, zappeln, staunen, fragen und dann sehr klug so tun, als hätten sie die Antwort schon immer gewusst.</p>
+<p>Mit Calli, Mira und Noah.</p>
+      </article>
+      <footer>1</footer>
+    </section>
+  
+
+    <section class="book-page mint intro-page no-image-page" id="seite-3">
+      
+    <figure class="art designed-art intro">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Für Kinder</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>OHR</span><span>HERZ</span><span>KARTE</span><span>CALLI</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 2</p>
+        <h2>Für Kinder</h2>
+        <p>Dein Körper redet mit dir.</p>
+<p>Nicht mit langen Sätzen. Nicht mit Briefmarke. Und meistens auch nicht mit Trompete, obwohl ein Bauchknurren manchmal genau so klingt.</p>
+<p>Dein Körper redet mit Zeichen.</p>
+<p>Er knurrt, wenn er Hunger hat. Er macht den Mund trocken, wenn Wasser fehlt. Er lässt deine Beine wippen, wenn Bewegung raus will. Er macht dich müde, wenn die Nacht-Werkstatt bald öffnen möchte.</p>
+<p>Dieses Buch hilft dir, diese Zeichen zu bemerken.</p>
+<p>Du musst nicht alles perfekt machen. Du musst nicht immer brav sein. Du musst auch keinen Brokkoli umarmen.</p>
+<p>Du darfst einfach üben: kurz stehen bleiben, hinhören und dann freundlich entscheiden.</p>
+      </article>
+      <footer>2</footer>
+    </section>
+  
+
+    <section class="book-page mint intro-page no-image-page short-copy-page" id="seite-4">
+      
+    <figure class="art designed-art intro">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Für Eltern und Vorleser</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>OHR</span><span>HERZ</span><span>KARTE</span><span>CALLI</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 3</p>
+        <h2>Für Eltern und Vorleser</h2>
+        <p>Dieses Buch ist kein Regelbuch und kein Arztbuch.</p>
+<p>Es erklärt Kindern in Bildern: Körperzeichen sind keine Strafe. Hunger, Durst, Müdigkeit, Unruhe, Schmerz und Gefühle sind Nachrichten. Manche sind leise. Manche sind laut. Manche kommen im falschen Moment, zum Beispiel genau dann, wenn ein Kind noch eine Runde spielen wollte.</p>
+<p>Beim Vorlesen helfen drei Fragen:</p>
+<p>Was merkst du gerade?</p>
+<p>Was könnte dein Körper brauchen?</p>
+<p>Welche kleine freundliche Entscheidung passt jetzt?</p>
+<p>Bitte ohne Druck. Kinder lernen leichter, wenn sie sich nicht falsch fühlen.</p>
+      </article>
+      <footer>3</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page" id="seite-5">
+      <figure class="art"><img src="bilder/final/page-05-fruehstueck-piep.png" alt="Frühstückstisch, Mira gähnt, Noah schaut überrascht, das Brot liegt ernst auf dem Teller."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 4</p>
+        <h2>Kapitel 1: Der Tag, an dem der Körper piepste</h2>
+        <p>Mira saß am Küchentisch und schaute ihr Brot an.</p>
+<p>Das Brot schaute nicht zurück. Brote sind in dieser Sache sehr unhöflich.</p>
+<p>Noah saß daneben und machte mit seinem Löffel einen kleinen Turm aus Haferflocken.</p>
+<p>„Ich bin gar nicht müde“, sagte Mira.</p>
+<p>Dann gähnte sie so groß, dass Noah kurz prüfte, ob sein Löffel noch da war.</p>
+<p>„Du hast gerade ein Gähn-Tor aufgemacht“, sagte Noah. „Da hätte ein Bus durchfahren können.“</p>
+<p>In diesem Moment machte es leise:</p>
+<p>Piep.</p>
+      </article>
+      <footer>4</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page" id="seite-6">
+      <figure class="art"><img src="bilder/scenes/mvp-02-calli-stellt-sich-vor.png" alt="Calli steht auf dem Tisch. Seine Nadel leuchtet leicht. Mira und Noah beugen sich neugierig vor."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 5</p>
+        <h2>Calli rollt herein</h2>
+        <p>Mira sah unter den Tisch.</p>
+<p>Noah sah in seinen Pullover.</p>
+<p>Das Brot sagte nichts, wie immer.</p>
+<p>Piep.</p>
+<p>Ein kleiner Kompass rollte über die Tischkante. Er blieb neben Miras Teller stehen, klappte seine Nadel hoch und verbeugte sich.</p>
+<p>„Guten Morgen“, sagte der Kompass. „Ich bin Calli. Und dein Körper hat mir gerade eine Nachricht geschickt.“</p>
+<p>„Mein Körper schreibt Nachrichten?“, fragte Mira.</p>
+<p>„Ständig“, sagte Calli. „Nur nicht mit Stift. Er knurrt, gähnt, kribbelt, zappelt, zieht, drückt, hüpft und flüstert.“</p>
+<p>Noah sah beeindruckt aus. „Mein Bauch kann auch Gewitter.“</p>
+<p>„Sehr gut“, sagte Calli. „Dann brauchen wir eine Karte. Nicht für fremde Länder. Für euch. Für innen.“</p>
+      </article>
+      <footer>5</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page long-copy-page" id="seite-7">
+      <figure class="art"><img src="bilder/final/page-07-gesundheitszentrale.png" alt="Eine fantasievolle Körper-Stadt als Karte auf dem Tisch. Kleine freundliche Symbole, keine anatomischen Innenansichten."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 6</p>
+        <h2>Die Gesundheitszentrale</h2>
+        <p>Auf dem Tisch erschien eine Zeichnung.</p>
+<p>Ein Kopf wie eine kleine Denkfabrik.</p>
+<p>Ein Bauch wie eine Sortierstation.</p>
+<p>Muskeln wie Flummis mit Job.</p>
+<p>Ein Herz, das aussah, als würde es fleißig winken.</p>
+<p>„Willkommen in eurer Gesundheitszentrale“, sagte Calli. „Hier wird den ganzen Tag gearbeitet.“</p>
+<p>„Auch wenn ich nichts tue?“, fragte Noah.</p>
+<p>„Gerade dann“, sagte Calli. „Dein Körper ist nämlich kein kaputter Roboter. Er ist eher eine Stadt mit vielen Abteilungen.“</p>
+<p>Mira zeigte auf den Bauch. „Und was macht die Abteilung?“</p>
+<p>Da machte Noahs Bauch:</p>
+<p>KNURRR.</p>
+<p>Calli drehte sich langsam zu ihm.</p>
+<p>„Ich glaube“, sagte er, „die Abteilung möchte sich selbst vorstellen.“</p>
+      </article>
+      <footer>6</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page" id="seite-8">
+      <figure class="art"><img src="bilder/scenes/mvp-06-knurr-bauch-post.png" alt="Noah lacht mit Hand am Bauch. Ein geflügelter Brief schwebt zu Calli."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 7</p>
+        <h2>Bauch-Post</h2>
+        <p>Noahs Bauch knurrte noch einmal.</p>
+<p>Diesmal so laut, dass die Katze vom Sofa sprang und so tat, als hätte sie das sowieso vorgehabt.</p>
+<p>„Ah!“, rief Calli. „Bauch-Post!“</p>
+<p>Ein winziger Briefumschlag flatterte über den Tisch.</p>
+<p>Calli räusperte sich und las vor:</p>
+<p>„Lieber Noah, der Tank wird leer. Bitte demnächst Frühstück einwerfen. Freundliche Grüße, dein Magen.“</p>
+<p>Noah legte die Hand auf den Bauch. „Mein Magen ist höflicher als mein Wecker.“</p>
+<p>„Hunger ist keine Strafe“, sagte Calli. „Und auch kein Notfall. Er ist eine Nachricht.“</p>
+<p>„Und was antwortet man?“, fragte Mira.</p>
+<p>„Mit Ruhe“, sagte Calli. „Und vielleicht mit einem Brot, das immer noch nicht zurückschaut.“</p>
+      </article>
+      <footer>7</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page" id="seite-9">
+      <figure class="art"><img src="bilder/scenes/mvp-08-durst-giesskanne.png" alt="Mira trinkt Wasser. Neben ihr eine kleine Blume richtet sich in einer Fantasieblase auf."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 8</p>
+        <h2>Durst ist leiser</h2>
+        <p>Mira nahm einen Bissen.</p>
+<p>Dann schmatzte sie nicht. Das durfte sie nämlich nicht.</p>
+<p>Stattdessen machte ihr Mund ein trockenes kleines Schmatz-Gefühl ganz von allein.</p>
+<p>„Komisch“, sagte sie. „Mein Mund fühlt sich an wie ein Handtuch, das in der Sonne vergessen wurde.“</p>
+<p>Callis Nadel zeigte auf ihr Glas.</p>
+<p>„Durst-Post“, sagte er.</p>
+<p>„Die ist aber leiser als Bauch-Post“, sagte Noah.</p>
+<p>„Viele Körperzeichen sind leise“, sagte Calli. „Darum überhört man sie manchmal.“</p>
+<p>Mira trank einen Schluck Wasser.</p>
+<p>„Aaaah“, machte sie.</p>
+<p>„Offizielle Gießkannen-Geräusche“, sagte Calli zufrieden.</p>
+      </article>
+      <footer>8</footer>
+    </section>
+  
+
+    <section class="book-page mint fact-page no-image-page" id="seite-10">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 9</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Dein Körper sendet Zeichen. Manche sind laut. Manche sind leise.</p>
+<p>Hunger kann heißen: Ich brauche Energie.</p>
+<p>Durst kann heißen: Ich brauche Flüssigkeit.</p>
+<p>Müdigkeit kann heißen: Ich brauche Pause oder Schlaf.</p>
+<p>Unruhe kann heißen: Ich brauche Bewegung, Ruhe oder Hilfe beim Sortieren.</p>
+<p>Kein Zeichen ist eine Strafe. Es ist eine Nachricht von dir an dich.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Erst hören. Dann entscheiden.</p>
+      </article>
+      <footer>9</footer>
+    </section>
+  
+
+    <section class="book-page mint mission-page no-image-page long-copy-page" id="seite-11">
+      
+    <figure class="art designed-art mission">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Mitmach-Kompass</span>
+          <strong>Mach mit: Körper-Radio</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span><span>FERTIG</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 10</p>
+        <h2>Mach mit: Körper-Radio</h2>
+        <p>Leg eine Hand auf den Bauch.</p>
+<p>Leg eine Hand auf die Brust.</p>
+<p>Atme einmal langsam ein.</p>
+<p>Atme einmal langsam aus.</p>
+<p>Frag dich:</p>
+<p>Was sendet mein Körper gerade?</p>
+<p>Ich habe Hunger.</p>
+<p>Ich habe Durst.</p>
+<p>Ich bin müde.</p>
+<p>Ich brauche Bewegung.</p>
+<p>Ich brauche Nähe.</p>
+<p>Ich weiß es noch nicht.</p>
+<p>Alles ist erlaubt. Auch „ich weiß es noch nicht“ ist eine kluge Antwort.</p>
+      </article>
+      <footer>10</footer>
+    </section>
+  
+
+    <section class="book-page mint parent-page no-image-page short-copy-page" id="seite-12">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 11</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Wenn Kinder Körperzeichen nennen, müssen Erwachsene nicht sofort verbessern.</p>
+<p>Hilfreich ist oft:</p>
+<p>„Was könnte dein Körper gerade brauchen?“</p>
+<p>Oder:</p>
+<p>„Wollen wir zusammen kurz ausprobieren?“</p>
+<p>So entsteht kein Druck. Es entsteht Sprache.</p>
+<p>Und Sprache ist manchmal der Anfang von einer guten Gewohnheit.</p>
+      </article>
+      <footer>11</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page" id="seite-13">
+      <figure class="art"><img src="bilder/final/page-13-schlaf-turm.png" alt="Noah sitzt vor einem halbfertigen Turm. Im Hintergrund wird das Kinderzimmer abendlich warm."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 12</p>
+        <h2>Kapitel 2: Schlaf ist kein Pauseknopf</h2>
+        <p>Am Abend hatte Noah ein Problem.</p>
+<p>Es war ein sehr großes Problem.</p>
+<p>Es hieß: Bettzeit.</p>
+<p>„Bettzeit ist unfair“, sagte Noah. „Sie kommt immer dann, wenn ich gerade noch etwas Wichtiges tun muss.“</p>
+<p>„Was denn?“, fragte Mira.</p>
+<p>Noah zeigte auf seinen Turm aus Bauklötzen.</p>
+<p>„Dieser Turm braucht noch einen Balkon, einen geheimen Fahrstuhl und vielleicht einen Hubschrauberlandeplatz.“</p>
+<p>Calli rollte über den Teppich.</p>
+<p>„Beeindruckend“, sagte er. „Aber dein Körper hat auch einen Bauplan.“</p>
+<p>Noah blinzelte. „Mein Körper baut?“</p>
+<p>„Nachts“, sagte Calli. „Sehr leise. Mit Schlafmütze.“</p>
+      </article>
+      <footer>12</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page" id="seite-14">
+      <figure class="art"><img src="bilder/final/page-14-nacht-werkstatt.png" alt="Fantasievolle Nacht-Werkstatt mit warmen Lichtpunkten, Regalen und weichen Schatten."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 13</p>
+        <h2>Die Nacht-Werkstatt</h2>
+        <p>Das Zimmer wurde dunkler.</p>
+<p>Nicht gruselig-dunkel.</p>
+<p>Gemütlich-dunkel.</p>
+<p>In der Ecke funkelte plötzlich eine kleine Nacht-Werkstatt. Dort sortierten Lichtpunkte Erinnerungen in Regale. Ein Lichtpunkt schob einen Wagen mit dem Schild: „Morgen wieder probieren.“ Ein anderer polierte eine kleine Batterie.</p>
+<p>„Im Schlaf räumt dein Gehirn auf“, flüsterte Calli.</p>
+<p>„Räumt es auch meine Spielsachen auf?“, fragte Noah hoffnungsvoll.</p>
+<p>„Leider nein“, sagte Calli. „Dafür bräuchte dein Gehirn Arme.“</p>
+<p>Mira kicherte.</p>
+<p>„Aber es sortiert, was du erlebt hast. Dein Körper erholt sich. Deine Gefühle bekommen Platz. Und morgen fühlt sich manches nicht mehr ganz so zerknittert an.“</p>
+<p>Noah fasste sich an die Stirn. „Ich habe manchmal Knitter im Kopf.“</p>
+<p>„Sehr menschlich“, sagte Calli.</p>
+      </article>
+      <footer>13</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page" id="seite-15">
+      <figure class="art"><img src="bilder/final/page-15-licht-sagt-wach.png" alt="Ein Tablet leuchtet wie eine kleine Trompete in einer Fantasieblase. Calli zeigt freundlich, nicht streng."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 14</p>
+        <h2>Licht sagt Wach</h2>
+        <p>Noah griff nach seinem Tablet.</p>
+<p>„Nur ganz kurz“, sagte er. „Ein winziges Kurz. Ein Krümel-Kurz.“</p>
+<p>Callis Nadel zeigte auf den Bildschirm.</p>
+<p>„Licht sagt deinem Körper: Wach bleiben.“</p>
+<p>„Aber es ist nur ein kleines Licht“, sagte Noah.</p>
+<p>„Ein kleines Licht kann im Kopf ziemlich laut sein“, sagte Calli. „Vor allem abends.“</p>
+<p>Mira stellte sich vor, wie im Kopf jemand mit einer hellen Trompete durch die Nacht-Werkstatt marschierte.</p>
+<p>„Tröööt“, sagte sie.</p>
+<p>Noah legte das Tablet langsam weg.</p>
+<p>„Meine Werkstatt mag keine Trompeten?“</p>
+<p>„Nicht kurz vor dem Schlaf“, sagte Calli. „Dann mag sie leise Dinge.“</p>
+      </article>
+      <footer>14</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page" id="seite-16">
+      <figure class="art"><img src="bilder/final/page-16-startrampen-ritual.png" alt="Drei Ritualkarten auf einem Teppich. Noah trägt Schlafanzug, Mira hält ein Buch."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 15</p>
+        <h2>Das Startrampen-Ritual</h2>
+        <p>„Wie kommt man denn gut ins Bett?“, fragte Mira.</p>
+<p>„Mit einer Startrampe“, sagte Calli.</p>
+<p>Noah setzte sich auf. „Für Raketen?“</p>
+<p>„Für müde Körper.“</p>
+<p>Calli legte drei Karten auf den Teppich.</p>
+<p>Karte eins: Zähne putzen.</p>
+<p>Karte zwei: Licht dunkler.</p>
+<p>Karte drei: Geschichte hören.</p>
+<p>„Wenn die Reihenfolge oft ähnlich ist, merkt dein Körper: Ah, jetzt geht es Richtung Schlaf.“</p>
+<p>„Und wenn ich nicht müde bin?“, fragte Noah.</p>
+<p>„Dann darfst du trotzdem ruhen“, sagte Calli. „Ruhen ist die kleine Schwester vom Schlaf. Sie ist auch nützlich.“</p>
+      </article>
+      <footer>15</footer>
+    </section>
+  
+
+    <section class="book-page blue fact-page no-image-page" id="seite-17">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 16</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Schlaf hilft vielen Dingen:</p>
+<p>dem Kopf beim Sortieren,</p>
+<p>der Stimmung beim Beruhigen,</p>
+<p>dem Körper beim Wachsen und Erholen,</p>
+<p>der Aufmerksamkeit am nächsten Tag.</p>
+<p>Bildschirme sind nicht böse. Aber kurz vor dem Schlafen können sie den Kopf wieder wach machen.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Schlaf ist kein Pauseknopf. Schlaf ist Nachtarbeit mit Kuscheldecke.</p>
+      </article>
+      <footer>16</footer>
+    </section>
+  
+
+    <section class="book-page blue mission-page" id="seite-18">
+      <figure class="art"><img src="bilder/final/page-18-drei-gute-dinge.png" alt="Mira und Noah liegen im Bett. Über ihnen schweben drei kleine goldene Erinnerungspunkte."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 17</p>
+        <h2>Mach mit: Drei gute Dinge</h2>
+        <p>Vor dem Einschlafen nennt jeder drei Dinge vom Tag.</p>
+<p>Etwas Schönes.</p>
+<p>Etwas Lustiges.</p>
+<p>Etwas, das morgen noch einmal probiert werden darf.</p>
+<p>Mira sagte: „Der Apfel war knusprig.“</p>
+<p>Noah sagte: „Mein Turm hatte fast einen Balkon.“</p>
+<p>Calli sagte: „Ich habe heute ein Brot kennengelernt, das sehr ernst war.“</p>
+<p>Dann wurde es still.</p>
+<p>Nicht sofort Schlaf-still.</p>
+<p>Aber fast.</p>
+      </article>
+      <footer>17</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page no-image-page" id="seite-19">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Wenn Schlaf schwierig ist</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 18</p>
+        <h2>Wenn Schlaf schwierig ist</h2>
+        <p>Manchmal kommt Schlaf nicht sofort.</p>
+<p>Manchmal ist der Kopf voll.</p>
+<p>Manchmal fühlt sich ein Kind allein, obwohl jemand im Haus ist.</p>
+<p>Dann darf man sprechen.</p>
+<p>„Ich kann nicht schlafen.“</p>
+<p>„Ich habe Angst.“</p>
+<p>„Mein Kopf ist noch laut.“</p>
+<p>Das sind keine falschen Sätze. Das sind Hilfesätze.</p>
+<p>Calli flüsterte: „Starke Kinder müssen nicht alles allein schaffen.“</p>
+<p>Noah nickte langsam.</p>
+<p>„Auch nicht Bettzeit?“</p>
+<p>„Auch nicht Bettzeit“, sagte Calli.</p>
+      </article>
+      <footer>18</footer>
+    </section>
+  
+
+    <section class="book-page blue parent-page no-image-page short-copy-page" id="seite-20">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 19</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Schlaf gelingt nicht besser durch Druck.</p>
+<p>Oft helfen wiederkehrende Abläufe, weniger helles Licht, ein ruhiger Ton und die Erlaubnis, über Sorgen zu sprechen.</p>
+<p>Wenn Schlafprobleme lange bleiben, sehr belasten oder mit starken Ängsten verbunden sind, sollte fachlicher Rat eingeholt werden.</p>
+<p>Für den Alltag gilt:</p>
+<p>Ein gutes Ritual ist wie ein Geländer. Es hält, ohne zu schieben.</p>
+      </article>
+      <footer>19</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page" id="seite-21">
+      <figure class="art"><img src="bilder/gesundheitskompass-kids-food-spread-concept.png" alt="Bunter Teller und Fantasie-Rutsche mit Bausteinen und kleinen Besen."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 20</p>
+        <h2>Kapitel 3: Bauch-Post und bunter Teller</h2>
+        <p>Am nächsten Mittag legte Mira Tomate, Gurke, Brot und Käse auf den Teller.</p>
+<p>Noah kniff die Augen zusammen.</p>
+<p>„Das sieht aus wie eine Ampel, die Hunger hat.“</p>
+<p>„Sehr gut beobachtet“, sagte Calli. „Heute besuchen wir die Bauch-Sortierstation.“</p>
+<p>„Gibt es dort Stempel?“, fragte Noah.</p>
+<p>„Natürlich“, sagte Calli. „Jede gute Sortierstation hat Stempel.“</p>
+<p>Neben dem Teller erschien eine kleine Rutsche. Essensbausteine sausten hinunter.</p>
+<p>Manche wurden Energie-Klötzchen.</p>
+<p>Manche wurden Wachstumssteine.</p>
+<p>Und die Ballaststoffe bekamen kleine Besen.</p>
+<p>„Warum haben die Besen?“, fragte Mira.</p>
+<p>„Weil sie im Bauch beim Weitertransport mithelfen“, sagte Calli.</p>
+      </article>
+      <footer>20</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page" id="seite-22">
+      <figure class="art"><img src="bilder/final/page-22-kein-essen-boesewicht.png" alt="Calli steht freundlich neben einem Keks, als würde er ihn vorstellen. Kein erhobener Zeigefinger."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 21</p>
+        <h2>Kein Essen ist ein Bösewicht</h2>
+        <p>Mira zeigte auf einen Keks.</p>
+<p>„Und der?“</p>
+<p>Calli wurde nicht streng.</p>
+<p>Er machte kein Sirenengeräusch.</p>
+<p>Er stellte sich einfach neben den Keks.</p>
+<p>„Ein Keks ist kein Bösewicht. Essen ist kein Polizeifall.“</p>
+<p>Noah sah erleichtert aus.</p>
+<p>„Gut. Der Keks wirkte schon nervös.“</p>
+<p>„Dein Körper mag Abwechslung“, sagte Calli. „Wenn der Alltag oft bunt, wasserfreundlich und beweglich ist, darf es auch Dinge geben, die einfach nur gut schmecken.“</p>
+<p>Mira dachte nach.</p>
+<p>„Also nicht: alles verboten?“</p>
+<p>„Nein“, sagte Calli. „Eher: öfter das, was hilft. Und manchmal das, was feiert.“</p>
+      </article>
+      <footer>21</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-23">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Satt ist auch eine Nachricht</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 22</p>
+        <h2>Satt ist auch eine Nachricht</h2>
+        <p>Noah aß schnell.</p>
+<p>Sehr schnell.</p>
+<p>Sein Löffel sah aus, als würde er trainieren.</p>
+<p>„Stopp“, sagte Calli sanft.</p>
+<p>Noah hielt den Löffel in der Luft.</p>
+<p>„Ist etwas kaputt?“</p>
+<p>„Nein. Aber manchmal braucht der Bauch kurz Zeit, um dem Kopf zu sagen: Danke, ich bin bald satt.“</p>
+<p>Mira legte die Gabel hin.</p>
+<p>„Mein Bauch schickt langsame Briefe?“</p>
+<p>„Manche Briefe brauchen ein paar Minuten“, sagte Calli.</p>
+<p>Noah betrachtete seinen Teller.</p>
+<p>„Dann warte ich auf die Post.“</p>
+<p>„Gute Idee“, sagte Calli. „Satt ist auch eine Nachricht.“</p>
+      </article>
+      <footer>22</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-24">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Wasser, der Lieferdienst</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 23</p>
+        <h2>Wasser, der Lieferdienst</h2>
+        <p>Nach dem Essen lief Noah zum Garten.</p>
+<p>„Rennen?“</p>
+<p>„Gleich“, sagte Mira. „Ich trinke erst.“</p>
+<p>Calli nickte so stark, dass seine Nadel wackelte.</p>
+<p>„Wasser hilft im Körper beim Transportieren. Es ist wie ein freundlicher Lieferdienst.“</p>
+<p>Noah trank einen Schluck und sagte mit tiefer Stimme:</p>
+<p>„Lieferung angekommen.“</p>
+<p>Mira hob ihr Glas.</p>
+<p>„Für die Denkfabrik.“</p>
+<p>„Für die Muskelflummis“, sagte Noah.</p>
+<p>„Für die Bauch-Sortierstation“, sagte Calli.</p>
+<p>Sie stießen mit Wasser an.</p>
+<p>Es klang nicht besonders festlich.</p>
+<p>Aber sehr gesundheitszentralig.</p>
+      </article>
+      <footer>23</footer>
+    </section>
+  
+
+    <section class="book-page gold fact-page no-image-page" id="seite-25">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 24</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Ein bunter Teller kann viele Bausteine liefern.</p>
+<p>Obst und Gemüse bringen Vitamine, Mineralstoffe und Ballaststoffe.</p>
+<p>Vollkorn macht oft länger satt als sehr helles Brot.</p>
+<p>Wasser ist meistens das beste Alltagsgetränk.</p>
+<p>Kein einzelnes Essen macht dich allein gesund oder ungesund.</p>
+<p>Es kommt auf viele kleine Entscheidungen an.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Dein Bauch braucht keine Verbote. Er braucht Aufmerksamkeit.</p>
+      </article>
+      <footer>24</footer>
+    </section>
+  
+
+    <section class="book-page gold mission-page long-copy-page" id="seite-26">
+      <figure class="art"><img src="bilder/final/page-26-teller-detektiv.png" alt="Mira und Noah schauen mit Lupen auf den Teller. Calli hat eine kleine Detektivmütze."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 25</p>
+        <h2>Mach mit: Teller-Detektiv</h2>
+        <p>Schau auf deinen Teller.</p>
+<p>Findest du etwas:</p>
+<p>Knuspriges?</p>
+<p>Weiches?</p>
+<p>Saftiges?</p>
+<p>Buntes?</p>
+<p>Etwas, das dich lange satt machen kann?</p>
+<p>Etwas, das einfach Freude macht?</p>
+<p>Du musst nicht alles auf einmal haben.</p>
+<p>Du darfst neugierig werden.</p>
+<p>„Ich habe etwas Knuspriges“, sagte Noah.</p>
+<p>„Ich auch“, sagte Mira.</p>
+<p>Calli schaute zum Brot.</p>
+<p>„Es schaut zwar wieder nicht zurück, aber es macht seinen Job.“</p>
+      </article>
+      <footer>25</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-27">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Bauchgefühl</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 26</p>
+        <h2>Bauchgefühl</h2>
+        <p>Am Nachmittag wollte Noah noch einen Keks.</p>
+<p>Dann noch einen.</p>
+<p>Dann sah er den dritten an.</p>
+<p>„Ich weiß nicht, ob mein Bauch noch Hunger hat oder mein Mund noch Party macht.“</p>
+<p>Calli strahlte.</p>
+<p>„Das ist eine sehr gute Frage.“</p>
+<p>Mira legte eine Hand auf den Bauch.</p>
+<p>„Meiner sagt: genug.“</p>
+<p>Noah wartete kurz.</p>
+<p>Sein Bauch sagte nichts Lautes.</p>
+<p>Sein Mund flüsterte: Keks.</p>
+<p>„Ich hebe ihn für später auf“, entschied Noah.</p>
+<p>Calli klappte die Nadel hoch.</p>
+<p>„Das war kein Verbot. Das war Hinhören.“</p>
+      </article>
+      <footer>26</footer>
+    </section>
+  
+
+    <section class="book-page gold parent-page no-image-page short-copy-page" id="seite-28">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 27</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Essen ist ein sensibles Thema.</p>
+<p>Hilfreich sind Sätze wie:</p>
+<p>„Was merkt dein Bauch?“</p>
+<p>„Bist du noch hungrig, satt oder unsicher?“</p>
+<p>„Wollen wir kurz warten und dann entscheiden?“</p>
+<p>Weniger hilfreich sind Scham, Drohung oder Kommentare über Körperform.</p>
+<p>Kinder brauchen Orientierung. Aber sie brauchen auch Vertrauen in ihre eigenen Signale.</p>
+      </article>
+      <footer>27</footer>
+    </section>
+  
+
+    <section class="book-page coral story-page long-copy-page" id="seite-29">
+      <figure class="art"><img src="bilder/scenes/full-16-kribbelbein.png" alt="Noah sitzt am Tisch, seine Beine wippen, unter dem Stuhl kleine Bewegungslinien."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 28</p>
+        <h2>Kapitel 4: Die Energie-Wackelmaschine</h2>
+        <p>Nach dem Mittagessen sollten alle einen Moment ruhig sitzen.</p>
+<p>Mira schaffte es.</p>
+<p>Noah schaffte es ungefähr vier Sekunden.</p>
+<p>Dann wippten seine Füße.</p>
+<p>Erst leise.</p>
+<p>Dann schneller.</p>
+<p>Dann so sehr, dass der Stuhl aussah, als wolle er verreisen.</p>
+<p>„Meine Beine haben eine eigene Meinung“, sagte Noah.</p>
+<p>Callis Nadel zeigte auf die Tür.</p>
+<p>„Zappelbeine sind oft Bewegungs-Post.“</p>
+<p>„Was steht drin?“, fragte Mira.</p>
+<p>Calli räusperte sich.</p>
+<p>„Liebe Familie, hier ist Energie. Bitte Ausgang öffnen.“</p>
+      </article>
+      <footer>28</footer>
+    </section>
+  
+
+    <section class="book-page coral story-page" id="seite-30">
+      <figure class="art"><img src="bilder/scenes/mvp-12-zappelbeine.png" alt="Kinder rennen über eine Wiese. In einer Fantasieblase winken freundliche Muskelflummis."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 29</p>
+        <h2>Muskeln mögen Arbeit</h2>
+        <p>Draußen rannten Mira und Noah über die Wiese.</p>
+<p>Noah rannte los wie ein Pfeil, der vergessen hatte, wohin er wollte.</p>
+<p>Mira hüpfte über drei Steine.</p>
+<p>Calli rollte hinterher und rief: „Wartet auf die kleinen Beine!“</p>
+<p>Nach einer Weile legte Noah die Hand auf die Brust.</p>
+<p>„Mein Herz klopft.“</p>
+<p>„Es arbeitet“, sagte Calli.</p>
+<p>„Ist das schlimm?“</p>
+<p>„Beim Toben darf das Herz schneller klopfen. Es hilft, Blut und Sauerstoff dorthin zu bringen, wo dein Körper gerade mehr braucht.“</p>
+<p>Mira hob die Arme.</p>
+<p>„Meine Muskeln sagen Hallo.“</p>
+<p>„Muskeln mögen Arbeit“, sagte Calli. „Und Pausen danach auch.“</p>
+      </article>
+      <footer>29</footer>
+    </section>
+  
+
+    <section class="book-page coral story-page" id="seite-31">
+      <figure class="art"><img src="bilder/final/page-31-kopf-wach-gefuehl.png" alt="Mira und Noah sitzen im Gras, über ihren Köpfen lösen sich kleine Knoten in Sonnenfunken."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 30</p>
+        <h2>Kopf-wach-Gefühl</h2>
+        <p>Nach dem Rennen setzten sie sich ins Gras.</p>
+<p>Noah atmete schneller.</p>
+<p>Dann lachte er.</p>
+<p>„Komisch. Ich bin müde und wach gleichzeitig.“</p>
+<p>„Das ist ein gutes Toben-Gefühl“, sagte Calli.</p>
+<p>Mira nickte. „Mein Kopf ist weniger verknotet.“</p>
+<p>„Bewegung hilft nicht nur den Muskeln“, erklärte Calli. „Sie kann auch dem Kopf helfen, sich wacher und sortierter zu fühlen.“</p>
+<p>Noah schaute an sich herunter.</p>
+<p>„Also sind meine Beine heimliche Kopfarbeiter?“</p>
+<p>„Manchmal“, sagte Calli. „Sehr sportliche sogar.“</p>
+      </article>
+      <footer>30</footer>
+    </section>
+  
+
+    <section class="book-page coral story-page no-image-page long-copy-page" id="seite-32">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Zu viel Sitzen</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 31</p>
+        <h2>Zu viel Sitzen</h2>
+        <p>Am Nachmittag malte Mira.</p>
+<p>Noah baute.</p>
+<p>Dann saßen beide lange.</p>
+<p>Sehr lange.</p>
+<p>Calli wurde erst leise.</p>
+<p>Dann rollte er einmal gegen Noahs Schuh.</p>
+<p>Tock.</p>
+<p>„Hey!“</p>
+<p>„Bewegungserinnerung“, sagte Calli.</p>
+<p>„Ich war gerade in Gedanken“, sagte Noah.</p>
+<p>„Gedanken sind toll“, sagte Calli. „Aber Körper mögen Wechsel. Sitzen, bewegen, sitzen, bewegen. Wie ein freundlicher Rhythmus.“</p>
+<p>Mira streckte die Arme.</p>
+<p>„Dann machen wir eine Mini-Pause.“</p>
+<p>„Genau“, sagte Calli. „Nicht riesig. Nur wirksam.“</p>
+      </article>
+      <footer>31</footer>
+    </section>
+  
+
+    <section class="book-page coral fact-page no-image-page" id="seite-33">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 32</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Bewegung kann deinem Körper helfen:</p>
+<p>Muskeln stärker zu machen.</p>
+<p>Knochen zu belasten, damit sie kräftig bleiben.</p>
+<p>Herz und Atmung zu trainieren.</p>
+<p>Den Kopf wacher zu machen.</p>
+<p>Die Stimmung zu bewegen, wenn innen alles festklebt.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Bewegung ist keine Strafe. Bewegung ist Körperfreude mit Schweißperlen.</p>
+      </article>
+      <footer>32</footer>
+    </section>
+  
+
+    <section class="book-page coral mission-page" id="seite-34">
+      <figure class="art"><img src="bilder/final/page-34-tier-olympiade.png" alt="Mira, Noah und Calli machen Tierbewegungen. Calli rollt stolz."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 33</p>
+        <h2>Mach mit: Tier-Olympiade</h2>
+        <p>Probiere drei Bewegungen:</p>
+<p>Froschsprung: fünfmal klein in die Hocke und hüpfen.</p>
+<p>Bärengang: auf Händen und Füßen durch den Raum.</p>
+<p>Flamingo: auf einem Bein stehen und bis zehn zählen.</p>
+<p>Mira schaffte Flamingo bis acht.</p>
+<p>Noah schaffte Flamingo bis drei und erfand dann den Wackel-Flamingo.</p>
+<p>Calli versuchte den Bärengang.</p>
+<p>Er kam genau zwei Zentimeter weit.</p>
+<p>„Ich bin eher ein Rolltier“, sagte er.</p>
+      </article>
+      <footer>33</footer>
+    </section>
+  
+
+    <section class="book-page coral story-page no-image-page" id="seite-35">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Pause gehört dazu</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 34</p>
+        <h2>Pause gehört dazu</h2>
+        <p>Nach der Tier-Olympiade lag Noah im Gras.</p>
+<p>„Meine Beine sind leer.“</p>
+<p>„Dann haben sie gearbeitet“, sagte Calli.</p>
+<p>Mira trank Wasser.</p>
+<p>„Meine auch. Aber gut leer.“</p>
+<p>„Pausen sind Teil von Bewegung“, sagte Calli. „Wer tobt, darf trinken. Wer rennt, darf ausruhen. Wer übt, darf langsam besser werden.“</p>
+<p>Noah sah seine Turnschuhe an.</p>
+<p>„Meine Schuhe wollen morgen wieder.“</p>
+<p>„Dann schreiben wir das in den Wochen-Kompass“, sagte Calli.</p>
+<p>„Meine Schuhe können schreiben?“</p>
+<p>„Nein“, sagte Calli. „Aber sie können sehr deutlich herumstehen.“</p>
+      </article>
+      <footer>34</footer>
+    </section>
+  
+
+    <section class="book-page coral parent-page no-image-page" id="seite-36">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 35</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Bewegung muss nicht immer Sport heißen.</p>
+<p>Für viele Kinder sind Alltagsspiele leichter:</p>
+<p>Treppe statt Aufzug.</p>
+<p>Tanzlied in der Küche.</p>
+<p>Fünf Minuten Fangen.</p>
+<p>Rucksack selbst tragen.</p>
+<p>Spaziergang mit Suchauftrag.</p>
+<p>Wichtig ist nicht, dass es perfekt ist. Wichtig ist, dass Bewegung normal, freundlich und erreichbar bleibt.</p>
+      </article>
+      <footer>35</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page no-image-page long-copy-page" id="seite-37">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Kapitel 5: Wenn innen Wetter ist</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 36</p>
+        <h2>Kapitel 5: Wenn innen Wetter ist</h2>
+        <p>Am nächsten Tag regnete es.</p>
+<p>Mira mochte Regen.</p>
+<p>Aber heute fühlte sich in ihr noch etwas anderes regnerisch an.</p>
+<p>Noah baute einen Papierflieger. Er warf ihn.</p>
+<p>Der Flieger landete genau in Miras Bild.</p>
+<p>Mira wurde still.</p>
+<p>Sehr still.</p>
+<p>Noah merkte es zuerst nicht.</p>
+<p>„Guter Flug“, sagte er.</p>
+<p>Mira zog die Augenbrauen zusammen.</p>
+<p>„Nicht guter Landeplatz.“</p>
+<p>Da wurde es in ihrem Bauch eng.</p>
+<p>Calli rollte langsam näher.</p>
+<p>„Gefühls-Wetter“, sagte er leise.</p>
+      </article>
+      <footer>36</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page long-copy-page" id="seite-38">
+      <figure class="art"><img src="bilder/scenes/mvp-16-gefuehls-wetter.png" alt="Miras Gefühlswolken: Wut, Traurigkeit, Bedürfnis nach Trost."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 37</p>
+        <h2>Wut-Gewitter</h2>
+        <p>„Ich bin wütend“, sagte Mira.</p>
+<p>Dann schüttelte sie den Kopf.</p>
+<p>„Oder traurig.“</p>
+<p>Dann schüttelte sie noch einmal den Kopf.</p>
+<p>„Oder beides. Kann man beides sein?“</p>
+<p>„Oh ja“, sagte Calli. „Innenwetter kann sehr gemischt sein.“</p>
+<p>Über Miras Kopf erschienen kleine Wolken. Eine blitzte. Eine regnete. Eine sah aus, als wollte sie einfach nur eine Decke.</p>
+<p>Noah sah den Papierflieger an.</p>
+<p>„Das war nicht extra.“</p>
+<p>„Das hilft“, sagte Calli. „Aber Miras Körper ist trotzdem gerade laut.“</p>
+<p>Mira atmete einmal kurz.</p>
+<p>„Mein Bauch ist fest.“</p>
+<p>„Das ist eine wichtige Nachricht“, sagte Calli. „Gefühle wohnen nicht nur im Kopf. Man merkt sie oft auch im Körper.“</p>
+      </article>
+      <footer>37</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page long-copy-page" id="seite-39">
+      <figure class="art"><img src="bilder/final/page-39-wetter-sprechen.png" alt="Noah hilft beim Glattstreichen. Die Wolke über Mira öffnet ein kleines Fenster mit Licht."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 38</p>
+        <h2>Wetter darf gesprochen werden</h2>
+        <p>Noah nahm den Papierflieger aus dem Bild.</p>
+<p>„Entschuldigung“, sagte er. „Ich wollte dein Bild nicht treffen.“</p>
+<p>Mira nickte.</p>
+<p>Das Gewitter wurde ein bisschen leiser.</p>
+<p>„Ich will trotzdem noch wütend sein“, sagte sie.</p>
+<p>„Das darfst du“, sagte Calli. „Entschuldigung ist kein Zauberradierer.“</p>
+<p>Noah setzte sich neben sie.</p>
+<p>„Soll ich helfen?“</p>
+<p>Mira überlegte.</p>
+<p>„Du kannst das Papier glattstreichen.“</p>
+<p>Noah strich vorsichtig über die Ecke.</p>
+<p>Calli lächelte.</p>
+<p>„Reden macht Wetter nicht sofort weg. Aber es macht Fenster auf.“</p>
+      </article>
+      <footer>38</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page" id="seite-40">
+      <figure class="art"><img src="bilder/final/page-40-angst-nebel.png" alt="Noah steht vor einer neuen Tür. Nebel ist freundlich und weich, nicht gruselig. Calli zeigt einen kleinen Schritt."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 39</p>
+        <h2>Angst-Nebel</h2>
+        <p>Später erzählte Noah, dass er auch Innenwetter kannte.</p>
+<p>„Manchmal habe ich vor neuen Sachen Angst“, sagte er. „Dann wird mein Bauch ein Nebelglas.“</p>
+<p>„Nebelglas?“, fragte Mira.</p>
+<p>„So, als könnte ich nicht richtig durchgucken.“</p>
+<p>Calli nickte.</p>
+<p>„Angst will oft schützen. Sie ruft: Achtung, schau genau hin.“</p>
+<p>„Aber manchmal ruft sie zu laut“, sagte Noah.</p>
+<p>„Dann suchen wir einen sicheren Erwachsenen“, sagte Calli. „Oder wir machen den nächsten Schritt kleiner.“</p>
+<p>Mira hob einen Finger.</p>
+<p>„Wie klein?“</p>
+<p>Calli zeigte mit zwei winzigen Kompassarmen eine winzige Lücke.</p>
+<p>„Manchmal so klein.“</p>
+      </article>
+      <footer>39</footer>
+    </section>
+  
+
+    <section class="book-page blue fact-page no-image-page" id="seite-41">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 40</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Gefühle sind Körperzeichen.</p>
+<p>Wut kann sich heiß anfühlen.</p>
+<p>Angst kann den Bauch eng machen.</p>
+<p>Traurigkeit kann schwer sein.</p>
+<p>Freude kann kribbeln.</p>
+<p>Kein Gefühl ist falsch.</p>
+<p>Aber nicht jedes Gefühl darf alles bestimmen.</p>
+<p>Du darfst lernen, was du fühlst, was du brauchst und wen du um Hilfe bitten kannst.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Innenwetter darf da sein. Du musst nicht allein darin stehen.</p>
+      </article>
+      <footer>40</footer>
+    </section>
+  
+
+    <section class="book-page blue mission-page no-image-page long-copy-page" id="seite-42">
+      
+    <figure class="art designed-art mission">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Mitmach-Kompass</span>
+          <strong>Mach mit: Wetterbericht</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span><span>FERTIG</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 41</p>
+        <h2>Mach mit: Wetterbericht</h2>
+        <p>Sag deinen Wetterbericht:</p>
+<p>Heute war in mir:</p>
+<p>Sonne.</p>
+<p>Wolken.</p>
+<p>Nebel.</p>
+<p>Gewitter.</p>
+<p>Wind.</p>
+<p>Regen.</p>
+<p>Alles durcheinander.</p>
+<p>Dann frag:</p>
+<p>Was hat geholfen?</p>
+<p>Reden?</p>
+<p>Atmen?</p>
+<p>Pause?</p>
+<p>Umarmung?</p>
+<p>Allein sein?</p>
+<p>Hilfe holen?</p>
+<p>Mira sagte: „In mir war erst Gewitter. Dann kleiner Regen. Jetzt ist es nur noch Pfütze.“</p>
+<p>Noah sagte: „Pfütze klingt machbar.“</p>
+      </article>
+      <footer>41</footer>
+    </section>
+  
+
+    <section class="book-page blue story-page no-image-page long-copy-page" id="seite-43">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Atmen als Anker</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 42</p>
+        <h2>Atmen als Anker</h2>
+        <p>Calli legte sich flach auf den Tisch.</p>
+<p>„Was machst du?“, fragte Noah.</p>
+<p>„Ich bin ein Atem-Anker.“</p>
+<p>Mira lachte. „Du bist ein Kompass.“</p>
+<p>„Ein sehr vielseitiger Kompass.“</p>
+<p>Calli zeigte es vor:</p>
+<p>Einatmen: Die Schultern werden weich.</p>
+<p>Ausatmen: Der Bauch darf loslassen.</p>
+<p>Noch einmal.</p>
+<p>Nicht, damit ein Gefühl sofort verschwindet.</p>
+<p>Sondern damit man wieder besser entscheiden kann.</p>
+<p>Noah probierte es.</p>
+<p>„Mein Nebelglas ist noch da“, sagte er. „Aber es ist weniger beschlagen.“</p>
+<p>„Das reicht“, sagte Calli.</p>
+      </article>
+      <footer>42</footer>
+    </section>
+  
+
+    <section class="book-page blue parent-page no-image-page short-copy-page" id="seite-44">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 43</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Kinder brauchen Worte für Gefühle, bevor sie gute Wege damit finden.</p>
+<p>Hilfreiche Sätze:</p>
+<p>„Ich sehe, da ist gerade viel los.“</p>
+<p>„Wo merkst du es im Körper?“</p>
+<p>„Willst du reden, atmen, Pause oder Hilfe?“</p>
+<p>Gefühle benennen heißt nicht, Verhalten automatisch zu erlauben.</p>
+<p>Es heißt: Erst verstehen. Dann begleiten. Dann entscheiden.</p>
+      </article>
+      <footer>43</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page" id="seite-45">
+      <figure class="art"><img src="bilder/final/page-45-seifen-rutschbahn.png" alt="Noah mit erdigen Händen, Calli zeigt auf ein Waschbecken mit freundlichen Seifenblasen."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 44</p>
+        <h2>Kapitel 6: Die Seifen-Rutschbahn</h2>
+        <p>Am Nachmittag kam Noah aus dem Garten.</p>
+<p>Seine Hände sahen aus, als hätten sie ein sehr erfolgreiches Treffen mit Erde gehabt.</p>
+<p>„Ich habe einen Tunnel gebaut“, sagte er stolz.</p>
+<p>Mira zeigte auf seine Finger.</p>
+<p>„Da wohnt noch ein halber Garten.“</p>
+<p>Noah betrachtete seine Hände.</p>
+<p>„Der Garten hängt an mir.“</p>
+<p>Calli rollte zum Waschbecken.</p>
+<p>„Dann ist es Zeit für die Seifen-Rutschbahn.“</p>
+<p>„Gibt es eine Rutschbahn?“, fragte Noah.</p>
+<p>„Für Schmutz“, sagte Calli.</p>
+<p>„Das klingt fair“, sagte Noah.</p>
+      </article>
+      <footer>44</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page no-image-page" id="seite-46">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Keime ohne Grusel</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 45</p>
+        <h2>Keime ohne Grusel</h2>
+        <p>Calli machte kein Gruselgesicht.</p>
+<p>Er malte auch keine riesigen Monster.</p>
+<p>„Auf Händen können Dinge sein, die man nicht sieht“, erklärte er. „Schmutz, Staub und manchmal Keime.“</p>
+<p>Mira schaute auf ihre Hände.</p>
+<p>„Unsichtbare Mitfahrer?“</p>
+<p>„Genau“, sagte Calli. „Viele sind harmlos. Manche können krank machen. Deshalb waschen wir sie nach dem Draußenspielen, nach der Toilette, vor dem Essen und wenn wir gehustet oder geniest haben.“</p>
+<p>Noah drehte den Wasserhahn auf.</p>
+<p>„Alle aussteigen“, sagte er zu seinen Händen.</p>
+<p>„Mit Seife“, sagte Calli.</p>
+<p>„Alle aussteigen, aber rutschig“, verbesserte Noah.</p>
+      </article>
+      <footer>45</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page long-copy-page" id="seite-47">
+      <figure class="art"><img src="bilder/final/page-47-wasch-lied.png" alt="Hände mit Seifenschaum, kleine beschriftungsfreie Zimmer-Symbole in einer Fantasieblase."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 46</p>
+        <h2>Das Wasch-Lied ohne Lied</h2>
+        <p>Noah rieb die Hände aneinander.</p>
+<p>„Fertig.“</p>
+<p>„Noch nicht“, sagte Mira.</p>
+<p>„Woher weißt du das?“</p>
+<p>„Weil deine Daumen aussehen, als hätten sie Urlaub gemacht.“</p>
+<p>Calli nickte.</p>
+<p>„Handflächen, Handrücken, zwischen den Fingern, Daumen, Fingerspitzen.“</p>
+<p>Noah seufzte.</p>
+<p>„Meine Hände haben viele Zimmer.“</p>
+<p>„Und Seife besucht jedes“, sagte Calli.</p>
+<p>Mira zählte langsam bis zwanzig.</p>
+<p>Noah machte bei siebzehn ein sehr dramatisches Gesicht.</p>
+<p>Bei zwanzig schäumten seine Hände wie kleine Wolken.</p>
+      </article>
+      <footer>46</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page long-copy-page" id="seite-48">
+      <figure class="art"><img src="bilder/scenes/full-20-nies-turbo.png" alt="Mira niest in die Armbeuge, kleine Tröpfchen werden freundlich von einer Fangstation aufgefangen."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 47</p>
+        <h2>Husten und Niesen</h2>
+        <p>Später musste Mira niesen.</p>
+<p>„Ha...“</p>
+<p>Calli hob beide Arme.</p>
+<p>„Armbeuge!“</p>
+<p>„...tschiiii!“</p>
+<p>Mira nieste in die Armbeuge.</p>
+<p>Noah applaudierte leise.</p>
+<p>„Sportliche Kurve.“</p>
+<p>„Beim Husten und Niesen fliegen winzige Tröpfchen“, sagte Calli. „Die Armbeuge ist wie eine kleine Fangstation.“</p>
+<p>Mira sah in ihre Armbeuge.</p>
+<p>„Ich habe eine Fangstation am Körper?“</p>
+<p>„Sehr praktisch eingebaut“, sagte Calli.</p>
+<p>„Kann meine Armbeuge auch Briefe sortieren?“, fragte Noah.</p>
+<p>„Nicht alles ist Post“, sagte Calli.</p>
+      </article>
+      <footer>47</footer>
+    </section>
+  
+
+    <section class="book-page mint story-page long-copy-page" id="seite-49">
+      <figure class="art"><img src="bilder/scenes/mvp-14-aua-reparatur-trupp.png" alt="Noah ruht auf dem Sofa, Mira bringt Wasser, Calli sitzt auf der Decke."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 48</p>
+        <h2>Krank sein ist kein Versagen</h2>
+        <p>Am Abend fühlte sich Noah schlapp.</p>
+<p>Nicht schlimm.</p>
+<p>Aber schlapp.</p>
+<p>Er wollte nicht rennen.</p>
+<p>Er wollte nicht bauen.</p>
+<p>Er wollte nicht einmal erklären, warum sein Turm einen Hubschrauberlandeplatz brauchte.</p>
+<p>„Mein Körper ist heute langsam“, sagte er.</p>
+<p>Calli rollte näher.</p>
+<p>„Dann hört er vielleicht auf ein anderes Signal.“</p>
+<p>„Welches?“</p>
+<p>„Schonung.“</p>
+<p>Mira brachte ihm Wasser.</p>
+<p>„Krank sein ist kein Versagen“, sagte Calli. „Manchmal braucht der Körper Ruhe, Flüssigkeit und einen Erwachsenen, der gut hinschaut.“</p>
+<p>Noah kuschelte sich in eine Decke.</p>
+<p>„Dann bin ich heute ein Ruhe-Profi.“</p>
+      </article>
+      <footer>48</footer>
+    </section>
+  
+
+    <section class="book-page mint fact-page no-image-page" id="seite-50">
+      
+    <figure class="art designed-art fact">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Wusstest-du-schon-Karten</span>
+          <strong>Wusstest du schon?</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>KNURR</span><span>WASSER</span><span>PAUSE</span><span>LOS</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 49</p>
+        <h2>Wusstest du schon?</h2>
+        <p>Hände waschen hilft im Alltag.</p>
+<p>Besonders:</p>
+<p>vor dem Essen,</p>
+<p>nach der Toilette,</p>
+<p>nach dem Draußenspielen,</p>
+<p>nach Husten oder Niesen,</p>
+<p>wenn Hände sichtbar schmutzig sind.</p>
+<p>Husten und Niesen in die Armbeuge kann andere schützen.</p>
+<p>Wenn du dich krank fühlst, sag einem Erwachsenen Bescheid.</p>
+<p>Callis Satz für dieses Kapitel:</p>
+<p>Sauberkeit soll schützen, nicht erschrecken.</p>
+      </article>
+      <footer>49</footer>
+    </section>
+  
+
+    <section class="book-page mint mission-page no-image-page long-copy-page" id="seite-51">
+      
+    <figure class="art designed-art mission">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Mitmach-Kompass</span>
+          <strong>Mach mit: Seifen-Rutschbahn</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span><span>FERTIG</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 50</p>
+        <h2>Mach mit: Seifen-Rutschbahn</h2>
+        <p>So waschen Hände besonders gut:</p>
+<p>Nass machen.</p>
+<p>Seife nehmen.</p>
+<p>Handflächen reiben.</p>
+<p>Handrücken reiben.</p>
+<p>Zwischen den Fingern waschen.</p>
+<p>Daumen nicht vergessen.</p>
+<p>Fingerspitzen waschen.</p>
+<p>Abspülen.</p>
+<p>Abtrocknen.</p>
+<p>Noah hielt die Hände hoch.</p>
+<p>„Sie sehen aus wie neu.“</p>
+<p>„Nicht ganz neu“, sagte Mira. „Aber weniger Garten.“</p>
+      </article>
+      <footer>50</footer>
+    </section>
+  
+
+    <section class="book-page mint parent-page no-image-page short-copy-page" id="seite-52">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Mini-Elternimpuls</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 51</p>
+        <h2>Mini-Elternimpuls</h2>
+        <p>Hygiene soll Kindern Sicherheit geben, keine Angst.</p>
+<p>Statt Keime als gruselige Feinde zu zeigen, hilft ein ruhiger Rahmen:</p>
+<p>„Wir waschen Hände, weil es schützt.“</p>
+<p>„Wir niesen in die Armbeuge, weil das freundlich für andere ist.“</p>
+<p>„Wenn du dich krank fühlst, sagst du Bescheid.“</p>
+<p>So bleiben Kinder handlungsfähig.</p>
+      </article>
+      <footer>51</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page long-copy-page" id="seite-53">
+      <figure class="art"><img src="bilder/final/page-53-wochen-kompass.png" alt="Sieben Karten liegen wie Kompassrichtungen auf dem Tisch."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 52</p>
+        <h2>Kapitel 7: Der Wochen-Kompass</h2>
+        <p>Am Sonntag legte Calli sieben kleine Karten auf den Tisch.</p>
+<p>„Was ist das?“, fragte Mira.</p>
+<p>„Der Wochen-Kompass.“</p>
+<p>Noah stöhnte. „Klingt nach Hausaufgaben.“</p>
+<p>„Nein“, sagte Calli. „Nach Ausprobieren.“</p>
+<p>Auf den Karten standen keine langen Regeln.</p>
+<p>Nur kleine Dinge:</p>
+<p>Wasser hinstellen.</p>
+<p>Abendritual wählen.</p>
+<p>Fünf Minuten bewegen.</p>
+<p>Wetterbericht sagen.</p>
+<p>Hände waschen.</p>
+<p>Pausen machen.</p>
+<p>Freundlich entscheiden.</p>
+<p>Mira nahm die Wasserkarte.</p>
+<p>Noah nahm die Bewegungskarte.</p>
+<p>„Ich nehme die Karte, auf der ich springen darf.“</p>
+<p>„Überraschend“, sagte Calli.</p>
+      </article>
+      <footer>52</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-54">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Eine Sache reicht</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 53</p>
+        <h2>Eine Sache reicht</h2>
+        <p>Mira wollte sofort drei Karten nehmen.</p>
+<p>Wasser.</p>
+<p>Abendritual.</p>
+<p>Wetterbericht.</p>
+<p>Dann sah sie die vielen Karten an und wurde still.</p>
+<p>„Das ist doch viel.“</p>
+<p>Calli schob zwei Karten zurück.</p>
+<p>„Eine Sache reicht für den Anfang.“</p>
+<p>„Aber was ist mit den anderen?“</p>
+<p>„Die laufen nicht weg“, sagte Calli. „Gewohnheiten mögen kleine Türen.“</p>
+<p>Noah sprang einmal.</p>
+<p>„Meine Tür hüpft.“</p>
+<p>„Dann hat sie heute gute Laune“, sagte Calli.</p>
+      </article>
+      <footer>53</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-55">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Der erste Tag</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 54</p>
+        <h2>Der erste Tag</h2>
+        <p>Am Montag stellte Mira morgens ein Glas Wasser auf den Tisch.</p>
+<p>Sie vergaß es.</p>
+<p>Dann erinnerte sie sich.</p>
+<p>Dann trank sie.</p>
+<p>„Zählt das?“, fragte sie.</p>
+<p>„Natürlich“, sagte Calli.</p>
+<p>„Aber ich habe es vergessen.“</p>
+<p>„Und wiedergefunden.“</p>
+<p>Mira lächelte.</p>
+<p>Noah machte fünf Froschsprünge.</p>
+<p>Beim sechsten fiel er auf den Teppich und lachte.</p>
+<p>„Zählt das?“</p>
+<p>„Wenn der Teppich einverstanden ist“, sagte Calli.</p>
+<p>Der Teppich sagte nichts.</p>
+<p>Teppiche sind fast so unhöflich wie Brote.</p>
+      </article>
+      <footer>54</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page long-copy-page" id="seite-56">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Der dritte Tag</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 55</p>
+        <h2>Der dritte Tag</h2>
+        <p>Am Mittwoch hatte niemand Lust.</p>
+<p>Mira nicht.</p>
+<p>Noah nicht.</p>
+<p>Calli auch nicht besonders, aber er war professionell.</p>
+<p>„Heute ist der Wochen-Kompass schwer“, sagte Mira.</p>
+<p>„Dann machen wir ihn kleiner“, sagte Calli.</p>
+<p>„Wie klein?“</p>
+<p>„Ein Schluck Wasser.“</p>
+<p>Mira trank.</p>
+<p>„Einmal strecken.“</p>
+<p>Noah streckte die Arme.</p>
+<p>„Ein Gefühl nennen.“</p>
+<p>„Grummelig“, sagten beide.</p>
+<p>Calli nickte.</p>
+<p>„Ausgezeichnet. Grummelig erkannt.“</p>
+      </article>
+      <footer>55</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page no-image-page" id="seite-57">
+      
+    <figure class="art designed-art story">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Callis Karten</span>
+          <strong>Der fünfte Tag</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>HOEREN</span><span>SPUEREN</span><span>WAEHLEN</span><span>WACHSEN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 56</p>
+        <h2>Der fünfte Tag</h2>
+        <p>Am Freitag erinnerte Noah Mira.</p>
+<p>„Wasserkarte.“</p>
+<p>Mira erinnerte Noah.</p>
+<p>„Froschsprungkarte.“</p>
+<p>Noah sah sie streng an.</p>
+<p>„Ich bin heute eher ein müder Frosch.“</p>
+<p>„Dann mach einen müden Frosch“, sagte Mira.</p>
+<p>Noah ging in die Hocke, hüpfte sehr klein und setzte sich sofort wieder.</p>
+<p>„Das war ein Frosch mit Bürojob“, sagte Calli.</p>
+<p>Mira lachte so sehr, dass ihr Wasser beinahe aus dem Glas kicherte.</p>
+      </article>
+      <footer>56</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page" id="seite-58">
+      <figure class="art"><img src="bilder/final/page-58-siebter-tag.png" alt="Die sieben Karten bilden eine runde Kompassrose. Mira und Noah sitzen stolz daneben."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 57</p>
+        <h2>Der siebte Tag</h2>
+        <p>Am Sonntag legte Calli die sieben Karten wieder auf den Tisch.</p>
+<p>„Was habt ihr gelernt?“</p>
+<p>Mira überlegte.</p>
+<p>„Ich muss nicht alles auf einmal ändern.“</p>
+<p>Noah sagte: „Mein Körper mag kleine Sachen, wenn ich sie wirklich mache.“</p>
+<p>„Sehr gut“, sagte Calli.</p>
+<p>„Und ich habe gelernt“, sagte Mira, „dass mein Bauch, mein Kopf und meine Beine manchmal verschiedene Meinungen haben.“</p>
+<p>„Das ist normal“, sagte Calli. „Dann hörst du zu und entscheidest freundlich.“</p>
+<p>Noah grinste.</p>
+<p>„Also bin ich jetzt ein Körper-Zuhörer.“</p>
+<p>„Offiziell“, sagte Calli.</p>
+      </article>
+      <footer>57</footer>
+    </section>
+  
+
+    <section class="book-page gold story-page long-copy-page" id="seite-59">
+      <figure class="art"><img src="bilder/scenes/mvp-20-urkunde-finale.png" alt="Calli hält eine Urkunde. Mira und Noah sitzen wie bei einer freundlichen Prüfung."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 58</p>
+        <h2>Der Kompass-Check</h2>
+        <p>Calli klappte eine kleine Urkunde auf.</p>
+<p>„Bevor ihr sie bekommt, kommt der Kompass-Check“, sagte Calli. „Sieben kleine Fragen. Eine für jedes Kapitel.“</p>
+<p>Noah setzte sich gerade hin.</p>
+<p>„Ich bin bereit. Vielleicht.“</p>
+<p>Frage eins: Was sagt ein lautes KNURR oft?</p>
+<p>Mira sagte: „Mein Körper braucht Energie.“</p>
+<p>Frage zwei: Was hilft, wenn der Mund trocken wird?</p>
+<p>Noah sagte: „Wasser. Keine Limonaden-Feuerwehr.“</p>
+<p>Frage drei: Was kann abends beim Schlafen helfen?</p>
+<p>Mira sagte: „Eine Startrampe: Zähne putzen, Licht leiser, Geschichte hören.“</p>
+<p>Frage vier: Was können Zappelbeine brauchen?</p>
+<p>Noah sagte: „Bewegung. Oder eine Pause zum Sortieren.“</p>
+<p>Frage fünf: Was darf man sagen, wenn innen Gewitter ist?</p>
+<p>Mira sagte: „Ich bin wütend. Oder traurig. Oder beides.“</p>
+<p>Frage sechs: Was hilft den Händen nach Garten, Niesen und Klebekram?</p>
+<p>Noah sagte: „Waschen. Mit Lied, auch wenn es kein richtiges Lied ist.“</p>
+<p>Frage sieben: Was machst du, wenn du nicht weißt, was dein Körper meint?</p>
+<p>Mira und Noah sagten zusammen: „Erst hören. Dann Hilfe holen oder freundlich entscheiden.“</p>
+<p>Calli strahlte.</p>
+<p>„Bestanden“, sagte Calli. „Mit sehr wachen Ohren.“</p>
+      </article>
+      <footer>58</footer>
+    </section>
+  
+
+      <section class="book-page gold certificate-page" id="seite-60">
+        <div class="certificate-cut">Ausschneide-Urkunde</div>
+        <div class="certificate">
+          <p class="cert-brand">CALLIDUS KIDS · CALLIS GESUNDHEITS-KOMPASS</p>
+          <h2>URKUNDE</h2>
+          <p>für einen echten <strong>Signal-Helden</strong> / eine echte <strong>Signal-Heldin</strong></p>
+          <div class="cert-name">(Dein Name)</div>
+          <p>hat gelernt, die Zeichen seines Körpers zu hören:</p>
+          <p>vom morgendlichen <strong>KNURR</strong> bis zum großen Gähnen –</p>
+          <p>und weiß jetzt: <em>Der Körper redet. Helden hören zu.</em></p>
+          <div class="cert-calli">
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+          <div class="cert-signatures">
+            <span>Datum</span>
+            <span>Calli, dein Kompass</span>
+          </div>
+        </div>
+        <footer>Seite 59</footer>
+      </section>
+    
+
+    <section class="book-page quiet parent-page no-image-page" id="seite-61">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Elternseite: Druck rausnehmen</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 60</p>
+        <h2>Elternseite: Druck rausnehmen</h2>
+        <p>Kinder lernen Gesundheitsverhalten nicht durch Angst.</p>
+<p>Sie lernen durch Wiederholung, Vorbild, Sprache und kleine erreichbare Schritte.</p>
+<p>Dieses Buch lädt ein, Körperzeichen wahrzunehmen:</p>
+<p>Hunger ohne Scham.</p>
+<p>Durst ohne Drama.</p>
+<p>Müdigkeit ohne Kampf.</p>
+<p>Bewegung ohne Strafgefühl.</p>
+<p>Gefühle ohne Alleinsein.</p>
+<p>Hygiene ohne Grusel.</p>
+<p>Wenn ein Thema in der Familie belastet ist, darf es langsamer gehen.</p>
+      </article>
+      <footer>60</footer>
+    </section>
+  
+
+    <section class="book-page quiet parent-page no-image-page" id="seite-62">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Elternseite: Gute Fragen</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 61</p>
+        <h2>Elternseite: Gute Fragen</h2>
+        <p>Gute Fragen sind oft besser als schnelle Anweisungen.</p>
+<p>Was merkst du gerade?</p>
+<p>Wo merkst du es?</p>
+<p>Was könnte helfen?</p>
+<p>Brauchst du Wasser, Essen, Bewegung, Ruhe, Nähe oder Hilfe?</p>
+<p>Wollen wir eine kleine Sache ausprobieren?</p>
+<p>Diese Fragen machen Kinder nicht automatisch gesund.</p>
+<p>Aber sie helfen, Aufmerksamkeit zu üben.</p>
+<p>Und Aufmerksamkeit ist eine starke Grundlage.</p>
+      </article>
+      <footer>61</footer>
+    </section>
+  
+
+    <section class="book-page quiet parent-page no-image-page" id="seite-63">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Elternseite: Wenn Hilfe nötig ist</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 62</p>
+        <h2>Elternseite: Wenn Hilfe nötig ist</h2>
+        <p>Manche Signale brauchen Erwachsene sofort.</p>
+<p>Starke Schmerzen.</p>
+<p>Atemnot.</p>
+<p>Ohnmacht.</p>
+<p>Anhaltendes Fieber.</p>
+<p>Starke Angst.</p>
+<p>Wiederkehrende Schlafprobleme.</p>
+<p>Essverhalten, das Sorgen macht.</p>
+<p>Verletzungen, die nicht gut aussehen.</p>
+<p>Dieses Buch ersetzt keine ärztliche Beratung und keine Diagnostik.</p>
+<p>Es soll Kindern Sprache geben. Für alles Weitere sind sichere Erwachsene und Fachpersonen da.</p>
+      </article>
+      <footer>62</footer>
+    </section>
+  
+
+    <section class="book-page quiet parent-page no-image-page" id="seite-64">
+      
+    <figure class="art designed-art parent">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Eltern-Kompass</span>
+          <strong>Elternseite: Kleine Wochenidee</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>FRAGE</span><span>RUHE</span><span>KLEIN</span><span>DRAN</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 63</p>
+        <h2>Elternseite: Kleine Wochenidee</h2>
+        <p>Eine gute Familienfrage für den Wochenstart:</p>
+<p>Welche eine kleine Gewohnheit wollen wir diese Woche üben?</p>
+<p>Nur eine.</p>
+<p>Zum Beispiel:</p>
+<p>Ein Glas Wasser morgens sichtbar hinstellen.</p>
+<p>Abends zehn Minuten früher ruhiger werden.</p>
+<p>Nach langem Sitzen fünf Bewegungen machen.</p>
+<p>Beim Essen einmal den Bauch fragen.</p>
+<p>Jeden Abend einen Wetterbericht nennen.</p>
+<p>Wenn es nicht klappt: nicht schimpfen.</p>
+<p>Neu anfangen.</p>
+      </article>
+      <footer>63</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page" id="seite-65">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>Quellen kindgerecht erklärt</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 64</p>
+        <h2>Quellen kindgerecht erklärt</h2>
+        <p>Woher wissen Erwachsene solche Dinge?</p>
+<p>Nicht aus Zauberei.</p>
+<p>Forscherinnen und Forscher beobachten, messen, vergleichen und prüfen.</p>
+<p>Sie schauen zum Beispiel:</p>
+<p>Wie Schlaf mit Aufmerksamkeit zusammenhängt.</p>
+<p>Warum Bewegung Kindern guttut.</p>
+<p>Wie Händewaschen Krankheiten verringern kann.</p>
+<p>Warum Wasser, Abwechslung und Ballaststoffe im Alltag wichtig sind.</p>
+<p>Dieses Buch macht daraus Bilder, die Kinder verstehen können.</p>
+      </article>
+      <footer>64</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page short-copy-page" id="seite-66">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>Quellen für Erwachsene</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 65</p>
+        <h2>Quellen für Erwachsene</h2>
+        <p>Für die finale Veröffentlichung werden die Fakten fachlich gegengeprüft.</p>
+<p>Als Startpunkte dienen unter anderem:</p>
+<p>CDC Sleep</p>
+<p>ODPHP Move Your Way für Kinder und Jugendliche</p>
+<p>CDC Clean Hands</p>
+<p>DGE Empfehlungen zu Ernährung und Trinken</p>
+<p>Die Quellen werden in der finalen Ausgabe in ruhiger, kompakter Form angegeben.</p>
+      </article>
+      <footer>65</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page" id="seite-67">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>Über callidus</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 66</p>
+        <h2>Über callidus</h2>
+        <p>callidus möchte Gesundheitswissen verständlich machen.</p>
+<p>Nicht laut.</p>
+<p>Nicht ängstlich.</p>
+<p>Nicht so kompliziert, dass niemand mehr zuhört.</p>
+<p>Sondern klar, freundlich und alltagstauglich.</p>
+<p>Für Erwachsene gibt es bei callidus Gesundheitswissen, Checks und digitale Angebote.</p>
+<p>Callis Gesundheits-Kompass übersetzt diese Haltung für Familien und Kinder.</p>
+<p>Mit weniger Druck.</p>
+<p>Mit mehr Sprache.</p>
+<p>Und mit einem Kompass, der manchmal sehr stolz auf ein Wasserglas ist.</p>
+      </article>
+      <footer>66</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page" id="seite-68">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>Was als Nächstes kommt</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 67</p>
+        <h2>Was als Nächstes kommt</h2>
+        <p>Band 1 hilft beim Hören auf Körperzeichen.</p>
+<p>Weitere Bände können tiefer gehen:</p>
+<p>Band 2: Das Zucker-Monster: Essen, Trinken und Energie.</p>
+<p>Band 3: Der Zappelmotor: Bewegung, Pausen und Gute-Laune-Funken.</p>
+<p>Band 4: Die Schlaf-Werkstatt: Abendrituale, Licht und innere Uhr.</p>
+<p>Band 5: Das Gefühls-Wetter: Gefühle, Mut und Hilfe holen.</p>
+<p>Band 6: Die Abwehr-Polizei: Hygiene, Schutz und keine Angst vorm Doktor.</p>
+<p>Aber zuerst gilt:</p>
+<p>Erst hören.</p>
+<p>Dann entscheiden.</p>
+      </article>
+      <footer>67</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page short-copy-page" id="seite-69">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>Impressum und Rechte</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 68</p>
+        <h2>Impressum und Rechte</h2>
+        <p>Titel: Callis Gesundheits-Kompass – Band 1: Hör auf deinen Körper</p>
+<p>Text und Konzept: callidus</p>
+<p>Illustrationskonzept: Digitale Aquarellbilder auf Basis fester Character-Sheets für Calli, Mira und Noah.</p>
+<p>Alle Rechte vorbehalten.</p>
+<p>Dieses Buch darf nicht ohne Erlaubnis vervielfältigt, verkauft oder öffentlich verbreitet werden.</p>
+<p>Die finalen Angaben zu Verlag, ISBN, Impressum, Erscheinungsjahr und Bezugswegen werden vor Veröffentlichung ergänzt.</p>
+      </article>
+      <footer>68</footer>
+    </section>
+  
+
+    <section class="book-page quiet appendix-page no-image-page short-copy-page" id="seite-70">
+      
+    <figure class="art designed-art appendix">
+      <div class="wash wash-a"></div>
+      <div class="wash wash-b"></div>
+      <div class="designed-card">
+        
+    <svg class="mini-calli" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+      <circle cx="48" cy="48" r="42" fill="#d6aa3d"/>
+      <circle cx="48" cy="48" r="31" fill="#cfe0c7" stroke="#8aa383" stroke-width="2"/>
+      <path d="M48 15 L55 47 L48 41 L41 47 Z" fill="#a7604f"/>
+      <path d="M48 81 L42 50 L48 56 L54 50 Z" fill="#f2e6c2"/>
+      <circle cx="36" cy="52" r="4.5" fill="#223026"/>
+      <circle cx="60" cy="52" r="4.5" fill="#223026"/>
+      <path d="M35 64 Q48 73 61 64" fill="none" stroke="#223026" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  
+        <div>
+          <span class="designed-kicker">Anhangsseite</span>
+          <strong>KI- und Fachhinweis</strong>
+        </div>
+      </div>
+      <div class="icon-row" aria-hidden="true">
+        <span>INFO</span><span>TEAM</span><span>PRUEFEN</span><span>WEITER</span>
+      </div>
+    </figure>
+  
+      <article class="copy">
+        <p class="page-kicker">Seite 69</p>
+        <h2>KI- und Fachhinweis</h2>
+        <p>Ein Teil der Bildproduktion entsteht mit KI-gestützten Bildwerkzeugen und wird vor Veröffentlichung geprüft, überarbeitet und bei Amazon KDP entsprechend deklariert.</p>
+<p>Die Texte vermitteln allgemeines Gesundheitswissen für Familien.</p>
+<p>Sie ersetzen keine ärztliche Beratung, keine Diagnose und keine Behandlung.</p>
+<p>Bei gesundheitlichen Sorgen, starken Beschwerden oder Unsicherheit sollten Kinder und Erwachsene medizinischen Rat einholen.</p>
+      </article>
+      <footer>69</footer>
+    </section>
+  
+
+    <section class="book-page quiet story-page long-copy-page" id="seite-71">
+      <figure class="art"><img src="bilder/final/page-71-ruhiger-abschluss.png" alt="Abendstimmung, Kompasskarte auf dem Tisch, Schuhe an der Tür."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 70</p>
+        <h2>Ruhiger Abschluss</h2>
+        <p>Am Abend lag der Wochen-Kompass auf dem Tisch.</p>
+<p>Mira trank einen letzten Schluck Wasser.</p>
+<p>Noah stellte seine Schuhe ordentlich neben die Tür.</p>
+<p>„Für morgen“, sagte er. „Falls sie wieder herumstehen wollen.“</p>
+<p>Calli lächelte.</p>
+<p>„Eure Körper werden morgen wieder sprechen.“</p>
+<p>„Knurren?“, fragte Noah.</p>
+<p>„Vielleicht.“</p>
+<p>„Gähnen?“, fragte Mira.</p>
+<p>„Bestimmt.“</p>
+<p>„Zappeln?“</p>
+<p>„Sehr wahrscheinlich.“</p>
+<p>Mira zog die Decke hoch.</p>
+<p>„Dann hören wir wieder hin.“</p>
+      </article>
+      <footer>70</footer>
+    </section>
+  
+
+    <section class="book-page quiet story-page long-copy-page" id="seite-72">
+      <figure class="art"><img src="bilder/final/page-72-calli-schlaeft.png" alt="Calli schläft auf einem kleinen Kissen, seine Nadel leuchtet sanft. Warmes Ende."></figure>
+      <article class="copy">
+        <p class="page-kicker">Seite 71</p>
+        <h2>Letzter Satz</h2>
+        <p>Calli klappte seine Nadel ein.</p>
+<p>Nicht ganz.</p>
+<p>Nur ein bisschen.</p>
+<p>Denn ein guter Kompass schläft nie völlig ein.</p>
+<p>Er ruht nur.</p>
+<p>Für morgen.</p>
+<p>Und falls dein Körper heute noch etwas sagt, dann weißt du jetzt:</p>
+<p>Du musst nicht erschrecken.</p>
+<p>Du kannst hinhören.</p>
+<p>Du kannst fragen.</p>
+<p>Du kannst freundlich entscheiden.</p>
+<p>Und irgendwo, ganz leise, sagt Calli:</p>
+<p>„Erst hören. Dann entscheiden.“</p>
+      </article>
+      <footer>71</footer>
+    </section>
+  
+  </main>
+</body>
+</html>

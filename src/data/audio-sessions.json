@@ -1,0 +1,60 @@
+[
+  {
+    "id": "klarheitsreset-001",
+    "status": "published",
+    "badge": "Folge 1",
+    "title": "Klarheitsreset: Fokus und nächster Schritt",
+    "shortTitle": "Klarheitsreset",
+    "duration": "15:00",
+    "durationSeconds": 900,
+    "publishedAt": "2026-07-07",
+    "path": "/audio/klarheitsreset/klarheitsreset-fokus-naechster-schritt.mp3",
+    "accent": "mint",
+    "summary": "Eine ruhige geführte Audio-Session für innere Ordnung, klare Prioritäten und einen nächsten machbaren Schritt.",
+    "bestFor": [
+      "mentale Überladung und zu viele offene Gedanken",
+      "einen klaren Start in Arbeit, Planung oder Entscheidung",
+      "eine kurze Auszeit ohne Bildschirm und ohne komplexe Atemtechnik"
+    ],
+    "outcomes": [
+      "Gedanken sammeln und sortieren",
+      "den wichtigsten Fokuspunkt erkennen",
+      "einen konkreten ersten Schritt formulieren"
+    ],
+    "listenWhen": [
+      "vor einer Arbeitsphase",
+      "nach einem vollen Tag",
+      "wenn Entscheidungen schwerfallen"
+    ],
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Sulafat",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Zusätzlich gemischte, generierte Wellen-Atmosphäre",
+      "note": "Originales Callidus-Skript; nicht aus einem YouTube-Transkript kopiert."
+    }
+  },
+  {
+    "id": "atemruhe-002",
+    "status": "planned",
+    "badge": "Geplant",
+    "title": "Atemruhe: weich landen",
+    "shortTitle": "Atemruhe",
+    "duration": "10-15 Min.",
+    "accent": "blue",
+    "summary": "Eine spätere Folge mit sanfter Atemwahrnehmung, ohne forciertes Luftanhalten und ohne Leistungsdruck."
+  },
+  {
+    "id": "schlafuebergang-003",
+    "status": "planned",
+    "badge": "Geplant",
+    "title": "Schlafübergang: den Tag ablegen",
+    "shortTitle": "Schlafübergang",
+    "duration": "12-18 Min.",
+    "accent": "gold",
+    "summary": "Eine ruhige Abendfolge für Entlastung, Körperwahrnehmung und einen weicheren Übergang in die Nacht."
+  }
+]

@@ -1,5 +1,23 @@
 # Callis Gesundheits-Kompass — Veröffentlichungs-Leitfaden
 
+## ⭐ AKTUELLER STAND (07.07.2026) — Neusatz fertig, das sind die gültigen Dateien
+
+Alle in `buchprojekt/kinderbuch-band1/` (Neusatz im Layout-System A/C/D/E, 8,5×11 Zoll + Beschnitt):
+
+| Datei | Zweck |
+|---|---|
+| `Callis-Kompass-Band1-Website.pdf` (25 MB) | **Digistore24-Download**: Cover + alle 71 Seiten, web-optimierte Bilder |
+| `Callis-Kompass-Band1-KDP-Innenteil.pdf` (144 MB) | **Amazon-Taschenbuch Innenteil**: volle Auflösung, ohne Cover, mit Beschnitt (8,625×11,25 in) |
+| `Callis-Kompass-Band1-KDP-Umschlag.pdf` (8 MB) | **Amazon-Umschlag**: Rückseite + Rücken (0,169 in für 72 S. Premium-Farbe) + Front, Barcode-Freifläche |
+| `band1-website.html` / `band1-kdp-print.html` / `band1-kdp-umschlag.html` | Quelldateien (Neudruck: headless Edge `--print-to-pdf`) |
+| `layout-testseiten-standalone.html` | freigegebene Layout-Muster (A=Story, C=Schlau, D=Mach-mit, E=Eltern) |
+
+**Wichtig bei Seitenzahl-Änderung:** Rückenbreite im Umschlag neu rechnen
+(Seiten × 0,002347 in bei Premium-Farbe) und Umschlag-PDF neu erzeugen.
+**Vor KDP-Upload:** Druckvorschau im KDP-Previewer prüfen (Ränder/Beschnitt), KI-Bilder deklarieren.
+Ältere Dateien (`callis-kompass-band1-arbeitsfassung/-kdp-inhalt`) sind überholt — nur noch Quelle des Textes.
+
+
 Stand: Juli 2026 · Projekt: callidus KIDS Buchserie · Konzept konsolidiert am 05.07.2026
 
 ## 1. Das Konzept (zusammengeführt)

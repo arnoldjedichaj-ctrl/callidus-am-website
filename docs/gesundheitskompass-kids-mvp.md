@@ -417,9 +417,8 @@ Dieses Kapitel soll nicht kontrollieren. Es soll Sprache geben: Hunger, Durst, S
 
 Bereits erzeugte Leseprobe-Bilder:
 
-- public/assets/media/gesundheitskompass-kids-cover-concept.png
-- public/assets/media/gesundheitskompass-kids-sleep-spread-concept.png
-- public/assets/media/gesundheitskompass-kids-food-spread-concept.png
+- Oeffentlich fuer Website/Leseprobe: `public/assets/media/*-web.jpg`
+- Private PNG-Originale fuer Buchsatz/KDP: `buchprojekt/kinderbuch-band1/bilder/`
 
 Stilvorgabe:
 

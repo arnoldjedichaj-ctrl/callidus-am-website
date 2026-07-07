@@ -15,7 +15,11 @@
     "download:documents": "node scripts/download-documents.mjs",
     "fetch:crypto-radar": "node scripts/fetch-crypto-radar.mjs",
     "fetch:momus": "node scripts/fetch-momus-articles.mjs",
+    "build:kinderbuch-dummy": "node scripts/build-kinderbuch-buchdummy.mjs",
     "export:kinderbuch-pdf": "node scripts/export-kinderbuch-pdf.mjs",
+    "export:kinderbuch-final-pdf": "node scripts/export-kinderbuch-pdf.mjs --final",
+    "export:kinderbuch-arbeitsfassung-pdf": "node scripts/export-kinderbuch-pdf.mjs --working",
+    "export:kinderbuch-kdp-inhalt-pdf": "node scripts/export-kinderbuch-pdf.mjs --final",
     "fix:nexus-images:dry": "node scripts/fix-nexus-images.mjs",
     "fix:nexus-images": "node scripts/fix-nexus-images.mjs --write"
   },
