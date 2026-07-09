@@ -18,28 +18,35 @@ const buecher = [
     cover: '/assets/kinderbuch/cover-band2.jpg',
     leseprobe: '/assets/kinderbuch/callis-kompass-band2-leseprobe.html',
     digistore: 'https://www.digistore24.com/product/709996',
-    preis: '9,90 €', status: 'Neu erschienen', accent: 'coral',
+    preis: '9,90 €', status: 'Erhältlich', accent: 'coral',
+  },
+  {
+    nr: 'Band 3', titel: 'Der Zappelmotor',
+    text: 'Bewegung, Pausen & Gute-Laune-Funken — mit Flitz, dem Funken, der beim Toben sprüht. Warum Bewegung stark, wach und fröhlich macht, ganz ohne Wettkampf.',
+    cover: '/assets/kinderbuch/cover-band3.jpg',
+    leseprobe: '/assets/kinderbuch/callis-kompass-band3-leseprobe.html',
+    digistore: '', // ← Digistore24-Produktlink für Band 3 hier einsetzen
+    preis: '9,90 €', status: 'Neu erschienen', accent: 'gold',
   },
 ];
 const kaufB2 = buecher[1].digistore || buecher[1].leseprobe;
 const geplant = [
-  { nr: 'Band 3', titel: 'Der Zappelmotor', text: 'Bewegung, Pausen und Gute-Laune-Funken.', accent: 'gold' },
   { nr: 'Band 4', titel: 'Die Schlaf-Werkstatt', text: 'Schlaf, Träume und die Startrampe ins Bett.', accent: 'blue' },
   { nr: 'Band 5', titel: 'Das Gefühls-Wetter', text: 'Gefühle, Mut und warum reden hilft.', accent: 'blue' },
   { nr: 'Band 6', titel: 'Die Abwehr-Polizei', text: 'Hygiene, Schutz und keine Angst vorm Doktor.', accent: 'mint' },
 ];
 const sceneImages = [
-  { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s03-regenbogen-teller.jpg', title: 'Der Regenbogen-Teller', label: 'Band 2' },
+  { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s09-frosch-baer.jpg', title: 'Die Tier-Olympiade', label: 'Band 3' },
+  { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s03-flitz-erscheint.jpg', title: 'Flitz, der Gute-Laune-Funke', label: 'Band 3' },
   { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s07-zucker-flummi.jpg', title: 'Schlecki, der Zucker-Flummi', label: 'Band 2' },
-  { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s11-gemuese-bande.jpg', title: 'Die Gemüse-Bande', label: 'Band 2' },
   { src: '/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg', title: 'KNURR! Die Bauch-Post', label: 'Band 1' },
 ];
 ---
 <BaseLayout
   title="Callis Gesundheits-Kompass — Kinderbuchserie | callidus A&M"
-  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“ und Band 2 „Das Zucker-Monster“ — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
+  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“, Band 2 „Das Zucker-Monster“ und Band 3 „Der Zappelmotor“ — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
   lang="de"
-  ogImage="/assets/kinderbuch/cover-band2.jpg"
+  ogImage="/assets/kinderbuch/cover-band3.jpg"
 >
   <!-- HERO -->
   <section class="section">
@@ -49,7 +56,7 @@ const sceneImages = [
       <p class="lede" data-reveal="3">
         Warme, lustige Vorlese-Bilderbücher für Kinder von 5 bis 8. Calli, der kleine Kompass,
         nimmt Mira und Noah mit auf Entdeckungsreisen durch den eigenen Körper — mit Aquarellbildern
-        auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Eltern-Impulsen. <strong>Band 1 und Band 2
+        auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Eltern-Impulsen. <strong>Band 1, 2 und 3
         sind jetzt erhältlich.</strong>
       </p>
     </div>
@@ -141,6 +148,8 @@ const sceneImages = [
   @media (max-width: 820px) { .kb-books { grid-template-columns: 1fr; } }
   .kb-book { display: grid; grid-template-columns: minmax(140px, 200px) 1fr; gap: 1.4rem; padding: 1.4rem; border-radius: 12px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
   .kb-book.coral { border-top-color: var(--coral); }
+  .kb-book.gold { border-top-color: var(--gold); }
+  .kb-book.blue { border-top-color: var(--blue); }
   @media (max-width: 520px) { .kb-book { grid-template-columns: 1fr; } }
   .kb-book-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 14px 36px rgba(var(--mint-rgb), 0.25); }
   .kb-book-body h2 { margin: 0.1rem 0 0.5rem; font-size: 1.5rem; }
