@@ -26,27 +26,34 @@ const buecher = [
     cover: '/assets/kinderbuch/cover-band3.jpg',
     leseprobe: '/assets/kinderbuch/callis-kompass-band3-leseprobe.html',
     digistore: 'https://www.digistore24.com/product/710152',
-    preis: '9,90 €', status: 'Neu erschienen', accent: 'gold',
+    preis: '9,90 €', status: 'Erhältlich', accent: 'gold',
+  },
+  {
+    nr: 'Band 4', titel: 'Die Schlaf-Werkstatt',
+    text: 'Schlaf, Träume & die innere Uhr — mit Nino, dem Nachtfreund. Was nachts im Körper passiert, warum ein Abendritual hilft und wie die Angst vor dem Bett verschwindet.',
+    cover: '/assets/kinderbuch/cover-band4.jpg',
+    leseprobe: '/assets/kinderbuch/callis-kompass-band4-leseprobe.html',
+    digistore: '', // ← Digistore24-Produktlink für Band 4 hier einsetzen
+    preis: '9,90 €', status: 'Neu erschienen', accent: 'blue',
   },
 ];
 const kaufB2 = buecher[1].digistore || buecher[1].leseprobe;
 const geplant = [
-  { nr: 'Band 4', titel: 'Die Schlaf-Werkstatt', text: 'Schlaf, Träume und die Startrampe ins Bett.', accent: 'blue' },
   { nr: 'Band 5', titel: 'Das Gefühls-Wetter', text: 'Gefühle, Mut und warum reden hilft.', accent: 'blue' },
   { nr: 'Band 6', titel: 'Die Abwehr-Polizei', text: 'Hygiene, Schutz und keine Angst vorm Doktor.', accent: 'mint' },
 ];
 const sceneImages = [
+  { src: '/assets/media/kinderbuch-band4-scenes/web/b4-s12-gute-nacht-geschichte.jpg', title: 'Die Gute-Nacht-Geschichte', label: 'Band 4' },
   { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s09-frosch-baer.jpg', title: 'Die Tier-Olympiade', label: 'Band 3' },
-  { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s03-flitz-erscheint.jpg', title: 'Flitz, der Gute-Laune-Funke', label: 'Band 3' },
   { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s07-zucker-flummi.jpg', title: 'Schlecki, der Zucker-Flummi', label: 'Band 2' },
   { src: '/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg', title: 'KNURR! Die Bauch-Post', label: 'Band 1' },
 ];
 ---
 <BaseLayout
   title="Callis Gesundheits-Kompass — Kinderbuchserie | callidus A&M"
-  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 „Hör auf deinen Körper“, Band 2 „Das Zucker-Monster“ und Band 3 „Der Zappelmotor“ — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
+  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 bis 4 (Körper, Ernährung, Bewegung, Schlaf) — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
   lang="de"
-  ogImage="/assets/kinderbuch/cover-band3.jpg"
+  ogImage="/assets/kinderbuch/cover-band4.jpg"
 >
   <!-- HERO -->
   <section class="section">
@@ -56,7 +63,7 @@ const sceneImages = [
       <p class="lede" data-reveal="3">
         Warme, lustige Vorlese-Bilderbücher für Kinder von 5 bis 8. Calli, der kleine Kompass,
         nimmt Mira und Noah mit auf Entdeckungsreisen durch den eigenen Körper — mit Aquarellbildern
-        auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Eltern-Impulsen. <strong>Band 1, 2 und 3
+        auf jeder Seite, Schlau-Seiten, Mitmach-Ideen und Eltern-Impulsen. <strong>Band 1 bis 4
         sind jetzt erhältlich.</strong>
       </p>
     </div>
