@@ -754,6 +754,9 @@ function bootPortal() {
     press: '/assets/media/coach-athlete/exercise-press.webp',
     bridge: '/assets/media/coach-athlete/exercise-bridge.webp',
     mountain: '/assets/media/coach-athlete/exercise-mountain.webp',
+    catCow: '/assets/media/coach-athlete/exercise-cat-cow.webp',
+    hipFlexor: '/assets/media/coach-athlete/exercise-hip-flexor.webp',
+    shoulderCircles: '/assets/media/coach-athlete/exercise-shoulder-circles.webp',
     walk: '/assets/media/coach-athlete/exercise-walk.webp',
     bike: '/assets/media/coach-athlete/exercise-bike.webp',
   };
@@ -814,6 +817,27 @@ function bootPortal() {
       cue: 'Stütz stabil halten, Knie rhythmisch nach vorn.',
       aliases: ['mountain climber', 'climber'],
       icon: 'mountain',
+    },
+    {
+      key: 'catCow',
+      title: 'Katze-Kuh',
+      cue: 'Im Vierfüßlerstand Rücken rund machen und sanft wieder strecken.',
+      aliases: ['katze-kuh', 'katze kuh', 'cat-cow', 'cat cow', 'vierfuessler', 'vierfüßler', 'ruecken runden', 'rücken runden'],
+      icon: 'bridge',
+    },
+    {
+      key: 'hipFlexor',
+      title: 'Hüftbeuger-Dehnung',
+      cue: 'Ein Knie am Boden, Becken leicht aufrichten und Hüfte nach vorn schieben.',
+      aliases: ['hueftbeuger', 'hüftbeuger', 'hueftbeuger-dehnung', 'hüftbeuger-dehnung', 'hip flexor', 'couch stretch', '90-grad'],
+      icon: 'lunge',
+    },
+    {
+      key: 'shoulderCircles',
+      title: 'Schulterkreisen',
+      cue: 'Schultern entspannt in großen Kreisen vor- und rückwärts bewegen.',
+      aliases: ['schulterkreisen', 'schulter kreisen', 'shoulder circles', 'arm circles', 'schulter mobilisieren'],
+      icon: 'press',
     },
     {
       key: 'walk',
@@ -913,9 +937,24 @@ function bootPortal() {
     return `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[kind] || icons.squat}</svg>`;
   }
 
+  function normalizeExerciseText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/ä/g, 'ae')
+      .replace(/ö/g, 'oe')
+      .replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
   function lookupExercise(name) {
-    const haystack = String(name || '').toLowerCase();
-    return exerciseLibrary.find((item) => item.aliases.some((alias) => haystack.includes(alias)));
+    const haystack = normalizeExerciseText(name);
+    return exerciseLibrary.find((item) => (
+      item.aliases.some((alias) => haystack.includes(normalizeExerciseText(alias)))
+    ));
   }
 
   function resolveExercises(item = {}) {
@@ -925,9 +964,11 @@ function bootPortal() {
           cue: typeof exercise === 'string' ? '' : exercise.cue,
         }))
       : [];
-    const sourceText = [item.focus, item.workout, item.notes].filter(Boolean).join(' ');
+    const sourceText = normalizeExerciseText([item.focus, item.workout, item.notes].filter(Boolean).join(' '));
     const inferred = exerciseLibrary
-      .filter((exercise) => exercise.aliases.some((alias) => sourceText.toLowerCase().includes(alias)))
+      .filter((exercise) => (
+        exercise.aliases.some((alias) => sourceText.includes(normalizeExerciseText(alias)))
+      ))
       .map((exercise) => ({ sourceName: exercise.title, cue: '' }));
     const seen = new Set();
     return [...explicit, ...inferred]
@@ -936,6 +977,7 @@ function bootPortal() {
           title: cleanExerciseName(entry.sourceName),
           cue: 'Langsam starten und saubere Technik priorisieren.',
           icon: 'squat',
+          image: '',
           key: cleanExerciseName(entry.sourceName).toLowerCase(),
         };
         return {
@@ -943,7 +985,7 @@ function bootPortal() {
           title: match.title || cleanExerciseName(entry.sourceName),
           cue: entry.cue || match.cue,
           icon: match.icon || 'squat',
-          image: coachExerciseImages[match.icon || match.key] || '',
+          image: match.image || coachExerciseImages[match.key || match.icon] || '',
         };
       })
       .filter((exercise) => {
