@@ -276,7 +276,7 @@ function buildPrompt(preferences, context) {
     "Nutze die App-Daten nur als Kontext, nicht als absolute Wahrheit. Wenn Daten fehlen, plane konservativ.",
     "Sicherheitsregeln: Keine Heilversprechen. Bei Schmerzen, Brustdruck, Schwindel, Schwangerschaft, Essstoerung, bekannten Erkrankungen oder Medikamenten immer professionelle Abklaerung empfehlen. Keine extremen Diaeten oder gefaehrliche Belastung.",
     "Erstelle genau die JSON-Struktur aus dem Schema: summary, weeklyTraining, nutritionPlan, recovery, safetyNotes, nextCheckIn.",
-    "Fuege pro weeklyTraining-Einheit 2 bis 5 konkrete exercises hinzu. Nutze einfache deutsche Uebungsnamen wie Kniebeuge, Rudern, Liegestuetz, Plank, Ausfallschritt, Schulterdruecken, Band-Rudern, Mountain Climber, Glute Bridge, Katze-Kuh, Hueftbeuger-Dehnung, Schulterkreisen oder Spaziergang, damit die Webseite passende Bildkarten anzeigen kann.",
+    "Fuege pro weeklyTraining-Einheit 2 bis 5 konkrete exercises hinzu. Nutze moeglichst ausschliesslich diese bildgestuetzten Uebungsnamen: Kniebeuge, Rudern, Liegestuetz, Plank, Ausfallschritt, Schulterdruecken, Band-Rudern, Kreuzheben, Dips, Russian Twist, Beinheben, Superman, Mountain Climber, Glute Bridge, Katze-Kuh, Hueftbeuger-Dehnung, Schulterkreisen, Leichte Dehnuebungen, Spaziergang oder Rad / Ergometer. So kann die Webseite passende Bildkarten anzeigen.",
     "nutritionPlan.weeklyDays muss exakt 7 Kalendertage enthalten und die calendarDays aus dem App-Kontext verwenden. Jeder Tag braucht Fruehstueck, Mittagessen, Abendessen und optional 1 Snack. Plane abwechslungsreich, aber alltagstauglich; keine extreme Diaet.",
     `Nutzerangaben: ${JSON.stringify(preferences)}`,
     `App-Kontext: ${JSON.stringify(context)}`,

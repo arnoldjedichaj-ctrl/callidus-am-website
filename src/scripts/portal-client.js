@@ -754,9 +754,15 @@ function bootPortal() {
     press: '/assets/media/coach-athlete/exercise-press.webp',
     bridge: '/assets/media/coach-athlete/exercise-bridge.webp',
     mountain: '/assets/media/coach-athlete/exercise-mountain.webp',
+    deadlift: '/assets/media/coach-athlete/exercise-deadlift.webp',
+    dips: '/assets/media/coach-athlete/exercise-dips.webp',
+    russianTwist: '/assets/media/coach-athlete/exercise-russian-twist.webp',
+    legRaises: '/assets/media/coach-athlete/exercise-leg-raises.webp',
+    superman: '/assets/media/coach-athlete/exercise-superman.webp',
     catCow: '/assets/media/coach-athlete/exercise-cat-cow.webp',
     hipFlexor: '/assets/media/coach-athlete/exercise-hip-flexor.webp',
     shoulderCircles: '/assets/media/coach-athlete/exercise-shoulder-circles.webp',
+    lightStretch: '/assets/media/coach-athlete/exercise-light-stretch.webp',
     walk: '/assets/media/coach-athlete/exercise-walk.webp',
     bike: '/assets/media/coach-athlete/exercise-bike.webp',
   };
@@ -819,6 +825,41 @@ function bootPortal() {
       icon: 'mountain',
     },
     {
+      key: 'deadlift',
+      title: 'Kreuzheben',
+      cue: 'Hüfte nach hinten schieben, Rücken lang halten und kontrolliert aufrichten.',
+      aliases: ['kreuzheben', 'deadlift', 'romanian deadlift', 'rumänisches kreuzheben', 'rumaenisches kreuzheben', 'rdl', 'kurzhantel-kreuzheben'],
+      icon: 'row',
+    },
+    {
+      key: 'dips',
+      title: 'Dips',
+      cue: 'Schultern tief halten, Ellenbogen kontrolliert beugen und strecken.',
+      aliases: ['dips', 'trizeps dips', 'trizeps-dips', 'bank dips', 'bench dips'],
+      icon: 'pushup',
+    },
+    {
+      key: 'russianTwist',
+      title: 'Russian Twist',
+      cue: 'Aufrecht bleiben, Bauch aktiv halten und den Oberkörper langsam rotieren.',
+      aliases: ['russian twist', 'russian-twist', 'russischer twist', 'rumpfrotation', 'oberkoerper seitlich', 'oberkörper seitlich'],
+      icon: 'plank',
+    },
+    {
+      key: 'legRaises',
+      title: 'Beinheben',
+      cue: 'Lendenwirbelsäule ruhig halten, Beine langsam heben und senken.',
+      aliases: ['beinheben', 'leg raise', 'leg raises', 'beine heben', 'liegendes beinheben'],
+      icon: 'bridge',
+    },
+    {
+      key: 'superman',
+      title: 'Superman',
+      cue: 'Bauchlage, Arme und Beine sanft anheben, Nacken lang lassen.',
+      aliases: ['superman', 'rueckenstrecker', 'rückenstrecker', 'back extension', 'bauch liegen'],
+      icon: 'bridge',
+    },
+    {
       key: 'catCow',
       title: 'Katze-Kuh',
       cue: 'Im Vierfüßlerstand Rücken rund machen und sanft wieder strecken.',
@@ -838,6 +879,13 @@ function bootPortal() {
       cue: 'Schultern entspannt in großen Kreisen vor- und rückwärts bewegen.',
       aliases: ['schulterkreisen', 'schulter kreisen', 'shoulder circles', 'arm circles', 'schulter mobilisieren'],
       icon: 'press',
+    },
+    {
+      key: 'lightStretch',
+      title: 'Leichte Dehnübungen',
+      cue: 'Sanft in die Dehnung gehen, ruhig atmen und keinen Schmerz erzwingen.',
+      aliases: ['leichte dehnuebungen', 'leichte dehnübungen', 'dehnuebungen', 'dehnübungen', 'dehnen', 'stretching', 'leichte dehnung', 'dehnung', 'mobilitaet', 'mobilität'],
+      icon: 'walk',
     },
     {
       key: 'walk',
@@ -957,6 +1005,14 @@ function bootPortal() {
     ));
   }
 
+  function fallbackExerciseForName(name) {
+    const haystack = normalizeExerciseText(name);
+    if (['dehn', 'stretch', 'mobilitaet', 'mobility'].some((term) => haystack.includes(term))) {
+      return exerciseLibrary.find((item) => item.key === 'lightStretch') || null;
+    }
+    return null;
+  }
+
   function resolveExercises(item = {}) {
     const explicit = Array.isArray(item.exercises)
       ? item.exercises.map((exercise) => ({
@@ -973,7 +1029,7 @@ function bootPortal() {
     const seen = new Set();
     return [...explicit, ...inferred]
       .map((entry) => {
-        const match = lookupExercise(entry.sourceName) || {
+        const match = lookupExercise(entry.sourceName) || fallbackExerciseForName(entry.sourceName) || {
           title: cleanExerciseName(entry.sourceName),
           cue: 'Langsam starten und saubere Technik priorisieren.',
           icon: 'squat',
