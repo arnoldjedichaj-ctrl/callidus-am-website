@@ -34,15 +34,23 @@ const buecher = [
     cover: '/assets/kinderbuch/cover-band4.jpg',
     leseprobe: '/assets/kinderbuch/callis-kompass-band4-leseprobe.html',
     digistore: '', // ← Digistore24-Produktlink für Band 4 hier einsetzen
-    preis: '9,90 €', status: 'Neu erschienen', accent: 'blue',
+    preis: '9,90 €', status: 'Erhältlich', accent: 'blue',
+  },
+  {
+    nr: 'Band 5', titel: 'Das Gefühls-Wetter',
+    text: 'Gefühle, Mut & Hilfe holen — mit Wolki, der Gefühls-Wolke, die jedes Gefühl als Wetter zeigt. Alle Gefühle sind erlaubt, sie ziehen vorbei wie Wetter, und Hilfe holen ist stark.',
+    cover: '/assets/kinderbuch/cover-band5.jpg',
+    leseprobe: '/assets/kinderbuch/callis-kompass-band5-leseprobe.html',
+    digistore: '', // ← Digistore24-Produktlink für Band 5 hier einsetzen
+    preis: '9,90 €', status: 'Neu erschienen', accent: 'coral',
   },
 ];
 const kaufB2 = buecher[1].digistore || buecher[1].leseprobe;
 const geplant = [
-  { nr: 'Band 5', titel: 'Das Gefühls-Wetter', text: 'Gefühle, Mut und warum reden hilft.', accent: 'blue' },
   { nr: 'Band 6', titel: 'Die Abwehr-Polizei', text: 'Hygiene, Schutz und keine Angst vorm Doktor.', accent: 'mint' },
 ];
 const sceneImages = [
+  { src: '/assets/media/kinderbuch-band5-scenes/web/b5-s01.jpg', title: 'Wolki, die Gefühls-Wolke', label: 'Band 5' },
   { src: '/assets/media/kinderbuch-band4-scenes/web/b4-s12-gute-nacht-geschichte.jpg', title: 'Die Gute-Nacht-Geschichte', label: 'Band 4' },
   { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s09-frosch-baer.jpg', title: 'Die Tier-Olympiade', label: 'Band 3' },
   { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s07-zucker-flummi.jpg', title: 'Schlecki, der Zucker-Flummi', label: 'Band 2' },
@@ -51,7 +59,7 @@ const sceneImages = [
 ---
 <BaseLayout
   title="Callis Gesundheits-Kompass — Kinderbuchserie | callidus A&M"
-  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 bis 4 (Körper, Ernährung, Bewegung, Schlaf) — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
+  description="Callis Gesundheits-Kompass: warme Vorlese-Bilderbücher für Kinder von 5 bis 8. Band 1 bis 5 (Körper, Ernährung, Bewegung, Schlaf, Gefühle) — jetzt erhältlich. Mit Aquarellbildern, Schlau-Seiten, Mitmach-Ideen und Urkunde."
   lang="de"
   ogImage="/assets/kinderbuch/cover-band4.jpg"
 >
