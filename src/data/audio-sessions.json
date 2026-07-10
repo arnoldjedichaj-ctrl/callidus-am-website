@@ -38,14 +38,43 @@
     }
   },
   {
-    "id": "atemruhe-002",
-    "status": "planned",
-    "badge": "Geplant",
-    "title": "Atemruhe: weich landen",
-    "shortTitle": "Atemruhe",
-    "duration": "10-15 Min.",
-    "accent": "blue",
-    "summary": "Eine spätere Folge mit sanfter Atemwahrnehmung, ohne forciertes Luftanhalten und ohne Leistungsdruck."
+    "id": "power-breathwork-002",
+    "status": "published",
+    "badge": "Folge 2",
+    "title": "Power Breathwork: Energie und Klarheit",
+    "shortTitle": "Power Breathwork",
+    "duration": "15:00",
+    "durationSeconds": 900,
+    "publishedAt": "2026-07-07",
+    "path": "/audio/power-breathwork/power-breathwork-energie-klarheit.mp3",
+    "accent": "coral",
+    "summary": "Eine intensive geführte Breathwork-Folge für Fortgeschrittene mit aktiven Atemrunden, klarer Warnung und ruhigen Integrationspausen.",
+    "bestFor": [
+      "fortgeschrittene Nutzer mit stabiler Atem- und Körperwahrnehmung",
+      "aktive mentale Entladung und Energieaufbau",
+      "Momente, in denen Wachheit, Präsenz und Klarheit entstehen sollen"
+    ],
+    "outcomes": [
+      "Druck und innere Spannung aktiv bewegen",
+      "Wachheit und Körperpräsenz steigern",
+      "nach intensiven Runden wieder geerdet integrieren"
+    ],
+    "listenWhen": [
+      "nur im Sitzen oder Liegen",
+      "nicht unterwegs und nicht allein bei Unsicherheit",
+      "mit Zeit zum Nachspüren und Wasser danach"
+    ],
+    "safety": "Intensive Breathwork für Fortgeschrittene. Nicht geeignet bei Schwangerschaft, Epilepsie, schweren Herz-Kreislauf-Erkrankungen, akuter Panik, Atemnot oder medizinischer Unsicherheit. Sofort abbrechen bei Schwindel, Taubheit, Enge oder Unwohlsein.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Sulafat",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Zusätzlich gemischte, generierte Wellen-Atmosphäre",
+      "note": "Originales Callidus-Skript für eine intensive, fortgeschrittene Breathwork-Folge."
+    }
   },
   {
     "id": "schlafuebergang-003",

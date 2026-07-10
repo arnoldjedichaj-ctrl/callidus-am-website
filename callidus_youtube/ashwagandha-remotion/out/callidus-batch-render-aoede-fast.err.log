@@ -1,0 +1,15 @@
+[31mError: Visited "http://localhost:3000/index.html" but got no response.[39m
+[31m    at gotoPageOrThrow (C:\Users\marga\callidus_youtube\ashwagandha-remotion\node_modules\@remotion\renderer\dist\goto-page-or-throw.js:8:27)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)[39m
+[31m    at async innerSetPropsAndEnv (C:\Users\marga\callidus_youtube\ashwagandha-remotion\node_modules\@remotion\renderer\dist\set-props-and-env.js:101:30)[39m
+[31m    at async setPropsAndEnv (C:\Users\marga\callidus_youtube\ashwagandha-remotion\node_modules\@remotion\renderer\dist\set-props-and-env.js:205:24)[39m
+[31m    at async makePage (C:\Users\marga\callidus_youtube\ashwagandha-remotion\node_modules\@remotion\renderer\dist\make-page.js:17:5)[39m
+[31m    at async Promise.all (index 6)[39m
+[31m    at async getPool (C:\Users\marga\callidus_youtube\ashwagandha-remotion\node_modules\@remotion\renderer\dist\render-frames.js:90:32)[39m
+Render failed for Omega3EvidenceDeepDive with exit code 1
+In C:\Users\marga\callidus_youtube\ashwagandha-remotion\out\render-callidus-batch-aoede-fast.ps1:13 Zeichen:30
++ ... DE -ne 0) { throw "Render failed for $($i[0]) with exit code $LASTEXI ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Render failed f...ith exit code 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : Render failed for Omega3EvidenceDeepDive with exit code 1
+ 

@@ -1,0 +1,916 @@
+<!DOCTYPE html><html lang="de"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&#38;M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel."><meta name="theme-color" content="#f5f7e9"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><meta name="generator" content="Astro v6.3.1"><link rel="canonical" href="https://www.callidus-am.de/gesundheits-checks/"><link rel="alternate" hreflang="de" href="https://www.callidus-am.de/gesundheits-checks/"><link rel="alternate" hreflang="en" href="https://www.callidus-am.de/en/"><link rel="alternate" hreflang="x-default" href="https://www.callidus-am.de/"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="256x256" href="/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:site_name" content="callidus A&M"><meta property="og:title" content="Gesundheits-Checks &#38; Health IQ | callidus A&#38;M"><meta property="og:description" content="Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&#38;M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel."><meta property="og:url" content="https://www.callidus-am.de/gesundheits-checks/"><meta property="og:image" content="https://www.callidus-am.de/og-image.png"><meta property="og:image:alt" content="callidus A&M"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Gesundheits-Checks &#38; Health IQ | callidus A&#38;M"><meta name="twitter:description" content="Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&#38;M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel."><meta name="twitter:image" content="https://www.callidus-am.de/og-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"callidus A&M","url":"https://www.callidus-am.de","logo":"https://www.callidus-am.de/favicon.png","email":"info@callidus-am.de","sameAs":["https://www.instagram.com/callidusam/","https://www.youtube.com/@callidus-am","https://www.tiktok.com/@callidusam","https://www.facebook.com/profile.php?id=61580058447671"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"callidus A&M","url":"https://www.callidus-am.de","inLanguage":"de-DE","description":"Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel."}</script><!-- Trustpilot Widget Loader --><script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script><title>Gesundheits-Checks &amp; Health IQ | callidus A&amp;M</title><script>
+      (() => {
+        const stored = localStorage.getItem('callidus-theme');
+        const theme = stored || 'light';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CAqDO0tx.js"></script><link rel="stylesheet" href="/_astro/BaseLayout.BVpDFeq2.css"></head> <body> <header class="site-header"> <a class="brand" href="/" aria-label="callidus A&M"> <span class="brand-mark"> <img src="/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png" alt="" width="48" height="48" loading="eager"> </span> <span> <strong>callidus A&M</strong> <small>Ganzheitliche Gesundheit</small> </span> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen"> <span></span> <span></span> <span></span> </button> <div class="header-actions" id="site-menu"> <nav class="main-nav" aria-label="Hauptnavigation"> <div class="nav-group"> <button class="nav-group-btn" aria-expanded="false" aria-haspopup="true"> Wissen <svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg> </button> <div class="nav-dropdown" role="menu"> <a href="/ratgeber/" role="menuitem"> Ratgeber </a><a href="/wissenskarten/" role="menuitem"> Wissenskarten </a><a href="/lexicon-vitae/" role="menuitem"> Lexicon </a> </div> </div><div class="nav-group has-active"> <button class="nav-group-btn" aria-expanded="false" aria-haspopup="true"> Gesundheit <svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg> </button> <div class="nav-dropdown" role="menu"> <a href="/sport-energie/" role="menuitem"> Sport &amp; Energie </a><a href="/unsere-empfehlungen/" role="menuitem"> Empfehlungen </a><a href="/gesundheits-checks/" role="menuitem" aria-current="page"> Checks </a><a href="/stress-reset-kurs/" role="menuitem"> Stress Reset </a><a href="/nexus-app/" role="menuitem"> Apps </a> </div> </div><div class="nav-group"> <button class="nav-group-btn" aria-expanded="false" aria-haspopup="true"> callidus <svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg> </button> <div class="nav-dropdown" role="menu"> <a href="/portal/" role="menuitem"> Portal </a><a href="/wallet/" role="menuitem"> Wallet </a><a href="/valus/" role="menuitem"> Valus </a><a href="/quellen-methodik/" role="menuitem"> Quellen </a> </div> </div> <a href="/uber-uns/"> Über uns </a> </nav> <div class="language-switch" aria-label="Sprache"> <span>DE</span> <a href="/en/">English</a> </div> <a href="/wallet/" class="wallet-nav-btn" aria-label="Valus Wallet öffnen" title="Valus Wallet"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"> <rect x="2" y="5" width="20" height="14" rx="2"></rect> <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path> </svg> <span id="nav-valus-balance" class="valus-nav-badge" hidden>0</span> </a> <button class="theme-toggle" type="button" aria-label="Darkmode umschalten" aria-pressed="false"> <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path> </svg> <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M20.5 14.4A8 8 0 0 1 9.6 3.5 8.8 8.8 0 1 0 20.5 14.4Z"></path> </svg> </button> </div> </header> <main>  <section class="section health-check-hero"> <div class="container split"> <div data-reveal> <p class="eyebrow">Callidus Checks</p> <h1>Kurze Checks. Spielerisch klüger werden.</h1> <p class="lede">
+Starte mit Stress, Mikronährstoffen oder dem Health-IQ-Wissensquiz.
+          Die Auswertung bleibt direkt sichtbar, ohne E-Mail-Schranke und ohne Diagnoseversprechen.
+</p> <div class="actions"> <a class="button primary" href="#check-tool">Check oder Quiz starten</a> <a class="button" href="/quellen-methodik/">Quellen & Methodik</a> </div> </div> <div class="check-principles" data-reveal="2" aria-label="Prinzipien der Gesundheits-Checks"> <div> <span>01</span> <strong>Orientierung statt Diagnose</strong> <p>Die Ergebnisse zeigen Muster und Aufmerksamkeitspunkte, keine Laborwerte oder Befunde.</p> </div> <div> <span>02</span> <strong>Sofortiger Nutzen</strong> <p>Score, Profil, nächste Schritte, passende Artikel und Quellen erscheinen direkt.</p> </div> <div> <span>03</span> <strong>Lernen mit Quellen</strong> <p>Das Wissensquiz zeigt falsche Antworten, Lernfelder und passende Artikel zum Nachlesen.</p> </div> </div> </div> </section> <section class="section tight" id="check-tool"> <div class="container"> <div class="health-check-shell" data-health-checks data-reveal> <div class="check-tabs" role="tablist" aria-label="Gesundheits-Check oder Wissensquiz auswählen"> <button type="button" class="check-tab is-active" role="tab" aria-selected="true" data-check-tab="stress"> <span>2-Minuten-Check</span> <strong>Stress-Check</strong> </button><button type="button" class="check-tab" role="tab" aria-selected="false" data-check-tab="micronutrients"> <span>2-Minuten-Radar</span> <strong>Mikronährstoff-Radar</strong> </button><button type="button" class="check-tab" role="tab" aria-selected="false" data-check-tab="healthIq"> <span>Biohacking-Wissensquiz</span> <strong>Health IQ</strong> </button> </div> <div class="check-workspace"> <div class="check-stage" data-check-stage aria-live="polite"></div> <aside class="check-result" data-check-result aria-live="polite"> <span class="badge mint">Bereit</span> <h2>Deine Auswertung erscheint hier.</h2> <p>
+Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil,
+              nächste Schritte, Lernfelder und passende Quellen.
+</p> </aside> </div> </div> <noscript> <div class="notice" style="margin-top:1rem;"> <strong>JavaScript erforderlich:</strong> <p>Die interaktiven Checks benötigen JavaScript, damit die Auswertung direkt im Browser berechnet werden kann.</p> </div> </noscript> </div> </section> <section class="section band check-knowledge-section" id="vitamin-kompendium"> <div class="container check-knowledge-panel"> <div data-reveal> <p class="eyebrow">Wissen zum Nachlesen</p> <h2>Vitamin-Kompendium als nächster Lernschritt.</h2> <p class="lede">
+Passt sehr gut hierher: Nach dem Health IQ oder dem Mikronährstoff-Radar sieht man sofort,
+          wo noch Fragen offen sind. Das kostenlose Kompendium bündelt die Grundlagen zu Vitaminen,
+          Funktionen und sinnvoller Einordnung.
+</p> <div class="actions"> <a class="button primary" href="/assets/documents/001-vitamin-kompendium.pdf" target="_blank" rel="noopener">Kompendium öffnen</a> <a class="button" href="/vitamin-d-das-sonnenhormon/">Vitamin-Wissen lesen</a> </div> </div> <div class="check-knowledge-list" data-reveal="2" aria-label="Inhalte des Vitamin-Kompendiums"> <article> <span>01</span> <h3>13 essenzielle Vitamine</h3> <p>Basiswissen zu Aufgaben, Quellen und typischen Versorgungsthemen.</p> </article> <article> <span>02</span> <h3>Einordnung statt Schnellschuss</h3> <p>Warum Symptome, Ernährung und Laborwerte zusammen betrachtet werden sollten.</p> </article> <article> <span>03</span> <h3>Weiterlernen mit Callidus</h3> <p>Passend zu Health IQ, Mikronährstoff-Radar und den Quellenboxen der Artikel.</p> </article> </div> </div> </section> <script>(function(){const HEALTH_CHECKS = {"stress":{"id":"stress","label":"Stress-Check","eyebrow":"2-Minuten-Check","headline":"Wie hoch ist deine aktuelle Stresslast?","lede":"Dieser Check ist von etablierten Stress-Selbsteinschätzungen inspiriert. Er ersetzt keine Diagnose, macht aber sichtbar, wo dein Nervensystem gerade eher stabil, angespannt oder überlastet wirkt.","maxScore":32,"scale":[{"label":"Nie","value":0},{"label":"Selten","value":1},{"label":"Manchmal","value":2},{"label":"Oft","value":3},{"label":"Sehr oft","value":4}],"questions":[{"id":"overload","text":"Wie oft hattest du in den letzten 14 Tagen das Gefühl, dass dir alles zu viel wird?"},{"id":"rumination","text":"Wie oft kreisen deine Gedanken weiter, obwohl du eigentlich abschalten möchtest?"},{"id":"tension","text":"Wie oft meldet sich Stress körperlich, etwa durch Nacken, Kiefer, Magen oder Druckgefühl?"},{"id":"sleep","text":"Wie oft wachst du morgens nicht erholt auf?"},{"id":"recovery","text":"Wie oft brauchst du lange, um nach Belastung wieder runterzufahren?"},{"id":"control","text":"Wie oft hast du das Gefühl, die Kontrolle über deinen Tag zu verlieren?"},{"id":"arousal","text":"Wie oft spürst du innere Unruhe, Herzklopfen oder mentale Blockade?"},{"id":"daylight","text":"Wie oft fehlen dir Tageslicht, Bewegungspausen oder kurze echte Erholung im Alltag?"}],"profiles":[{"id":"stable","min":0,"max":9,"title":"Stabile Stresslage","summary":"Deine Antworten sprechen aktuell eher für eine tragfähige Regenerationsreserve. Das Ziel ist, diese Reserve zu schützen, bevor der Alltag sie still abbaut.","nextSteps":["Halte eine feste Schlaf- und Aufstehzeit so gut wie möglich stabil.","Plane täglich eine kurze Bewegungspause im Tageslicht ein.","Nutze Atemübungen präventiv, nicht erst im roten Bereich."],"articlePaths":["/3-atemtechniken-fur-mehr-energie/","/gehen-als-training/","/der-schlaf-reset/"],"sourceIds":["pss-cohen-1983","who-stress-guide","cdc-sleep"]},{"id":"elevated","min":10,"max":18,"title":"Erhöhte Stresslast","summary":"Dein System wirkt belastet, aber noch gut beeinflussbar. Entscheidend sind jetzt kleine Entlastungen, die wiederholt funktionieren.","nextSteps":["Setze heute eine 3-Minuten-Atempause mit langer Ausatmung.","Reduziere eine vermeidbare Reizquelle am Abend, zum Beispiel späte Bildschirmzeit.","Lege eine klare Mini-Grenze fest: eine Aufgabe weniger, eine Pause bewusst."],"articlePaths":["/3-atemtechniken-fur-mehr-energie/","/der-digitale-detox/","/sport-als-stress-killer/"],"sourceIds":["breathwork-meta-2023","slow-breathing-hrv-2022","who-stress-guide"]},{"id":"high","min":19,"max":32,"title":"Hohe Belastung","summary":"Deine Antworten zeigen eine deutlich erhöhte Stresslast. Das ist kein Befund, aber ein ernstzunehmendes Signal, Erholung zu priorisieren und bei anhaltender Belastung Unterstützung einzubeziehen.","nextSteps":["Wähle für die nächsten 24 Stunden nur eine stabilisierende Maßnahme: Schlaf, ruhiger Spaziergang oder Atemübung.","Sprich mit einer vertrauten Person über die aktuelle Belastung, statt sie nur intern zu managen.","Wenn Beschwerden stark sind, länger anhalten oder Angst, Brustdruck, Schwindel oder Selbstgefährdung dazukommen, bitte medizinisch oder psychologisch abklären lassen."],"articlePaths":["/der-schlaf-reset/","/die-kunst-des-mentalen-resets/","/sport-als-stress-killer/"],"sourceIds":["pss-cohen-1983","who-stress-guide","cdc-sleep"]}],"safetyNote":"Dieser Check misst keine Erkrankung. Bei akuten Beschwerden, Panik, Brustdruck, Ohnmacht, Selbstgefährdung oder anhaltender Überlastung bitte professionelle Hilfe nutzen."},"micronutrients":{"id":"micronutrients","label":"Mikronährstoff-Radar","eyebrow":"2-Minuten-Radar","headline":"Welche Nährstoffbereiche verdienen Aufmerksamkeit?","lede":"Das Radar bewertet Lebensstil-, Ernährungs- und Risikosignale. Es kann keinen Mangel feststellen; dafür sind Laborwerte und medizinische Einordnung nötig.","nutrients":{"vitaminD":{"label":"Vitamin D","summary":"Relevant bei wenig Tageslicht, überwiegend Innenraum-Alltag und geringer Zufuhr über Lebensmittel.","nextSteps":["Tageslicht bewusst einplanen, ohne Sonnenbrand zu riskieren.","Bei Verdacht den 25-OH-D-Wert ärztlich/labordiagnostisch prüfen lassen.","Supplemente nur im sicheren Rahmen und nicht dauerhaft hochdosiert ohne Kontrolle nutzen."],"articlePaths":["/vitamin-d-das-sonnenhormon/","/der-schlaf-reset/"],"sourceIds":["nih-vitamin-d","bfr-max-supplements"]},"b12":{"label":"Vitamin B12","summary":"Besonders wichtig bei veganer Ernährung, sehr wenig tierischen Lebensmitteln oder bestimmten Magen-Darm- und Medikamentenfaktoren.","nextSteps":["Bei veganer Ernährung B12 gezielt supplementieren.","Bei Unsicherheit B12-Status mit geeigneten Laborparametern prüfen lassen.","Müdigkeit oder neurologische Beschwerden nicht nur über Ernährung erklären."],"articlePaths":["/protein-wissen-fur-kraftaufbau/","/der-unsichtbare-teller/"],"sourceIds":["nih-vitamin-b12","dge-vitamin-b12"]},"ironFolate":{"label":"Eisen/Folat","summary":"Auffällig bei starker Blutung, Schwangerschaft/Kinderwunsch, sehr einseitiger Ernährung oder Müdigkeit mit Leistungsknick.","nextSteps":["Eisen nicht blind hochdosiert einnehmen, sondern Ferritin und Blutbild prüfen lassen.","Hülsenfrüchte, Vollkorn, grünes Gemüse und Vitamin-C-Quellen sinnvoll kombinieren.","Bei Schwangerschaft, starker Blutung oder anhaltender Müdigkeit ärztlich abklären."],"articlePaths":["/vitamin-c-mythen/","/gesundheit-im-familien-alltag/"],"sourceIds":["nih-iron","bfr-max-supplements"]},"magnesium":{"label":"Magnesium","summary":"Relevant bei hoher Belastung, viel Sport/Schwitzen, Muskelkrämpfen oder sehr geringer Nuss-, Samen- und Vollkornzufuhr.","nextSteps":["Magnesiumreiche Lebensmittel wie Kerne, Nüsse, Vollkorn, Hülsenfrüchte und grünes Gemüse prüfen.","Krämpfe, Herzrhythmusgefühl oder starke Beschwerden nicht selbst diagnostizieren.","Bei Supplementen auf elementares Magnesium und Verträglichkeit achten."],"articlePaths":["/die-kraft-des-magnesiums/","/der-innere-akku/"],"sourceIds":["nih-magnesium","bfr-max-supplements"]},"omega3":{"label":"Omega-3","summary":"Ein Aufmerksamkeitspunkt, wenn Fisch, Algenöl, Leinsamen, Chiasamen oder Walnüsse kaum vorkommen.","nextSteps":["Regelmäßige Omega-3-Quellen in den Speiseplan aufnehmen.","Bei pflanzlicher Ernährung DHA/EPA über Algenöl als Option prüfen.","Blutverdünner, Operationen oder Erkrankungen vor Supplementen ärztlich einordnen lassen."],"articlePaths":["/der-unsichtbare-teller/","/gesundheit-im-familien-alltag/"],"sourceIds":["bfr-max-supplements"]},"zincIodine":{"label":"Jod/Zink","summary":"Relevant bei wenig Meeresfisch, wenig Milchprodukten, veganer Ernährung, sehr einseitiger Kost oder häufiger Infektanfälligkeit.","nextSteps":["Jodsalz, geeignete Proteinquellen und zinkreiche Lebensmittel bewusst prüfen.","Algenprodukte wegen stark schwankender Jodgehalte nicht unkritisch dosieren.","Bei Schilddrüsenerkrankungen Jodfragen medizinisch abklären."],"articlePaths":["/der-unsichtbare-teller/","/protein-wissen-fur-kraftaufbau/"],"sourceIds":["nih-zinc","bfr-max-supplements"]}},"profiles":[{"id":"steady","min":0,"max":8,"title":"Ruhiges Radar","summary":"Es zeigen sich keine starken Risikosignale. Sinnvoll ist vor allem, die Basis aus Vielfalt, Schlaf, Tageslicht und regelmäßigen Mahlzeiten stabil zu halten."},{"id":"watch","min":9,"max":18,"title":"Gezielt hinschauen","summary":"Einige Antworten deuten auf Nährstoffbereiche hin, die du gezielt prüfen und über Ernährung oder Laborwerte besser einordnen kannst."},{"id":"focus","min":19,"max":80,"title":"Klare Aufmerksamkeit","summary":"Mehrere Signale bündeln sich. Das ist kein Mangelbefund, aber ein guter Anlass für strukturierte Ernährung, passende Laborwerte und fachliche Einordnung."}],"questions":[{"id":"diet","type":"single","text":"Welche Ernährungsform beschreibt deinen Alltag am besten?","options":[{"label":"Mischkost mit regelmäßigen tierischen und pflanzlichen Lebensmitteln","scores":{}},{"label":"Vegetarisch","scores":{"b12":2,"ironFolate":1,"zincIodine":1}},{"label":"Vegan","scores":{"b12":5,"ironFolate":2,"zincIodine":2,"omega3":2}},{"label":"Sehr einseitig oder oft Mahlzeiten ersetzt/ausgelassen","scores":{"b12":1,"ironFolate":2,"magnesium":2,"zincIodine":2}}]},{"id":"plants","type":"single","text":"Wie oft kommen Gemüse, Obst, Vollkorn, Hülsenfrüchte, Nüsse oder Kerne vor?","options":[{"label":"Täglich und abwechslungsreich","scores":{}},{"label":"Mehrmals pro Woche, aber nicht konstant","scores":{"magnesium":1,"ironFolate":1,"zincIodine":1}},{"label":"Selten oder sehr unregelmäßig","scores":{"magnesium":3,"ironFolate":3,"zincIodine":2}}]},{"id":"daylight","type":"single","text":"Wie viel Tageslicht bekommst du an typischen Werktagen?","options":[{"label":"Meist mehr als 45 Minuten draußen","scores":{}},{"label":"Kurz auf Wegen, sonst viel drinnen","scores":{"vitaminD":2}},{"label":"Fast gar nicht","scores":{"vitaminD":4}}]},{"id":"omega","type":"single","text":"Wie regelmäßig hast du Fisch, Algenöl, Leinsamen, Chiasamen oder Walnüsse im Plan?","options":[{"label":"Mehrmals pro Woche","scores":{}},{"label":"Gelegentlich","scores":{"omega3":1}},{"label":"Selten oder nie","scores":{"omega3":4}}]},{"id":"protein","type":"single","text":"Wie oft enthält eine Mahlzeit eine klare Proteinquelle?","options":[{"label":"Meist zwei- bis dreimal täglich","scores":{}},{"label":"Einmal täglich","scores":{"zincIodine":1,"ironFolate":1}},{"label":"Unregelmäßig oder kaum bewusst","scores":{"zincIodine":2,"b12":1,"ironFolate":1}}]},{"id":"blood","type":"single","text":"Trifft aktuell etwas davon zu?","options":[{"label":"Nein oder nicht relevant","scores":{}},{"label":"Starke oder lange Menstruation","scores":{"ironFolate":4}},{"label":"Schwangerschaft, Stillzeit oder Kinderwunsch","scores":{"ironFolate":3,"vitaminD":1,"zincIodine":1}},{"label":"Möchte ich nicht beantworten","scores":{}}]},{"id":"gutMeds","type":"multi","text":"Gibt es Magen-Darm- oder Medikamentenfaktoren?","options":[{"label":"Keine davon","exclusive":true,"scores":{}},{"label":"Chronische Magen-Darm-Beschwerden oder Resorptionsprobleme","scores":{"b12":2,"ironFolate":2,"magnesium":1}},{"label":"Metformin, Protonenpumpenhemmer oder ähnliche Langzeitmedikation","scores":{"b12":2,"magnesium":1}},{"label":"Häufige Durchfälle oder sehr restriktive Diäten","scores":{"magnesium":2,"zincIodine":1,"ironFolate":1}}]},{"id":"signals","type":"multi","text":"Welche Signale bemerkst du häufiger?","options":[{"label":"Keine davon","exclusive":true,"scores":{}},{"label":"Muskelkrämpfe oder starkes Zucken","scores":{"magnesium":3}},{"label":"Müdigkeit, Blässe oder Leistungsknick","scores":{"ironFolate":2,"b12":1,"vitaminD":1}},{"label":"Infektanfälligkeit oder schlechte Wundheilung","scores":{"zincIodine":2,"vitaminD":1}},{"label":"Brüchige Nägel, Haarausfall oder rissige Mundwinkel","scores":{"ironFolate":2,"zincIodine":1,"b12":1}}]},{"id":"stressSport","type":"single","text":"Wie stark belasten dich Sport, Schwitzen, Stress oder Alkohol aktuell?","options":[{"label":"Niedrig bis moderat","scores":{}},{"label":"Phasenweise hoch","scores":{"magnesium":1,"vitaminD":1}},{"label":"Sehr hoch oder fast täglich","scores":{"magnesium":3,"zincIodine":1,"omega3":1}}]},{"id":"labs","type":"single","text":"Gibt es aktuelle Laborwerte oder gezielte Supplemente?","options":[{"label":"Ja, Werte sind aktuell geprüft und unauffällig","scores":{"vitaminD":-1,"b12":-1,"ironFolate":-1,"magnesium":-1}},{"label":"Ich supplementiere einiges, aber ohne aktuelle Werte","scores":{"bfr":1,"vitaminD":1,"ironFolate":1}},{"label":"Keine aktuellen Werte und keine klare Strategie","scores":{"vitaminD":1,"b12":1,"ironFolate":1,"magnesium":1}}]}],"sourceIds":["nih-vitamin-d","nih-magnesium","nih-vitamin-b12","nih-iron","nih-zinc","dge-vitamin-b12","bfr-max-supplements"],"safetyNote":"Dieses Radar ist keine Labordiagnostik. Bitte Eisen, Vitamin D, B12 oder hochdosierte Supplemente nicht dauerhaft blind einnehmen; bei Beschwerden, Schwangerschaft, Medikamenten oder Erkrankungen fachlich abklären lassen."},"healthIq":{"id":"healthIq","type":"knowledge","label":"Health IQ","eyebrow":"Biohacking-Wissensquiz","headline":"Wie stark ist dein Vitamin- und Biohacking-Wissen?","lede":"Dieses Quiz testet Grundlagen zu Vitaminen, Stress, Schlaf, Supplementen und Regeneration. Es bewertet kein Gesundheitsrisiko, sondern zeigt Lernfelder und passende Callidus-Artikel.","maxScore":100,"scoreLabel":"Wissensscore","categories":{"vitamins":{"label":"Vitamine & Mineralstoffe","summary":"Hier geht es um Funktionen, Quellen und sichere Einordnung von Vitamin D, B12, C, Magnesium und Eisen.","articlePaths":["/vitamin-d-das-sonnenhormon/","/die-kraft-des-magnesiums/","/protein-wissen-fur-kraftaufbau/"]},"supplements":{"label":"Supplement-Sicherheit","summary":"Hier geht es um Dosierung, Laborwerte, Interaktionen und die Grenze zwischen Basiswissen und medizinischer Abklärung.","articlePaths":["/vitamin-c-mythen/","/vitamin-a-wachter-der-sehkraft/","/gesundheit-im-familien-alltag/"]},"stressRecovery":{"label":"Stress & Regeneration","summary":"Hier geht es um Schlaf, Atmung, Bewegung und die praktischen Grundlagen von Biohacking ohne Übertreibung.","articlePaths":["/3-atemtechniken-fur-mehr-energie/","/der-schlaf-reset/","/sport-als-stress-killer/"]},"nutrition":{"label":"Ernährung & Leistung","summary":"Hier geht es um Protein, Omega-3, Ballaststoffe und die Verbindung von Ernährung mit Energie und Regeneration.","articlePaths":["/protein-wissen-fur-kraftaufbau/","/darmgesundheit-mit-akazienfaser/","/der-innere-akku/"]}},"profiles":[{"id":"starter","min":0,"max":39,"title":"Health Starter","summary":"Du hast erste Berührungspunkte, aber viele Grundlagen sind noch unscharf. Das ist perfekt für den Einstieg: Mit wenigen Kernartikeln kannst du schnell deutlich sicherer werden.","nextSteps":["Starte mit Vitamin D, Magnesium und B12 als Basisfelder.","Lies erst die Sicherheits- und Quellenhinweise, bevor du Supplemente bewertest.","Wiederhole das Quiz nach den Artikeln und prüfe, welche Antworten sich verändert haben."],"articlePaths":["/vitamin-d-das-sonnenhormon/","/die-kraft-des-magnesiums/","/protein-wissen-fur-kraftaufbau/"],"sourceIds":["nih-vitamin-d","nih-magnesium","nih-vitamin-b12","bfr-max-supplements"]},{"id":"solid","min":40,"max":69,"title":"Solide Basis","summary":"Du erkennst viele Zusammenhänge bereits, verwechselst aber vermutlich noch einzelne Wirkmechanismen, Sicherheitsfragen oder Biohacking-Prioritäten.","nextSteps":["Vertiefe die Themen, bei denen du falsche Antworten hattest.","Achte besonders auf den Unterschied zwischen allgemeinem Wissen, Laborwerten und individueller Beratung.","Nutze die empfohlenen Artikel als Lernpfad statt als To-do-Liste für Supplemente."],"articlePaths":["/der-schlaf-reset/","/vitamin-c-mythen/","/darmgesundheit-mit-akazienfaser/"],"sourceIds":["cdc-sleep","nih-vitamin-c","bfr-max-supplements"]},{"id":"advanced","min":70,"max":89,"title":"Fortgeschritten","summary":"Dein Gesundheitswissen ist schon ziemlich belastbar. Jetzt lohnt sich Feinschliff: Wechselwirkungen, Quellenqualität und die Frage, welche Hebel im Alltag wirklich Priorität haben.","nextSteps":["Schau dir gezielt die falsch beantworteten Fragen an.","Prüfe, ob du Biohacking eher als Basis aus Schlaf, Bewegung, Ernährung und Stressregulation verstehst.","Nutze Quellenboxen in den Artikeln, um Behauptungen selbst nachzuvollziehen."],"articlePaths":["/das-protokoll-zur-neuro-resilienz/","/der-innere-akku/","/sport-als-stress-killer/"],"sourceIds":["physical-activity-mental-health-review","issn-protein-exercise","slow-breathing-hrv-2022"]},{"id":"architect","min":90,"max":100,"title":"Health Architect","summary":"Stark. Du hast die wichtigsten Grundlagen aus Vitaminen, Supplement-Sicherheit und Regeneration im Griff. Dein nächster Schritt ist nicht mehr mehr Wissen, sondern bessere Umsetzung.","nextSteps":["Nutze den Stress-Check oder das Mikronährstoff-Radar für persönliche Prioritäten.","Vertiefe nur noch die Themen, bei denen du eine Antwort nachschlagen musstest.","Teile das Quiz mit jemandem, der Gesundheitsmythen gern schnell glaubt."],"articlePaths":["/gesundheits-checks/","/quellen-methodik/","/nexus-app/"],"sourceIds":["bfr-max-supplements","who-stress-guide"]}],"questions":[{"id":"vitaminD","type":"single","category":"vitamins","text":"Welche Aussage zu Vitamin D ist am treffendsten?","correctIndex":1,"explanation":"Vitamin D kann bei ausreichender UV-B-Strahlung in der Haut gebildet werden und ist unter anderem für Calciumstoffwechsel, Knochen und Muskelfunktion relevant. Im Winter ist die körpereigene Bildung in nördlichen Breiten eingeschränkt.","articlePaths":["/vitamin-d-das-sonnenhormon/"],"sourceIds":["nih-vitamin-d"],"options":[{"label":"Vitamin D ist nur für gute Laune zuständig."},{"label":"Vitamin D hängt mit Sonnenlicht, Calciumstoffwechsel, Knochen und Muskeln zusammen."},{"label":"Vitamin D kann man beliebig hoch dosieren, weil es natürlich ist."},{"label":"Vitamin D ist nur über Obst und Gemüse relevant."}]},{"id":"b12","type":"single","category":"vitamins","text":"Was ist bei veganer Ernährung in Bezug auf Vitamin B12 besonders wichtig?","correctIndex":2,"explanation":"Vitamin B12 ist bei veganer Ernährung ein kritischer Nährstoff. Eine zuverlässige Zufuhr über Supplemente oder angereicherte Lebensmittel ist wichtig; bei Unsicherheit helfen passende Laborwerte.","articlePaths":["/protein-wissen-fur-kraftaufbau/","/der-unsichtbare-teller/"],"sourceIds":["nih-vitamin-b12","dge-vitamin-b12"],"options":[{"label":"B12 ist bei veganer Ernährung nie ein Thema."},{"label":"B12 entsteht ausreichend durch fermentiertes Gemüse."},{"label":"B12 sollte zuverlässig über Supplemente oder angereicherte Lebensmittel abgedeckt werden."},{"label":"B12 ist nur für Sportler relevant."}]},{"id":"magnesium","type":"single","category":"vitamins","text":"Welche Aussage zu Magnesium ist sinnvoll?","correctIndex":0,"explanation":"Magnesium ist an vielen Körperprozessen beteiligt, unter anderem Muskeln und Nerven. Krämpfe oder Herzrhythmusgefühl sollten aber nicht vorschnell selbst diagnostiziert werden.","articlePaths":["/die-kraft-des-magnesiums/"],"sourceIds":["nih-magnesium","bfr-max-supplements"],"options":[{"label":"Magnesium ist wichtig für Muskeln und Nerven, aber kein Freifahrtschein für Selbstdiagnosen."},{"label":"Magnesium wirkt bei jedem sofort wie ein Schlafmittel."},{"label":"Je mehr Magnesium, desto besser."},{"label":"Magnesium kommt praktisch nur in Fleisch vor."}]},{"id":"iron","type":"single","category":"supplements","text":"Wie sollte man Eisen-Supplemente am ehesten einordnen?","correctIndex":3,"explanation":"Eisen ist wichtig, sollte aber nicht dauerhaft hochdosiert auf Verdacht genommen werden. Ferritin, Blutbild und medizinische Einordnung sind bei Verdacht sinnvoll.","articlePaths":["/gesundheit-im-familien-alltag/","/vitamin-c-mythen/"],"sourceIds":["nih-iron","bfr-max-supplements"],"options":[{"label":"Eisen sollte jeder regelmäßig nehmen."},{"label":"Eisen ist nur für Frauen relevant."},{"label":"Eisenmangel erkennt man sicher an Müdigkeit allein."},{"label":"Eisen sollte bei Verdacht gezielt über Laborwerte eingeordnet werden."}]},{"id":"omega3","type":"single","category":"nutrition","text":"Was ist bei Omega-3 korrekt?","correctIndex":1,"explanation":"ALA kommt in pflanzlichen Quellen wie Leinsamen oder Walnüssen vor. EPA und DHA sind die langkettigen Formen, die direkt vor allem über Fisch oder Algenöl zugeführt werden können.","articlePaths":["/der-unsichtbare-teller/","/der-innere-akku/"],"sourceIds":["nih-omega3","bfr-max-supplements"],"options":[{"label":"Alle Omega-3-Quellen liefern automatisch gleich viel DHA und EPA."},{"label":"Pflanzliche Quellen liefern vor allem ALA; EPA/DHA kommen direkt über Fisch oder Algenöl."},{"label":"Omega-3 ist nur ein Marketingbegriff."},{"label":"Omega-3-Supplemente haben nie Wechselwirkungen."}]},{"id":"vitaminC","type":"single","category":"vitamins","text":"Welche Rolle von Vitamin C wird oft unterschätzt?","correctIndex":2,"explanation":"Vitamin C ist nicht nur ein Immun-Mythenthema. Es ist unter anderem für die Kollagenbildung relevant und wirkt als wasserlösliches Antioxidans.","articlePaths":["/vitamin-c-mythen/","/biologische-verjungung/"],"sourceIds":["nih-vitamin-c","bfr-max-supplements"],"options":[{"label":"Vitamin C ersetzt Schlaf und Bewegung."},{"label":"Vitamin C ist nur in Zitronen sinnvoll."},{"label":"Vitamin C ist für Kollagenbildung und antioxidative Prozesse relevant."},{"label":"Vitamin C sollte immer maximal dosiert werden."}]},{"id":"fatSoluble","type":"single","category":"supplements","text":"Was gilt besonders für fettlösliche Vitamine wie A, D, E und K?","correctIndex":0,"explanation":"Fettlösliche Vitamine werden anders gespeichert als wasserlösliche Vitamine. Deshalb sind Hochdosis-Experimente ohne Anlass und Kontrolle besonders kritisch zu sehen.","articlePaths":["/vitamin-a-wachter-der-sehkraft/","/vitamin-e-der-zellschutzer/","/vitamin-d-das-sonnenhormon/"],"sourceIds":["bfr-max-supplements","nih-vitamin-d"],"options":[{"label":"Hochdosierte Einnahme sollte vorsichtig eingeordnet werden, weil Speicherung und Überversorgung möglich sind."},{"label":"Sie werden immer sofort ausgeschieden."},{"label":"Sie sind nur für die Haut relevant."},{"label":"Sie sind grundsätzlich ungefährlicher als Lebensmittel."}]},{"id":"sleep","type":"single","category":"stressRecovery","text":"Was ist ein sinnvoller Biohacking-Basishebel für Schlaf?","correctIndex":1,"explanation":"Die Basis ist nicht ein exotischer Hack, sondern Schlafdauer, Regelmäßigkeit, Abendroutine, Licht und Reizmanagement. Supplemente sind ohne Basis selten der wichtigste Hebel.","articlePaths":["/der-schlaf-reset/","/der-digitale-detox/"],"sourceIds":["cdc-sleep","who-stress-guide"],"options":[{"label":"Möglichst viele Schlaf-Supplemente kombinieren."},{"label":"Regelmäßigkeit, Abendroutine, Licht und Reizmanagement zuerst verbessern."},{"label":"Schlaf lässt sich durch Willenskraft ersetzen."},{"label":"Nur die Matratze entscheidet."}]},{"id":"breath","type":"single","category":"stressRecovery","text":"Wie sollte man Atemübungen bei Stress verstehen?","correctIndex":3,"explanation":"Langsame, bewusste Atmung kann das autonome Nervensystem beeinflussen und zur Regulation beitragen. Sie ersetzt aber keine Hilfe bei akuten oder schweren Beschwerden.","articlePaths":["/3-atemtechniken-fur-mehr-energie/","/die-kunst-des-mentalen-resets/"],"sourceIds":["breathwork-meta-2023","slow-breathing-hrv-2022","who-stress-guide"],"options":[{"label":"Atemübungen sind reine Esoterik."},{"label":"Atemübungen heilen jede Stressfolge."},{"label":"Nur sehr komplizierte Atemtechniken wirken."},{"label":"Atemübungen können regulieren, ersetzen aber keine medizinische oder psychologische Hilfe."}]},{"id":"protein","type":"single","category":"nutrition","text":"Was ist beim Thema Protein und Training am sinnvollsten?","correctIndex":0,"explanation":"Protein liefert Bausteine für Anpassungsprozesse. Entscheidend ist aber die Kombination aus Training, ausreichender Energie, Schlaf und sinnvoll verteilter Proteinzufuhr.","articlePaths":["/protein-wissen-fur-kraftaufbau/","/der-innere-akku/","/der-ganzheitliche-bodybuilding-plan/"],"sourceIds":["issn-protein-exercise"],"options":[{"label":"Protein wirkt im Kontext von Training, Energiezufuhr, Schlaf und Regeneration."},{"label":"Protein allein ersetzt Training."},{"label":"Pflanzliches Protein ist grundsätzlich wertlos."},{"label":"Nur die Mahlzeit direkt nach dem Training zählt."}]}],"sourceIds":["nih-vitamin-d","nih-magnesium","nih-vitamin-b12","nih-iron","nih-zinc","nih-omega3","nih-vitamin-c","dge-vitamin-b12","bfr-max-supplements","cdc-sleep","slow-breathing-hrv-2022","issn-protein-exercise"],"safetyNote":"Dieses Wissensquiz ersetzt keine Beratung. Es soll Gesundheitswissen spielerisch prüfen und zum Nachlesen führen; individuelle Supplemente, Diagnosen oder Therapien gehören in fachliche Hände."}};
+const SOURCES = {"pss-cohen-1983":{"id":"pss-cohen-1983","title":"A global measure of perceived stress","url":"https://pubmed.ncbi.nlm.nih.gov/6668417/","type":"Primärstudie","topics":["Stress","Selbstcheck","Psychometrie"],"summary":"Originalarbeit zur Perceived Stress Scale als Fragebogen für subjektiv erlebten Stress."},"who-stress-guide":{"id":"who-stress-guide","title":"Doing what matters in times of stress","url":"https://www.who.int/publications/i/item/9789240003927","type":"Behörde","topics":["Stress","Selbsthilfe","Psychoedukation"],"summary":"WHO-Leitfaden mit alltagstauglichen Stressbewältigungsübungen und klarer Abgrenzung zu medizinischer Behandlung."},"breathwork-meta-2023":{"id":"breathwork-meta-2023","title":"Effect of breathwork on stress and mental health","url":"https://pubmed.ncbi.nlm.nih.gov/36624160/","type":"Review","topics":["Atmung","Stress","Mentale Gesundheit"],"summary":"Meta-Analyse randomisierter Studien zu Atemübungen, Stress und mentaler Gesundheit."},"slow-breathing-hrv-2022":{"id":"slow-breathing-hrv-2022","title":"Effects of voluntary slow breathing on heart rate and heart rate variability","url":"https://pubmed.ncbi.nlm.nih.gov/35623448/","type":"Review","topics":["Atmung","Herzratenvariabilität","Regeneration"],"summary":"Systematische Übersichtsarbeit und Meta-Analyse zu langsamer Atmung und HRV-Markern."},"cdc-sleep":{"id":"cdc-sleep","title":"About Sleep","url":"https://www.cdc.gov/sleep/about/index.html","type":"Behörde","topics":["Schlaf","Regeneration","Stress"],"summary":"CDC-Übersicht zu Schlafdauer, Schlafqualität und gesundheitlicher Bedeutung von Schlaf."},"physical-activity-mental-health-review":{"id":"physical-activity-mental-health-review","title":"Physical activity and depression and anxiety disorders","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10546525/","type":"Review","topics":["Bewegung","Stress","Mentale Gesundheit"],"summary":"Review-of-Reviews zur Verbindung von körperlicher Aktivität mit Depression und Angst."},"nih-vitamin-d":{"id":"nih-vitamin-d","title":"Vitamin D - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/","type":"Referenzwert","topics":["Vitamin D","Mikronährstoffe","Knochen","Immunsystem"],"summary":"NIH-Fachinformation zu Vitamin-D-Quellen, Status, Referenzwerten und Sicherheit."},"nih-magnesium":{"id":"nih-magnesium","title":"Magnesium - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/","type":"Referenzwert","topics":["Magnesium","Muskeln","Nerven","Mikronährstoffe"],"summary":"NIH-Fachinformation zu Magnesium, Zufuhr, Lebensmitteln, Supplementen und Sicherheit."},"nih-vitamin-b12":{"id":"nih-vitamin-b12","title":"Vitamin B12 - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/","type":"Referenzwert","topics":["Vitamin B12","Vegane Ernährung","Mikronährstoffe"],"summary":"NIH-Fachinformation zu Vitamin B12, Risikogruppen, Laborbezug und Zufuhr."},"nih-iron":{"id":"nih-iron","title":"Iron - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/","type":"Referenzwert","topics":["Eisen","Mikronährstoffe","Müdigkeit"],"summary":"NIH-Fachinformation zu Eisen, Eisenstatus, Risikogruppen, Zufuhr und Sicherheit."},"nih-zinc":{"id":"nih-zinc","title":"Zinc - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/","type":"Referenzwert","topics":["Zink","Immunsystem","Mikronährstoffe"],"summary":"NIH-Fachinformation zu Zink, Statusmarkern, Zufuhr und Sicherheit."},"nih-omega3":{"id":"nih-omega3","title":"Omega-3 Fatty Acids - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/","type":"Referenzwert","topics":["Omega-3","DHA","EPA","ALA","Mikronährstoffe"],"summary":"NIH-Fachinformation zu Omega-3-Fettsäuren, Quellen, Status, Sicherheit und Interaktionen."},"nih-vitamin-c":{"id":"nih-vitamin-c","title":"Vitamin C - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/","type":"Referenzwert","topics":["Vitamin C","Kollagen","Antioxidantien","Mikronährstoffe"],"summary":"NIH-Fachinformation zu Vitamin C, Quellen, Funktionen, Referenzwerten und Sicherheit."},"dge-vitamin-b12":{"id":"dge-vitamin-b12","title":"Vitamin B12 Referenzwerte","url":"https://www.dge.de/wissenschaft/referenzwerte/vitamin-b12/","type":"Referenzwert","topics":["Vitamin B12","Vegane Ernährung","DGE"],"summary":"DGE-Referenzwerte und Hinweis, dass vegan lebende Menschen Vitamin B12 supplementieren müssen."},"bfr-max-supplements":{"id":"bfr-max-supplements","title":"Aktualisierte Höchstmengenvorschläge für Vitamine und Mineralstoffe","url":"https://www.bfr.bund.de/stellungnahme/aktualisierte-hoechstmengenvorschlaege-fuer-vitamine-und-mineralstoffe-in-nahrungsergaenzungsmitteln-und-angereicherten-lebensmitteln/","type":"Verbraucher-/Risikohinweis","topics":["Nahrungsergänzung","Sicherheit","Überdosierung"],"summary":"BfR-Einordnung zu Höchstmengen für Nahrungsergänzungsmittel und angereicherte Lebensmittel."},"nccih-ashwagandha":{"id":"nccih-ashwagandha","title":"Ashwagandha: Usefulness and Safety","url":"https://www.nccih.nih.gov/health/ashwagandha","type":"Behörde","topics":["Ashwagandha","Stress","Schlaf","Sicherheit"],"summary":"NCCIH-Fachseite zur möglichen Wirkung und Sicherheit von Ashwagandha-Präparaten."},"nih-probiotics":{"id":"nih-probiotics","title":"Probiotics - Health Professional Fact Sheet","url":"https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/","type":"Referenzwert","topics":["Darm","Probiotika","Mikrobiom"],"summary":"NIH-Fachinformation zu Probiotika, potenziellen Anwendungen, Grenzen und Sicherheit."},"fiber-gut-review":{"id":"fiber-gut-review","title":"Dietary fiber intervention on gut microbiota composition in healthy adults","url":"https://pubmed.ncbi.nlm.nih.gov/29757343/","type":"Review","topics":["Darm","Ballaststoffe","Mikrobiom"],"summary":"Systematische Übersichtsarbeit und Meta-Analyse zu Ballaststoffen und Darmmikrobiota."},"issn-protein-exercise":{"id":"issn-protein-exercise","title":"International Society of Sports Nutrition Position Stand: protein and exercise","url":"https://pubmed.ncbi.nlm.nih.gov/28642676/","type":"Review","topics":["Protein","Training","Muskelaufbau"],"summary":"Positionspapier zu Proteinzufuhr, Training und Anpassungsprozessen."},"gemini-grounding-docs":{"id":"gemini-grounding-docs","title":"Grounding with Google Search","url":"https://ai.google.dev/gemini-api/docs/grounding","type":"Technische Dokumentation","topics":["Chatbot","KI","Websuche"],"summary":"Google-Dokumentation zu Gemini-Grounding mit Google Search; für Callidus als spätere v2-Option vorgesehen."},"firebase-callable-docs":{"id":"firebase-callable-docs","title":"Call functions from your app","url":"https://firebase.google.com/docs/functions/callable","type":"Technische Dokumentation","topics":["Firebase","Chatbot","Backend"],"summary":"Firebase-Dokumentation zu HTTPS Callable Functions."}};
+const ARTICLES = {"/10-minuten-morgen-workout/":{"title":"10-Minuten Morgen-Workout für mehr Energie | callidus A&M","description":"Keine Zeit für Sport? Starten Sie Ihren Tag mit diesem effektiven 10-Minuten-Workout. Mehr Energie, besserer Fokus und ein fitter Körper – ganz ohne Geräte.","path":"/10-minuten-morgen-workout/"},"/3-atemtechniken-fur-mehr-energie/":{"title":"3 einfache Atemtechniken für Energie & Stressabbau | callidus A&M","description":"Entdecken Sie, wie Sie mit einfachen Atemübungen sofort Stress reduzieren und neue Energie tanken. Lernen Sie 3 Techniken für mehr Ruhe und Klarheit im Alltag.","path":"/3-atemtechniken-fur-mehr-energie/"},"/ashwagandha/":{"title":"Ashwagandha: Wirkung & Anwendung der Schlafbeere bei Stress | callidus A&M","description":"Was ist Ashwagandha und wie wirkt es? Entdecken Sie, wie dieses natürliche Adaptogen aus dem Ayurveda Ihnen helfen kann, Stress abzubauen und besser zu schlafen.","path":"/ashwagandha/"},"/biologische-verjungung/":{"title":"Biologische Verjüngung: Wie Sie Ihre Zellen & Haut erneuern | callidus A&M","description":"Mehr als nur Hautpflege. Erfahren Sie, wie Sie durch die richtigen Nährstoffe und Gewohnheiten den Prozess der biologischen Verjüngung von innen heraus unterstützen können.","path":"/biologische-verjungung/"},"/blockchain-ihre-gesundheit/":{"title":"Entdecken Sie, wie Blockchain Ihre Gesundheitsdaten sicherer macht","description":"Blockchain Gesundheitswesen, Patientendaten Sicherheit, E-Health Blockchain, Medikamentenfälschung verhindern, digitale Gesundheitsakte, Smart Contracts Medizin, Gesundheitsdaten teilen, Zukunft der M","path":"/blockchain-ihre-gesundheit/"},"/darmgesundheit-mit-akazienfaser/":{"title":"Darmgesundheit: Akazienfaser & Probiotika für Ihre Balance | callidus A&M","description":"Ein gesunder Darm ist der Schlüssel zu Wohlbefinden. Erfahren Sie, wie lösliche Ballaststoffe wie Akazienfaser als Präbiotika Ihre Darmflora gezielt unterstützen.","path":"/darmgesundheit-mit-akazienfaser/"},"/das-diktat-ihrer-gedanken/":{"title":"Ihr Mindset entscheidet über Erfolg und Scheitern. Entdecken Sie, wie Sie die Kontrolle über Ihre Ge","description":"Mindset ändern, Gedanken kontrollieren, limitierende Glaubenssätze, mentales Training, Erfolg Mindset, negative Gedanken, Psychologie des Erfolgs, Selbstsabotage, Geist und Seele, callidus A&M Mindset","path":"/das-diktat-ihrer-gedanken/"},"/das-protokoll-zur-neuro-resilienz/":{"title":"Demenz & Depression vorbeugen: Das Protokoll zur Neuro-Resilienz | callidus A&M","description":"Die Vorstellung, die Kontrolle über unseren Geist zu verlieren, gehört zu den größten Ängsten unserer Zeit. Doch die Wissenschaft zeigt immer deutlicher: Wir sind dem nicht hilflos ausgeliefert. Entde","path":"/das-protokoll-zur-neuro-resilienz/"},"/der-digitale-detox/":{"title":"Wie eine bewusste Auszeit Ihrem Gehirn neue Superkräfte verleiht","description":"Digitaler Detox, mentale Klarheit, Gehirn Reset, Konzentration steigern, Kreativität fördern, digitales Wohlbefinden, Handy Auszeit, Stress durch Bildschirmzeit, callidus A&M Geist.","path":"/der-digitale-detox/"},"/der-energie-reset/":{"title":"Wie 15 Minuten tägliche Bewegung Ihren Tag revolutionieren","description":"Energie Reset, 15 Minuten Bewegung, tägliche Bewegung, kurze Workouts, Energie im Alltag, Stressabbau Bewegung, Konzentration steigern, schnelle Fitness, callidus A&M Energie.","path":"/der-energie-reset/"},"/der-ganzheitliche-bodybuilding-plan/":{"title":"Der ganzheitliche Trainingsplan für Muskelaufbau | callidus A&M","description":"Mehr als nur Gewichte heben. Entdecken Sie unseren wissenschaftlich fundierten Plan für maximalen Muskelaufbau durch intelligentes Training, gezielte Ernährung und mentale Stärke.","path":"/der-ganzheitliche-bodybuilding-plan/"},"/der-innere-akku/":{"title":"Wie Ernährung und Schlaf Ihre Trainingsleistung steuern","description":"Schlaf Training, Ernährung Sport, Regeneration Sport, Trainingsleistung steigern, Energielevel optimieren, Mikronährstoffe Sport, Sporternährung, Schlafqualität, innerer Akku, callidus A&M Leistung.","path":"/der-innere-akku/"},"/der-schlaf-reset/":{"title":"Der SchlBesser schlafen: 5 Abendrituale für einen erholsamen Schlaf | callidus A&Maf-Reset","description":"Können Sie nicht einschlafen oder wachen oft auf? Entdecken Sie 5 einfache Abendrituale, die Ihnen helfen, zur Ruhe zu kommen und Ihre Schlafqualität zu verbessern.","path":"/der-schlaf-reset/"},"/der-unsichtbare-teller/":{"title":"Entdecken Sie den \"unsichtbaren Teller\": Es geht nicht nur darum, WAS Sie essen, sondern WIE. Verste","description":"Achtsames Essen, intuitives Essen, Essgewohnheiten, Verdauung verbessern, Mindset Ernährung, Stress und Essen, ganzheitliche Ernährung, Nährstoffaufnahme, Essen und Wohlbefinden, callidus A&M Ernährun","path":"/der-unsichtbare-teller/"},"/die-biologische-uhr-verlangsamen/":{"title":"Gesundes Altern: Wie wir die biologische Uhr verlangsamen können | callidus A&M","description":"Ist Altern eine Krankheit? Entdecken Sie die Wissenschaft der Langlebigkeit (Longevity) und erfahren Sie, wie Ansätze wie Senolytika und NAD+ den Alterungsprozess verlangsamen.","path":"/die-biologische-uhr-verlangsamen/"},"/die-kraft-der-dankbarkeit/":{"title":"Wie ein einfaches \"Danke\" Ihr emotionales Wohlbefinden stärkt","description":"Dankbarkeit, emotionales Wohlbefinden, Dankbarkeit stärken, Glück durch Dankbarkeit, Resilienz, mentale Gesundheit, positive Psychologie, Dankbarkeitsübungen, innere Zufriedenheit, callidus A&M Seele.","path":"/die-kraft-der-dankbarkeit/"},"/die-kraft-des-magnesiums/":{"title":"Die Kraft des Magnesiums: Wichtig für Muskeln & Nerven | callidus A&M","description":"Müde, verspannt oder unruhig? Erfahren Sie, warum ein Magnesiummangel die Ursache sein könnte und wie Sie Ihre Speicher mit den richtigen Lebensmitteln auffüllen.","path":"/die-kraft-des-magnesiums/"},"/die-kunst-des-mentalen-resets/":{"title":"Ihr Kopf ist voll? Entdecken Sie 5 einfache, 5-minütige Übungen","description":"Mentaler Reset, Kopf frei bekommen, Stressabbau 5 Minuten, schnelle Entspannung, Achtsamkeitsübungen, Atemübungen Stress, mentale Klarheit, innere Ruhe, callidus A&M Gehirn.","path":"/die-kunst-des-mentalen-resets/"},"/die-personalisierte-revolution/":{"title":"Personalisierte Gesundheit: Wie Gen-Analyse & KI die Medizin revolutionieren | callidus A&M","description":"Die Zukunft ist persönlich. Erfahren Sie, wie DNA-basierte Ernährung (Nutrigenomik) und KI-Analysen die Gesundheitsvorsorge für immer verändern werden.","path":"/die-personalisierte-revolution/"},"/digitale-alchemie/":{"title":"Digitale Alchemie: Wie Neuro-Tech unsere Emotionen steuert | callidus A&M","description":"Die Zukunft ist fühlbar. Erfahren Sie, wie tragbare Neuro-Technologie und digitale Therapeutika uns ermöglichen, Stress, Fokus und Kreativität in Echtzeit zu steuern.","path":"/digitale-alchemie/"},"/gehen-als-training/":{"title":"Gehen als Training: Warum Spazierengehen so effektiv ist | callidus A&M","description":"Entdecken Sie die überraschenden gesundheitlichen Vorteile des Gehens. Warum ein täglicher Spaziergang Gelenke schont, Stress abbaut und Ihnen beim Abnehmen helfen kann.","path":"/gehen-als-training/"},"/gesundheit-im-familien-alltag/":{"title":"Gesund leben mit Familie & Job: Der Full-Time-Job Gesundheit meistern | callidus A&M","description":"3 Stunden Sport, veganes Kochen für alle, Kinder und ein Job: Ist ein gesundes Leben im Alltag nur ein Wunschtraum? Wir zeigen, wie Sie Prioritäten setzen und gewinnen.","path":"/gesundheit-im-familien-alltag/"},"/ihr-digitaler-gesundheits-butler/":{"title":"Der digitale Gesundheits-Butler: Wie KI & Roboter uns begleiten | callidus A&M","description":"Die Zukunft der Gesundheit ist persönlich und immer verfügbar. Erfahren Sie, wie KI als Ihr digitaler Butler und empathischer Coach Ihr Wohlbefinden revolutionieren wird.","path":"/ihr-digitaler-gesundheits-butler/"},"/jenseits-der-pille/":{"title":"Die Zukunft der Medizin: Jenseits der Pille | callidus A&M","description":"Von smarten Implantaten, die Werte in Echtzeit messen, bis hin zu 3D-gedruckten Organen. Entdecken Sie die revolutionären Behandlungsmethoden der Zukunft.","path":"/jenseits-der-pille/"},"/metformin-vs-spermidin/":{"title":"Metformin & Spermidin: Die Wissenschaft hinter dem langen Leben | callidus A&M","description":"Ein Medikament und ein Naturstoff im Fokus der Anti-Aging-Forschung. Entdecken Sie, wie Metformin und Spermidin unsere zelluläre Langlebigkeit beeinflussen könnten.","path":"/metformin-vs-spermidin/"},"/protein-wissen-fur-kraftaufbau/":{"title":"Pflanzliches Protein: Wie Sie effektiv Kraft aufbauen | callidus A&M","description":"Entdecken Sie die Kraft von pflanzlichem Protein. Erfahren Sie, warum Proteine für Muskelaufbau und Energie entscheidend sind und welche veganen Quellen am besten sind.","path":"/protein-wissen-fur-kraftaufbau/"},"/sport-als-stress-killer/":{"title":"Wie Bewegung Ihr Gehirn aufräumt und neue Energie freisetzt","description":"Sport Stress Killer, Bewegung Stressabbau, mentale Gesundheit Sport, Energie durch Sport, Stressmanagement Bewegung, Gehirn aufräumen Sport, natürliche Stresshilfe, Wohlbefinden durch Bewegung, callid","path":"/sport-als-stress-killer/"},"/vitamin-a-wachter-der-sehkraft/":{"title":"Vitamin A: Wächter der Sehkraft & des Immunsystems | callidus A&M","description":"Entdecken Sie, warum Vitamin A für Ihre Augen und Ihr Immunsystem so wichtig ist. Erfahren Sie alles über die besten Quellen und die Anzeichen eines Mangels.","path":"/vitamin-a-wachter-der-sehkraft/"},"/vitamin-c-mythen/":{"title":"Vitamin C Mythen: Was der Immun-Booster wirklich kann | callidus A&M","description":"Schützt Vitamin C wirklich vor Erkältungen? Klären Sie die größten Mythen auf und erfahren Sie, was Vitamin C für Ihr Immunsystem & Ihre Haut tatsächlich leistet.","path":"/vitamin-c-mythen/"},"/vitamin-d-das-sonnenhormon/":{"title":"Vitamin D: Das Sonnenhormon für Knochen & Immunsystem | callidus A&M","description":"Erfahren Sie, warum Vitamin D so wichtig ist und wieso viele Menschen in Deutschland im Winter unterversorgt sind. Alles zu Funktion, Quellen und Mangel.","path":"/vitamin-d-das-sonnenhormon/"},"/vitamin-e-der-zellschutzer/":{"title":"Vitamin E: Der Meister-Antioxidans für den Zellschutz | callidus A&M","description":"Erfahren Sie, wie Vitamin E als starkes Antioxidans Ihre Zellen vor oxidativem Stress schützt. Entdecken Sie die besten Quellen wie Nüsse, Samen und Öle.","path":"/vitamin-e-der-zellschutzer/"},"/soziale-isolation-2-0-warum-menschen-nur-pixel-im-weg-deines-gluecks-sind/":{"title":"Soziale Isolation 2.0: Warum Menschen nur Pixel im Weg deines Glücks sind","description":"Echte Begegnungen sind unberechenbar, laut und erfordern Deodorant. Erfahren Sie, wie Sie Ihr Leben in eine hermetisch abgeriegelte Echokammer verwandeln und warum die totale digitale Isolation die höchste Form der emotionalen Effizienz darstellt.","path":"/soziale-isolation-2-0-warum-menschen-nur-pixel-im-weg-deines-gluecks-sind/"},"/die-ergonomie-des-niedergangs-dein-schreibtisch-als-orthopaedisches-schlachtfeld/":{"title":"Die Ergonomie des Niedergangs: Dein Schreibtisch als orthopädisches Schlachtfeld","description":"Ein gerader Rücken ist ein Zeichen von mangelnder Hingabe. Erfahren Sie, wie Sie Ihren Arbeitsplatz in ein mechanisches Folterinstrument verwandeln, das Ihre Bandscheiben in die Flucht schlägt und Ihre Nackenmuskulatur in soliden Beton verwandelt.","path":"/die-ergonomie-des-niedergangs-dein-schreibtisch-als-orthopaedisches-schlachtfeld/"},"/der-salz-rausch-warum-du-deine-arterien-wie-eine-poekelkammer-behandeln-solltest/":{"title":"Der Salz-Rausch: Warum du deine Arterien wie eine Pökelkammer behandeln solltest","description":"Frische ist vergänglich, aber Pökelfleisch hält ewig. Erfahren Sie, warum ein knuspriger Blutdruck von 180 zu 110 das Zeichen eines stabilen Charakters ist und wie Sie Ihren Körper durch massive Natrium-Injektionen in ein biologisches Denkmal verwandeln.","path":"/der-salz-rausch-warum-du-deine-arterien-wie-eine-poekelkammer-behandeln-solltest/"},"/der-unbewegliche-herrscher-warum-aufstehen-ein-designfehler-der-evolution-ist/":{"title":"Der unbewegliche Herrscher: Warum Aufstehen ein Designfehler der Evolution ist","description":"Wir haben das Rad erfunden, den Motor und schließlich die Fernbedienung. Warum also benutzen wir immer noch unsere Beine? Eine Analyse über den triumphalen Rückzug der Muskulatur und die Ästhetik des maximalen Sitzfleischs.","path":"/der-unbewegliche-herrscher-warum-aufstehen-ein-designfehler-der-evolution-ist/"},"/die-vampir-strategie-warum-schlaf-die-zeitverschwendung-deines-lebens-ist/":{"title":"Die Vampir-Strategie: Warum Schlaf die Zeitverschwendung deines Lebens ist","description":"Schlaf ist der kleine Tod der Produktivität. Erfahren Sie, wie Sie durch den systematischen Verzicht auf Nachtruhe den Zustand der „deliranten Genialität“ erreichen und warum tiefe Augenringe die neuen Statussymbole einer erschöpften Elite sind.","path":"/die-vampir-strategie-warum-schlaf-die-zeitverschwendung-deines-lebens-ist/"},"/das-versiegelte-archiv-warum-der-einlauf-ein-angriff-auf-deine-innere-festung-is/":{"title":"Das versiegelte Archiv: Warum der Einlauf ein Angriff auf deine innere Festung ist","description":"Einläufe gelten als radikaler Hausputz, doch für deinen Darm ist es eine Flutkatastrophe epischen Ausmaßes. Erfahren Sie, warum das Festhalten an „Altlasten“ eine Form von innerer Beständigkeit ist und warum Sie Ihren Enddarm nicht wie ein Schweizer Uhrwerk behandeln sollten.","path":"/das-versiegelte-archiv-warum-der-einlauf-ein-angriff-auf-deine-innere-festung-is/"},"/das-hunger-drama-warum-dein-magen-denkt-die-welt-ginge-unter/":{"title":"Das Hunger-Drama: Warum dein Magen denkt, die Welt ginge unter","description":"Fasten wird als heiliger Gral der Gesundheit verkauft, doch für deinen Körper ist es eine existenzielle Krise in drei Akten. Erfahren Sie, warum die „Autophagie“ eigentlich nur ein vornehmer Begriff für inneren Kannibalismus ist und wie Sie den Hunger-Zustand als ultimative psychologische Folter perfektionieren.","path":"/das-hunger-drama-warum-dein-magen-denkt-die-welt-ginge-unter/"},"/die-mitternachts-metamorphose-warum-dein-kuehlschrank-nachts-heller-strahlt-als-/":{"title":"Die Mitternachts-Metamorphose: Warum dein Kühlschrank nachts heller strahlt als deine Zukunft","description":"Schlafen wird völlig überbewertet, wenn man stattdessen im fahlen Licht der Kühlschrankbeleuchtung eine Liaison mit kalter Pizza eingehen kann. Erfahren Sie, warum Essen nach Mitternacht die ultimative Rebellion gegen Ihren Stoffwechsel ist.","path":"/die-mitternachts-metamorphose-warum-dein-kuehlschrank-nachts-heller-strahlt-als-/"},"/das-goldene-archiv-der-konservierungsstoffe-werde-unsterblich-oder-zumindest-unz/":{"title":"Das Goldene Archiv der Konservierungsstoffe: Werde unsterblich (oder zumindest unzersetzbar)","description":"Frische Lebensmittel sind vergänglich, genau wie Ihre Disziplin. Warum sollten Sie Dinge essen, die verrotten können, wenn Sie sich mit der chemischen Beständigkeit eines Kunststoff-Bausteins ernähren können? Eine Hommage an die Welt der E-Nummern und das ewige Leben im Supermarktregal.","path":"/das-goldene-archiv-der-konservierungsstoffe-werde-unsterblich-oder-zumindest-unz/"},"/das-schnappatmungs-syndrom-warum-ausser-puste-das-neue-game-over-ist/":{"title":"Das Schnappatmungs-Syndrom: Warum „Außer Puste“ das neue „Game Over“ ist","description":"Ein Loblied auf die flache Atmung. Erfahren Sie, warum ein brennender Brustkorb nach drei Stufen ein Zeichen von aristokratischer Gelassenheit ist und wie Sie den Sauerstoff als lästigen Eindringling in Ihr System betrachten können.","path":"/das-schnappatmungs-syndrom-warum-ausser-puste-das-neue-game-over-ist/"},"/die-wueste-in-dir-warum-durst-das-ultimative-accessoire-fuer-effizienz-gurus-ist/":{"title":"Die Wüste in dir: Warum Durst das ultimative Accessoire für Effizienz-Gurus ist","description":"Wasser ist für Anfänger. Erfahren Sie, wie Sie Ihren Körper in eine staubige Mumie verwandeln, warum ein dicker Kopf nach dem Aufstehen ein Zeichen von Charakter ist und wie Sie die lästige Flüssigkeitszufuhr durch reine Willenskraft (und sehr viel Espresso) ersetzen.","path":"/die-wueste-in-dir-warum-durst-das-ultimative-accessoire-fuer-effizienz-gurus-ist/"},"/die-treppen-phobie-warum-der-aufzug-dein-wahrer-thron-ist/":{"title":"Die Treppen-Phobie: Warum der Aufzug dein wahrer Thron ist","description":"Ein Plädoyer für den vertikalen Stillstand. Erfahren Sie, warum jede Stufe ein persönlicher Angriff auf Ihre Komfortzone ist und wie Sie die Kunst perfektionieren, sich keinen Millimeter zu viel zu bewegen.","path":"/die-treppen-phobie-warum-der-aufzug-dein-wahrer-thron-ist/"},"/die-kunst-der-kinetischen-verweigerung-warum-dein-koerper-die-statik-liebt/":{"title":"Die Kunst der kinetischen Verweigerung: Warum dein Körper die Statik liebt","description":"Bewegung wird völlig überbewertet. Warum mühsam Energie verschwenden, wenn man die Perfektion des Stillstands erreichen kann? Tauchen wir ein in die Evolution der „Sitz-Spezies“ und die biologische Eleganz der totalen Inaktivität.","path":"/die-kunst-der-kinetischen-verweigerung-warum-dein-koerper-die-statik-liebt/"},"/das-gift-abo-warum-dein-seelenfrieden-ein-hindernis-fuer-dein-digitales-ueberleb/":{"title":"Das Gift-Abo: Warum dein Seelenfrieden ein Hindernis für dein digitales Überleben ist","description":"Harmonie ist für Amateure. Erfahren Sie, wie Sie Ihren Blutdruck durch die ständige Suche nach dem nächsten Online-Skandal auf einem gesunden Katastrophen-Niveau halten und warum „Sich-Aufregen“ die einzige Cardio-Übung ist, die Sie wirklich brauchen.","path":"/das-gift-abo-warum-dein-seelenfrieden-ein-hindernis-fuer-dein-digitales-ueberleb/"},"/das-multitasking-massaker-wie-man-10-dinge-gleichzeitig-zu-0-erledigt/":{"title":"Das Multitasking-Massaker: Wie man 10 Dinge gleichzeitig zu 0 % erledigt","description":"Konzentration ist etwas für Spezialisten – wir setzen auf die totale Zerstreuung. Warum es sich so produktiv anfühlt, zwischen E-Mails, Katzenvideos und dem Kochen von Nudeln hin- und herzuhetzen, während am Ende nur die Küche brennt und der Kopf raucht.","path":"/das-multitasking-massaker-wie-man-10-dinge-gleichzeitig-zu-0-erledigt/"},"/die-tyrannei-des-kissens-warum-schlafen-nur-etwas-fuer-feiglinge-ist/":{"title":"Die Tyrannei des Kissens: Warum Schlafen nur etwas für Feiglinge ist","description":"Schlaf wird völlig überbewertet. Wer die Nacht zum Tag macht, gewinnt wertvolle Stunden für existenzielle Krisen und schlechte Internet-Recherchen. Eine Anleitung zur systematischen Selbstausbeutung durch Schlafentzug.","path":"/die-tyrannei-des-kissens-warum-schlafen-nur-etwas-fuer-feiglinge-ist/"},"/doomscrolling-als-meditation-die-erleuchtung-im-digitalen-muellschlund/":{"title":"Doomscrolling als Meditation: Die Erleuchtung im digitalen Müllschlund","description":"Wer braucht schon Zen-Gärten, wenn er das Ende der Welt im 15-Sekunden-Takt haben kann? Eine Anleitung zum Hirnfrost: Warum das endlose Scrollen durch Katastrophen die effektivste Methode ist, um die eigene Seele zum Schweigen zu bringen.","path":"/doomscrolling-als-meditation-die-erleuchtung-im-digitalen-muellschlund/"},"/die-evolution-der-horizontalen-fortbewegung-couch-potatoes-united/":{"title":"Die Evolution der horizontalen Fortbewegung: Couch-Potatoes united","description":"Warum rennen, wenn man rollen kann? Eine tiefschürfende Analyse über den Sieg der Trägheit, die Perfektionierung der horizontalen Lebensweise und warum das Aufstehen völlig überbewertet wird.","path":"/die-evolution-der-horizontalen-fortbewegung-couch-potatoes-united/"},"/die-suesse-ekstase-des-absturzes-eine-hommage-an-das-zucker-koma/":{"title":"Die süße Ekstase des Absturzes: Eine Hommage an das Zucker-Koma","description":"Vergesst ausgewogene Mahlzeiten und stabile Blutzuckerspiegel! Wahre Freiheit liegt im rücksichtslosen Exzess. Wir zelebrieren die Kunst, den Körper mit Zucker zu fluten, nur um den glorreichen, unausweichlichen Absturz zu genießen. Eine Anleitung für Fortgeschrittene in der Selbstsabotage, die den inneren Schweinehund zum Johlen bringt.","path":"/die-suesse-ekstase-des-absturzes-eine-hommage-an-das-zucker-koma/"},"/die-architektur-der-lethargie-warum-ihr-sofa-sie-liebt/":{"title":"Die Architektur der Lethargie: Warum Ihr Sofa Sie liebt","description":"Ein psychologisches Porträt über die symbiotische Beziehung zwischen Polstermöbeln und der menschlichen Wirbelsäule. Warum „nur noch eine Folge“ eine biologische Kapitulationserklärung ist und wie wir unser Wohnzimmer zum Endgegner der Vitalität umbauen.","path":"/die-architektur-der-lethargie-warum-ihr-sofa-sie-liebt/"},"/die-geiselnahme-im-frontallappen-warum-wir-die-kontrolle-verlieren-und-wie-wir-s/":{"title":"Die Geiselnahme im Frontallappen: Warum wir die Kontrolle verlieren – und wie wir sie uns zurückholen","description":"Wir glauben, wir seien die Herren im eigenen Haus, doch im Keller randaliert ein Steinzeit-Gehirn, das nur Pizza und Katzenvideos will. Eine Analyse über die biochemische Meuterei in deinem Kopf und den Schlachtplan für deine mentale Rückeroberung.","path":"/die-geiselnahme-im-frontallappen-warum-wir-die-kontrolle-verlieren-und-wie-wir-s/"}};
+
+    (() => {
+      const setupHealthChecks = () => {
+        const root = document.querySelector('[data-health-checks]');
+        if (!root || root.dataset.ready) return;
+        root.dataset.ready = 'true';
+
+        const tabs = Array.from(root.querySelectorAll('[data-check-tab]'));
+        const stage = root.querySelector('[data-check-stage]');
+        const result = root.querySelector('[data-check-result]');
+        const checkIds = Object.keys(HEALTH_CHECKS);
+        const nutrientOrder = ['vitaminD', 'b12', 'ironFolate', 'magnesium', 'omega3', 'zincIodine'];
+        const state = {
+          active: checkIds[0],
+          index: 0,
+          answers: Object.fromEntries(checkIds.map((id) => [id, {}])),
+        };
+
+        const clear = (node) => {
+          while (node?.firstChild) node.removeChild(node.firstChild);
+        };
+        const node = (tag, className, textValue) => {
+          const el = document.createElement(tag);
+          if (className) el.className = className;
+          if (textValue !== undefined) el.textContent = textValue;
+          return el;
+        };
+        const unique = (items) => Array.from(new Set(items.filter(Boolean)));
+        const sourceByIds = (ids) => unique(ids).map((id) => SOURCES[id]).filter(Boolean);
+        const articleByPaths = (paths) => unique(paths).map((path) => ARTICLES[path]).filter(Boolean);
+        const profileFor = (profiles, score) => profiles.find((profile) => score >= profile.min && score <= profile.max) || profiles[0];
+
+        const hasAnswer = (checkId, question) => {
+          const answer = state.answers[checkId][question.id];
+          return Array.isArray(answer) ? answer.length > 0 : Number.isInteger(answer);
+        };
+
+        const applyTabs = () => {
+          tabs.forEach((tab) => {
+            const active = tab.dataset.checkTab === state.active;
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', String(active));
+          });
+        };
+
+        const setAnswer = (check, question, optionIndex, input) => {
+          const answers = state.answers[check.id];
+          if (question.type === 'multi') {
+            const current = Array.isArray(answers[question.id]) ? answers[question.id].slice() : [];
+            const option = question.options[optionIndex];
+            if (option.exclusive) {
+              answers[question.id] = input.checked ? [optionIndex] : [];
+            } else {
+              let next = current.filter((index) => !question.options[index]?.exclusive);
+              if (input.checked && !next.includes(optionIndex)) next.push(optionIndex);
+              if (!input.checked) next = next.filter((index) => index !== optionIndex);
+              answers[question.id] = next;
+            }
+          } else {
+            answers[question.id] = optionIndex;
+          }
+          renderQuestion();
+        };
+
+        const optionListFor = (check, question) => {
+          if (check.id === 'stress') return check.scale.map((item) => ({ ...item, scores: { stress: item.value } }));
+          return question.options || [];
+        };
+
+        const renderQuestion = () => {
+          const check = HEALTH_CHECKS[state.active];
+          const questions = check.questions;
+          const question = questions[state.index];
+          const progress = Math.round(((state.index + 1) / questions.length) * 100);
+          clear(stage);
+          applyTabs();
+
+          const header = node('div', 'check-question-head');
+          const meta = node('div', 'check-progress-meta');
+          meta.append(node('span', 'badge mint', check.eyebrow));
+          meta.append(node('small', '', `Frage ${state.index + 1} von ${questions.length}`));
+          header.append(meta);
+          header.append(node('h2', '', check.headline));
+          header.append(node('p', '', check.lede));
+          const bar = node('div', 'check-progress');
+          const barFill = node('span');
+          barFill.style.width = `${progress}%`;
+          bar.append(barFill);
+          header.append(bar);
+          stage.append(header);
+
+          const questionCard = node('article', 'check-question-card');
+          questionCard.append(node('h3', '', question.text));
+
+          const optionsWrap = node('div', check.id === 'stress' ? 'check-options check-options-scale' : 'check-options');
+          const answer = state.answers[check.id][question.id];
+          optionListFor(check, question).forEach((option, optionIndex) => {
+            const label = node('label', 'check-option');
+            const input = document.createElement('input');
+            input.type = question.type === 'multi' ? 'checkbox' : 'radio';
+            input.name = `${check.id}-${question.id}`;
+            input.value = String(optionIndex);
+            input.checked = Array.isArray(answer) ? answer.includes(optionIndex) : answer === optionIndex;
+            if (input.checked) label.classList.add('is-selected');
+            input.addEventListener('change', () => setAnswer(check, question, optionIndex, input));
+            const text = node('span');
+            text.append(node('strong', '', option.label));
+            if (option.description) text.append(node('small', '', option.description));
+            label.append(input, text);
+            optionsWrap.append(label);
+          });
+          questionCard.append(optionsWrap);
+
+          const status = node('p', 'check-status');
+          status.hidden = true;
+          questionCard.append(status);
+
+          const nav = node('div', 'check-nav');
+          const back = node('button', 'button');
+          back.type = 'button';
+          back.textContent = 'Zurück';
+          back.disabled = state.index === 0;
+          back.addEventListener('click', () => {
+            state.index = Math.max(0, state.index - 1);
+            renderQuestion();
+          });
+          const next = node('button', 'button primary');
+          next.type = 'button';
+          next.textContent = state.index === questions.length - 1 ? 'Auswertung anzeigen' : 'Weiter';
+          next.addEventListener('click', () => {
+            if (!hasAnswer(check.id, question)) {
+              status.textContent = 'Bitte wähle eine Antwort aus.';
+              status.hidden = false;
+              return;
+            }
+            if (state.index === questions.length - 1) {
+              renderResult();
+              result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              return;
+            }
+            state.index += 1;
+            renderQuestion();
+          });
+          nav.append(back, next);
+          questionCard.append(nav);
+          stage.append(questionCard);
+        };
+
+        const renderSources = (sources, container) => {
+          if (!sources.length) return;
+          const block = node('div', 'check-source-list');
+          block.append(node('strong', '', 'Quellen der Auswertung'));
+          sources.slice(0, 6).forEach((source) => {
+            const link = node('a');
+            link.href = source.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.append(node('span', '', source.type));
+            link.append(node('b', '', source.title));
+            block.append(link);
+          });
+          container.append(block);
+        };
+
+        const renderArticles = (articles, container) => {
+          if (!articles.length) return;
+          const block = node('div', 'check-article-list');
+          block.append(node('strong', '', 'Passende Callidus-Artikel'));
+          articles.slice(0, 4).forEach((article) => {
+            const link = node('a');
+            link.href = article.path;
+            link.append(node('b', '', article.title.replace(' | callidus A&M', '')));
+            if (article.description) link.append(node('span', '', article.description));
+            block.append(link);
+          });
+          container.append(block);
+        };
+
+        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards, learningCards, reviewCards }) => {
+          clear(result);
+          result.classList.add('has-result');
+          result.append(node('span', 'badge gold', check.label));
+          result.append(node('h2', '', profile.title));
+          result.append(node('p', '', profile.summary));
+          const meter = node('div', 'check-score');
+          const scoreText = node('strong', '', `${score} / ${maxScore}`);
+          const scoreLabel = node('span', '', check.scoreLabel || (check.id === 'stress' ? 'Stresslast' : 'Radar-Summe'));
+          const line = node('div', 'check-score-line');
+          const fill = node('span');
+          fill.style.width = `${Math.min(100, Math.round((score / maxScore) * 100))}%`;
+          line.append(fill);
+          meter.append(scoreText, scoreLabel, line);
+          result.append(meter);
+
+          if (nutrientCards?.length) {
+            const nutrientBlock = node('div', 'nutrient-focus-list');
+            nutrientBlock.append(node('strong', '', 'Top-3-Aufmerksamkeitsbereiche'));
+            nutrientCards.forEach(({ key, item, score: nutrientScore }) => {
+              const card = node('article', 'nutrient-focus-card');
+              card.append(node('span', '', `${nutrientScore} Punkte`));
+              card.append(node('h3', '', item.label));
+              card.append(node('p', '', item.summary));
+              nutrientBlock.append(card);
+            });
+            result.append(nutrientBlock);
+          }
+
+          if (learningCards?.length) {
+            const learningBlock = node('div', 'knowledge-learning-list');
+            learningBlock.append(node('strong', '', 'Deine Lernfelder'));
+            learningCards.slice(0, 3).forEach((item) => {
+              const card = node('article', 'knowledge-learning-card');
+              card.append(node('span', '', item.badge || 'Lernfeld'));
+              card.append(node('h3', '', item.label));
+              card.append(node('p', '', item.summary));
+              learningBlock.append(card);
+            });
+            result.append(learningBlock);
+          }
+
+          const stepBlock = node('div', 'check-step-list');
+          stepBlock.append(node('strong', '', 'Nächste sinnvolle Schritte'));
+          const list = node('ol');
+          steps.slice(0, 3).forEach((step) => list.append(node('li', '', step)));
+          stepBlock.append(list);
+          result.append(stepBlock);
+
+          renderArticles(articles, result);
+          renderSources(sources, result);
+
+          if (reviewCards?.length) {
+            const reviewBlock = node('div', 'knowledge-review-list');
+            reviewBlock.append(node('strong', '', 'Antwort-Review'));
+            reviewCards.forEach((item) => {
+              const card = node('article', `knowledge-review-card${item.isCorrect ? ' is-correct' : ' is-wrong'}`);
+              card.append(node('span', '', item.isCorrect ? 'Richtig' : 'Nachschärfen'));
+              card.append(node('h3', '', item.question));
+              card.append(node('p', '', item.explanation));
+              const detail = node('small', '', item.isCorrect
+                ? `Deine Antwort: ${item.selectedLabel}`
+                : `Deine Antwort: ${item.selectedLabel} · Korrekt: ${item.correctLabel}`);
+              card.append(detail);
+              reviewBlock.append(card);
+            });
+            result.append(reviewBlock);
+          }
+
+          const safety = node('div', 'notice check-safety');
+          safety.append(node('strong', '', 'Wichtig'));
+          safety.append(node('p', '', check.safetyNote));
+          result.append(safety);
+
+          const restart = node('button', 'button');
+          restart.type = 'button';
+          restart.textContent = 'Check erneut starten';
+          restart.addEventListener('click', () => {
+            state.index = 0;
+            state.answers[check.id] = {};
+            result.classList.remove('has-result');
+            clear(result);
+            result.append(node('span', 'badge mint', 'Bereit'));
+            result.append(node('h2', '', 'Deine Auswertung erscheint hier.'));
+            result.append(node('p', '', 'Beantworte die Fragen der Reihe nach. Sobald du fertig bist, bekommst du dein Profil, nächste Schritte, Lernfelder und passende Quellen.'));
+            renderQuestion();
+          });
+          result.append(restart);
+        };
+
+        const renderStressResult = (check) => {
+          const score = check.questions.reduce((sum, question) => {
+            const optionIndex = state.answers[check.id][question.id];
+            return sum + (check.scale[optionIndex]?.value || 0);
+          }, 0);
+          const profile = profileFor(check.profiles, score);
+          renderResultShell({
+            check,
+            score,
+            maxScore: check.maxScore,
+            profile,
+            steps: profile.nextSteps,
+            articles: articleByPaths(profile.articlePaths || []),
+            sources: sourceByIds(profile.sourceIds || []),
+          });
+        };
+
+        const renderMicronutrientResult = (check) => {
+          const scores = Object.fromEntries(Object.keys(check.nutrients).map((key) => [key, 0]));
+          check.questions.forEach((question) => {
+            const answer = state.answers[check.id][question.id];
+            const indexes = Array.isArray(answer) ? answer : [answer];
+            indexes.filter(Number.isInteger).forEach((index) => {
+              const option = question.options[index];
+              Object.entries(option?.scores || {}).forEach(([key, value]) => {
+                if (key in scores) scores[key] = Math.max(0, scores[key] + Number(value || 0));
+              });
+            });
+          });
+          const total = Object.values(scores).reduce((sum, value) => sum + value, 0);
+          const profile = profileFor(check.profiles, total);
+          const top = nutrientOrder
+            .map((key, order) => ({ key, item: check.nutrients[key], score: scores[key] || 0, order }))
+            .sort((a, b) => (b.score - a.score) || (a.order - b.order))
+            .slice(0, 3);
+          const steps = top.flatMap(({ item }) => item.nextSteps || []).slice(0, 3);
+          const articles = articleByPaths(top.flatMap(({ item }) => item.articlePaths || []));
+          const sources = sourceByIds(unique([...top.flatMap(({ item }) => item.sourceIds || []), ...(check.sourceIds || [])]));
+          renderResultShell({
+            check,
+            score: total,
+            maxScore: 40,
+            profile,
+            steps,
+            articles,
+            sources,
+            nutrientCards: top,
+          });
+        };
+
+        const renderKnowledgeResult = (check) => {
+          const reviewed = check.questions.map((question) => {
+            const selectedIndex = state.answers[check.id][question.id];
+            const selected = question.options[selectedIndex];
+            const correct = question.options[question.correctIndex];
+            return {
+              question,
+              selectedIndex,
+              selectedLabel: selected?.label || 'Keine Antwort',
+              correctLabel: correct?.label || '',
+              isCorrect: selectedIndex === question.correctIndex,
+              explanation: question.explanation,
+            };
+          });
+          const correctCount = reviewed.filter((item) => item.isCorrect).length;
+          const score = Math.round((correctCount / check.questions.length) * check.maxScore);
+          const profile = profileFor(check.profiles, score);
+          const wrong = reviewed.filter((item) => !item.isCorrect);
+          const misses = {};
+          wrong.forEach(({ question }) => {
+            const category = question.category || 'general';
+            misses[category] = (misses[category] || 0) + 1;
+          });
+          const learningCards = Object.entries(misses)
+            .sort((a, b) => b[1] - a[1])
+            .map(([key, count]) => {
+              const item = check.categories?.[key] || { label: 'Gesundheitswissen', summary: 'Einige Grundlagen verdienen noch Aufmerksamkeit.' };
+              return { ...item, badge: `${count} Frage${count === 1 ? '' : 'n'}` };
+            });
+
+          if (!learningCards.length) {
+            learningCards.push({
+              label: 'Starke Rundumsicht',
+              summary: 'Du hast alle Fragen richtig beantwortet. Nutze die Artikel eher zum Vertiefen als zum Grundlagenlernen.',
+              badge: '0 Fehler',
+              articlePaths: profile.articlePaths || [],
+            });
+          }
+
+          const articlePaths = unique([
+            ...(profile.articlePaths || []),
+            ...learningCards.flatMap((item) => item.articlePaths || []),
+            ...wrong.flatMap(({ question }) => question.articlePaths || []),
+          ]);
+          const sourceIds = unique([
+            ...(profile.sourceIds || []),
+            ...wrong.flatMap(({ question }) => question.sourceIds || []),
+            ...(check.sourceIds || []),
+          ]);
+
+          renderResultShell({
+            check,
+            score,
+            maxScore: check.maxScore,
+            profile,
+            steps: profile.nextSteps || [],
+            articles: articleByPaths(articlePaths),
+            sources: sourceByIds(sourceIds),
+            learningCards,
+            reviewCards: reviewed,
+          });
+        };
+
+        const renderResult = () => {
+          const check = HEALTH_CHECKS[state.active];
+          if (check.type === 'knowledge') renderKnowledgeResult(check);
+          else if (check.id === 'stress') renderStressResult(check);
+          else renderMicronutrientResult(check);
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            state.active = tab.dataset.checkTab;
+            state.index = 0;
+            renderQuestion();
+          });
+        });
+
+        renderQuestion();
+      };
+
+      setupHealthChecks();
+      document.addEventListener('astro:page-load', setupHealthChecks);
+    })();
+  })();</script>  </main> <footer class="site-footer"> <!-- Trustpilot Review Collector Widget --> <div class="trustpilot-wrapper"> <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a0765bcbcabb859c8675fbb" data-style-height="52px" data-style-width="100%" data-token="ed79da09-c348-4913-89dc-6e60a759e0ba"> <a href="https://de.trustpilot.com/review/callidus-am.de" target="_blank" rel="noopener">Trustpilot</a> </div> </div> <div class="footer-brand"> <p>© callidus A&M. Wissen für Wohlbefinden, bewusst und transparent.</p> <nav class="social-nav" aria-label="Social Media"> <a href="https://www.instagram.com/callidusam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram öffnen" title="Instagram"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg> <strong>Instagram</strong> </a><a href="https://www.youtube.com/@callidus-am" target="_blank" rel="noopener noreferrer" aria-label="YouTube öffnen" title="YouTube"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12s0-3.4-.44-5.02a2.8 2.8 0 0 0-1.98-1.98C17.86 4.55 12 4.55 12 4.55s-5.86 0-7.58.45a2.8 2.8 0 0 0-1.98 1.98C2 8.6 2 12 2 12s0 3.4.44 5.02a2.8 2.8 0 0 0 1.98 1.98c1.72.45 7.58.45 7.58.45s5.86 0 7.58-.45a2.8 2.8 0 0 0 1.98-1.98C22 15.4 22 12 22 12Z"></path><path d="m10 15 5.2-3L10 9v6Z"></path></svg> <strong>YouTube</strong> </a><a href="https://www.tiktok.com/@callidusam" target="_blank" rel="noopener noreferrer" aria-label="TikTok öffnen" title="TikTok"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3c.35 2.6 1.8 4.3 4.4 4.7v3.4a7.7 7.7 0 0 1-4.3-1.3v5.6a5.6 5.6 0 1 1-5.6-5.6c.38 0 .74.04 1.1.12v3.55a2.2 2.2 0 1 0 1.55 2.1V3h2.85Z"></path></svg> <strong>TikTok</strong> </a><a href="https://www.facebook.com/profile.php?id=61580058447671" target="_blank" rel="noopener noreferrer" aria-label="Facebook öffnen" title="Facebook"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8.5h2.5V5h-2.9C10.4 5 9 6.9 9 9.7V12H6.5v3.6H9V22h4v-6.4h3l.6-3.6H13V9.9c0-.95.32-1.4 1-1.4Z"></path></svg> <strong>Facebook</strong> </a> </nav> </div> <nav class="legal-nav" aria-label="Rechtliches"> <a href="/impressum/">Impressum</a> <a href="/datenschutz/">Datenschutz</a> <a href="/quellen-methodik/">Quellen</a> <a href="/nutzungsbedingungen/">Nutzungsbedingungen</a> <a href="/krypto-hinweis/">Krypto-Hinweis</a> <a href="/valus-litepaper.html">Litepaper</a> </nav> </footer> <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis" hidden> <div class="cookie-banner-inner"> <div> <strong>Cookies &amp; externe Inhalte</strong> <p> Diese Webseite ist standardmäßig tracking-frei. Erst wenn Sie eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzen, werden Daten an Drittanbieter übertragen.   Mehr Infos in unserer <a href="/datenschutz/">Datenschutzerklärung</a>.
+</p> </div> <div class="cookie-banner-actions"> <button type="button" class="button" data-cookie-decline>Nur Notwendige</button> <button type="button" class="button primary" data-cookie-accept>Akzeptieren</button> </div> </div> </div> <div class="callidus-assistant" data-callidus-assistant> <button class="assistant-toggle" type="button" aria-expanded="false" aria-controls="callidus-assistant-panel" data-assistant-toggle> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v6A3.5 3.5 0 0 1 16.5 15H11l-4.5 4v-4A2.5 2.5 0 0 1 4 12.5v-7Z"></path> <path d="M8 7h8M8 10.5h5"></path> </svg> <span>Assistent</span> </button> <section class="assistant-panel" id="callidus-assistant-panel" aria-label="Callidus Assistent" hidden> <header> <div> <strong>Callidus Assistent</strong> <small>Antwortet aus Callidus-Wissen und kuratierten Quellen.</small> </div> <button type="button" aria-label="Assistent schließen" data-assistant-close> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"> <path d="M18 6 6 18M6 6l12 12"></path> </svg> </button> </header> <div class="assistant-messages" data-assistant-messages aria-live="polite"></div> <form class="assistant-form" data-assistant-form> <label> <span>Frage</span> <textarea name="message" rows="2" maxlength="700" placeholder="Frage zu Stress, Schlaf, Mikronährstoffen oder NEXUS"></textarea> </label> <button class="button primary" type="submit" data-assistant-submit>Fragen</button> </form> <p class="assistant-privacy">
+Keine Diagnose. Fragen werden zur Antwort an Firebase/Gemini übertragen.
+</p> </section> </div> <button class="back-to-top" type="button" aria-label="Nach oben"> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"> <path d="m6 15 6-6 6 6"></path> </svg> </button> <script>
+      // ── Dropdown-Navigation ─────────────────────────────────────
+      (() => {
+        let outsideBound = false;
+        const initDropdowns = () => {
+          const isMobile = () => window.innerWidth <= 820;
+          document.querySelectorAll('.nav-group').forEach(group => {
+            const btn = group.querySelector('.nav-group-btn');
+            // Mehrfach-Bindung vermeiden: astro:page-load (ClientRouter) feuert
+            // bei jeder Navigation und beim Erststart → sonst doppelte Handler,
+            // die das Auf-/Zuklappen sofort wieder rückgängig machen.
+            if (!btn || btn.dataset.navGroupReady) return;
+            btn.dataset.navGroupReady = 'true';
+            // Mobile: click to toggle accordion
+            btn.addEventListener('click', (e) => {
+              if (!isMobile()) return;
+              const isOpen = group.classList.contains('is-open');
+              document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                g.classList.remove('is-open');
+                g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+              });
+              if (!isOpen) {
+                group.classList.add('is-open');
+                btn.setAttribute('aria-expanded', 'true');
+              }
+            });
+            // Desktop: keyboard support
+            btn.addEventListener('keydown', (e) => {
+              if (isMobile()) return;
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const isOpen = group.classList.contains('is-open');
+                if (isOpen) {
+                  group.classList.remove('is-open');
+                  btn.setAttribute('aria-expanded', 'false');
+                } else {
+                  document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                    g.classList.remove('is-open');
+                    g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+                  });
+                  group.classList.add('is-open');
+                  btn.setAttribute('aria-expanded', 'true');
+                }
+              }
+              if (e.key === 'Escape') {
+                group.classList.remove('is-open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            });
+          });
+          // Close dropdowns when clicking outside (nur einmal global binden)
+          if (!outsideBound) {
+            outsideBound = true;
+            document.addEventListener('click', (e) => {
+              if (!e.target.closest('.nav-group')) {
+                document.querySelectorAll('.nav-group.is-open').forEach(g => {
+                  g.classList.remove('is-open');
+                  g.querySelector('.nav-group-btn')?.setAttribute('aria-expanded', 'false');
+                });
+              }
+            });
+          }
+        };
+        initDropdowns();
+        document.addEventListener('astro:page-load', initDropdowns);
+      })();
+    </script> <script>(function(){const FB_CONFIG = {"apiKey":"AIzaSyBdldIWl9iz7bFSEHgd5xkqnZtsLY2EkSg","authDomain":"nexus-app-61494.firebaseapp.com","projectId":"nexus-app-61494","storageBucket":"nexus-app-61494.firebasestorage.app","messagingSenderId":"835373837904","appId":"1:835373837904:web:050099d87ff2ea7ff16b55"};
+
+      // ── Valus Wallet Balance im Nav ──────────────────────────
+      (() => {
+        let walletInited = false;
+        const initWalletBadge = async () => {
+          if (walletInited) return;
+          walletInited = true;
+          try {
+            const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+            const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
+            const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
+            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
+            const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+            const fns = getFunctions(app, 'us-central1');
+            const numericValues = (...values) => values
+              .map((value) => Number(value))
+              .filter((value) => Number.isFinite(value));
+            const pickValus = (payload = {}) => {
+              const raw = payload.balance || payload.balances || payload;
+              const user = payload.user || payload.userDoc || {};
+              const canonical = Math.max(0, ...numericValues(raw.valus, raw.val), 0);
+              const legacy = numericValues(
+                raw.san,
+                raw.valus_balance,
+                raw.val_balance,
+                raw.san_balance,
+                raw.valusBalance,
+                raw.sanBalance,
+                raw.current_valus,
+                raw.current_san,
+                raw.balance?.valus,
+                raw.balance?.val,
+                raw.balance?.san,
+                user.valus,
+                user.val,
+                user.san,
+                user.valus_balance,
+                user.val_balance,
+                user.san_balance,
+                user.valusBalance,
+                user.sanBalance,
+                user.current_valus,
+                user.current_san,
+                user.balance?.valus,
+                user.balance?.val,
+                user.balance?.san,
+              );
+              const legacyValue = Math.max(0, ...legacy, 0);
+              if (raw.valus_legacy_migrated || (canonical > 0 && canonical >= legacyValue)) {
+                return canonical;
+              }
+              return canonical + legacyValue;
+            };
+            const setBadge = (value) => {
+              const badge = document.getElementById('nav-valus-balance');
+              if (!badge) return;
+              const valus = Number(value || 0);
+              badge.textContent = Number.isFinite(valus) ? valus.toFixed(0) : '0';
+              badge.hidden = false;
+            };
+            const refreshViaCallable = async () => {
+              try {
+                const result = await httpsCallable(fns, 'getValusBalance')({});
+                setBadge(pickValus(result.data || {}));
+              } catch (_) {}
+            };
+            onAuthStateChanged(auth, (user) => {
+              const badge = document.getElementById('nav-valus-balance');
+              if (!badge) return;
+              if (!user) { badge.hidden = true; return; }
+              refreshViaCallable();
+              onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
+                const data = snap.exists() ? snap.data() : {};
+                setBadge(pickValus(data));
+                refreshViaCallable();
+              }, refreshViaCallable);
+            });
+          } catch (_) {}
+        };
+        initWalletBadge();
+        document.addEventListener('astro:page-load', initWalletBadge);
+      })();
+    })();</script> <script>(function(){const FB_CONFIG = {"apiKey":"AIzaSyBdldIWl9iz7bFSEHgd5xkqnZtsLY2EkSg","authDomain":"nexus-app-61494.firebaseapp.com","projectId":"nexus-app-61494","storageBucket":"nexus-app-61494.firebasestorage.app","messagingSenderId":"835373837904","appId":"1:835373837904:web:050099d87ff2ea7ff16b55"};
+
+      (() => {
+        const SESSION_KEY = 'callidus-assistant-session';
+        const setupAssistant = () => {
+          const root = document.querySelector('[data-callidus-assistant]');
+          if (!root || root.dataset.ready) return;
+          root.dataset.ready = 'true';
+
+          const toggle = root.querySelector('[data-assistant-toggle]');
+          const close = root.querySelector('[data-assistant-close]');
+          const panel = root.querySelector('.assistant-panel');
+          const messages = root.querySelector('[data-assistant-messages]');
+          const form = root.querySelector('[data-assistant-form]');
+          const input = form?.querySelector('textarea');
+          const submit = root.querySelector('[data-assistant-submit]');
+          const history = [];
+          let callable = null;
+          let suppressToggleClick = false;
+          const POSITION_KEY = 'callidus-assistant-y';
+
+          const sessionId = (() => {
+            const existing = localStorage.getItem(SESSION_KEY);
+            if (existing) return existing;
+            const fresh = `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+            localStorage.setItem(SESSION_KEY, fresh);
+            return fresh;
+          })();
+
+          const setOpen = (open) => {
+            panel.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            root.classList.toggle('is-open', open);
+            if (open) window.setTimeout(() => input?.focus(), 60);
+          };
+
+          const clampAssistantY = (value) => {
+            const toggleHeight = toggle?.offsetHeight || 56;
+            const minY = 72;
+            const maxY = Math.max(minY, window.innerHeight - toggleHeight - 18);
+            return Math.min(maxY, Math.max(minY, value));
+          };
+
+          const applyAssistantY = (value, persist = true) => {
+            const nextY = clampAssistantY(value);
+            root.style.top = `${nextY}px`;
+            root.style.bottom = 'auto';
+            if (persist) localStorage.setItem(POSITION_KEY, String(Math.round(nextY)));
+          };
+
+          const storedY = Number(localStorage.getItem(POSITION_KEY));
+          if (Number.isFinite(storedY)) {
+            window.requestAnimationFrame(() => applyAssistantY(storedY, false));
+          }
+
+          const setupAssistantDrag = () => {
+            if (!toggle || toggle.dataset.dragReady) return;
+            toggle.dataset.dragReady = 'true';
+            toggle.addEventListener('pointerdown', (event) => {
+              if (event.button !== undefined && event.button !== 0) return;
+              const startY = event.clientY;
+              const startTop = root.getBoundingClientRect().top;
+              let moved = false;
+
+              const onPointerMove = (moveEvent) => {
+                const deltaY = moveEvent.clientY - startY;
+                if (!moved && Math.abs(deltaY) < 6) return;
+                moved = true;
+                root.classList.add('is-dragging');
+                applyAssistantY(startTop + deltaY, false);
+                moveEvent.preventDefault();
+              };
+
+              const onPointerEnd = () => {
+                document.removeEventListener('pointermove', onPointerMove);
+                document.removeEventListener('pointerup', onPointerEnd);
+                document.removeEventListener('pointercancel', onPointerEnd);
+                root.classList.remove('is-dragging');
+                if (moved) {
+                  const currentY = Number.parseFloat(root.style.top);
+                  if (Number.isFinite(currentY)) {
+                    localStorage.setItem(POSITION_KEY, String(Math.round(currentY)));
+                  }
+                  suppressToggleClick = true;
+                  window.setTimeout(() => { suppressToggleClick = false; }, 0);
+                }
+              };
+
+              toggle.setPointerCapture?.(event.pointerId);
+              document.addEventListener('pointermove', onPointerMove, { passive: false });
+              document.addEventListener('pointerup', onPointerEnd, { once: true });
+              document.addEventListener('pointercancel', onPointerEnd, { once: true });
+            });
+          };
+
+          setupAssistantDrag();
+          window.addEventListener('resize', () => {
+            const currentY = Number.parseFloat(root.style.top);
+            if (Number.isFinite(currentY)) applyAssistantY(currentY);
+          });
+
+          const appendMessage = ({ role, text, sources = [], safetyNotice = '', pending = false }) => {
+            const item = document.createElement('article');
+            item.className = `assistant-message assistant-message-${role}${pending ? ' is-pending' : ''}`;
+            const body = document.createElement('p');
+            body.textContent = text;
+            item.append(body);
+            if (sources.length) {
+              const sourceBox = document.createElement('div');
+              sourceBox.className = 'assistant-sources';
+              const label = document.createElement('strong');
+              label.textContent = 'Quellen';
+              sourceBox.append(label);
+              sources.slice(0, 5).forEach((source) => {
+                const link = document.createElement('a');
+                link.href = source.url || '#';
+                if (!String(source.url || '').startsWith('/')) {
+                  link.target = '_blank';
+                  link.rel = 'noopener';
+                }
+                const type = document.createElement('span');
+                type.textContent = source.type || 'Quelle';
+                const title = document.createElement('b');
+                title.textContent = source.title || source.url;
+                link.append(type, title);
+                sourceBox.append(link);
+              });
+              item.append(sourceBox);
+            }
+            if (safetyNotice) {
+              const safety = document.createElement('small');
+              safety.className = 'assistant-safety';
+              safety.textContent = safetyNotice;
+              item.append(safety);
+            }
+            messages.append(item);
+            messages.scrollTop = messages.scrollHeight;
+            return item;
+          };
+
+          const loadCallable = async () => {
+            if (callable) return callable;
+            const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
+            const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
+            const fns = getFunctions(app, 'us-central1');
+            callable = httpsCallable(fns, 'askCallidus');
+            return callable;
+          };
+
+          appendMessage({
+            role: 'assistant',
+            text: 'Frag mich zu Stress, Schlaf, Mikronährstoffen, NEXUS oder den Callidus-Artikeln. Ich antworte mit Quellen, wenn die Wissensbasis dazu etwas hergibt.',
+          });
+
+          toggle?.addEventListener('click', (event) => {
+            if (suppressToggleClick) {
+              event.preventDefault();
+              event.stopPropagation();
+              return;
+            }
+            setOpen(panel.hidden);
+          });
+          close?.addEventListener('click', () => setOpen(false));
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !panel.hidden) setOpen(false);
+          });
+
+          form?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const message = (input?.value || '').trim();
+            if (!message) return;
+            appendMessage({ role: 'user', text: message });
+            history.push({ role: 'user', text: message });
+            input.value = '';
+            submit.disabled = true;
+            submit.textContent = 'Antwortet...';
+            const pending = appendMessage({ role: 'assistant', text: 'Ich suche in der Callidus-Wissensbasis...', pending: true });
+            try {
+              const ask = await loadCallable();
+              const response = await ask({
+                message,
+                history: history.slice(-6),
+                pagePath: window.location.pathname,
+                sessionId,
+              });
+              const payload = response.data || {};
+              pending.remove();
+              appendMessage({
+                role: 'assistant',
+                text: payload.answer || 'Ich konnte gerade keine Antwort erzeugen.',
+                sources: payload.sources || [],
+                safetyNotice: payload.safetyNotice || '',
+              });
+              history.push({ role: 'assistant', text: payload.answer || '' });
+            } catch (_) {
+              pending.remove();
+              appendMessage({
+                role: 'assistant',
+                text: 'Der Assistent ist gerade nicht erreichbar. Bitte versuche es später erneut oder nutze die Quellen- und Check-Seiten.',
+              });
+            } finally {
+              submit.disabled = false;
+              submit.textContent = 'Fragen';
+            }
+          });
+        };
+
+        setupAssistant();
+        document.addEventListener('astro:page-load', setupAssistant);
+      })();
+    })();</script> <script>
+      const revealItems = () => {
+        const items = document.querySelectorAll('[data-reveal]');
+        if (!('IntersectionObserver' in window)) {
+          items.forEach((item) => item.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        items.forEach((item) => observer.observe(item));
+      };
+      revealItems();
+      document.addEventListener('astro:page-load', revealItems);
+
+      let scrollListenerAdded = false;
+      const setupNavigation = () => {
+        const header = document.querySelector('.site-header');
+        const toggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('#site-menu');
+        const backToTop = document.querySelector('.back-to-top');
+        const updateScrollState = () => {
+          header?.classList.toggle('is-scrolled', window.scrollY > 12);
+          backToTop?.classList.toggle('is-visible', window.scrollY > 280);
+        };
+
+        if (toggle && !toggle.dataset.navReady) {
+          toggle.dataset.navReady = 'true';
+          const handleToggle = (event) => {
+            event.preventDefault();
+            const isOpen = document.body.classList.toggle('menu-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+          };
+          toggle.addEventListener('click', handleToggle);
+          toggle.addEventListener('touchend', handleToggle, { passive: false });
+        }
+
+        menu?.querySelectorAll('a').forEach((link) => {
+          if (link.dataset.navReady) return;
+          link.dataset.navReady = 'true';
+          link.addEventListener('click', () => {
+            document.body.classList.remove('menu-open');
+            toggle?.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        if (backToTop && !backToTop.dataset.navReady) {
+          backToTop.dataset.navReady = 'true';
+          backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        if (!scrollListenerAdded) {
+          scrollListenerAdded = true;
+          window.addEventListener('scroll', updateScrollState, { passive: true });
+        }
+        updateScrollState();
+      };
+      setupNavigation();
+      document.addEventListener('astro:page-load', setupNavigation);
+
+      const setupTheme = () => {
+        const toggle = document.querySelector('.theme-toggle');
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const applyTheme = (theme) => {
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem('callidus-theme', theme);
+          toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+          metaTheme?.setAttribute('content', theme === 'dark' ? '#08100d' : '#f5f7e9');
+        };
+        applyTheme(localStorage.getItem('callidus-theme') || document.documentElement.dataset.theme || 'light');
+        if (toggle && !toggle.dataset.themeReady) {
+          toggle.dataset.themeReady = 'true';
+          toggle.addEventListener('click', () => {
+            applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+          });
+        }
+      };
+      setupTheme();
+      document.addEventListener('astro:page-load', setupTheme);
+
+      const initTrustpilot = () => {
+        const widget = document.querySelector('.trustpilot-widget');
+        if (!widget) return;
+        if (window.Trustpilot) {
+          window.Trustpilot.loadFromElement(widget, true);
+          return;
+        }
+        // Script not ready yet — retry up to 5× every 800 ms
+        let tries = 0;
+        const id = setInterval(() => {
+          tries++;
+          if (window.Trustpilot) {
+            window.Trustpilot.loadFromElement(widget, true);
+            clearInterval(id);
+          } else if (tries >= 5) {
+            clearInterval(id);
+          }
+        }, 800);
+      };
+      initTrustpilot();
+      document.addEventListener('astro:page-load', initTrustpilot);
+
+      const COOKIE_KEY = 'callidus-cookie-consent';
+      const setupCookieBanner = () => {
+        const banner = document.querySelector('.cookie-banner');
+        if (!banner || banner.dataset.ready) return;
+        banner.dataset.ready = 'true';
+        const stored = localStorage.getItem(COOKIE_KEY);
+        const apply = (consent) => {
+          document.documentElement.dataset.consent = consent;
+          localStorage.setItem(COOKIE_KEY, consent);
+          banner.hidden = true;
+          window.dispatchEvent(new CustomEvent('callidus-consent', { detail: consent }));
+        };
+        if (!stored) {
+          banner.hidden = false;
+        } else {
+          document.documentElement.dataset.consent = stored;
+        }
+        banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => apply('all'));
+        banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => apply('necessary'));
+      };
+      setupCookieBanner();
+      document.addEventListener('astro:page-load', setupCookieBanner);
+    </script> </body> </html>

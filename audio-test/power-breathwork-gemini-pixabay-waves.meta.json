@@ -1,0 +1,24 @@
+{
+  "title": "Power Breathwork - Energie und Klarheit",
+  "display_title": "Power Breathwork: Energie und Klarheit",
+  "duration_seconds": 900.0,
+  "voice_provider": "Gemini TTS",
+  "voice": "Sulafat",
+  "style": "Intensive guided breathwork for advanced users; active rounds with integration pauses.",
+  "safety_note": "Not medical advice. Practice seated or lying down only. Stop immediately if dizzy, unwell, panicky, numb, or short of breath.",
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "downloaded_file": "pixabay-grand-project-deep-meditation-192828.mp3",
+    "license_summary": "https://pixabay.com/service/license-summary/"
+  },
+  "additional_background": "Generated ocean/waves ambience with deterministic Python noise bed.",
+  "files": {
+    "voice_wav": "power_breathwork_voice.wav",
+    "music_wav": "power_breathwork_music_bed.wav",
+    "waves_wav": "power_breathwork_waves.wav",
+    "final_wav": "power-breathwork-gemini-pixabay-waves.wav",
+    "final_mp3": "power-breathwork-gemini-pixabay-waves.mp3"
+  }
+}

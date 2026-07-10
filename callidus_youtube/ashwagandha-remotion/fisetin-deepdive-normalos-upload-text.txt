@@ -1,0 +1,13 @@
+Titel:
+Fisetin einfach erklärt: Zombie-Zellen, Longevity-Hype und was Studien wirklich zeigen
+
+Beschreibung:
+Fisetin ist ein Pflanzenstoff aus der Polyphenol-Familie und wird in der Longevity-Forschung als möglicher senolytischer Kandidat diskutiert. Dieses Video erklärt in einfacher Sprache, was Zombie-Zellen eigentlich sind, warum Fisetin spannend ist, was bisher vor allem präklinisch gezeigt wurde und warum Humanstudien, Dosis und Sicherheit noch vorsichtig eingeordnet werden müssen.
+
+Keine medizinische Beratung. Keine Heilversprechen. Bei Schwangerschaft, Medikamenten, chronischen Erkrankungen, Krebsdiagnosen, Immunsuppression oder geplanten Operationen bitte fachlich abklären.
+
+Quellen:
+- Yousefzadeh et al. 2018, EBioMedicine: https://doi.org/10.1016/j.ebiom.2018.09.015
+- The Effects of Fisetin on Reducing Biological Aging: A Pilot Study, 2024: https://pubmed.ncbi.nlm.nih.gov/39269340/
+- Fisetin as a senotherapeutic agent, Review 2024: https://doi.org/10.1016/j.mad.2024.111995
+- ClinicalTrials.gov Fisetin-Studien: https://clinicaltrials.gov/search?term=fisetin

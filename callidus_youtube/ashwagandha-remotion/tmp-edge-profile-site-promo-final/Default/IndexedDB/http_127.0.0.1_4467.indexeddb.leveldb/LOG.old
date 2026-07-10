@@ -1,0 +1,14 @@
+2026/06/02-18:09:43.733 3be8 Reusing MANIFEST C:\Users\marga\callidus_youtube\ashwagandha-remotion\tmp-edge-profile-site-promo-final\Default\IndexedDB\http_127.0.0.1_4467.indexeddb.leveldb/MANIFEST-000001
+2026/06/02-18:09:43.735 3be8 Recovering log #22
+2026/06/02-18:09:43.735 3be8 Reusing old log C:\Users\marga\callidus_youtube\ashwagandha-remotion\tmp-edge-profile-site-promo-final\Default\IndexedDB\http_127.0.0.1_4467.indexeddb.leveldb/000022.log 
+2026/06/02-18:09:43.736 3be8 Delete type=2 #20
+2026/06/02-18:09:43.768 3be8 Level-0 table #27: started
+2026/06/02-18:09:43.772 3be8 Level-0 table #27: 923 bytes OK
+2026/06/02-18:09:43.774 3be8 Delete type=0 #22
+2026/06/02-18:09:43.774 3be8 Manual compaction at level-0 from '\x00\x09\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at '\x00\x09\x00\x00\x05' @ 295 : 1
+2026/06/02-18:09:43.776 3be8 Compacting 1@0 + 1@1 files
+2026/06/02-18:09:43.780 3be8 Generated table #28@0: 46 keys, 1398 bytes
+2026/06/02-18:09:43.780 3be8 Compacted 1@0 + 1@1 files => 1398 bytes
+2026/06/02-18:09:43.784 3be8 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/06/02-18:09:43.785 3be8 Delete type=2 #27
+2026/06/02-18:09:43.786 3be8 Manual compaction at level-0 from '\x00\x09\x00\x00\x05' @ 295 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at (end)

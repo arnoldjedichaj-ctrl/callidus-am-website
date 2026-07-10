@@ -155,7 +155,15 @@ const audioObjects = publishedSessions.map((session) => ({
             <h3>{session.title}</h3>
             <p>{session.summary}</p>
             {session.status === 'published' ? (
-              <a class="button" href="#aktuelle-folge">Folge anhören</a>
+              <>
+                {session.safety && <p class="audio-card-safety">{session.safety}</p>}
+                <audio class="audio-card-player" controls preload="metadata" src={session.path}>
+                  Dein Browser kann diese Audio-Datei nicht direkt abspielen.
+                </audio>
+                <div class="audio-card-actions">
+                  <a class="button" href={session.path} download>Herunterladen</a>
+                </div>
+              </>
             ) : (
               <span class="audio-coming-soon">In Vorbereitung</span>
             )}
@@ -368,6 +376,25 @@ const audioObjects = publishedSessions.map((session) => ({
   align-content: start;
   gap: .8rem;
   padding: clamp(1rem, 3vw, 1.25rem);
+}
+.audio-card-player {
+  width: 100%;
+  min-height: 40px;
+  accent-color: var(--mint);
+}
+.audio-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+}
+.audio-card-safety {
+  border: 1px solid rgba(var(--coral-rgb), .26);
+  border-radius: .7rem;
+  padding: .7rem;
+  background: rgba(var(--coral-rgb), .07);
+  color: var(--soft);
+  font-size: .86rem;
+  line-height: 1.55;
 }
 .audio-session-card h3 {
   font-size: clamp(1.2rem, 2.4vw, 1.55rem);

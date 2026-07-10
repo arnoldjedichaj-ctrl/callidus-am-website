@@ -745,6 +745,19 @@ function bootPortal() {
     container.appendChild(span);
   }
 
+  const coachExerciseImages = {
+    squat: '/assets/media/coach-athlete/exercise-squat.webp',
+    row: '/assets/media/coach-athlete/exercise-row.webp',
+    pushup: '/assets/media/coach-athlete/exercise-pushup.webp',
+    plank: '/assets/media/coach-athlete/exercise-plank.webp',
+    lunge: '/assets/media/coach-athlete/exercise-lunge.webp',
+    press: '/assets/media/coach-athlete/exercise-press.webp',
+    bridge: '/assets/media/coach-athlete/exercise-bridge.webp',
+    mountain: '/assets/media/coach-athlete/exercise-mountain.webp',
+    walk: '/assets/media/coach-athlete/exercise-walk.webp',
+    bike: '/assets/media/coach-athlete/exercise-bike.webp',
+  };
+
   const exerciseLibrary = [
     {
       key: 'squat',
@@ -930,6 +943,7 @@ function bootPortal() {
           title: match.title || cleanExerciseName(entry.sourceName),
           cue: entry.cue || match.cue,
           icon: match.icon || 'squat',
+          image: coachExerciseImages[match.icon || match.key] || '',
         };
       })
       .filter((exercise) => {
@@ -954,7 +968,18 @@ function bootPortal() {
       card.className = 'portal-exercise-card';
       const visual = document.createElement('div');
       visual.className = 'portal-exercise-visual';
-      visual.innerHTML = exerciseIcon(exercise.icon);
+      if (exercise.image) {
+        card.classList.add('has-photo');
+        visual.classList.add('has-image');
+        const image = document.createElement('img');
+        image.src = exercise.image;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        visual.appendChild(image);
+      } else {
+        visual.innerHTML = exerciseIcon(exercise.icon);
+      }
       const body = document.createElement('div');
       body.className = 'portal-exercise-body';
       const title = document.createElement('strong');

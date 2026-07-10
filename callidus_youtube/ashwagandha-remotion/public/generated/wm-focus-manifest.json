@@ -1,0 +1,22 @@
+[
+  {
+    "file": "generated/wm-focus/01-shirt-hero.png",
+    "source": "OpenAI image generation",
+    "prompt": "Photorealistic generic Germany-inspired football fan shirt on a bed before match night, no official logos or readable text."
+  },
+  {
+    "file": "generated/wm-focus/02-breathing-focus.png",
+    "source": "OpenAI image generation",
+    "prompt": "Photorealistic fan practicing calm breathing before a football match, generic black-red-gold fan shirt, no official logos or readable text."
+  },
+  {
+    "file": "generated/wm-focus/03-healthy-matchnight.png",
+    "source": "OpenAI image generation",
+    "prompt": "Photorealistic healthy football match night setup with water, nuts, vegetables, fruit, scarf and TV stadium glow, no logos or readable text."
+  },
+  {
+    "file": "generated/wm-focus/04-stadium-shirt.png",
+    "source": "OpenAI image generation",
+    "prompt": "Photorealistic stadium at dusk with generic Germany-inspired fan shirt over a seat, no official logos or readable text."
+  }
+]

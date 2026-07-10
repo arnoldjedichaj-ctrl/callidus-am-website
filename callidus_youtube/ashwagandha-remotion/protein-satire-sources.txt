@@ -1,0 +1,25 @@
+Wissenschaftliche Quellen:
+- DGE Referenzwert Protein: https://www.dge.de/wissenschaft/referenzwerte/protein/
+  Relevanz: Aufgaben von Protein, Proteinlieferanten, 0,8 g/kg fuer Erwachsene, 1,0 g/kg als Schaetzwert ab 65 Jahren.
+- International Society of Sports Nutrition Position Stand: protein and exercise:
+  https://link.springer.com/article/10.1186/s12970-017-0177-8
+  Relevanz: 1,4-2,0 g/kg/d fuer viele trainierende Menschen, Proteinqualitaet, EAAs und Supplemente als praktische Option.
+
+Lokale Produktdaten:
+- C:\Users\marga\callidus-am-website\src\data\recommendations.json
+
+Affiliate-Produkte:
+- Bio Hanfprotein: https://amzn.to/493J8BW
+- VITACTIV Aminosaeuren Komplex Hochdosiert: https://amzn.to/4dHM6i5
+- EAA Pulver: https://coachcecil.de/r?id=be76ie
+
+Musik:
+- Lokale Projektdatei: public\audio\protein-soft-corporate-background-clean-business-bed-459456.mp3
+- Ursprungsseite laut vorhandener Musikquelle:
+  https://pixabay.com/music/solo-piano-soft-corporate-background-clean-business-bed-459456/
+
+Bildassets:
+- public\generated\protein-satire\01-protein-lab-satire.png
+- public\generated\protein-satire\02-amino-construction.png
+- public\generated\protein-satire\03-food-first-protein.png
+- public\generated\protein-satire\04-smart-product-choice.png
