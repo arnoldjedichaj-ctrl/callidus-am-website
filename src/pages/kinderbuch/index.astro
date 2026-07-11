@@ -42,14 +42,21 @@ const buecher = [
     cover: '/assets/kinderbuch/cover-band5.jpg',
     leseprobe: '/assets/kinderbuch/callis-kompass-band5-leseprobe.html',
     digistore: 'https://www.digistore24.com/product/710837',
-    preis: '9,90 €', status: 'Neu erschienen', accent: 'coral',
+    preis: '9,90 €', status: 'Erhältlich', accent: 'coral',
+  },
+  {
+    nr: 'Band 6', titel: 'Die Abwehr-Polizei',
+    text: 'Immunsystem, Hygiene & keine Angst vorm Doktor — mit Willi, dem Wächter, und seiner Abwehr-Polizei. Das große Serienfinale mit einem Wiedersehen aller Freunde aus Band 1 bis 5.',
+    cover: '/assets/kinderbuch/cover-band6.jpg',
+    leseprobe: '/assets/kinderbuch/callis-kompass-band6-leseprobe.html',
+    digistore: '', // ← Digistore24-Produktlink für Band 6 hier einsetzen
+    preis: '9,90 €', status: 'Neu erschienen', accent: 'mint',
   },
 ];
 const kaufB2 = buecher[1].digistore || buecher[1].leseprobe;
-const geplant = [
-  { nr: 'Band 6', titel: 'Die Abwehr-Polizei', text: 'Hygiene, Schutz und keine Angst vorm Doktor.', accent: 'mint' },
-];
+const geplant = [];
 const sceneImages = [
+  { src: '/assets/media/kinderbuch-band6-scenes/web/b6-s01.jpg', title: 'Willi, der Wächter', label: 'Band 6' },
   { src: '/assets/media/kinderbuch-band5-scenes/web/b5-s01.jpg', title: 'Wolki, die Gefühls-Wolke', label: 'Band 5' },
   { src: '/assets/media/kinderbuch-band4-scenes/web/b4-s12-gute-nacht-geschichte.jpg', title: 'Die Gute-Nacht-Geschichte', label: 'Band 4' },
   { src: '/assets/media/kinderbuch-band3-scenes/web/b3-s09-frosch-baer.jpg', title: 'Die Tier-Olympiade', label: 'Band 3' },
@@ -143,16 +150,18 @@ const sceneImages = [
     <div class="container">
       <p class="eyebrow" data-reveal>Die Serie</p>
       <h2 data-reveal="2">Sechs Bände. Ein Kompass.</h2>
-      <p class="lede" data-reveal="3">Jedes Thema bekommt seinen eigenen Band — dem callidus-Gesundheits-Kompass folgend, vom Körper bis zur Seele. Band 1 und 2 sind da, die nächsten sind in Arbeit.</p>
-      <div class="kb-grid" data-reveal="4">
-        {geplant.map((band) => (
-          <article class={`kb-card ${band.accent}`}>
-            <p class="kb-band-nr">{band.nr} · <em>Geplant</em></p>
-            <h3>{band.titel}</h3>
-            <p>{band.text}</p>
-          </article>
-        ))}
-      </div>
+      <p class="lede" data-reveal="3">Jedes Thema bekommt seinen eigenen Band — dem callidus-Gesundheits-Kompass folgend, vom Körper bis zur Seele. Die Reihe ist vollständig: Alle sechs Bände sind jetzt erhältlich.</p>
+      {geplant.length > 0 && (
+        <div class="kb-grid" data-reveal="4">
+          {geplant.map((band) => (
+            <article class={`kb-card ${band.accent}`}>
+              <p class="kb-band-nr">{band.nr} · <em>Geplant</em></p>
+              <h3>{band.titel}</h3>
+              <p>{band.text}</p>
+            </article>
+          ))}
+        </div>
+      )}
       <p class="kb-note" data-reveal="4">Diese Bücher vermitteln allgemeines Gesundheitswissen für Familien und ersetzen keine ärztliche Beratung, Diagnose oder Behandlung. Die Illustrationen sind digitale, KI-gestützt erstellte und redaktionell überarbeitete Aquarellbilder.</p>
     </div>
   </section>
