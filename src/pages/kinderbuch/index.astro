@@ -42,6 +42,7 @@ const buecher = [
     cover: '/assets/kinderbuch/cover-band5.jpg',
     leseprobe: '/assets/kinderbuch/callis-kompass-band5-leseprobe.html',
     digistore: 'https://www.digistore24.com/product/710837',
+    amazon: 'https://amzn.to/4h8GNdD',
     preis: '9,90 €', status: 'Erhältlich', accent: 'coral',
   },
   {
@@ -102,16 +103,21 @@ const sceneImages = [
                 <div class="kb-buybar">
                   <span class="kb-price">{b.preis}</span>
                   <a class="button primary" href={kauf} rel="noopener">Jetzt kaufen</a>
+                  {b.amazon && (
+                    <a class="button" href={b.amazon} target="_blank" rel="sponsored noopener">Taschenbuch bei Amazon</a>
+                  )}
                   <a class="button" href={b.leseprobe}>Leseprobe</a>
                 </div>
                 <p class="kb-buy-note">
-                  {b.digistore ? 'Sichere Abwicklung & Download über Digistore24.' : 'Kauf-Link folgt in Kürze — jetzt schon reinlesen.'}
+                  {b.digistore ? 'PDF-Download: sichere Abwicklung über Digistore24.' : 'Kauf-Link folgt in Kürze — jetzt schon reinlesen.'}
+                  {b.amazon && ' Taschenbuch bei Amazon (Partner-/Affiliate-Link).'}
                 </p>
               </div>
             </article>
           );
         })}
       </div>
+      <p class="kb-note" data-reveal>Als Amazon-Partner verdient callidus A&amp;M an qualifizierten Verkäufen. Die „Taschenbuch bei Amazon"-Links sind Partner-/Affiliate-Links — für dich entstehen dabei keine Mehrkosten.</p>
     </div>
   </section>
 
