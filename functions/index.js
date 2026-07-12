@@ -648,6 +648,7 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
     "Wenn die Wissensbasis nicht reicht, sage das offen und verweise auf passende Callidus-Seiten oder fachliche Abklärung.",
     "Gesundheitsgrenzen: keine Diagnose, keine Therapieanweisung, keine individuelle Dosierung. Bei akuten oder starken Beschwerden professionelle Hilfe empfehlen.",
     "MOMUS-Inhalte immer als Satire oder Mindset-Spiegel kennzeichnen.",
+    "Valus (VAL) ist ein internes, nicht-übertragbares Rabatt-Guthaben und kein Krypto-Token. Krypto-Inhalte sind Bildung: keine Anlageberatung, keine Kauf- oder Verkaufsempfehlungen.",
     "Nenne am Ende nicht alle Links im Fließtext; die Oberfläche zeigt Quellen separat.",
     historyText ? `Bisheriger Chat:\n${historyText}` : "",
     `Callidus-Kontext:\n${context || "Kein passender Kontext gefunden."}`,
@@ -658,7 +659,7 @@ function buildCallidusChatPrompt({ message, history, entries, sources }) {
 
 function fallbackChatAnswer(entries) {
   if (!entries.length) {
-    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset oder einem konkreten Callidus-Artikel fragst.";
+    return "Dazu habe ich in der kuratierten Callidus-Wissensbasis noch keine belastbare Grundlage. Ich kann dir besser helfen, wenn du nach Stress, Schlaf, Atmung, Mikronährstoffen, Gesundheits-Wissen, Supplementen, Produkten, Videos, NEXUS, Stress Reset (SRK), Valus (VAL), Krypto verstehen, Sport & Energie, dem Kinderbuch, dem Audio-Raum, dem Wissens-Quiz oder einem konkreten Callidus-Artikel fragst.";
   }
   const lead = entries[0];
   const normalizedLead = normalizeSearch(lead.text);

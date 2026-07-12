@@ -109,8 +109,8 @@ const navGroups = [
       { href: t.paths.recommendations, label: t.nav.recommendations },
       { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
       { href: t.paths.checks ?? '/gesundheits-checks/', label: t.nav.checks ?? 'Checks' },
-      { href: '/audio/', label: 'Audio' },
-      { href: '/kinderbuch/', label: 'Kinderbuch' },
+      { href: '/audio/', label: t.nav.audio ?? 'Audio' },
+      { href: '/kinderbuch/', label: t.nav.kinderbuch ?? 'Kinderbuch' },
       { href: t.paths.course, label: t.nav.course },
       { href: t.paths.apps, label: t.nav.apps },
     ],
@@ -120,7 +120,7 @@ const navGroups = [
     items: [
       { href: t.paths.portal, label: t.nav.portal },
       { href: t.paths.wallet ?? '/wallet/', label: t.nav.wallet ?? 'Wallet' },
-      { href: t.paths.valus ?? '/valus/', label: 'Valus' },
+      { href: t.paths.valus ?? '/valus/', label: t.nav.valus ?? 'Valus' },
       { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
     ],
   },
@@ -268,11 +268,11 @@ const socialIcons = {
         <a href={t.paths.privacy}>{t.legal.privacy}</a>
         <a href={t.paths.methodology ?? '/quellen-methodik/'}>{t.nav.methodology ?? 'Quellen'}</a>
         <a href={t.paths.terms}>{t.legal.terms}</a>
-        <a href="/audio/">Audio-Raum</a>
-        <a href="/kinderbuch/">Kinderbuch</a>
-        <a href="/krypto-verstehen/">Krypto verstehen</a>
-        <a href="/krypto-hinweis/">Krypto-Hinweis</a>
-        <a href="/valus-litepaper.html">Litepaper</a>
+        <a href="/audio/">{t.footerExtras?.audio ?? 'Audio-Raum'}</a>
+        <a href="/kinderbuch/">{t.footerExtras?.kinderbuch ?? 'Kinderbuch'}</a>
+        <a href="/krypto-verstehen/">{t.footerExtras?.krypto ?? 'Krypto verstehen'}</a>
+        <a href="/krypto-hinweis/">{t.footerExtras?.kryptoHinweis ?? 'Krypto-Hinweis'}</a>
+        <a href="/valus-litepaper.html">{t.footerExtras?.litepaper ?? 'Litepaper'}</a>
       </nav>
     </footer>
     <div class="cookie-banner" role="dialog" aria-live="polite" aria-label={labels.cookieLabel} hidden>
@@ -303,15 +303,15 @@ const socialIcons = {
           <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v6A3.5 3.5 0 0 1 16.5 15H11l-4.5 4v-4A2.5 2.5 0 0 1 4 12.5v-7Z"></path>
           <path d="M8 7h8M8 10.5h5"></path>
         </svg>
-        <span>Assistent</span>
+        <span>{t.assistant?.toggle ?? 'Assistent'}</span>
       </button>
-      <section class="assistant-panel" id="callidus-assistant-panel" aria-label="Callidus Assistent" hidden>
+      <section class="assistant-panel" id="callidus-assistant-panel" aria-label={t.assistant?.panelLabel ?? 'Callidus Assistent'} hidden>
         <header>
           <div>
-            <strong>Callidus Assistent</strong>
-            <small>Antwortet aus Callidus-Wissen und kuratierten Quellen.</small>
+            <strong>{t.assistant?.title ?? 'Callidus Assistent'}</strong>
+            <small>{t.assistant?.subtitle ?? 'Antwortet aus Callidus-Wissen und kuratierten Quellen.'}</small>
           </div>
-          <button type="button" aria-label="Assistent schließen" data-assistant-close>
+          <button type="button" aria-label={t.assistant?.close ?? 'Assistent schließen'} data-assistant-close>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
               <path d="M18 6 6 18M6 6l12 12"></path>
             </svg>
@@ -320,13 +320,13 @@ const socialIcons = {
         <div class="assistant-messages" data-assistant-messages aria-live="polite"></div>
         <form class="assistant-form" data-assistant-form>
           <label>
-            <span>Frage</span>
-            <textarea name="message" rows="2" maxlength="700" placeholder="Frage zu Stress, Schlaf, Mikronährstoffen oder NEXUS"></textarea>
+            <span>{t.assistant?.questionLabel ?? 'Frage'}</span>
+            <textarea name="message" rows="2" maxlength="700" placeholder={t.assistant?.placeholder ?? 'Frage zu Stress, Schlaf, Mikronährstoffen oder NEXUS'}></textarea>
           </label>
-          <button class="button primary" type="submit" data-assistant-submit>Fragen</button>
+          <button class="button primary" type="submit" data-assistant-submit>{t.assistant?.submit ?? 'Fragen'}</button>
         </form>
         <p class="assistant-privacy">
-          Keine Diagnose. Fragen werden zur Antwort an Firebase/Gemini übertragen.
+          {t.assistant?.privacy ?? 'Keine Diagnose. Fragen werden zur Antwort an Firebase/Gemini übertragen.'}
         </p>
       </section>
     </div>
@@ -487,9 +487,10 @@ const socialIcons = {
         document.addEventListener('astro:page-load', initWalletBadge);
       })();
     </script>
-    <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
+    <script is:inline define:vars={{ FB_CONFIG: fbConfig, ASSISTANT_I18N: t.assistant }}>
       (() => {
         const SESSION_KEY = 'callidus-assistant-session';
+        const A_TEXT = ASSISTANT_I18N || {};
         const setupAssistant = () => {
           const root = document.querySelector('[data-callidus-assistant]');
           if (!root || root.dataset.ready) return;
@@ -597,7 +598,7 @@ const socialIcons = {
               const sourceBox = document.createElement('div');
               sourceBox.className = 'assistant-sources';
               const label = document.createElement('strong');
-              label.textContent = 'Quellen';
+              label.textContent = A_TEXT.sourcesLabel || 'Quellen';
               sourceBox.append(label);
               sources.slice(0, 5).forEach((source) => {
                 const link = document.createElement('a');
@@ -638,7 +639,7 @@ const socialIcons = {
 
           appendMessage({
             role: 'assistant',
-            text: 'Frag mich zu Stress, Schlaf, Mikronährstoffen, Gesundheits-Wissen, Produkten, Videos, NEXUS oder den Callidus-Artikeln. Ich antworte mit Quellen, wenn die Wissensbasis dazu etwas hergibt.',
+            text: A_TEXT.greeting || 'Frag mich zu Stress, Schlaf, Mikronährstoffen, Gesundheits-Wissen, Produkten, Videos, NEXUS, Valus (VAL), Krypto verstehen, Sport & Energie, dem Kinderbuch, dem Audio-Raum, dem Wissens-Quiz, dem Stress-Reset-Kurs (SRK) oder den Callidus-Artikeln. Ich antworte mit Quellen, wenn die Wissensbasis dazu etwas hergibt.',
           });
 
           toggle?.addEventListener('click', (event) => {
@@ -662,8 +663,8 @@ const socialIcons = {
             history.push({ role: 'user', text: message });
             input.value = '';
             submit.disabled = true;
-            submit.textContent = 'Antwortet...';
-            const pending = appendMessage({ role: 'assistant', text: 'Ich suche in der Callidus-Wissensbasis...', pending: true });
+            submit.textContent = A_TEXT.busy || 'Antwortet...';
+            const pending = appendMessage({ role: 'assistant', text: A_TEXT.searching || 'Ich suche in der Callidus-Wissensbasis...', pending: true });
             try {
               const ask = await loadCallable();
               const response = await ask({
@@ -676,7 +677,7 @@ const socialIcons = {
               pending.remove();
               appendMessage({
                 role: 'assistant',
-                text: payload.answer || 'Ich konnte gerade keine Antwort erzeugen.',
+                text: payload.answer || A_TEXT.noAnswer || 'Ich konnte gerade keine Antwort erzeugen.',
                 sources: payload.sources || [],
                 safetyNotice: payload.safetyNotice || '',
               });
@@ -685,11 +686,11 @@ const socialIcons = {
               pending.remove();
               appendMessage({
                 role: 'assistant',
-                text: 'Der Assistent ist gerade nicht erreichbar. Bitte versuche es später erneut oder nutze die Quellen- und Check-Seiten.',
+                text: A_TEXT.error || 'Der Assistent ist gerade nicht erreichbar. Bitte versuche es später erneut oder nutze die Quellen- und Check-Seiten.',
               });
             } finally {
               submit.disabled = false;
-              submit.textContent = 'Fragen';
+              submit.textContent = A_TEXT.submit || 'Fragen';
             }
           });
         };

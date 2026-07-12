@@ -364,7 +364,9 @@ const articleJsonLd = article ? {
 ---
 <BaseLayout
   lang="de"
-  alternatePath="/en/guide/"
+  alternatePath={article && article.app === 'momus' && Array.isArray(article.blocksEn) && article.blocksEn.length > 0
+    ? `/en/guide/${article.slug}/`
+    : '/en/guide/'}
   title={title}
   description={page.description || 'callidus A&M'}
   ogImage={mainImage}
@@ -586,6 +588,14 @@ const articleJsonLd = article ? {
                 }
                 if (block.type === 'list') {
                   return <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
+                }
+                if (block.type === 'cta') {
+                  return (
+                    <div class="article-cta" style="margin:2rem 0;display:flex;flex-direction:column;gap:.5rem;align-items:flex-start;">
+                      <a class="button primary" href={block.href}>{block.label}</a>
+                      {block.note && <small>{block.note}</small>}
+                    </div>
+                  );
                 }
                 return <p>{block.text}</p>;
               })}

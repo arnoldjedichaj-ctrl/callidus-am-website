@@ -17,7 +17,13 @@ const categorize = (page) => {
 };
 const grouped = structure.categories.map((category) => ({
   ...categoryForLang(category, lang),
-  articles: articles.filter((page) => categorize(page).slug === category.slug).map((page) => articleForLang(page, lang)),
+  articles: articles.filter((page) => categorize(page).slug === category.slug).map((page) => ({
+    ...articleForLang(page, lang),
+    // Momus-Artikel mit englischer Übersetzung bekommen eine eigene EN-Route
+    path: page.app === 'momus' && Array.isArray(page.blocksEn) && page.blocksEn.length > 0
+      ? `/en/guide/${page.slug}/`
+      : page.path,
+  })),
 }));
 ---
 <BaseLayout lang={lang} alternatePath="/ratgeber/" title={copy.title} description={copy.description}>

@@ -389,6 +389,18 @@
       "title": "Reishi adverse reactions and interactions",
       "url": "https://www.mskcc.org/cancer-care/integrative-medicine/herbs/reishi-mushroom",
       "type": "Sicherheitshinweis"
+    },
+    {
+      "id": "valus-litepaper",
+      "title": "Valus Litepaper",
+      "url": "/valus-litepaper.html",
+      "type": "Callidus"
+    },
+    {
+      "id": "krypto-hinweis",
+      "title": "Krypto-Hinweis: rechtliche Einordnung",
+      "url": "/krypto-hinweis/",
+      "type": "Callidus"
     }
   ],
   "entries": [
@@ -648,6 +660,12 @@
       "sourceIds": [
         "who-stress-guide",
         "cdc-sleep"
+      ],
+      "keywords": [
+        "srk",
+        "stress-reset-kurs",
+        "stress reset kurs",
+        "kurs"
       ]
     },
     {
@@ -2466,6 +2484,222 @@
         "Affiliate"
       ],
       "text": "Produktempfehlung im Bereich Zukunft der Gesundheit: RingConn Gen 2: Anulus Vitae – Ihr stiller Wächter für Tiefenschlaf & Vitalität. Für ein Leben in Balance – ohne Abo-Zwang! Der RingConn Gen 2 Smart Ring ist Ihr Anulus Vitae – der Ring des Lebens. Als weltweit erster Ring mit Schlafapnoe-Monitoring liefert er präzise Daten zu Schlaf, Stress und Herzfrequenz. Mit 12 Tagen Akkulaufzeit und ohne zusätzliche App-Abonnements ist er Ihr diskreter Begleiter für umfassende Gesundheitsinsights. Kompatibel mit Android & iOS. Für bewusste Selbstoptimierung und innere Ruhe. Anbieter: Amazon. Affiliate-Link.",
+      "sourceIds": []
+    },
+    {
+      "title": "Valus (VAL) — Dein Gesundheitswert",
+      "path": "/valus/",
+      "kind": "page",
+      "app": "callidus",
+      "topics": [
+        "Valus",
+        "VAL",
+        "Gesundheitswert",
+        "Guthaben",
+        "Belohnung"
+      ],
+      "keywords": [
+        "valus",
+        "val",
+        "coin",
+        "token",
+        "guthaben",
+        "gesundheitswert",
+        "belohnung",
+        "praemie",
+        "rabatt",
+        "verdienen",
+        "kaufen"
+      ],
+      "summary": "Valus (VAL) ist das interne Gesundheits-Guthaben von callidus A&M: kein Krypto-Token, sondern nicht-übertragbares Rabatt-Guthaben.",
+      "text": "Valus (VAL) ist das interne Bonus-Guthaben von callidus A&M unter /valus/. Wichtig: VAL ist kein Krypto-Token, kein Investment und kein Finanzprodukt, sondern ein nicht-übertragbares Rabatt-Guthaben. Es gibt drei Wege zu VAL: NEXUS-XP im Wallet umwandeln, VAL-Pakete kaufen (10, 25 oder 50 VAL) oder Aktionen mitmachen. Einlösen lässt sich VAL als Rabatt auf Callidus-Angebote, zum Beispiel die Kinderbuch-Bände von Callis Gesundheits-Kompass. Das persönliche Guthaben ist im Wallet unter /wallet/ sichtbar. Hintergründe stehen im Valus Litepaper (/valus-litepaper.html), die rechtliche Einordnung im Krypto-Hinweis (/krypto-hinweis/).",
+      "sourceIds": [
+        "valus-litepaper",
+        "krypto-hinweis"
+      ]
+    },
+    {
+      "title": "Wallet: NEXUS-XP in VAL umwandeln und einlösen",
+      "path": "/wallet/",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": [
+        "Wallet",
+        "NEXUS-XP",
+        "Umwandeln",
+        "Einlösen",
+        "Konto"
+      ],
+      "keywords": [
+        "wallet",
+        "xp",
+        "nexus xp",
+        "umwandeln",
+        "einloesen",
+        "tauschen",
+        "punkte",
+        "konto",
+        "anmelden",
+        "login",
+        "guthaben"
+      ],
+      "summary": "Im Wallet unter /wallet/ wandelst du NEXUS-XP in VAL um (10.000 XP = 1 VAL, max. 10 VAL pro Monat) und löst VAL als Rabatt ein.",
+      "text": "Das Callidus Wallet unter /wallet/ zeigt nach Anmeldung mit dem Callidus-Konto (E-Mail und Passwort oder Google) das persönliche VAL-Guthaben. Dort lassen sich NEXUS-XP in VAL umwandeln: 10.000 NEXUS-XP ergeben 1 VAL, umgewandelt wird in 10.000er-Schritten, maximal 10 VAL pro Monat. VAL kann anschließend als Rabatt eingelöst werden, zum Beispiel für die Kinderbuch-Bände unter /kinderbuch/. Optional lässt sich eine externe Wallet-Adresse mit dem Konto verknüpfen. Das gleiche Konto funktioniert auch im Portal unter /portal/.",
+      "sourceIds": []
+    },
+    {
+      "title": "Krypto verstehen: Lernbereich, Training und Litepaper",
+      "path": "/krypto-verstehen/",
+      "kind": "page",
+      "app": "callidus",
+      "topics": [
+        "Krypto",
+        "Blockchain",
+        "Wallet",
+        "Sicherheit",
+        "Litepaper"
+      ],
+      "keywords": [
+        "krypto",
+        "crypto",
+        "blockchain",
+        "bitcoin",
+        "coin",
+        "litepaper",
+        "bridge",
+        "defi",
+        "gebuehren",
+        "sicherheit",
+        "training",
+        "links"
+      ],
+      "summary": "Der Lernbereich /krypto-verstehen/ erklärt Blockchain- und Krypto-Grundlagen ohne Hektik — mit Übungsbereich, geprüften Links und Litepaper.",
+      "text": "Unter /krypto-verstehen/ erklärt callidus A&M Krypto- und Blockchain-Grundlagen in Ruhe: zentrale Begriffe wie Blockchain, Wallet, Gebühren (Gas) und Bridging, dazu Risiken, Tokenomics und eine Sicherheits-Checkliste, bevor man kauft, sendet oder eine Wallet verbindet. Im Krypto-Training unter /krypto-training/ übt man den kompletten Weg (Wallet, Kauf, Bridge) risikofrei mit Übungsguthaben und Quizfragen. Unter /krypto-links/ stehen geprüfte Krypto-Links und Werkzeuge samt Sicherheitshinweisen. Das Valus Litepaper liegt unter /valus-litepaper.html, die rechtliche Einordnung unter /krypto-hinweis/. Alles ist Bildung, keine Anlageberatung. Wichtig: Das Callidus-Guthaben VAL selbst ist kein Krypto-Token.",
+      "sourceIds": [
+        "valus-litepaper",
+        "krypto-hinweis"
+      ]
+    },
+    {
+      "title": "Sport & Energie mit KI-Sport-Coach",
+      "path": "/sport-energie/",
+      "kind": "page",
+      "app": "callidus",
+      "topics": [
+        "Sport",
+        "Training",
+        "Energie",
+        "Ernährung",
+        "Coach"
+      ],
+      "keywords": [
+        "sport",
+        "training",
+        "energie",
+        "bewegung",
+        "workout",
+        "wochenplan",
+        "coach",
+        "fitness",
+        "ausdauer",
+        "kraft"
+      ],
+      "summary": "Die Seite /sport-energie/ bündelt alltagstaugliche Trainings- und Energie-Impulse; nach Login erstellt der KI-Sport-Coach persönliche Pläne.",
+      "text": "Unter /sport-energie/ zeigt callidus A&M Training, das zum Alltag passt: ein Wochenüberblick für Sport und Energie, Hinweise zur Ernährung rund ums Training sowie passende Artikel und Hilfsmittel. Nach dem Login mit dem Callidus-Konto erstellt der KI-Sport-Coach einen persönlichen Trainingsplan und speichert Trainings-Logs. Die Inhalte sind Orientierung für gesunde Erwachsene und ersetzen bei Beschwerden keine ärztliche Abklärung.",
+      "sourceIds": [
+        "physical-activity-mental-health-review"
+      ]
+    },
+    {
+      "title": "Kinderbuchserie: Callis Gesundheits-Kompass",
+      "path": "/kinderbuch/",
+      "kind": "product",
+      "app": "callidus",
+      "topics": [
+        "Kinderbuch",
+        "Kinder",
+        "Vorlesen",
+        "Gesundheit für Kinder",
+        "Kinderbuchserie"
+      ],
+      "keywords": [
+        "kinderbuch",
+        "kinder",
+        "buch",
+        "calli",
+        "band",
+        "vorlesen",
+        "zucker",
+        "schlaf",
+        "gefuehle",
+        "immunsystem",
+        "digistore",
+        "amazon",
+        "kinderbücher",
+        "tochter",
+        "sohn",
+        "bilderbuch",
+        "geschichte",
+        "kinderbuchserie"
+      ],
+      "summary": "Callis Gesundheits-Kompass ist eine sechsbändige Bilderbuchserie (5–8 Jahre) über Körpergefühl, Zucker, Bewegung, Schlaf, Gefühle und Immunsystem.",
+      "text": "Callis Gesundheits-Kompass unter /kinderbuch/ ist die Kinderbuchserie von callidus A&M für Kinder von etwa 5 bis 8 Jahren, mit warmen Aquarellbildern und der Leitfigur Calli. Die sechs Bände: Band 1 „Hör auf deinen Körper“, Band 2 „Das Zucker-Monster“, Band 3 „Der Zappelmotor“, Band 4 „Die Schlaf-Werkstatt“, Band 5 „Das Gefühls-Wetter“ und Band 6 „Die Abwehr-Polizei“ (Serienfinale). Jeder Band kostet 9,90 Euro und ist über Digistore24 erhältlich; Band 5 gibt es zusätzlich als Amazon-Taschenbuch. Wer in der NEXUS App XP gesammelt und im Wallet in VAL umgewandelt hat, kann Bände auch mit VAL-Guthaben einlösen.",
+      "sourceIds": []
+    },
+    {
+      "title": "Audio-Raum: geführte Sessions für Klarheit und Fokus",
+      "path": "/audio/",
+      "kind": "page",
+      "app": "callidus",
+      "topics": [
+        "Audio",
+        "Meditation",
+        "Fokus",
+        "Ruhe",
+        "Routinen"
+      ],
+      "keywords": [
+        "audio",
+        "meditation",
+        "hoeren",
+        "session",
+        "entspannung",
+        "fokus",
+        "klarheit",
+        "folge",
+        "ruhe",
+        "meditationen",
+        "anhören",
+        "zuhören",
+        "hören",
+        "audios",
+        "geführte"
+      ],
+      "summary": "Der Audio-Raum unter /audio/ bietet geführte Audio-Sessions von rund 15 Minuten für Klarheit, Fokus und innere Ordnung.",
+      "text": "Im Audio-Raum unter /audio/ gibt es geführte Audio-Sessions von callidus A&M für Momente, in denen der Kopf zu voll ist: rund 15 Minuten, ein ruhiger Ort, keine Leistung. Die Folgen führen durch die Schritte Sortieren, Fokussieren und Handeln und unterstützen ruhige Mikro-Routinen im Alltag. Es erscheinen laufend neue Folgen. Die Sessions sind Alltagsbegleitung und keine Therapie oder medizinische Behandlung.",
+      "sourceIds": []
+    },
+    {
+      "title": "Health-IQ-Wissensquiz",
+      "path": "/gesundheits-checks/",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": [
+        "Quiz",
+        "Wissenstest",
+        "Gesundheitswissen"
+      ],
+      "keywords": [
+        "quiz",
+        "wissensquiz",
+        "health iq",
+        "wissenstest",
+        "fragen",
+        "testen",
+        "raten"
+      ],
+      "summary": "Das Health-IQ-Wissensquiz unter /gesundheits-checks/ testet Gesundheitswissen mit sofortiger Auswertung und Lernfeldern.",
+      "text": "Unter /gesundheits-checks/ gibt es neben dem Stress-Check und dem Mikronährstoff-Radar das Health-IQ-Wissensquiz: Fragen zum Gesundheitswissen mit sofortiger Auswertung, Lernfeldern, Quellen und passenden Callidus-Artikeln zum Vertiefen. Auch im Krypto-Bereich (/krypto-verstehen/ und /krypto-training/) gibt es Quizfragen zum sicheren Umgang mit Krypto. Die Quizze dienen der Bildung und sind keine Diagnose.",
       "sourceIds": []
     }
   ]

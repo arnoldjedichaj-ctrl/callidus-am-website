@@ -1082,5 +1082,20 @@
     ],
     "localHtml": "source/content-html/vitamin-e-der-zellschutzer.html",
     "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/blockchain-zukunft-gesundheit/",
+    "slug": "blockchain-zukunft-gesundheit",
+    "title": "Zukunftsvision: Wenn Gesundheit zu digitalem Wert wird",
+    "description": "Ein Gedankenexperiment: fünf rein fiktive Zukunftsbilder, wie Blockchain-Technologie Gesundheitsdaten, Medikamenten-Lieferketten und Belohnungssysteme eines Tages verändern könnte — und was Valus (VAL) heute schon damit zu tun hat.",
+    "h1": [],
+    "h2": [
+      "Fünf fiktive Zukunftsbilder für Blockchain im Gesundheitswesen"
+    ],
+    "imageCount": 1,
+    "images": [
+      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f8698ec-35a2-48ca-b4fc-bea569579d0e/l149,t63,w1062,h903/image.png"
+    ],
+    "status": "ok"
   }
 ]
