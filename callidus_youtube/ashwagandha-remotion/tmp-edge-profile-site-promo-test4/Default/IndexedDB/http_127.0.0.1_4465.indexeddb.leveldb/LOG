@@ -1,6 +1,0 @@
-2026/06/02-18:06:29.200 3af0 Creating DB C:\Users\marga\callidus_youtube\ashwagandha-remotion\tmp-edge-profile-site-promo-test4\Default\IndexedDB\http_127.0.0.1_4465.indexeddb.leveldb since it was missing.
-2026/06/02-18:06:29.444 3af0 Reusing MANIFEST C:\Users\marga\callidus_youtube\ashwagandha-remotion\tmp-edge-profile-site-promo-test4\Default\IndexedDB\http_127.0.0.1_4465.indexeddb.leveldb/MANIFEST-000001
-2026/06/02-18:06:30.417 41a0 Level-0 table #5: started
-2026/06/02-18:06:30.429 41a0 Level-0 table #5: 1311 bytes OK
-2026/06/02-18:06:30.432 41a0 Delete type=0 #3
-2026/06/02-18:06:30.433 2658 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)

@@ -21,6 +21,8 @@ const CALLABLE_CORS = [
 ];
 const XP_PER_VALUS = 10000;
 const MONTHLY_VALUS_LIMIT = 10;
+const CENTS_PER_EURO = 100;
+const XP_PER_CENT = XP_PER_VALUS / CENTS_PER_EURO;
 
 const PLAN_SCHEMA = {
   type: "OBJECT",
@@ -847,6 +849,70 @@ const VALUS_PACKAGES = {
   valus_50: { amount: 50, env: "VALUS_CHECKOUT_50_URL" },
 };
 
+const KINDERBUCH_PRODUCTS = {
+  band1: {
+    id: "band1",
+    title: "Band 1: Hoer auf deinen Koerper",
+    productId: "digistore_709550",
+    checkoutUrl: "https://www.digistore24.com/product/709550",
+    priceCents: 990,
+  },
+  band2: {
+    id: "band2",
+    title: "Band 2: Das Zucker-Monster",
+    productId: "digistore_709996",
+    checkoutUrl: "https://www.digistore24.com/product/709996",
+    priceCents: 990,
+  },
+  band3: {
+    id: "band3",
+    title: "Band 3: Der Zappelmotor",
+    productId: "digistore_710152",
+    checkoutUrl: "https://www.digistore24.com/product/710152",
+    priceCents: 990,
+  },
+  band4: {
+    id: "band4",
+    title: "Band 4: Die Schlaf-Werkstatt",
+    productId: "digistore_710833",
+    checkoutUrl: "https://www.digistore24.com/product/710833",
+    priceCents: 990,
+  },
+  band5: {
+    id: "band5",
+    title: "Band 5: Das Gefuehls-Wetter",
+    productId: "digistore_710837",
+    checkoutUrl: "https://www.digistore24.com/product/710837",
+    priceCents: 990,
+  },
+  band6: {
+    id: "band6",
+    title: "Band 6: Die Abwehr-Polizei",
+    productId: "digistore_711028",
+    checkoutUrl: "https://www.digistore24.com/product/711028",
+    priceCents: 990,
+  },
+};
+
+function centsFromValus(value) {
+  return Math.max(0, Math.floor(numberValue(value, 0) * CENTS_PER_EURO));
+}
+
+function valusFromCents(cents) {
+  return Math.round(cents) / CENTS_PER_EURO;
+}
+
+function parseCreditCents(data = {}, maxCents = 0) {
+  const direct = Number.parseInt(data.creditCents ?? data.redeemCents ?? data.cents, 10);
+  if (Number.isFinite(direct)) {
+    return Math.min(maxCents, Math.max(0, direct));
+  }
+  const rawEuro = String(data.creditEuro ?? data.redeemEuro ?? data.valusAmount ?? "").replace(",", ".");
+  const euro = Number.parseFloat(rawEuro);
+  if (!Number.isFinite(euro)) return 0;
+  return Math.min(maxCents, Math.max(0, Math.round(euro * CENTS_PER_EURO)));
+}
+
 exports.getValusBalance = onCall(
   {
     region: "us-central1",
@@ -1041,6 +1107,107 @@ exports.getValusCheckoutUrl = onCall(
       throw new HttpsError("failed-precondition", "Checkout ist noch nicht konfiguriert.");
     }
     return { url, packageId, valus: selected.amount };
+  },
+);
+
+exports.createKinderbuchRedemption = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const bookId = cleanString(request.data?.bookId, 40).toLowerCase();
+    const book = KINDERBUCH_PRODUCTS[bookId];
+    if (!book) {
+      throw new HttpsError("invalid-argument", "Unbekannter Kinderbuch-Band.");
+    }
+
+    const creditCents = parseCreditCents(request.data || {}, book.priceCents);
+    if (creditCents < 1) {
+      throw new HttpsError("invalid-argument", "Bitte Einloesebetrag eingeben.");
+    }
+
+    const userRef = db.collection("users").doc(uid);
+    const balanceRef = userRef.collection("balances").doc("current");
+    const redemptionCode = `KB-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
+    const redemptionRef = userRef.collection("kinderbuch_redemptions").doc(redemptionCode.toLowerCase());
+
+    const result = await db.runTransaction(async (transaction) => {
+      const [userSnap, balanceSnap] = await Promise.all([
+        transaction.get(userRef),
+        transaction.get(balanceRef),
+      ]);
+      const user = userSnap.exists ? userSnap.data() : {};
+      const balance = balanceSnap.exists ? balanceSnap.data() : {};
+      const availableXp = xpFromSources(balance, user);
+      const currentValus = valusFromSources(balance, user);
+      const xpCreditCents = Math.floor(availableXp / XP_PER_CENT);
+      const valusCreditCents = centsFromValus(currentValus);
+      const availableCreditCents = xpCreditCents + valusCreditCents;
+
+      if (availableCreditCents < creditCents) {
+        throw new HttpsError(
+          "failed-precondition",
+          `Nicht genug XP/VAL vorhanden. Aktuell verfuegbar: ${valusFromCents(availableCreditCents)} EUR Rabattwert.`,
+        );
+      }
+
+      const appliedXpCents = Math.min(creditCents, xpCreditCents);
+      const appliedXpAmount = appliedXpCents * XP_PER_CENT;
+      const appliedValusCents = creditCents - appliedXpCents;
+      const appliedValusAmount = valusFromCents(appliedValusCents);
+      const remainingCents = Math.max(0, book.priceCents - creditCents);
+
+      transaction.set(redemptionRef, {
+        code: redemptionCode,
+        status: "pending_purchase",
+        uid,
+        user_email: cleanString(request.auth?.token?.email, 180),
+        book_id: book.id,
+        book_title: book.title,
+        product_id: book.productId,
+        checkout_url: book.checkoutUrl,
+        price_cents: book.priceCents,
+        credit_cents: creditCents,
+        remaining_cents: remainingCents,
+        xp_equivalent: creditCents * XP_PER_CENT,
+        applied_xp_amount: appliedXpAmount,
+        applied_valus_amount: appliedValusAmount,
+        rate: {
+          xpPerValus: XP_PER_VALUS,
+          xpPerCent: XP_PER_CENT,
+          valusPerEuro: 1,
+        },
+        note: "Kinderbuch-Einloesung reserviert. Guthaben wird bei bestaetigtem Kauf bzw. manueller Freigabe verbucht.",
+        created_at: FieldValue.serverTimestamp(),
+      });
+
+      return {
+        code: redemptionCode,
+        status: "pending_purchase",
+        book: {
+          id: book.id,
+          title: book.title,
+          checkoutUrl: book.checkoutUrl,
+          priceCents: book.priceCents,
+        },
+        creditCents,
+        remainingCents,
+        xpEquivalent: creditCents * XP_PER_CENT,
+        appliedXpAmount,
+        appliedValusAmount,
+        rate: {
+          xpPerValus: XP_PER_VALUS,
+          xpPerCent: XP_PER_CENT,
+          valusPerEuro: 1,
+        },
+      };
+    });
+
+    return result;
   },
 );
 

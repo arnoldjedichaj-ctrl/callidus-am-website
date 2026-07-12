@@ -1,0 +1,36 @@
+{
+  "title": "Die Kraft klarer Gedanken",
+  "artist": "Callidus AM",
+  "kind": "spoken_audio",
+  "language": "de-DE",
+  "voice_provider": "Windows Media SpeechSynthesis",
+  "voice": "Microsoft Stefan de-DE",
+  "voice_character": "male, clear, grounded",
+  "background_music": "none",
+  "source_style": "User source text with added introduction and ending",
+  "duration_seconds": 610.22,
+  "duration_minutes": 10.17,
+  "audio_format": {
+    "container": "mp3",
+    "channels": 2,
+    "sample_rate_hz": 44100,
+    "bitrate_kbps": 192
+  },
+  "mastering": {
+    "speed": "90 percent",
+    "loudness_target": "-16 LUFS",
+    "true_peak_target": "-1.5 dB"
+  },
+  "files": {
+    "final_mp3": "kraft-klarer-gedanken-stefan-final.mp3",
+    "working_mp3": "kraft-klarer-gedanken-stefan.mp3",
+    "working_wav": "kraft-klarer-gedanken-stefan.wav",
+    "generator": "generate_klare_gedanken_stefan_winrt.ps1"
+  },
+  "notes": [
+    "No background music was added, by design.",
+    "Gemini TTS was attempted first, but the API endpoint was unreachable from this environment during generation.",
+    "The completed version uses the local German Windows male voice Microsoft Stefan.",
+    "The script is saved as UTF-8 with BOM so Windows PowerShell reads German umlauts correctly."
+  ]
+}
