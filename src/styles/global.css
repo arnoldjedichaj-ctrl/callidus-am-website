@@ -1416,6 +1416,9 @@ html[data-theme="dark"] .shader-bg { opacity: 0.28; }
   font-size: 1.4rem;
 }
 .article-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2rem; margin-top: 2rem; align-items: start; }
+/* Ohne Inhaltsverzeichnis (.toc) bekommt der Text die volle Breite,
+   sonst rutscht .prose in die schmale TOC-Spalte. */
+.article-layout:not(:has(.toc)) { grid-template-columns: minmax(0, 1fr); }
 .legal-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 2rem; margin-top: 2rem; align-items: start; }
 .toc { position: sticky; top: 6rem; display: grid; gap: .55rem; border: 1px solid var(--line); border-radius: .8rem; padding: 1rem; background: rgba(var(--mint-rgb),.06); }
 .toc a { color: var(--muted); text-decoration: none; font-size: .9rem; line-height: 1.35; }
