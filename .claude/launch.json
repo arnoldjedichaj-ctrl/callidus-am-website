@@ -8,6 +8,12 @@
       "port": 4321
     },
     {
+      "name": "print-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "http-server", "print", "-p", "4188", "-c-1"],
+      "port": 4188
+    },
+    {
       "name": "callidus-dev-4330",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "4330"],

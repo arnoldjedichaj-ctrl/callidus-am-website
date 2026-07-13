@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import audioSessions from '../../data/audio-sessions.json';
+import articles from '../../data/articles.json';
+import structure from '../../data/site-structure.json';
 
 const title = 'Audio-Raum: geführte Klarheit, Fokus und Ruhe | callidus A&M';
 const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Fokus, innere Ordnung und ruhige Mikro-Routinen im Alltag.';
@@ -8,6 +10,29 @@ const siteOrigin = 'https://www.callidus-am.de';
 const publishedSessions = audioSessions.filter((session) => session.status === 'published');
 const plannedSessions = audioSessions.filter((session) => session.status === 'planned');
 const featured = publishedSessions[0];
+const podcastCategoryFor = (article) => {
+  const haystack = `${article.slug || ''} ${article.title || ''} ${article.description || ''} ${(article.h2 || []).join(' ')}`.toLowerCase();
+  return structure.categories.find((category) =>
+    category.keywords.some((keyword) => haystack.includes(keyword))
+  ) || structure.categories.find((category) => category.slug === 'zukunft-gesundheit');
+};
+const podcastEpisodes = articles.flatMap((article) => {
+  const podcast = article.media?.find((media) => media.type === 'audio' && /podcast/i.test(media.title || ''));
+  if (!podcast?.src) return [];
+  const category = podcastCategoryFor(article);
+  const duration = podcast.title?.match(/(\d{1,2}:\d{2})/)?.[1] || 'Podcast';
+  return [{
+    title: (article.title || '').replace(/\s*\|\s*callidus A&M\s*$/i, ''),
+    description: article.description || article.h2?.[0] || '',
+    path: article.path,
+    src: podcast.src,
+    duration,
+    category,
+  }];
+}).sort((a, b) => a.category.title.localeCompare(b.category.title, 'de') || a.title.localeCompare(b.title, 'de'));
+const podcastCategories = structure.categories.filter((category) =>
+  podcastEpisodes.some((episode) => episode.category.slug === category.slug)
+);
 const audioObjects = publishedSessions.map((session) => ({
   '@context': 'https://schema.org',
   '@type': 'AudioObject',
@@ -173,6 +198,61 @@ const audioObjects = publishedSessions.map((session) => ({
     </div>
   </section>
 
+  {podcastEpisodes.length > 0 && (
+    <section class="section band" id="podcasts">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Podcast-Bibliothek</p>
+        <h2 data-reveal="2">Gesundheitswissen zum Anhören.</h2>
+        <p class="lede podcast-lede" data-reveal="3">
+          Diese Folgen gehören zu den Ratgeber-Artikeln. Wähle ein Thema, höre direkt hinein oder lies den passenden Artikel weiter.
+        </p>
+
+        <form class="podcast-filter" data-podcast-filter aria-label="Podcast-Bibliothek filtern" data-reveal="2">
+          <label>
+            <span>Podcast suchen</span>
+            <input type="search" name="query" placeholder="Thema oder Stichwort" autocomplete="off" />
+          </label>
+          <label>
+            <span>Kategorie</span>
+            <select name="category">
+              <option value="">Alle Kategorien</option>
+              {podcastCategories.map((category) => <option value={category.slug}>{category.title}</option>)}
+            </select>
+          </label>
+          <button type="reset">Zurücksetzen</button>
+        </form>
+        <p class="podcast-count" data-podcast-count>{podcastEpisodes.length} Podcast-Folgen</p>
+
+        <div class="podcast-grid" data-podcast-grid>
+          {podcastEpisodes.map((episode, index) => (
+            <article
+              class="podcast-card"
+              data-podcast-card
+              data-category={episode.category.slug}
+              data-search={`${episode.title} ${episode.description} ${episode.category.title}`.toLowerCase()}
+              data-reveal={String((index % 3) + 1)}
+            >
+              <div class="audio-card-meta">
+                <span class={`badge ${episode.category.accent}`}>{episode.category.title}</span>
+                <span>{episode.duration} Min.</span>
+              </div>
+              <h3>{episode.title}</h3>
+              <p>{episode.description}</p>
+              <audio class="audio-card-player" controls preload="none" src={episode.src}>
+                Dein Browser kann diese Podcast-Folge nicht direkt abspielen.
+              </audio>
+              <div class="audio-card-actions">
+                <a class="button" href={episode.path}>Artikel lesen</a>
+                <a class="podcast-source-link" href={episode.src} target="_blank" rel="noopener">Audio öffnen</a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="podcast-empty" data-podcast-empty hidden>Zu dieser Auswahl wurde keine Podcast-Folge gefunden.</p>
+      </div>
+    </section>
+  )}
+
   {featured && (
     <section class="section band" id="hinweise">
       <div class="container split audio-trust-split">
@@ -230,6 +310,36 @@ const audioObjects = publishedSessions.map((session) => ({
       </p>
     </div>
   </section>
+
+  <script is:inline>
+    const setupPodcastFilter = () => {
+      const form = document.querySelector('[data-podcast-filter]');
+      const cards = Array.from(document.querySelectorAll('[data-podcast-card]'));
+      const count = document.querySelector('[data-podcast-count]');
+      const empty = document.querySelector('[data-podcast-empty]');
+      if (!form || !cards.length || form.dataset.ready) return;
+      form.dataset.ready = 'true';
+
+      const update = () => {
+        const query = (form.query.value || '').trim().toLowerCase();
+        const category = form.category.value;
+        let visible = 0;
+        cards.forEach((card) => {
+          const show = (!query || card.dataset.search.includes(query)) && (!category || card.dataset.category === category);
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        if (count) count.textContent = `${visible} ${visible === 1 ? 'Podcast-Folge' : 'Podcast-Folgen'}`;
+        if (empty) empty.hidden = visible !== 0;
+      };
+
+      form.addEventListener('input', update);
+      form.addEventListener('change', update);
+      form.addEventListener('reset', () => window.setTimeout(update, 0));
+    };
+    setupPodcastFilter();
+    document.addEventListener('astro:page-load', setupPodcastFilter);
+  </script>
 </BaseLayout>
 
 <style>
@@ -251,6 +361,7 @@ const audioObjects = publishedSessions.map((session) => ({
 .audio-principle,
 .audio-use-panel,
 .audio-session-card,
+.podcast-card,
 .audio-trust-panel,
 .audio-safety {
   border: 1px solid var(--line);
@@ -371,6 +482,85 @@ const audioObjects = publishedSessions.map((session) => ({
   gap: 1rem;
   margin-top: 1.5rem;
 }
+.podcast-lede {
+  max-width: 68ch;
+  margin-top: .55rem;
+}
+.podcast-filter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, .5fr) auto;
+  gap: .8rem;
+  align-items: end;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  background: var(--panel);
+}
+.podcast-filter label {
+  display: grid;
+  gap: .38rem;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 800;
+}
+.podcast-filter input,
+.podcast-filter select,
+.podcast-filter button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  padding: .65rem .75rem;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+.podcast-filter button {
+  cursor: pointer;
+  font-weight: 850;
+}
+.podcast-filter input:focus-visible,
+.podcast-filter select:focus-visible,
+.podcast-filter button:focus-visible,
+.podcast-source-link:focus-visible {
+  outline: 3px solid rgba(var(--mint-rgb), .45);
+  outline-offset: 2px;
+}
+.podcast-count {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+  font-weight: 800;
+}
+.podcast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.podcast-card {
+  display: grid;
+  align-content: start;
+  gap: .8rem;
+  padding: clamp(1rem, 3vw, 1.25rem);
+}
+.podcast-card h3,
+.podcast-card p {
+  margin: 0;
+}
+.podcast-card h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+}
+.podcast-source-link {
+  align-self: center;
+  color: var(--mint);
+  font-size: .88rem;
+  font-weight: 850;
+}
+.podcast-empty {
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
 .audio-session-card {
   display: grid;
   align-content: start;
@@ -475,6 +665,9 @@ const audioObjects = publishedSessions.map((session) => ({
   }
   .audio-waveform {
     grid-template-columns: repeat(14, 1fr);
+  }
+  .podcast-filter {
+    grid-template-columns: 1fr;
   }
 }
 </style>
