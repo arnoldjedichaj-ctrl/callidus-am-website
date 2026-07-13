@@ -1,0 +1,15 @@
+{
+  "title": "Die Kraft klarer Gedanken",
+  "duration_seconds": 471.15,
+  "duration_minutes": 7.85,
+  "voice_provider": "Gemini TTS",
+  "voice": "Aoede",
+  "voice_context": "Same Gemini prebuilt voice used by the Callidus YouTube video pipeline.",
+  "background_music": "none",
+  "style": "Callidus YouTube TTS pipeline style. Intro and ending added.",
+  "files": {
+    "voice_wav": "kraft-klarer-gedanken-yt-aoede.wav",
+    "final_mp3": "kraft-klarer-gedanken-yt-aoede.mp3",
+    "generator": "generate_klare_gedanken_yt_aoede.py"
+  }
+}

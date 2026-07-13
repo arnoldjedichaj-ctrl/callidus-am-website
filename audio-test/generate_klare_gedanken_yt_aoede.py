@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 import time
 import wave
 from pathlib import Path
@@ -27,6 +28,7 @@ SEG_DIR = BASE / "klare_gedanken_yt_aoede_segments"
 OUT_VOICE = BASE / "kraft-klarer-gedanken-yt-aoede.wav"
 OUT_MP3 = BASE / "kraft-klarer-gedanken-yt-aoede.mp3"
 OUT_META = BASE / "kraft-klarer-gedanken-yt-aoede.meta.json"
+YOUTUBE_SECRETS = Path(r"C:\Users\marga\callidus_youtube\secrets.env")
 
 VOICE = "Aoede"
 TTS_MODELS = ["gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"]
@@ -171,6 +173,27 @@ def wav_duration(path: Path) -> float:
         return wf.getnframes() / float(wf.getframerate())
 
 
+def load_keys() -> list[str]:
+    keys: list[str] = []
+    if YOUTUBE_SECRETS.exists():
+        src = YOUTUBE_SECRETS.read_text(encoding="utf-8", errors="ignore")
+        wanted = {"GEMINI_API_KEY", "GEMINI_API_KEY_2", "GOOGLE_API_KEY"}
+        for raw_line in src.splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            name, value = line.split("=", 1)
+            name = name.strip()
+            if name not in wanted:
+                continue
+            value = value.strip().strip('"').strip("'")
+            if value and not value.startswith("#") and not value.startswith("TODO"):
+                keys.append(value)
+    if keys:
+        return keys
+    return base.load_gemini_keys()
+
+
 def generate_tts(text: str, output_path: Path, keys: list[str]) -> None:
     if output_path.exists() and output_path.stat().st_size > 1000:
         duration = wav_duration(output_path)
@@ -194,6 +217,7 @@ def generate_tts(text: str, output_path: Path, keys: list[str]) -> None:
                 try:
                     response = requests.post(url, json=payload, timeout=(10, 120))
                     if response.status_code == 429:
+                        last_error = f"HTTP 429 rate limit on key {key_index}, {model}"
                         wait_s = 45 * (2**attempt)
                         print(f"  TTS rate limit key {key_index}, {model}; wait {wait_s}s")
                         time.sleep(wait_s)
@@ -287,7 +311,7 @@ def write_metadata(duration: float) -> None:
 
 def main() -> None:
     SEG_DIR.mkdir(exist_ok=True)
-    keys = base.load_gemini_keys()
+    keys = load_keys()
     segment_paths = []
     for index, (text, _) in enumerate(SEGMENTS):
         path = SEG_DIR / f"seg_{index:02d}.wav"

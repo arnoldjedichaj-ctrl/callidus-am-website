@@ -77,7 +77,45 @@
     }
   },
   {
-    "id": "schlafuebergang-003",
+    "id": "kraft-klarer-gedanken-003",
+    "status": "published",
+    "badge": "Folge 3",
+    "title": "Die Kraft klarer Gedanken",
+    "shortTitle": "Klare Gedanken",
+    "duration": "7:51",
+    "durationSeconds": 471,
+    "publishedAt": "2026-07-13",
+    "path": "/audio/kraft-klarer-gedanken/kraft-klarer-gedanken-yt-aoede.mp3",
+    "accent": "blue",
+    "summary": "Eine klare, ruhig erzählte Audio-Folge über Ziele, Wünsche, Wohlstand, Sprache und den nächsten ehrlichen Schritt.",
+    "bestFor": [
+      "mentale Ausrichtung ohne Musik oder Atemtechnik",
+      "Momente, in denen Ziele, Geld und Selbstbild nüchterner sortiert werden sollen",
+      "eine kurze Impulsfolge vor Planung, Journaling oder Entscheidungen"
+    ],
+    "outcomes": [
+      "Ziele klarer innerlich vorstellen",
+      "den eigenen inneren Dialog bewusster wahrnehmen",
+      "Druck reduzieren und den nächsten machbaren Schritt wählen"
+    ],
+    "listenWhen": [
+      "vor einer Planungsrunde",
+      "morgens als mentaler Fokusimpuls",
+      "wenn Vergleich, Zweifel oder Druck zu laut werden"
+    ],
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Keine Hintergrundmusik",
+      "musicCreator": "Callidus AM",
+      "musicSource": "",
+      "musicLicense": "Nicht erforderlich, reine Sprachfassung",
+      "musicLicenseUrl": "",
+      "background": "Keine zusätzliche Musik- oder Wellenebene",
+      "note": "Original überarbeitete Callidus-Fassung mit Einleitung und Abschluss; erzeugt mit der gleichen Aoede-Stimme wie die YouTube-Voiceovers."
+    }
+  },
+  {
+    "id": "schlafuebergang-004",
     "status": "planned",
     "badge": "Geplant",
     "title": "Schlafübergang: den Tag ablegen",
