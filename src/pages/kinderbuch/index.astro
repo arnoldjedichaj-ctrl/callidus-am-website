@@ -73,6 +73,15 @@ const sceneImages = [
   { src: '/assets/media/kinderbuch-band2-scenes/web/b2-s07-zucker-flummi.jpg', title: 'Schlecki, der Zucker-Flummi', label: 'Band 2' },
   { src: '/assets/media/kinderbuch-scenes/web/mvp-06-knurr-bauch-post.jpg', title: 'KNURR! Die Bauch-Post', label: 'Band 1' },
 ];
+const ausmalbilder = [
+  { band: 'Band 1', titel: 'Der knurrende Bauch', file: '/assets/kinderbuch/ausmalbilder/blatt-band1-bauch-post.png', accent: 'mint' },
+  { band: 'Band 2', titel: 'Schlecki, das Zucker-Monster', file: '/assets/kinderbuch/ausmalbilder/blatt-band2-zucker-monster.png', accent: 'coral' },
+  { band: 'Band 3', titel: 'Der Zappelmotor', file: '/assets/kinderbuch/ausmalbilder/blatt-band3-zappelmotor.png', accent: 'gold' },
+  { band: 'Band 4', titel: 'Gute Nacht, Noah!', file: '/assets/kinderbuch/ausmalbilder/blatt-band4-schlaf-batterie.png', accent: 'blue' },
+  { band: 'Band 5', titel: 'Wolki, die Gefühls-Wolke', file: '/assets/kinderbuch/ausmalbilder/blatt-band5-gefuehls-wolke.png', accent: 'coral' },
+  { band: 'Band 6', titel: 'Die Abwehr-Polizei', file: '/assets/kinderbuch/ausmalbilder/blatt-band6-abwehr-polizei.png', accent: 'mint' },
+  { band: 'Extra', titel: 'Das sind Mira & Noah', file: '/assets/kinderbuch/ausmalbilder/blatt-mira-und-noah.png', accent: 'gold' },
+];
 const redemptionBooks = buecher.map((buch) => ({
   id: buch.id,
   nr: buch.nr,
@@ -235,6 +244,33 @@ const redemptionBooks = buecher.map((buch) => ({
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- AUSMALBILDER -->
+  <section class="section" id="ausmalbilder">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Gratis zum Ausdrucken</p>
+      <h2 data-reveal="2">Ausmalbilder zu jedem Band.</h2>
+      <p class="lede" data-reveal="3">
+        Zu jedem der sechs Bände gibt es ein Ausmalbild mit Mira, Noah und Callis Freunden — als
+        druckfertiges DIN-A4-Blatt (PDF-taugliches PNG). Einfach herunterladen, ausdrucken und los.
+      </p>
+      <div class="kb-ausmal-gallery" data-reveal="3">
+        {ausmalbilder.map((blatt) => (
+          <article class={`kb-ausmal-card ${blatt.accent}`}>
+            <a href={blatt.file} download class="kb-ausmal-thumb">
+              <img src={blatt.file} alt={`Ausmalbild: ${blatt.titel} (${blatt.band})`} loading="lazy" decoding="async" width="248" height="350" />
+            </a>
+            <div class="kb-ausmal-body">
+              <span>{blatt.band}</span>
+              <strong>{blatt.titel}</strong>
+              <a class="button primary" href={blatt.file} download>Herunterladen</a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="kb-note" data-reveal>Nur zum privaten Gebrauch. Die Ausmalbilder sind digital, KI-gestützt erstellt und redaktionell überarbeitet.</p>
     </div>
   </section>
 
@@ -469,6 +505,17 @@ const redemptionBooks = buecher.map((buch) => ({
   .kb-scene-card div { padding: 0.9rem; }
   .kb-scene-card span { display: block; margin-bottom: 0.25rem; color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; }
   .kb-scene-card strong { display: block; color: var(--text); line-height: 1.25; }
+  .kb-ausmal-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .kb-ausmal-card { display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; background: var(--bg-soft); border-top: 4px solid var(--mint); box-shadow: 0 14px 36px rgba(var(--mint-rgb), 0.12); }
+  .kb-ausmal-card.coral { border-top-color: var(--coral); }
+  .kb-ausmal-card.blue { border-top-color: var(--blue); }
+  .kb-ausmal-card.gold { border-top-color: var(--gold); }
+  .kb-ausmal-thumb { display: block; background: #fff; border-bottom: 1px solid rgba(var(--mint-rgb), 0.16); }
+  .kb-ausmal-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1.414; object-fit: contain; }
+  .kb-ausmal-body { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.9rem; }
+  .kb-ausmal-body span { color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; }
+  .kb-ausmal-body strong { color: var(--text); line-height: 1.25; }
+  .kb-ausmal-body .button { margin-top: 0.2rem; text-align: center; }
   .kb-note { margin-top: 1.4rem; font-size: 0.85rem; opacity: 0.75; max-width: 720px; }
   .kb-redemption-panel {
     display: grid;

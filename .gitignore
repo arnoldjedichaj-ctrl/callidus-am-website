@@ -23,6 +23,8 @@ nexus-service-account*.json
 audio-test/**/*.wav
 audio-test/*_segments/
 audio-test/**/__pycache__/
+__pycache__/
+*.pyc
 
 # --- Große Buch-Produktions-PDFs (über GitHubs 100-MB-Limit) ---
 # Druckfertige High-Res-PDFs gehören in Cloud-Storage / Git LFS, nicht ins Git-Repo.
