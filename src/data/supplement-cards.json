@@ -7,11 +7,22 @@
     "accent": "mint",
     "icon": "⚡",
     "summary": "Beteiligt an über 300 enzymatischen Prozessen – essenziell für Nerven, Muskeln und erholsamen Schlaf.",
-    "wirkung": ["Muskelentspannung & -funktion", "Nervensystem & mentale Ruhe", "Schlafqualität verbessern", "Energiestoffwechsel", "Blutdruckregulation"],
+    "wirkung": [
+      "Muskelentspannung & -funktion",
+      "Nervensystem & mentale Ruhe",
+      "Schlafqualität verbessern",
+      "Energiestoffwechsel",
+      "Blutdruckregulation"
+    ],
     "dosierung": "300–400 mg elementares Magnesium täglich, idealerweise abends eingenommen",
     "beste_form": "Magnesiumbisglycinat – magenfreundlich, hoch bioverfügbar und ohne laxativen Effekt",
-    "kombinationen": ["Vitamin B6 (verbessert die zelluläre Aufnahme)", "Vitamin D (synergistische Wirkung auf Knochen & Nerven)"],
-    "kontraindikationen": ["Schwere Niereninsuffizienz: nur nach ärztlicher Rücksprache"],
+    "kombinationen": [
+      "Vitamin B6 (verbessert die zelluläre Aufnahme)",
+      "Vitamin D (synergistische Wirkung auf Knochen & Nerven)"
+    ],
+    "kontraindikationen": [
+      "Schwere Niereninsuffizienz: nur nach ärztlicher Rücksprache"
+    ],
     "wissenschaft": "Sehr gut erforscht. Klare Evidenz bei Mangelversorgung. Weit verbreiteter Mikronährstoffmangel in der Bevölkerung – Schätzungen gehen von 30–50 % aus.",
     "affiliate_url": "https://amzn.to/4uhyy2w",
     "affiliate_provider": "Amazon"
@@ -24,11 +35,23 @@
     "accent": "mint",
     "icon": "🛡️",
     "summary": "An über 300 enzymatischen Prozessen beteiligt – vom Immunsystem bis zur Hormonbalance.",
-    "wirkung": ["Immunsystem stärken", "Wundheilung & Hautgesundheit", "Hormonproduktion (Testosteron)", "Antioxidativer Schutz", "Geschmacks- & Geruchssinn"],
+    "wirkung": [
+      "Immunsystem stärken",
+      "Wundheilung & Hautgesundheit",
+      "Hormonproduktion (Testosteron)",
+      "Antioxidativer Schutz",
+      "Geschmacks- & Geruchssinn"
+    ],
     "dosierung": "15–25 mg elementares Zink täglich, mit einer Mahlzeit (nicht auf nüchternen Magen)",
     "beste_form": "Zinkbisglycinat oder Zinkcitrat – deutlich besser bioverfügbar als Zinkoxid",
-    "kombinationen": ["Vitamin C (synergistisch für Immunsystem)", "Selen (ergänzt antioxidativen Schutz)"],
-    "kontraindikationen": ["Langzeitdosierungen über 40 mg täglich können Kupfermangel auslösen", "Nicht gleichzeitig mit Kalzium oder Eisen einnehmen"],
+    "kombinationen": [
+      "Vitamin C (synergistisch für Immunsystem)",
+      "Selen (ergänzt antioxidativen Schutz)"
+    ],
+    "kontraindikationen": [
+      "Langzeitdosierungen über 40 mg täglich können Kupfermangel auslösen",
+      "Nicht gleichzeitig mit Kalzium oder Eisen einnehmen"
+    ],
     "wissenschaft": "Sehr gut belegt. Studien zeigen signifikante Wirkung bei Erkältungen, Immunfunktion und Wundheilung.",
     "affiliate_url": "https://amzn.to/4ufOz9x",
     "affiliate_provider": "Amazon"
@@ -41,11 +64,24 @@
     "accent": "gold",
     "icon": "☀️",
     "summary": "Vitamin D reguliert über 1.000 Gene. K2 sorgt dafür, dass Kalzium dorthin gelangt, wo es hingehört.",
-    "wirkung": ["Immunsystem & Infektabwehr", "Knochen- & Zahngesundheit", "Stimmung & mentale Gesundheit", "Muskelkraft", "Hormonbalance"],
+    "wirkung": [
+      "Immunsystem & Infektabwehr",
+      "Knochen- & Zahngesundheit",
+      "Stimmung & mentale Gesundheit",
+      "Muskelkraft",
+      "Hormonbalance"
+    ],
     "dosierung": "1.000–5.000 IE Vitamin D3 täglich, zusammen mit 100–200 µg Vitamin K2 (MK-7) und fetthaltiger Mahlzeit",
     "beste_form": "Öltropfen oder Softgels – die fettlösliche Form wird deutlich besser absorbiert als Tabletten",
-    "kombinationen": ["Magnesium (aktiviert Vitamin D im Körper)", "Omega-3 (synergistisch für Entzündungsregulation)"],
-    "kontraindikationen": ["Hyperkalzämie", "Granulomatöse Erkrankungen (Sarkoidose)", "Bei hohen Dosen: Blutspiegel kontrollieren lassen"],
+    "kombinationen": [
+      "Magnesium (aktiviert Vitamin D im Körper)",
+      "Omega-3 (synergistisch für Entzündungsregulation)"
+    ],
+    "kontraindikationen": [
+      "Hyperkalzämie",
+      "Granulomatöse Erkrankungen (Sarkoidose)",
+      "Bei hohen Dosen: Blutspiegel kontrollieren lassen"
+    ],
     "wissenschaft": "Sehr gut erforscht. Vitamin-D-Mangel ist in Mitteleuropa weit verbreitet (>60 % der Bevölkerung im Winter). K2 verhindert Kalzifizierung der Arterien.",
     "affiliate_url": "https://amzn.to/3P917jH",
     "affiliate_provider": "Amazon"
@@ -58,11 +94,23 @@
     "accent": "gold",
     "icon": "🍊",
     "summary": "Starkes Antioxidans, essenziell für Kollagenbildung und das Immunsystem.",
-    "wirkung": ["Immunsystem & Infektabwehr", "Kollagensynthese (Haut, Gelenke)", "Antioxidativer Zellschutz", "Eisenaufnahme verbessern", "Stressresistenz"],
+    "wirkung": [
+      "Immunsystem & Infektabwehr",
+      "Kollagensynthese (Haut, Gelenke)",
+      "Antioxidativer Zellschutz",
+      "Eisenaufnahme verbessern",
+      "Stressresistenz"
+    ],
     "dosierung": "500–1.000 mg täglich (über den Tag verteilt, da Vitamin C wasserlöslich ist und nicht gespeichert wird)",
     "beste_form": "Natürliches Vitamin C aus Acerola oder Hagebutte – enthält Co-Faktoren (Bioflavonoide) für bessere Wirksamkeit",
-    "kombinationen": ["Zink (synergistisch für Immunsystem)", "Bioflavonoide (verbessern Aufnahme und Wirkung)"],
-    "kontraindikationen": ["Sehr hohe Dosen (>2 g) können zu Durchfall führen", "Vorsicht bei Eisenspeicherkrankheit (Hämochromatose)"],
+    "kombinationen": [
+      "Zink (synergistisch für Immunsystem)",
+      "Bioflavonoide (verbessern Aufnahme und Wirkung)"
+    ],
+    "kontraindikationen": [
+      "Sehr hohe Dosen (>2 g) können zu Durchfall führen",
+      "Vorsicht bei Eisenspeicherkrankheit (Hämochromatose)"
+    ],
     "wissenschaft": "Klassisch gut belegt. Natürliche Formen zeigen in Studien bessere Wirkung als synthetische Ascorbinsäure allein.",
     "affiliate_url": "https://amzn.to/3OWT6hJ",
     "affiliate_provider": "Amazon"
@@ -75,11 +123,23 @@
     "accent": "blue",
     "icon": "🧠",
     "summary": "8 B-Vitamine in aktiver Form – essenziell für Energieproduktion, Nervensystem und Homocysteinabbau.",
-    "wirkung": ["Energiestoffwechsel & Vitalität", "Nervenfunktion & mentale Klarheit", "Homocystein senken (Herz-Kreislauf-Schutz)", "Stimmungsregulation", "Zellwachstum & Blutbildung"],
+    "wirkung": [
+      "Energiestoffwechsel & Vitalität",
+      "Nervenfunktion & mentale Klarheit",
+      "Homocystein senken (Herz-Kreislauf-Schutz)",
+      "Stimmungsregulation",
+      "Zellwachstum & Blutbildung"
+    ],
     "dosierung": "1 Kapsel täglich morgens mit Mahlzeit (B-Vitamine sind wasserlöslich – regelmäßige Zufuhr nötig)",
     "beste_form": "Aktive Formen: Methylcobalamin (B12), Methylfolat (B9), Pyridoxal-5-Phosphat (B6) – direkt vom Körper verwendbar",
-    "kombinationen": ["Magnesium (synergistisch für Nervensystem)", "Omega-3 (gemeinsam für Neuro-Resilienz)"],
-    "kontraindikationen": ["Niereninsuffizienz bei sehr hohem B6 (>200 mg täglich)", "Urin färbt sich gelblich (harmlos, durch Riboflavin/B2)"],
+    "kombinationen": [
+      "Magnesium (synergistisch für Nervensystem)",
+      "Omega-3 (gemeinsam für Neuro-Resilienz)"
+    ],
+    "kontraindikationen": [
+      "Niereninsuffizienz bei sehr hohem B6 (>200 mg täglich)",
+      "Urin färbt sich gelblich (harmlos, durch Riboflavin/B2)"
+    ],
     "wissenschaft": "Aktive Formen zeigen deutlich höhere Wirksamkeit, besonders für Menschen mit MTHFR-Genvariante (ca. 40–60 % der Bevölkerung).",
     "affiliate_url": "https://amzn.to/4ud3WPI",
     "affiliate_provider": "Amazon"
@@ -92,11 +152,23 @@
     "accent": "blue",
     "icon": "🐟",
     "summary": "EPA und DHA sind Bausteine jeder Körperzelle – stark entzündungshemmend und essenziell für das Gehirn.",
-    "wirkung": ["Gehirnfunktion & Konzentration", "Entzündungshemmung im gesamten Körper", "Herz-Kreislauf-Gesundheit", "Sehkraft (DHA)", "Stimmung & Depression"],
+    "wirkung": [
+      "Gehirnfunktion & Konzentration",
+      "Entzündungshemmung im gesamten Körper",
+      "Herz-Kreislauf-Gesundheit",
+      "Sehkraft (DHA)",
+      "Stimmung & Depression"
+    ],
     "dosierung": "1–3 g EPA+DHA täglich, mit fetthaltiger Mahlzeit für optimale Absorption",
     "beste_form": "Hochwertiges Fischöl (Triglycerid-Form) oder Algenöl (vegan) – auf Reinheit und TOTOX-Wert achten",
-    "kombinationen": ["Vitamin D3 (synergistisch für Entzündungsregulation)", "Vitamin E (schützt Omega-3 vor Oxidation)"],
-    "kontraindikationen": ["Blutverdünnende Medikamente: ärztliche Rücksprache", "Bei geplanter OP: 2 Wochen vorher absetzen"],
+    "kombinationen": [
+      "Vitamin D3 (synergistisch für Entzündungsregulation)",
+      "Vitamin E (schützt Omega-3 vor Oxidation)"
+    ],
+    "kontraindikationen": [
+      "Blutverdünnende Medikamente: ärztliche Rücksprache",
+      "Bei geplanter OP: 2 Wochen vorher absetzen"
+    ],
     "wissenschaft": "Einer der am besten erforschten Nährstoffe. Starke Evidenz für kardiovaskuläre Gesundheit, mentale Gesundheit und Entzündungsregulation.",
     "affiliate_url": "https://amzn.to/4uSiPXP",
     "affiliate_provider": "Amazon"
@@ -109,11 +181,23 @@
     "accent": "gold",
     "icon": "🔬",
     "summary": "NMN erhöht den NAD+-Spiegel – ein Schlüsselcofaktor für zelluläre Energieproduktion und DNA-Reparatur.",
-    "wirkung": ["NAD+-Spiegel erhöhen", "Zelluläre Energieproduktion (Mitochondrien)", "DNA-Reparatur unterstützen", "Sirtuin-Aktivierung (Anti-Aging-Enzyme)", "Metabolismus & Insulinsensitivität"],
+    "wirkung": [
+      "NAD+-Spiegel erhöhen",
+      "Zelluläre Energieproduktion (Mitochondrien)",
+      "DNA-Reparatur unterstützen",
+      "Sirtuin-Aktivierung (Anti-Aging-Enzyme)",
+      "Metabolismus & Insulinsensitivität"
+    ],
     "dosierung": "250–500 mg täglich, morgens nüchtern oder mit Mahlzeit (Forschung noch im Gange)",
     "beste_form": "Reines NMN-Pulver oder Kapseln von verifizierten Herstellern mit Reinheitszertifikat",
-    "kombinationen": ["Resveratrol (aktiviert Sirtuine synergistisch)", "TMG/Betain (verhindert Methylgruppenverbrauch)"],
-    "kontraindikationen": ["Schwangerschaft & Stillzeit: nicht empfohlen (fehlende Studien)", "Krebserkrankungen: ärztliche Rücksprache"],
+    "kombinationen": [
+      "Resveratrol (aktiviert Sirtuine synergistisch)",
+      "TMG/Betain (verhindert Methylgruppenverbrauch)"
+    ],
+    "kontraindikationen": [
+      "Schwangerschaft & Stillzeit: nicht empfohlen (fehlende Studien)",
+      "Krebserkrankungen: ärztliche Rücksprache"
+    ],
     "wissenschaft": "Vielversprechend, aber noch frühe Forschungsphase bei Menschen. Tierstudien zeigen beeindruckende Ergebnisse. Erste Humanstudien positiv.",
     "affiliate_url": "https://amzn.to/4uejh2N",
     "affiliate_provider": "Amazon"
@@ -126,11 +210,23 @@
     "accent": "gold",
     "icon": "🍓",
     "summary": "Fisetin ist ein gelber Pflanzenstoff aus Erdbeeren und anderen Lebensmitteln. Spannend ist die Forschung zu alten, müden Zellen. Beim Menschen ist die Anti-Aging-Wirkung aber noch nicht robust bewiesen.",
-    "wirkung": ["Was es ist: gelber Pflanzenstoff", "Zombie-Zellen = müde Problemzellen", "Problem: viel Labor-Hype", "Lösung: Menschenstudien abwarten", "Supplemente nüchtern prüfen"],
+    "wirkung": [
+      "Was es ist: gelber Pflanzenstoff",
+      "Zombie-Zellen = müde Problemzellen",
+      "Problem: viel Labor-Hype",
+      "Lösung: Menschenstudien abwarten",
+      "Supplemente nüchtern prüfen"
+    ],
     "dosierung": "Es gibt keine allgemein bewiesene Standarddosis für Anti-Aging. Hohe Dosierungen aus Studien sind keine automatische Empfehlung für gesunde Menschen. Supplemente nur vorsichtig und mit Blick auf Medikamente, Erkrankungen und Qualität prüfen.",
     "beste_form": "Lebensmittel zuerst: Erdbeeren, Äpfel, Zwiebeln, Trauben und Gurken liefern Fisetin in kleinen Mengen. Bei Kapseln auf klare Milligramm-Angabe, Herkunft, Reinheit und wenige Zusatzstoffe achten.",
-    "kombinationen": ["Ernährung + Schlaf + Bewegung als Basis", "Andere Longevity-Stacks nur fachlich und konservativ einordnen"],
-    "kontraindikationen": ["Schwangerschaft & Stillzeit: nicht empfohlen", "Immunsuppressiva, Blutverdünner, Krebsdiagnosen, geplante OPs oder chronische Erkrankungen: fachlich abklären"],
+    "kombinationen": [
+      "Ernährung + Schlaf + Bewegung als Basis",
+      "Andere Longevity-Stacks nur fachlich und konservativ einordnen"
+    ],
+    "kontraindikationen": [
+      "Schwangerschaft & Stillzeit: nicht empfohlen",
+      "Immunsuppressiva, Blutverdünner, Krebsdiagnosen, geplante OPs oder chronische Erkrankungen: fachlich abklären"
+    ],
     "wissenschaft": "Präklinisch spannend: Zell- und Tierdaten zeigen senotherapeutisches Potenzial. Studien mit Menschen sind aber noch früh; Dosis, Zielgruppe, Nutzen und Langzeitsicherheit sind nicht ausreichend geklärt.",
     "affiliate_url": "https://amzn.to/4tCefvK",
     "affiliate_provider": "Amazon"
@@ -143,11 +239,23 @@
     "accent": "gold",
     "icon": "🌾",
     "summary": "Spermidin ist ein kleiner natürlicher Zellstoff. Er kommt im Körper und in Lebensmitteln wie Weizenkeimen, Soja, Pilzen und gereiftem Käse vor. Spannend ist die Verbindung zum Zell-Recycling; bewiesene Anti-Aging-Wirkung beim Menschen gibt es bisher aber nicht.",
-    "wirkung": ["Was es ist: natürlicher Zellstoff", "Autophagie = Zell-Recycling", "Problem: viel Hype, wenig klare Beweise", "Lösung: Lebensmittel zuerst", "Supplemente nüchtern prüfen"],
+    "wirkung": [
+      "Was es ist: natürlicher Zellstoff",
+      "Autophagie = Zell-Recycling",
+      "Problem: viel Hype, wenig klare Beweise",
+      "Lösung: Lebensmittel zuerst",
+      "Supplemente nüchtern prüfen"
+    ],
     "dosierung": "Es gibt keine allgemein bewiesene Standarddosis für Anti-Aging. Studien nutzen unterschiedliche Mengen. Supplemente nur vorsichtig wählen und nicht als Ersatz für Ernährung, Schlaf, Bewegung oder ärztlichen Rat sehen.",
     "beste_form": "Erst über Lebensmittel denken: Weizenkeime, Soja, Pilze, Hülsenfrüchte und gereifter Käse. Bei Kapseln auf klare Milligramm-Angabe, Herkunft und Laborprüfung achten.",
-    "kombinationen": ["Ernährung + Schlaf + Bewegung als Basis", "Intervallfasten kann Zell-Recycling ebenfalls anstoßen"],
-    "kontraindikationen": ["Weizenallergie: auf Spermidin aus anderen Quellen ausweichen", "Schwangerschaft: nicht empfohlen"],
+    "kombinationen": [
+      "Ernährung + Schlaf + Bewegung als Basis",
+      "Intervallfasten kann Zell-Recycling ebenfalls anstoßen"
+    ],
+    "kontraindikationen": [
+      "Weizenallergie: auf Spermidin aus anderen Quellen ausweichen",
+      "Schwangerschaft: nicht empfohlen"
+    ],
     "wissenschaft": "Die Idee ist spannend: Zellen räumen alten Ballast auf und verwerten Brauchbares wieder. Studien mit Menschen sind bisher aber vorsichtig: Eine 12-monatige Placebo-Studie zeigte keinen klaren Vorteil bei Gedächtnis oder Biomarkern; weitere Studien laufen.",
     "affiliate_url": "https://amzn.to/3PnvOle",
     "affiliate_provider": "Amazon"
@@ -160,11 +268,23 @@
     "accent": "gold",
     "icon": "⚡",
     "summary": "Unverzichtbarer Cofaktor in der Energieerzeugung jeder Zelle – nimmt mit dem Alter ab.",
-    "wirkung": ["Zelluläre Energieproduktion (ATP)", "Herzmuskel-Unterstützung", "Antioxidativer Zellschutz", "Statin-Nebenwirkungen reduzieren", "Fertilität (Eizell- & Spermienqualität)"],
+    "wirkung": [
+      "Zelluläre Energieproduktion (ATP)",
+      "Herzmuskel-Unterstützung",
+      "Antioxidativer Zellschutz",
+      "Statin-Nebenwirkungen reduzieren",
+      "Fertilität (Eizell- & Spermienqualität)"
+    ],
     "dosierung": "100–300 mg täglich, mit einer fetthaltigen Mahlzeit (fettlöslich)",
     "beste_form": "Ubiquinol (reduzierte Form) – deutlich besser bioverfügbar als Ubiquinon, besonders ab 40+",
-    "kombinationen": ["Omega-3 (gemeinsam für Herzgesundheit)", "Selen (synergistisch für Antioxidationsschutz)"],
-    "kontraindikationen": ["Blutverdünner (Warfarin): Dosis kann beeinflusst werden – ärztliche Kontrolle", "Kann Blutdruck leicht senken"],
+    "kombinationen": [
+      "Omega-3 (gemeinsam für Herzgesundheit)",
+      "Selen (synergistisch für Antioxidationsschutz)"
+    ],
+    "kontraindikationen": [
+      "Blutverdünner (Warfarin): Dosis kann beeinflusst werden – ärztliche Kontrolle",
+      "Kann Blutdruck leicht senken"
+    ],
     "wissenschaft": "Gut erforscht, besonders für Herzinsuffizienz und als Begleitschutz bei Statin-Therapie. Ubiquinol-Studien zeigen überlegene Bioverfügbarkeit.",
     "affiliate_url": "https://amzn.to/4wnlJVY",
     "affiliate_provider": "Amazon"
@@ -177,11 +297,24 @@
     "accent": "coral",
     "icon": "🌿",
     "summary": "Eines der kraftvollsten Adaptogene der ayurvedischen Medizin – reguliert Kortisol und fördert innere Ruhe.",
-    "wirkung": ["Stressresistenz & Kortisol senken", "Schlafqualität verbessern", "Testosteron & Vitalität (Männer)", "Muskelkraft & Regeneration", "Schilddrüsenfunktion (T3, T4)"],
+    "wirkung": [
+      "Stressresistenz & Kortisol senken",
+      "Schlafqualität verbessern",
+      "Testosteron & Vitalität (Männer)",
+      "Muskelkraft & Regeneration",
+      "Schilddrüsenfunktion (T3, T4)"
+    ],
     "dosierung": "300–600 mg KSM-66 Extrakt täglich (abends oder aufgeteilt morgens/abends)",
     "beste_form": "KSM-66 oder Sensoril – klinisch geprüfte Extrakte mit standardisiertem Withanolid-Gehalt",
-    "kombinationen": ["Magnesium (synergistisch für Schlaf & Stressabbau)", "Rhodiola Rosea (Adaptogen-Stack für Energie & Fokus)"],
-    "kontraindikationen": ["Schilddrüsenerkrankungen: ärztliche Rücksprache (kann T3/T4 erhöhen)", "Schwangerschaft: nicht empfohlen", "Autoimmunerkrankungen: Vorsicht"],
+    "kombinationen": [
+      "Magnesium (synergistisch für Schlaf & Stressabbau)",
+      "Rhodiola Rosea (Adaptogen-Stack für Energie & Fokus)"
+    ],
+    "kontraindikationen": [
+      "Schilddrüsenerkrankungen: ärztliche Rücksprache (kann T3/T4 erhöhen)",
+      "Schwangerschaft: nicht empfohlen",
+      "Autoimmunerkrankungen: Vorsicht"
+    ],
     "wissenschaft": "Gut belegt. Multiple klinische Studien zeigen signifikante Reduktion von Stresshormonen und Verbesserung der Schlafqualität.",
     "affiliate_url": "https://amzn.to/4wnoOFw",
     "affiliate_provider": "Amazon"
@@ -194,11 +327,23 @@
     "accent": "coral",
     "icon": "🍄",
     "summary": "Seit Jahrtausenden in der TCM verehrt – Reishi beruhigt das Nervensystem und moduliert das Immunsystem.",
-    "wirkung": ["Immunsystem modulieren & stärken", "Nervensystem beruhigen", "Schlafqualität verbessern", "Adaptogene Stressresistenz", "Leber schützen & entgiften"],
+    "wirkung": [
+      "Immunsystem modulieren & stärken",
+      "Nervensystem beruhigen",
+      "Schlafqualität verbessern",
+      "Adaptogene Stressresistenz",
+      "Leber schützen & entgiften"
+    ],
     "dosierung": "1.000–3.000 mg Trockenextrakt täglich (oder 500–1.500 mg konzentrierter Extrakt 10:1)",
     "beste_form": "100% Fruchtkörper-Extrakt (kein Myzel auf Getreide) – in Deutschland abgefüllt und laborgeprüft",
-    "kombinationen": ["Ashwagandha (synergistisch für Stressresistenz & Schlaf)", "Vitamin D (gemeinsam für Immunmodulation)"],
-    "kontraindikationen": ["Blutverdünner: ärztliche Rücksprache (Reishi hat blutverdünnende Eigenschaften)", "Vor Operationen: absetzen"],
+    "kombinationen": [
+      "Ashwagandha (synergistisch für Stressresistenz & Schlaf)",
+      "Vitamin D (gemeinsam für Immunmodulation)"
+    ],
+    "kontraindikationen": [
+      "Blutverdünner: ärztliche Rücksprache (Reishi hat blutverdünnende Eigenschaften)",
+      "Vor Operationen: absetzen"
+    ],
     "wissenschaft": "Traditionsreich und wachsende moderne Evidenz. Beta-Glucane aus Reishi zeigen immunmodulierende Wirkung in klinischen Studien.",
     "affiliate_url": "https://amzn.to/4d9CIne",
     "affiliate_provider": "Amazon"
@@ -210,13 +355,25 @@
     "category": "Vitalpilz",
     "accent": "coral",
     "icon": "🏃",
-    "summary": "In der TCM als Energiegeber geschätzt – Cordyceps verbessert die Sauerstoffaufnahme und steigert die Ausdauer.",
-    "wirkung": ["Sauerstoffaufnahme (VO2max) verbessern", "Ausdauer & sportliche Leistung", "Zelluläre Energieproduktion (ATP)", "Immunsystem stärken", "Libido & Vitalität"],
-    "dosierung": "1.000–3.000 mg täglich (auf leeren Magen oder 30 Min. vor dem Training)",
-    "beste_form": "Fruchtkörper-Extrakt aus Cordyceps militaris – CS-4 Extrakt als klinisch geprüfte Alternative",
-    "kombinationen": ["Kreatin (synergistisch für Trainingsleistung)", "CoQ10 (gemeinsam für Mitochondrienfunktion)"],
-    "kontraindikationen": ["Autoimmunerkrankungen: Vorsicht (immunmodulierend)", "Blutverdünner: Rücksprache mit Arzt"],
-    "wissenschaft": "Solide Tierstudien, wachsende Humanstudien. Signifikante Verbesserung der Ausdauer und des Energiestoffwechsels in mehreren RCTs.",
+    "summary": "Cordyceps bezeichnet verschiedene Vitalpilze und Extrakte. Kleine Humanstudien zu Energie und Ausdauer liefern bisher gemischte Ergebnisse.",
+    "wirkung": [
+      "Biologisch plausible Effekte auf Zellenergie werden erforscht",
+      "Kleine Humanstudien zeigen uneinheitliche Ausdauer-Signale",
+      "Keine verlässliche allgemeine Steigerung des VO2max belegt",
+      "Pilzart und Extrakt bestimmen, ob Produkte vergleichbar sind",
+      "Qualität und Wechselwirkungen sind wichtiger als hohe Milligrammzahlen"
+    ],
+    "dosierung": "Keine allgemein evidenzbasierte Standarddosis. Studien nutzten unterschiedliche Arten, Extrakte und Mengen; daher nicht pauschal übertragen.",
+    "beste_form": "Klar deklarierte Pilzart und Extraktform mit unabhängiger Prüfung auf Verunreinigungen und nachvollziehbarem Laborbericht.",
+    "kombinationen": [
+      "Keine Kombination ist für eine Wirkung zwingend belegt",
+      "Für Leistung bleiben Training, Schlaf und ausreichende Energiezufuhr die Basis"
+    ],
+    "kontraindikationen": [
+      "Blutverdünner oder blutzuckersenkende Medikamente: vorher fachlich abklären",
+      "Autoimmunerkrankungen, Immunsuppression, Schwangerschaft oder geplante Operation: nicht auf eigene Faust einsetzen"
+    ],
+    "wissenschaft": "Humanstudien sind klein und widersprüchlich. Einzelne Belastungsmarker verbesserten sich, während andere Studien bei trainierten Personen keinen Vorteil fanden.",
     "affiliate_url": "https://amzn.to/4tHk4rU",
     "affiliate_provider": "Amazon"
   },
@@ -227,13 +384,25 @@
     "category": "Pflanzenstoff",
     "accent": "gold",
     "icon": "🌟",
-    "summary": "Curcumin, der Wirkstoff in Kurkuma, ist einer der am besten untersuchten natürlichen Entzündungshemmer.",
-    "wirkung": ["Entzündungshemmung (systemisch)", "Antioxidativer Zellschutz", "Gelenk- & Schmerzunterstützung", "Verdauungsunterstützung (Galle)", "Stimmungsaufhellung (Anti-Depressiv)"],
-    "dosierung": "500–2.000 mg Curcumin täglich – immer mit schwarzem Pfeffer (Piperin) für 2.000% bessere Aufnahme",
-    "beste_form": "Curcumin-Extrakt mit Piperin ODER liposomales Curcumin für maximale Bioverfügbarkeit",
-    "kombinationen": ["Piperin/Schwarzer Pfeffer (absolut notwendig für Absorption)", "Omega-3 (synergistisch für Entzündungsregulation)"],
-    "kontraindikationen": ["Gallensteine: vorsichtig dosieren (regt Gallenfluss an)", "Blutverdünner: ärztliche Rücksprache", "Eisenmangel: nicht gleichzeitig einnehmen"],
-    "wissenschaft": "Über 10.000 wissenschaftliche Studien. Starke Evidenz für Entzündungshemmung. Bioverfügbarkeit ist das Hauptproblem – spezielle Formulierungen lösen es.",
+    "summary": "Kurkuma ist ein Gewürz; Curcumin ist nur eine Stoffgruppe daraus. Bei Kniearthrose sind kleine Symptomvorteile möglich, ein allgemeines Entzündungs-Wundermittel ist es nicht.",
+    "wirkung": [
+      "Laborbefunde zu entzündungsbezogenen Signalwegen sind biologisch interessant",
+      "Bei Kniearthrose sind kleine Verbesserungen von Schmerz und Funktion möglich",
+      "Keine nachgewiesene Reparatur von Knorpel oder Gelenkstruktur",
+      "Gewürz, normaler Extrakt und aufnahmeverbesserte Form sind nicht gleich",
+      "Nutzen und Risiko hängen stark vom konkreten Produkt ab"
+    ],
+    "dosierung": "Keine pauschale Dosis für alle Anwendungen. Hoch konzentrierte oder aufnahmeverbesserte Extrakte nicht mit üblichen Gewürzmengen gleichsetzen.",
+    "beste_form": "Transparent deklarierter Curcuminoid-Gehalt und nachvollziehbare Formulierung. Piperin ist nicht zwingend und kann Medikamenten-Wechselwirkungen verstärken.",
+    "kombinationen": [
+      "Eine Mahlzeit kann die Verträglichkeit unterstützen",
+      "Piperin oder schwarzer Pfeffer bei Medikamenten nicht unkritisch ergänzen"
+    ],
+    "kontraindikationen": [
+      "Leber- oder Gallenprobleme, Blutverdünner und Schwangerschaft: vorher fachlich abklären",
+      "Bei gelber Haut, dunklem Urin, starker Müdigkeit oder Oberbauchschmerz sofort absetzen und medizinisch prüfen"
+    ],
+    "wissenschaft": "Meta-Analysen zeigen mögliche kleine Vorteile bei Kniearthrose, aber sehr unterschiedliche Produkte und Studien. Seltene, teils schwere Leberverletzungen durch Supplemente sind dokumentiert.",
     "affiliate_url": "https://amzn.to/494D6RD",
     "affiliate_provider": "Amazon"
   },
@@ -244,13 +413,25 @@
     "category": "Aminosäure",
     "accent": "coral",
     "icon": "💪",
-    "summary": "Kreatin ist die am besten untersuchte leistungssteigernde Substanz im Sport – sicher, effektiv, günstig.",
-    "wirkung": ["Kraftzuwachs & Muskelaufbau", "Explosive Leistung (ATP-Resynthese)", "Regeneration nach dem Training", "Kognitive Funktion & Gedächtnis", "Muskelerhalt im Alter (Sarkopenie)"],
-    "dosierung": "3–5 g täglich (Erhaltungsdosis). Ladephase optional: 20 g/Tag für 5–7 Tage. Mit Wasser oder kohlenhydratreichem Getränk.",
-    "beste_form": "Kreatin Monohydrat (Creapure®) – hochrein, in Deutschland hergestellt, ohne überflüssige Zusätze",
-    "kombinationen": ["Kohlenhydrate (verbessern die Aufnahme ins Muskelgewebe)", "Beta-Alanin (synergistisch für Ausdauerleistung)"],
-    "kontraindikationen": ["Nierenerkrankungen: ärztliche Rücksprache", "Ausreichend Wasser trinken (mind. 2–3 Liter täglich)"],
-    "wissenschaft": "Über 500 klinische Studien. Eine der sichersten und wirksamsten Substanzen im Sport. ISSN gibt klares Empfehlungs-Statement.",
+    "summary": "Kreatin ist ein körpereigener Energiepuffer und eines der am besten untersuchten Sport-Supplemente. Es hilft vor allem bei wiederholten kurzen, intensiven Belastungen.",
+    "wirkung": [
+      "Schnelle Energiebereitstellung über das Kreatinphosphat-System",
+      "Mit Krafttraining häufig zusätzlicher Kraft- und Leistungszuwachs",
+      "Wenig Nutzen für lange gleichmäßige Ausdauerbelastungen",
+      "Mögliche kleine Gedächtnisvorteile, besonders bei älteren Erwachsenen",
+      "Anfängliches Wassergewicht im Muskel ist möglich"
+    ],
+    "dosierung": "Meist 3–5 g Kreatin-Monohydrat täglich. Eine Ladephase ist optional, nicht notwendig.",
+    "beste_form": "Kreatin-Monohydrat ist am besten untersucht. Teurere Formen haben keinen verlässlich belegten Zusatznutzen.",
+    "kombinationen": [
+      "Regelmäßiges Kraft- oder Sprinttraining liefert den passenden Reiz",
+      "Eine besondere Zucker-Kombination ist für die Alltagswirkung nicht nötig"
+    ],
+    "kontraindikationen": [
+      "Bestehende Nierenerkrankung, Schwangerschaft oder unklare Laborwerte: vorher fachlich abklären",
+      "Kreatin-Einnahme bei Blutuntersuchungen angeben, weil Kreatinin leicht steigen kann"
+    ],
+    "wissenschaft": "Sehr gut belegt für wiederholte intensive Belastungen. Aktuelle Meta-Analysen zeigen keine Verschlechterung der Nieren-Filterleistung in den untersuchten üblichen Mengen bei gesunden Menschen.",
     "affiliate_url": "https://amzn.to/4ntbxHq",
     "affiliate_provider": "Amazon"
   },
@@ -261,13 +442,25 @@
     "category": "Aminosäure",
     "accent": "mint",
     "icon": "🔗",
-    "summary": "Die häufigste Aminosäure im Blut – essenziell für Darmbarriere, Immunsystem und Muskelregeneration.",
-    "wirkung": ["Darmbarriere stärken (Leaky Gut)", "Immunsystem nach Stress stabilisieren", "Muskelkatabolismus verhindern", "Regeneration beschleunigen", "Blutzucker stabilisieren"],
-    "dosierung": "5–15 g täglich, nüchtern oder direkt nach dem Training (wasserlöslich, gut verträglich)",
-    "beste_form": "Reines L-Glutamin-Pulver ohne Zusätze – 100% vegan, in Pharmaqualität",
-    "kombinationen": ["Probiotika (synergistisch für Darmgesundheit)", "Kollagen (gemeinsam für Schleimhautschutz)"],
-    "kontraindikationen": ["Glutaminsensitive Erkrankungen (z. B. bestimmte Tumortypen): ärztliche Rücksprache", "Bipolare Störung oder Epilepsie: Vorsicht"],
-    "wissenschaft": "Gut belegt für Darmgesundheit und Immunfunktion, besonders nach intensivem Training oder Operationen. Breite klinische Anwendung in der Intensivmedizin.",
+    "summary": "Glutamin ist eine wichtige Aminosäure, die gesunde Menschen normalerweise selbst ausreichend bilden. Klinikdaten sind nicht automatisch auf Fitness und unspezifische Darmbeschwerden übertragbar.",
+    "wirkung": [
+      "Baustein von Eiweiß und Brennstoff für bestimmte Darm- und Immunzellen",
+      "Unter schwerem körperlichem Stress kann der Bedarf medizinisch relevant steigen",
+      "Kein verlässlicher Zusatznutzen für Muskelaufbau oder Sportleistung belegt",
+      "Gesamtanalyse zeigt keinen pauschalen Effekt auf die Darmdurchlässigkeit",
+      "Einzelne positive Studien betreffen klar definierte Patientengruppen"
+    ],
+    "dosierung": "Für gesunde Menschen besteht keine allgemeine Standardempfehlung. Klinische Studien nutzten je nach Erkrankung sehr unterschiedliche Mengen.",
+    "beste_form": "Wenn fachlich begründet, ein klar deklariertes reines Produkt ohne unnötige Mischungen. Wichtiger als die Form ist die passende Zielgruppe.",
+    "kombinationen": [
+      "Für Regeneration zuerst Schlaf, Gesamtenergie und vollständiges Nahrungsprotein sichern",
+      "Bei Darmbeschwerden Ursache und Diagnose vor einer Supplement-Kombination klären"
+    ],
+    "kontraindikationen": [
+      "Schwere Leber- oder Nierenerkrankung, Krebsbehandlung oder Schwangerschaft: nur fachlich begleitet",
+      "Höhere Mengen können Übelkeit, Blähungen oder Bauchschmerz verursachen"
+    ],
+    "wissenschaft": "Biologisch wichtig, aber für gesunde Sportler wenig überzeugende Zusatzwirkung. Darmdaten sind zielgruppenabhängig und im Gesamtbild nicht eindeutig.",
     "affiliate_url": "https://coachcecil.de/r?id=fbnl8u",
     "affiliate_provider": "Coach Cecil"
   },
@@ -278,13 +471,25 @@
     "category": "Protein",
     "accent": "mint",
     "icon": "✨",
-    "summary": "Kollagen macht 30% des Körperproteins aus – Hydrolysat wird direkt in Gelenke, Haut und Darm transportiert.",
-    "wirkung": ["Gelenk- & Knorpelgesundheit", "Hautstraffheit & Elastizität", "Darmschleimhaut stärken", "Sehnen & Bänder", "Knochengesundheit (mit Vitamin C)"],
-    "dosierung": "10–15 g täglich (mindestens 8–12 Wochen für sichtbare Ergebnisse), am besten mit Vitamin C",
-    "beste_form": "Hydrolysiertes Kollagen Typ I & III aus Weidehaltung – kurze Peptidketten für optimale Aufnahme",
-    "kombinationen": ["Vitamin C (essenziell für Kollagensynthese)", "Hyaluronsäure (synergistisch für Gelenke & Haut)"],
-    "kontraindikationen": ["Nierenerkrankungen: ärztliche Rücksprache (hohe Proteinzufuhr)", "Allergien gegen tierische Produkte"],
-    "wissenschaft": "Gut belegt für Gelenkgesundheit (Arthrose) und Hautstraffheit. Studien zeigen messbare Verbesserungen nach 8–24 Wochen.",
+    "summary": "Kollagen ist ein Strukturprotein. Hydrolysat wird verdaut und liefert Peptide und Aminosäuren; es wird nicht als fertige Faser direkt in Haut oder Gelenke transportiert.",
+    "wirkung": [
+      "Mögliche kleine Verbesserung von Hautfeuchtigkeit und Elastizität",
+      "Mögliche Verringerung von Knieschmerz und leichte Funktionsverbesserung",
+      "Keine nachgewiesene direkte Reparatur von Knorpel oder Falten",
+      "Hydrolysat und undenaturiertes Kollagen Typ II sind unterschiedliche Produkte",
+      "Bewegung, Sonnenschutz und ausreichende Gesamtproteinzufuhr bleiben die Basis"
+    ],
+    "dosierung": "Studien zu Hydrolysat nutzten je nach Ziel meist mehrere Gramm täglich über 8–24 Wochen. Das Ergebnis gilt nicht automatisch für jedes Produkt.",
+    "beste_form": "Tierquelle, Peptidform, Ziel und unabhängige Qualitätsprüfung klar deklarieren. Die passende Form hängt von der untersuchten Anwendung ab.",
+    "kombinationen": [
+      "Eine ausreichende Vitamin-C-Versorgung unterstützt die körpereigene Kollagenbildung",
+      "Ein perfektes Einnahme-Timing oder eine zusätzliche Vitamin-C-Megadosis ist nicht nötig"
+    ],
+    "kontraindikationen": [
+      "Allergien und Tierquelle beachten, besonders bei marinem Kollagen",
+      "Bei Nierenerkrankungen die gesamte Eiweißzufuhr fachlich einordnen"
+    ],
+    "wissenschaft": "Meta-Analysen zeigen mögliche kleine Vorteile für Haut und Kniebeschwerden, aber deutliche Unterschiede und Verzerrungsrisiken in den Studien.",
     "affiliate_url": "https://coachcecil.de/r?id=v8lmb7",
     "affiliate_provider": "Coach Cecil"
   },
@@ -296,11 +501,23 @@
     "accent": "mint",
     "icon": "🦠",
     "summary": "Lebende Bakterienstämme für das Darmmikrobiom – beeinflussen Immunsystem, Stimmung und Verdauung.",
-    "wirkung": ["Darmflora-Balance wiederherstellen", "Immunsystem stärken (70% im Darm)", "Verdauung verbessern", "Stimmung & Psyche (Darm-Hirn-Achse)", "Allergien & Entzündungen reduzieren"],
+    "wirkung": [
+      "Darmflora-Balance wiederherstellen",
+      "Immunsystem stärken (70% im Darm)",
+      "Verdauung verbessern",
+      "Stimmung & Psyche (Darm-Hirn-Achse)",
+      "Allergien & Entzündungen reduzieren"
+    ],
     "dosierung": "Mind. 10 Milliarden KBE täglich, über 4–8 Wochen, am besten nüchtern oder mit dem Frühstück",
     "beste_form": "Multi-Stamm-Komplex (mind. 5–10 verschiedene Stämme: Lactobacillus & Bifidobacterium) mit magensäureresistenter Kapsel",
-    "kombinationen": ["Präbiotika/Ballaststoffe (z. B. Akazienfaser – nähren Probiotika)", "L-Glutamin (synergistisch für Darmbarriere)"],
-    "kontraindikationen": ["Stark immungeschwächte Personen: ärztliche Rücksprache", "SIBO (bakterielle Überwucherung): erst Diagnose klären"],
+    "kombinationen": [
+      "Präbiotika/Ballaststoffe (z. B. Akazienfaser – nähren Probiotika)",
+      "L-Glutamin (synergistisch für Darmbarriere)"
+    ],
+    "kontraindikationen": [
+      "Stark immungeschwächte Personen: ärztliche Rücksprache",
+      "SIBO (bakterielle Überwucherung): erst Diagnose klären"
+    ],
     "wissenschaft": "Sehr gut erforscht. Starke Evidenz für bestimmte Stämme bei Reizdarmsyndrom, Antibiotika-Diarrhoe und Immunfunktion.",
     "affiliate_url": "https://amzn.to/4tHPNcv",
     "affiliate_provider": "Amazon"
@@ -313,11 +530,24 @@
     "accent": "mint",
     "icon": "🌊",
     "summary": "Mikroalge mit einzigartigem Chlorella Growth Factor – unterstützt Entgiftung und liefert komplettes Aminosäureprofil.",
-    "wirkung": ["Schwermetall-Entgiftung (bindet Quecksilber, Blei)", "Immunsystem stärken", "Darmgesundheit fördern", "Vollwertiges Protein (alle Aminosäuren)", "Chlorophyll & antioxidativer Schutz"],
+    "wirkung": [
+      "Schwermetall-Entgiftung (bindet Quecksilber, Blei)",
+      "Immunsystem stärken",
+      "Darmgesundheit fördern",
+      "Vollwertiges Protein (alle Aminosäuren)",
+      "Chlorophyll & antioxidativer Schutz"
+    ],
     "dosierung": "3–5 g täglich (aufgeteilt über den Tag, mit viel Wasser), langsam einschleichen",
     "beste_form": "Aufgebrochene Zellwand (Broken Cell Wall) für optimale Nährstoffverfügbarkeit – zertifizierte Bio-Qualität",
-    "kombinationen": ["Bärlauch oder Koriander (synergistisch für Schwermetall-Detox)", "Probiotika (gemeinsam für Darmgesundheit)"],
-    "kontraindikationen": ["Jodempfindlichkeit: Jodgehalt beachten", "Warfarin/Blutverdünner: Vitamin-K-Gehalt kann Wirkung beeinflussen", "Langsam einschleichen (Detox-Reaktionen möglich)"],
+    "kombinationen": [
+      "Bärlauch oder Koriander (synergistisch für Schwermetall-Detox)",
+      "Probiotika (gemeinsam für Darmgesundheit)"
+    ],
+    "kontraindikationen": [
+      "Jodempfindlichkeit: Jodgehalt beachten",
+      "Warfarin/Blutverdünner: Vitamin-K-Gehalt kann Wirkung beeinflussen",
+      "Langsam einschleichen (Detox-Reaktionen möglich)"
+    ],
     "wissenschaft": "Gute Evidenz für Schwermetallbindung und antioxidative Wirkung. CGF (Chlorella Growth Factor) zeigt interessante Effekte auf Zellregeneration.",
     "affiliate_url": "https://coachcecil.de/r?id=dnjo6s",
     "affiliate_provider": "Coach Cecil"
@@ -330,11 +560,24 @@
     "accent": "coral",
     "icon": "🏔️",
     "summary": "Aus jahrtausendealter Gesteinsverwitterung entstandenes Harz – reich an Fulvinsäure und über 80 Mineralien.",
-    "wirkung": ["Zelluläre Energieproduktion fördern", "Testosteron & Vitalität steigern", "Mineralstoffversorgung optimieren", "Kognitive Funktion & Gedächtnis", "Entzündungshemmung"],
+    "wirkung": [
+      "Zelluläre Energieproduktion fördern",
+      "Testosteron & Vitalität steigern",
+      "Mineralstoffversorgung optimieren",
+      "Kognitive Funktion & Gedächtnis",
+      "Entzündungshemmung"
+    ],
     "dosierung": "300–500 mg täglich (standardisiert auf ≥50% Fulvinsäure), morgens mit warmem Wasser oder Tee",
     "beste_form": "Authentisches Himalaya-Shilajit, hochdosierter Extrakt (mind. 50% Fulvinsäure, 12% Huminsäure), schwermetallgeprüft",
-    "kombinationen": ["Ashwagandha (klassische ayurvedische Kombination für Vitalität)", "CoQ10 (synergistisch für Mitochondrien-Energie)"],
-    "kontraindikationen": ["Schwermetallbelastung: nur geprüfte Qualität verwenden", "Gicht: Harnsäure kann leicht ansteigen", "Schwangerschaft: nicht empfohlen"],
+    "kombinationen": [
+      "Ashwagandha (klassische ayurvedische Kombination für Vitalität)",
+      "CoQ10 (synergistisch für Mitochondrien-Energie)"
+    ],
+    "kontraindikationen": [
+      "Schwermetallbelastung: nur geprüfte Qualität verwenden",
+      "Gicht: Harnsäure kann leicht ansteigen",
+      "Schwangerschaft: nicht empfohlen"
+    ],
     "wissenschaft": "Ayurvedische Tradition mit wachsender moderner Evidenz. Studien zeigen Wirkung auf Testosteron, Muskelkraft und kognitive Funktion.",
     "affiliate_url": "https://amzn.to/43fvt7e",
     "affiliate_provider": "Amazon"
@@ -347,11 +590,23 @@
     "accent": "mint",
     "icon": "🌸",
     "summary": "Silymarin, der Wirkstoffkomplex der Mariendistel, schützt und regeneriert die Leberzellen.",
-    "wirkung": ["Leberzellschutz (hepatoprotektiv)", "Leberregeneration nach Belastung", "Antioxidativer Zellschutz", "Entzündungshemmung in der Leber", "Unterstützung bei Fettleber"],
+    "wirkung": [
+      "Leberzellschutz (hepatoprotektiv)",
+      "Leberregeneration nach Belastung",
+      "Antioxidativer Zellschutz",
+      "Entzündungshemmung in der Leber",
+      "Unterstützung bei Fettleber"
+    ],
     "dosierung": "200–400 mg Silymarin (70–80% Extrakt) täglich, aufgeteilt auf 2–3 Einnahmen",
     "beste_form": "Standardisierter Mariendistel-Extrakt mit 70–80% Silymarin, idealerweise Phytosom-Form für bessere Aufnahme",
-    "kombinationen": ["N-Acetylcystein (NAC) – synergistisch für Lebergesundheit", "Alpha-Liponsäure (gemeinsam für Leberentgiftung)"],
-    "kontraindikationen": ["Hormonempfindliche Erkrankungen: Vorsicht (schwache östrogene Wirkung)", "Allergie gegen Korbblütler"],
+    "kombinationen": [
+      "N-Acetylcystein (NAC) – synergistisch für Lebergesundheit",
+      "Alpha-Liponsäure (gemeinsam für Leberentgiftung)"
+    ],
+    "kontraindikationen": [
+      "Hormonempfindliche Erkrankungen: Vorsicht (schwache östrogene Wirkung)",
+      "Allergie gegen Korbblütler"
+    ],
     "wissenschaft": "Sehr gut erforscht für Lebererkrankungen. Klare Evidenz für hepatoprotektive Wirkung. Weit eingesetzt in der Hepatologie.",
     "affiliate_url": "https://amzn.to/4udqIah",
     "affiliate_provider": "Amazon"
@@ -364,11 +619,23 @@
     "accent": "mint",
     "icon": "🌱",
     "summary": "Löslicher Ballaststoff aus der Akazie – nährt nützliche Darmbakterien und wird außergewöhnlich gut vertragen.",
-    "wirkung": ["Darmflora-Diversität erhöhen", "Stuhlregulierung (Verstopfung & Durchfall)", "Sättigungsgefühl verlängern", "Blutzucker stabilisieren", "Entzündungsmarker senken"],
+    "wirkung": [
+      "Darmflora-Diversität erhöhen",
+      "Stuhlregulierung (Verstopfung & Durchfall)",
+      "Sättigungsgefühl verlängern",
+      "Blutzucker stabilisieren",
+      "Entzündungsmarker senken"
+    ],
     "dosierung": "5–15 g täglich, langsam einschleichen (beginnen mit 5 g/Tag), in Wasser, Joghurt oder Smoothie einrühren",
     "beste_form": "Reine Bio-Akazienfaser ohne Zusatzstoffe – laborgeprüft auf Reinheit",
-    "kombinationen": ["Probiotika (Synbiotikum: Prä- + Probiotikum)", "L-Glutamin (umfassender Darmgesundheits-Stack)"],
-    "kontraindikationen": ["Bei FODMAP-Unverträglichkeit: vorsichtig testen", "Langsam einschleichen – zu schnelles Erhöhen kann Blähungen verursachen"],
+    "kombinationen": [
+      "Probiotika (Synbiotikum: Prä- + Probiotikum)",
+      "L-Glutamin (umfassender Darmgesundheits-Stack)"
+    ],
+    "kontraindikationen": [
+      "Bei FODMAP-Unverträglichkeit: vorsichtig testen",
+      "Langsam einschleichen – zu schnelles Erhöhen kann Blähungen verursachen"
+    ],
     "wissenschaft": "Gut belegt als Präbiotikum. Besonders gelobt für außergewöhnliche Verträglichkeit verglichen mit anderen Ballaststoffen. Fördert Bifidobakterien nachweislich.",
     "affiliate_url": "https://amzn.to/3Rb5fjK",
     "affiliate_provider": "Amazon"
@@ -381,11 +648,25 @@
     "accent": "gold",
     "icon": "🌻",
     "summary": "Kraftvolles fettlösliches Antioxidans – schützt Zellmembranen vor oxidativem Stress und unterstützt das Immunsystem.",
-    "wirkung": ["Antioxidativer Zellmembranschutz", "Immunsystem stärken", "Haut- & Wundheilung", "Herzgesundheit (LDL-Oxidation hemmen)", "Augen- & Netzhautschutz"],
+    "wirkung": [
+      "Antioxidativer Zellmembranschutz",
+      "Immunsystem stärken",
+      "Haut- & Wundheilung",
+      "Herzgesundheit (LDL-Oxidation hemmen)",
+      "Augen- & Netzhautschutz"
+    ],
     "dosierung": "15–200 mg täglich (RDA: 15 mg, therapeutisch bis 400 IE), mit fetthaltiger Mahlzeit",
     "beste_form": "Natürliches d-alpha-Tocopherol mit gemischten Tocotrienolen – weit wirksamer als synthetisches dl-alpha-Tocopherol",
-    "kombinationen": ["Vitamin C (regeneriert verbrauchtes Vitamin E)", "Selen (synergistisch für Antioxidationsschutz)", "Omega-3 (schützt die empfindlichen Fettsäuren)"],
-    "kontraindikationen": ["Blutverdünner (Warfarin): kann Wirkung verstärken", "Vor Operationen absetzen", "Bei sehr hohen Dosen (>1000 IE) Blutungsrisiko"],
+    "kombinationen": [
+      "Vitamin C (regeneriert verbrauchtes Vitamin E)",
+      "Selen (synergistisch für Antioxidationsschutz)",
+      "Omega-3 (schützt die empfindlichen Fettsäuren)"
+    ],
+    "kontraindikationen": [
+      "Blutverdünner (Warfarin): kann Wirkung verstärken",
+      "Vor Operationen absetzen",
+      "Bei sehr hohen Dosen (>1000 IE) Blutungsrisiko"
+    ],
     "wissenschaft": "Gut erforscht. Natürliche Form (d-alpha) zeigt deutlich bessere Aufnahme als synthetisch. Tocotrienole zunehmend im Fokus der Forschung.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -398,11 +679,24 @@
     "accent": "mint",
     "icon": "🔷",
     "summary": "Essenzielles Spurenelement für die Schilddrüsenhormon-Aktivierung und als Cofaktor der stärksten körpereigenen Antioxidantien.",
-    "wirkung": ["Schilddrüsenfunktion (T4→T3 Umwandlung)", "Glutathion-Synthese (stärkstes Antioxidans)", "Immunsystem modulieren", "Fruchtbarkeit & Spermienqualität", "Krebsprävention (Forschung)"],
+    "wirkung": [
+      "Schilddrüsenfunktion (T4→T3 Umwandlung)",
+      "Glutathion-Synthese (stärkstes Antioxidans)",
+      "Immunsystem modulieren",
+      "Fruchtbarkeit & Spermienqualität",
+      "Krebsprävention (Forschung)"
+    ],
     "dosierung": "100–200 µg täglich (nicht überschreiten! Obergrenze: 300 µg/Tag)",
     "beste_form": "Selenmethionin (organische Form) – beste Bioverfügbarkeit und sanfteste Form",
-    "kombinationen": ["Jod (zusammen für optimale Schilddrüsenfunktion)", "Vitamin E (synergistisch für Antioxidationsschutz)", "Zink (gemeinsam für Immunsystem)"],
-    "kontraindikationen": ["Selen-Vergiftung bei chronischer Überdosierung (>400 µg/Tag): Haarausfall, Übelkeit", "Selenreich-Diät zusätzlich berücksichtigen (Paranüsse!)"],
+    "kombinationen": [
+      "Jod (zusammen für optimale Schilddrüsenfunktion)",
+      "Vitamin E (synergistisch für Antioxidationsschutz)",
+      "Zink (gemeinsam für Immunsystem)"
+    ],
+    "kontraindikationen": [
+      "Selen-Vergiftung bei chronischer Überdosierung (>400 µg/Tag): Haarausfall, Übelkeit",
+      "Selenreich-Diät zusätzlich berücksichtigen (Paranüsse!)"
+    ],
     "wissenschaft": "Sehr gut erforscht. Essenziell für Schilddrüse. Klare Evidenz für Hashimoto-Unterstützung. Mangelgebiet in großen Teilen Europas.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -415,11 +709,24 @@
     "accent": "coral",
     "icon": "🦁",
     "summary": "Einzigartiger Vitalpilz mit NGF-Stimulation – fördert das Wachstum und die Regeneration von Nervenzellen.",
-    "wirkung": ["Nervenwachstumsfaktor (NGF) anregen", "Kognitive Funktion & Konzentration", "Gedächtnis & Lernen", "Stimmung & leichte Depressionen", "Periphere Nervenheilung"],
+    "wirkung": [
+      "Nervenwachstumsfaktor (NGF) anregen",
+      "Kognitive Funktion & Konzentration",
+      "Gedächtnis & Lernen",
+      "Stimmung & leichte Depressionen",
+      "Periphere Nervenheilung"
+    ],
     "dosierung": "500–3.000 mg Fruchtkörper-Extrakt täglich (mind. 30% Beta-Glucane)",
     "beste_form": "Dual-Extrakt aus Fruchtkörper (kein Myzel auf Reis) – enthält sowohl wasserlösliche Beta-Glucane als auch alkohollösliche Hericenone",
-    "kombinationen": ["Reishi (synergistisch für Nervensystem & Schlaf)", "Phosphatidylserin (gemeinsam für kognitive Funktion)", "Lion's Mane am Morgen, Reishi abends"],
-    "kontraindikationen": ["Pilzallergien: Vorsicht bei bekannter Allergie", "Schwangerschaft: Datenlage unzureichend"],
+    "kombinationen": [
+      "Reishi (synergistisch für Nervensystem & Schlaf)",
+      "Phosphatidylserin (gemeinsam für kognitive Funktion)",
+      "Lion's Mane am Morgen, Reishi abends"
+    ],
+    "kontraindikationen": [
+      "Pilzallergien: Vorsicht bei bekannter Allergie",
+      "Schwangerschaft: Datenlage unzureichend"
+    ],
     "wissenschaft": "Sehr vielversprechend. Klinische Studien zeigen kognitive Verbesserungen und Unterstützung bei leichter Demenz. NGF-Stimulation gut dokumentiert.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -432,11 +739,24 @@
     "accent": "coral",
     "icon": "🏔️",
     "summary": "Adaptogen aus Sibirien – steigert mentale Leistung, reduziert geistliche Erschöpfung und fördert Stressresistenz.",
-    "wirkung": ["Mentale Erschöpfung & Burnout entgegenwirken", "Konzentration & Arbeitsgedächtnis", "Körperliche Ausdauer steigern", "Stimmungsaufhellung", "Kortisol-Dysregulation ausgleichen"],
+    "wirkung": [
+      "Mentale Erschöpfung & Burnout entgegenwirken",
+      "Konzentration & Arbeitsgedächtnis",
+      "Körperliche Ausdauer steigern",
+      "Stimmungsaufhellung",
+      "Kortisol-Dysregulation ausgleichen"
+    ],
     "dosierung": "200–600 mg standardisierter Extrakt täglich (3% Rosavine, 1% Salidroside), morgens nüchtern oder vor dem Training",
     "beste_form": "Standardisierter Extrakt mit 3% Rosavine + 1% Salidroside – das klinisch geprüfte Verhältnis",
-    "kombinationen": ["Ashwagandha (ergänzend: Rhodiola aktivierend, Ashwagandha beruhigend)", "B-Vitamine (gemeinsam für Energiestoffwechsel)"],
-    "kontraindikationen": ["Bipolare Störung: kann manische Phase auslösen", "Nicht spät abends einnehmen (stimulierend)", "Schwangerschaft: nicht empfohlen"],
+    "kombinationen": [
+      "Ashwagandha (ergänzend: Rhodiola aktivierend, Ashwagandha beruhigend)",
+      "B-Vitamine (gemeinsam für Energiestoffwechsel)"
+    ],
+    "kontraindikationen": [
+      "Bipolare Störung: kann manische Phase auslösen",
+      "Nicht spät abends einnehmen (stimulierend)",
+      "Schwangerschaft: nicht empfohlen"
+    ],
     "wissenschaft": "Gut belegt. Europäische Arzneimittelbehörde (EMA) erkennt traditionelle Anwendung bei Stresserschöpfung an. Mehrere RCTs bestätigen Wirkung.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -449,11 +769,25 @@
     "accent": "mint",
     "icon": "🔋",
     "summary": "NAC ist Vorstufe von Glutathion – dem wichtigsten körpereigenen Antioxidans. Entgiftung, Lunge, Immun- und psychische Gesundheit.",
-    "wirkung": ["Glutathion-Spiegel erhöhen", "Leber & Entgiftung unterstützen", "Atemwege & Schleim lösen", "Psychische Gesundheit (OCD, Sucht)", "Insulinresistenz verbessern (PCOS)"],
+    "wirkung": [
+      "Glutathion-Spiegel erhöhen",
+      "Leber & Entgiftung unterstützen",
+      "Atemwege & Schleim lösen",
+      "Psychische Gesundheit (OCD, Sucht)",
+      "Insulinresistenz verbessern (PCOS)"
+    ],
     "dosierung": "600–1.800 mg täglich in 2–3 Dosen, mit Mahlzeit (kann Übelkeit auf leeren Magen verursachen)",
     "beste_form": "Reines NAC-Pulver oder Kapseln – ohne Füllstoffe, in pharmazeutischer Qualität",
-    "kombinationen": ["Selen (synergistisch für Glutathion-Synthese)", "Vitamin C (regeneriert Glutathion)", "Mariendistel (gemeinsam für Leberentgiftung)"],
-    "kontraindikationen": ["Asthma: selten Bronchospasmen möglich", "Blutverdünner: ärztliche Rücksprache", "Nitroglyzerin: Wechselwirkung möglich"],
+    "kombinationen": [
+      "Selen (synergistisch für Glutathion-Synthese)",
+      "Vitamin C (regeneriert Glutathion)",
+      "Mariendistel (gemeinsam für Leberentgiftung)"
+    ],
+    "kontraindikationen": [
+      "Asthma: selten Bronchospasmen möglich",
+      "Blutverdünner: ärztliche Rücksprache",
+      "Nitroglyzerin: Wechselwirkung möglich"
+    ],
     "wissenschaft": "Sehr gut erforscht. In der Notfallmedizin (Paracetamol-Vergiftung), Pneumologie und Psychiatrie klinisch etabliert. Breite Evidenzbasis.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -466,11 +800,24 @@
     "accent": "blue",
     "icon": "💎",
     "summary": "Spirulina ist das nährstoffreichste Lebensmittel der Welt – 60–70% hochwertiges Protein und ein komplettes Nährstoffprofil.",
-    "wirkung": ["Vollständige Proteinversorgung (alle Aminosäuren)", "Eisen & Blutbildung", "Antioxidativer Schutz (Phycocyanin)", "Cholesterin & Blutfette verbessern", "Energie & Ausdauer steigern"],
+    "wirkung": [
+      "Vollständige Proteinversorgung (alle Aminosäuren)",
+      "Eisen & Blutbildung",
+      "Antioxidativer Schutz (Phycocyanin)",
+      "Cholesterin & Blutfette verbessern",
+      "Energie & Ausdauer steigern"
+    ],
     "dosierung": "3–10 g täglich (1–2 Teelöffel Pulver oder 6–15 Tabletten), idealerweise aufgeteilt auf 2 Einnahmen",
     "beste_form": "Zertifiziertes Bio-Spirulina-Pulver oder -Presslinge – auf Schwermetallfreiheit achten (Herkunftsnachweis wichtig!)",
-    "kombinationen": ["Vitamin C (erhöht Eisenaufnahme aus Spirulina)", "Chlorella (synergistisch für Entgiftung & Nährstoffversorgung)"],
-    "kontraindikationen": ["Phenylketonurie (PKU): enthält Phenylalanin", "Autoimmunerkrankungen: Vorsicht (immunstimulierend)", "Gerinnungshemmende Medikamente: Rücksprache"],
+    "kombinationen": [
+      "Vitamin C (erhöht Eisenaufnahme aus Spirulina)",
+      "Chlorella (synergistisch für Entgiftung & Nährstoffversorgung)"
+    ],
+    "kontraindikationen": [
+      "Phenylketonurie (PKU): enthält Phenylalanin",
+      "Autoimmunerkrankungen: Vorsicht (immunstimulierend)",
+      "Gerinnungshemmende Medikamente: Rücksprache"
+    ],
     "wissenschaft": "Gut erforscht. Anerkannt von WHO und NASA als Nahrungsergänzung. Klare Evidenz für Lipidsenkung und antioxidative Wirkung.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -483,11 +830,26 @@
     "accent": "blue",
     "icon": "🌙",
     "summary": "Das körpereigene Dunkelheitshormon – reguliert den Schlaf-Wach-Rhythmus und ist ein starkes Antioxidans.",
-    "wirkung": ["Einschlafen beschleunigen", "Jetlag ausgleichen", "Schlafrhythmus bei Schichtarbeit", "Starkes Antioxidans (Mitochondrienschutz)", "Immunsystem stärken"],
+    "wirkung": [
+      "Einschlafen beschleunigen",
+      "Jetlag ausgleichen",
+      "Schlafrhythmus bei Schichtarbeit",
+      "Starkes Antioxidans (Mitochondrienschutz)",
+      "Immunsystem stärken"
+    ],
     "dosierung": "0,5–3 mg, 30–60 Min. vor dem Schlafengehen (niedrigstmögliche effektive Dosis wählen!)",
     "beste_form": "Niedrigdosiertes Melatonin (0,5–1 mg) – höhere Dosen führen oft zu Schlaftrunkenheit am nächsten Morgen",
-    "kombinationen": ["Magnesium (synergistisch für Schlafqualität)", "L-Theanin (gemeinsam für entspanntes Einschlafen)", "Ashwagandha (Stressreduktion vor dem Schlafen)"],
-    "kontraindikationen": ["Autoimmunerkrankungen: Vorsicht", "Antidepressiva (SSRI): ärztliche Rücksprache", "Kinder unter 18: nur nach ärztlicher Empfehlung", "Schwangerschaft: nicht empfohlen"],
+    "kombinationen": [
+      "Magnesium (synergistisch für Schlafqualität)",
+      "L-Theanin (gemeinsam für entspanntes Einschlafen)",
+      "Ashwagandha (Stressreduktion vor dem Schlafen)"
+    ],
+    "kontraindikationen": [
+      "Autoimmunerkrankungen: Vorsicht",
+      "Antidepressiva (SSRI): ärztliche Rücksprache",
+      "Kinder unter 18: nur nach ärztlicher Empfehlung",
+      "Schwangerschaft: nicht empfohlen"
+    ],
     "wissenschaft": "Sehr gut belegt für Jetlag und Einschlafstörungen. In der EU als Lebensmittelzusatz reguliert (nicht verschreibungspflichtig). Langzeitdaten begrenzt.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -500,11 +862,25 @@
     "accent": "gold",
     "icon": "⚗️",
     "summary": "Alpha-Liponsäure ist sowohl wasser- als auch fettlöslich – sie wirkt überall im Körper und regeneriert andere Antioxidantien.",
-    "wirkung": ["Sowohl wasser- als auch fettlöslicher Antioxidanzschutz", "Insulinsensitivität verbessern", "Nervenschutz (diabetische Neuropathie)", "Glutathion regenerieren", "Schwermetall-Chelation"],
+    "wirkung": [
+      "Sowohl wasser- als auch fettlöslicher Antioxidanzschutz",
+      "Insulinsensitivität verbessern",
+      "Nervenschutz (diabetische Neuropathie)",
+      "Glutathion regenerieren",
+      "Schwermetall-Chelation"
+    ],
     "dosierung": "300–600 mg täglich, nüchtern (Mahlzeit reduziert Absorption um 30–40%)",
     "beste_form": "R-Alpha-Liponsäure (R-ALA) – die biologisch aktive Form, doppelt so wirksam wie das racemische Gemisch",
-    "kombinationen": ["Biotin (ALA kann Biotinaufnahme hemmen – ausgleichen)", "CoQ10 (synergistisch für Mitochondrien)", "Acetyl-L-Carnitin (gemeinsam für Nervenschutz)"],
-    "kontraindikationen": ["Schilddrüsenunterfunktion: kann T3-Spiegel senken", "Thiaminmangel: zuerst beheben", "Chemotherapie: ärztliche Rücksprache"],
+    "kombinationen": [
+      "Biotin (ALA kann Biotinaufnahme hemmen – ausgleichen)",
+      "CoQ10 (synergistisch für Mitochondrien)",
+      "Acetyl-L-Carnitin (gemeinsam für Nervenschutz)"
+    ],
+    "kontraindikationen": [
+      "Schilddrüsenunterfunktion: kann T3-Spiegel senken",
+      "Thiaminmangel: zuerst beheben",
+      "Chemotherapie: ärztliche Rücksprache"
+    ],
     "wissenschaft": "Gut erforscht, besonders für diabetische Neuropathie (klinisch zugelassen in Deutschland). Starke Evidenz für Insulinsensitivität.",
     "affiliate_url": null,
     "affiliate_provider": null
@@ -517,11 +893,24 @@
     "accent": "gold",
     "icon": "🌿",
     "summary": "Berberin ist ein Pflanzenalkaloid mit beeindruckender Wirkung auf Blutzucker und Stoffwechsel – oft mit Metformin verglichen.",
-    "wirkung": ["Blutzucker & Insulinsensitivität (AMPK-Aktivierung)", "Cholesterin & Triglyzeride senken", "Darmmikrobiom verbessern", "Gewichtsmanagement", "Herzgesundheit"],
+    "wirkung": [
+      "Blutzucker & Insulinsensitivität (AMPK-Aktivierung)",
+      "Cholesterin & Triglyzeride senken",
+      "Darmmikrobiom verbessern",
+      "Gewichtsmanagement",
+      "Herzgesundheit"
+    ],
     "dosierung": "500 mg, 2–3x täglich mit den Mahlzeiten (zu Mahlzeiten wegen Verdauungsverträglichkeit)",
     "beste_form": "Berberin HCl – höchste Bioverfügbarkeit; neuere Dihydroberberin-Formen (Berberine+) zeigen bessere Aufnahme",
-    "kombinationen": ["Silymarin/Mariendistel (schützt Leber, verbessert Berberin-Metabolismus)", "Probiotika (Berberin verändert Mikrobiom – ausgleichen)"],
-    "kontraindikationen": ["Schwangerschaft & Stillzeit: absolut kontraindiziert", "Metformin oder Blutzuckermittel: ärztliche Rücksprache (additiver Effekt)", "Leberfunktionsstörungen: Kontrolle"],
+    "kombinationen": [
+      "Silymarin/Mariendistel (schützt Leber, verbessert Berberin-Metabolismus)",
+      "Probiotika (Berberin verändert Mikrobiom – ausgleichen)"
+    ],
+    "kontraindikationen": [
+      "Schwangerschaft & Stillzeit: absolut kontraindiziert",
+      "Metformin oder Blutzuckermittel: ärztliche Rücksprache (additiver Effekt)",
+      "Leberfunktionsstörungen: Kontrolle"
+    ],
     "wissenschaft": "Hervorragend erforscht. Über 150 klinische Studien. Vergleichbar wirksam mit Metformin bei Typ-2-Diabetes in direkten Vergleichsstudien.",
     "affiliate_url": null,
     "affiliate_provider": null

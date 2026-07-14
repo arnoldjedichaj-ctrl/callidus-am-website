@@ -826,5 +826,357 @@
         "note": "Nebenwirkungen, Leberberichte und Interaktionen mit Blutverduennern beachten."
       }
     ]
+  },
+  {
+    "slug": "cordyceps-normalos-wissen",
+    "title": "Cordyceps einfach erklärt: Energie, Ausdauer und was Studien wirklich zeigen",
+    "subtitle": "Cordyceps ist kein einzelner Zauberpilz, sondern ein Name für verschiedene Pilze und Extrakte. Das Video erklärt verständlich, was Produkte enthalten können, warum die Ausdauerstudien gemischt sind und worauf man bei Qualität und Sicherheit achten sollte.",
+    "category": "geist-stress-schlaf",
+    "supplementCardId": "cordyceps",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:09 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/cordyceps-normalos-thumbnail.png",
+    "summary": "Cordyceps ist kein einzelner Zauberpilz, sondern ein Name für verschiedene Pilze und Extrakte. Das Video erklärt verständlich, was Produkte enthalten können, warum die Ausdauerstudien gemischt sind und worauf man bei Qualität und Sicherheit achten sollte.",
+    "benefits": [
+      "Cordyceps-Produkte werden vor allem für Energie und Ausdauer beworben.",
+      "Kleine Humanstudien zeigen einzelne Signale, aber keine verlässliche allgemeine Leistungssteigerung.",
+      "Die genaue Pilzart und der verwendete Extrakt entscheiden darüber, ob Studien überhaupt vergleichbar sind."
+    ],
+    "risks": [
+      "Mögliche Wechselwirkungen mit Blutverdünnern und blutzuckersenkenden Medikamenten beachten.",
+      "Bei Autoimmunerkrankungen, Immunsuppression, Schwangerschaft oder Operationen fachlich abklären.",
+      "Wild gesammelter Cordyceps, kultivierter Cs-4 und Cordyceps militaris sind nicht dasselbe Produkt."
+    ],
+    "myths": [
+      "Mythos: Cordyceps steigert bei jedem Menschen den VO2max.",
+      "Mythos: Jeder Cordyceps-Extrakt ist mit den Studienprodukten vergleichbar.",
+      "Mythos: Ein natürlicher Pilz hat keine Wechselwirkungen."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "cordyceps",
+      "cordyceps militaris",
+      "cs-4",
+      "vitalpilz",
+      "ausdauer",
+      "energie",
+      "vo2max"
+    ],
+    "sources": [
+      {
+        "title": "Effect of Cs-4 (Cordyceps sinensis) on exercise performance in healthy older subjects",
+        "publisher": "Journal of Alternative and Complementary Medicine / PubMed",
+        "type": "Kleine randomisierte Studie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20804368/",
+        "note": "Kleine Studie mit 20 Personen: Belastungsschwellen verbesserten sich, der VO2max nicht."
+      },
+      {
+        "title": "Cordyceps Sinensis supplementation does not improve endurance exercise performance",
+        "publisher": "International Journal of Sport Nutrition and Exercise Metabolism / PubMed",
+        "type": "Randomisierte kontrollierte Studie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15118196/",
+        "note": "Bei 22 trainierten Radfahrern zeigte Cs-4 keinen Vorteil für Ausdauer oder Sauerstoffaufnahme."
+      },
+      {
+        "title": "Cordyceps militaris Improves Tolerance to High-Intensity Exercise After Acute and Chronic Supplementation",
+        "publisher": "High Altitude Medicine & Biology / PubMed",
+        "type": "Randomisierte Pilotstudie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27408987/",
+        "note": "Nach einer Woche kein Effekt; das positive Drei-Wochen-Signal stammt aus einer sehr kleinen Teilgruppe."
+      },
+      {
+        "title": "Cordyceps",
+        "publisher": "Memorial Sloan Kettering Cancer Center",
+        "type": "Klinische Sicherheitsübersicht",
+        "url": "https://www.mskcc.org/cancer-care/integrative-medicine/herbs/cordyceps",
+        "note": "Klinische Übersicht zu Produktarten, begrenzter Human-Evidenz und möglichen Wechselwirkungen."
+      }
+    ]
+  },
+  {
+    "slug": "kurkuma-normalos-wissen",
+    "title": "Kurkuma einfach erklärt: Curcumin, Gelenke und warum mehr Aufnahme auch mehr Risiko bedeuten kann",
+    "subtitle": "Kurkuma ist ein Gewürz, Curcumin nur eine seiner Stoffgruppen. Das Video erklärt die Studien zu Knieschmerzen, das Aufnahmeproblem, warum Piperin nicht zwingend nötig ist und welche seltenen, aber wichtigen Leberrisiken Supplemente haben können.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "kurkuma",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:08 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/kurkuma-normalos-thumbnail.png",
+    "summary": "Kurkuma ist ein Gewürz, Curcumin nur eine seiner Stoffgruppen. Das Video erklärt die Studien zu Knieschmerzen, das Aufnahmeproblem, warum Piperin nicht zwingend nötig ist und welche seltenen, aber wichtigen Leberrisiken Supplemente haben können.",
+    "benefits": [
+      "Curcumin ist eine Stoffgruppe aus Kurkuma und wird vor allem bei Entzündungs- und Gelenkthemen untersucht.",
+      "Studien bei Kniearthrose zeigen mögliche kleine Verbesserungen bei Schmerz und Funktion.",
+      "Kurkuma als Gewürz ist nicht mit hoch konzentrierten, aufnahmeverbesserten Extrakten gleichzusetzen."
+    ],
+    "risks": [
+      "Hoch konzentrierte Curcumin-Produkte können in seltenen Fällen die Leber schädigen.",
+      "Bei Gallenproblemen, Blutverdünnern, Schwangerschaft, Lebererkrankungen oder Medikamenten fachlich abklären.",
+      "Piperin kann die Aufnahme erhöhen, aber auch die Verarbeitung von Medikamenten beeinflussen."
+    ],
+    "myths": [
+      "Mythos: Curcumin löscht Entzündungen im ganzen Körper.",
+      "Mythos: Schwarzer Pfeffer ist für jedes Curcumin-Produkt zwingend nötig.",
+      "Mythos: Eine bessere Aufnahme bedeutet automatisch ein sichereres Produkt."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "kurkuma",
+      "curcumin",
+      "gelenke",
+      "kniearthrose",
+      "piperin",
+      "entzündung",
+      "leber"
+    ],
+    "sources": [
+      {
+        "title": "Turmeric",
+        "publisher": "National Center for Complementary and Integrative Health",
+        "type": "Behördenübersicht",
+        "url": "https://www.nccih.nih.gov/health/turmeric",
+        "note": "Behördenübersicht zu Curcumin, begrenzter Evidenz, Produktunterschieden und Sicherheit."
+      },
+      {
+        "title": "Effectiveness of Curcuma longa Extract for the Treatment of Symptoms and Effusion-Synovitis of Knee Osteoarthritis",
+        "publisher": "Annals of Internal Medicine / PubMed",
+        "type": "Randomisierte klinische Studie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32926799/",
+        "note": "Bei 70 Personen sank der Knieschmerz etwas; strukturelle Gelenkmarker verbesserten sich nicht."
+      },
+      {
+        "title": "Effectiveness of Curcuma longa extract versus placebo for the treatment of knee osteoarthritis",
+        "publisher": "Phytotherapy Research / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34216044/",
+        "note": "Mögliche Vorteile bei Schmerz und Funktion, aber heterogene Produkte und Studien begrenzen die Aussage."
+      },
+      {
+        "title": "Medicines containing turmeric or curcumin - risk of liver injury",
+        "publisher": "Therapeutic Goods Administration",
+        "type": "Behördlicher Sicherheitshinweis",
+        "url": "https://www.tga.gov.au/safety/safety-alerts/medicines-containing-turmeric-or-curcumin-risk-liver-injury",
+        "note": "Seltene Leberverletzungen betreffen medizinische Dosen und aufnahmeverbesserte Produkte, nicht übliche Gewürzmengen."
+      }
+    ]
+  },
+  {
+    "slug": "kreatin-normalos-wissen",
+    "title": "Kreatin einfach erklärt: Schnellenergie, Muskeln, Gehirn und der Nieren-Mythos",
+    "subtitle": "Kreatin ist ein körpereigener Stoff und eines der bestuntersuchten Sport-Supplemente. Das Video erklärt den schnellen Energiepuffer, realistische Vorteile, Wassergewicht, Gehirn-Forschung und warum ein höherer Kreatininwert nicht automatisch einen Nierenschaden bedeutet.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "kreatin",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:08 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/kreatin-normalos-thumbnail.png",
+    "summary": "Kreatin ist ein körpereigener Stoff und eines der bestuntersuchten Sport-Supplemente. Das Video erklärt den schnellen Energiepuffer, realistische Vorteile, Wassergewicht, Gehirn-Forschung und warum ein höherer Kreatininwert nicht automatisch einen Nierenschaden bedeutet.",
+    "benefits": [
+      "Kreatin hilft, bei kurzen intensiven Belastungen schnell Energie bereitzustellen.",
+      "Mit Krafttraining verbessert Kreatin häufig Kraft und Trainingsleistung; Reaktionen unterscheiden sich.",
+      "Für Gedächtnis und ältere Menschen gibt es interessante Signale, aber Kreatin ist keine allgemeine Gehirn-Wunderpille."
+    ],
+    "risks": [
+      "Wasser wird vor allem im Muskel gebunden; dadurch kann das Körpergewicht anfangs steigen.",
+      "Kreatin kann den Laborwert Kreatinin erhöhen, ohne dass die Filterleistung der Nieren sinkt.",
+      "Bei Nierenerkrankungen, Schwangerschaft, Medikamenten oder unklaren Laborwerten fachlich abklären."
+    ],
+    "myths": [
+      "Mythos: Kreatin ist ein Steroid.",
+      "Mythos: Kreatin macht gesunde Nieren automatisch kaputt.",
+      "Mythos: Teure Kreatin-Formen wirken besser als Monohydrat."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "kreatin",
+      "creatine",
+      "kreatin monohydrat",
+      "kraft",
+      "muskel",
+      "atp",
+      "niere",
+      "gedächtnis"
+    ],
+    "sources": [
+      {
+        "title": "Dietary Supplements for Exercise and Athletic Performance - Creatine",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/",
+        "note": "Übersicht zu Wirkung, typischen Dosierungen, Sicherheit und den Grenzen bei Ausdauersport."
+      },
+      {
+        "title": "Effects of Creatine Supplementation and Resistance Training on Muscle Strength Gains in Adults Under 50 Years of Age",
+        "publisher": "Nutrients / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39519498/",
+        "note": "Meta-Analyse randomisierter Studien zu zusätzlichem Kraftgewinn durch Kreatin und Training."
+      },
+      {
+        "title": "Effects of creatine supplementation on memory in healthy individuals",
+        "publisher": "Nutrition Reviews / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35984306/",
+        "note": "Kleines mittleres Gedächtnissignal, besonders bei älteren Teilnehmenden; Studien waren heterogen."
+      },
+      {
+        "title": "Effect of creatine supplementation on kidney function",
+        "publisher": "BMC Nephrology / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41199218/",
+        "note": "Kreatin kann Kreatinin leicht erhöhen, ohne in den untersuchten Dosen die Filterleistung zu verschlechtern."
+      }
+    ]
+  },
+  {
+    "slug": "l-glutamin-normalos-wissen",
+    "title": "L-Glutamin einfach erklärt: Darmbarriere, Regeneration und warum gesunde Menschen meist genug bilden",
+    "subtitle": "Glutamin ist eine Aminosäure, die der Körper normalerweise selbst bildet. Das Video erklärt ihre Rolle für Darm und Immunsystem, warum Klinikdaten nicht auf Fitnesspulver übertragbar sind und weshalb die Belege für Muskelaufbau und eine pauschale Leaky-Gut-Lösung schwach sind.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "l-glutamin",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:18 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/l-glutamin-normalos-thumbnail.png",
+    "summary": "Glutamin ist eine Aminosäure, die der Körper normalerweise selbst bildet. Das Video erklärt ihre Rolle für Darm und Immunsystem, warum Klinikdaten nicht auf Fitnesspulver übertragbar sind und weshalb die Belege für Muskelaufbau und eine pauschale Leaky-Gut-Lösung schwach sind.",
+    "benefits": [
+      "Glutamin ist eine wichtige Aminosäure und Energiequelle für bestimmte Darm- und Immunzellen.",
+      "Unter schwerem körperlichem Stress kann Glutamin bedingt notwendig werden; das betrifft vor allem klinische Situationen.",
+      "Für einzelne klar definierte Patientengruppen gibt es positive Studien, die nicht auf alle Menschen übertragbar sind."
+    ],
+    "risks": [
+      "Für Muskelaufbau, Leistung und Regeneration gesunder Sportler ist ein klarer Zusatznutzen nicht belegt.",
+      "Die Gesamtanalyse zur Darmdurchlässigkeit zeigt keinen verlässlichen pauschalen Effekt.",
+      "Hohe Mengen können Magen-Darm-Beschwerden verursachen; bei schweren Erkrankungen nur fachlich begleitet einsetzen."
+    ],
+    "myths": [
+      "Mythos: Glutamin baut bei jedem Menschen eine undichte Darmbarriere wieder auf.",
+      "Mythos: Weil Muskeln viel Glutamin enthalten, baut Glutaminpulver automatisch Muskeln auf.",
+      "Mythos: Die Verwendung auf Intensivstationen beweist einen Nutzen für gesunde Sportler."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "l-glutamin",
+      "glutamin",
+      "aminosäure",
+      "darmbarriere",
+      "leaky gut",
+      "regeneration",
+      "immunsystem"
+    ],
+    "sources": [
+      {
+        "title": "Dietary Supplements for Exercise and Athletic Performance - Glutamine",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/",
+        "note": "Für Sportleistung, Muskelaufbau und allgemeine Regeneration besteht wenig Forschungsunterstützung."
+      },
+      {
+        "title": "Dietary Supplements for Immune Function and Infectious Diseases - Glutamine",
+        "publisher": "NIH Office of Dietary Supplements",
+        "type": "Behördenübersicht",
+        "url": "https://ods.od.nih.gov/factsheets/ImmuneFunction-HealthProfessional/",
+        "note": "Glutamin ist normalerweise nicht essenziell, kann unter extremem physiologischem Stress aber bedingt essenziell werden."
+      },
+      {
+        "title": "The effect of glutamine supplementation on athletic performance, body composition, and immune function",
+        "publisher": "Clinical Nutrition / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29784526/",
+        "note": "Insgesamt kein klarer Effekt auf aerobe Leistung, Körperzusammensetzung oder die untersuchten Immunmarker."
+      },
+      {
+        "title": "A systematic review and meta-analysis of clinical trials on the effects of glutamine supplementation on gut permeability in adults",
+        "publisher": "Amino Acids / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39397201/",
+        "note": "In der Gesamtanalyse kein signifikanter Effekt; mögliche Signale betrafen spezielle Dosen und Patientengruppen."
+      }
+    ]
+  },
+  {
+    "slug": "kollagen-normalos-wissen",
+    "title": "Kollagen einfach erklärt: Haut, Gelenke und warum Pulver nicht direkt zum Knie wandert",
+    "subtitle": "Kollagen ist ein wichtiges Strukturprotein. Das Video erklärt Hydrolysat und Peptide, trennt Haut- von Gelenkstudien, räumt mit dem Direkttransport-Mythos auf und zeigt, wann ein Test sinnvoll sein kann und welche Grenzen bleiben.",
+    "category": "koerper-ernaehrung",
+    "supplementCardId": "kollagen",
+    "topicType": "Supplement-Deep-Dive",
+    "status": "planned",
+    "statusLabel": "Video folgt",
+    "youtubeId": "",
+    "duration": "3:20 Min.",
+    "format": "16:9",
+    "thumbnail": "/assets/media/kollagen-normalos-thumbnail.png",
+    "summary": "Kollagen ist ein wichtiges Strukturprotein. Das Video erklärt Hydrolysat und Peptide, trennt Haut- von Gelenkstudien, räumt mit dem Direkttransport-Mythos auf und zeigt, wann ein Test sinnvoll sein kann und welche Grenzen bleiben.",
+    "benefits": [
+      "Kollagen ist ein wichtiges Strukturprotein in Haut, Sehnen, Knochen und Knorpel.",
+      "Meta-Analysen zeigen mögliche kleine Verbesserungen von Hautfeuchtigkeit und Elastizität.",
+      "Bei Kniearthrose gibt es Signale für weniger Schmerz und bessere Funktion, die Studienqualität ist aber uneinheitlich."
+    ],
+    "risks": [
+      "Kollagen wird verdaut und nicht als fertige Faser direkt in Haut oder Knie transportiert.",
+      "Produkte unterscheiden sich nach Tierquelle, Peptidform und Ziel; Allergien und Ernährungsform beachten.",
+      "Kollagen ist kein vollständiger Ersatz für hochwertiges Nahrungsprotein und keine Therapie für Gelenkerkrankungen."
+    ],
+    "myths": [
+      "Mythos: Kollagenpulver wandert direkt zum schmerzenden Gelenk.",
+      "Mythos: Mehr Kollagen macht Falten sichtbar rückgängig.",
+      "Mythos: Vitamin C muss zwingend gleichzeitig mit dem Pulver eingenommen werden."
+    ],
+    "relatedArticleSlugs": [],
+    "keywords": [
+      "kollagen",
+      "collagen",
+      "kollagen hydrolysat",
+      "peptide",
+      "haut",
+      "gelenke",
+      "kniearthrose",
+      "protein"
+    ],
+    "sources": [
+      {
+        "title": "Effects of Oral Collagen for Skin Anti-Aging",
+        "publisher": "Nutrients / PubMed",
+        "type": "Systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37432180/",
+        "note": "Positive mittlere Hautsignale, aber Unterschiede zwischen Produkten und mögliche Verzerrungen begrenzen die Sicherheit."
+      },
+      {
+        "title": "Effect of collagen supplementation on knee osteoarthritis",
+        "publisher": "Clinical and Experimental Rheumatology / PubMed",
+        "type": "Aktualisierte systematische Übersicht und Meta-Analyse",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39212129/",
+        "note": "Mögliche Vorteile für Schmerz und Funktion, aber große Unterschiede zwischen den Studien."
+      },
+      {
+        "title": "Analgesic efficacy of collagen peptide in knee osteoarthritis",
+        "publisher": "Journal of Orthopaedic Surgery and Research / PubMed",
+        "type": "Meta-Analyse randomisierter Studien",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37717022/",
+        "note": "Schmerzsignal bei 507 Personen, aber alle eingeschlossenen Studien wurden als hohes Bias-Risiko bewertet."
+      },
+      {
+        "title": "Oral Intake of Low-Molecular-Weight Collagen Peptide Improves Hydration, Elasticity, and Wrinkling in Human Skin",
+        "publisher": "Nutrients / PubMed",
+        "type": "Randomisierte kontrollierte Studie",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29949889/",
+        "note": "Bei 64 Personen zeigten sich nach zwölf Wochen einige Hautverbesserungen; Ergebnisse gelten für das untersuchte Produkt."
+      }
+    ]
   }
 ]
