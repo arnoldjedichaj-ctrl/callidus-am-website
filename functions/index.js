@@ -622,6 +622,30 @@ function collectChatSources(entries) {
   }).slice(0, 8);
 }
 
+function directVideoAnswer(message, entries) {
+  const wantsVideo = searchTokens(message)
+    .some((token) => ["video", "videos", "film", "filme", "youtube"].includes(token));
+  if (!wantsVideo) return null;
+
+  for (const entry of entries) {
+    const match = String(entry.text || "").match(
+      /Passendes Video:\s*(.+?)\.\s*Status:\s*Video ansehen\.\s*YouTube-ID:\s*([A-Za-z0-9_-]{11})\./i,
+    );
+    if (!match) continue;
+    const [, title, youtubeId] = match;
+    return {
+      answer: `Hier ist das passende Callidus-Video: „${title}“.`,
+      source: {
+        title: `Video: ${title}`,
+        url: `https://youtu.be/${youtubeId}`,
+        type: "Video",
+      },
+    };
+  }
+
+  return null;
+}
+
 function sanitizeChatHistory(history) {
   return ensureArray(history).slice(-6).map((item) => ({
     role: cleanEnum(item.role, ["user", "assistant"], "user"),
@@ -1546,6 +1570,16 @@ exports.askCallidus = onCall(
       return {
         answer: fallbackChatAnswer(entries),
         sources,
+        safetyNotice,
+        provider: "retrieval",
+      };
+    }
+
+    const videoAnswer = directVideoAnswer(message, entries);
+    if (videoAnswer) {
+      return {
+        answer: videoAnswer.answer,
+        sources: [videoAnswer.source, ...sources].slice(0, 8),
         safetyNotice,
         provider: "retrieval",
       };
