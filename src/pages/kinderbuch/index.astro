@@ -219,6 +219,37 @@ const redemptionBooks = buecher.map((buch) => ({
     </div>
   </section>
 
+  <!-- HOERGESCHICHTE BAND 4 -->
+  <section class="section" id="hoergeschichte">
+    <div class="container">
+      <div class="kb-audio-feature blue" data-reveal>
+        <img
+          src="/assets/media/kinderbuch-band4-scenes/web/b4-s12-gute-nacht-geschichte.jpg"
+          alt="Noah liegt mit Nino, dem Nachtfreund, in seinem gemütlichen Zimmer"
+          width="640"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="kb-audio-copy">
+          <p class="eyebrow">Gratis Hörgeschichte zu Band 4</p>
+          <h2>Noahs Schlaf-Akku</h2>
+          <p>
+            Noah möchte seinen Bauklotzturm unbedingt noch fertig bauen. Doch sein Kopf fährt schon im Kreis.
+            Mit Mira, Calli und Nino findet er einen guten Parkplatz für seine Idee und entdeckt, wie sein
+            Schlaf-Akku neue Kraft für morgen sammelt.
+          </p>
+          <p class="kb-audio-meta">Etwa 5 Minuten · Für Kinder ab 5 Jahren</p>
+          <audio class="kb-audio-player" controls preload="metadata">
+            <source src="/audio/kinderbuch/noahs-schlaf-akku.mp3" type="audio/mpeg" />
+            Dein Browser kann diese Hörgeschichte leider nicht abspielen.
+          </audio>
+          <p class="kb-audio-note">Die Stimmen von Noah, Mira, Calli und Nino sind synthetisch erzeugte Stimmen für diese fiktiven Figuren.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WAS DIE BÜCHER BESONDERS MACHT -->
   <section class="section">
     <div class="container">
@@ -494,6 +525,32 @@ const redemptionBooks = buecher.map((buch) => ({
   .kb-buybar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin-top: 1rem; }
   .kb-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); margin-right: 0.2rem; }
   .kb-buy-note { margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7; }
+  .kb-audio-feature {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1fr);
+    gap: clamp(1.2rem, 3vw, 2rem);
+    align-items: center;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border-top: 4px solid var(--blue);
+    border-radius: 8px;
+    background: var(--bg-soft);
+    box-shadow: 0 18px 42px rgba(var(--blue-rgb), 0.12);
+  }
+  .kb-audio-feature > img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .kb-audio-copy h2 { margin: 0.15rem 0 0.6rem; }
+  .kb-audio-copy p { max-width: 63ch; }
+  .kb-audio-meta { color: var(--blue); font-size: 0.9rem; font-weight: 800; }
+  .kb-audio-player { display: block; width: 100%; margin-top: 1rem; min-height: 44px; }
+  .kb-audio-note { margin: 0.8rem 0 0; color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+  @media (max-width: 680px) {
+    .kb-audio-feature { grid-template-columns: 1fr; }
+    .kb-audio-feature > img { max-width: 360px; }
+  }
   .kb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
   .kb-card { border-radius: 8px; padding: 1.4rem; background: var(--bg-soft); border-top: 4px solid var(--mint); }
   .kb-card.coral { border-top-color: var(--coral); }
