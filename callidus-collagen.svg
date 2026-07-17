@@ -1,0 +1,79 @@
+<svg width="1355" height="656" viewBox="0 0 1355 656" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .serif { font-family: Georgia, 'DejaVu Serif', serif; }
+      .sans  { font-family: 'Helvetica Neue', Helvetica, Arial, 'DejaVu Sans', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- base -->
+  <rect x="0" y="0" width="1355" height="656" fill="#ffffff"/>
+  <rect x="8" y="8" width="1339" height="640" rx="14" fill="none" stroke="#e2e2e2" stroke-width="2"/>
+
+  <!-- ============ LEFT COLUMN ============ -->
+  <text x="38" y="52"  class="sans" font-size="15" font-weight="bold" fill="#111">Recommended use:</text>
+  <text x="38" y="72"  class="sans" font-size="13.5" fill="#333">Mix 15 g of powder (approx. 2</text>
+  <text x="38" y="90"  class="sans" font-size="13.5" fill="#333">heaped tablespoons) with at least</text>
+  <text x="38" y="108" class="sans" font-size="13.5" fill="#333">200&#8211;250 ml of water and drink daily.</text>
+
+  <text x="38" y="148" class="sans" font-size="15" font-weight="bold" fill="#111">Ingredients:</text>
+  <text x="38" y="168" class="sans" font-size="13.5" fill="#333">100% collagen hydrolysate</text>
+  <text x="38" y="186" class="sans" font-size="13.5" fill="#333">(bioactive collagen peptides type I</text>
+  <text x="38" y="204" class="sans" font-size="13.5" fill="#333">and III)</text>
+
+  <text x="38" y="244" class="sans" font-size="15" font-weight="bold" fill="#111">Warnings:</text>
+  <text x="38" y="264" class="sans" font-size="13.5" fill="#333">Food supplements are not a</text>
+  <text x="38" y="282" class="sans" font-size="13.5" fill="#333">substitute for a balanced and varied</text>
+  <text x="38" y="300" class="sans" font-size="13.5" fill="#333">diet and a healthy lifestyle. Do not</text>
+  <text x="38" y="318" class="sans" font-size="13.5" fill="#333">exceed the recommended daily</text>
+  <text x="38" y="336" class="sans" font-size="13.5" fill="#333">intake. Keep out of reach of young</text>
+  <text x="38" y="354" class="sans" font-size="13.5" fill="#333">children. Store in a cool, dry and dark</text>
+  <text x="38" y="372" class="sans" font-size="13.5" fill="#333">place.</text>
+
+  <!-- ============ RIGHT COLUMN ============ -->
+  <text x="1078" y="55" class="sans" font-size="17" font-weight="bold" fill="#111">Food supplement with</text>
+  <text x="1078" y="76" class="sans" font-size="17" font-weight="bold" fill="#111">collagen hydrolysate</text>
+
+  <text x="1078" y="113" class="sans" font-size="16" font-weight="bold" fill="#111">Daily dose: 15 g</text>
+
+  <text x="1078" y="140" class="sans" font-size="13.5" font-weight="bold" fill="#111">Nutrients</text>
+  <text x="1230" y="140" class="sans" font-size="13.5" font-weight="bold" fill="#111">per 100 g</text>
+  <line x1="1078" y1="150" x2="1317" y2="150" stroke="#111" stroke-width="1.2"/>
+
+  <g class="sans" font-size="13.5" fill="#333">
+    <text x="1078" y="169">Energy</text>            <text x="1230" y="169">1523/364kcal</text>
+    <text x="1078" y="187">Fat</text>               <text x="1230" y="187">0 g</text>
+    <text x="1078" y="205">-of which saturates</text><text x="1230" y="205">0 g</text>
+    <text x="1078" y="223">Carbohydrates</text>     <text x="1230" y="223">0 g</text>
+    <text x="1078" y="241">-of which sugars</text>  <text x="1230" y="241">0 g</text>
+    <text x="1078" y="259">Protein</text>           <text x="1230" y="259">91 g</text>
+    <text x="1078" y="277">Salt</text>              <text x="1230" y="277">0,75 g</text>
+  </g>
+
+  <!-- ============ CENTER: LOGO (callidus A&M) ============ -->
+  <g text-anchor="middle">
+    <text x="677" y="250" class="serif" font-size="66" fill="#141414" letter-spacing="1">callidus</text>
+    <text x="677" y="340" class="serif" font-size="104" font-weight="bold" fill="#141414"
+          stroke="#C2A66B" stroke-width="1.6" paint-order="stroke" letter-spacing="2">A&#38;M</text>
+  </g>
+
+  <!-- ============ CENTER BOTTOM: PRODUCT ============ -->
+  <text x="677" y="440" class="sans" font-size="52" font-weight="bold" fill="#111" text-anchor="middle">Collagen</text>
+  <text x="677" y="490" class="sans" font-size="21" font-weight="bold" fill="#111" text-anchor="middle">Collagen hydrolysate (type I &amp; III)</text>
+  <text x="677" y="516" class="sans" font-size="21" font-weight="bold" fill="#111" text-anchor="middle">from pasture-raised cattle</text>
+
+  <text x="677" y="582" class="sans" font-size="24" fill="#333" text-anchor="middle">300g</text>
+
+  <!-- ============ BOTTOM LEFT ============ -->
+  <text x="38" y="578" class="sans" font-size="15" fill="#111">20 servings: 300 g</text>
+  <text x="38" y="598" class="sans" font-size="13.5" fill="#333">Lot No. &amp; Best before:</text>
+  <text x="38" y="615" class="sans" font-size="13.5" fill="#333">See bottom of container</text>
+
+  <!-- ============ BOTTOM RIGHT ============ -->
+  <g text-anchor="end" class="sans" fill="#333" font-size="13.5">
+    <text x="1317" y="568">Your company name</text>
+    <text x="1317" y="586">Main street 1</text>
+    <text x="1317" y="604">12345 City</text>
+    <text x="1317" y="622">Country</text>
+  </g>
+</svg>

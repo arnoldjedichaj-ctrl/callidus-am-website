@@ -1,0 +1,88 @@
+<svg width="1000" height="340" viewBox="0 0 1000 340" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'DejaVu Serif', serif">
+  <defs>
+    <style>
+      .serif { font-family: Georgia, 'DejaVu Serif', serif; }
+      .sans  { font-family: 'Helvetica Neue', Helvetica, 'DejaVu Sans', sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1000" height="340" fill="#F4F6E7"/>
+  <rect x="10" y="10" width="980" height="320" fill="none" stroke="#C7D0B0" stroke-width="1"/>
+  <rect x="16" y="16" width="968" height="308" fill="none" stroke="#C2A66B" stroke-width="0.6" opacity="0.7"/>
+  <line x1="340" y1="10" x2="340" y2="330" stroke="#C7D0B0" stroke-width="1" stroke-dasharray="3 5"/>
+  <line x1="660" y1="10" x2="660" y2="330" stroke="#C7D0B0" stroke-width="1" stroke-dasharray="3 5"/>
+
+  <text x="40" y="52" class="sans" font-size="15" letter-spacing="3" fill="#2E3A28" font-weight="bold">N&#196;HRWERTE</text>
+  <line x1="40" y1="62" x2="300" y2="62" stroke="#8B9B76" stroke-width="1"/>
+  <text x="40" y="80" class="sans" font-size="10.5" fill="#55604A">pro Tagesdosis (2 Kapseln)</text>
+  <text x="40"  y="106" class="sans" font-size="9.5" letter-spacing="0.5" fill="#8B9B76">WIRKSTOFF</text>
+  <text x="230" y="106" class="sans" font-size="9.5" letter-spacing="0.5" fill="#8B9B76">MENGE</text>
+  <text x="300" y="106" class="sans" font-size="9.5" letter-spacing="0.5" fill="#8B9B76" text-anchor="end">%NRV</text>
+  <line x1="40" y1="114" x2="300" y2="114" stroke="#C7D0B0" stroke-width="0.8"/>
+  <g class="sans" font-size="11" fill="#2E3A28">
+    <text x="40" y="134">Wirkstoff 1</text><text x="230" y="134">000 mg</text><text x="300" y="134" text-anchor="end">00%</text>
+    <text x="40" y="156">Wirkstoff 2</text><text x="230" y="156">000 &#181;g</text><text x="300" y="156" text-anchor="end">00%</text>
+    <text x="40" y="178">Wirkstoff 3</text><text x="230" y="178">000 mg</text><text x="300" y="178" text-anchor="end">00%</text>
+    <text x="40" y="200">Wirkstoff 4</text><text x="230" y="200">000 mg</text><text x="300" y="200" text-anchor="end">*</text>
+  </g>
+  <line x1="40" y1="212" x2="300" y2="212" stroke="#C7D0B0" stroke-width="0.8"/>
+  <text x="40" y="228" class="sans" font-size="8.5" fill="#55604A">*NRV = Referenzmenge. * keine Angabe verf&#252;gbar.</text>
+  <text x="40" y="256" class="sans" font-size="10" letter-spacing="1" fill="#8B9B76">ZUTATEN</text>
+  <text x="40" y="272" class="sans" font-size="9.5" fill="#55604A">Zutat, Zutat, &#220;berzugsmittel</text>
+  <text x="40" y="286" class="sans" font-size="9.5" fill="#55604A">(pflanzl. Cellulose). Vegane Kapsel.</text>
+  <text x="40" y="308" class="sans" font-size="9" fill="#8B9B76" font-style="italic">Frei von Gentechnik, Laktose &amp; Gluten.</text>
+
+  <g transform="translate(500,58)">
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#8B9B76" stroke-width="1.2"/>
+    <path d="M0,14 C-14,4 -14,-14 0,-18 C14,-14 14,4 0,14 Z" fill="none" stroke="#2E3A28" stroke-width="1.4"/>
+    <line x1="0" y1="12" x2="0" y2="-14" stroke="#2E3A28" stroke-width="1"/>
+    <path d="M0,-2 L-7,-8 M0,2 L7,-4" stroke="#2E3A28" stroke-width="0.8" fill="none"/>
+  </g>
+  <text x="500" y="130" class="serif" font-size="46" fill="#2E3A28" text-anchor="middle" letter-spacing="1">callidus</text>
+  <text x="500" y="152" class="sans" font-size="13" fill="#8B9B76" text-anchor="middle" letter-spacing="8">A &#38; M</text>
+  <line x1="356" y1="168" x2="398" y2="168" stroke="#C2A66B" stroke-width="0.8"/>
+  <text x="500" y="172" class="sans" font-size="9" fill="#8B9B76" text-anchor="middle" letter-spacing="4">HEALTH INTELLIGENCE</text>
+  <line x1="602" y1="168" x2="644" y2="168" stroke="#C2A66B" stroke-width="0.8"/>
+  <text x="500" y="222" class="serif" font-size="30" fill="#2E3A28" text-anchor="middle" letter-spacing="4">PRODUKTNAME</text>
+  <text x="500" y="246" class="sans" font-size="12" fill="#55604A" text-anchor="middle" letter-spacing="2">Hochdosiert &#183; Bioverf&#252;gbar</text>
+  <text x="500" y="286" class="sans" font-size="13" fill="#2E3A28" text-anchor="middle" letter-spacing="1">120 Kapseln &#183; Nahrungserg&#228;nzungsmittel</text>
+  <g transform="translate(500,308)">
+    <rect x="-58" y="-13" width="116" height="22" rx="11" fill="none" stroke="#8B9B76" stroke-width="1"/>
+    <text x="0" y="3" class="sans" font-size="10" fill="#2E3A28" text-anchor="middle" letter-spacing="3">100% VEGAN</text>
+  </g>
+
+  <text x="686" y="52" class="sans" font-size="15" letter-spacing="3" fill="#2E3A28" font-weight="bold">VERZEHR</text>
+  <line x1="686" y1="62" x2="946" y2="62" stroke="#8B9B76" stroke-width="1"/>
+  <text x="686" y="82" class="sans" font-size="10.5" fill="#55604A">T&#228;glich 2 Kapseln mit reichlich</text>
+  <text x="686" y="97" class="sans" font-size="10.5" fill="#55604A">Fl&#252;ssigkeit zu einer Mahlzeit.</text>
+  <text x="686" y="128" class="sans" font-size="12" letter-spacing="2" fill="#8B9B76">HINWEISE</text>
+  <text x="686" y="146" class="sans" font-size="8.6" fill="#55604A">Die angegebene t&#228;gliche Verzehrmenge</text>
+  <text x="686" y="158" class="sans" font-size="8.6" fill="#55604A">nicht &#252;berschreiten. Nahrungserg&#228;nzungs-</text>
+  <text x="686" y="170" class="sans" font-size="8.6" fill="#55604A">mittel sind kein Ersatz f&#252;r eine ausge-</text>
+  <text x="686" y="182" class="sans" font-size="8.6" fill="#55604A">wogene, abwechslungsreiche Ern&#228;hrung</text>
+  <text x="686" y="194" class="sans" font-size="8.6" fill="#55604A">und gesunde Lebensweise. Au&#223;erhalb der</text>
+  <text x="686" y="206" class="sans" font-size="8.6" fill="#55604A">Reichweite von Kindern aufbewahren.</text>
+  <text x="686" y="218" class="sans" font-size="8.6" fill="#55604A">K&#252;hl &amp; trocken lagern.</text>
+  <line x1="686" y1="232" x2="946" y2="232" stroke="#C7D0B0" stroke-width="0.8"/>
+  <text x="686" y="248" class="sans" font-size="9" fill="#2E3A28">callidus A&#38;M &#183; Musterstra&#223;e 1</text>
+  <text x="686" y="260" class="sans" font-size="9" fill="#2E3A28">12345 Musterstadt &#183; callidus-am.de</text>
+  <text x="686" y="274" class="sans" font-size="8" fill="#8B9B76">Ursprungsland siehe Verpackung. Charge/MHD:</text>
+  <g transform="translate(686,286)">
+    <g fill="#2E3A28">
+      <rect x="0" y="0" width="2" height="30"/><rect x="4" y="0" width="1" height="30"/>
+      <rect x="7" y="0" width="3" height="30"/><rect x="12" y="0" width="1" height="30"/>
+      <rect x="15" y="0" width="2" height="30"/><rect x="19" y="0" width="1" height="30"/>
+      <rect x="22" y="0" width="3" height="30"/><rect x="27" y="0" width="2" height="30"/>
+      <rect x="31" y="0" width="1" height="30"/><rect x="34" y="0" width="3" height="30"/>
+      <rect x="39" y="0" width="1" height="30"/><rect x="42" y="0" width="2" height="30"/>
+      <rect x="46" y="0" width="1" height="30"/><rect x="49" y="0" width="3" height="30"/>
+      <rect x="54" y="0" width="2" height="30"/><rect x="58" y="0" width="1" height="30"/>
+    </g>
+    <text x="30" y="40" class="sans" font-size="8" fill="#55604A" text-anchor="middle">EAN 0000000 000000</text>
+  </g>
+  <g transform="translate(905,300)">
+    <circle cx="0" cy="0" r="30" fill="#8B9B76"/>
+    <circle cx="0" cy="0" r="24" fill="none" stroke="#F4F6E7" stroke-width="0.8"/>
+    <text x="0" y="-4" class="sans" font-size="9" fill="#F4F6E7" text-anchor="middle" letter-spacing="1" font-weight="bold">100%</text>
+    <text x="0" y="8" class="serif" font-size="10" fill="#F4F6E7" text-anchor="middle" letter-spacing="1">VEGAN</text>
+  </g>
+</svg>

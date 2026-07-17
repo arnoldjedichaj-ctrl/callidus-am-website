@@ -1,0 +1,274 @@
+{
+  "title": "Noahs Schlaf-Akku MVP v3",
+  "purpose": "Local-only extended audio story with intermittent original tonal atmospheres. Not integrated into the website.",
+  "duration_seconds": 314.99,
+  "duration_minutes": 5.25,
+  "voice_provider": "Gemini TTS",
+  "models": [
+    "gemini-2.5-flash-preview-tts",
+    "gemini-2.5-pro-preview-tts"
+  ],
+  "characters": {
+    "erzaehler": {
+      "voice": "Iapetus",
+      "direction": "Sprich als erwachsener maennlicher Erzaehler auf Deutsch. Normales, natuerliches Vorlesetempo, warm, klar und bildhaft. Nicht meditativ, nicht langsam und nicht werblich."
+    },
+    "noah": {
+      "voice": "Puck",
+      "direction": "Sprich als fiktive Kinderbuchfigur Noah: neugierig, ein wenig verschlafen, lebendig und jungenhaft. Nicht schrill und nicht wie ein echtes Kind geklont."
+    },
+    "mira": {
+      "voice": "Kore",
+      "direction": "Sprich als fiktive Kinderbuchfigur Mira: freundlich, klar, klug und warm. Deutlich anders als Noah, nicht wie ein echtes Kind geklont."
+    },
+    "calli": {
+      "voice": "Orus",
+      "direction": "Sprich als Calli, ein kleiner weiser Kompass. Klar, freundlich, leicht feierlich und mit Schmunzeln."
+    },
+    "nino": {
+      "voice": "Aoede",
+      "direction": "Sprich als Nino, der Nachtfreund. Weich, leise, freundlich und beruhigend, aber deutlich verstaendlich."
+    }
+  },
+  "sound_design": {
+    "approach": "Four short, generated tonal atmospheres placed only at story transitions; no continuous music bed.",
+    "cues": {
+      "0": [
+        "zimmerabend",
+        -31
+      ],
+      "14": [
+        "mondakku",
+        -29
+      ],
+      "29": [
+        "aufladen",
+        -31
+      ],
+      "39": [
+        "nachtabschluss",
+        -33
+      ]
+    }
+  },
+  "disclosure_note": "Uses synthetic TTS voices for fictional characters; no real child voice cloning.",
+  "files": {
+    "wav": "kids-hoergeschichte-schlaf-akku-mvp-v3.wav",
+    "mp3": "kids-hoergeschichte-schlaf-akku-mvp-v3.mp3",
+    "generator": "generate_kids_hoergeschichte_mvp_v3.py",
+    "segments": "kids_hoergeschichte_mvp_v3_segments",
+    "sound_effects": "kids_hoergeschichte_mvp_v3_sfx"
+  },
+  "script_segments": [
+    {
+      "speaker": "erzaehler",
+      "text": "Im Zimmer war es schon Abend. Auf Noahs Teppich stand ein hoher Bauklotzturm mit einer kleinen Luecke ganz oben. Davor kniete Noah im Schlafanzug und sah zu der Luecke hinauf.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "noah",
+      "text": "Nur noch ein Dach. Und unter dem Dach kommt ein Aufzug. Sonst kann niemand bis zur Mondterrasse fahren.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Noahs Augen wurden dabei immer schmaler. Einmal gaehnte er so gross, dass sein ganzer Turm fast mitgaehnt haette.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "mira",
+      "text": "Der Turm kann noch warten. Deine Augen machen schon die Schlafanzug-Ansage.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "noah",
+      "text": "Aber wenn ich jetzt schlafe, denke ich morgen vielleicht nicht mehr an den Aufzug.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Da sprang Calli, der kleine Kompass, auf Noahs Bettdecke. Seine rote Nadel drehte eine winzige Runde und blieb genau bei dem Wort morgen stehen.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "calli",
+      "text": "Dann geben wir dem Aufzug einen Parkplatz fuer die Nacht. Gute Ideen muessen nicht die ganze Nacht im Kreis fahren.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "noah",
+      "text": "Einen Parkplatz fuer Gedanken? Haben Gedanken denn Reifen?",
+      "pause": 0.2
+    },
+    {
+      "speaker": "mira",
+      "text": "Vielleicht sehr leise Reifen. Komm, wir malen schnell ein Schild: Morgen bauen wir den Aufzug.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Mira legte einen kleinen Zettel neben den Turm. Noah malte einen Pfeil nach oben, zwei Tueren und drei runde Knoepfe. Dann stellte er den Stift weg.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "noah",
+      "text": "Jetzt weiss der Aufzug, wo er morgen sein soll.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "In der Zimmerecke wurde es auf einmal sanft hell. Nicht wie eine grosse Lampe. Eher wie ein Mondstrahl, der einen freundlichen Besuch macht.",
+      "pause": 0.3
+    },
+    {
+      "speaker": "nino",
+      "text": "Guten Abend, Noah. Ich bin Nino. Ich habe gehoert, hier sucht jemand einen Platz fuer einen wichtigen Gedanken.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "noah",
+      "text": "Der Platz ist gefunden. Aber ich bin immer noch nicht sicher, ob ich schlafen kann.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Ueber Noahs Bett erschien ein Akku aus Mondlicht. Nur ein kleiner Balken leuchtete darin. Der Rest war dunkelblau und wartete geduldig.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "nino",
+      "text": "Das ist dein Schlaf-Akku. Tagsueber hilft er dir beim Denken, Rennen, Lachen und Bauen. Nach einem langen Tag moechte er wieder Kraft sammeln.",
+      "pause": 0.26
+    },
+    {
+      "speaker": "mira",
+      "text": "Also laedt Schlaf den Akku wieder auf?",
+      "pause": 0.2
+    },
+    {
+      "speaker": "nino",
+      "text": "Genau. Und waehrend du schlaefst, wird auch die Nachtwerkstatt aktiv. Sie sortiert Erinnerungen und macht deinen Koerper bereit fuer morgen.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "calli",
+      "text": "Die Nachtwerkstatt arbeitet leise. Niemand muss dabei wach bleiben und zugucken.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "noah",
+      "text": "Kann sie auch einen Aufzug bauen?",
+      "pause": 0.2
+    },
+    {
+      "speaker": "calli",
+      "text": "Den bauen morgen deine Haende. Aber die Nachtwerkstatt gibt ihnen neue Kraft.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Noah sah noch einmal zum Turm. Dann zog er die Decke ueber die Beine. Doch sein Kopf machte trotzdem noch kleine Hup-Hup-Runden um die Mondterrasse.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "noah",
+      "text": "Mein Kopf ist noch wach. Er denkt: Aufzug, Aufzug, Aufzug.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "nino",
+      "text": "Dann sagen wir ihm nicht: Sei sofort still. Wir sagen nur: Danke, Kopf. Der Zettel passt auf die Idee auf.",
+      "pause": 0.25
+    },
+    {
+      "speaker": "mira",
+      "text": "Und wir machen es dem Kopf jetzt ein bisschen leichter.",
+      "pause": 0.2
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Mira schob das helle Zimmerlicht aus. Nur die kleine Nachtlampe blieb an. Calli legte sich neben Noahs Kissen, und Nino hielt seine Laterne ganz tief.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "calli",
+      "text": "Erste Werkstatt-Regel: Alles wird langsam. Die Schultern duerfen schwer werden. Die Haende duerfen ausruhen.",
+      "pause": 0.26
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Noah liess seine Finger auf der Decke liegen. Sie mussten nichts mehr festhalten. Auch seine Fuesse wurden warm und still.",
+      "pause": 0.26
+    },
+    {
+      "speaker": "nino",
+      "text": "Und jetzt hoer einmal: ein Atemzug hinein, ein Atemzug hinaus. Mehr muss gerade nicht passieren.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Noah atmete ein. Dann wieder aus. Beim zweiten Mal wackelte der dunkle Akku ein wenig. Beim dritten Mal leuchtete ein weiterer Balken auf.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "noah",
+      "text": "Hat er sich gerade bewegt?",
+      "pause": 0.2
+    },
+    {
+      "speaker": "nino",
+      "text": "Ja. Der Akku weiss schon, was zu tun ist. Ruhe ist sein Startknopf.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Draussen fuhr irgendwo ein Auto vorbei und wurde leiser. Im Zimmer war es kuschelig. Der Turm war noch da. Der Zettel war noch da. Nichts Wichtiges ging verloren.",
+      "pause": 0.3
+    },
+    {
+      "speaker": "mira",
+      "text": "Morgen starten wir beim Aufzug. Ich darf doch die Knoepfe malen?",
+      "pause": 0.22
+    },
+    {
+      "speaker": "noah",
+      "text": "Ja. Aber der Mondknopf gehoert mir.",
+      "pause": 0.22
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Noah laechelte noch einmal. Dann wurde das Laecheln kleiner, weil seine Augen lieber zugehen wollten. Der dritte Balken im Mond-Akku leuchtete. Dann der vierte.",
+      "pause": 0.28
+    },
+    {
+      "speaker": "calli",
+      "text": "Siehst du? Schlaf ist keine Pause von allen tollen Dingen. Schlaf ist die Vorbereitung auf sie.",
+      "pause": 0.26
+    },
+    {
+      "speaker": "noah",
+      "text": "Dann lade ich jetzt fuer den Aufzug auf.",
+      "pause": 0.24
+    },
+    {
+      "speaker": "nino",
+      "text": "Eine sehr gute Idee. Gute Nacht, Noah. Der Schlaf-Akku laedt sich leise auf.",
+      "pause": 0.34
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Nino machte seine Laterne kleiner. Calli wurde ganz still. Mira zog die Tuere vorsichtig zu. Im Zimmer blieb der Mond auf dem Fensterbrett und der Akku leuchtete freundlich weiter.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Und waehrend Noah traeumte, machte die Nachtwerkstatt ihre ruhige Arbeit. Sie sortierte den Tag, sammelte neue Kraft und bewahrte den Aufzug sicher fuer den Morgen auf.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "erzaehler",
+      "text": "Als es draussen langsam hell wurde, lag der Zettel noch neben dem Turm. Noahs Akku war voll. Und in seinem Kopf wartete schon die erste Idee fuer einen Mondknopf.",
+      "pause": 0.75
+    }
+  ]
+}

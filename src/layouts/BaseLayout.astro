@@ -507,6 +507,24 @@ const socialIcons = {
           let callable = null;
           let suppressToggleClick = false;
           const POSITION_KEY = 'callidus-assistant-y';
+          const isAssistantMobile = () => window.matchMedia('(max-width: 640px)').matches;
+
+          const resetMobileAssistantPosition = () => {
+            if (!isAssistantMobile()) return;
+            root.style.removeProperty('top');
+            root.style.removeProperty('bottom');
+          };
+
+          const syncAssistantViewport = () => {
+            const viewport = window.visualViewport;
+            const visualHeight = viewport?.height || window.innerHeight;
+            const keyboardOffset = viewport
+              ? Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
+              : 0;
+            root.style.setProperty('--assistant-visual-height', `${Math.round(visualHeight)}px`);
+            root.style.setProperty('--assistant-keyboard-offset', `${Math.round(keyboardOffset)}px`);
+            if (!panel.hidden) messages.scrollTop = messages.scrollHeight;
+          };
 
           const sessionId = (() => {
             const existing = localStorage.getItem(SESSION_KEY);
@@ -520,7 +538,11 @@ const socialIcons = {
             panel.hidden = !open;
             toggle.setAttribute('aria-expanded', String(open));
             root.classList.toggle('is-open', open);
-            if (open) window.setTimeout(() => input?.focus(), 60);
+            if (open) {
+              resetMobileAssistantPosition();
+              syncAssistantViewport();
+              window.setTimeout(() => input?.focus(), 60);
+            }
           };
 
           const clampAssistantY = (value) => {
@@ -538,7 +560,7 @@ const socialIcons = {
           };
 
           const storedY = Number(localStorage.getItem(POSITION_KEY));
-          if (Number.isFinite(storedY)) {
+          if (Number.isFinite(storedY) && !isAssistantMobile()) {
             window.requestAnimationFrame(() => applyAssistantY(storedY, false));
           }
 
@@ -583,9 +605,23 @@ const socialIcons = {
           };
 
           setupAssistantDrag();
+          syncAssistantViewport();
+          window.visualViewport?.addEventListener('resize', syncAssistantViewport);
+          window.visualViewport?.addEventListener('scroll', syncAssistantViewport);
           window.addEventListener('resize', () => {
+            syncAssistantViewport();
+            if (isAssistantMobile() && !panel.hidden) {
+              resetMobileAssistantPosition();
+              return;
+            }
             const currentY = Number.parseFloat(root.style.top);
             if (Number.isFinite(currentY)) applyAssistantY(currentY);
+          });
+          input?.addEventListener('focus', () => {
+            resetMobileAssistantPosition();
+            syncAssistantViewport();
+            window.setTimeout(syncAssistantViewport, 90);
+            window.setTimeout(syncAssistantViewport, 320);
           });
 
           const appendMessage = ({ role, text, sources = [], safetyNotice = '', pending = false }) => {
