@@ -816,8 +816,8 @@ function valusFromSources(balance = {}, user = {}) {
 }
 
 // Einziger Spend-Topf ist balances/current.xp. Momus- und Nexus-XP fliessen beide
-// hier hinein (Momus via reconcileMomusXp/creditMomusXp). Deshalb hier NUR den Topf
-// lesen — sonst koennte in xpFromSources addiertes, aber nicht abgebuchtes Momus-XP
+// hier hinein (via reconcileEarnedXp/creditMomusXp). Deshalb hier NUR den Topf
+// lesen — sonst koennte in xpFromSources addiertes, aber nicht abgebuchtes XP
 // mehrfach in VAL umgewandelt werden.
 function xpFromSources(balance = {}, user = {}) {
   return numberValue(
@@ -826,18 +826,33 @@ function xpFromSources(balance = {}, user = {}) {
   );
 }
 
-// Wie viel gebanktes Momus-XP (user.momus_xp_total) ist noch nicht in den Spend-Topf
-// (balances/current.xp) eingeflossen? momus_xp_credited ist die Wasserstandsmarke.
-function momusCreditDelta(user = {}, balance = {}) {
+// Berechnet die noch nicht in den Spend-Topf eingeflossenen Betraege je Quelle.
+// Wasserstandsmarken: momus_xp_credited (Momus) und nexus_xp_credited (Nexus).
+// - Momus: Quelle ist user.momus_xp_total (monoton, bereits "ausgebbares" XP).
+// - Nexus: Quelle ist user.total_xp (lebenslang verdient, monoton). Beim ersten
+//   Abgleich wird nexus_xp_credited selbst-initialisiert auf den bereits im Topf
+//   liegenden Nicht-Momus-Anteil (balance.xp - momus_xp_credited), damit schon
+//   vorhandenes Nexus-XP NICHT doppelt gutgeschrieben wird.
+function earnedXpDeltas(user = {}, balance = {}) {
+  const poolXp = numberValue(balance.xp ?? balance.current_xp, 0);
+  const momusCredited = Math.max(0, numberValue(balance.momus_xp_credited, 0));
   const momusTotal = Math.max(0, numberValue(user.momus_xp_total, 0));
-  const alreadyCredited = Math.max(0, numberValue(balance.momus_xp_credited, 0));
-  return { momusTotal, alreadyCredited, delta: Math.max(0, momusTotal - alreadyCredited) };
+  const momusDelta = Math.max(0, momusTotal - momusCredited);
+
+  const nexusTotal = Math.max(0, numberValue(user.total_xp, 0));
+  const nexusInit = balance.nexus_xp_credited === undefined || balance.nexus_xp_credited === null;
+  const nexusCredited = nexusInit
+    ? Math.max(0, poolXp - momusCredited)
+    : Math.max(0, numberValue(balance.nexus_xp_credited, 0));
+  const nexusDelta = Math.max(0, nexusTotal - nexusCredited);
+
+  return { poolXp, momusTotal, momusDelta, nexusTotal, nexusDelta, nexusInit };
 }
 
-// Bucht offenes Momus-XP idempotent und transaktionssicher in balances/current.xp.
-// Die Wasserstandsmarke momus_xp_credited wird atomar mitgezogen, damit dieselben
-// Momus-XP niemals doppelt gutgeschrieben werden.
-async function reconcileMomusXp(userRef) {
+// Bucht offenes Momus- und Nexus-XP idempotent und transaktionssicher in
+// balances/current.xp. Die Wasserstandsmarken werden atomar mitgezogen, damit
+// dieselben XP niemals doppelt gutgeschrieben werden.
+async function reconcileEarnedXp(userRef) {
   const balanceRef = userRef.collection("balances").doc("current");
   return db.runTransaction(async (transaction) => {
     const [userSnap, balanceSnap] = await Promise.all([
@@ -846,23 +861,30 @@ async function reconcileMomusXp(userRef) {
     ]);
     const user = userSnap.exists ? userSnap.data() : {};
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
-    const { momusTotal, delta } = momusCreditDelta(user, balance);
-    if (delta <= 0) {
-      return { user, balance, delta: 0, momusTotal, balanceXp: numberValue(balance.xp ?? balance.current_xp, 0) };
+    const { poolXp, momusTotal, momusDelta, nexusTotal, nexusDelta, nexusInit } = earnedXpDeltas(user, balance);
+    const totalDelta = momusDelta + nexusDelta;
+
+    // Nichts gutzuschreiben UND Marken bereits gesetzt -> No-op.
+    if (totalDelta <= 0 && !nexusInit) {
+      return { user, balance, momusDelta: 0, nexusDelta: 0, momusTotal, nexusTotal, balanceXp: poolXp };
     }
-    const currentXp = numberValue(balance.xp ?? balance.current_xp, 0);
-    const newXp = currentXp + delta;
-    transaction.set(balanceRef, {
+
+    const newXp = poolXp + totalDelta;
+    const patch = {
       xp: newXp,
       current_xp: newXp,
       momus_xp_credited: momusTotal,
+      nexus_xp_credited: nexusTotal,
       updated_at: FieldValue.serverTimestamp(),
-    }, { merge: true });
+    };
+    transaction.set(balanceRef, patch, { merge: true });
     return {
       user,
-      balance: { ...balance, xp: newXp, current_xp: newXp, momus_xp_credited: momusTotal },
-      delta,
+      balance: { ...balance, ...patch },
+      momusDelta,
+      nexusDelta,
       momusTotal,
+      nexusTotal,
       balanceXp: newXp,
     };
   });
@@ -1088,8 +1110,8 @@ exports.getValusBalance = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const userRef = db.collection("users").doc(uid);
-    // Offenes Momus-XP zuerst sicher in den Spend-Topf abgleichen, dann anzeigen.
-    const { user, balance } = await reconcileMomusXp(userRef);
+    // Offenes Momus- und Nexus-XP zuerst sicher in den Spend-Topf abgleichen, dann anzeigen.
+    const { user, balance } = await reconcileEarnedXp(userRef);
     const monthSnap = await userRef.collection("valus_conversions").doc(monthKey()).get();
     const convertedThisMonth = numberValue(monthSnap.data()?.valus, 0);
     const normalizedBalance = publicBalance(balance, user);
@@ -1177,6 +1199,10 @@ exports.convertNexusXpToValus = onCall(
     const conversionRef = userRef.collection("valus_conversions").doc(monthKey());
     const ledgerRef = userRef.collection("valus_ledger").doc();
 
+    // Offenes Momus-/Nexus-XP zuerst sicher in den Spend-Topf abgleichen, damit auch
+    // frisch verdientes XP umgewandelt werden kann (setzt die Wasserstandsmarken).
+    await reconcileEarnedXp(userRef);
+
     const result = await db.runTransaction(async (transaction) => {
       const [userSnap, balanceSnap, conversionSnap] = await Promise.all([
         transaction.get(userRef),
@@ -1184,15 +1210,7 @@ exports.convertNexusXpToValus = onCall(
         transaction.get(conversionRef),
       ]);
       const user = userSnap.exists ? userSnap.data() : {};
-      const rawBalance = balanceSnap.exists ? balanceSnap.data() : {};
-      // Offenes Momus-XP innerhalb derselben Transaktion in den Topf falten, damit
-      // auch Momus-XP umgewandelt werden kann. momus_xp_credited wird unten atomar
-      // mitgeschrieben, sodass keine Doppelzaehlung entsteht.
-      const { momusTotal, delta: momusDelta } = momusCreditDelta(user, rawBalance);
-      const foldedXp = numberValue(rawBalance.xp ?? rawBalance.current_xp, 0) + momusDelta;
-      const balance = momusDelta > 0
-        ? { ...rawBalance, xp: foldedXp, current_xp: foldedXp, momus_xp_credited: momusTotal }
-        : rawBalance;
+      const balance = balanceSnap.exists ? balanceSnap.data() : {};
       const availableXp = xpFromSources(balance, user);
       const alreadyConverted = numberValue(conversionSnap.data()?.valus, 0);
       const remainingValus = MONTHLY_VALUS_LIMIT - alreadyConverted;
@@ -1206,22 +1224,19 @@ exports.convertNexusXpToValus = onCall(
 
       const nextXp = availableXp - xpAmount;
       const nextValus = valusFromSources(balance, user) + valusAmount;
+      // Nur den Spend-Topf (balances/current) veraendern. user.current_xp NICHT
+      // anfassen — das ist der Nexus-Level-Fortschritt und gehoert der Nexus-App.
       const balancePayload = {
         valus: nextValus,
         val: nextValus,
         xp: nextXp,
         current_xp: nextXp,
-        momus_xp_credited: momusTotal,
         xp_source: source,
         valus_legacy_migrated: true,
         updated_at: FieldValue.serverTimestamp(),
       };
 
       transaction.set(balanceRef, balancePayload, { merge: true });
-      transaction.set(userRef, {
-        current_xp: nextXp,
-        updated_at: FieldValue.serverTimestamp(),
-      }, { merge: true });
       transaction.set(conversionRef, {
         source,
         valus: FieldValue.increment(valusAmount),
@@ -1272,8 +1287,8 @@ exports.creditMomusXp = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const userRef = db.collection("users").doc(uid);
-    const { delta, momusTotal, balanceXp } = await reconcileMomusXp(userRef);
-    return { credited: delta, momusTotal, balanceXp };
+    const { momusDelta, momusTotal, balanceXp } = await reconcileEarnedXp(userRef);
+    return { credited: momusDelta, momusTotal, balanceXp };
   },
 );
 
@@ -1550,16 +1565,14 @@ async function settleRedemptionPaid(code, ipn) {
     const nextXp = availableXp - settledXp;
     const nextValus = Math.round((availableValus - settledValus) * CENTS_PER_EURO) / CENTS_PER_EURO;
 
+    // Nur den Spend-Topf (balances/current) veraendern. user.current_xp NICHT
+    // anfassen — das ist der Nexus-Level-Fortschritt und gehoert der Nexus-App.
     transaction.set(balanceRef, {
       valus: nextValus,
       val: nextValus,
       xp: nextXp,
       current_xp: nextXp,
       valus_legacy_migrated: true,
-      updated_at: FieldValue.serverTimestamp(),
-    }, { merge: true });
-    transaction.set(userRef, {
-      current_xp: nextXp,
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
     transaction.set(ledgerRef, {
@@ -1625,16 +1638,14 @@ async function settleRedemptionReversal(code, ipn, event) {
     const nextXp = xpFromSources(balance, user) + refundXp;
     const nextValus = Math.round((valusFromSources(balance, user) + refundValus) * CENTS_PER_EURO) / CENTS_PER_EURO;
 
+    // Nur den Spend-Topf (balances/current) veraendern. user.current_xp NICHT
+    // anfassen — das ist der Nexus-Level-Fortschritt und gehoert der Nexus-App.
     transaction.set(balanceRef, {
       valus: nextValus,
       val: nextValus,
       xp: nextXp,
       current_xp: nextXp,
       valus_legacy_migrated: true,
-      updated_at: FieldValue.serverTimestamp(),
-    }, { merge: true });
-    transaction.set(userRef, {
-      current_xp: nextXp,
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
     transaction.set(ledgerRef, {
