@@ -815,11 +815,57 @@ function valusFromSources(balance = {}, user = {}) {
   return canonical + legacy;
 }
 
+// Einziger Spend-Topf ist balances/current.xp. Momus- und Nexus-XP fliessen beide
+// hier hinein (Momus via reconcileMomusXp/creditMomusXp). Deshalb hier NUR den Topf
+// lesen — sonst koennte in xpFromSources addiertes, aber nicht abgebuchtes Momus-XP
+// mehrfach in VAL umgewandelt werden.
 function xpFromSources(balance = {}, user = {}) {
   return numberValue(
     balance.xp ?? balance.current_xp ?? user.current_xp ?? user.total_xp,
     0,
   );
+}
+
+// Wie viel gebanktes Momus-XP (user.momus_xp_total) ist noch nicht in den Spend-Topf
+// (balances/current.xp) eingeflossen? momus_xp_credited ist die Wasserstandsmarke.
+function momusCreditDelta(user = {}, balance = {}) {
+  const momusTotal = Math.max(0, numberValue(user.momus_xp_total, 0));
+  const alreadyCredited = Math.max(0, numberValue(balance.momus_xp_credited, 0));
+  return { momusTotal, alreadyCredited, delta: Math.max(0, momusTotal - alreadyCredited) };
+}
+
+// Bucht offenes Momus-XP idempotent und transaktionssicher in balances/current.xp.
+// Die Wasserstandsmarke momus_xp_credited wird atomar mitgezogen, damit dieselben
+// Momus-XP niemals doppelt gutgeschrieben werden.
+async function reconcileMomusXp(userRef) {
+  const balanceRef = userRef.collection("balances").doc("current");
+  return db.runTransaction(async (transaction) => {
+    const [userSnap, balanceSnap] = await Promise.all([
+      transaction.get(userRef),
+      transaction.get(balanceRef),
+    ]);
+    const user = userSnap.exists ? userSnap.data() : {};
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    const { momusTotal, delta } = momusCreditDelta(user, balance);
+    if (delta <= 0) {
+      return { user, balance, delta: 0, momusTotal, balanceXp: numberValue(balance.xp ?? balance.current_xp, 0) };
+    }
+    const currentXp = numberValue(balance.xp ?? balance.current_xp, 0);
+    const newXp = currentXp + delta;
+    transaction.set(balanceRef, {
+      xp: newXp,
+      current_xp: newXp,
+      momus_xp_credited: momusTotal,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    return {
+      user,
+      balance: { ...balance, xp: newXp, current_xp: newXp, momus_xp_credited: momusTotal },
+      delta,
+      momusTotal,
+      balanceXp: newXp,
+    };
+  });
 }
 
 function publicBalance(balance = {}, user = {}) {
@@ -1042,13 +1088,9 @@ exports.getValusBalance = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const userRef = db.collection("users").doc(uid);
-    const [userSnap, balanceSnap, monthSnap] = await Promise.all([
-      userRef.get(),
-      userRef.collection("balances").doc("current").get(),
-      userRef.collection("valus_conversions").doc(monthKey()).get(),
-    ]);
-    const user = userSnap.exists ? userSnap.data() : {};
-    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    // Offenes Momus-XP zuerst sicher in den Spend-Topf abgleichen, dann anzeigen.
+    const { user, balance } = await reconcileMomusXp(userRef);
+    const monthSnap = await userRef.collection("valus_conversions").doc(monthKey()).get();
     const convertedThisMonth = numberValue(monthSnap.data()?.valus, 0);
     const normalizedBalance = publicBalance(balance, user);
     const canonicalValus = canonicalValusFromBalance(balance);
@@ -1111,19 +1153,19 @@ exports.convertNexusXpToValus = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const source = cleanString(request.data?.source || "nexus", 20).toLowerCase();
-    if (source !== "nexus") {
-      throw new HttpsError("failed-precondition", "Aktuell kann nur NEXUS-XP in VAL umgewandelt werden.");
+    if (source !== "nexus" && source !== "momus") {
+      throw new HttpsError("failed-precondition", "Aktuell kann nur NEXUS- oder Momus-XP in VAL umgewandelt werden.");
     }
 
     const xpAmount = Number.parseInt(request.data?.xpAmount, 10);
     if (!Number.isFinite(xpAmount)) {
-      throw new HttpsError("invalid-argument", "Bitte NEXUS-XP-Betrag eingeben.");
+      throw new HttpsError("invalid-argument", "Bitte XP-Betrag eingeben.");
     }
     if (xpAmount < XP_PER_VALUS) {
-      throw new HttpsError("invalid-argument", `Minimum ${XP_PER_VALUS} NEXUS-XP.`);
+      throw new HttpsError("invalid-argument", `Minimum ${XP_PER_VALUS} XP.`);
     }
     if (xpAmount > XP_PER_VALUS * MONTHLY_VALUS_LIMIT) {
-      throw new HttpsError("invalid-argument", `Maximal ${XP_PER_VALUS * MONTHLY_VALUS_LIMIT} NEXUS-XP pro Monat.`);
+      throw new HttpsError("invalid-argument", `Maximal ${XP_PER_VALUS * MONTHLY_VALUS_LIMIT} XP pro Monat.`);
     }
     if (xpAmount % XP_PER_VALUS !== 0) {
       throw new HttpsError("invalid-argument", `Bitte in ${XP_PER_VALUS}-XP-Schritten umwandeln.`);
@@ -1142,7 +1184,15 @@ exports.convertNexusXpToValus = onCall(
         transaction.get(conversionRef),
       ]);
       const user = userSnap.exists ? userSnap.data() : {};
-      const balance = balanceSnap.exists ? balanceSnap.data() : {};
+      const rawBalance = balanceSnap.exists ? balanceSnap.data() : {};
+      // Offenes Momus-XP innerhalb derselben Transaktion in den Topf falten, damit
+      // auch Momus-XP umgewandelt werden kann. momus_xp_credited wird unten atomar
+      // mitgeschrieben, sodass keine Doppelzaehlung entsteht.
+      const { momusTotal, delta: momusDelta } = momusCreditDelta(user, rawBalance);
+      const foldedXp = numberValue(rawBalance.xp ?? rawBalance.current_xp, 0) + momusDelta;
+      const balance = momusDelta > 0
+        ? { ...rawBalance, xp: foldedXp, current_xp: foldedXp, momus_xp_credited: momusTotal }
+        : rawBalance;
       const availableXp = xpFromSources(balance, user);
       const alreadyConverted = numberValue(conversionSnap.data()?.valus, 0);
       const remainingValus = MONTHLY_VALUS_LIMIT - alreadyConverted;
@@ -1151,7 +1201,7 @@ exports.convertNexusXpToValus = onCall(
         throw new HttpsError("resource-exhausted", `Monatslimit erreicht. Verfuegbar sind noch ${Math.max(0, remainingValus)} VAL.`);
       }
       if (availableXp < xpAmount) {
-        throw new HttpsError("failed-precondition", `Nicht genug NEXUS-XP vorhanden. Aktuell verfuegbar: ${availableXp} XP.`);
+        throw new HttpsError("failed-precondition", `Nicht genug XP vorhanden. Aktuell verfuegbar: ${availableXp} XP.`);
       }
 
       const nextXp = availableXp - xpAmount;
@@ -1161,7 +1211,8 @@ exports.convertNexusXpToValus = onCall(
         val: nextValus,
         xp: nextXp,
         current_xp: nextXp,
-        xp_source: "nexus",
+        momus_xp_credited: momusTotal,
+        xp_source: source,
         valus_legacy_migrated: true,
         updated_at: FieldValue.serverTimestamp(),
       };
@@ -1172,17 +1223,17 @@ exports.convertNexusXpToValus = onCall(
         updated_at: FieldValue.serverTimestamp(),
       }, { merge: true });
       transaction.set(conversionRef, {
-        source: "nexus",
+        source,
         valus: FieldValue.increment(valusAmount),
         xp: FieldValue.increment(xpAmount),
         updated_at: FieldValue.serverTimestamp(),
       }, { merge: true });
       transaction.set(ledgerRef, {
-        type: "nexus_xp_conversion",
-        source: "nexus",
+        type: "xp_conversion",
+        source,
         amount: valusAmount,
         xp_amount: xpAmount,
-        description: "NEXUS-XP in VAL umgewandelt",
+        description: `${source === "momus" ? "Momus" : "NEXUS"}-XP in VAL umgewandelt`,
         created_at: FieldValue.serverTimestamp(),
       });
 
@@ -1194,7 +1245,7 @@ exports.convertNexusXpToValus = onCall(
           rate: {
             xpPerValus: XP_PER_VALUS,
             monthlyValusLimit: MONTHLY_VALUS_LIMIT,
-            source: "nexus",
+            source,
           },
         },
         convertedValus: valusAmount,
@@ -1204,6 +1255,25 @@ exports.convertNexusXpToValus = onCall(
     });
 
     return result;
+  },
+);
+
+// Wird von der Momus-App aufgerufen (MomusXpService._creditToWallet), sobald neue
+// Momus-XP gebankt wurden. Schreibt den Zuwachs seit dem letzten Kredit idempotent
+// in balances/current.xp, damit das XP-Guthaben auf der Website angezeigt und via
+// convertNexusXpToValus in VAL umgewandelt werden kann.
+exports.creditMomusXp = onCall(
+  {
+    region: "europe-west3",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const userRef = db.collection("users").doc(uid);
+    const { delta, momusTotal, balanceXp } = await reconcileMomusXp(userRef);
+    return { credited: delta, momusTotal, balanceXp };
   },
 );
 
