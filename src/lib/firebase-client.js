@@ -22,6 +22,7 @@ export const fns = getFunctions(app, 'us-central1');
 export const getValusBalance = () => httpsCallable(fns, 'getValusBalance');
 export const redeemValus = () => httpsCallable(fns, 'redeemValus');
 export const createKinderbuchRedemption = () => httpsCallable(fns, 'createKinderbuchRedemption');
+export const createKursRedemption = () => httpsCallable(fns, 'createKursRedemption');
 export const linkWalletAddress = () => httpsCallable(fns, 'linkWalletAddress');
 export const convertNexusXpToValus = () => httpsCallable(fns, 'convertNexusXpToValus');
 export const generateSportEnergyPlan = () => httpsCallable(fns, 'generateSportEnergyPlan');

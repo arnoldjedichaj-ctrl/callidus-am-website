@@ -485,10 +485,11 @@ const redemptionBooks = buecher.map((buch) => ({
           const result = await callable({ bookId: book.id, creditCents: credit });
           const data = result.data || {};
           const rest = formatEuro(data.remainingCents || 0);
-          setStatus(`Code ${data.code} wurde gespeichert. Rabattwert: ${formatEuro(data.creditCents || credit)}. Restbetrag: ${rest}. Der Code ordnet deine XP/VAL-Einlösung sicher deinem Konto zu.`, 'ok');
-          if (data.book?.checkoutUrl) {
+          const checkoutUrl = data.checkoutUrl || data.book?.checkoutUrl;
+          setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest}). Der Code wird im Digistore24-Checkout automatisch angewendet. Dein XP/VAL-Guthaben wird erst nach bestätigtem Kauf abgebucht.`, 'ok');
+          if (checkoutUrl) {
             setTimeout(() => {
-              window.open(data.book.checkoutUrl, '_blank', 'noopener');
+              window.open(checkoutUrl, '_blank', 'noopener');
             }, 900);
           }
         } catch (error) {

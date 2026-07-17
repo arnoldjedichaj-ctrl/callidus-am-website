@@ -1,4 +1,4 @@
-﻿const { onCall, HttpsError } = require("firebase-functions/v2/https");
+﻿const { onCall, onRequest, HttpsError } = require("firebase-functions/v2/https");
 const functionsV1 = require("firebase-functions/v1");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
@@ -11,6 +11,8 @@ admin.initializeApp();
 
 const db = admin.firestore();
 const geminiApiKey = defineSecret("GEMINI_API_KEY");
+const digistoreApiKey = defineSecret("DIGISTORE24_API_KEY");
+const digistoreIpnPassphrase = defineSecret("DIGISTORE24_IPN_PASSPHRASE");
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const SOURCE_BY_ID = new Map(callidusKnowledge.sources.map((source) => [source.id, source]));
 const CALLABLE_CORS = [
@@ -919,6 +921,30 @@ const KINDERBUCH_PRODUCTS = {
   },
 };
 
+const STRESS_RESET_PRODUCTS = {
+  modul4: {
+    id: "modul4",
+    title: "Stress-Reset – Modul 4",
+    productId: "digistore_643822",
+    checkoutUrl: "https://www.digistore24.com/product/643822",
+    priceCents: 2900,
+  },
+  modul5: {
+    id: "modul5",
+    title: "Stress-Reset – Modul 5",
+    productId: "digistore_645365",
+    checkoutUrl: "https://www.digistore24.com/product/645365",
+    priceCents: 2900,
+  },
+  bundle: {
+    id: "bundle",
+    title: "Stress-Reset – Kompletter 7-Tage-Kurs",
+    productId: "digistore_645388",
+    checkoutUrl: "https://www.digistore24.com/product/645388",
+    priceCents: 11600,
+  },
+};
+
 function centsFromValus(value) {
   return Math.max(0, Math.floor(numberValue(value, 0) * CENTS_PER_EURO));
 }
@@ -936,6 +962,74 @@ function parseCreditCents(data = {}, maxCents = 0) {
   const euro = Number.parseFloat(rawEuro);
   if (!Number.isFinite(euro)) return 0;
   return Math.min(maxCents, Math.max(0, Math.round(euro * CENTS_PER_EURO)));
+}
+
+const DIGISTORE_API_BASE = "https://www.digistore24.com/api/call";
+const REDEMPTION_VOUCHER_TTL_MS = 24 * 60 * 60 * 1000;
+
+function digistoreProductIdNumber(productId) {
+  return String(productId || "").replace(/\D/g, "");
+}
+
+function digistoreTimestamp(date) {
+  return date.toISOString().replace("T", " ").slice(0, 19);
+}
+
+async function digistoreApiCall(apiKey, functionName, data = {}) {
+  if (!apiKey) {
+    throw new Error("Digistore24 API-Key ist nicht konfiguriert.");
+  }
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(data)) {
+    if (value === undefined || value === null || value === "") continue;
+    params.append(`data[${key}]`, String(value));
+  }
+  const response = await fetch(`${DIGISTORE_API_BASE}/${functionName}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+      "Accept": "application/json",
+      "X-DS-API-KEY": apiKey,
+    },
+    body: params.toString(),
+  });
+  const raw = await response.text();
+  let payload = null;
+  try {
+    payload = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`Digistore24 ${functionName}: unerwartete Antwort (HTTP ${response.status}).`);
+  }
+  if (payload?.result !== "success") {
+    const message = cleanString(payload?.message || payload?.error?.message || "unbekannter Fehler", 300);
+    throw new Error(`Digistore24 ${functionName}: ${message}`);
+  }
+  return payload.data || {};
+}
+
+function digistoreIpnSignature(passphrase, params, upperCaseKeys = false) {
+  const keys = Object.keys(params)
+    .filter((key) => key !== "sha_sign" && key !== "SHASIGN")
+    .sort((a, b) => {
+      const left = a.toLowerCase();
+      const right = b.toLowerCase();
+      if (left === right) return a < b ? -1 : a > b ? 1 : 0;
+      return left < right ? -1 : 1;
+    });
+  let base = "";
+  for (const key of keys) {
+    const value = params[key];
+    if (value === undefined || value === null || value === "" || value === false) continue;
+    base += `${upperCaseKeys ? key.toUpperCase() : key}=${value}${passphrase}`;
+  }
+  return crypto.createHash("sha512").update(base, "utf8").digest("hex").toUpperCase();
+}
+
+function isValidIpnSignature(passphrase, params) {
+  const received = String(params.sha_sign || params.SHASIGN || "").trim().toUpperCase();
+  if (!passphrase || !received) return false;
+  return received === digistoreIpnSignature(passphrase, params, false)
+    || received === digistoreIpnSignature(passphrase, params, true);
 }
 
 exports.getValusBalance = onCall(
@@ -1135,104 +1229,436 @@ exports.getValusCheckoutUrl = onCall(
   },
 );
 
+// Zentrale Einloese-Logik fuer alle Produkttypen (Kinderbuch, Stress-Reset-Kurs, spaetere).
+// product = { key, title, productId, checkoutUrl, priceCents, codePrefix,
+//             redemptionCollection, productType, ledgerType }
+async function createProductRedemption(request, product) {
+  const uid = requireAuth(request);
+  const creditCents = parseCreditCents(request.data || {}, product.priceCents);
+  if (creditCents < 1) {
+    throw new HttpsError("invalid-argument", "Bitte Einloesebetrag eingeben.");
+  }
+
+  const userRef = db.collection("users").doc(uid);
+  const balanceRef = userRef.collection("balances").doc("current");
+  const redemptionCode = `${product.codePrefix}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
+  const redemptionRef = userRef.collection(product.redemptionCollection).doc(redemptionCode.toLowerCase());
+
+  const result = await db.runTransaction(async (transaction) => {
+    const [userSnap, balanceSnap] = await Promise.all([
+      transaction.get(userRef),
+      transaction.get(balanceRef),
+    ]);
+    const user = userSnap.exists ? userSnap.data() : {};
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    const availableXp = xpFromSources(balance, user);
+    const currentValus = valusFromSources(balance, user);
+    const xpCreditCents = Math.floor(availableXp / XP_PER_CENT);
+    const valusCreditCents = centsFromValus(currentValus);
+    const availableCreditCents = xpCreditCents + valusCreditCents;
+
+    if (availableCreditCents < creditCents) {
+      throw new HttpsError(
+        "failed-precondition",
+        `Nicht genug XP/VAL vorhanden. Aktuell verfuegbar: ${valusFromCents(availableCreditCents)} EUR Rabattwert.`,
+      );
+    }
+
+    const appliedXpCents = Math.min(creditCents, xpCreditCents);
+    const appliedXpAmount = appliedXpCents * XP_PER_CENT;
+    const appliedValusCents = creditCents - appliedXpCents;
+    const appliedValusAmount = valusFromCents(appliedValusCents);
+    const remainingCents = Math.max(0, product.priceCents - creditCents);
+
+    transaction.set(redemptionRef, {
+      code: redemptionCode,
+      status: "pending_purchase",
+      uid,
+      user_email: cleanString(request.auth?.token?.email, 180),
+      product_key: product.key,
+      product_title: product.title,
+      product_type: product.productType,
+      product_id: product.productId,
+      checkout_url: product.checkoutUrl,
+      price_cents: product.priceCents,
+      credit_cents: creditCents,
+      remaining_cents: remainingCents,
+      xp_equivalent: creditCents * XP_PER_CENT,
+      applied_xp_amount: appliedXpAmount,
+      applied_valus_amount: appliedValusAmount,
+      rate: {
+        xpPerValus: XP_PER_VALUS,
+        xpPerCent: XP_PER_CENT,
+        valusPerEuro: 1,
+      },
+      note: "Einloesung reserviert. Guthaben wird bei bestaetigtem Kauf bzw. manueller Freigabe verbucht.",
+      created_at: FieldValue.serverTimestamp(),
+    });
+
+    return {
+      code: redemptionCode,
+      status: "pending_purchase",
+      product: {
+        key: product.key,
+        title: product.title,
+        checkoutUrl: product.checkoutUrl,
+        priceCents: product.priceCents,
+      },
+      creditCents,
+      remainingCents,
+      xpEquivalent: creditCents * XP_PER_CENT,
+      appliedXpAmount,
+      appliedValusAmount,
+      rate: {
+        xpPerValus: XP_PER_VALUS,
+        xpPerCent: XP_PER_CENT,
+        valusPerEuro: 1,
+      },
+    };
+  });
+
+  const voucherExpiresAt = new Date(Date.now() + REDEMPTION_VOUCHER_TTL_MS);
+  try {
+    await digistoreApiCall(digistoreApiKey.value(), "createVoucher", {
+      code: redemptionCode,
+      product_ids: digistoreProductIdNumber(product.productId),
+      expires_at: digistoreTimestamp(voucherExpiresAt),
+      first_amount: (creditCents / CENTS_PER_EURO).toFixed(2),
+      currency: "EUR",
+      is_count_limited: "Y",
+      count_left: 1,
+      upgrade_policy: "valid",
+    });
+  } catch (error) {
+    logger.error("createVoucher failed", { code: redemptionCode, error: String(error?.message || error) });
+    await redemptionRef.set({
+      status: "coupon_failed",
+      coupon_error: cleanString(error?.message, 300),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    throw new HttpsError("internal", "Der Rabattcode konnte bei Digistore24 nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.");
+  }
+
+  const voucherParam = encodeURIComponent(redemptionCode);
+  const checkoutUrl = `${product.checkoutUrl}?voucher=${voucherParam}&custom=${voucherParam}`;
+
+  await Promise.all([
+    redemptionRef.set({
+      status: "coupon_created",
+      checkout_url_with_voucher: checkoutUrl,
+      voucher_expires_at: voucherExpiresAt.toISOString(),
+      coupon_created_at: FieldValue.serverTimestamp(),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true }),
+    db.collection("digistore_redemptions").doc(redemptionCode.toLowerCase()).set({
+      code: redemptionCode,
+      uid,
+      product_type: product.productType,
+      product_key: product.key,
+      product_id: product.productId,
+      redemption_collection: product.redemptionCollection,
+      ledger_type: product.ledgerType,
+      product_title: product.title,
+      credit_cents: creditCents,
+      status: "coupon_created",
+      voucher_expires_at: voucherExpiresAt.toISOString(),
+      created_at: FieldValue.serverTimestamp(),
+    }),
+  ]);
+
+  return {
+    ...result,
+    status: "coupon_created",
+    checkoutUrl,
+    // Rueckwaertskompatibel fuer die bestehende Kinderbuchseite:
+    book: result.product,
+    voucherExpiresAt: voucherExpiresAt.toISOString(),
+  };
+}
+
 exports.createKinderbuchRedemption = onCall(
   {
     region: "us-central1",
-    timeoutSeconds: 30,
+    timeoutSeconds: 60,
     memory: "256MiB",
     cors: CALLABLE_CORS,
+    secrets: [digistoreApiKey],
   },
   async (request) => {
-    const uid = requireAuth(request);
     const bookId = cleanString(request.data?.bookId, 40).toLowerCase();
     const book = KINDERBUCH_PRODUCTS[bookId];
     if (!book) {
       throw new HttpsError("invalid-argument", "Unbekannter Kinderbuch-Band.");
     }
+    return createProductRedemption(request, {
+      key: book.id,
+      title: book.title,
+      productId: book.productId,
+      checkoutUrl: book.checkoutUrl,
+      priceCents: book.priceCents,
+      codePrefix: "KB",
+      redemptionCollection: "kinderbuch_redemptions",
+      productType: "kinderbuch",
+      ledgerType: "kinderbuch_redemption",
+    });
+  },
+);
 
-    const creditCents = parseCreditCents(request.data || {}, book.priceCents);
-    if (creditCents < 1) {
-      throw new HttpsError("invalid-argument", "Bitte Einloesebetrag eingeben.");
+exports.createKursRedemption = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+    secrets: [digistoreApiKey],
+  },
+  async (request) => {
+    const moduleId = cleanString(request.data?.moduleId ?? request.data?.productKey, 40).toLowerCase();
+    const kurs = STRESS_RESET_PRODUCTS[moduleId];
+    if (!kurs) {
+      throw new HttpsError("invalid-argument", "Unbekanntes Kurs-Modul.");
+    }
+    return createProductRedemption(request, {
+      key: kurs.id,
+      title: kurs.title,
+      productId: kurs.productId,
+      checkoutUrl: kurs.checkoutUrl,
+      priceCents: kurs.priceCents,
+      codePrefix: "SR",
+      redemptionCollection: "kurs_redemptions",
+      productType: "stress_reset",
+      ledgerType: "kurs_redemption",
+    });
+  },
+);
+
+const IPN_PAID_EVENTS = new Set(["on_payment"]);
+const IPN_REVERSAL_EVENTS = new Set(["on_refund", "on_chargeback"]);
+
+function ipnRedemptionCode(params = {}) {
+  const candidates = [params.custom, params.coupon_code, params.voucher_code, params.used_coupon_code];
+  for (const candidate of candidates) {
+    const value = cleanString(candidate, 60);
+    if (/^(KB|SR)-[A-F0-9]{8}$/i.test(value)) return value.toLowerCase();
+  }
+  return "";
+}
+
+async function settleRedemptionPaid(code, ipn) {
+  const mappingRef = db.collection("digistore_redemptions").doc(code);
+  const mappingSnap = await mappingRef.get();
+  if (!mappingSnap.exists) {
+    logger.warn("IPN payment without redemption mapping", { code });
+    return { handled: false };
+  }
+  const mapping = mappingSnap.data() || {};
+  const userRef = db.collection("users").doc(mapping.uid);
+  const redemptionRef = userRef.collection(mapping.redemption_collection || "kinderbuch_redemptions").doc(code);
+  const balanceRef = userRef.collection("balances").doc("current");
+  const ledgerRef = userRef.collection("valus_ledger").doc();
+
+  return db.runTransaction(async (transaction) => {
+    const [redemptionSnap, userSnap, balanceSnap] = await Promise.all([
+      transaction.get(redemptionRef),
+      transaction.get(userRef),
+      transaction.get(balanceRef),
+    ]);
+    if (!redemptionSnap.exists) return { handled: false };
+    const redemption = redemptionSnap.data() || {};
+    if (redemption.status === "paid" || redemption.status === "refunded") {
+      return { handled: true, alreadySettled: true };
     }
 
-    const userRef = db.collection("users").doc(uid);
-    const balanceRef = userRef.collection("balances").doc("current");
-    const redemptionCode = `KB-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
-    const redemptionRef = userRef.collection("kinderbuch_redemptions").doc(redemptionCode.toLowerCase());
+    const user = userSnap.exists ? userSnap.data() : {};
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    const availableXp = xpFromSources(balance, user);
+    const availableValus = valusFromSources(balance, user);
 
-    const result = await db.runTransaction(async (transaction) => {
-      const [userSnap, balanceSnap] = await Promise.all([
-        transaction.get(userRef),
-        transaction.get(balanceRef),
-      ]);
-      const user = userSnap.exists ? userSnap.data() : {};
-      const balance = balanceSnap.exists ? balanceSnap.data() : {};
-      const availableXp = xpFromSources(balance, user);
-      const currentValus = valusFromSources(balance, user);
-      const xpCreditCents = Math.floor(availableXp / XP_PER_CENT);
-      const valusCreditCents = centsFromValus(currentValus);
-      const availableCreditCents = xpCreditCents + valusCreditCents;
+    const reservedXp = Math.max(0, numberValue(redemption.applied_xp_amount, 0));
+    const reservedValus = Math.max(0, numberValue(redemption.applied_valus_amount, 0));
+    const settledXp = Math.min(reservedXp, availableXp);
+    const settledValus = Math.min(reservedValus, availableValus);
+    const needsReview = settledXp < reservedXp || settledValus < reservedValus;
 
-      if (availableCreditCents < creditCents) {
-        throw new HttpsError(
-          "failed-precondition",
-          `Nicht genug XP/VAL vorhanden. Aktuell verfuegbar: ${valusFromCents(availableCreditCents)} EUR Rabattwert.`,
-        );
+    const nextXp = availableXp - settledXp;
+    const nextValus = Math.round((availableValus - settledValus) * CENTS_PER_EURO) / CENTS_PER_EURO;
+
+    transaction.set(balanceRef, {
+      valus: nextValus,
+      val: nextValus,
+      xp: nextXp,
+      current_xp: nextXp,
+      valus_legacy_migrated: true,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(userRef, {
+      current_xp: nextXp,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(ledgerRef, {
+      type: mapping.ledger_type || "product_redemption",
+      source: "digistore24",
+      amount: -settledValus,
+      xp_amount: -settledXp,
+      description: `Einloesung ${redemption.code || code.toUpperCase()} (${redemption.product_title || redemption.book_title || mapping.product_title || "Produkt"})`,
+      order_id: cleanString(ipn.order_id, 60),
+      created_at: FieldValue.serverTimestamp(),
+    });
+    transaction.set(redemptionRef, {
+      status: "paid",
+      needs_review: needsReview,
+      settled_xp_amount: settledXp,
+      settled_valus_amount: settledValus,
+      order_id: cleanString(ipn.order_id, 60),
+      buyer_email: cleanString(ipn.email, 180),
+      paid_at: FieldValue.serverTimestamp(),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(mappingRef, {
+      status: "paid",
+      needs_review: needsReview,
+      order_id: cleanString(ipn.order_id, 60),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    return { handled: true, settledXp, settledValus, needsReview };
+  });
+}
+
+async function settleRedemptionReversal(code, ipn, event) {
+  const mappingRef = db.collection("digistore_redemptions").doc(code);
+  const mappingSnap = await mappingRef.get();
+  if (!mappingSnap.exists) return { handled: false };
+  const mapping = mappingSnap.data() || {};
+  const userRef = db.collection("users").doc(mapping.uid);
+  const redemptionRef = userRef.collection(mapping.redemption_collection || "kinderbuch_redemptions").doc(code);
+  const balanceRef = userRef.collection("balances").doc("current");
+  const ledgerRef = userRef.collection("valus_ledger").doc();
+
+  return db.runTransaction(async (transaction) => {
+    const [redemptionSnap, userSnap, balanceSnap] = await Promise.all([
+      transaction.get(redemptionRef),
+      transaction.get(userRef),
+      transaction.get(balanceRef),
+    ]);
+    if (!redemptionSnap.exists) return { handled: false };
+    const redemption = redemptionSnap.data() || {};
+    if (redemption.status !== "paid") {
+      transaction.set(redemptionRef, {
+        [`${event}_received_at`]: FieldValue.serverTimestamp(),
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      return { handled: true, skipped: true };
+    }
+
+    const user = userSnap.exists ? userSnap.data() : {};
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    const refundXp = Math.max(0, numberValue(redemption.settled_xp_amount, 0));
+    const refundValus = Math.max(0, numberValue(redemption.settled_valus_amount, 0));
+    const nextXp = xpFromSources(balance, user) + refundXp;
+    const nextValus = Math.round((valusFromSources(balance, user) + refundValus) * CENTS_PER_EURO) / CENTS_PER_EURO;
+
+    transaction.set(balanceRef, {
+      valus: nextValus,
+      val: nextValus,
+      xp: nextXp,
+      current_xp: nextXp,
+      valus_legacy_migrated: true,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(userRef, {
+      current_xp: nextXp,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(ledgerRef, {
+      type: `${mapping.ledger_type || "product_redemption"}_refund`,
+      source: "digistore24",
+      amount: refundValus,
+      xp_amount: refundXp,
+      description: `Rueckbuchung Einloesung ${redemption.code || code.toUpperCase()} (${event})`,
+      order_id: cleanString(ipn.order_id, 60),
+      created_at: FieldValue.serverTimestamp(),
+    });
+    transaction.set(redemptionRef, {
+      status: "refunded",
+      refund_event: event,
+      refunded_at: FieldValue.serverTimestamp(),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(mappingRef, {
+      status: "refunded",
+      refund_event: event,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    return { handled: true, refundXp, refundValus };
+  });
+}
+
+exports.digistoreIpn = onRequest(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    secrets: [digistoreIpnPassphrase],
+  },
+  async (req, res) => {
+    if (req.method !== "POST") {
+      res.status(405).send("POST only");
+      return;
+    }
+    const params = req.body && typeof req.body === "object" ? req.body : {};
+
+    if (!isValidIpnSignature(digistoreIpnPassphrase.value(), params)) {
+      logger.warn("digistoreIpn: invalid signature", {
+        event: cleanString(params.event, 40),
+        order_id: cleanString(params.order_id, 60),
+      });
+      res.status(403).send("invalid sha_sign");
+      return;
+    }
+
+    const event = cleanString(params.event, 40).toLowerCase();
+    const orderId = cleanString(params.order_id, 60);
+    const eventId = crypto.createHash("sha256")
+      .update(`${orderId}|${event}|${cleanString(params.order_item_id, 60)}|${cleanString(params.transaction_id, 60)}`)
+      .digest("hex")
+      .slice(0, 48);
+
+    try {
+      await db.collection("digistore_ipn_events").doc(eventId).set({
+        event,
+        order_id: orderId,
+        product_id: cleanString(params.product_id, 40),
+        email: cleanString(params.email, 180),
+        amount: cleanString(params.amount, 40),
+        currency: cleanString(params.currency, 10),
+        redemption_code: ipnRedemptionCode(params),
+        payload: JSON.parse(JSON.stringify(params)),
+        received_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+
+      if (event === "connection_test" || event === "") {
+        res.status(200).send("OK");
+        return;
       }
 
-      const appliedXpCents = Math.min(creditCents, xpCreditCents);
-      const appliedXpAmount = appliedXpCents * XP_PER_CENT;
-      const appliedValusCents = creditCents - appliedXpCents;
-      const appliedValusAmount = valusFromCents(appliedValusCents);
-      const remainingCents = Math.max(0, book.priceCents - creditCents);
+      const code = ipnRedemptionCode(params);
+      if (code) {
+        if (IPN_PAID_EVENTS.has(event)) {
+          const outcome = await settleRedemptionPaid(code, params);
+          logger.info("digistoreIpn payment settled", { code, orderId, ...outcome });
+        } else if (IPN_REVERSAL_EVENTS.has(event)) {
+          const outcome = await settleRedemptionReversal(code, params, event);
+          logger.info("digistoreIpn reversal settled", { code, orderId, event, ...outcome });
+        }
+      }
 
-      transaction.set(redemptionRef, {
-        code: redemptionCode,
-        status: "pending_purchase",
-        uid,
-        user_email: cleanString(request.auth?.token?.email, 180),
-        book_id: book.id,
-        book_title: book.title,
-        product_id: book.productId,
-        checkout_url: book.checkoutUrl,
-        price_cents: book.priceCents,
-        credit_cents: creditCents,
-        remaining_cents: remainingCents,
-        xp_equivalent: creditCents * XP_PER_CENT,
-        applied_xp_amount: appliedXpAmount,
-        applied_valus_amount: appliedValusAmount,
-        rate: {
-          xpPerValus: XP_PER_VALUS,
-          xpPerCent: XP_PER_CENT,
-          valusPerEuro: 1,
-        },
-        note: "Kinderbuch-Einloesung reserviert. Guthaben wird bei bestaetigtem Kauf bzw. manueller Freigabe verbucht.",
-        created_at: FieldValue.serverTimestamp(),
-      });
-
-      return {
-        code: redemptionCode,
-        status: "pending_purchase",
-        book: {
-          id: book.id,
-          title: book.title,
-          checkoutUrl: book.checkoutUrl,
-          priceCents: book.priceCents,
-        },
-        creditCents,
-        remainingCents,
-        xpEquivalent: creditCents * XP_PER_CENT,
-        appliedXpAmount,
-        appliedValusAmount,
-        rate: {
-          xpPerValus: XP_PER_VALUS,
-          xpPerCent: XP_PER_CENT,
-          valusPerEuro: 1,
-        },
-      };
-    });
-
-    return result;
+      res.status(200).send("OK");
+    } catch (error) {
+      logger.error("digistoreIpn failed", { event, orderId, error: String(error?.message || error) });
+      res.status(500).send("internal error");
+    }
   },
 );
 

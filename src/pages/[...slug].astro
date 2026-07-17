@@ -285,6 +285,14 @@ const purchaseLinkForBlock = (block, index) => {
   if (/Modul\s*4/i.test(nearbyText)) return findSpecialLink('643822');
   return null;
 };
+// XP/VAL-Einloesung fuer den Stress-Reset-Kurs (Preise in Cent; muessen den
+// Digistore-Produktpreisen entsprechen, damit der Max-Rabatt korrekt begrenzt wird).
+const kursRedemptionModules = [
+  { id: 'modul4', label: 'Modul 4', preisCents: 2900 },
+  { id: 'modul5', label: 'Modul 5', preisCents: 2900 },
+  { id: 'bundle', label: 'Kompletter 7-Tage-Kurs', preisCents: 11600 },
+];
+const showKursRedemption = page.slug === 'stress-reset-kurs';
 const inlineHtml = (value = '') => value
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
@@ -467,6 +475,54 @@ const articleJsonLd = article ? {
         </div>
       ) : specialPage ? (
         <>
+          {showKursRedemption && (
+            <section class="sr-redeem" id="xp-einloesung" data-sr-redemption>
+              <div class="sr-redeem-copy">
+                <p class="eyebrow">XP &amp; VAL einlösen</p>
+                <h2>App-XP für den Stress-Reset-Kurs verwenden.</h2>
+                <p>
+                  Gesammelte XP aus den Callidus-Apps können als Rabattwert für die Kurs-Module genutzt werden.
+                  Die Umrechnung ist fest: <strong>10000 XP = 1 VAL = 1,00 €</strong>. Du kannst ein Modul
+                  vollständig oder teilweise einlösen und den Rest normal über Digistore24 bezahlen.
+                </p>
+              </div>
+              <div class="sr-redeem-app">
+                <div id="sr-redeem-loading" class="sr-redeem-state">
+                  <strong>Guthaben wird geprüft...</strong>
+                  <small>Wenn du bereits im Portal angemeldet bist, erscheint dein XP-/VAL-Stand automatisch.</small>
+                </div>
+                <div id="sr-redeem-auth" class="sr-redeem-state" hidden>
+                  <strong>Anmelden, dann einlösen</strong>
+                  <small>Deine XP und VAL werden sicher über dein Callidus-Konto geladen.</small>
+                  <a class="button primary" href="/portal/">Zum Portal-Login</a>
+                </div>
+                <div id="sr-redeem-dashboard" hidden>
+                  <div class="sr-wallet-row">
+                    <div><span>XP</span><strong id="sr-xp-balance">-</strong></div>
+                    <div><span>VAL</span><strong id="sr-val-balance">-</strong></div>
+                    <div><span>Einlösbar</span><strong id="sr-credit-balance">-</strong></div>
+                  </div>
+                  <form class="sr-redeem-form" id="sr-redeem-form">
+                    <label for="sr-redeem-module">Modul auswählen</label>
+                    <select id="sr-redeem-module">
+                      {kursRedemptionModules.map((mod) => (
+                        <option value={mod.id}>{mod.label}</option>
+                      ))}
+                    </select>
+                    <label for="sr-redeem-euro">Rabattwert einsetzen</label>
+                    <div class="sr-redeem-input-row">
+                      <input id="sr-redeem-euro" type="number" min="0.10" step="0.10" value="1.00" />
+                      <button class="button" type="button" id="sr-redeem-full">Maximal</button>
+                    </div>
+                    <div class="sr-redeem-preview" id="sr-redeem-preview"></div>
+                    <button class="button primary" type="submit" id="sr-redeem-submit">Einlösecode erstellen</button>
+                    <p class="sr-redeem-status" id="sr-redeem-status" hidden></p>
+                  </form>
+                </div>
+              </div>
+              <script id="sr-module-data" type="application/json" set:html={JSON.stringify(kursRedemptionModules)}></script>
+            </section>
+          )}
           {courseModuleCards.length > 0 && (
             <section class="course-module-grid" aria-label="Kursmodule">
               {courseModuleCards.map((module, index) => (
@@ -916,4 +972,137 @@ const articleJsonLd = article ? {
       document.addEventListener('astro:page-load', setupVideoEmbeds);
     })();
   </script>
+  <script>
+    // Stress-Reset-Kurs: XP/VAL-Einloesung. Firebase wird nur geladen, wenn das
+    // Widget wirklich auf der Seite steht (nicht auf normalen Artikelseiten).
+    const mountKursRedemption = async () => {
+      const root = document.querySelector('[data-sr-redemption]');
+      if (!root || root.dataset.ready === 'true') return;
+      root.dataset.ready = 'true';
+
+      const { onAuthStateChanged } = await import('firebase/auth');
+      const { auth, getValusBalance, createKursRedemption } = await import('../lib/firebase-client.js');
+
+      const XP_PER_CENT = 100;
+      const CENTS_PER_EURO = 100;
+      const modules = JSON.parse(document.getElementById('sr-module-data')?.textContent || '[]');
+      const state = { user: null, balance: { xp: 0, valus: 0 } };
+      const $ = (id) => document.getElementById(id);
+      const formatInt = (v) => new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 }).format(Number(v) || 0);
+      const formatEuro = (cents) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format((Number(cents) || 0) / CENTS_PER_EURO);
+      const moduleById = (id) => modules.find((m) => m.id === id) || modules[0];
+      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO) + Math.floor((Number(state.balance.xp) || 0) / XP_PER_CENT);
+      const show = (id) => ['sr-redeem-loading', 'sr-redeem-auth', 'sr-redeem-dashboard'].forEach((v) => { const el = $(v); if (el) el.hidden = v !== id; });
+      const setStatus = (message, kind = '') => { const el = $('sr-redeem-status'); if (!el) return; el.textContent = message || ''; el.hidden = !message; el.dataset.state = kind; };
+
+      const normalizeBalance = (payload = {}) => {
+        const raw = payload.balance || payload.balances || payload;
+        const user = payload.user || payload.userDoc || {};
+        const valus = Math.max(0, Number(raw.valus ?? raw.val ?? user.valus ?? user.val ?? user.valus_balance ?? 0) || 0);
+        const xp = Math.max(0, Number(raw.xp ?? raw.current_xp ?? raw.total_xp ?? user.current_xp ?? user.total_xp ?? 0) || 0);
+        return { valus, xp };
+      };
+      const selectedCreditCents = () => {
+        const euro = Number.parseFloat(String($('sr-redeem-euro')?.value || '0').replace(',', '.'));
+        return Math.max(0, Math.round((Number.isFinite(euro) ? euro : 0) * CENTS_PER_EURO));
+      };
+      const updatePreview = () => {
+        const mod = moduleById($('sr-redeem-module')?.value);
+        const preview = $('sr-redeem-preview');
+        if (!preview || !mod) return;
+        const available = creditCents();
+        if (available < 1) { preview.textContent = 'Noch kein einlösbares XP-/VAL-Guthaben sichtbar.'; return; }
+        const maxCents = Math.min(mod.preisCents || 0, available);
+        const usable = Math.min(selectedCreditCents(), maxCents);
+        const rest = Math.max(0, (mod.preisCents || 0) - usable);
+        const tooHigh = selectedCreditCents() > maxCents ? ` · maximal aktuell ${formatEuro(maxCents)}` : '';
+        preview.textContent = `${formatEuro(usable)} Rabatt = ${formatInt(usable * XP_PER_CENT)} XP · Restbetrag ${formatEuro(rest)}${tooHigh}`;
+      };
+      const updateBalanceView = () => {
+        $('sr-xp-balance').textContent = `${formatInt(state.balance.xp)} XP`;
+        $('sr-val-balance').textContent = `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: 2 }).format(state.balance.valus)} VAL`;
+        $('sr-credit-balance').textContent = formatEuro(creditCents());
+        updatePreview();
+      };
+
+      const loadBalance = async () => {
+        try {
+          const result = await getValusBalance()({});
+          state.balance = normalizeBalance(result.data || {});
+        } catch (error) {
+          console.warn('Kurs balance load failed', error);
+          state.balance = { xp: 0, valus: 0 };
+          setStatus('Guthaben konnte gerade nicht geladen werden. Bitte im Portal anmelden und erneut versuchen.', 'error');
+        }
+        updateBalanceView();
+      };
+
+      $('sr-redeem-module')?.addEventListener('change', updatePreview);
+      $('sr-redeem-euro')?.addEventListener('input', updatePreview);
+      $('sr-redeem-full')?.addEventListener('click', () => {
+        const mod = moduleById($('sr-redeem-module')?.value);
+        const maxCents = Math.min(mod.preisCents || 0, creditCents());
+        $('sr-redeem-euro').value = (maxCents / CENTS_PER_EURO).toFixed(2);
+        updatePreview();
+      });
+
+      $('sr-redeem-form')?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setStatus('');
+        if (!state.user) { show('sr-redeem-auth'); setStatus('Bitte zuerst im Portal anmelden.', 'error'); return; }
+        const mod = moduleById($('sr-redeem-module')?.value);
+        const maxCents = Math.min(mod.preisCents || 0, creditCents());
+        const credit = Math.min(selectedCreditCents(), maxCents);
+        if (!mod || credit < 1) { setStatus('Bitte ein Modul und einen einlösbaren Betrag auswählen.', 'error'); return; }
+        const button = $('sr-redeem-submit');
+        button.disabled = true; button.setAttribute('aria-busy', 'true');
+        setStatus('Rabattcode wird erstellt...', 'pending');
+        try {
+          const result = await createKursRedemption()({ moduleId: mod.id, creditCents: credit });
+          const data = result.data || {};
+          const rest = formatEuro(data.remainingCents || 0);
+          const checkoutUrl = data.checkoutUrl || data.product?.checkoutUrl;
+          setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest}). Der Code wird im Digistore24-Checkout automatisch angewendet. Dein XP/VAL-Guthaben wird erst nach bestätigtem Kauf abgebucht.`, 'ok');
+          if (checkoutUrl) setTimeout(() => window.open(checkoutUrl, '_blank', 'noopener'), 900);
+        } catch (error) {
+          setStatus(error?.message || 'Einlösung konnte nicht erstellt werden.', 'error');
+        } finally {
+          button.disabled = false; button.removeAttribute('aria-busy');
+        }
+      });
+
+      show('sr-redeem-loading');
+      onAuthStateChanged(auth, async (user) => {
+        state.user = user;
+        if (!user) { show('sr-redeem-auth'); return; }
+        show('sr-redeem-dashboard');
+        await loadBalance();
+      });
+    };
+    mountKursRedemption();
+    document.addEventListener('astro:page-load', mountKursRedemption);
+  </script>
+  <style>
+    .sr-redeem { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2.5rem 0; padding: clamp(1.4rem, 3vw, 2.2rem); border-radius: 16px; background: var(--panel, rgba(0,0,0,.03)); border: 1px solid var(--line, rgba(0,0,0,.08)); align-items: center; }
+    @media (max-width: 820px) { .sr-redeem { grid-template-columns: 1fr; } }
+    .sr-redeem-copy h2 { margin: .3rem 0 .6rem; }
+    .sr-redeem-copy p { max-width: 52ch; opacity: .85; }
+    .sr-redeem-app { background: var(--bg, #fff); border-radius: 12px; padding: 1.4rem; border: 1px solid var(--line, rgba(0,0,0,.08)); }
+    .sr-redeem-state { display: flex; flex-direction: column; gap: .5rem; align-items: flex-start; }
+    .sr-redeem-state small { opacity: .7; }
+    .sr-wallet-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-bottom: 1.2rem; }
+    .sr-wallet-row > div { padding: .7rem .5rem; border-radius: 10px; background: rgba(0,0,0,.04); text-align: center; }
+    .sr-wallet-row span { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; opacity: .6; }
+    .sr-wallet-row strong { font-size: 1.1rem; }
+    .sr-redeem-form { display: flex; flex-direction: column; gap: .5rem; }
+    .sr-redeem-form label { font-size: .82rem; font-weight: 700; margin-top: .4rem; }
+    .sr-redeem-form select, .sr-redeem-form input { padding: .6rem .7rem; border-radius: 8px; border: 1px solid var(--line, rgba(0,0,0,.15)); font: inherit; }
+    .sr-redeem-input-row { display: flex; gap: .5rem; }
+    .sr-redeem-input-row input { flex: 1; }
+    .sr-redeem-preview { font-size: .88rem; padding: .6rem .7rem; border-radius: 8px; background: rgba(0,0,0,.05); min-height: 1.2rem; }
+    .sr-redeem-status { font-size: .85rem; padding: .6rem .7rem; border-radius: 8px; }
+    .sr-redeem-status[data-state="ok"] { background: rgba(46,160,67,.12); color: #1a7f37; }
+    .sr-redeem-status[data-state="error"] { background: rgba(207,34,46,.1); color: #b3261e; }
+    .sr-redeem-status[data-state="pending"] { background: rgba(0,0,0,.06); }
+  </style>
 </BaseLayout>
