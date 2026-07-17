@@ -478,12 +478,13 @@ const articleJsonLd = article ? {
           {showKursRedemption && (
             <section class="sr-redeem" id="xp-einloesung" data-sr-redemption>
               <div class="sr-redeem-copy">
-                <p class="eyebrow">XP &amp; VAL einlösen</p>
-                <h2>App-XP für den Stress-Reset-Kurs verwenden.</h2>
+                <p class="eyebrow">VAL einlösen</p>
+                <h2>VAL-Guthaben für den Stress-Reset-Kurs verwenden.</h2>
                 <p>
-                  Gesammelte XP aus den Callidus-Apps können als Rabattwert für die Kurs-Module genutzt werden.
-                  Die Umrechnung ist fest: <strong>10000 XP = 1 VAL = 1,00 €</strong>. Du kannst ein Modul
-                  vollständig oder teilweise einlösen und den Rest normal über Digistore24 bezahlen.
+                  Dein <strong>VAL-Guthaben</strong> kannst du als Rabattwert für die Kurs-Module einsetzen
+                  (<strong>1 VAL = 1,00 €</strong>). Du kannst ein Modul vollständig oder teilweise einlösen und den
+                  Rest normal über Digistore24 bezahlen. App-XP wandelst du vorher selbst auf der
+                  <a href="/valus/">VAL-Seite</a> in VAL um.
                 </p>
               </div>
               <div class="sr-redeem-app">
@@ -991,7 +992,7 @@ const articleJsonLd = article ? {
       const formatInt = (v) => new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 }).format(Number(v) || 0);
       const formatEuro = (cents) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format((Number(cents) || 0) / CENTS_PER_EURO);
       const moduleById = (id) => modules.find((m) => m.id === id) || modules[0];
-      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO) + Math.floor((Number(state.balance.xp) || 0) / XP_PER_CENT);
+      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO);
       const show = (id) => ['sr-redeem-loading', 'sr-redeem-auth', 'sr-redeem-dashboard'].forEach((v) => { const el = $(v); if (el) el.hidden = v !== id; });
       const setStatus = (message, kind = '') => { const el = $('sr-redeem-status'); if (!el) return; el.textContent = message || ''; el.hidden = !message; el.dataset.state = kind; };
 
@@ -1011,12 +1012,12 @@ const articleJsonLd = article ? {
         const preview = $('sr-redeem-preview');
         if (!preview || !mod) return;
         const available = creditCents();
-        if (available < 1) { preview.textContent = 'Noch kein einlösbares XP-/VAL-Guthaben sichtbar.'; return; }
+        if (available < 1) { preview.textContent = 'Noch kein einlösbares VAL-Guthaben sichtbar. XP kannst du auf der VAL-Seite in VAL umwandeln.'; return; }
         const maxCents = Math.min(mod.preisCents || 0, available);
         const usable = Math.min(selectedCreditCents(), maxCents);
         const rest = Math.max(0, (mod.preisCents || 0) - usable);
         const tooHigh = selectedCreditCents() > maxCents ? ` · maximal aktuell ${formatEuro(maxCents)}` : '';
-        preview.textContent = `${formatEuro(usable)} Rabatt = ${formatInt(usable * XP_PER_CENT)} XP · Restbetrag ${formatEuro(rest)}${tooHigh}`;
+        preview.textContent = `${formatEuro(usable)} Rabatt = ${(usable / CENTS_PER_EURO).toLocaleString('de-DE', { maximumFractionDigits: 2 })} VAL · Restbetrag ${formatEuro(rest)}${tooHigh}`;
       };
       const updateBalanceView = () => {
         $('sr-xp-balance').textContent = `${formatInt(state.balance.xp)} XP`;

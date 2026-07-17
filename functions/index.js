@@ -1251,23 +1251,20 @@ async function createProductRedemption(request, product) {
     ]);
     const user = userSnap.exists ? userSnap.data() : {};
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
-    const availableXp = xpFromSources(balance, user);
     const currentValus = valusFromSources(balance, user);
-    const xpCreditCents = Math.floor(availableXp / XP_PER_CENT);
     const valusCreditCents = centsFromValus(currentValus);
-    const availableCreditCents = xpCreditCents + valusCreditCents;
 
-    if (availableCreditCents < creditCents) {
+    // Es wird ausschliesslich VAL eingeloest. XP muss der Nutzer vorher bewusst
+    // ueber die VAL-Seite in VAL umwandeln (convertNexusXpToValus).
+    if (valusCreditCents < creditCents) {
       throw new HttpsError(
         "failed-precondition",
-        `Nicht genug XP/VAL vorhanden. Aktuell verfuegbar: ${valusFromCents(availableCreditCents)} EUR Rabattwert.`,
+        `Nicht genug VAL vorhanden. Aktuell verfuegbar: ${valusFromCents(valusCreditCents)} EUR (VAL). XP kannst du auf der VAL-Seite in VAL umwandeln.`,
       );
     }
 
-    const appliedXpCents = Math.min(creditCents, xpCreditCents);
-    const appliedXpAmount = appliedXpCents * XP_PER_CENT;
-    const appliedValusCents = creditCents - appliedXpCents;
-    const appliedValusAmount = valusFromCents(appliedValusCents);
+    const appliedXpAmount = 0;
+    const appliedValusAmount = valusFromCents(creditCents);
     const remainingCents = Math.max(0, product.priceCents - creditCents);
 
     transaction.set(redemptionRef, {

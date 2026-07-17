@@ -118,12 +118,13 @@ const redemptionBooks = buecher.map((buch) => ({
     <div class="container">
       <div class="kb-redemption-panel" data-kb-redemption data-reveal>
         <div class="kb-redemption-copy">
-          <p class="eyebrow">XP &amp; VAL einlösen</p>
-          <h2>App-XP für Kinderbücher verwenden.</h2>
+          <p class="eyebrow">VAL einlösen</p>
+          <h2>VAL-Guthaben für Kinderbücher verwenden.</h2>
           <p>
-            Gesammelte XP aus den Callidus-Apps können als Rabattwert für alle sechs PDF-Kinderbücher genutzt werden.
-            Die Umrechnung ist fest: <strong>10000 XP = 1 VAL = 1,00 €</strong>. Du kannst einen Band vollständig
-            oder nur teilweise einlösen und den Rest normal über Digistore24 bezahlen.
+            Dein <strong>VAL-Guthaben</strong> kannst du als Rabattwert für alle sechs PDF-Kinderbücher einsetzen
+            (<strong>1 VAL = 1,00 €</strong>). Du kannst einen Band vollständig oder nur teilweise einlösen und den
+            Rest normal über Digistore24 bezahlen. App-XP wandelst du vorher selbst auf der
+            <a href="/valus/">VAL-Seite</a> in VAL um – so entscheidest du, wie viel XP du einsetzt.
           </p>
         </div>
 
@@ -350,7 +351,7 @@ const redemptionBooks = buecher.map((buch) => ({
       const formatInt = (value) => new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 }).format(Number(value) || 0);
       const formatEuro = (cents) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format((Number(cents) || 0) / CENTS_PER_EURO);
       const bookById = (id) => books.find((book) => book.id === id) || books[0];
-      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO) + Math.floor((Number(state.balance.xp) || 0) / XP_PER_CENT);
+      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO);
       const show = (id) => {
         ['kb-redeem-loading', 'kb-redeem-auth', 'kb-redeem-dashboard'].forEach((viewId) => {
           const el = $(viewId);
@@ -396,11 +397,11 @@ const redemptionBooks = buecher.map((buch) => ({
         const preview = $('kb-redemption-preview');
         if (!preview || !book) return;
         if (available < 1) {
-          preview.textContent = 'Noch kein einlösbares XP-/VAL-Guthaben sichtbar.';
+          preview.textContent = 'Noch kein einlösbares VAL-Guthaben sichtbar. XP kannst du auf der VAL-Seite in VAL umwandeln.';
           return;
         }
         const tooHigh = desired > maxCents ? ` · maximal aktuell ${formatEuro(maxCents)}` : '';
-        preview.textContent = `${formatEuro(usable)} Rabatt = ${formatInt(xpEquivalent)} XP = ${(usable / CENTS_PER_EURO).toLocaleString('de-DE', { maximumFractionDigits: 2 })} VAL · Restbetrag ${formatEuro(rest)}${tooHigh}`;
+        preview.textContent = `${formatEuro(usable)} Rabatt = ${(usable / CENTS_PER_EURO).toLocaleString('de-DE', { maximumFractionDigits: 2 })} VAL · Restbetrag ${formatEuro(rest)}${tooHigh}`;
       }
 
       async function loadBalance(user) {
