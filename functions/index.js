@@ -1,4 +1,5 @@
 ﻿const { onCall, onRequest, HttpsError } = require("firebase-functions/v2/https");
+const { onSchedule } = require("firebase-functions/v2/scheduler");
 const functionsV1 = require("firebase-functions/v1");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
@@ -1737,6 +1738,51 @@ exports.digistoreIpn = onRequest(
       logger.error("digistoreIpn failed", { event, orderId, error: String(error?.message || error) });
       res.status(500).send("internal error");
     }
+  },
+);
+
+// Raeumt taeglich abgelaufene bzw. verbrauchte Einloese-Rabattcodes (KB-/SR-) bei
+// Digistore24 auf, damit sich die Gutschein-Liste nicht endlos fuellt. Eigene,
+// manuell angelegte Codes (anderes Namensmuster) werden NIE angefasst.
+exports.cleanupDigistoreVouchers = onSchedule(
+  {
+    schedule: "every day 03:30",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    timeoutSeconds: 300,
+    memory: "256MiB",
+    secrets: [digistoreApiKey],
+  },
+  async () => {
+    const apiKey = digistoreApiKey.value();
+    const data = await digistoreApiCall(apiKey, "listVouchers", {});
+    const coupons = Array.isArray(data?.coupons) ? data.coupons : [];
+    const now = Date.now();
+    let deleted = 0;
+    let failed = 0;
+
+    for (const coupon of coupons) {
+      const code = cleanString(coupon?.code, 60);
+      if (!/^(KB|SR)-[A-F0-9]{8}$/i.test(code)) continue; // nur unsere Einloese-Codes
+
+      const expiresRaw = cleanString(coupon?.expires_at, 40);
+      const expiresAt = expiresRaw ? Date.parse(expiresRaw.replace(" ", "T")) : NaN;
+      const isExpired = Number.isFinite(expiresAt) && expiresAt < now;
+      const isUsedUp = String(coupon?.is_count_limited).toUpperCase() === "Y"
+        && numberValue(coupon?.count_left, 1) <= 0;
+
+      if (!isExpired && !isUsedUp) continue; // noch gueltig und nutzbar -> behalten
+
+      try {
+        await digistoreApiCall(apiKey, "deleteVoucher", { code });
+        deleted += 1;
+      } catch (error) {
+        failed += 1;
+        logger.warn("cleanupDigistoreVouchers: delete failed", { code, error: String(error?.message || error) });
+      }
+    }
+
+    logger.info("cleanupDigistoreVouchers done", { scanned: coupons.length, deleted, failed });
   },
 );
 
