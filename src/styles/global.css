@@ -1152,18 +1152,6 @@ html[data-theme="dark"] .planet-meta {
 .hero-compass.is-dragging .compass-anchor,
 .hero-compass.is-dragging .compass-app-anchor { animation-play-state: paused; }
 
-/* ShaderBackground canvas */
-.shader-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -10;
-  pointer-events: none;
-  opacity: 0.10;
-  transition: opacity 600ms ease;
-}
-html[data-theme="dark"] .shader-bg { opacity: 0.28; }
-
 /* Reduzierte Bewegung respektieren */
 @media (prefers-reduced-motion: reduce) {
   .compass-anchor,

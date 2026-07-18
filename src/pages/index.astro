@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ShaderBackground from '../components/ShaderBackground.astro';
 import inventory from '../data/inventory.json';
 import images from '../data/images.json';
 import specialPages from '../data/special-pages.json';
@@ -103,7 +102,6 @@ const todayStarts = [
 ];
 ---
 <BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
-  <ShaderBackground />
   <section class="section">
     <div class="container hero">
       <div data-reveal>
