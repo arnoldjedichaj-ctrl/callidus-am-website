@@ -1424,6 +1424,8 @@ html[data-theme="dark"] .planet-meta {
 .legal-prose p { overflow-wrap: anywhere; }
 .legal-toc a { max-width: 100%; overflow-wrap: anywhere; }
 .notice { border: 1px solid rgba(var(--gold-rgb), 0.28); background: rgba(var(--gold-rgb), 0.08); border-radius: 0.8rem; padding: 1rem; }
+.momus-satire-notice { margin-top: 1rem; font-size: 0.9rem; }
+.momus-satire-notice p { margin: 0.25rem 0 0; }
 .article-bridge-box {
   display: grid;
   gap: 1rem;

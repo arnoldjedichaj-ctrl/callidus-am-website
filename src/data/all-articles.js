@@ -48,7 +48,7 @@ export function articleBySlug(slug) {
 
 export function appBadgeMeta(app) {
   if (app === 'momus') {
-    return { label: 'MOMUS', className: 'app-badge app-badge-momus' };
+    return { label: 'MOMUS · Satire', className: 'app-badge app-badge-momus' };
   }
   return { label: 'NEXUS', className: 'app-badge app-badge-nexus' };
 }

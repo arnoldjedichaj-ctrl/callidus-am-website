@@ -392,6 +392,12 @@ const articleJsonLd = article ? {
         )}
         <h1>{specialPage?.hero || title}</h1>
         {heroLead && <p class="lede">{heroLead}</p>}
+        {article?.app === 'momus' && (
+          <div class="notice momus-satire-notice" role="note">
+            <strong>Satire:</strong>
+            <p>Dieser Beitrag stammt aus der MOMUS-App und ist bewusst überspitzte Satire. Er ist keine Gesundheitsempfehlung — oft ist das Gegenteil des Gesagten gemeint.</p>
+          </div>
+        )}
         {courseHeroVideo ? (
           <a class="video-hero-card" href={courseHeroVideo.href} target="_blank" rel="noopener">
             {youtubeThumb(courseHeroVideo) && <img src={youtubeThumb(courseHeroVideo)} alt="" loading="lazy" />}
