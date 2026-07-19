@@ -2,10 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import healthChecks from '../../data/health-checks.json';
 import knowledgeSources from '../../data/knowledge-sources.json';
+import specialPages from '../../data/special-pages.json';
 import { allArticles } from '../../data/all-articles.js';
 
-const title = 'Gesundheits-Checks & Health IQ | callidus A&M';
-const description = 'Stress-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel.';
+const title = 'Gesundheits-Checks: Stress, Schlaf & Health IQ | callidus A&M';
+const description = 'Stress-Check, Schlaf-Check, Mikronährstoff-Radar und Health-IQ-Wissensquiz von callidus A&M: sofortige Auswertung, Lernfelder, Quellen und passende Artikel.';
+const signupUrl = specialPages
+  .find((page) => page.slug === 'stress-reset-kurs')
+  ?.links?.find((link) => link.href?.includes('sibforms.com'))?.href || '';
 const sourceIndex = Object.fromEntries(knowledgeSources.map((source) => [source.id, source]));
 const articleIndex = Object.fromEntries(allArticles.map((article) => [
   article.path,
@@ -24,7 +28,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
         <p class="eyebrow">Callidus Checks</p>
         <h1>Kurze Checks. Spielerisch klüger werden.</h1>
         <p class="lede">
-          Starte mit Stress, Mikronährstoffen oder dem Health-IQ-Wissensquiz.
+          Starte mit Stress, Schlaf, Mikronährstoffen oder dem Health-IQ-Wissensquiz.
           Die Auswertung bleibt direkt sichtbar, ohne E-Mail-Schranke und ohne Diagnoseversprechen.
         </p>
         <div class="actions">
@@ -128,7 +132,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
     </div>
   </section>
 
-  <script is:inline define:vars={{ HEALTH_CHECKS: healthChecks, SOURCES: sourceIndex, ARTICLES: articleIndex }}>
+  <script is:inline define:vars={{ HEALTH_CHECKS: healthChecks, SOURCES: sourceIndex, ARTICLES: articleIndex, SIGNUP_URL: signupUrl }}>
     (() => {
       const setupHealthChecks = () => {
         const root = document.querySelector('[data-health-checks]');
@@ -193,7 +197,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
         };
 
         const optionListFor = (check, question) => {
-          if (check.id === 'stress') return check.scale.map((item) => ({ ...item, scores: { stress: item.value } }));
+          if (check.scale) return check.scale.map((item) => ({ ...item, scores: { [check.id]: item.value } }));
           return question.options || [];
         };
 
@@ -222,7 +226,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           const questionCard = node('article', 'check-question-card');
           questionCard.append(node('h3', '', question.text));
 
-          const optionsWrap = node('div', check.id === 'stress' ? 'check-options check-options-scale' : 'check-options');
+          const optionsWrap = node('div', check.scale ? 'check-options check-options-scale' : 'check-options');
           const answer = state.answers[check.id][question.id];
           optionListFor(check, question).forEach((option, optionIndex) => {
             const label = node('label', 'check-option');
@@ -375,6 +379,18 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             result.append(reviewBlock);
           }
 
+          if (SIGNUP_URL) {
+            const plan = node('div', 'check-plan-cta');
+            plan.append(node('strong', '', 'Möchtest du deinen persönlichen Plan?'));
+            plan.append(node('p', '', 'Sichere dir die kostenlosen Callidus-Ressourcen: Kompendium, Journal und Video-Module — plus regelmäßige Gesundheitsimpulse per E-Mail.'));
+            const planLink = node('a', 'button primary', 'Persönlichen Plan freischalten');
+            planLink.href = SIGNUP_URL;
+            planLink.target = '_blank';
+            planLink.rel = 'noopener';
+            plan.append(planLink);
+            result.append(plan);
+          }
+
           const safety = node('div', 'notice check-safety');
           safety.append(node('strong', '', 'Wichtig'));
           safety.append(node('p', '', check.safetyNote));
@@ -396,7 +412,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           result.append(restart);
         };
 
-        const renderStressResult = (check) => {
+        const renderScaleResult = (check) => {
           const score = check.questions.reduce((sum, question) => {
             const optionIndex = state.answers[check.id][question.id];
             return sum + (check.scale[optionIndex]?.value || 0);
@@ -512,7 +528,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
         const renderResult = () => {
           const check = HEALTH_CHECKS[state.active];
           if (check.type === 'knowledge') renderKnowledgeResult(check);
-          else if (check.id === 'stress') renderStressResult(check);
+          else if (check.scale) renderScaleResult(check);
           else renderMicronutrientResult(check);
         };
 
@@ -523,6 +539,13 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             renderQuestion();
           });
         });
+
+        // Deep-Link wie /gesundheits-checks/#check-sleep öffnet direkt den passenden Tab.
+        const hashMatch = window.location.hash.match(/^#check-(\w+)$/);
+        if (hashMatch && HEALTH_CHECKS[hashMatch[1]]) {
+          state.active = hashMatch[1];
+          requestAnimationFrame(() => root.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+        }
 
         renderQuestion();
       };

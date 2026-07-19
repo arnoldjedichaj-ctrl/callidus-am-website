@@ -7,21 +7,60 @@
     "lede": "Dieser Check ist von etablierten Stress-Selbsteinschätzungen inspiriert. Er ersetzt keine Diagnose, macht aber sichtbar, wo dein Nervensystem gerade eher stabil, angespannt oder überlastet wirkt.",
     "maxScore": 32,
     "scale": [
-      { "label": "Nie", "value": 0 },
-      { "label": "Selten", "value": 1 },
-      { "label": "Manchmal", "value": 2 },
-      { "label": "Oft", "value": 3 },
-      { "label": "Sehr oft", "value": 4 }
+      {
+        "label": "Nie",
+        "value": 0
+      },
+      {
+        "label": "Selten",
+        "value": 1
+      },
+      {
+        "label": "Manchmal",
+        "value": 2
+      },
+      {
+        "label": "Oft",
+        "value": 3
+      },
+      {
+        "label": "Sehr oft",
+        "value": 4
+      }
     ],
     "questions": [
-      { "id": "overload", "text": "Wie oft hattest du in den letzten 14 Tagen das Gefühl, dass dir alles zu viel wird?" },
-      { "id": "rumination", "text": "Wie oft kreisen deine Gedanken weiter, obwohl du eigentlich abschalten möchtest?" },
-      { "id": "tension", "text": "Wie oft meldet sich Stress körperlich, etwa durch Nacken, Kiefer, Magen oder Druckgefühl?" },
-      { "id": "sleep", "text": "Wie oft wachst du morgens nicht erholt auf?" },
-      { "id": "recovery", "text": "Wie oft brauchst du lange, um nach Belastung wieder runterzufahren?" },
-      { "id": "control", "text": "Wie oft hast du das Gefühl, die Kontrolle über deinen Tag zu verlieren?" },
-      { "id": "arousal", "text": "Wie oft spürst du innere Unruhe, Herzklopfen oder mentale Blockade?" },
-      { "id": "daylight", "text": "Wie oft fehlen dir Tageslicht, Bewegungspausen oder kurze echte Erholung im Alltag?" }
+      {
+        "id": "overload",
+        "text": "Wie oft hattest du in den letzten 14 Tagen das Gefühl, dass dir alles zu viel wird?"
+      },
+      {
+        "id": "rumination",
+        "text": "Wie oft kreisen deine Gedanken weiter, obwohl du eigentlich abschalten möchtest?"
+      },
+      {
+        "id": "tension",
+        "text": "Wie oft meldet sich Stress körperlich, etwa durch Nacken, Kiefer, Magen oder Druckgefühl?"
+      },
+      {
+        "id": "sleep",
+        "text": "Wie oft wachst du morgens nicht erholt auf?"
+      },
+      {
+        "id": "recovery",
+        "text": "Wie oft brauchst du lange, um nach Belastung wieder runterzufahren?"
+      },
+      {
+        "id": "control",
+        "text": "Wie oft hast du das Gefühl, die Kontrolle über deinen Tag zu verlieren?"
+      },
+      {
+        "id": "arousal",
+        "text": "Wie oft spürst du innere Unruhe, Herzklopfen oder mentale Blockade?"
+      },
+      {
+        "id": "daylight",
+        "text": "Wie oft fehlen dir Tageslicht, Bewegungspausen oder kurze echte Erholung im Alltag?"
+      }
     ],
     "profiles": [
       {
@@ -35,8 +74,16 @@
           "Plane täglich eine kurze Bewegungspause im Tageslicht ein.",
           "Nutze Atemübungen präventiv, nicht erst im roten Bereich."
         ],
-        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/gehen-als-training/", "/der-schlaf-reset/"],
-        "sourceIds": ["pss-cohen-1983", "who-stress-guide", "cdc-sleep"]
+        "articlePaths": [
+          "/3-atemtechniken-fur-mehr-energie/",
+          "/gehen-als-training/",
+          "/der-schlaf-reset/"
+        ],
+        "sourceIds": [
+          "pss-cohen-1983",
+          "who-stress-guide",
+          "cdc-sleep"
+        ]
       },
       {
         "id": "elevated",
@@ -49,8 +96,16 @@
           "Reduziere eine vermeidbare Reizquelle am Abend, zum Beispiel späte Bildschirmzeit.",
           "Lege eine klare Mini-Grenze fest: eine Aufgabe weniger, eine Pause bewusst."
         ],
-        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/der-digitale-detox/", "/sport-als-stress-killer/"],
-        "sourceIds": ["breathwork-meta-2023", "slow-breathing-hrv-2022", "who-stress-guide"]
+        "articlePaths": [
+          "/3-atemtechniken-fur-mehr-energie/",
+          "/der-digitale-detox/",
+          "/sport-als-stress-killer/"
+        ],
+        "sourceIds": [
+          "breathwork-meta-2023",
+          "slow-breathing-hrv-2022",
+          "who-stress-guide"
+        ]
       },
       {
         "id": "high",
@@ -63,11 +118,154 @@
           "Sprich mit einer vertrauten Person über die aktuelle Belastung, statt sie nur intern zu managen.",
           "Wenn Beschwerden stark sind, länger anhalten oder Angst, Brustdruck, Schwindel oder Selbstgefährdung dazukommen, bitte medizinisch oder psychologisch abklären lassen."
         ],
-        "articlePaths": ["/der-schlaf-reset/", "/die-kunst-des-mentalen-resets/", "/sport-als-stress-killer/"],
-        "sourceIds": ["pss-cohen-1983", "who-stress-guide", "cdc-sleep"]
+        "articlePaths": [
+          "/der-schlaf-reset/",
+          "/die-kunst-des-mentalen-resets/",
+          "/sport-als-stress-killer/"
+        ],
+        "sourceIds": [
+          "pss-cohen-1983",
+          "who-stress-guide",
+          "cdc-sleep"
+        ]
       }
     ],
     "safetyNote": "Dieser Check misst keine Erkrankung. Bei akuten Beschwerden, Panik, Brustdruck, Ohnmacht, Selbstgefährdung oder anhaltender Überlastung bitte professionelle Hilfe nutzen."
+  },
+  "sleep": {
+    "id": "sleep",
+    "label": "Schlaf-Check",
+    "eyebrow": "2-Minuten-Check",
+    "headline": "Wie erholsam ist dein Schlaf wirklich?",
+    "lede": "Dieser Check orientiert sich an etablierten Schlafhygiene-Kriterien. Er ersetzt keine Diagnose, zeigt aber, ob dein Schlaf gerade eine stabile Basis ist — oder ob Einschlafen, Durchschlafen oder Abendgewohnheiten Aufmerksamkeit verdienen.",
+    "maxScore": 32,
+    "scoreLabel": "Schlaf-Belastung",
+    "scale": [
+      {
+        "label": "Nie",
+        "value": 0
+      },
+      {
+        "label": "Selten",
+        "value": 1
+      },
+      {
+        "label": "Manchmal",
+        "value": 2
+      },
+      {
+        "label": "Oft",
+        "value": 3
+      },
+      {
+        "label": "Sehr oft",
+        "value": 4
+      }
+    ],
+    "questions": [
+      {
+        "id": "falling-asleep",
+        "text": "Wie oft brauchst du länger als 30 Minuten zum Einschlafen?"
+      },
+      {
+        "id": "night-waking",
+        "text": "Wie oft wachst du nachts auf und findest schwer zurück in den Schlaf?"
+      },
+      {
+        "id": "morning-tired",
+        "text": "Wie oft fühlst du dich morgens unausgeschlafen, obwohl du eigentlich genug Zeit im Bett warst?"
+      },
+      {
+        "id": "irregular",
+        "text": "Wie oft weichen deine Zubettgeh-Zeiten um mehr als eine Stunde voneinander ab (auch am Wochenende)?"
+      },
+      {
+        "id": "screens",
+        "text": "Wie oft nutzt du in der letzten Stunde vor dem Schlafen noch Handy, Laptop oder Fernseher?"
+      },
+      {
+        "id": "caffeine",
+        "text": "Wie oft trinkst du nach 14 Uhr noch Kaffee, Cola, Energydrinks oder schwarzen Tee?"
+      },
+      {
+        "id": "rumination",
+        "text": "Wie oft halten dich kreisende Gedanken oder To-dos vom Einschlafen ab?"
+      },
+      {
+        "id": "daytime",
+        "text": "Wie oft bist du tagsüber so müde, dass Konzentration oder Stimmung darunter leiden?"
+      }
+    ],
+    "profiles": [
+      {
+        "id": "restful",
+        "min": 0,
+        "max": 9,
+        "title": "Stabile Schlafbasis",
+        "summary": "Deine Antworten sprechen für einen überwiegend erholsamen Schlaf. Jetzt geht es darum, diese Basis zu schützen — vor allem in stressigen Phasen, in denen gute Gewohnheiten als Erstes kippen.",
+        "nextSteps": [
+          "Halte deine Schlaf- und Aufstehzeiten auch am Wochenende möglichst stabil.",
+          "Schütze die letzte Stunde vor dem Schlafen als bildschirmarme Zone.",
+          "Beobachte in stressigen Wochen bewusst, ob sich Einschlafzeit oder nächtliches Aufwachen verändern."
+        ],
+        "articlePaths": [
+          "/abendroutine-besser-schlafen/",
+          "/der-schlaf-reset/",
+          "/der-innere-akku/"
+        ],
+        "sourceIds": [
+          "sleep-hygiene-irish-2015",
+          "cdc-sleep"
+        ]
+      },
+      {
+        "id": "strained",
+        "min": 10,
+        "max": 18,
+        "title": "Belasteter Schlaf",
+        "summary": "Dein Schlaf funktioniert, aber er kostet dich mehr Kraft, als er sollte. Meist stecken zwei bis drei konkrete Gewohnheiten dahinter — und genau dort lohnt sich der Einstieg.",
+        "nextSteps": [
+          "Wähle die eine Abendgewohnheit, die dich am meisten Schlaf kostet (Bildschirm, Koffein oder späte Grübelzeit), und ersetze sie zwei Wochen lang konsequent.",
+          "Etabliere einen festen Abschalt-Anker: gedimmtes Licht plus fünf Minuten verlängerte Ausatmung.",
+          "Notiere abends offene To-dos auf Papier, damit dein Kopf sie nachts nicht festhalten muss."
+        ],
+        "articlePaths": [
+          "/abendroutine-besser-schlafen/",
+          "/der-schlaf-reset/",
+          "/3-atemtechniken-fur-mehr-energie/",
+          "/der-digitale-detox/"
+        ],
+        "sourceIds": [
+          "sleep-hygiene-irish-2015",
+          "evening-light-chang-2015",
+          "cdc-sleep"
+        ]
+      },
+      {
+        "id": "depleted",
+        "min": 19,
+        "max": 32,
+        "title": "Deutlich belasteter Schlaf",
+        "summary": "Deine Antworten deuten auf eine spürbare Schlafbelastung hin, die vermutlich schon auf Energie, Stimmung und Konzentration durchschlägt. Kleine Einzeltipps reichen hier selten — dein Schlaf braucht für einige Wochen echte Priorität.",
+        "nextSteps": [
+          "Starte mit den zwei wirksamsten Hebeln: feste Aufstehzeit (auch am Wochenende) und Koffein-Stopp nach 14 Uhr.",
+          "Gestalte die letzte Stunde vor dem Schlafen bewusst: gedimmtes Licht, kein Bildschirm, ein immer gleiches Ritual.",
+          "Wenn sich nach vier Wochen nichts bessert oder Schnarchen mit Atemaussetzern dazukommt, sprich mit einer Ärztin oder einem Arzt darüber."
+        ],
+        "articlePaths": [
+          "/abendroutine-besser-schlafen/",
+          "/der-schlaf-reset/",
+          "/die-kraft-des-magnesiums/",
+          "/sport-als-stress-killer/"
+        ],
+        "sourceIds": [
+          "sleep-hygiene-irish-2015",
+          "evening-light-chang-2015",
+          "cdc-sleep"
+        ]
+      }
+    ],
+    "safetyNote": "Dieser Check misst keine Schlafstörung im medizinischen Sinn. Bei Verdacht auf Schlafapnoe (lautes Schnarchen, Atemaussetzer), anhaltender Schlaflosigkeit über Monate oder starker Tagesschläfrigkeit bitte ärztlich abklären lassen."
   },
   "micronutrients": {
     "id": "micronutrients",
@@ -84,8 +282,14 @@
           "Bei Verdacht den 25-OH-D-Wert ärztlich/labordiagnostisch prüfen lassen.",
           "Supplemente nur im sicheren Rahmen und nicht dauerhaft hochdosiert ohne Kontrolle nutzen."
         ],
-        "articlePaths": ["/vitamin-d-das-sonnenhormon/", "/der-schlaf-reset/"],
-        "sourceIds": ["nih-vitamin-d", "bfr-max-supplements"]
+        "articlePaths": [
+          "/vitamin-d-das-sonnenhormon/",
+          "/der-schlaf-reset/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-d",
+          "bfr-max-supplements"
+        ]
       },
       "b12": {
         "label": "Vitamin B12",
@@ -95,8 +299,14 @@
           "Bei Unsicherheit B12-Status mit geeigneten Laborparametern prüfen lassen.",
           "Müdigkeit oder neurologische Beschwerden nicht nur über Ernährung erklären."
         ],
-        "articlePaths": ["/protein-wissen-fur-kraftaufbau/", "/der-unsichtbare-teller/"],
-        "sourceIds": ["nih-vitamin-b12", "dge-vitamin-b12"]
+        "articlePaths": [
+          "/protein-wissen-fur-kraftaufbau/",
+          "/der-unsichtbare-teller/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-b12",
+          "dge-vitamin-b12"
+        ]
       },
       "ironFolate": {
         "label": "Eisen/Folat",
@@ -106,8 +316,14 @@
           "Hülsenfrüchte, Vollkorn, grünes Gemüse und Vitamin-C-Quellen sinnvoll kombinieren.",
           "Bei Schwangerschaft, starker Blutung oder anhaltender Müdigkeit ärztlich abklären."
         ],
-        "articlePaths": ["/vitamin-c-mythen/", "/gesundheit-im-familien-alltag/"],
-        "sourceIds": ["nih-iron", "bfr-max-supplements"]
+        "articlePaths": [
+          "/vitamin-c-mythen/",
+          "/gesundheit-im-familien-alltag/"
+        ],
+        "sourceIds": [
+          "nih-iron",
+          "bfr-max-supplements"
+        ]
       },
       "magnesium": {
         "label": "Magnesium",
@@ -117,8 +333,14 @@
           "Krämpfe, Herzrhythmusgefühl oder starke Beschwerden nicht selbst diagnostizieren.",
           "Bei Supplementen auf elementares Magnesium und Verträglichkeit achten."
         ],
-        "articlePaths": ["/die-kraft-des-magnesiums/", "/der-innere-akku/"],
-        "sourceIds": ["nih-magnesium", "bfr-max-supplements"]
+        "articlePaths": [
+          "/die-kraft-des-magnesiums/",
+          "/der-innere-akku/"
+        ],
+        "sourceIds": [
+          "nih-magnesium",
+          "bfr-max-supplements"
+        ]
       },
       "omega3": {
         "label": "Omega-3",
@@ -128,8 +350,13 @@
           "Bei pflanzlicher Ernährung DHA/EPA über Algenöl als Option prüfen.",
           "Blutverdünner, Operationen oder Erkrankungen vor Supplementen ärztlich einordnen lassen."
         ],
-        "articlePaths": ["/der-unsichtbare-teller/", "/gesundheit-im-familien-alltag/"],
-        "sourceIds": ["bfr-max-supplements"]
+        "articlePaths": [
+          "/der-unsichtbare-teller/",
+          "/gesundheit-im-familien-alltag/"
+        ],
+        "sourceIds": [
+          "bfr-max-supplements"
+        ]
       },
       "zincIodine": {
         "label": "Jod/Zink",
@@ -139,8 +366,14 @@
           "Algenprodukte wegen stark schwankender Jodgehalte nicht unkritisch dosieren.",
           "Bei Schilddrüsenerkrankungen Jodfragen medizinisch abklären."
         ],
-        "articlePaths": ["/der-unsichtbare-teller/", "/protein-wissen-fur-kraftaufbau/"],
-        "sourceIds": ["nih-zinc", "bfr-max-supplements"]
+        "articlePaths": [
+          "/der-unsichtbare-teller/",
+          "/protein-wissen-fur-kraftaufbau/"
+        ],
+        "sourceIds": [
+          "nih-zinc",
+          "bfr-max-supplements"
+        ]
       }
     },
     "profiles": [
@@ -172,10 +405,36 @@
         "type": "single",
         "text": "Welche Ernährungsform beschreibt deinen Alltag am besten?",
         "options": [
-          { "label": "Mischkost mit regelmäßigen tierischen und pflanzlichen Lebensmitteln", "scores": {} },
-          { "label": "Vegetarisch", "scores": { "b12": 2, "ironFolate": 1, "zincIodine": 1 } },
-          { "label": "Vegan", "scores": { "b12": 5, "ironFolate": 2, "zincIodine": 2, "omega3": 2 } },
-          { "label": "Sehr einseitig oder oft Mahlzeiten ersetzt/ausgelassen", "scores": { "b12": 1, "ironFolate": 2, "magnesium": 2, "zincIodine": 2 } }
+          {
+            "label": "Mischkost mit regelmäßigen tierischen und pflanzlichen Lebensmitteln",
+            "scores": {}
+          },
+          {
+            "label": "Vegetarisch",
+            "scores": {
+              "b12": 2,
+              "ironFolate": 1,
+              "zincIodine": 1
+            }
+          },
+          {
+            "label": "Vegan",
+            "scores": {
+              "b12": 5,
+              "ironFolate": 2,
+              "zincIodine": 2,
+              "omega3": 2
+            }
+          },
+          {
+            "label": "Sehr einseitig oder oft Mahlzeiten ersetzt/ausgelassen",
+            "scores": {
+              "b12": 1,
+              "ironFolate": 2,
+              "magnesium": 2,
+              "zincIodine": 2
+            }
+          }
         ]
       },
       {
@@ -183,9 +442,26 @@
         "type": "single",
         "text": "Wie oft kommen Gemüse, Obst, Vollkorn, Hülsenfrüchte, Nüsse oder Kerne vor?",
         "options": [
-          { "label": "Täglich und abwechslungsreich", "scores": {} },
-          { "label": "Mehrmals pro Woche, aber nicht konstant", "scores": { "magnesium": 1, "ironFolate": 1, "zincIodine": 1 } },
-          { "label": "Selten oder sehr unregelmäßig", "scores": { "magnesium": 3, "ironFolate": 3, "zincIodine": 2 } }
+          {
+            "label": "Täglich und abwechslungsreich",
+            "scores": {}
+          },
+          {
+            "label": "Mehrmals pro Woche, aber nicht konstant",
+            "scores": {
+              "magnesium": 1,
+              "ironFolate": 1,
+              "zincIodine": 1
+            }
+          },
+          {
+            "label": "Selten oder sehr unregelmäßig",
+            "scores": {
+              "magnesium": 3,
+              "ironFolate": 3,
+              "zincIodine": 2
+            }
+          }
         ]
       },
       {
@@ -193,9 +469,22 @@
         "type": "single",
         "text": "Wie viel Tageslicht bekommst du an typischen Werktagen?",
         "options": [
-          { "label": "Meist mehr als 45 Minuten draußen", "scores": {} },
-          { "label": "Kurz auf Wegen, sonst viel drinnen", "scores": { "vitaminD": 2 } },
-          { "label": "Fast gar nicht", "scores": { "vitaminD": 4 } }
+          {
+            "label": "Meist mehr als 45 Minuten draußen",
+            "scores": {}
+          },
+          {
+            "label": "Kurz auf Wegen, sonst viel drinnen",
+            "scores": {
+              "vitaminD": 2
+            }
+          },
+          {
+            "label": "Fast gar nicht",
+            "scores": {
+              "vitaminD": 4
+            }
+          }
         ]
       },
       {
@@ -203,9 +492,22 @@
         "type": "single",
         "text": "Wie regelmäßig hast du Fisch, Algenöl, Leinsamen, Chiasamen oder Walnüsse im Plan?",
         "options": [
-          { "label": "Mehrmals pro Woche", "scores": {} },
-          { "label": "Gelegentlich", "scores": { "omega3": 1 } },
-          { "label": "Selten oder nie", "scores": { "omega3": 4 } }
+          {
+            "label": "Mehrmals pro Woche",
+            "scores": {}
+          },
+          {
+            "label": "Gelegentlich",
+            "scores": {
+              "omega3": 1
+            }
+          },
+          {
+            "label": "Selten oder nie",
+            "scores": {
+              "omega3": 4
+            }
+          }
         ]
       },
       {
@@ -213,9 +515,25 @@
         "type": "single",
         "text": "Wie oft enthält eine Mahlzeit eine klare Proteinquelle?",
         "options": [
-          { "label": "Meist zwei- bis dreimal täglich", "scores": {} },
-          { "label": "Einmal täglich", "scores": { "zincIodine": 1, "ironFolate": 1 } },
-          { "label": "Unregelmäßig oder kaum bewusst", "scores": { "zincIodine": 2, "b12": 1, "ironFolate": 1 } }
+          {
+            "label": "Meist zwei- bis dreimal täglich",
+            "scores": {}
+          },
+          {
+            "label": "Einmal täglich",
+            "scores": {
+              "zincIodine": 1,
+              "ironFolate": 1
+            }
+          },
+          {
+            "label": "Unregelmäßig oder kaum bewusst",
+            "scores": {
+              "zincIodine": 2,
+              "b12": 1,
+              "ironFolate": 1
+            }
+          }
         ]
       },
       {
@@ -223,10 +541,28 @@
         "type": "single",
         "text": "Trifft aktuell etwas davon zu?",
         "options": [
-          { "label": "Nein oder nicht relevant", "scores": {} },
-          { "label": "Starke oder lange Menstruation", "scores": { "ironFolate": 4 } },
-          { "label": "Schwangerschaft, Stillzeit oder Kinderwunsch", "scores": { "ironFolate": 3, "vitaminD": 1, "zincIodine": 1 } },
-          { "label": "Möchte ich nicht beantworten", "scores": {} }
+          {
+            "label": "Nein oder nicht relevant",
+            "scores": {}
+          },
+          {
+            "label": "Starke oder lange Menstruation",
+            "scores": {
+              "ironFolate": 4
+            }
+          },
+          {
+            "label": "Schwangerschaft, Stillzeit oder Kinderwunsch",
+            "scores": {
+              "ironFolate": 3,
+              "vitaminD": 1,
+              "zincIodine": 1
+            }
+          },
+          {
+            "label": "Möchte ich nicht beantworten",
+            "scores": {}
+          }
         ]
       },
       {
@@ -234,10 +570,34 @@
         "type": "multi",
         "text": "Gibt es Magen-Darm- oder Medikamentenfaktoren?",
         "options": [
-          { "label": "Keine davon", "exclusive": true, "scores": {} },
-          { "label": "Chronische Magen-Darm-Beschwerden oder Resorptionsprobleme", "scores": { "b12": 2, "ironFolate": 2, "magnesium": 1 } },
-          { "label": "Metformin, Protonenpumpenhemmer oder ähnliche Langzeitmedikation", "scores": { "b12": 2, "magnesium": 1 } },
-          { "label": "Häufige Durchfälle oder sehr restriktive Diäten", "scores": { "magnesium": 2, "zincIodine": 1, "ironFolate": 1 } }
+          {
+            "label": "Keine davon",
+            "exclusive": true,
+            "scores": {}
+          },
+          {
+            "label": "Chronische Magen-Darm-Beschwerden oder Resorptionsprobleme",
+            "scores": {
+              "b12": 2,
+              "ironFolate": 2,
+              "magnesium": 1
+            }
+          },
+          {
+            "label": "Metformin, Protonenpumpenhemmer oder ähnliche Langzeitmedikation",
+            "scores": {
+              "b12": 2,
+              "magnesium": 1
+            }
+          },
+          {
+            "label": "Häufige Durchfälle oder sehr restriktive Diäten",
+            "scores": {
+              "magnesium": 2,
+              "zincIodine": 1,
+              "ironFolate": 1
+            }
+          }
         ]
       },
       {
@@ -245,11 +605,40 @@
         "type": "multi",
         "text": "Welche Signale bemerkst du häufiger?",
         "options": [
-          { "label": "Keine davon", "exclusive": true, "scores": {} },
-          { "label": "Muskelkrämpfe oder starkes Zucken", "scores": { "magnesium": 3 } },
-          { "label": "Müdigkeit, Blässe oder Leistungsknick", "scores": { "ironFolate": 2, "b12": 1, "vitaminD": 1 } },
-          { "label": "Infektanfälligkeit oder schlechte Wundheilung", "scores": { "zincIodine": 2, "vitaminD": 1 } },
-          { "label": "Brüchige Nägel, Haarausfall oder rissige Mundwinkel", "scores": { "ironFolate": 2, "zincIodine": 1, "b12": 1 } }
+          {
+            "label": "Keine davon",
+            "exclusive": true,
+            "scores": {}
+          },
+          {
+            "label": "Muskelkrämpfe oder starkes Zucken",
+            "scores": {
+              "magnesium": 3
+            }
+          },
+          {
+            "label": "Müdigkeit, Blässe oder Leistungsknick",
+            "scores": {
+              "ironFolate": 2,
+              "b12": 1,
+              "vitaminD": 1
+            }
+          },
+          {
+            "label": "Infektanfälligkeit oder schlechte Wundheilung",
+            "scores": {
+              "zincIodine": 2,
+              "vitaminD": 1
+            }
+          },
+          {
+            "label": "Brüchige Nägel, Haarausfall oder rissige Mundwinkel",
+            "scores": {
+              "ironFolate": 2,
+              "zincIodine": 1,
+              "b12": 1
+            }
+          }
         ]
       },
       {
@@ -257,9 +646,25 @@
         "type": "single",
         "text": "Wie stark belasten dich Sport, Schwitzen, Stress oder Alkohol aktuell?",
         "options": [
-          { "label": "Niedrig bis moderat", "scores": {} },
-          { "label": "Phasenweise hoch", "scores": { "magnesium": 1, "vitaminD": 1 } },
-          { "label": "Sehr hoch oder fast täglich", "scores": { "magnesium": 3, "zincIodine": 1, "omega3": 1 } }
+          {
+            "label": "Niedrig bis moderat",
+            "scores": {}
+          },
+          {
+            "label": "Phasenweise hoch",
+            "scores": {
+              "magnesium": 1,
+              "vitaminD": 1
+            }
+          },
+          {
+            "label": "Sehr hoch oder fast täglich",
+            "scores": {
+              "magnesium": 3,
+              "zincIodine": 1,
+              "omega3": 1
+            }
+          }
         ]
       },
       {
@@ -267,13 +672,44 @@
         "type": "single",
         "text": "Gibt es aktuelle Laborwerte oder gezielte Supplemente?",
         "options": [
-          { "label": "Ja, Werte sind aktuell geprüft und unauffällig", "scores": { "vitaminD": -1, "b12": -1, "ironFolate": -1, "magnesium": -1 } },
-          { "label": "Ich supplementiere einiges, aber ohne aktuelle Werte", "scores": { "bfr": 1, "vitaminD": 1, "ironFolate": 1 } },
-          { "label": "Keine aktuellen Werte und keine klare Strategie", "scores": { "vitaminD": 1, "b12": 1, "ironFolate": 1, "magnesium": 1 } }
+          {
+            "label": "Ja, Werte sind aktuell geprüft und unauffällig",
+            "scores": {
+              "vitaminD": -1,
+              "b12": -1,
+              "ironFolate": -1,
+              "magnesium": -1
+            }
+          },
+          {
+            "label": "Ich supplementiere einiges, aber ohne aktuelle Werte",
+            "scores": {
+              "bfr": 1,
+              "vitaminD": 1,
+              "ironFolate": 1
+            }
+          },
+          {
+            "label": "Keine aktuellen Werte und keine klare Strategie",
+            "scores": {
+              "vitaminD": 1,
+              "b12": 1,
+              "ironFolate": 1,
+              "magnesium": 1
+            }
+          }
         ]
       }
     ],
-    "sourceIds": ["nih-vitamin-d", "nih-magnesium", "nih-vitamin-b12", "nih-iron", "nih-zinc", "dge-vitamin-b12", "bfr-max-supplements"],
+    "sourceIds": [
+      "nih-vitamin-d",
+      "nih-magnesium",
+      "nih-vitamin-b12",
+      "nih-iron",
+      "nih-zinc",
+      "dge-vitamin-b12",
+      "bfr-max-supplements"
+    ],
     "safetyNote": "Dieses Radar ist keine Labordiagnostik. Bitte Eisen, Vitamin D, B12 oder hochdosierte Supplemente nicht dauerhaft blind einnehmen; bei Beschwerden, Schwangerschaft, Medikamenten oder Erkrankungen fachlich abklären lassen."
   },
   "healthIq": {
@@ -289,22 +725,38 @@
       "vitamins": {
         "label": "Vitamine & Mineralstoffe",
         "summary": "Hier geht es um Funktionen, Quellen und sichere Einordnung von Vitamin D, B12, C, Magnesium und Eisen.",
-        "articlePaths": ["/vitamin-d-das-sonnenhormon/", "/die-kraft-des-magnesiums/", "/protein-wissen-fur-kraftaufbau/"]
+        "articlePaths": [
+          "/vitamin-d-das-sonnenhormon/",
+          "/die-kraft-des-magnesiums/",
+          "/protein-wissen-fur-kraftaufbau/"
+        ]
       },
       "supplements": {
         "label": "Supplement-Sicherheit",
         "summary": "Hier geht es um Dosierung, Laborwerte, Interaktionen und die Grenze zwischen Basiswissen und medizinischer Abklärung.",
-        "articlePaths": ["/vitamin-c-mythen/", "/vitamin-a-wachter-der-sehkraft/", "/gesundheit-im-familien-alltag/"]
+        "articlePaths": [
+          "/vitamin-c-mythen/",
+          "/vitamin-a-wachter-der-sehkraft/",
+          "/gesundheit-im-familien-alltag/"
+        ]
       },
       "stressRecovery": {
         "label": "Stress & Regeneration",
         "summary": "Hier geht es um Schlaf, Atmung, Bewegung und die praktischen Grundlagen von Biohacking ohne Übertreibung.",
-        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/der-schlaf-reset/", "/sport-als-stress-killer/"]
+        "articlePaths": [
+          "/3-atemtechniken-fur-mehr-energie/",
+          "/der-schlaf-reset/",
+          "/sport-als-stress-killer/"
+        ]
       },
       "nutrition": {
         "label": "Ernährung & Leistung",
         "summary": "Hier geht es um Protein, Omega-3, Ballaststoffe und die Verbindung von Ernährung mit Energie und Regeneration.",
-        "articlePaths": ["/protein-wissen-fur-kraftaufbau/", "/darmgesundheit-mit-akazienfaser/", "/der-innere-akku/"]
+        "articlePaths": [
+          "/protein-wissen-fur-kraftaufbau/",
+          "/darmgesundheit-mit-akazienfaser/",
+          "/der-innere-akku/"
+        ]
       }
     },
     "profiles": [
@@ -319,8 +771,17 @@
           "Lies erst die Sicherheits- und Quellenhinweise, bevor du Supplemente bewertest.",
           "Wiederhole das Quiz nach den Artikeln und prüfe, welche Antworten sich verändert haben."
         ],
-        "articlePaths": ["/vitamin-d-das-sonnenhormon/", "/die-kraft-des-magnesiums/", "/protein-wissen-fur-kraftaufbau/"],
-        "sourceIds": ["nih-vitamin-d", "nih-magnesium", "nih-vitamin-b12", "bfr-max-supplements"]
+        "articlePaths": [
+          "/vitamin-d-das-sonnenhormon/",
+          "/die-kraft-des-magnesiums/",
+          "/protein-wissen-fur-kraftaufbau/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-d",
+          "nih-magnesium",
+          "nih-vitamin-b12",
+          "bfr-max-supplements"
+        ]
       },
       {
         "id": "solid",
@@ -333,8 +794,16 @@
           "Achte besonders auf den Unterschied zwischen allgemeinem Wissen, Laborwerten und individueller Beratung.",
           "Nutze die empfohlenen Artikel als Lernpfad statt als To-do-Liste für Supplemente."
         ],
-        "articlePaths": ["/der-schlaf-reset/", "/vitamin-c-mythen/", "/darmgesundheit-mit-akazienfaser/"],
-        "sourceIds": ["cdc-sleep", "nih-vitamin-c", "bfr-max-supplements"]
+        "articlePaths": [
+          "/der-schlaf-reset/",
+          "/vitamin-c-mythen/",
+          "/darmgesundheit-mit-akazienfaser/"
+        ],
+        "sourceIds": [
+          "cdc-sleep",
+          "nih-vitamin-c",
+          "bfr-max-supplements"
+        ]
       },
       {
         "id": "advanced",
@@ -347,8 +816,16 @@
           "Prüfe, ob du Biohacking eher als Basis aus Schlaf, Bewegung, Ernährung und Stressregulation verstehst.",
           "Nutze Quellenboxen in den Artikeln, um Behauptungen selbst nachzuvollziehen."
         ],
-        "articlePaths": ["/das-protokoll-zur-neuro-resilienz/", "/der-innere-akku/", "/sport-als-stress-killer/"],
-        "sourceIds": ["physical-activity-mental-health-review", "issn-protein-exercise", "slow-breathing-hrv-2022"]
+        "articlePaths": [
+          "/das-protokoll-zur-neuro-resilienz/",
+          "/der-innere-akku/",
+          "/sport-als-stress-killer/"
+        ],
+        "sourceIds": [
+          "physical-activity-mental-health-review",
+          "issn-protein-exercise",
+          "slow-breathing-hrv-2022"
+        ]
       },
       {
         "id": "architect",
@@ -361,8 +838,15 @@
           "Vertiefe nur noch die Themen, bei denen du eine Antwort nachschlagen musstest.",
           "Teile das Quiz mit jemandem, der Gesundheitsmythen gern schnell glaubt."
         ],
-        "articlePaths": ["/gesundheits-checks/", "/quellen-methodik/", "/nexus-app/"],
-        "sourceIds": ["bfr-max-supplements", "who-stress-guide"]
+        "articlePaths": [
+          "/gesundheits-checks/",
+          "/quellen-methodik/",
+          "/nexus-app/"
+        ],
+        "sourceIds": [
+          "bfr-max-supplements",
+          "who-stress-guide"
+        ]
       }
     ],
     "questions": [
@@ -373,13 +857,25 @@
         "text": "Welche Aussage zu Vitamin D ist am treffendsten?",
         "correctIndex": 1,
         "explanation": "Vitamin D kann bei ausreichender UV-B-Strahlung in der Haut gebildet werden und ist unter anderem für Calciumstoffwechsel, Knochen und Muskelfunktion relevant. Im Winter ist die körpereigene Bildung in nördlichen Breiten eingeschränkt.",
-        "articlePaths": ["/vitamin-d-das-sonnenhormon/"],
-        "sourceIds": ["nih-vitamin-d"],
+        "articlePaths": [
+          "/vitamin-d-das-sonnenhormon/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-d"
+        ],
         "options": [
-          { "label": "Vitamin D ist nur für gute Laune zuständig." },
-          { "label": "Vitamin D hängt mit Sonnenlicht, Calciumstoffwechsel, Knochen und Muskeln zusammen." },
-          { "label": "Vitamin D kann man beliebig hoch dosieren, weil es natürlich ist." },
-          { "label": "Vitamin D ist nur über Obst und Gemüse relevant." }
+          {
+            "label": "Vitamin D ist nur für gute Laune zuständig."
+          },
+          {
+            "label": "Vitamin D hängt mit Sonnenlicht, Calciumstoffwechsel, Knochen und Muskeln zusammen."
+          },
+          {
+            "label": "Vitamin D kann man beliebig hoch dosieren, weil es natürlich ist."
+          },
+          {
+            "label": "Vitamin D ist nur über Obst und Gemüse relevant."
+          }
         ]
       },
       {
@@ -389,13 +885,27 @@
         "text": "Was ist bei veganer Ernährung in Bezug auf Vitamin B12 besonders wichtig?",
         "correctIndex": 2,
         "explanation": "Vitamin B12 ist bei veganer Ernährung ein kritischer Nährstoff. Eine zuverlässige Zufuhr über Supplemente oder angereicherte Lebensmittel ist wichtig; bei Unsicherheit helfen passende Laborwerte.",
-        "articlePaths": ["/protein-wissen-fur-kraftaufbau/", "/der-unsichtbare-teller/"],
-        "sourceIds": ["nih-vitamin-b12", "dge-vitamin-b12"],
+        "articlePaths": [
+          "/protein-wissen-fur-kraftaufbau/",
+          "/der-unsichtbare-teller/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-b12",
+          "dge-vitamin-b12"
+        ],
         "options": [
-          { "label": "B12 ist bei veganer Ernährung nie ein Thema." },
-          { "label": "B12 entsteht ausreichend durch fermentiertes Gemüse." },
-          { "label": "B12 sollte zuverlässig über Supplemente oder angereicherte Lebensmittel abgedeckt werden." },
-          { "label": "B12 ist nur für Sportler relevant." }
+          {
+            "label": "B12 ist bei veganer Ernährung nie ein Thema."
+          },
+          {
+            "label": "B12 entsteht ausreichend durch fermentiertes Gemüse."
+          },
+          {
+            "label": "B12 sollte zuverlässig über Supplemente oder angereicherte Lebensmittel abgedeckt werden."
+          },
+          {
+            "label": "B12 ist nur für Sportler relevant."
+          }
         ]
       },
       {
@@ -405,13 +915,26 @@
         "text": "Welche Aussage zu Magnesium ist sinnvoll?",
         "correctIndex": 0,
         "explanation": "Magnesium ist an vielen Körperprozessen beteiligt, unter anderem Muskeln und Nerven. Krämpfe oder Herzrhythmusgefühl sollten aber nicht vorschnell selbst diagnostiziert werden.",
-        "articlePaths": ["/die-kraft-des-magnesiums/"],
-        "sourceIds": ["nih-magnesium", "bfr-max-supplements"],
+        "articlePaths": [
+          "/die-kraft-des-magnesiums/"
+        ],
+        "sourceIds": [
+          "nih-magnesium",
+          "bfr-max-supplements"
+        ],
         "options": [
-          { "label": "Magnesium ist wichtig für Muskeln und Nerven, aber kein Freifahrtschein für Selbstdiagnosen." },
-          { "label": "Magnesium wirkt bei jedem sofort wie ein Schlafmittel." },
-          { "label": "Je mehr Magnesium, desto besser." },
-          { "label": "Magnesium kommt praktisch nur in Fleisch vor." }
+          {
+            "label": "Magnesium ist wichtig für Muskeln und Nerven, aber kein Freifahrtschein für Selbstdiagnosen."
+          },
+          {
+            "label": "Magnesium wirkt bei jedem sofort wie ein Schlafmittel."
+          },
+          {
+            "label": "Je mehr Magnesium, desto besser."
+          },
+          {
+            "label": "Magnesium kommt praktisch nur in Fleisch vor."
+          }
         ]
       },
       {
@@ -421,13 +944,27 @@
         "text": "Wie sollte man Eisen-Supplemente am ehesten einordnen?",
         "correctIndex": 3,
         "explanation": "Eisen ist wichtig, sollte aber nicht dauerhaft hochdosiert auf Verdacht genommen werden. Ferritin, Blutbild und medizinische Einordnung sind bei Verdacht sinnvoll.",
-        "articlePaths": ["/gesundheit-im-familien-alltag/", "/vitamin-c-mythen/"],
-        "sourceIds": ["nih-iron", "bfr-max-supplements"],
+        "articlePaths": [
+          "/gesundheit-im-familien-alltag/",
+          "/vitamin-c-mythen/"
+        ],
+        "sourceIds": [
+          "nih-iron",
+          "bfr-max-supplements"
+        ],
         "options": [
-          { "label": "Eisen sollte jeder regelmäßig nehmen." },
-          { "label": "Eisen ist nur für Frauen relevant." },
-          { "label": "Eisenmangel erkennt man sicher an Müdigkeit allein." },
-          { "label": "Eisen sollte bei Verdacht gezielt über Laborwerte eingeordnet werden." }
+          {
+            "label": "Eisen sollte jeder regelmäßig nehmen."
+          },
+          {
+            "label": "Eisen ist nur für Frauen relevant."
+          },
+          {
+            "label": "Eisenmangel erkennt man sicher an Müdigkeit allein."
+          },
+          {
+            "label": "Eisen sollte bei Verdacht gezielt über Laborwerte eingeordnet werden."
+          }
         ]
       },
       {
@@ -437,13 +974,27 @@
         "text": "Was ist bei Omega-3 korrekt?",
         "correctIndex": 1,
         "explanation": "ALA kommt in pflanzlichen Quellen wie Leinsamen oder Walnüssen vor. EPA und DHA sind die langkettigen Formen, die direkt vor allem über Fisch oder Algenöl zugeführt werden können.",
-        "articlePaths": ["/der-unsichtbare-teller/", "/der-innere-akku/"],
-        "sourceIds": ["nih-omega3", "bfr-max-supplements"],
+        "articlePaths": [
+          "/der-unsichtbare-teller/",
+          "/der-innere-akku/"
+        ],
+        "sourceIds": [
+          "nih-omega3",
+          "bfr-max-supplements"
+        ],
         "options": [
-          { "label": "Alle Omega-3-Quellen liefern automatisch gleich viel DHA und EPA." },
-          { "label": "Pflanzliche Quellen liefern vor allem ALA; EPA/DHA kommen direkt über Fisch oder Algenöl." },
-          { "label": "Omega-3 ist nur ein Marketingbegriff." },
-          { "label": "Omega-3-Supplemente haben nie Wechselwirkungen." }
+          {
+            "label": "Alle Omega-3-Quellen liefern automatisch gleich viel DHA und EPA."
+          },
+          {
+            "label": "Pflanzliche Quellen liefern vor allem ALA; EPA/DHA kommen direkt über Fisch oder Algenöl."
+          },
+          {
+            "label": "Omega-3 ist nur ein Marketingbegriff."
+          },
+          {
+            "label": "Omega-3-Supplemente haben nie Wechselwirkungen."
+          }
         ]
       },
       {
@@ -453,13 +1004,27 @@
         "text": "Welche Rolle von Vitamin C wird oft unterschätzt?",
         "correctIndex": 2,
         "explanation": "Vitamin C ist nicht nur ein Immun-Mythenthema. Es ist unter anderem für die Kollagenbildung relevant und wirkt als wasserlösliches Antioxidans.",
-        "articlePaths": ["/vitamin-c-mythen/", "/biologische-verjungung/"],
-        "sourceIds": ["nih-vitamin-c", "bfr-max-supplements"],
+        "articlePaths": [
+          "/vitamin-c-mythen/",
+          "/biologische-verjungung/"
+        ],
+        "sourceIds": [
+          "nih-vitamin-c",
+          "bfr-max-supplements"
+        ],
         "options": [
-          { "label": "Vitamin C ersetzt Schlaf und Bewegung." },
-          { "label": "Vitamin C ist nur in Zitronen sinnvoll." },
-          { "label": "Vitamin C ist für Kollagenbildung und antioxidative Prozesse relevant." },
-          { "label": "Vitamin C sollte immer maximal dosiert werden." }
+          {
+            "label": "Vitamin C ersetzt Schlaf und Bewegung."
+          },
+          {
+            "label": "Vitamin C ist nur in Zitronen sinnvoll."
+          },
+          {
+            "label": "Vitamin C ist für Kollagenbildung und antioxidative Prozesse relevant."
+          },
+          {
+            "label": "Vitamin C sollte immer maximal dosiert werden."
+          }
         ]
       },
       {
@@ -469,13 +1034,28 @@
         "text": "Was gilt besonders für fettlösliche Vitamine wie A, D, E und K?",
         "correctIndex": 0,
         "explanation": "Fettlösliche Vitamine werden anders gespeichert als wasserlösliche Vitamine. Deshalb sind Hochdosis-Experimente ohne Anlass und Kontrolle besonders kritisch zu sehen.",
-        "articlePaths": ["/vitamin-a-wachter-der-sehkraft/", "/vitamin-e-der-zellschutzer/", "/vitamin-d-das-sonnenhormon/"],
-        "sourceIds": ["bfr-max-supplements", "nih-vitamin-d"],
+        "articlePaths": [
+          "/vitamin-a-wachter-der-sehkraft/",
+          "/vitamin-e-der-zellschutzer/",
+          "/vitamin-d-das-sonnenhormon/"
+        ],
+        "sourceIds": [
+          "bfr-max-supplements",
+          "nih-vitamin-d"
+        ],
         "options": [
-          { "label": "Hochdosierte Einnahme sollte vorsichtig eingeordnet werden, weil Speicherung und Überversorgung möglich sind." },
-          { "label": "Sie werden immer sofort ausgeschieden." },
-          { "label": "Sie sind nur für die Haut relevant." },
-          { "label": "Sie sind grundsätzlich ungefährlicher als Lebensmittel." }
+          {
+            "label": "Hochdosierte Einnahme sollte vorsichtig eingeordnet werden, weil Speicherung und Überversorgung möglich sind."
+          },
+          {
+            "label": "Sie werden immer sofort ausgeschieden."
+          },
+          {
+            "label": "Sie sind nur für die Haut relevant."
+          },
+          {
+            "label": "Sie sind grundsätzlich ungefährlicher als Lebensmittel."
+          }
         ]
       },
       {
@@ -485,13 +1065,27 @@
         "text": "Was ist ein sinnvoller Biohacking-Basishebel für Schlaf?",
         "correctIndex": 1,
         "explanation": "Die Basis ist nicht ein exotischer Hack, sondern Schlafdauer, Regelmäßigkeit, Abendroutine, Licht und Reizmanagement. Supplemente sind ohne Basis selten der wichtigste Hebel.",
-        "articlePaths": ["/der-schlaf-reset/", "/der-digitale-detox/"],
-        "sourceIds": ["cdc-sleep", "who-stress-guide"],
+        "articlePaths": [
+          "/der-schlaf-reset/",
+          "/der-digitale-detox/"
+        ],
+        "sourceIds": [
+          "cdc-sleep",
+          "who-stress-guide"
+        ],
         "options": [
-          { "label": "Möglichst viele Schlaf-Supplemente kombinieren." },
-          { "label": "Regelmäßigkeit, Abendroutine, Licht und Reizmanagement zuerst verbessern." },
-          { "label": "Schlaf lässt sich durch Willenskraft ersetzen." },
-          { "label": "Nur die Matratze entscheidet." }
+          {
+            "label": "Möglichst viele Schlaf-Supplemente kombinieren."
+          },
+          {
+            "label": "Regelmäßigkeit, Abendroutine, Licht und Reizmanagement zuerst verbessern."
+          },
+          {
+            "label": "Schlaf lässt sich durch Willenskraft ersetzen."
+          },
+          {
+            "label": "Nur die Matratze entscheidet."
+          }
         ]
       },
       {
@@ -501,13 +1095,28 @@
         "text": "Wie sollte man Atemübungen bei Stress verstehen?",
         "correctIndex": 3,
         "explanation": "Langsame, bewusste Atmung kann das autonome Nervensystem beeinflussen und zur Regulation beitragen. Sie ersetzt aber keine Hilfe bei akuten oder schweren Beschwerden.",
-        "articlePaths": ["/3-atemtechniken-fur-mehr-energie/", "/die-kunst-des-mentalen-resets/"],
-        "sourceIds": ["breathwork-meta-2023", "slow-breathing-hrv-2022", "who-stress-guide"],
+        "articlePaths": [
+          "/3-atemtechniken-fur-mehr-energie/",
+          "/die-kunst-des-mentalen-resets/"
+        ],
+        "sourceIds": [
+          "breathwork-meta-2023",
+          "slow-breathing-hrv-2022",
+          "who-stress-guide"
+        ],
         "options": [
-          { "label": "Atemübungen sind reine Esoterik." },
-          { "label": "Atemübungen heilen jede Stressfolge." },
-          { "label": "Nur sehr komplizierte Atemtechniken wirken." },
-          { "label": "Atemübungen können regulieren, ersetzen aber keine medizinische oder psychologische Hilfe." }
+          {
+            "label": "Atemübungen sind reine Esoterik."
+          },
+          {
+            "label": "Atemübungen heilen jede Stressfolge."
+          },
+          {
+            "label": "Nur sehr komplizierte Atemtechniken wirken."
+          },
+          {
+            "label": "Atemübungen können regulieren, ersetzen aber keine medizinische oder psychologische Hilfe."
+          }
         ]
       },
       {
@@ -517,17 +1126,44 @@
         "text": "Was ist beim Thema Protein und Training am sinnvollsten?",
         "correctIndex": 0,
         "explanation": "Protein liefert Bausteine für Anpassungsprozesse. Entscheidend ist aber die Kombination aus Training, ausreichender Energie, Schlaf und sinnvoll verteilter Proteinzufuhr.",
-        "articlePaths": ["/protein-wissen-fur-kraftaufbau/", "/der-innere-akku/", "/der-ganzheitliche-bodybuilding-plan/"],
-        "sourceIds": ["issn-protein-exercise"],
+        "articlePaths": [
+          "/protein-wissen-fur-kraftaufbau/",
+          "/der-innere-akku/",
+          "/der-ganzheitliche-bodybuilding-plan/"
+        ],
+        "sourceIds": [
+          "issn-protein-exercise"
+        ],
         "options": [
-          { "label": "Protein wirkt im Kontext von Training, Energiezufuhr, Schlaf und Regeneration." },
-          { "label": "Protein allein ersetzt Training." },
-          { "label": "Pflanzliches Protein ist grundsätzlich wertlos." },
-          { "label": "Nur die Mahlzeit direkt nach dem Training zählt." }
+          {
+            "label": "Protein wirkt im Kontext von Training, Energiezufuhr, Schlaf und Regeneration."
+          },
+          {
+            "label": "Protein allein ersetzt Training."
+          },
+          {
+            "label": "Pflanzliches Protein ist grundsätzlich wertlos."
+          },
+          {
+            "label": "Nur die Mahlzeit direkt nach dem Training zählt."
+          }
         ]
       }
     ],
-    "sourceIds": ["nih-vitamin-d", "nih-magnesium", "nih-vitamin-b12", "nih-iron", "nih-zinc", "nih-omega3", "nih-vitamin-c", "dge-vitamin-b12", "bfr-max-supplements", "cdc-sleep", "slow-breathing-hrv-2022", "issn-protein-exercise"],
+    "sourceIds": [
+      "nih-vitamin-d",
+      "nih-magnesium",
+      "nih-vitamin-b12",
+      "nih-iron",
+      "nih-zinc",
+      "nih-omega3",
+      "nih-vitamin-c",
+      "dge-vitamin-b12",
+      "bfr-max-supplements",
+      "cdc-sleep",
+      "slow-breathing-hrv-2022",
+      "issn-protein-exercise"
+    ],
     "safetyNote": "Dieses Wissensquiz ersetzt keine Beratung. Es soll Gesundheitswissen spielerisch prüfen und zum Nachlesen führen; individuelle Supplemente, Diagnosen oder Therapien gehören in fachliche Hände."
   }
 }
