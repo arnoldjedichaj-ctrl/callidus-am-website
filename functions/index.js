@@ -2170,3 +2170,292 @@ exports.askCallidus = onCall(
   },
 );
 
+// Öffentliche Rezept-Inhalte für die Website. Dieser Bereich ist absichtlich
+// von NEXUS getrennt: Er liest nur die bereits veröffentlichte Wochenidee und
+// erzeugt eine einzelne, allgemeine Tagesmahlzeit ohne Nutzer- oder Profildaten.
+const PUBLIC_FOOD_ORIGINS = new Set([
+  "https://www.callidus-am.de",
+  "https://callidus-am.de",
+  "http://127.0.0.1:4321",
+  "http://localhost:4321",
+]);
+
+const DAILY_MEAL_SCHEMA = {
+  type: "OBJECT",
+  properties: {
+    title: { type: "STRING" },
+    description: { type: "STRING" },
+    mealType: { type: "STRING" },
+    prepTime: { type: "INTEGER" },
+    servings: { type: "INTEGER" },
+    ingredients: {
+      type: "ARRAY",
+      items: {
+        type: "OBJECT",
+        properties: {
+          amount: { type: "STRING" },
+          name: { type: "STRING" },
+        },
+        required: ["amount", "name"],
+      },
+    },
+    preparation: { type: "ARRAY", items: { type: "STRING" } },
+    nutrition: {
+      type: "OBJECT",
+      properties: {
+        calories: { type: "NUMBER" },
+        protein: { type: "NUMBER" },
+        carbs: { type: "NUMBER" },
+        fat: { type: "NUMBER" },
+        fiber: { type: "NUMBER" },
+      },
+      required: ["calories", "protein", "carbs", "fat"],
+    },
+    imagePrompt: { type: "STRING" },
+  },
+  required: ["title", "description", "mealType", "prepTime", "servings", "ingredients", "preparation", "nutrition", "imagePrompt"],
+};
+
+function publicFoodDateKey(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Berlin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${value.year}-${value.month}-${value.day}`;
+}
+
+function publicFoodNumber(value, fallback = null, min = 0, max = 10000) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= min && number <= max ? Math.round(number * 10) / 10 : fallback;
+}
+
+function publicFoodMillis(value) {
+  if (value?.toMillis) return value.toMillis();
+  if (value?.toDate) return value.toDate().getTime();
+  const parsed = Date.parse(String(value || ""));
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function publicFoodRecipe(value = {}, { daily = false } = {}) {
+  const nutrition = value.nutrition || {};
+  const ingredients = ensureArray(value.ingredients).slice(0, 16).map((ingredient) => {
+    if (!daily || typeof ingredient === "string") return cleanString(ingredient, 150);
+    return {
+      amount: cleanString(ingredient?.amount, 60),
+      name: cleanString(ingredient?.name, 120),
+    };
+  }).filter((ingredient) => (typeof ingredient === "string" ? Boolean(ingredient) : ingredient.name));
+
+  return {
+    title: cleanString(value.title, 160),
+    description: cleanString(value.description, 420),
+    type: cleanString(value.type, 60),
+    mealType: cleanString(value.mealType, 60),
+    prepTime: publicFoodNumber(value.prepTime, null, 1, 180),
+    servings: publicFoodNumber(value.servings, null, 1, 12),
+    ingredients,
+    preparation: ensureArray(value.preparation).slice(0, 8).map((step) => cleanString(step, 320)).filter(Boolean),
+    nutrition: {
+      calories: publicFoodNumber(nutrition.calories, null, 0, 2500),
+      protein: publicFoodNumber(nutrition.protein, null, 0, 250),
+      carbs: publicFoodNumber(nutrition.carbs, null, 0, 350),
+      fat: publicFoodNumber(nutrition.fat, null, 0, 250),
+      fiber: publicFoodNumber(nutrition.fiber, null, 0, 150),
+    },
+    imageUrl: cleanString(value.imageUrl, 1000),
+    dateKey: cleanString(value.dateKey, 20),
+    publishedDate: cleanString(value.publishedDate, 20),
+  };
+}
+
+async function publicFoodGeminiJson({ apiKey, prompt }) {
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(DEFAULT_MODEL)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.45,
+        maxOutputTokens: 1800,
+        responseMimeType: "application/json",
+        responseSchema: DAILY_MEAL_SCHEMA,
+      },
+    }),
+  });
+  if (!response.ok) {
+    const detail = await response.text();
+    logger.error("Daily meal generation failed", { status: response.status, detail: detail.slice(0, 600) });
+    throw new Error("Gemini konnte die Tagesmahlzeit nicht erstellen.");
+  }
+  const payload = await response.json();
+  const text = ensureArray(payload.candidates?.[0]?.content?.parts).map((part) => part.text || "").join("").trim();
+  if (!text) throw new Error("Gemini hat keine Tagesmahlzeit geliefert.");
+  const generatedMeal = JSON.parse(text);
+  return {
+    ...publicFoodRecipe(generatedMeal, { daily: true }),
+    imagePrompt: cleanString(generatedMeal.imagePrompt, 900),
+  };
+}
+
+async function publicFoodImage({ apiKey, prompt, dateKey }) {
+  if (!apiKey) return "";
+  try {
+    const generated = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(apiKey)}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: `${cleanString(prompt, 900)}, professional healthy food photography, appetizing daylight, no text, no logos` }],
+        }],
+        generationConfig: {
+          responseModalities: ["IMAGE"],
+          responseFormat: { image: { aspectRatio: "4:3" } },
+        },
+      }),
+    });
+    if (!generated.ok) {
+      logger.warn("Daily meal image generation failed", { status: generated.status });
+      return "";
+    }
+    const payload = await generated.json();
+    const imagePart = ensureArray(payload?.candidates?.[0]?.content?.parts).find((part) => part?.inlineData?.data);
+    if (!imagePart?.inlineData?.data) return "";
+    try {
+      const imageBuffer = Buffer.from(imagePart.inlineData.data, "base64");
+      const bucket = admin.storage().bucket();
+      const mimeType = cleanString(imagePart.inlineData.mimeType, 80) || "image/png";
+      const extension = mimeType === "image/jpeg" ? "jpg" : "png";
+      const fileName = `website-food/${dateKey}.${extension}`;
+      const file = bucket.file(fileName);
+      await file.save(imageBuffer, { metadata: { contentType: mimeType }, public: true });
+      await file.makePublic();
+      return `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+    } catch (storageError) {
+      logger.warn("Daily meal image could not be copied to Storage", { error: String(storageError?.message || storageError) });
+      return "";
+    }
+  } catch (error) {
+    logger.warn("Daily meal image request failed", { error: String(error?.message || error) });
+    return "";
+  }
+}
+
+function publicFoodSetCors(req, res) {
+  const origin = req.get("origin");
+  if (origin && PUBLIC_FOOD_ORIGINS.has(origin)) {
+    res.set("Access-Control-Allow-Origin", origin);
+    res.set("Vary", "Origin");
+  }
+  res.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "Content-Type, Accept");
+}
+
+exports.publishDailyHealthyMeal = onSchedule(
+  {
+    schedule: "15 6 * * *",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    timeoutSeconds: 300,
+    memory: "512MiB",
+    secrets: [geminiApiKey],
+  },
+  async () => {
+    const dateKey = publicFoodDateKey();
+    const mealRef = db.collection("website_public_food").doc(`daily_${dateKey}`);
+    const now = Date.now();
+    const acquired = await db.runTransaction(async (transaction) => {
+      const snapshot = await transaction.get(mealRef);
+      const current = snapshot.exists ? snapshot.data() || {} : {};
+      const startedAt = publicFoodMillis(current.generationStartedAt);
+      const isFreshLock = current.status === "generating" && startedAt > now - (20 * 60 * 1000);
+      if (current.status === "ready" || isFreshLock) return false;
+      transaction.set(mealRef, {
+        status: "generating",
+        dateKey,
+        generationStartedAt: FieldValue.serverTimestamp(),
+        updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      return true;
+    });
+    if (!acquired) return { skipped: true, dateKey };
+
+    try {
+      const recentSnapshot = await db.collection("website_public_food").orderBy("dateKey", "desc").limit(7).get();
+      const recentTitles = recentSnapshot.docs.map((doc) => cleanString(doc.data()?.title, 160)).filter(Boolean);
+      const themes = ["vegetarisch und mediterran", "proteinreich mit Hülsenfrüchten", "leicht und sommerlich", "vollwertig mit saisonalem Gemüse", "schnell für einen aktiven Alltag", "ballaststoffreich und bunt", "mild und familientauglich"];
+      const theme = themes[Number(dateKey.replace(/-/g, "")) % themes.length];
+      const prompt = [
+        "Du erstellst die allgemeine Callidus Tagesmahlzeit für eine öffentliche Website.",
+        "Erstelle genau ein gesundes, alltagstaugliches Rezept auf Deutsch für 2 Portionen. Es ist keine individuelle Ernährungsberatung und darf keine Heil- oder Abnehmversprechen enthalten.",
+        `Heute ist ${dateKey}. Stil: ${theme}. Variiere zu diesen zuletzt verwendeten Titeln: ${recentTitles.join(" | ") || "keine"}.`,
+        "Die Zutaten müssen in deutschen Supermärkten gut erhältlich sein. Keine rohen Eier, kein Alkohol, keine Nahrungsergänzungsmittel. Nenne klare Mengen, 3 bis 6 Zubereitungsschritte und plausible geschätzte Nährwerte pro Portion.",
+        "mealType soll etwa Mittagessen, Abendessen oder Frühstück sein. imagePrompt muss Englisch sein und das fertige Gericht fotorealistisch beschreiben; keine Schrift, keine Marken.",
+      ].join("\n");
+      const apiKey = geminiApiKey.value();
+      if (!apiKey) throw new Error("GEMINI_API_KEY ist nicht gesetzt.");
+      const meal = await publicFoodGeminiJson({ apiKey, prompt });
+      const imageUrl = await publicFoodImage({ apiKey, prompt: meal.imagePrompt || meal.title, dateKey });
+      await mealRef.set({
+        ...meal,
+        imageUrl,
+        dateKey,
+        publishedDate: dateKey,
+        status: "ready",
+        provider: "gemini-2.5-flash",
+        createdAt: FieldValue.serverTimestamp(),
+        updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      logger.info("Daily healthy meal published", { dateKey, title: meal.title, imageReady: Boolean(imageUrl) });
+      return { ok: true, dateKey, title: meal.title, imageReady: Boolean(imageUrl) };
+    } catch (error) {
+      await mealRef.set({
+        status: "failed",
+        failure: cleanString(error?.message || error, 280),
+        updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      logger.error("Daily healthy meal failed", { dateKey, error: String(error?.message || error) });
+      throw error;
+    }
+  },
+);
+
+exports.getPublicFoodContent = onRequest(
+  { region: "us-central1", timeoutSeconds: 30, memory: "256MiB" },
+  async (req, res) => {
+    publicFoodSetCors(req, res);
+    if (req.method === "OPTIONS") {
+      res.status(204).send("");
+      return;
+    }
+    if (req.method !== "GET") {
+      res.status(405).json({ error: "GET only" });
+      return;
+    }
+    try {
+      const today = publicFoodDateKey();
+      const [dailySnapshot, weeklySnapshot] = await Promise.all([
+        db.collection("website_public_food").doc(`daily_${today}`).get(),
+        db.collection("recipes").where("category", "==", "weekly_special").limit(32).get(),
+      ]);
+      const weekly = weeklySnapshot.docs
+        .map((doc) => ({ data: doc.data() || {}, created: publicFoodMillis(doc.data()?.createdAt || doc.data()?.created_at) }))
+        .filter((entry) => entry.data.active !== false)
+        .sort((a, b) => b.created - a.created)[0];
+      const dailyData = dailySnapshot.exists && dailySnapshot.data()?.status === "ready" ? dailySnapshot.data() : null;
+      const daily = dailyData ? publicFoodRecipe(dailyData, { daily: true }) : null;
+      const weeklyRecipe = weekly ? publicFoodRecipe({ ...weekly.data, publishedDate: publicFoodDateKey(new Date(weekly.created || Date.now())) }) : null;
+      res.set("Cache-Control", "public, max-age=300, s-maxage=300");
+      res.status(200).json({ daily, weekly: weeklyRecipe, updatedAt: new Date().toISOString() });
+    } catch (error) {
+      logger.error("Public food content failed", { error: String(error?.message || error) });
+      res.status(500).json({ error: "content unavailable" });
+    }
+  },
+);
+
