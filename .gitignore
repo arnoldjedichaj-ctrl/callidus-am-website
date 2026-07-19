@@ -33,3 +33,6 @@ __pycache__/
 buchprojekt/kinderbuch-band1/Callis-Kompass-Band1-KDP-Innenteil.pdf
 buchprojekt/kinderbuch-band1/callis-kompass-band1-kdp-inhalt.pdf
 buchprojekt/kinderbuch-band1/callis-kompass-band1-arbeitsfassung.pdf
+
+# Interne Strategie-Dokumente nie committen
+*.docx
