@@ -1,0 +1,36 @@
+{
+  "disclosure": "Die verlinkten Tests führen zu externen Partner-Shops. Callidus A&M kann bei aktiver Partnerschaft eine Provision erhalten (Affiliate). Für dich entstehen keine Mehrkosten.",
+  "safetyNote": "Selbsttests liefern Messwerte, ersetzen aber keine ärztliche Diagnose. Bei Beschwerden, auffälligen Werten oder Unsicherheit sprich bitte mit deiner Ärztin oder deinem Arzt.",
+  "tests": [
+    {
+      "id": "vitamin-d",
+      "step": "01",
+      "title": "Vitamin-D-Test",
+      "description": "Misst deinen 25-OH-Vitamin-D-Spiegel aus wenigen Tropfen Kapillarblut. Passt direkt zu unseren Vitamin-D-Artikeln und dem Mikronährstoff-Radar.",
+      "url": "https://www.cerascreen.de/products/vitamin-d-test",
+      "partner": "cerascreen",
+      "affiliate": false,
+      "articlePath": "/vitamin-d-das-sonnenhormon/"
+    },
+    {
+      "id": "vitalstoffe",
+      "step": "02",
+      "title": "Vitalstoff- & Mikronährstoff-Tests",
+      "description": "Bluttests für zuhause zu Vitaminen, Mineralstoffen und Aminosäuren — Auswertung im medizinischen Fachlabor, Ergebnis mit Einordnung.",
+      "url": "https://www.foryouehealth.de/selbsttests/bluttests.html",
+      "partner": "for you eHealth",
+      "affiliate": false,
+      "articlePath": "/wissenskarten/"
+    },
+    {
+      "id": "b12-eisen",
+      "step": "03",
+      "title": "B12- & Eisen-Status",
+      "description": "Gezielt messen statt raten: Vitamin B12 und Ferritin gehören zu den häufigsten Versorgungsfragen — besonders bei pflanzlicher Ernährung oder Erschöpfung.",
+      "url": "https://www.cerascreen.de/collections/selbsttests",
+      "partner": "cerascreen",
+      "affiliate": false,
+      "articlePath": "/der-innere-akku/"
+    }
+  ]
+}

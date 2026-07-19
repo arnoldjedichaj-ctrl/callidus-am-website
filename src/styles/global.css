@@ -1426,6 +1426,9 @@ html[data-theme="dark"] .planet-meta {
 .notice { border: 1px solid rgba(var(--gold-rgb), 0.28); background: rgba(var(--gold-rgb), 0.08); border-radius: 0.8rem; padding: 1rem; }
 .momus-satire-notice { margin-top: 1rem; font-size: 0.9rem; }
 .momus-satire-notice p { margin: 0.25rem 0 0; }
+.check-affiliate-note { font-size: 0.8rem; color: var(--muted, #6b7280); margin-top: 0.75rem; }
+#bluttest .check-knowledge-list .actions { margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+#bluttest .notice { margin-top: 1.25rem; grid-column: 1 / -1; }
 .article-bridge-box {
   display: grid;
   gap: 1rem;

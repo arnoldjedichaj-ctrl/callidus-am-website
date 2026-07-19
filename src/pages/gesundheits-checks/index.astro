@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import healthChecks from '../../data/health-checks.json';
+import bloodTests from '../../data/blood-tests.json';
 import knowledgeSources from '../../data/knowledge-sources.json';
 import specialPages from '../../data/special-pages.json';
 import { allArticles } from '../../data/all-articles.js';
@@ -94,6 +95,38 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           <p>Die interaktiven Checks benötigen JavaScript, damit die Auswertung direkt im Browser berechnet werden kann.</p>
         </div>
       </noscript>
+    </div>
+  </section>
+
+  <section class="section tight" id="bluttest" aria-label="Bluttests für zuhause">
+    <div class="container check-knowledge-panel">
+      <div data-reveal>
+        <p class="eyebrow">Messen statt schätzen</p>
+        <h2>Vom Selbst-Check zum echten Blutwert.</h2>
+        <p class="lede">
+          Der Mikronährstoff-Radar zeigt Aufmerksamkeitsbereiche — Gewissheit bringt nur eine Messung.
+          Diese Selbsttests für zuhause werden in medizinischen Fachlaboren ausgewertet und passen zu
+          unseren meistgelesenen Themen.
+        </p>
+        <p class="check-affiliate-note">{bloodTests.disclosure}</p>
+      </div>
+      <div class="check-knowledge-list" data-reveal="2" aria-label="Bluttest-Empfehlungen">
+        {bloodTests.tests.map((test) => (
+          <article>
+            <span>{test.step}</span>
+            <h3>{test.title}</h3>
+            <p>{test.description}</p>
+            <div class="actions">
+              <a class="button" href={test.url} target="_blank" rel="noopener nofollow sponsored">Zum Test ({test.partner})</a>
+              <a class="button ghost" href={test.articlePath}>Wissen dazu</a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="notice check-safety" data-reveal="3">
+        <strong>Wichtig</strong>
+        <p>{bloodTests.safetyNote}</p>
+      </div>
     </div>
   </section>
 

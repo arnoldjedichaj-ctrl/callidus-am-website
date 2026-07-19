@@ -2766,6 +2766,33 @@
       "summary": "Das Health-IQ-Wissensquiz unter /gesundheits-checks/ testet Gesundheitswissen mit sofortiger Auswertung und Lernfeldern.",
       "text": "Unter /gesundheits-checks/ gibt es neben dem Stress-Check und dem Mikronährstoff-Radar das Health-IQ-Wissensquiz: Fragen zum Gesundheitswissen mit sofortiger Auswertung, Lernfeldern, Quellen und passenden Callidus-Artikeln zum Vertiefen. Auch im Krypto-Bereich (/krypto-verstehen/ und /krypto-training/) gibt es Quizfragen zum sicheren Umgang mit Krypto. Die Quizze dienen der Bildung und sind keine Diagnose.",
       "sourceIds": []
+    },
+    {
+      "title": "Bluttests für zuhause – messen statt schätzen",
+      "path": "/gesundheits-checks/#bluttest",
+      "kind": "tool",
+      "app": "callidus",
+      "topics": [
+        "Bluttest",
+        "Blut",
+        "Blutwerte",
+        "Blutbild",
+        "Blutdiagnose",
+        "Blutanalyse",
+        "Laborwerte",
+        "Labor",
+        "Vitamin-D-Test",
+        "B12-Test",
+        "Ferritin",
+        "Eisen messen",
+        "Mikronährstoffe messen",
+        "Selbsttest",
+        "Vitalstoffe"
+      ],
+      "text": "Auf der Gesundheits-Checks-Seite gibt es im Abschnitt Bluttest (unter /gesundheits-checks/#bluttest) kuratierte Selbsttests für zuhause: einen Vitamin-D-Test, Vitalstoff- und Mikronährstoff-Bluttests sowie B12- und Eisen-Status. Wenige Tropfen Kapillarblut werden in medizinischen Fachlaboren ausgewertet. Die Tests stammen von externen Partnern (cerascreen, for you eHealth); Callidus verlinkt sie transparent und kann eine Provision erhalten. Wichtig: Selbsttests liefern Messwerte zur Orientierung, ersetzen aber keine ärztliche Diagnose – bei Beschwerden oder auffälligen Werten bitte ärztlich abklären. Der empfohlene Weg: erst Mikronährstoff-Radar oder Health IQ machen, dann gezielt den passenden Wert messen. Bei Fragen zu Blut, Blutwerten, Bluttests oder Laborwerten auf diesen Bereich verweisen.",
+      "sourceIds": [
+        "bfr-max-supplements"
+      ]
     }
   ]
 }
