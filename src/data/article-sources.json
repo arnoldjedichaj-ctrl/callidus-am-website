@@ -162,5 +162,39 @@
       "sourceId": "bfr-max-supplements",
       "claimNote": "Sicherheitsrahmen für Nahrungsergänzung und Überversorgung."
     }
+  ],
+  "omega-3-fettsaeuren": [
+    {
+      "sourceId": "nih-omega3",
+      "claimNote": "Grundlage für Aussagen zu Formen (ALA/EPA/DHA), Umwandlungsrate, Quellen und Bedarf."
+    },
+    {
+      "sourceId": "efsa-dha-epa-claims",
+      "claimNote": "Zugelassene Health Claims zu EPA/DHA (Herzfunktion, Gehirn, Sehkraft, Triglyceride)."
+    }
+  ],
+  "intervallfasten-16-8-anleitung": [
+    {
+      "sourceId": "nejm-intermittent-fasting-2019",
+      "claimNote": "Einordnung zu metabolischem Umschalten, Ketonkörpern und Studienlage beim Menschen."
+    },
+    {
+      "sourceId": "patterson-if-2017",
+      "claimNote": "Grundlage für den Vergleich verschiedener Fasten-Protokolle und metabolischer Effekte."
+    }
+  ],
+  "abendroutine-besser-schlafen": [
+    {
+      "sourceId": "sleep-hygiene-irish-2015",
+      "claimNote": "Evidenz zu Schlafhygiene-Bausteinen: Koffein, Regelmäßigkeit, Umgebung."
+    },
+    {
+      "sourceId": "evening-light-chang-2015",
+      "claimNote": "Grundlage für Aussagen zu Bildschirmlicht, Melatonin-Verzögerung und morgendlicher Wachheit."
+    },
+    {
+      "sourceId": "cdc-sleep",
+      "claimNote": "Allgemeine Empfehlungen zu Schlafdauer und Schlafumgebung."
+    }
   ]
 }

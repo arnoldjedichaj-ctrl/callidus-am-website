@@ -570,7 +570,9 @@
       "segmentCount": 26,
       "blockCount": 23,
       "source": "source/content-html/blockchain-ihre-gesundheit.html"
-    }
+    },
+    "seoTitle": "Blockchain im Gesundheitswesen: So werden Patientendaten sicher | callidus A&M",
+    "seoDescription": "Wie Blockchain-Technologie Patientendaten schützt, Medikamentenfälschungen verhindert und die digitale Gesundheitsakte sicherer machen kann — verständlich erklärt."
   },
   {
     "slug": "darmgesundheit-mit-akazienfaser",
@@ -793,7 +795,9 @@
       "segmentCount": 25,
       "blockCount": 22,
       "source": "source/content-html/das-diktat-ihrer-gedanken.html"
-    }
+    },
+    "seoTitle": "Mindset ändern: Negative Gedanken und Glaubenssätze auflösen | callidus A&M",
+    "seoDescription": "Limitierende Glaubenssätze erkennen und auflösen: Wie Ihr Mindset über Erfolg entscheidet und mit welchen mentalen Techniken Sie die Kontrolle zurückgewinnen."
   },
   {
     "slug": "das-protokoll-zur-neuro-resilienz",
@@ -915,7 +919,8 @@
       "segmentCount": 23,
       "blockCount": 18,
       "source": "source/content-html/das-protokoll-zur-neuro-resilienz.html"
-    }
+    },
+    "seoDescription": "Demenz und Depression vorbeugen: Wie Ernährung, Bewegung und mentales Training die Widerstandskraft des Gehirns stärken — das Protokoll zur Neuro-Resilienz."
   },
   {
     "slug": "der-digitale-detox",
@@ -1040,7 +1045,9 @@
       "segmentCount": 25,
       "blockCount": 21,
       "source": "source/content-html/der-digitale-detox.html"
-    }
+    },
+    "seoTitle": "Digital Detox: Mehr Fokus und Ruhe durch bewusste Handy-Pausen | callidus A&M",
+    "seoDescription": "Ständig am Handy? Wie ein digitaler Detox Konzentration, Kreativität und innere Ruhe zurückbringt — mit praktischen Schritten für den Alltag."
   },
   {
     "slug": "der-energie-reset",
@@ -1186,7 +1193,9 @@
       "segmentCount": 30,
       "blockCount": 29,
       "source": "source/content-html/der-energie-reset.html"
-    }
+    },
+    "seoTitle": "Mehr Energie im Alltag: Der 15-Minuten-Bewegungs-Reset | callidus A&M",
+    "seoDescription": "Schon 15 Minuten tägliche Bewegung steigern Energie, Konzentration und Stimmung. So gelingt der Energie-Reset auch an vollen Tagen."
   },
   {
     "slug": "der-ganzheitliche-bodybuilding-plan",
@@ -1458,7 +1467,9 @@
       "segmentCount": 30,
       "blockCount": 28,
       "source": "source/content-html/der-innere-akku.html"
-    }
+    },
+    "seoTitle": "Regeneration im Sport: Wie Schlaf und Ernährung die Leistung steigern | callidus A&M",
+    "seoDescription": "Müde im Training? Wie Schlafqualität, Ernährung und Mikronährstoffe Regeneration und Trainingsleistung bestimmen — und wie Sie Ihren inneren Akku aufladen."
   },
   {
     "slug": "der-schlaf-reset",
@@ -1699,7 +1710,9 @@
       "segmentCount": 42,
       "blockCount": 27,
       "source": "source/content-html/der-unsichtbare-teller.html"
-    }
+    },
+    "seoTitle": "Achtsam essen: Wie Sie Verdauung und Wohlbefinden verbessern | callidus A&M",
+    "seoDescription": "Nicht nur was, sondern wie Sie essen zählt: Wie achtsames Essen Verdauung, Nährstoffaufnahme und Wohlbefinden spürbar verbessert."
   },
   {
     "slug": "die-biologische-uhr-verlangsamen",
@@ -1891,7 +1904,9 @@
       "segmentCount": 21,
       "blockCount": 21,
       "source": "source/content-html/die-kraft-der-dankbarkeit.html"
-    }
+    },
+    "seoTitle": "Dankbarkeit üben: Übungen für mehr Zufriedenheit und Resilienz | callidus A&M",
+    "seoDescription": "Dankbarkeit ist trainierbar: Einfache Dankbarkeitsübungen für mehr Zufriedenheit, Resilienz und emotionales Wohlbefinden im Alltag."
   },
   {
     "slug": "die-kraft-des-magnesiums",
@@ -2180,7 +2195,9 @@
       "segmentCount": 37,
       "blockCount": 29,
       "source": "source/content-html/die-kunst-des-mentalen-resets.html"
-    }
+    },
+    "seoTitle": "Kopf frei bekommen: 5 mentale Reset-Übungen für 5 Minuten | callidus A&M",
+    "seoDescription": "Kopf voll? Fünf mentale Reset-Übungen à 5 Minuten: Atemtechniken und Achtsamkeit für schnellen Stressabbau und einen klaren Kopf."
   },
   {
     "slug": "die-personalisierte-revolution",
@@ -2986,7 +3003,9 @@
       "segmentCount": 27,
       "blockCount": 21,
       "source": "source/content-html/sport-als-stress-killer.html"
-    }
+    },
+    "seoTitle": "Stress abbauen durch Sport: Warum Bewegung der beste Stresskiller ist | callidus A&M",
+    "seoDescription": "Warum Bewegung eines der wirksamsten Mittel gegen Stress ist: Was beim Sport im Gehirn passiert und wie Sie den Effekt gezielt für sich nutzen."
   },
   {
     "slug": "vitamin-a-wachter-der-sehkraft",
@@ -3465,6 +3484,290 @@
         "label": "Valus (VAL) entdecken",
         "href": "/valus/",
         "note": "Kein Investment, keine Blockchain — ein internes Bonus-Guthaben von callidus A&M."
+      }
+    ],
+    "seoTitle": "Blockchain und Gesundheit: 5 Zukunftsszenarien einfach erklärt | callidus A&M"
+  },
+  {
+    "slug": "omega-3-fettsaeuren",
+    "path": "/omega-3-fettsaeuren/",
+    "category": "koerper-ernaehrung",
+    "title": "Omega-3-Fettsäuren: Wirkung, Tagesbedarf und die besten Quellen | callidus A&M",
+    "description": "Was bewirken Omega-3-Fettsäuren wirklich? EPA, DHA und ALA einfach erklärt: Wirkung auf Herz und Gehirn, Tagesbedarf, die besten Lebensmittel und worauf Sie bei Kapseln achten sollten.",
+    "h1": [],
+    "h2": [
+      "Omega-3-Fettsäuren: Wirkung, Tagesbedarf und die besten Quellen"
+    ],
+    "image": "/assets/original/021-wp-content-uploads-go-x-u-3ac31ce1-9897-4528-a93e-a5eada54787e-l0-t96-w1280-h1089-image.jpg",
+    "originalUrl": "https://www.callidus-am.de/omega-3-fettsaeuren/",
+    "media": [],
+    "readingTime": 5,
+    "publishedAt": "2026-07-19",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Omega-3-Fettsäuren: Wirkung, Tagesbedarf und die besten Quellen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kaum ein Nährstoff wird so häufig empfohlen und gleichzeitig so oft missverstanden wie Omega-3. Die einen schwören auf Fischölkapseln, die anderen halten alles für Marketing. Die Wahrheit liegt, wie so oft, dazwischen — und sie beginnt mit einer wichtigen Unterscheidung: Omega-3 ist nicht gleich Omega-3."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "EPA, DHA und ALA: Die drei Gesichter von Omega-3"
+      },
+      {
+        "type": "paragraph",
+        "text": "Unter dem Begriff Omega-3 verbergen sich drei verschiedene Fettsäuren mit sehr unterschiedlichen Rollen. ALA (Alpha-Linolensäure) stammt aus pflanzlichen Quellen wie Leinsamen, Chiasamen und Walnüssen. EPA (Eicosapentaensäure) und DHA (Docosahexaensäure) finden sich vor allem in fettem Seefisch und Algen — und genau diese beiden sind es, auf die sich die meisten wissenschaftlich untersuchten Wirkungen beziehen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Der Körper kann ALA zwar in EPA und DHA umwandeln, aber nur in geringem Umfang — Schätzungen liegen je nach Person bei wenigen Prozent. Wer sich rein pflanzlich ernährt, deckt seinen ALA-Bedarf meist gut, sollte die direkte EPA/DHA-Versorgung aber bewusst im Blick behalten, zum Beispiel über Algenöl."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Was Omega-3 im Körper bewirkt"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Herz und Kreislauf: Für EPA und DHA ist von der Europäischen Lebensmittelbehörde EFSA die Aussage zugelassen, dass sie zu einer normalen Herzfunktion beitragen. Höhere Dosierungen können zudem erhöhte Triglyceridwerte im Blut günstig beeinflussen.",
+          "Gehirn und Sehkraft: DHA ist ein zentraler Baustein der Zellmembranen im Gehirn und in der Netzhaut. Es trägt zur Erhaltung einer normalen Gehirnfunktion und Sehkraft bei.",
+          "Entzündungsregulation: Aus EPA bildet der Körper Botenstoffe, die an der Auflösung von Entzündungsprozessen beteiligt sind. Das macht Omega-3 zu einem Gegenspieler der entzündungsfördernden Omega-6-Fettsäuren, die in der modernen Ernährung oft stark überwiegen.",
+          "Schwangerschaft und Entwicklung: DHA trägt zur normalen Entwicklung von Gehirn und Augen beim Fötus und gestillten Säugling bei."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Wie viel Omega-3 brauchen Sie täglich?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Als Orientierung gelten etwa 250 Milligramm EPA und DHA kombiniert pro Tag für die allgemeine Versorgung. Das entspricht ungefähr ein bis zwei Portionen fettem Seefisch pro Woche — etwa Lachs, Hering, Makrele oder Sardinen. Für ALA empfiehlt die Deutsche Gesellschaft für Ernährung rund 0,5 Prozent der täglichen Energiezufuhr, was mit einem Esslöffel Leinöl oder einer kleinen Handvoll Walnüsse gut erreichbar ist."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Die besten Omega-3-Quellen im Überblick"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Fetter Seefisch: Hering, Lachs, Makrele und Sardine liefern EPA und DHA direkt — die effizienteste Quelle.",
+          "Algenöl: Die vegane Alternative mit direktem EPA/DHA-Gehalt. Die Mikroalgen sind die ursprüngliche Quelle, aus der auch Fische ihr Omega-3 beziehen.",
+          "Leinöl und Leinsamen: Spitzenreiter beim ALA-Gehalt. Leinöl immer kalt verwenden und kühl lagern, da es schnell oxidiert.",
+          "Walnüsse und Chiasamen: Praktische ALA-Lieferanten für den Alltag — im Müsli, Salat oder als Snack.",
+          "Rapsöl: Als Basis-Küchenöl eine solide Alltagsquelle mit gutem Omega-3-zu-Omega-6-Verhältnis."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Kapseln: sinnvoll oder überflüssig?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Wer regelmäßig fetten Seefisch isst, braucht in der Regel keine Kapseln. Für alle anderen — insbesondere bei vegetarischer oder veganer Ernährung — kann ein Präparat sinnvoll sein. Achten Sie dabei auf drei Dinge: den tatsächlichen EPA/DHA-Gehalt pro Tagesdosis (nicht nur die Fischöl-Gesamtmenge), Angaben zur Oxidationsfrische (TOTOX-Wert) und eine geprüfte Schadstofffreiheit. Sehr hohe Dosierungen gehören in ärztliche Begleitung, vor allem wenn Sie blutverdünnende Medikamente einnehmen."
+      },
+      {
+        "type": "paragraph",
+        "text": "Unser Fazit: Omega-3 ist kein Wundermittel, aber einer der am besten untersuchten Bausteine einer entzündungsbewussten Ernährung. Zwei Fischmahlzeiten pro Woche oder eine gute Algenöl-Routine — mehr braucht es für die Basis oft nicht."
+      },
+      {
+        "type": "cta",
+        "label": "Mikronährstoff-Check starten",
+        "href": "/gesundheits-checks/#check-tool",
+        "note": "In 2 Minuten einordnen, welche Nährstoff-Themen bei Ihnen Aufmerksamkeit verdienen."
+      }
+    ]
+  },
+  {
+    "slug": "intervallfasten-16-8-anleitung",
+    "path": "/intervallfasten-16-8-anleitung/",
+    "category": "koerper-ernaehrung",
+    "title": "Intervallfasten: 16:8-Anleitung für Einsteiger und was die Forschung sagt | callidus A&M",
+    "description": "Intervallfasten einfach erklärt: Wie die 16:8-Methode funktioniert, was Studien wirklich zeigen, für wen Fasten geeignet ist — und ein praktischer 7-Tage-Einstieg ohne Verbote.",
+    "h1": [],
+    "h2": [
+      "Intervallfasten: Die 16:8-Methode verständlich erklärt"
+    ],
+    "image": "/assets/original/017-wp-content-uploads-go-x-u-7c721296-6245-45cb-9460-ddda78139803-l0-t96-w1280-h1089-image.jpg",
+    "originalUrl": "https://www.callidus-am.de/intervallfasten-16-8-anleitung/",
+    "media": [],
+    "readingTime": 5,
+    "publishedAt": "2026-07-19",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Intervallfasten: Die 16:8-Methode verständlich erklärt"
+      },
+      {
+        "type": "paragraph",
+        "text": "Intervallfasten ist keine Diät im klassischen Sinn. Es schreibt Ihnen nicht vor, was Sie essen — sondern wann. Genau das macht es für viele Menschen alltagstauglicher als jeder Ernährungsplan: keine Kalorientabellen, keine verbotenen Lebensmittel, nur ein klarer Rhythmus aus Essens- und Fastenfenstern."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "So funktioniert 16:8"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bei der beliebtesten Variante, der 16:8-Methode, essen Sie innerhalb eines Fensters von acht Stunden und fasten die übrigen sechzehn — wovon Sie einen Großteil ohnehin verschlafen. Ein typisches Beispiel: erste Mahlzeit um 12 Uhr, letzte Mahlzeit bis 20 Uhr. Wasser, ungesüßter Tee und schwarzer Kaffee sind während der Fastenphase erlaubt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Daneben existieren weitere Protokolle wie 5:2 (an zwei Tagen pro Woche stark reduzierte Kalorienzufuhr) oder das alternierende Fasten. Für Einsteiger ist 16:8 meist der sanfteste Weg — viele erreichen es schon, indem sie das Frühstück etwas nach hinten und das Abendessen etwas nach vorne verschieben."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Was im Körper passiert"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nach etwa zwölf Stunden ohne Nahrung sind die Glykogenspeicher der Leber weitgehend geleert. Der Stoffwechsel schaltet zunehmend auf Fettverbrennung um und bildet Ketonkörper als alternative Energiequelle. Forschende bezeichnen diesen Wechsel als \"metabolisches Umschalten\" — und vermuten darin einen Teil der beobachteten Effekte: eine verbesserte Insulinsensitivität, günstigere Blutfettwerte und zelluläre Aufräumprozesse (Autophagie)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Wichtig für die ehrliche Einordnung: Viele spektakuläre Ergebnisse stammen aus Tierstudien. Beim Menschen zeigen Übersichtsarbeiten — etwa im New England Journal of Medicine — vor allem, dass Intervallfasten beim Abnehmen ähnlich gut funktioniert wie klassische Kalorienreduktion, nicht zwingend besser. Sein größter Vorteil ist die Einfachheit: Wer keinen Ernährungsplan durchhält, hält oft ein Zeitfenster durch."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Ihr 7-Tage-Einstieg"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tag 1–2: Beobachten Sie nur. Notieren Sie, wann Sie tatsächlich essen — vom ersten Kaffee mit Milch bis zum späten Snack. Die meisten Menschen kommen auf ein Essensfenster von 14 Stunden oder mehr.",
+          "Tag 3–4: Verkürzen Sie Ihr Fenster auf 12 Stunden, zum Beispiel 8 bis 20 Uhr. Das ist für fast jeden machbar und bereits ein Fortschritt.",
+          "Tag 5–6: Verschieben Sie das Frühstück um ein bis zwei Stunden nach hinten. Trinken Sie morgens Wasser oder schwarzen Kaffee.",
+          "Tag 7: Testen Sie Ihr erstes echtes 16:8-Fenster, etwa 12 bis 20 Uhr. Achten Sie darauf, in den acht Stunden vollwertig und ausreichend zu essen — Fasten ist kein Hungern."
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Für wen Intervallfasten nicht geeignet ist"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nicht jeder Körper profitiert von Essenspausen. Schwangere und Stillende, Kinder und Jugendliche, Menschen mit Essstörungen (auch in der Vergangenheit), Untergewichtige sowie Personen mit Diabetes oder regelmäßiger Medikamenteneinnahme sollten Intervallfasten nur nach ärztlicher Rücksprache beginnen — oder ganz darauf verzichten. Und: Wer im Essensfenster hauptsächlich zu stark verarbeiteten Lebensmitteln greift, wird auch mit perfektem Timing wenig erreichen. Das Fundament bleibt die Qualität dessen, was auf dem Teller liegt."
+      },
+      {
+        "type": "paragraph",
+        "text": "Unser Fazit: Intervallfasten ist ein Werkzeug, kein Dogma. Wenn es zu Ihrem Alltag passt, kann es Struktur, Stoffwechselgesundheit und ein neues Körpergefühl bringen. Wenn es Stress erzeugt, ist es das falsche Werkzeug — dann bringt eine bewusste Mahlzeitenqualität mehr als jedes Zeitfenster."
+      },
+      {
+        "type": "cta",
+        "label": "Gesundheits-Kompass starten",
+        "href": "/gesundheits-kompass/#kompass-tool",
+        "note": "In 2 Minuten Stress, Schlaf, Bewegung, Ernährung und Energie einordnen — und den passenden nächsten Schritt finden."
+      }
+    ]
+  },
+  {
+    "slug": "abendroutine-besser-schlafen",
+    "path": "/abendroutine-besser-schlafen/",
+    "category": "geist-seele",
+    "title": "Abendroutine: In 7 Schritten besser schlafen | callidus A&M",
+    "description": "Besser einschlafen mit der richtigen Abendroutine: 7 wissenschaftlich fundierte Schritte — von Lichtmanagement über Koffein-Timing bis zur mentalen Entlastung vor dem Zubettgehen.",
+    "h1": [],
+    "h2": [
+      "Abendroutine: In 7 Schritten zu besserem Schlaf"
+    ],
+    "image": "/assets/original/020-wp-content-uploads-go-x-u-6ef7efa2-d0e7-4bc1-8244-1ba092bdbdaf-l149-t15-w1848-h1848-image-1366x1366.png",
+    "originalUrl": "https://www.callidus-am.de/abendroutine-besser-schlafen/",
+    "media": [],
+    "readingTime": 5,
+    "publishedAt": "2026-07-19",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Abendroutine: In 7 Schritten zu besserem Schlaf"
+      },
+      {
+        "type": "paragraph",
+        "text": "Guter Schlaf beginnt nicht im Bett — er beginnt Stunden vorher. Während viele Menschen abends versuchen, per Willenskraft einzuschlafen, arbeitet ihr Nervensystem noch im Tagesmodus: helles Licht, offene To-dos, das letzte Scrollen am Handy. Eine feste Abendroutine dreht diesen Schalter bewusst um. Sie ist kein Wellness-Luxus, sondern angewandte Schlafforschung."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 1: Feste Zeiten — auch am Wochenende"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die innere Uhr liebt Regelmäßigkeit. Wer jeden Tag zu ähnlichen Zeiten ins Bett geht und aufsteht, stabilisiert seinen zirkadianen Rhythmus — die Grundlage für schnelles Einschlafen und erholsames Durchschlafen. Große Schwankungen am Wochenende wirken auf den Körper wie ein kleiner Jetlag."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 2: Koffein-Deadline am Mittag"
+      },
+      {
+        "type": "paragraph",
+        "text": "Koffein hat eine Halbwertszeit von etwa fünf bis sechs Stunden. Der Espresso um 16 Uhr wirkt also um 22 Uhr noch zur Hälfte — oft nicht als spürbare Wachheit, sondern als flacherer, unruhigerer Schlaf. Eine einfache Regel: nach 14 Uhr kein Koffein mehr. Auch Cola, Energydrinks und schwarzer Tee zählen mit."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 3: Licht dimmen — die Melatonin-Brücke"
+      },
+      {
+        "type": "paragraph",
+        "text": "Melatonin, unser Schlafhormon, wird nur bei Dunkelheit ausgeschüttet. Helles Deckenlicht und Bildschirmlicht am späten Abend verzögern diesen Prozess messbar — Studien zeigen eine spätere Melatonin-Ausschüttung und schlechtere morgendliche Wachheit nach abendlicher Bildschirmnutzung. Praktisch heißt das: in der letzten Stunde vor dem Schlafen warmes, gedimmtes Licht, Nachtmodus auf allen Geräten — oder noch besser: das Handy bleibt außerhalb des Schlafzimmers."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 4: Der Gedanken-Download"
+      },
+      {
+        "type": "paragraph",
+        "text": "Viele liegen nicht wegen ihres Körpers wach, sondern wegen ihres Kopfes. Ein bewährtes Gegenmittel ist der abendliche \"Gedanken-Download\": Schreiben Sie fünf Minuten lang alles auf, was morgen ansteht oder Sie heute beschäftigt hat. Was auf dem Papier steht, muss das Gehirn nachts nicht mehr festhalten. Ergänzen Sie eine Sache, für die Sie heute dankbar sind — das lenkt den Fokus vor dem Einschlafen bewusst auf Positives."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 5: Kühl, dunkel, ruhig"
+      },
+      {
+        "type": "paragraph",
+        "text": "Die ideale Schlafzimmertemperatur liegt für die meisten Menschen zwischen 16 und 19 Grad. Der Körper muss seine Kerntemperatur zum Einschlafen leicht absenken — ein zu warmes Zimmer arbeitet dagegen. Verdunkeln Sie so gut wie möglich und verbannen Sie Lichtquellen wie Standby-LEDs. Eine warme Dusche vor dem Zubettgehen kann paradoxerweise helfen: Die anschließende Abkühlung signalisiert dem Körper Schlafenszeit."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 6: Ein festes Abschalt-Ritual"
+      },
+      {
+        "type": "paragraph",
+        "text": "Das Gehirn liebt Signale. Eine immer gleiche Abfolge — Tee kochen, Zähne putzen, zehn Seiten lesen, Atemübung — wird nach wenigen Wochen selbst zum Einschlaf-Auslöser. Besonders wirksam ist eine langsame Atemtechnik wie der verlängerte Ausatem: vier Sekunden einatmen, sechs bis acht Sekunden ausatmen, fünf Minuten lang. Das aktiviert den Parasympathikus, den Erholungsnerv des Körpers."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Schritt 7: Das Bett bleibt dem Schlaf vorbehalten"
+      },
+      {
+        "type": "paragraph",
+        "text": "Arbeiten, Streamen und Grübeln im Bett verwässern die wichtigste Assoziation, die Ihr Gehirn kennt: Bett bedeutet Schlaf. Wenn Sie länger als etwa 20 Minuten wach liegen, stehen Sie kurz auf, lesen Sie bei gedimmtem Licht und kehren Sie erst müde zurück. So bleibt das Bett ein Ort des Schlafens — nicht des Wachliegens."
+      },
+      {
+        "type": "paragraph",
+        "text": "Unser Fazit: Sie müssen nicht alle sieben Schritte perfekt umsetzen. Wählen Sie die zwei aus, die Ihnen am leichtesten fallen, und halten Sie sie zwei Wochen durch. Konsistenz schlägt Perfektion — gerade beim Schlaf."
+      },
+      {
+        "type": "cta",
+        "label": "Stress-Check machen",
+        "href": "/gesundheits-checks/#check-tool",
+        "note": "Oft steckt hinter schlechtem Schlaf ein hohes Stresslevel. Ordnen Sie Ihres in 2 Minuten ein."
       }
     ]
   }

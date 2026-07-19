@@ -4,7 +4,11 @@
     "title": "A global measure of perceived stress",
     "url": "https://pubmed.ncbi.nlm.nih.gov/6668417/",
     "type": "Primärstudie",
-    "topics": ["Stress", "Selbstcheck", "Psychometrie"],
+    "topics": [
+      "Stress",
+      "Selbstcheck",
+      "Psychometrie"
+    ],
     "summary": "Originalarbeit zur Perceived Stress Scale als Fragebogen für subjektiv erlebten Stress."
   },
   {
@@ -12,7 +16,11 @@
     "title": "Doing what matters in times of stress",
     "url": "https://www.who.int/publications/i/item/9789240003927",
     "type": "Behörde",
-    "topics": ["Stress", "Selbsthilfe", "Psychoedukation"],
+    "topics": [
+      "Stress",
+      "Selbsthilfe",
+      "Psychoedukation"
+    ],
     "summary": "WHO-Leitfaden mit alltagstauglichen Stressbewältigungsübungen und klarer Abgrenzung zu medizinischer Behandlung."
   },
   {
@@ -20,7 +28,11 @@
     "title": "Effect of breathwork on stress and mental health",
     "url": "https://pubmed.ncbi.nlm.nih.gov/36624160/",
     "type": "Review",
-    "topics": ["Atmung", "Stress", "Mentale Gesundheit"],
+    "topics": [
+      "Atmung",
+      "Stress",
+      "Mentale Gesundheit"
+    ],
     "summary": "Meta-Analyse randomisierter Studien zu Atemübungen, Stress und mentaler Gesundheit."
   },
   {
@@ -28,7 +40,11 @@
     "title": "Effects of voluntary slow breathing on heart rate and heart rate variability",
     "url": "https://pubmed.ncbi.nlm.nih.gov/35623448/",
     "type": "Review",
-    "topics": ["Atmung", "Herzratenvariabilität", "Regeneration"],
+    "topics": [
+      "Atmung",
+      "Herzratenvariabilität",
+      "Regeneration"
+    ],
     "summary": "Systematische Übersichtsarbeit und Meta-Analyse zu langsamer Atmung und HRV-Markern."
   },
   {
@@ -36,7 +52,11 @@
     "title": "About Sleep",
     "url": "https://www.cdc.gov/sleep/about/index.html",
     "type": "Behörde",
-    "topics": ["Schlaf", "Regeneration", "Stress"],
+    "topics": [
+      "Schlaf",
+      "Regeneration",
+      "Stress"
+    ],
     "summary": "CDC-Übersicht zu Schlafdauer, Schlafqualität und gesundheitlicher Bedeutung von Schlaf."
   },
   {
@@ -44,7 +64,11 @@
     "title": "Physical activity and depression and anxiety disorders",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10546525/",
     "type": "Review",
-    "topics": ["Bewegung", "Stress", "Mentale Gesundheit"],
+    "topics": [
+      "Bewegung",
+      "Stress",
+      "Mentale Gesundheit"
+    ],
     "summary": "Review-of-Reviews zur Verbindung von körperlicher Aktivität mit Depression und Angst."
   },
   {
@@ -52,7 +76,12 @@
     "title": "Vitamin D - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Vitamin D", "Mikronährstoffe", "Knochen", "Immunsystem"],
+    "topics": [
+      "Vitamin D",
+      "Mikronährstoffe",
+      "Knochen",
+      "Immunsystem"
+    ],
     "summary": "NIH-Fachinformation zu Vitamin-D-Quellen, Status, Referenzwerten und Sicherheit."
   },
   {
@@ -60,7 +89,12 @@
     "title": "Magnesium - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Magnesium", "Muskeln", "Nerven", "Mikronährstoffe"],
+    "topics": [
+      "Magnesium",
+      "Muskeln",
+      "Nerven",
+      "Mikronährstoffe"
+    ],
     "summary": "NIH-Fachinformation zu Magnesium, Zufuhr, Lebensmitteln, Supplementen und Sicherheit."
   },
   {
@@ -68,7 +102,11 @@
     "title": "Vitamin B12 - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Vitamin B12", "Vegane Ernährung", "Mikronährstoffe"],
+    "topics": [
+      "Vitamin B12",
+      "Vegane Ernährung",
+      "Mikronährstoffe"
+    ],
     "summary": "NIH-Fachinformation zu Vitamin B12, Risikogruppen, Laborbezug und Zufuhr."
   },
   {
@@ -76,7 +114,11 @@
     "title": "Iron - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Eisen", "Mikronährstoffe", "Müdigkeit"],
+    "topics": [
+      "Eisen",
+      "Mikronährstoffe",
+      "Müdigkeit"
+    ],
     "summary": "NIH-Fachinformation zu Eisen, Eisenstatus, Risikogruppen, Zufuhr und Sicherheit."
   },
   {
@@ -84,7 +126,11 @@
     "title": "Zinc - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Zink", "Immunsystem", "Mikronährstoffe"],
+    "topics": [
+      "Zink",
+      "Immunsystem",
+      "Mikronährstoffe"
+    ],
     "summary": "NIH-Fachinformation zu Zink, Statusmarkern, Zufuhr und Sicherheit."
   },
   {
@@ -92,7 +138,13 @@
     "title": "Omega-3 Fatty Acids - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Omega-3", "DHA", "EPA", "ALA", "Mikronährstoffe"],
+    "topics": [
+      "Omega-3",
+      "DHA",
+      "EPA",
+      "ALA",
+      "Mikronährstoffe"
+    ],
     "summary": "NIH-Fachinformation zu Omega-3-Fettsäuren, Quellen, Status, Sicherheit und Interaktionen."
   },
   {
@@ -100,7 +152,12 @@
     "title": "Vitamin C - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Vitamin C", "Kollagen", "Antioxidantien", "Mikronährstoffe"],
+    "topics": [
+      "Vitamin C",
+      "Kollagen",
+      "Antioxidantien",
+      "Mikronährstoffe"
+    ],
     "summary": "NIH-Fachinformation zu Vitamin C, Quellen, Funktionen, Referenzwerten und Sicherheit."
   },
   {
@@ -108,7 +165,11 @@
     "title": "Vitamin B12 Referenzwerte",
     "url": "https://www.dge.de/wissenschaft/referenzwerte/vitamin-b12/",
     "type": "Referenzwert",
-    "topics": ["Vitamin B12", "Vegane Ernährung", "DGE"],
+    "topics": [
+      "Vitamin B12",
+      "Vegane Ernährung",
+      "DGE"
+    ],
     "summary": "DGE-Referenzwerte und Hinweis, dass vegan lebende Menschen Vitamin B12 supplementieren müssen."
   },
   {
@@ -116,7 +177,11 @@
     "title": "Aktualisierte Höchstmengenvorschläge für Vitamine und Mineralstoffe",
     "url": "https://www.bfr.bund.de/stellungnahme/aktualisierte-hoechstmengenvorschlaege-fuer-vitamine-und-mineralstoffe-in-nahrungsergaenzungsmitteln-und-angereicherten-lebensmitteln/",
     "type": "Verbraucher-/Risikohinweis",
-    "topics": ["Nahrungsergänzung", "Sicherheit", "Überdosierung"],
+    "topics": [
+      "Nahrungsergänzung",
+      "Sicherheit",
+      "Überdosierung"
+    ],
     "summary": "BfR-Einordnung zu Höchstmengen für Nahrungsergänzungsmittel und angereicherte Lebensmittel."
   },
   {
@@ -124,7 +189,12 @@
     "title": "Ashwagandha: Usefulness and Safety",
     "url": "https://www.nccih.nih.gov/health/ashwagandha",
     "type": "Behörde",
-    "topics": ["Ashwagandha", "Stress", "Schlaf", "Sicherheit"],
+    "topics": [
+      "Ashwagandha",
+      "Stress",
+      "Schlaf",
+      "Sicherheit"
+    ],
     "summary": "NCCIH-Fachseite zur möglichen Wirkung und Sicherheit von Ashwagandha-Präparaten."
   },
   {
@@ -132,7 +202,11 @@
     "title": "Probiotics - Health Professional Fact Sheet",
     "url": "https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/",
     "type": "Referenzwert",
-    "topics": ["Darm", "Probiotika", "Mikrobiom"],
+    "topics": [
+      "Darm",
+      "Probiotika",
+      "Mikrobiom"
+    ],
     "summary": "NIH-Fachinformation zu Probiotika, potenziellen Anwendungen, Grenzen und Sicherheit."
   },
   {
@@ -140,7 +214,11 @@
     "title": "Dietary fiber intervention on gut microbiota composition in healthy adults",
     "url": "https://pubmed.ncbi.nlm.nih.gov/29757343/",
     "type": "Review",
-    "topics": ["Darm", "Ballaststoffe", "Mikrobiom"],
+    "topics": [
+      "Darm",
+      "Ballaststoffe",
+      "Mikrobiom"
+    ],
     "summary": "Systematische Übersichtsarbeit und Meta-Analyse zu Ballaststoffen und Darmmikrobiota."
   },
   {
@@ -148,7 +226,11 @@
     "title": "International Society of Sports Nutrition Position Stand: protein and exercise",
     "url": "https://pubmed.ncbi.nlm.nih.gov/28642676/",
     "type": "Review",
-    "topics": ["Protein", "Training", "Muskelaufbau"],
+    "topics": [
+      "Protein",
+      "Training",
+      "Muskelaufbau"
+    ],
     "summary": "Positionspapier zu Proteinzufuhr, Training und Anpassungsprozessen."
   },
   {
@@ -156,7 +238,11 @@
     "title": "Grounding with Google Search",
     "url": "https://ai.google.dev/gemini-api/docs/grounding",
     "type": "Technische Dokumentation",
-    "topics": ["Chatbot", "KI", "Websuche"],
+    "topics": [
+      "Chatbot",
+      "KI",
+      "Websuche"
+    ],
     "summary": "Google-Dokumentation zu Gemini-Grounding mit Google Search; für Callidus als spätere v2-Option vorgesehen."
   },
   {
@@ -164,7 +250,72 @@
     "title": "Call functions from your app",
     "url": "https://firebase.google.com/docs/functions/callable",
     "type": "Technische Dokumentation",
-    "topics": ["Firebase", "Chatbot", "Backend"],
+    "topics": [
+      "Firebase",
+      "Chatbot",
+      "Backend"
+    ],
     "summary": "Firebase-Dokumentation zu HTTPS Callable Functions."
+  },
+  {
+    "id": "nejm-intermittent-fasting-2019",
+    "title": "Effects of Intermittent Fasting on Health, Aging, and Disease",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31881139/",
+    "type": "Review",
+    "topics": [
+      "Intervallfasten",
+      "Stoffwechsel",
+      "Langlebigkeit"
+    ],
+    "summary": "Übersichtsarbeit im New England Journal of Medicine zu den Effekten von Intervallfasten auf Stoffwechsel, Alterung und Krankheitsrisiken."
+  },
+  {
+    "id": "patterson-if-2017",
+    "title": "Metabolic Effects of Intermittent Fasting",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28715993/",
+    "type": "Review",
+    "topics": [
+      "Intervallfasten",
+      "Stoffwechsel",
+      "Gewicht"
+    ],
+    "summary": "Annual Review of Nutrition zu metabolischen Effekten verschiedener Intervallfasten-Protokolle beim Menschen."
+  },
+  {
+    "id": "sleep-hygiene-irish-2015",
+    "title": "The role of sleep hygiene in promoting public health",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25454674/",
+    "type": "Review",
+    "topics": [
+      "Schlaf",
+      "Schlafhygiene",
+      "Abendroutine"
+    ],
+    "summary": "Systematische Übersicht zur Evidenz einzelner Schlafhygiene-Empfehlungen (Koffein, Licht, Regelmäßigkeit, Bewegung)."
+  },
+  {
+    "id": "evening-light-chang-2015",
+    "title": "Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25535358/",
+    "type": "Primärstudie",
+    "topics": [
+      "Schlaf",
+      "Bildschirmlicht",
+      "Melatonin"
+    ],
+    "summary": "PNAS-Studie: abendliches Bildschirmlicht verzögert die Melatonin-Ausschüttung und verschlechtert Schlaf und morgendliche Wachheit."
+  },
+  {
+    "id": "efsa-dha-epa-claims",
+    "title": "EFSA: Scientific Opinion on health claims related to EPA and DHA",
+    "url": "https://www.efsa.europa.eu/en/efsajournal/pub/1796",
+    "type": "Behörde",
+    "topics": [
+      "Omega-3",
+      "EPA",
+      "DHA",
+      "Herz"
+    ],
+    "summary": "Bewertung der Europäischen Behörde für Lebensmittelsicherheit zu zugelassenen gesundheitsbezogenen Aussagen über EPA und DHA (Herz, Gehirn, Sehkraft)."
   }
 ]

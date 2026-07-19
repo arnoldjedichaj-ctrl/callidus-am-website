@@ -152,6 +152,11 @@ const legalPage = legalPages.find((item) => item.slug === page.slug);
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
 const categoryRedirectPath = categoryRedirect ? `/ratgeber/#${categoryRedirect.slug}` : null;
 const title = categoryRedirect?.title || legalPage?.title || specialPage?.title || page.title || page.h1?.[0] || 'callidus A&M';
+// SEO-Titel/-Description nur für <head> und JSON-LD; die sichtbare H1 und der Lead bleiben unverändert.
+const seoTitle = article?.seoTitle || title;
+// Sichtbare H1 ohne den Marken-Suffix aus dem Title-Tag.
+const displayTitle = title.replace(/\s*\|\s*callidus A&M\s*$/i, '');
+const seoDescription = article?.seoDescription || page.description || article?.description || 'callidus A&M';
 const heroLead = legalPage?.lead || (specialPage?.kind === 'lexicon' ? '' : specialPage?.lead) || page.description;
 const mainImage = article?.image || (page.slug === 'nexus-app' ? imageMap.get(page.images?.[1]) : null) || imageMap.get(page.images?.[1]) || imageMap.get(page.images?.[0]);
 const sectionEyebrow = article
@@ -356,8 +361,8 @@ const specialBlockClass = (block) => {
 const articleJsonLd = article ? {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: title,
-  description: page.description || article.description,
+  headline: seoTitle,
+  description: seoDescription,
   image: mainImage ? new URL(mainImage, 'https://www.callidus-am.de').href : undefined,
   citation: articleSourceEntries.length ? articleSourceEntries.map((source) => source.url) : undefined,
   inLanguage: 'de-DE',
@@ -375,8 +380,8 @@ const articleJsonLd = article ? {
   alternatePath={article && article.app === 'momus' && Array.isArray(article.blocksEn) && article.blocksEn.length > 0
     ? `/en/guide/${article.slug}/`
     : '/en/guide/'}
-  title={title}
-  description={page.description || 'callidus A&M'}
+  title={seoTitle}
+  description={seoDescription}
   ogImage={mainImage}
   pageType={article ? 'article' : 'website'}
 >
@@ -390,7 +395,7 @@ const articleJsonLd = article ? {
         {article?.app && (
           <span class={appBadgeMeta(article.app).className} aria-label={`App: ${appBadgeMeta(article.app).label}`}>{appBadgeMeta(article.app).label}</span>
         )}
-        <h1>{specialPage?.hero || title}</h1>
+        <h1>{specialPage?.hero || displayTitle}</h1>
         {heroLead && <p class="lede">{heroLead}</p>}
         {article?.app === 'momus' && (
           <div class="notice momus-satire-notice" role="note">
