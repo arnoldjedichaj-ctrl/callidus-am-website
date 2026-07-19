@@ -2185,7 +2185,6 @@ const DAILY_MEAL_SCHEMA = {
   properties: {
     title: { type: "STRING" },
     description: { type: "STRING" },
-    mealType: { type: "STRING" },
     prepTime: { type: "INTEGER" },
     servings: { type: "INTEGER" },
     ingredients: {
@@ -2211,9 +2210,10 @@ const DAILY_MEAL_SCHEMA = {
       },
       required: ["calories", "protein", "carbs", "fat"],
     },
+    quickAlternative: { type: "STRING" },
     imagePrompt: { type: "STRING" },
   },
-  required: ["title", "description", "mealType", "prepTime", "servings", "ingredients", "preparation", "nutrition", "imagePrompt"],
+  required: ["title", "description", "prepTime", "servings", "ingredients", "preparation", "nutrition", "quickAlternative", "imagePrompt"],
 };
 
 function publicFoodDateKey(date = new Date()) {
@@ -2266,6 +2266,7 @@ function publicFoodRecipe(value = {}, { daily = false } = {}) {
       fiber: publicFoodNumber(nutrition.fiber, null, 0, 150),
     },
     imageUrl: cleanString(value.imageUrl, 1000),
+    quickAlternative: daily ? cleanString(value.quickAlternative, 240) : "",
     dateKey: cleanString(value.dateKey, 20),
     publishedDate: cleanString(value.publishedDate, 20),
   };
@@ -2386,16 +2387,28 @@ exports.publishDailyHealthyMeal = onSchedule(
     if (!acquired) return { skipped: true, dateKey };
 
     try {
-      const recentSnapshot = await db.collection("website_public_food").orderBy("dateKey", "desc").limit(7).get();
-      const recentTitles = recentSnapshot.docs.map((doc) => cleanString(doc.data()?.title, 160)).filter(Boolean);
-      const themes = ["vegetarisch und mediterran", "proteinreich mit Hülsenfrüchten", "leicht und sommerlich", "vollwertig mit saisonalem Gemüse", "schnell für einen aktiven Alltag", "ballaststoffreich und bunt", "mild und familientauglich"];
+      const recentSnapshot = await db.collection("website_public_food").orderBy("dateKey", "desc").limit(8).get();
+      const recentTitles = recentSnapshot.docs
+        .filter((doc) => doc.data()?.status === "ready")
+        .map((doc) => cleanString(doc.data()?.title, 160))
+        .filter(Boolean)
+        .slice(0, 7);
+      const themes = [
+        "pflanzenbasiert, sättigend und unkompliziert",
+        "vegetarisch und mediterran",
+        "proteinreich mit Hülsenfrüchten",
+        "vollwertig mit saisonalem Obst oder Gemüse",
+        "leicht, bunt und sommerlich",
+        "mild und familientauglich",
+        "ballaststoffreich mit Vollkorn und Gemüse",
+      ];
       const theme = themes[Number(dateKey.replace(/-/g, "")) % themes.length];
       const prompt = [
         "Du erstellst die allgemeine Callidus Tagesmahlzeit für eine öffentliche Website.",
         "Erstelle genau ein gesundes, alltagstaugliches Rezept auf Deutsch für 2 Portionen. Es ist keine individuelle Ernährungsberatung und darf keine Heil- oder Abnehmversprechen enthalten.",
-        `Heute ist ${dateKey}. Stil: ${theme}. Variiere zu diesen zuletzt verwendeten Titeln: ${recentTitles.join(" | ") || "keine"}.`,
+        `Heute ist ${dateKey}. Stil: ${theme}. Sie darf sich nicht zu stark mit diesen zuletzt verwendeten Titeln überschneiden: ${recentTitles.join(" | ") || "keine"}.`,
         "Die Zutaten müssen in deutschen Supermärkten gut erhältlich sein. Keine rohen Eier, kein Alkohol, keine Nahrungsergänzungsmittel. Nenne klare Mengen, 3 bis 6 Zubereitungsschritte und plausible geschätzte Nährwerte pro Portion.",
-        "mealType soll etwa Mittagessen, Abendessen oder Frühstück sein. imagePrompt muss Englisch sein und das fertige Gericht fotorealistisch beschreiben; keine Schrift, keine Marken.",
+        "quickAlternative ist ein einzelner kurzer Satz mit einer gesunden, deutlich schnelleren Alternative mit Zutaten aus dem Supermarkt (maximal 180 Zeichen). imagePrompt muss Englisch sein und das fertige Gericht fotorealistisch beschreiben; keine Schrift, keine Marken.",
       ].join("\n");
       const apiKey = geminiApiKey.value();
       if (!apiKey) throw new Error("GEMINI_API_KEY ist nicht gesetzt.");
@@ -2411,6 +2424,13 @@ exports.publishDailyHealthyMeal = onSchedule(
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
       }, { merge: true });
+      const historySnapshot = await db.collection("website_public_food").orderBy("dateKey", "desc").limit(32).get();
+      const obsoleteDocs = historySnapshot.docs.slice(7);
+      if (obsoleteDocs.length) {
+        const cleanup = db.batch();
+        obsoleteDocs.forEach((doc) => cleanup.delete(doc.ref));
+        await cleanup.commit();
+      }
       logger.info("Daily healthy meal published", { dateKey, title: meal.title, imageReady: Boolean(imageUrl) });
       return { ok: true, dateKey, title: meal.title, imageReady: Boolean(imageUrl) };
     } catch (error) {
@@ -2439,19 +2459,24 @@ exports.getPublicFoodContent = onRequest(
     }
     try {
       const today = publicFoodDateKey();
-      const [dailySnapshot, weeklySnapshot] = await Promise.all([
+      const [dailySnapshot, dailyHistorySnapshot, weeklySnapshot] = await Promise.all([
         db.collection("website_public_food").doc(`daily_${today}`).get(),
+        db.collection("website_public_food").orderBy("dateKey", "desc").limit(7).get(),
         db.collection("recipes").where("category", "==", "weekly_special").limit(32).get(),
       ]);
-      const weekly = weeklySnapshot.docs
+      const weeklyHistory = weeklySnapshot.docs
         .map((doc) => ({ data: doc.data() || {}, created: publicFoodMillis(doc.data()?.createdAt || doc.data()?.created_at) }))
         .filter((entry) => entry.data.active !== false)
-        .sort((a, b) => b.created - a.created)[0];
+        .sort((a, b) => b.created - a.created)
+        .slice(0, 7)
+        .map((entry) => publicFoodRecipe({ ...entry.data, publishedDate: publicFoodDateKey(new Date(entry.created || Date.now())) }));
       const dailyData = dailySnapshot.exists && dailySnapshot.data()?.status === "ready" ? dailySnapshot.data() : null;
       const daily = dailyData ? publicFoodRecipe(dailyData, { daily: true }) : null;
-      const weeklyRecipe = weekly ? publicFoodRecipe({ ...weekly.data, publishedDate: publicFoodDateKey(new Date(weekly.created || Date.now())) }) : null;
+      const dailyHistory = dailyHistorySnapshot.docs
+        .filter((doc) => doc.data()?.status === "ready")
+        .map((doc) => publicFoodRecipe(doc.data(), { daily: true }));
       res.set("Cache-Control", "public, max-age=300, s-maxage=300");
-      res.status(200).json({ daily, weekly: weeklyRecipe, updatedAt: new Date().toISOString() });
+      res.status(200).json({ daily, weekly: weeklyHistory[0] || null, dailyHistory, weeklyHistory, updatedAt: new Date().toISOString() });
     } catch (error) {
       logger.error("Public food content failed", { error: String(error?.message || error) });
       res.status(500).json({ error: "content unavailable" });

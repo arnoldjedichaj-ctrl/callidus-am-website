@@ -12,15 +12,15 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
       <div data-reveal>
         <p class="eyebrow">Gesund genießen</p>
         <h1>Eine gute Idee für heute. Ein Genuss für die Woche.</h1>
-        <p class="lede">Jeden Morgen erscheint hier eine alltagstaugliche, gesunde Mahlzeit. Sonntags kommt die aktuelle NEXUS Snack- oder Shake-Idee dazu – mit Zutaten, Zubereitung und Nährwerten.</p>
+        <p class="lede">Jeden Morgen erscheint hier eine allgemeine, alltagstaugliche Rezeptidee. Sonntags kommt die aktuelle NEXUS Snack- oder Shake-Idee dazu – mit Zutaten, Zubereitung und Nährwerten.</p>
         <div class="actions">
-          <a class="button primary" href="#tagesmahlzeit">Tagesmahlzeit ansehen</a>
+          <a class="button primary" href="#tagesmahlzeit">Tagesidee ansehen</a>
           <a class="button" href="#wochenidee">Wochenidee ansehen</a>
         </div>
       </div>
       <aside class="food-hero-note" data-reveal="2" aria-label="So funktionieren die Rezeptideen">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path><path d="M8 13h3M8 16h6"></path></svg>
-        <div><strong>Automatisch aktuell</strong><p>Die Tagesmahlzeit wird morgens neu erstellt. Die Wochenidee kommt direkt aus dem bestehenden NEXUS Rhythmus.</p></div>
+        <div><strong>Automatisch aktuell</strong><p>Die Tagesidee wird morgens neu erstellt. Die Wochenidee kommt direkt aus dem bestehenden NEXUS Rhythmus.</p></div>
       </aside>
     </div>
   </section>
@@ -28,22 +28,27 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
   <section class="section food-section" id="tagesmahlzeit">
     <div class="container">
       <div class="food-section-heading" data-reveal>
-        <div><p class="eyebrow">Heute auf dem Tisch</p><h2>Die gesunde Tagesmahlzeit</h2></div>
+        <div><p class="eyebrow">Heute auf dem Tisch</p><h2>Die gesunde Tagesidee</h2></div>
         <p>Ein allgemeines Rezept für alle – ohne Login und ohne persönliche Daten.</p>
       </div>
       <article class="food-recipe-card is-loading" data-food-card="daily" aria-busy="true" data-reveal="2">
         <div class="food-image-wrap" data-food-image-wrap hidden><img data-food-image alt="" width="1200" height="900" loading="eager" /></div>
         <div class="food-recipe-body">
-          <div class="food-card-topline"><span class="badge mint" data-food-badge>Tagesrezept</span><time data-food-date></time></div>
-          <p class="food-loading" data-food-state aria-live="polite">Die heutige Mahlzeit wird geladen…</p>
+          <div class="food-card-topline"><span class="badge mint" data-food-badge>Tagesidee</span><time data-food-date></time></div>
+          <p class="food-loading" data-food-state aria-live="polite">Die heutige Tagesidee wird geladen…</p>
           <div data-food-content hidden>
             <h3 data-food-title></h3><p class="food-description" data-food-description></p>
             <div class="food-facts" data-food-facts aria-label="Nährwerte pro Portion"></div><p class="food-prep-time" data-food-prep-time></p>
+            <p class="food-quick-alternative" data-food-quick hidden></p>
+            <a class="food-nexus-link" href="/nexus-app/">In der NEXUS App persönlich mit KI erstellen</a>
             <button class="button food-details-toggle" type="button" data-food-toggle aria-expanded="false">Rezept ansehen</button>
             <div class="food-details" data-food-details hidden><div><h4>Zutaten</h4><ul data-food-ingredients></ul></div><div><h4>Zubereitung</h4><ol data-food-preparation></ol></div></div>
           </div>
         </div>
       </article>
+      <section class="food-history" data-food-history-section="daily" hidden aria-label="Letzte sieben Tagesideen">
+        <h3>Letzte 7 Tagesideen</h3><div class="food-history-list" data-food-history="daily"></div>
+      </section>
     </div>
   </section>
 
@@ -66,6 +71,9 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
           </div>
         </div>
       </article>
+      <section class="food-history" data-food-history-section="weekly" hidden aria-label="Letzte sieben Wochenideen">
+        <h3>Letzte 7 Wochenideen</h3><div class="food-history-list" data-food-history="weekly"></div>
+      </section>
       <p class="food-disclaimer" data-reveal="3">Nährwerte sind Orientierungswerte pro Portion. Die Ideen ersetzen keine individuelle Ernährungs- oder medizinische Beratung.</p>
     </div>
   </section>
@@ -108,9 +116,11 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
         card.querySelector('[data-food-title]').textContent = content.title || 'Rezeptidee';
         card.querySelector('[data-food-description]').textContent = content.description || '';
         card.querySelector('[data-food-prep-time]').textContent = content.prepTime ? `Zubereitungszeit: ca. ${content.prepTime} Minuten` : '';
+        const quick = card.querySelector('[data-food-quick]');
+        if (quick) { quick.textContent = content.quickAlternative ? `Schnelle Alternative: ${content.quickAlternative}` : ''; quick.hidden = !content.quickAlternative; }
         const date = card.querySelector('[data-food-date]'); const dateKey = content.dateKey || content.publishedDate || '';
         date.textContent = formatDate(dateKey); date.dateTime = dateKey;
-        card.querySelector('[data-food-badge]').textContent = kind === 'weekly' ? (content.type || 'Wochenidee') : (content.mealType || 'Tagesrezept');
+        card.querySelector('[data-food-badge]').textContent = kind === 'weekly' ? (content.type || 'Wochenidee') : 'Tagesidee';
         facts(card.querySelector('[data-food-facts]'), content.nutrition); list(card.querySelector('[data-food-ingredients]'), content.ingredients); list(card.querySelector('[data-food-preparation]'), content.preparation);
         if (content.imageUrl) {
           const image = card.querySelector('[data-food-image]'); image.src = content.imageUrl; image.alt = `Serviervorschlag: ${content.title || 'gesunde Rezeptidee'}`; card.querySelector('[data-food-image-wrap]').hidden = false;
@@ -121,12 +131,30 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
           toggle.addEventListener('click', () => { details.hidden = !details.hidden; toggle.setAttribute('aria-expanded', String(!details.hidden)); toggle.textContent = details.hidden ? 'Rezept ansehen' : 'Rezept schließen'; });
         }
       };
+      const history = (kind, entries) => {
+        const section = document.querySelector(`[data-food-history-section="${kind}"]`); const target = section?.querySelector('[data-food-history]');
+        const values = Array.isArray(entries) ? entries.slice(0, 7).filter(Boolean) : [];
+        if (!section || !target) return;
+        target.replaceChildren();
+        values.forEach((entry, index) => {
+          const button = document.createElement('button'); button.type = 'button'; button.className = 'food-history-item';
+          button.setAttribute('aria-pressed', String(index === 0));
+          const date = document.createElement('small'); date.textContent = formatDate(entry.dateKey || entry.publishedDate || '');
+          const title = document.createElement('strong'); title.textContent = entry.title || 'Rezeptidee';
+          button.append(date, title); button.addEventListener('click', () => {
+            recipe(kind, entry); target.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+          }); target.append(button);
+        });
+        section.hidden = values.length === 0;
+      };
       const load = async () => {
         try {
           const response = await fetch(foodEndpoint, { headers: { Accept: 'application/json' } }); if (!response.ok) throw new Error();
           const content = await response.json();
-          content.daily ? recipe('daily', content.daily) : unavailable('daily', 'Die heutige Mahlzeit wird gerade vorbereitet. Schau bitte in Kürze noch einmal vorbei.');
+          const dailyEntries = content.dailyHistory || (content.daily ? [content.daily] : []); const weeklyEntries = content.weeklyHistory || (content.weekly ? [content.weekly] : []);
+          content.daily ? recipe('daily', content.daily) : unavailable('daily', 'Die heutige Tagesidee wird gerade vorbereitet. Schau bitte in Kürze noch einmal vorbei.');
           content.weekly ? recipe('weekly', content.weekly) : unavailable('weekly', 'Die neue Wochenidee erscheint am Sonntag nach 12 Uhr.');
+          history('daily', dailyEntries); history('weekly', weeklyEntries);
         } catch (_) {
           unavailable('daily', 'Die Tagesmahlzeit ist gerade nicht erreichbar. Bitte versuche es später noch einmal.');
           unavailable('weekly', 'Die Wochenidee ist gerade nicht erreichbar. Bitte versuche es später noch einmal.');
@@ -144,6 +172,7 @@ const foodEndpoint = 'https://us-central1-nexus-app-61494.cloudfunctions.net/get
     .food-recipe-card{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);min-height:330px;overflow:hidden;border:1px solid var(--line);border-radius:1.15rem;background:var(--panel);box-shadow:var(--shadow)}.food-recipe-card--weekly{grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr)}.food-recipe-card--weekly .food-image-wrap{order:2}.food-image-wrap{min-height:100%;background:linear-gradient(135deg,rgba(var(--mint-rgb),.13),rgba(var(--gold-rgb),.12))}.food-image-wrap img{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}
     .food-recipe-body{display:grid;align-content:start;gap:1rem;padding:clamp(1.3rem,3vw,2.1rem)}.food-card-topline{display:flex;gap:.75rem;align-items:center;justify-content:space-between}.food-card-topline time{color:var(--muted);font-size:.86rem;text-align:right}.food-recipe-body h3{margin:0;font-size:clamp(1.45rem,3vw,2rem);line-height:1.2}.food-loading{margin:auto 0;color:var(--muted);line-height:1.6}.food-recipe-card.is-loading .food-recipe-body{background:linear-gradient(90deg,transparent,rgba(var(--mint-rgb),.05),transparent);background-size:200% 100%;animation:foodLoading 1.6s ease-in-out infinite}
     .food-facts{display:flex;flex-wrap:wrap;gap:.6rem}.food-facts span{display:grid;gap:.1rem;min-width:5.2rem;padding:.55rem .7rem;border:1px solid rgba(var(--mint-rgb),.24);border-radius:.65rem;background:rgba(var(--mint-rgb),.07)}.food-facts strong{font-size:.92rem}.food-facts small{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em}.food-prep-time{margin:0;color:var(--soft);font-size:.9rem}.food-details-toggle{justify-self:start;min-height:44px}.food-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;padding-top:.2rem}.food-details h4{margin:0 0 .55rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.08em}.food-details ul,.food-details ol{display:grid;gap:.45rem;margin:0;padding-left:1.1rem;color:var(--muted);line-height:1.5}.food-disclaimer{margin-top:1.2rem;font-size:.84rem}
+    .food-details[hidden]{display:none}.food-quick-alternative{margin:0;padding:.7rem .8rem;border-left:3px solid var(--mint);border-radius:.35rem;background:rgba(var(--mint-rgb),.08);color:var(--soft);font-size:.9rem;line-height:1.5}.food-nexus-link{justify-self:start;color:var(--mint);font-size:.9rem;font-weight:700;text-decoration:underline;text-underline-offset:.2em}.food-nexus-link:hover{color:var(--ink)}.food-nexus-link:focus-visible,.food-history-item:focus-visible{outline:3px solid rgba(var(--mint-rgb),.45);outline-offset:2px}.food-history{margin-top:1.35rem}.food-history h3{margin:0 0 .75rem;font-size:1rem}.food-history-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.65rem}.food-history-item{display:grid;gap:.3rem;min-height:72px;padding:.7rem .8rem;border:1px solid var(--line);border-radius:.7rem;background:var(--panel);color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease}.food-history-item small{color:var(--muted);font-size:.76rem}.food-history-item strong{line-height:1.3}.food-history-item:hover,.food-history-item[aria-pressed="true"]{border-color:rgba(var(--mint-rgb),.58);background:rgba(var(--mint-rgb),.07);box-shadow:0 3px 12px rgba(var(--mint-rgb),.1)}
     @keyframes foodLoading{from{background-position:100% 0}to{background-position:-100% 0}}@media(prefers-reduced-motion:reduce){.food-recipe-card.is-loading .food-recipe-body{animation:none}}@media(max-width:760px){.food-hero-grid,.food-recipe-card,.food-recipe-card--weekly{grid-template-columns:1fr}.food-recipe-card--weekly .food-image-wrap{order:0}.food-image-wrap img{min-height:220px;max-height:310px}.food-section-heading{display:grid;align-items:start}.food-details{grid-template-columns:1fr}}
   </style>
 </BaseLayout>
