@@ -310,7 +310,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           container.append(block);
         };
 
-        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards, learningCards, reviewCards }) => {
+        const renderResultShell = ({ check, score, maxScore, profile, steps, articles, sources, nutrientCards, learningCards, reviewCards, measureLinks }) => {
           clear(result);
           result.classList.add('has-result');
           result.append(node('span', 'badge gold', check.label));
@@ -358,6 +358,23 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           steps.slice(0, 3).forEach((step) => list.append(node('li', '', step)));
           stepBlock.append(list);
           result.append(stepBlock);
+
+          if (measureLinks?.length) {
+            const measureBlock = node('div', 'check-measure-list');
+            measureBlock.append(node('strong', '', 'Messen statt schätzen'));
+            measureBlock.append(node('p', '', 'Willst du Gewissheit statt Selbsteinschätzung? Diese Werte lassen sich per Bluttest für zuhause messen — mit Auswertung im Fachlabor.'));
+            measureLinks.forEach((measure) => {
+              const link = node('a');
+              link.href = measure.href;
+              link.target = '_blank';
+              link.rel = 'noopener';
+              link.append(node('span', '', 'Externer Link · foryou eHealth'));
+              link.append(node('b', '', `${measure.label} ↗`));
+              measureBlock.append(link);
+            });
+            measureBlock.append(node('small', '', 'Redaktionelle Empfehlung ohne Vergütung — wir erhalten keine Provision. Ein Selbsttest ersetzt keine ärztliche Beratung.'));
+            result.append(measureBlock);
+          }
 
           renderArticles(articles, result);
           renderSources(sources, result);
@@ -450,6 +467,14 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           const steps = top.flatMap(({ item }) => item.nextSteps || []).slice(0, 3);
           const articles = articleByPaths(top.flatMap(({ item }) => item.articlePaths || []));
           const sources = sourceByIds(unique([...top.flatMap(({ item }) => item.sourceIds || []), ...(check.sourceIds || [])]));
+          const seenMeasureHrefs = new Set();
+          const measureLinks = top
+            .map(({ item }) => item.measure)
+            .filter((measure) => {
+              if (!measure?.href || seenMeasureHrefs.has(measure.href)) return false;
+              seenMeasureHrefs.add(measure.href);
+              return true;
+            });
           renderResultShell({
             check,
             score: total,
@@ -459,6 +484,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
             articles,
             sources,
             nutrientCards: top,
+            measureLinks,
           });
         };
 

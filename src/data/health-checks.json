@@ -289,7 +289,11 @@
         "sourceIds": [
           "nih-vitamin-d",
           "bfr-max-supplements"
-        ]
+        ],
+        "measure": {
+          "label": "Vitamin-D3+K2-Bluttest für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-vitamin-d3-k2-test-bluttest-fur-zuhause.html"
+        }
       },
       "b12": {
         "label": "Vitamin B12",
@@ -306,7 +310,11 @@
         "sourceIds": [
           "nih-vitamin-b12",
           "dge-vitamin-b12"
-        ]
+        ],
+        "measure": {
+          "label": "Vitamin-B12-Bluttest für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-vitamin-b12-test-bluttest-fuer-zuhause.html"
+        }
       },
       "ironFolate": {
         "label": "Eisen/Folat",
@@ -323,7 +331,11 @@
         "sourceIds": [
           "nih-iron",
           "bfr-max-supplements"
-        ]
+        ],
+        "measure": {
+          "label": "Mineralstoff-Bluttest (10 Werte) für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-mineralstoff-test.html"
+        }
       },
       "magnesium": {
         "label": "Magnesium",
@@ -340,7 +352,11 @@
         "sourceIds": [
           "nih-magnesium",
           "bfr-max-supplements"
-        ]
+        ],
+        "measure": {
+          "label": "Mineralstoff-Bluttest (10 Werte) für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-mineralstoff-test.html"
+        }
       },
       "omega3": {
         "label": "Omega-3",
@@ -356,7 +372,11 @@
         ],
         "sourceIds": [
           "bfr-max-supplements"
-        ]
+        ],
+        "measure": {
+          "label": "Omega-3-Fettsäure-Analyse für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-omega-3-test-fettsaeuren-analyse.html"
+        }
       },
       "zincIodine": {
         "label": "Jod/Zink",
@@ -373,7 +393,11 @@
         "sourceIds": [
           "nih-zinc",
           "bfr-max-supplements"
-        ]
+        ],
+        "measure": {
+          "label": "Mineralstoff-Bluttest (10 Werte) für zuhause",
+          "href": "https://www.foryouehealth.de/for-you-mineralstoff-test.html"
+        }
       }
     },
     "profiles": [

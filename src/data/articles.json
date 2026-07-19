@@ -2097,6 +2097,13 @@
         "text": "Fazit: Magnesium ist ein lebenswichtiger Mineralstoff, der für unsere körperliche und geistige Leistungsfähigkeit von zentraler Bedeutung ist. Eine ausgewogene Ernährung mit den oben genannten Lebensmitteln ist die beste Grundlage, um einem Mangel vorzubeugen und von der entspannenden Kraft dieses Alleskönners zu profitieren."
       },
       {
+        "type": "measure",
+        "title": "Mineralstoff-Versorgung messen statt schätzen",
+        "text": "Ob Magnesium und andere Mineralstoffe bei Ihnen tatsächlich knapp sind, lässt sich messen: per Blutabnahme in der Praxis oder mit einem Bluttest für zuhause, der im Fachlabor ausgewertet wird.",
+        "label": "Mineralstoff-Test bei foryou eHealth ansehen",
+        "href": "https://www.foryouehealth.de/for-you-mineralstoff-test.html"
+      },
+      {
         "type": "cta",
         "label": "Mikronährstoff-Radar starten",
         "href": "/gesundheits-checks/#check-micronutrients",
@@ -3403,6 +3410,13 @@
         ]
       },
       {
+        "type": "measure",
+        "title": "Vitamin-D-Spiegel messen statt schätzen",
+        "text": "Ob Ihr Vitamin-D-Spiegel wirklich im Zielbereich liegt, zeigt nur eine Messung des 25-OH-D-Werts. Neben der Praxis gibt es dafür Bluttests für zuhause mit Auswertung im Fachlabor.",
+        "label": "Vitamin-D3+K2-Test bei foryou eHealth ansehen",
+        "href": "https://www.foryouehealth.de/for-you-vitamin-d3-k2-test-bluttest-fur-zuhause.html"
+      },
+      {
         "type": "cta",
         "label": "Mikronährstoff-Radar starten",
         "href": "/gesundheits-checks/#check-micronutrients",
@@ -3714,6 +3728,13 @@
       {
         "type": "paragraph",
         "text": "Unser Fazit: Omega-3 ist kein Wundermittel, aber einer der am besten untersuchten Bausteine einer entzündungsbewussten Ernährung. Zwei Fischmahlzeiten pro Woche oder eine gute Algenöl-Routine — mehr braucht es für die Basis oft nicht."
+      },
+      {
+        "type": "measure",
+        "title": "Omega-3-Index messen statt schätzen",
+        "text": "Wie gut Ihre EPA/DHA-Versorgung wirklich ist, zeigt der Omega-3-Index im Blut. Eine Fettsäure-Analyse für zuhause mit Laborauswertung macht den Wert sichtbar — auch als Vorher-Nachher-Vergleich.",
+        "label": "Omega-3-Test bei foryou eHealth ansehen",
+        "href": "https://www.foryouehealth.de/for-you-omega-3-test-fettsaeuren-analyse.html"
       },
       {
         "type": "cta",

@@ -665,6 +665,20 @@ const articleJsonLd = article ? {
                     </div>
                   );
                 }
+                if (block.type === 'measure') {
+                  return (
+                    <aside class="measure-box">
+                      <span class="badge gold">Messen statt schätzen</span>
+                      <h3>{block.title}</h3>
+                      <p>{block.text}</p>
+                      <a class="button" href={block.href} target="_blank" rel="noopener">{block.label} ↗</a>
+                      <small>
+                        Externer Link zu foryou eHealth. Redaktionelle Empfehlung ohne Vergütung — wir erhalten keine Provision.
+                        Ein Selbsttest ersetzt keine ärztliche Beratung.
+                      </small>
+                    </aside>
+                  );
+                }
                 return <p>{block.text}</p>;
               })}
               <div class="notice">
