@@ -7,6 +7,7 @@ import structure from '../data/site-structure.json';
 import healthCompass from '../data/health-compass.json';
 import { homeCopy, categoryForLang } from '../data/i18n.js';
 import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articles.js';
+import { portalAppList } from '../data/portal.js';
 
 // Alle Artikel inkl. Momus-Beiträge fließen in die Kategorie-Counts.
 const articles = allArticles;
@@ -16,8 +17,8 @@ const copy = homeCopy[lang];
 const imageMap = new Map(images.filter((item) => item.status === 'ok').map((item) => [item.url, item.localPath.replace('source/assets/original/', '/assets/original/')]));
 const pages = inventory.filter((page) => page.status === 'ok');
 const heroImage = imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[1]) || imageMap.get(pages.find((page) => page.slug === 'home')?.images?.[0]);
+const logoPath = '/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png';
 const nexusPreviewPath = '/assets/original/006-wp-content-uploads-go-x-u-f0b406a7-c356-4935-99d5-4fa5a26d9ff4-l86-t0-w1000-h1000-image-768x768.png';
-const cosmicHeroPath = '/assets/media/callidus-cosmic-health-hero-v1.png';
 const imageFor = (page) => page.image || heroImage;
 const categorize = (page) => {
   if (page.category) {
@@ -31,6 +32,21 @@ const categoryCounts = structure.categories.map((category) => ({
   ...categoryForLang(category, lang),
   path: `/ratgeber/#${category.slug}`,
   count: articles.filter((page) => categorize(page).slug === category.slug).length,
+}));
+const compassItems = [
+  { slug: 'geist-seele', position: 'top', shortTitle: 'Geist & Seele' },
+  { slug: 'zukunft-gesundheit', position: 'right', shortTitle: 'Zukunft' },
+  { slug: 'sport-energie', position: 'bottom', shortTitle: 'Sport & Energie' },
+  { slug: 'koerper-ernaehrung', position: 'left', shortTitle: 'Körper & Ernährung' },
+].map((item) => ({
+  ...categoryCounts.find((category) => category.slug === item.slug),
+  position: item.position,
+  shortTitle: item.shortTitle,
+})).filter((item) => item.slug);
+const compassApps = portalAppList.map((app) => ({
+  ...app,
+  href: app.appHref || app.href,
+  status: app.comingSoon ? 'bald' : 'aktiv',
 }));
 const featured = getWeeklyFeatured(structure.categories);
 const brevoSignupLink = specialPages
@@ -86,9 +102,9 @@ const todayStarts = [
 ];
 ---
 <BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
-  <section class="section home-hero-section">
-    <div class="container hero hero-space">
-      <div class="hero-space-copy" data-reveal>
+  <section class="section">
+    <div class="container hero">
+      <div data-reveal>
         <p class="eyebrow">{copy.eyebrow}</p>
         <h1>{copy.headline}</h1>
         <p class="lede">{copy.lede}</p>
@@ -97,20 +113,33 @@ const todayStarts = [
           <a class="button" href="/ratgeber/">Ratgeber entdecken</a>
         </div>
       </div>
-      <figure class="space-hero-visual" data-reveal="2">
-        <img
-          class="space-hero-art"
-          src={cosmicHeroPath}
-          alt="Leuchtende Sonne und vier realistisch dargestellte Planeten in einem tiefen Sternenfeld"
-          width="1536"
-          height="1536"
-          fetchpriority="high"
-          decoding="async"
-        />
-        <figcaption class="space-hero-caption">
-          <span>Gesundheit ist ein System</span>
-          <a href="/gesundheits-kompass/">Zum Gesundheits-Kompass <span aria-hidden="true">→</span></a>
-        </figcaption>
+      <figure class="logo-hero-visual" data-reveal="2" aria-label="callidus Gesundheits-Kompass">
+        <div class="hero-compass">
+          <div class="compass-track" aria-hidden="true"></div>
+          <div class="compass-track compass-track-inner" aria-hidden="true"></div>
+          <img class="hero-logo" src={logoPath} alt="callidus A&M Logo" width="320" height="320" />
+          <div class="compass-orbit" aria-label="callidus Universum aus Apps und Themenbereichen">
+            {compassItems.map((category, index) => (
+              <div class={`compass-anchor compass-anchor-${index}`}>
+                <a class={`compass-label ${category.accent}`} href={category.path} aria-label={`${category.title}: ${category.count} ${copy.contentLabel} ansehen`}>
+                  <span class="compass-dot" aria-hidden="true"></span>
+                  <span class="planet-title">{category.shortTitle}</span>
+                  <span class="planet-meta">{category.count} {copy.contentLabel}</span>
+                </a>
+              </div>
+            ))}
+            <div class="compass-app-orbit" aria-label="callidus Apps">
+              {compassApps.map((app, index) => (
+                <div class={`compass-app-anchor compass-app-anchor-${index}`}>
+                  <a class={`compass-app ${app.color}`} href={app.href} aria-label={`${app.name} App ${app.status}`}>
+                    <span>{app.name}</span>
+                    <small>{app.status}</small>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </figure>
     </div>
   </section>
@@ -293,142 +322,6 @@ const todayStarts = [
   </section>
 
   <style>
-    .home-hero-section {
-      position: relative;
-      overflow: clip;
-      padding-top: clamp(4rem, 8vw, 7rem);
-    }
-    .hero-space {
-      grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
-      gap: clamp(2rem, 5vw, 4.75rem);
-      min-height: min(780px, calc(100vh - 5rem));
-    }
-    .hero-space-copy {
-      position: relative;
-      z-index: 1;
-    }
-    .space-hero-visual {
-      position: relative;
-      isolation: isolate;
-      justify-self: end;
-      width: min(100%, 42rem);
-      aspect-ratio: 1;
-      margin: 0;
-      overflow: hidden;
-      border: 1px solid rgba(229, 239, 235, .24);
-      border-radius: 42% 58% 48% 52% / 48% 43% 57% 52%;
-      background: #05080d;
-      box-shadow:
-        0 40px 88px rgba(15, 25, 36, .24),
-        0 0 0 10px rgba(var(--mint-rgb), .045),
-        0 0 100px rgba(var(--gold-rgb), .13);
-      transition: border-color 220ms ease, box-shadow 220ms ease;
-    }
-    .space-hero-visual::before,
-    .space-hero-visual::after {
-      content: '';
-      position: absolute;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .space-hero-visual::before {
-      inset: 2.5%;
-      border: 1px solid rgba(255, 255, 255, .15);
-      border-radius: inherit;
-      box-shadow: inset 0 0 32px rgba(0, 0, 0, .42);
-    }
-    .space-hero-visual::after {
-      inset: 0;
-      background:
-        linear-gradient(180deg, transparent 48%, rgba(2, 6, 11, .08) 61%, rgba(2, 6, 11, .84) 100%),
-        radial-gradient(circle at 51% 42%, transparent 38%, rgba(2, 6, 11, .20) 100%);
-    }
-    .space-hero-art {
-      position: relative;
-      z-index: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.035);
-    }
-    .space-hero-caption {
-      position: absolute;
-      z-index: 2;
-      right: clamp(1rem, 4vw, 2rem);
-      bottom: clamp(1rem, 4vw, 2rem);
-      left: clamp(1rem, 4vw, 2rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      color: #fff;
-    }
-    .space-hero-caption > span {
-      font-size: clamp(.62rem, 1.1vw, .75rem);
-      font-weight: 850;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .76);
-    }
-    .space-hero-caption a {
-      display: inline-flex;
-      align-items: center;
-      gap: .55rem;
-      min-height: 44px;
-      padding: .5rem .75rem;
-      border: 1px solid rgba(255, 255, 255, .30);
-      border-radius: 999px;
-      background: rgba(5, 10, 16, .48);
-      color: #fff;
-      font-size: clamp(.74rem, 1.25vw, .88rem);
-      font-weight: 800;
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
-    }
-    .space-hero-caption a:hover,
-    .space-hero-caption a:focus-visible {
-      border-color: rgba(255, 239, 193, .88);
-      background: rgba(255, 255, 255, .16);
-      transform: translateY(-2px);
-    }
-    .space-hero-caption a:focus-visible {
-      outline: 3px solid var(--mint);
-      outline-offset: 3px;
-    }
-    .space-hero-visual:hover,
-    .space-hero-visual:focus-within {
-      border-color: rgba(255, 239, 193, .52);
-      box-shadow:
-        0 40px 88px rgba(15, 25, 36, .30),
-        0 0 0 10px rgba(var(--mint-rgb), .065),
-        0 0 120px rgba(var(--gold-rgb), .20);
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      .space-hero-art { animation: space-hero-drift 18s ease-in-out infinite alternate; }
-    }
-    @keyframes space-hero-drift {
-      from { transform: scale(1.035) translate3d(-.7%, -.55%, 0); }
-      to { transform: scale(1.09) translate3d(.7%, .55%, 0); }
-    }
-    @media (max-width: 760px) {
-      .home-hero-section { padding-top: 2.25rem; }
-      .hero-space {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        gap: 2rem;
-      }
-      .space-hero-visual {
-        justify-self: center;
-        width: min(100%, 34rem);
-      }
-      .space-hero-caption { align-items: flex-end; }
-      .space-hero-caption > span { max-width: 11ch; line-height: 1.25; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .space-hero-art { transform: scale(1.035); }
-    }
     .home-audio-cta { padding-top: 0; }
     .home-audio-panel {
       display: grid;
@@ -472,6 +365,54 @@ const todayStarts = [
       }
     }
   </style>
+
+  <script is:inline>
+    (() => {
+      const setupCompassDrag = () => {
+        const compass = document.querySelector('.hero-compass');
+        const orbit = document.querySelector('.compass-orbit');
+        if (!compass || !orbit) return;
+
+        let dragging = false;
+        let startAngle = 0;
+        let accumulated = 0;
+
+        const angleFromCenter = (event) => {
+          const bounds = compass.getBoundingClientRect();
+          const centerX = bounds.left + bounds.width / 2;
+          const centerY = bounds.top + bounds.height / 2;
+          const pointX = (event.clientX ?? event.touches?.[0]?.clientX ?? centerX) - centerX;
+          const pointY = (event.clientY ?? event.touches?.[0]?.clientY ?? centerY) - centerY;
+          return Math.atan2(pointY, pointX) * (180 / Math.PI);
+        };
+
+        const onStart = (event) => {
+          dragging = true;
+          startAngle = angleFromCenter(event) - accumulated;
+          compass.classList.add('is-dragging');
+        };
+        const onMove = (event) => {
+          if (!dragging) return;
+          event.preventDefault();
+          accumulated = angleFromCenter(event) - startAngle;
+          orbit.style.transform = 'rotate(' + accumulated + 'deg)';
+        };
+        const onEnd = () => {
+          dragging = false;
+          compass.classList.remove('is-dragging');
+        };
+
+        compass.addEventListener('mousedown', onStart);
+        compass.addEventListener('touchstart', onStart, { passive: true });
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('touchmove', onMove, { passive: false });
+        window.addEventListener('mouseup', onEnd);
+        window.addEventListener('touchend', onEnd);
+      };
+      setupCompassDrag();
+      document.addEventListener('astro:page-load', setupCompassDrag);
+    })();
+  </script>
 
   <script is:inline>
     (() => {
