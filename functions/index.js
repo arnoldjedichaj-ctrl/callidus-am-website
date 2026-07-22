@@ -2295,6 +2295,7 @@ function publicFoodFallbackDaily(dateKey) {
     ],
     nutrition: { calories: 440, protein: 22, carbs: 52, fat: 15, fiber: 16 },
     quickAlternative: "Wenn es schnell gehen soll: Vorgegarte Linsen mit TK-Gemüse und Vollkorn-Couscous in 10 Minuten zubereiten.",
+    imageUrl: "/assets/food/bunte-linsen-gemuese-pfanne.png",
     dateKey,
     publishedDate: dateKey,
   }, { daily: true });
