@@ -2272,34 +2272,88 @@ function publicFoodRecipe(value = {}, { daily = false } = {}) {
   };
 }
 
+function publicFoodFallbackDaily(dateKey) {
+  return publicFoodRecipe({
+    title: "Bunte Linsen-Gemüse-Pfanne",
+    description: "Eine einfache, sättigende Tagesidee mit Linsen, frischem Gemüse und Vollkorn – unkompliziert für alle.",
+    prepTime: 25,
+    servings: 2,
+    ingredients: [
+      { amount: "150 g", name: "rote Linsen" },
+      { amount: "1", name: "Zucchini" },
+      { amount: "1", name: "rote Paprika" },
+      { amount: "1", name: "kleine Zwiebel" },
+      { amount: "250 ml", name: "Gemüsebrühe" },
+      { amount: "2 EL", name: "Olivenöl" },
+      { amount: "100 g", name: "Naturjoghurt oder pflanzliche Alternative" },
+      { amount: "nach Geschmack", name: "Zitrone, Petersilie, Salz und Pfeffer" },
+    ],
+    preparation: [
+      "Zwiebel, Zucchini und Paprika klein schneiden und im Olivenöl kurz anbraten.",
+      "Linsen und Gemüsebrühe zugeben und etwa 15 Minuten sanft köcheln lassen.",
+      "Mit Zitrone, Petersilie, Salz und Pfeffer abschmecken und mit Joghurt servieren.",
+    ],
+    nutrition: { calories: 440, protein: 22, carbs: 52, fat: 15, fiber: 16 },
+    quickAlternative: "Wenn es schnell gehen soll: Vorgegarte Linsen mit TK-Gemüse und Vollkorn-Couscous in 10 Minuten zubereiten.",
+    dateKey,
+    publishedDate: dateKey,
+  }, { daily: true });
+}
+
+function publicFoodParseJson(text) {
+  const value = String(text || "").trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
+  const start = value.indexOf("{");
+  const end = value.lastIndexOf("}");
+  const candidates = [value];
+  if (start >= 0 && end > start) candidates.push(value.slice(start, end + 1));
+  let lastError;
+  for (const candidate of candidates) {
+    try {
+      return JSON.parse(candidate);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error("Die Tagesidee enthielt kein gültiges JSON.");
+}
+
 async function publicFoodGeminiJson({ apiKey, prompt }) {
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(DEFAULT_MODEL)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.45,
-        maxOutputTokens: 1800,
-        responseMimeType: "application/json",
-        responseSchema: DAILY_MEAL_SCHEMA,
-      },
-    }),
-  });
-  if (!response.ok) {
-    const detail = await response.text();
-    logger.error("Daily meal generation failed", { status: response.status, detail: detail.slice(0, 600) });
-    throw new Error("Gemini konnte die Tagesmahlzeit nicht erstellen.");
+  let lastError;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: attempt === 0 ? prompt : `${prompt}\nWichtig: Liefere ausschließlich ein vollständiges, gültiges JSON-Objekt.` }] }],
+        generationConfig: {
+          temperature: attempt === 0 ? 0.45 : 0.2,
+          maxOutputTokens: 4096,
+          responseMimeType: "application/json",
+          responseSchema: DAILY_MEAL_SCHEMA,
+        },
+      }),
+    });
+    if (!response.ok) {
+      const detail = await response.text();
+      logger.error("Daily meal generation failed", { status: response.status, detail: detail.slice(0, 600) });
+      throw new Error("Gemini konnte die Tagesmahlzeit nicht erstellen.");
+    }
+    const payload = await response.json();
+    const text = ensureArray(payload.candidates?.[0]?.content?.parts).map((part) => part.text || "").join("").trim();
+    try {
+      if (!text) throw new Error("Gemini hat keine Tagesmahlzeit geliefert.");
+      const generatedMeal = publicFoodParseJson(text);
+      return {
+        ...publicFoodRecipe(generatedMeal, { daily: true }),
+        imagePrompt: cleanString(generatedMeal.imagePrompt, 900),
+      };
+    } catch (error) {
+      lastError = error;
+      logger.warn("Daily meal JSON was incomplete; retrying generation", { attempt: attempt + 1, error: String(error?.message || error) });
+    }
   }
-  const payload = await response.json();
-  const text = ensureArray(payload.candidates?.[0]?.content?.parts).map((part) => part.text || "").join("").trim();
-  if (!text) throw new Error("Gemini hat keine Tagesmahlzeit geliefert.");
-  const generatedMeal = JSON.parse(text);
-  return {
-    ...publicFoodRecipe(generatedMeal, { daily: true }),
-    imagePrompt: cleanString(generatedMeal.imagePrompt, 900),
-  };
+  throw lastError || new Error("Gemini hat keine vollständige Tagesidee geliefert.");
 }
 
 async function publicFoodImage({ apiKey, prompt, dateKey }) {
@@ -2471,7 +2525,7 @@ exports.getPublicFoodContent = onRequest(
         .slice(0, 7)
         .map((entry) => publicFoodRecipe({ ...entry.data, publishedDate: publicFoodDateKey(new Date(entry.created || Date.now())) }));
       const dailyData = dailySnapshot.exists && dailySnapshot.data()?.status === "ready" ? dailySnapshot.data() : null;
-      const daily = dailyData ? publicFoodRecipe(dailyData, { daily: true }) : null;
+      const daily = dailyData ? publicFoodRecipe(dailyData, { daily: true }) : publicFoodFallbackDaily(today);
       const dailyHistory = dailyHistorySnapshot.docs
         .filter((doc) => doc.data()?.status === "ready")
         .map((doc) => publicFoodRecipe(doc.data(), { daily: true }));
