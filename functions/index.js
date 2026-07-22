@@ -12,6 +12,7 @@ admin.initializeApp();
 
 const db = admin.firestore();
 const geminiApiKey = defineSecret("GEMINI_API_KEY");
+const falApiKey = defineSecret("FAL_KEY");
 const digistoreApiKey = defineSecret("DIGISTORE24_API_KEY");
 const digistoreIpnPassphrase = defineSecret("DIGISTORE24_IPN_PASSPHRASE");
 const DEFAULT_MODEL = "gemini-2.5-flash";
@@ -2210,7 +2211,16 @@ const DAILY_MEAL_SCHEMA = {
       },
       required: ["calories", "protein", "carbs", "fat"],
     },
-    quickAlternative: { type: "STRING" },
+    quickAlternative: {
+      type: "OBJECT",
+      properties: {
+        title: { type: "STRING" },
+        description: { type: "STRING" },
+        prepTime: { type: "NUMBER" },
+        steps: { type: "ARRAY", items: { type: "STRING" } },
+      },
+      required: ["title", "description", "prepTime", "steps"],
+    },
     imagePrompt: { type: "STRING" },
   },
   required: ["title", "description", "prepTime", "servings", "ingredients", "preparation", "nutrition", "quickAlternative", "imagePrompt"],
@@ -2237,6 +2247,20 @@ function publicFoodMillis(value) {
   if (value?.toDate) return value.toDate().getTime();
   const parsed = Date.parse(String(value || ""));
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function publicFoodQuickAlternative(value) {
+  if (!value) return null;
+  const source = typeof value === "string" ? { description: value } : value;
+  const description = cleanString(source.description, 320);
+  const steps = ensureArray(source.steps).slice(0, 4).map((step) => cleanString(step, 220)).filter(Boolean);
+  if (!description && !steps.length) return null;
+  return {
+    title: cleanString(source.title, 90) || "Schnelle Alternative",
+    description,
+    prepTime: publicFoodNumber(source.prepTime, null, 1, 120),
+    steps,
+  };
 }
 
 function publicFoodRecipe(value = {}, { daily = false } = {}) {
@@ -2266,7 +2290,7 @@ function publicFoodRecipe(value = {}, { daily = false } = {}) {
       fiber: publicFoodNumber(nutrition.fiber, null, 0, 150),
     },
     imageUrl: cleanString(value.imageUrl, 1000),
-    quickAlternative: daily ? cleanString(value.quickAlternative, 240) : "",
+    quickAlternative: daily ? publicFoodQuickAlternative(value.quickAlternative) : null,
     dateKey: cleanString(value.dateKey, 20),
     publishedDate: cleanString(value.publishedDate, 20),
   };
@@ -2294,8 +2318,17 @@ function publicFoodFallbackDaily(dateKey) {
       "Mit Zitrone, Petersilie, Salz und Pfeffer abschmecken und mit Joghurt servieren.",
     ],
     nutrition: { calories: 440, protein: 22, carbs: 52, fat: 15, fiber: 16 },
-    quickAlternative: "Wenn es schnell gehen soll: Vorgegarte Linsen mit TK-Gemüse und Vollkorn-Couscous in 10 Minuten zubereiten.",
-    imageUrl: "/assets/food/bunte-linsen-gemuese-pfanne.png",
+    quickAlternative: {
+      title: "Linsen-Couscous in 10 Minuten",
+      description: "Die gleiche Idee ohne Kochzeit: Vorgegarte Linsen mit TK-Gemüse und Vollkorn-Couscous kombinieren.",
+      prepTime: 10,
+      steps: [
+        "Vollkorn-Couscous mit heißer Gemüsebrühe übergießen und 5 Minuten quellen lassen.",
+        "TK-Gemüse und vorgegarte Linsen aus dem Glas kurz in der Pfanne erhitzen.",
+        "Alles mischen, mit Zitrone und Kräutern abschmecken und mit Joghurt servieren.",
+      ],
+    },
+    imageUrl: "/assets/food/bunte-linsen-gemuese-pfanne.jpg",
     dateKey,
     publishedDate: dateKey,
   }, { daily: true });
@@ -2329,9 +2362,12 @@ async function publicFoodGeminiJson({ apiKey, prompt }) {
         contents: [{ role: "user", parts: [{ text: attempt === 0 ? prompt : `${prompt}\nWichtig: Liefere ausschließlich ein vollständiges, gültiges JSON-Objekt.` }] }],
         generationConfig: {
           temperature: attempt === 0 ? 0.45 : 0.2,
-          maxOutputTokens: 4096,
+          maxOutputTokens: 8192,
           responseMimeType: "application/json",
           responseSchema: DAILY_MEAL_SCHEMA,
+          // Ohne dieses Limit verbraucht gemini-2.5-flash das Token-Budget fuer
+          // internes "thinking" und liefert abgeschnittenes JSON zurueck.
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     });
@@ -2341,9 +2377,13 @@ async function publicFoodGeminiJson({ apiKey, prompt }) {
       throw new Error("Gemini konnte die Tagesmahlzeit nicht erstellen.");
     }
     const payload = await response.json();
-    const text = ensureArray(payload.candidates?.[0]?.content?.parts).map((part) => part.text || "").join("").trim();
+    const candidate = payload.candidates?.[0];
+    const text = ensureArray(candidate?.content?.parts).map((part) => part.text || "").join("").trim();
     try {
       if (!text) throw new Error("Gemini hat keine Tagesmahlzeit geliefert.");
+      if (candidate?.finishReason && candidate.finishReason !== "STOP") {
+        throw new Error(`Gemini hat die Tagesidee abgebrochen (${candidate.finishReason}).`);
+      }
       const generatedMeal = publicFoodParseJson(text);
       return {
         ...publicFoodRecipe(generatedMeal, { daily: true }),
@@ -2357,45 +2397,53 @@ async function publicFoodGeminiJson({ apiKey, prompt }) {
   throw lastError || new Error("Gemini hat keine vollständige Tagesidee geliefert.");
 }
 
-async function publicFoodImage({ apiKey, prompt, dateKey }) {
-  if (!apiKey) return "";
+// Bildgenerierung laeuft ueber fal.ai (flux/schnell) wie im NEXUS Wochenrezept.
+// Der Gemini-Bildendpunkt ist im Free Tier dieses Projekts auf Kontingent 0 gesetzt.
+async function publicFoodImage({ falKey, prompt, dateKey }) {
+  if (!falKey) {
+    logger.warn("Daily meal image skipped: FAL_KEY is not set");
+    return "";
+  }
+  const fullPrompt = `${cleanString(prompt, 900)}, professional healthy food photography, appetizing daylight, shallow depth of field, no text, no logos`;
   try {
-    const generated = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(apiKey)}`, {
+    const generated = await fetch("https://fal.run/fal-ai/flux/schnell", {
       method: "POST",
       headers: {
+        Authorization: `Key ${falKey.trim()}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: `${cleanString(prompt, 900)}, professional healthy food photography, appetizing daylight, no text, no logos` }],
-        }],
-        generationConfig: {
-          responseModalities: ["IMAGE"],
-          responseFormat: { image: { aspectRatio: "4:3" } },
-        },
+        prompt: fullPrompt,
+        image_size: "landscape_4_3",
+        num_inference_steps: 4,
+        num_images: 1,
+        enable_safety_checker: false,
       }),
     });
     if (!generated.ok) {
-      logger.warn("Daily meal image generation failed", { status: generated.status });
+      const detail = await generated.text();
+      logger.warn("Daily meal image generation failed", { status: generated.status, detail: detail.slice(0, 300) });
       return "";
     }
     const payload = await generated.json();
-    const imagePart = ensureArray(payload?.candidates?.[0]?.content?.parts).find((part) => part?.inlineData?.data);
-    if (!imagePart?.inlineData?.data) return "";
-    try {
-      const imageBuffer = Buffer.from(imagePart.inlineData.data, "base64");
-      const bucket = admin.storage().bucket();
-      const mimeType = cleanString(imagePart.inlineData.mimeType, 80) || "image/png";
-      const extension = mimeType === "image/jpeg" ? "jpg" : "png";
-      const fileName = `website-food/${dateKey}.${extension}`;
-      const file = bucket.file(fileName);
-      await file.save(imageBuffer, { metadata: { contentType: mimeType }, public: true });
-      await file.makePublic();
-      return `https://storage.googleapis.com/${bucket.name}/${fileName}`;
-    } catch (storageError) {
-      logger.warn("Daily meal image could not be copied to Storage", { error: String(storageError?.message || storageError) });
+    const sourceUrl = cleanString(payload?.images?.[0]?.url || payload?.image?.url || payload?.url, 1000);
+    if (!sourceUrl) {
+      logger.warn("Daily meal image response contained no image url");
       return "";
     }
+    // Die fal.ai-URL ist nur temporaer gueltig, deshalb dauerhaft in Storage kopieren.
+    const download = await fetch(sourceUrl);
+    if (!download.ok) {
+      logger.warn("Daily meal image could not be downloaded", { status: download.status });
+      return "";
+    }
+    const imageBuffer = Buffer.from(await download.arrayBuffer());
+    const bucket = admin.storage().bucket();
+    const fileName = `website-food/${dateKey}.jpg`;
+    const file = bucket.file(fileName);
+    await file.save(imageBuffer, { metadata: { contentType: "image/jpeg", cacheControl: "public, max-age=31536000" }, public: true });
+    await file.makePublic();
+    return `https://storage.googleapis.com/${bucket.name}/${fileName}`;
   } catch (error) {
     logger.warn("Daily meal image request failed", { error: String(error?.message || error) });
     return "";
@@ -2419,7 +2467,7 @@ exports.publishDailyHealthyMeal = onSchedule(
     region: "us-central1",
     timeoutSeconds: 300,
     memory: "512MiB",
-    secrets: [geminiApiKey],
+    secrets: [geminiApiKey, falApiKey],
   },
   async () => {
     const dateKey = publicFoodDateKey();
@@ -2463,12 +2511,13 @@ exports.publishDailyHealthyMeal = onSchedule(
         "Erstelle genau ein gesundes, alltagstaugliches Rezept auf Deutsch für 2 Portionen. Es ist keine individuelle Ernährungsberatung und darf keine Heil- oder Abnehmversprechen enthalten.",
         `Heute ist ${dateKey}. Stil: ${theme}. Sie darf sich nicht zu stark mit diesen zuletzt verwendeten Titeln überschneiden: ${recentTitles.join(" | ") || "keine"}.`,
         "Die Zutaten müssen in deutschen Supermärkten gut erhältlich sein. Keine rohen Eier, kein Alkohol, keine Nahrungsergänzungsmittel. Nenne klare Mengen, 3 bis 6 Zubereitungsschritte und plausible geschätzte Nährwerte pro Portion.",
-        "quickAlternative ist ein einzelner kurzer Satz mit einer gesunden, deutlich schnelleren Alternative mit Zutaten aus dem Supermarkt (maximal 180 Zeichen). imagePrompt muss Englisch sein und das fertige Gericht fotorealistisch beschreiben; keine Schrift, keine Marken.",
+        "quickAlternative ist dasselbe Gericht als deutlich schnellere Variante: title ist ein kurzer Name (maximal 60 Zeichen), description ein Satz dazu, prepTime die Zubereitungszeit in Minuten und steps zwei bis drei kurze Schritte mit Zutaten aus dem Supermarkt.",
+        "imagePrompt muss Englisch sein und das fertige Gericht fotorealistisch beschreiben; keine Schrift, keine Marken.",
       ].join("\n");
       const apiKey = geminiApiKey.value();
       if (!apiKey) throw new Error("GEMINI_API_KEY ist nicht gesetzt.");
       const meal = await publicFoodGeminiJson({ apiKey, prompt });
-      const imageUrl = await publicFoodImage({ apiKey, prompt: meal.imagePrompt || meal.title, dateKey });
+      const imageUrl = await publicFoodImage({ falKey: falApiKey.value(), prompt: meal.imagePrompt || meal.title, dateKey });
       await mealRef.set({
         ...meal,
         imageUrl,
@@ -2530,6 +2579,9 @@ exports.getPublicFoodContent = onRequest(
       const dailyHistory = dailyHistorySnapshot.docs
         .filter((doc) => doc.data()?.status === "ready")
         .map((doc) => publicFoodRecipe(doc.data(), { daily: true }));
+      // Damit die Tagesnavigation immer einen Eintrag fuer heute hat - auch wenn
+      // nur das Ersatzrezept ausgeliefert wird.
+      if (!dailyHistory.some((entry) => entry.dateKey === daily.dateKey)) dailyHistory.unshift(daily);
       res.set("Cache-Control", "public, max-age=300, s-maxage=300");
       res.status(200).json({ daily, weekly: weeklyHistory[0] || null, dailyHistory, weeklyHistory, updatedAt: new Date().toISOString() });
     } catch (error) {
