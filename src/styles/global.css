@@ -1207,6 +1207,7 @@ html[data-theme="dark"] .planet-meta {
 .badge.coral { color: var(--coral); }
 .badge.blue { color: var(--blue); }
 .badge.gold { color: var(--gold); }
+.badge.violet { color: var(--violet); }
 
 .band { border-block: 1px solid var(--line); background: rgba(var(--gold-rgb),.055); }
 .split { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }

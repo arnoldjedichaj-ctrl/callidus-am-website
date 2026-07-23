@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import dailyActions from '../data/daily-actions.json';
+
+const title = 'Die Tagesaufgabe: eine kleine Lektion, eine konkrete Aktion | callidus A&M';
+const description = 'Jeden Tag eine kurze Lektion und eine konkrete Aktion für den Alltag – in wenigen Minuten umsetzbar, ohne Login und ohne persönliche Daten.';
+
+const { actions, categories, epoch } = dailyActions;
+const MAX_DAYS_BACK = 6;
+
+const dateKeyOf = (date) => new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit',
+}).format(date);
+const dayNumber = (key) => Math.round((Date.parse(`${key}T12:00:00Z`) - Date.parse(`${epoch}T12:00:00Z`)) / 86400000);
+const actionFor = (key) => actions[((dayNumber(key) % actions.length) + actions.length) % actions.length];
+const formatDate = (key) => new Intl.DateTimeFormat('de-DE', {
+  weekday: 'long', day: '2-digit', month: 'long', year: 'numeric',
+}).format(new Date(`${key}T12:00:00`));
+
+const todayKey = dateKeyOf(new Date());
+const today = actionFor(todayKey);
+const todayCategory = categories[today.category];
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section task-hero">
+    <div class="container task-hero-grid">
+      <div data-reveal>
+        <p class="eyebrow">Tagesaufgabe</p>
+        <h1>Eine Sache. Heute. Und die dauert nur ein paar Minuten.</h1>
+        <p class="lede">Jeden Tag eine kurze Lektion und daraus eine konkrete Aktion für den Alltag. Kein Programm, kein Login, keine persönlichen Daten – nur ein Anstoß, der sich zwischen zwei Termine schieben lässt.</p>
+        <div class="actions">
+          <a class="button primary" href="#aufgabe">Aufgabe für heute</a>
+          <a class="button" href="/gesund-geniessen/">Zur Tagesidee</a>
+        </div>
+      </div>
+      <aside class="task-hero-note" data-reveal="2" aria-label="So funktioniert die Tagesaufgabe">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 7-7"></path><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9"></path></svg>
+        <div><strong>Klein genug, um es wirklich zu tun</strong><p>Jede Aufgabe erklärt in drei Sätzen, worum es geht, und nennt dann genau eine Handlung für heute. Verpasste Tage lassen sich jederzeit nachlesen.</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section task-section" id="aufgabe">
+    <div class="container">
+      <div class="task-section-heading" data-reveal>
+        <div><p class="eyebrow">Heute dran</p><h2>Die Aufgabe des Tages</h2></div>
+        <p>Für alle gleich – wählen Sie selbst, ob sie in Ihren Tag passt.</p>
+      </div>
+
+      <div class="task-streak" data-task-streak hidden aria-live="polite">
+        <span class="task-streak-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.4-.4 3.9-1.6 5.2C9 9.7 8 11 8 13a4 4 0 0 0 8 .2c0-1.3-.5-2.4-1.1-3.3.9.3 1.7.9 2.2 1.8.6 1 .9 2.2.9 3.3a6 6 0 1 1-12 0c0-2.6 1.4-4.4 2.7-5.9C10.7 7 12 5.5 12 3Z"></path></svg>
+        </span>
+        <p class="task-streak-text"><strong data-task-streak-count>0</strong> <span data-task-streak-label>Tage in Folge</span></p>
+        <p class="task-streak-hint" data-task-streak-hint></p>
+      </div>
+
+      <nav class="task-daynav" data-task-daynav aria-label="Zwischen den Tagesaufgaben wechseln">
+        <button class="task-daynav-button" type="button" data-task-step="1">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+          <span>Vorheriger Tag</span>
+        </button>
+        <p class="task-daynav-label"><strong data-task-nav-date>{formatDate(todayKey)}</strong><small data-task-nav-note>Heute</small></p>
+        <button class="task-daynav-button" type="button" data-task-step="-1" disabled>
+          <span>Nächster Tag</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </nav>
+
+      <article class="task-card" data-task-card data-reveal="2">
+        <div class="task-card-topline">
+          <span class={`badge ${todayCategory.accent}`} data-task-category>{todayCategory.label}</span>
+          <time data-task-date datetime={todayKey}>{formatDate(todayKey)}</time>
+        </div>
+        <h3 data-task-title>{today.title}</h3>
+
+        <div class="task-lesson">
+          <p class="task-label">Warum das zählt</p>
+          <p data-task-lesson>{today.lesson}</p>
+        </div>
+
+        <div class="task-do">
+          <p class="task-do-head">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>
+            <strong>Heute konkret</strong>
+            <span class="task-minutes" data-task-minutes>ca. {today.minutes} Min.</span>
+          </p>
+          <p class="task-do-text" data-task-action>{today.action}</p>
+          <ol class="task-steps" data-task-steps>
+            {today.steps.map((step) => <li>{step}</li>)}
+          </ol>
+        </div>
+
+        <p class="task-note" data-task-note hidden={!today.note}>{today.note}</p>
+
+        <button class="task-done" type="button" data-task-done hidden aria-pressed="false">
+          <span class="task-done-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>
+          </span>
+          <span class="task-done-text" data-task-done-text>Als erledigt markieren</span>
+        </button>
+
+        <div class="task-actions">
+          <a class="button primary" href="/nexus-app/">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"></path><circle cx="12" cy="12" r="3.4"></circle></svg>
+            <span>Persönlich mit KI in der NEXUS App</span>
+          </a>
+          <a class="button task-action-ghost" href="/gesund-geniessen/">
+            <span>Passende Tagesidee zum Essen</span>
+          </a>
+        </div>
+      </article>
+
+      <section class="task-history" aria-label="Die letzten Tagesaufgaben">
+        <h3>Verpasst? Die letzten Tage</h3>
+        <div class="task-history-list" data-task-history></div>
+      </section>
+
+      <p class="task-disclaimer" data-reveal="3">Die Tagesaufgaben sind allgemeine Anregungen für den Alltag und ersetzen keine individuelle Beratung, Diagnose oder Behandlung. Bei Beschwerden oder bestehenden Erkrankungen halten Sie bitte Rücksprache mit Ihrer Ärztin oder Ihrem Arzt.</p>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ dailyActions, MAX_DAYS_BACK }}>
+    const initTagesaufgabe = () => {
+      const { actions, categories, epoch } = dailyActions;
+      const dateKeyOf = (date) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+      const dayNumber = (key) => Math.round((Date.parse(`${key}T12:00:00Z`) - Date.parse(`${epoch}T12:00:00Z`)) / 86400000);
+      const actionFor = (key) => actions[((dayNumber(key) % actions.length) + actions.length) % actions.length];
+      const formatDate = (key) => new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(`${key}T12:00:00`));
+      const shortDate = (key) => new Intl.DateTimeFormat('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' }).format(new Date(`${key}T12:00:00`));
+      const keyForOffset = (offset) => {
+        const base = new Date(`${dateKeyOf(new Date())}T12:00:00Z`);
+        base.setUTCDate(base.getUTCDate() - offset);
+        return base.toISOString().slice(0, 10);
+      };
+
+      const card = document.querySelector('[data-task-card]');
+      const nav = document.querySelector('[data-task-daynav]');
+      const historyTarget = document.querySelector('[data-task-history]');
+      // ClientRouter feuert astro:page-load auch beim ersten Laden – Guard gegen Doppelbindung.
+      if (!card || !nav || card.dataset.taskReady) return;
+      card.dataset.taskReady = 'true';
+
+      const doneButton = card.querySelector('[data-task-done]');
+      const doneText = card.querySelector('[data-task-done-text]');
+      const streakBox = document.querySelector('[data-task-streak]');
+
+      // Der Streak lebt nur im Browser des Nutzers – kein Konto, keine Übertragung.
+      // Er ist Motivation, keine Abrechnung; XP entstehen ausschließlich eingeloggt in der NEXUS App.
+      const STORAGE_KEY = 'callidus.tagesaufgabe.v1';
+      const storageAvailable = (() => {
+        try { const k = '__ta_test__'; localStorage.setItem(k, '1'); localStorage.removeItem(k); return true; } catch (_) { return false; }
+      })();
+      const loadDone = () => {
+        if (!storageAvailable) return new Set();
+        try {
+          const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+          return new Set(Array.isArray(parsed.done) ? parsed.done.filter((key) => /^\d{4}-\d{2}-\d{2}$/.test(key)) : []);
+        } catch (_) { return new Set(); }
+      };
+      const saveDone = (set) => {
+        if (!storageAvailable) return;
+        const done = [...set].sort().slice(-400);
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ done })); } catch (_) { /* Speicher voll oder gesperrt – Streak bleibt für diese Sitzung im Speicher. */ }
+      };
+      const done = loadDone();
+
+      // Aktuelle Serie: aufeinanderfolgende erledigte Tage, die bis heute oder gestern reichen.
+      const streakCount = () => {
+        const anchor = done.has(keyForOffset(0)) ? 0 : (done.has(keyForOffset(1)) ? 1 : null);
+        if (anchor === null) return 0;
+        let count = 0;
+        for (let back = anchor; back < 400; back += 1) {
+          if (done.has(keyForOffset(back))) count += 1; else break;
+        }
+        return count;
+      };
+
+      const renderStreak = () => {
+        if (!streakBox) return;
+        const count = streakCount();
+        const todayDone = done.has(keyForOffset(0));
+        streakBox.hidden = count === 0 && done.size === 0;
+        streakBox.classList.toggle('is-active', count > 0);
+        streakBox.querySelector('[data-task-streak-count]').textContent = String(count);
+        streakBox.querySelector('[data-task-streak-label]').textContent = count === 1 ? 'Tag in Folge' : 'Tage in Folge';
+        const hint = streakBox.querySelector('[data-task-streak-hint]');
+        if (count === 0) hint.textContent = 'Haken Sie die heutige Aufgabe ab, um zu starten.';
+        else if (!todayDone) hint.textContent = 'Heute noch offen – erledigen und die Serie hält.';
+        else hint.textContent = 'Heute erledigt. Weiter so.';
+      };
+
+      let offset = 0;
+      const render = (next) => {
+        offset = Math.min(Math.max(next, 0), MAX_DAYS_BACK);
+        const key = keyForOffset(offset);
+        const action = actionFor(key);
+        const category = categories[action.category] || { label: 'Impuls', accent: 'mint' };
+
+        const badge = card.querySelector('[data-task-category]');
+        badge.textContent = category.label;
+        badge.className = `badge ${category.accent}`;
+        const date = card.querySelector('[data-task-date]');
+        date.textContent = formatDate(key); date.dateTime = key;
+        card.querySelector('[data-task-title]').textContent = action.title;
+        card.querySelector('[data-task-lesson]').textContent = action.lesson;
+        card.querySelector('[data-task-action]').textContent = action.action;
+        card.querySelector('[data-task-minutes]').textContent = `ca. ${action.minutes} Min.`;
+
+        const steps = card.querySelector('[data-task-steps]');
+        steps.replaceChildren();
+        (action.steps || []).forEach((step) => { const item = document.createElement('li'); item.textContent = step; steps.append(item); });
+        steps.hidden = !(action.steps || []).length;
+
+        const note = card.querySelector('[data-task-note]');
+        note.textContent = action.note || ''; note.hidden = !action.note;
+
+        nav.querySelector('[data-task-nav-date]').textContent = formatDate(key);
+        nav.querySelector('[data-task-nav-note]').textContent = offset === 0 ? 'Heute' : (offset === 1 ? 'Gestern' : `${offset} Tage zurück`);
+        nav.querySelectorAll('[data-task-step]').forEach((button) => {
+          const target = offset + Number(button.dataset.taskStep);
+          button.disabled = target < 0 || target > MAX_DAYS_BACK;
+        });
+        historyTarget?.querySelectorAll('button').forEach((button) => button.setAttribute('aria-pressed', String(Number(button.dataset.taskOffset) === offset)));
+
+        if (doneButton) {
+          const isDone = done.has(key);
+          doneButton.hidden = !storageAvailable;
+          doneButton.setAttribute('aria-pressed', String(isDone));
+          doneButton.classList.toggle('is-done', isDone);
+          doneText.textContent = isDone
+            ? (offset === 0 ? 'Heute erledigt' : 'Erledigt')
+            : (offset === 0 ? 'Als erledigt markieren' : 'Nachträglich abhaken');
+        }
+      };
+
+      doneButton?.addEventListener('click', () => {
+        const key = keyForOffset(offset);
+        if (done.has(key)) done.delete(key); else done.add(key);
+        saveDone(done);
+        render(offset);
+        renderStreak();
+      });
+
+      if (historyTarget) {
+        historyTarget.replaceChildren();
+        for (let back = 1; back <= MAX_DAYS_BACK; back += 1) {
+          const key = keyForOffset(back);
+          const action = actionFor(key);
+          const button = document.createElement('button');
+          button.type = 'button'; button.className = 'task-history-item'; button.dataset.taskOffset = String(back);
+          const label = document.createElement('small'); label.textContent = shortDate(key);
+          const name = document.createElement('strong'); name.textContent = action.title;
+          button.append(label, name);
+          button.addEventListener('click', () => { render(back); nav.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+          historyTarget.append(button);
+        }
+      }
+
+      nav.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-task-step]');
+        if (button && !button.disabled) render(offset + Number(button.dataset.taskStep));
+      });
+
+      // Der Build rendert den Stand des Build-Tags; hier wird auf das echte Datum korrigiert.
+      render(0);
+      renderStreak();
+    };
+    initTagesaufgabe();
+    document.addEventListener('astro:page-load', initTagesaufgabe);
+  </script>
+
+  <style is:global>
+    .task-hero{overflow:hidden;background:radial-gradient(circle at 15% 12%,rgba(var(--mint-rgb),.18),transparent 30rem),linear-gradient(135deg,rgba(var(--gold-rgb),.1),rgba(var(--mint-rgb),.08))}
+    .task-hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:clamp(1.5rem,5vw,4rem);align-items:center}.task-hero h1{max-width:16ch}
+    .task-hero-note{display:flex;gap:1rem;align-items:flex-start;padding:clamp(1.25rem,3vw,1.75rem);border:1px solid rgba(var(--mint-rgb),.28);border-radius:1.15rem;background:var(--panel);box-shadow:var(--shadow)}.task-hero-note svg{width:2rem;height:2rem;flex:0 0 auto;color:var(--mint)}.task-hero-note strong{display:block;margin-bottom:.3rem;font-size:1.05rem}.task-hero-note p,.task-section-heading>p,.task-disclaimer{margin:0;color:var(--muted);line-height:1.65}
+    .task-section-heading{display:flex;justify-content:space-between;gap:1.5rem;align-items:end;margin-bottom:1.4rem}.task-section-heading h2{margin-bottom:0}.task-section-heading>p{max-width:36rem}
+    .task-daynav{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;margin-bottom:1rem;padding:.6rem .75rem;border:1px solid var(--line);border-radius:999px;background:var(--panel)}.task-daynav-button{display:inline-flex;gap:.4rem;align-items:center;min-height:44px;padding:.5rem 1rem;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;transition:border-color .2s ease,background-color .2s ease,opacity .2s ease}.task-daynav-button svg{width:1.05rem;height:1.05rem}.task-daynav-button:hover:not(:disabled){border-color:rgba(var(--mint-rgb),.6);background:rgba(var(--mint-rgb),.09)}.task-daynav-button:disabled{opacity:.38;cursor:not-allowed}.task-daynav-button:focus-visible,.task-history-item:focus-visible{outline:3px solid rgba(var(--mint-rgb),.45);outline-offset:2px}.task-daynav-label{display:grid;gap:.1rem;margin:0;text-align:center}.task-daynav-label strong{font-size:.95rem}.task-daynav-label small{color:var(--muted);font-size:.78rem}
+    .task-streak{display:flex;flex-wrap:wrap;gap:.35rem 1rem;align-items:center;margin-bottom:1rem;padding:.85rem 1.15rem;border:1px solid var(--line);border-radius:1rem;background:var(--panel)}.task-streak[hidden]{display:none}.task-streak.is-active{border-color:rgba(var(--coral-rgb),.4);background:linear-gradient(120deg,rgba(var(--coral-rgb),.12),rgba(var(--gold-rgb),.1))}.task-streak-icon{display:grid;place-items:center;width:2.3rem;height:2.3rem;flex:0 0 auto;border-radius:50%;background:rgba(var(--coral-rgb),.14);color:var(--coral)}.task-streak.is-active .task-streak-icon{color:var(--coral)}.task-streak-icon svg{width:1.3rem;height:1.3rem}.task-streak-text{margin:0;font-size:1.05rem;color:var(--text)}.task-streak-text strong{font-size:1.4rem;font-weight:900;color:var(--coral)}.task-streak-hint{flex:1 1 100%;margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}
+    .task-card{display:grid;gap:1.1rem;padding:clamp(1.4rem,3.5vw,2.4rem);border:1px solid var(--line);border-radius:1.15rem;background:var(--panel);box-shadow:var(--shadow)}.task-card-topline{display:flex;gap:.75rem;align-items:center;justify-content:space-between}.task-card-topline time{color:var(--muted);font-size:.86rem;text-align:right}.task-card h3{margin:0;font-size:clamp(1.5rem,3.2vw,2.15rem);line-height:1.2}
+    .task-label{margin:0 0 .3rem;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.task-lesson p:last-child{margin:0;color:var(--muted);line-height:1.7;max-width:62ch}
+    .task-do{display:grid;gap:.65rem;padding:1.15rem 1.25rem;border:1px solid rgba(var(--mint-rgb),.3);border-left:4px solid var(--mint);border-radius:.9rem;background:rgba(var(--mint-rgb),.08)}.task-do-head{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin:0}.task-do-head svg{width:1.3rem;height:1.3rem;flex:0 0 auto;color:var(--mint)}.task-do-head strong{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}.task-minutes{padding:.15rem .6rem;border-radius:999px;background:rgba(var(--mint-rgb),.22);color:var(--text);font-size:.75rem;font-weight:700}.task-do-text{margin:0;color:var(--text);font-size:clamp(1.02rem,2vw,1.16rem);font-weight:700;line-height:1.55}.task-steps{display:grid;gap:.45rem;margin:0;padding-left:1.15rem;color:var(--muted);font-size:.93rem;line-height:1.55}.task-steps[hidden]{display:none}
+    .task-note{margin:0;padding:.7rem .85rem;border-radius:.6rem;background:rgba(var(--gold-rgb),.12);color:var(--soft);font-size:.86rem;line-height:1.55}.task-note[hidden]{display:none}
+    .task-done{display:inline-flex;gap:.7rem;align-items:center;justify-self:start;min-height:48px;padding:.6rem 1.2rem .6rem .7rem;border:1px solid rgba(var(--mint-rgb),.5);border-radius:999px;background:transparent;color:var(--text);font:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:border-color .2s ease,background-color .2s ease}.task-done[hidden]{display:none}.task-done-box{display:grid;place-items:center;width:1.7rem;height:1.7rem;flex:0 0 auto;border:2px solid rgba(var(--mint-rgb),.55);border-radius:.5rem;background:transparent;color:transparent;transition:background-color .2s ease,border-color .2s ease,color .2s ease}.task-done-box svg{width:1.05rem;height:1.05rem}.task-done:hover{border-color:var(--mint);background:rgba(var(--mint-rgb),.08)}.task-done.is-done{border-color:var(--mint);background:rgba(var(--mint-rgb),.12)}.task-done.is-done .task-done-box{background:var(--mint);border-color:var(--mint);color:var(--on-accent)}.task-done:focus-visible{outline:3px solid rgba(var(--mint-rgb),.45);outline-offset:2px}
+    .task-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.2rem}.task-actions .button{min-height:48px;padding:.72rem 1.35rem;gap:.5rem}.task-actions .button svg{width:1.1rem;height:1.1rem;flex:0 0 auto}.task-action-ghost{background:transparent;border-color:rgba(var(--mint-rgb),.5);color:var(--text);box-shadow:none}.task-action-ghost:hover{background:rgba(var(--mint-rgb),.1);border-color:rgba(var(--mint-rgb),.75);color:var(--text)}
+    .task-history{margin-top:1.6rem}.task-history h3{margin:0 0 .75rem;font-size:1rem}.task-history-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.65rem}.task-history-item{display:grid;gap:.3rem;min-height:76px;padding:.7rem .8rem;border:1px solid var(--line);border-radius:.7rem;background:var(--panel);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease}.task-history-item small{color:var(--muted);font-size:.76rem}.task-history-item strong{font-size:.93rem;line-height:1.3}.task-history-item:hover,.task-history-item[aria-pressed="true"]{border-color:rgba(var(--mint-rgb),.58);background:rgba(var(--mint-rgb),.07);box-shadow:0 3px 12px rgba(var(--mint-rgb),.1)}
+    .task-disclaimer{margin-top:1.4rem;font-size:.84rem}
+    @media(max-width:760px){.task-hero-grid{grid-template-columns:1fr}.task-section-heading{display:grid;align-items:start}.task-actions .button{flex:1 1 100%}.task-daynav{border-radius:1.15rem}.task-daynav-label{order:-1;flex:1 1 100%}.task-daynav-button{flex:1 1 auto;justify-content:center}}
+  </style>
+</BaseLayout>
