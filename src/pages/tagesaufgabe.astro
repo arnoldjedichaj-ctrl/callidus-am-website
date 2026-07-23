@@ -8,6 +8,18 @@ const description = 'Jeden Tag eine kurze Lektion und eine konkrete Aktion für 
 const { actions, categories, epoch } = dailyActions;
 const MAX_DAYS_BACK = 6;
 
+// Fuer den eingeloggten XP-Modus: gleiche Config wie das Portal. Die Firebase-
+// Bibliothek wird erst bei Bedarf (idle) vom CDN geladen, damit die Content-Seite
+// fuer anonyme Besucher leicht bleibt.
+const firebaseConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
+
 const dateKeyOf = (date) => new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit',
 }).format(date);
@@ -54,6 +66,7 @@ const todayCategory = categories[today.category];
         </span>
         <p class="task-streak-text"><strong data-task-streak-count>0</strong> <span data-task-streak-label>Tage in Folge</span></p>
         <p class="task-streak-hint" data-task-streak-hint></p>
+        <p class="task-streak-xp" data-task-streak-xp hidden></p>
       </div>
 
       <nav class="task-daynav" data-task-daynav aria-label="Zwischen den Tagesaufgaben wechseln">
@@ -101,6 +114,12 @@ const todayCategory = categories[today.category];
           <span class="task-done-text" data-task-done-text>Als erledigt markieren</span>
         </button>
 
+        <p class="task-xp-feedback" data-task-xp-feedback hidden aria-live="polite"></p>
+        <p class="task-login-hook" data-task-login-hook hidden>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.4-.4 3.9-1.6 5.2C9 9.7 8 11 8 13a4 4 0 0 0 8 .2c0-1.3-.5-2.4-1.1-3.3.9.3 1.7.9 2.2 1.8.6 1 .9 2.2.9 3.3a6 6 0 1 1-12 0c0-2.6 1.4-4.4 2.7-5.9C10.7 7 12 5.5 12 3Z"></path></svg>
+          <span><a href="/portal/">Im Portal anmelden</a> und die Serie ab heute als XP sammeln – 100 XP pro Tag plus Bonus für lange Serien.</span>
+        </p>
+
         <div class="task-actions">
           <a class="button primary" href="/nexus-app/">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"></path><circle cx="12" cy="12" r="3.4"></circle></svg>
@@ -121,7 +140,7 @@ const todayCategory = categories[today.category];
     </div>
   </section>
 
-  <script is:inline define:vars={{ dailyActions, MAX_DAYS_BACK }}>
+  <script is:inline define:vars={{ dailyActions, MAX_DAYS_BACK, firebaseConfig }}>
     const initTagesaufgabe = () => {
       const { actions, categories, epoch } = dailyActions;
       const dateKeyOf = (date) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
@@ -145,6 +164,11 @@ const todayCategory = categories[today.category];
       const doneButton = card.querySelector('[data-task-done]');
       const doneText = card.querySelector('[data-task-done-text]');
       const streakBox = document.querySelector('[data-task-streak]');
+      const streakXpEl = document.querySelector('[data-task-streak-xp]');
+      const feedbackEl = card.querySelector('[data-task-xp-feedback]');
+      const loginHookEl = card.querySelector('[data-task-login-hook]');
+      let currentUser = null;
+      let serverState = null;
 
       // Der Streak lebt nur im Browser des Nutzers – kein Konto, keine Übertragung.
       // Er ist Motivation, keine Abrechnung; XP entstehen ausschließlich eingeloggt in der NEXUS App.
@@ -237,11 +261,87 @@ const todayCategory = categories[today.category];
 
       doneButton?.addEventListener('click', () => {
         const key = keyForOffset(offset);
-        if (done.has(key)) done.delete(key); else done.add(key);
+        const turnedOn = !done.has(key);
+        if (turnedOn) done.add(key); else done.delete(key);
         saveDone(done);
         render(offset);
         renderStreak();
+        // XP nur fuer den heutigen Tag und nur eingeloggt – serverseitig verbucht.
+        if (turnedOn && offset === 0 && currentUser) claimToday();
       });
+
+      // ── Eingeloggter XP-Modus (optional, laedt Firebase erst bei Idle) ──
+      const showFeedback = (text) => {
+        if (!feedbackEl) return;
+        feedbackEl.textContent = text; feedbackEl.hidden = false;
+      };
+      const updateXpDisplay = () => {
+        if (!streakXpEl) return;
+        if (currentUser && serverState) {
+          streakXpEl.hidden = false;
+          streakXpEl.textContent = `${serverState.totalXp} XP aus Tagesaufgaben gesammelt`;
+        } else {
+          streakXpEl.hidden = true;
+        }
+      };
+      const applyAuth = (user) => {
+        currentUser = user || null;
+        if (loginHookEl) loginHookEl.hidden = Boolean(currentUser);
+        if (!currentUser) { serverState = null; updateXpDisplay(); return; }
+        refreshServerState();
+      };
+      const callable = (name) => window.__taApi.httpsCallable(window.__taFns, name);
+      const refreshServerState = async () => {
+        if (!currentUser || !window.__taFns) return;
+        try {
+          serverState = (await callable('getDailyTaskState')()).data;
+          // Server ist die Wahrheit: heute schon eingeloest -> lokal spiegeln.
+          if (serverState.todayClaimed && !done.has(keyForOffset(0))) {
+            done.add(keyForOffset(0)); saveDone(done); render(offset); renderStreak();
+          }
+          updateXpDisplay();
+        } catch (_) { /* offline oder nicht erreichbar – lokaler Streak bleibt */ }
+      };
+      const claimToday = async () => {
+        if (!currentUser || !window.__taFns) return;
+        try {
+          const result = (await callable('claimDailyTaskXp')()).data;
+          serverState = result.view || serverState;
+          if (!result.alreadyClaimed) {
+            const bonus = result.bonus > 0 ? ` – ${result.streak} Tage in Folge, Bonus!` : '';
+            showFeedback(`+${result.awarded} XP gutgeschrieben${bonus}`);
+          }
+          updateXpDisplay();
+        } catch (_) { /* Gutschrift fehlgeschlagen – lokaler Streak bleibt erhalten */ }
+      };
+
+      // Firebase genau einmal pro Seiten-Session laden; das aktuelle DOM immer
+      // ueber window.__taApplyAuth ansteuern (ClientRouter tauscht die Elemente).
+      window.__taApplyAuth = applyAuth;
+      const startAuth = () => {
+        if (window.__taAuthStarted) { if (window.__taAuthUser !== undefined) applyAuth(window.__taAuthUser); return; }
+        window.__taAuthStarted = true;
+        const cfg = firebaseConfig || {};
+        if (!cfg.apiKey) { applyAuth(null); return; }
+        (async () => {
+          try {
+            const [appApi, authApi, fnsApi] = await Promise.all([
+              import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js'),
+              import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js'),
+              import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js'),
+            ]);
+            const app = appApi.getApps().length ? appApi.getApps()[0] : appApi.initializeApp(cfg);
+            window.__taApi = { ...authApi, ...fnsApi };
+            window.__taFns = fnsApi.getFunctions(app, 'us-central1');
+            authApi.onAuthStateChanged(authApi.getAuth(app), (user) => {
+              window.__taAuthUser = user || null;
+              (window.__taApplyAuth || applyAuth)(window.__taAuthUser);
+            });
+          } catch (_) { applyAuth(null); }
+        })();
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(startAuth, { timeout: 3000 });
+      else setTimeout(startAuth, 1200);
 
       if (historyTarget) {
         historyTarget.replaceChildren();
@@ -277,7 +377,9 @@ const todayCategory = categories[today.category];
     .task-hero-note{display:flex;gap:1rem;align-items:flex-start;padding:clamp(1.25rem,3vw,1.75rem);border:1px solid rgba(var(--mint-rgb),.28);border-radius:1.15rem;background:var(--panel);box-shadow:var(--shadow)}.task-hero-note svg{width:2rem;height:2rem;flex:0 0 auto;color:var(--mint)}.task-hero-note strong{display:block;margin-bottom:.3rem;font-size:1.05rem}.task-hero-note p,.task-section-heading>p,.task-disclaimer{margin:0;color:var(--muted);line-height:1.65}
     .task-section-heading{display:flex;justify-content:space-between;gap:1.5rem;align-items:end;margin-bottom:1.4rem}.task-section-heading h2{margin-bottom:0}.task-section-heading>p{max-width:36rem}
     .task-daynav{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;margin-bottom:1rem;padding:.6rem .75rem;border:1px solid var(--line);border-radius:999px;background:var(--panel)}.task-daynav-button{display:inline-flex;gap:.4rem;align-items:center;min-height:44px;padding:.5rem 1rem;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;transition:border-color .2s ease,background-color .2s ease,opacity .2s ease}.task-daynav-button svg{width:1.05rem;height:1.05rem}.task-daynav-button:hover:not(:disabled){border-color:rgba(var(--mint-rgb),.6);background:rgba(var(--mint-rgb),.09)}.task-daynav-button:disabled{opacity:.38;cursor:not-allowed}.task-daynav-button:focus-visible,.task-history-item:focus-visible{outline:3px solid rgba(var(--mint-rgb),.45);outline-offset:2px}.task-daynav-label{display:grid;gap:.1rem;margin:0;text-align:center}.task-daynav-label strong{font-size:.95rem}.task-daynav-label small{color:var(--muted);font-size:.78rem}
-    .task-streak{display:flex;flex-wrap:wrap;gap:.35rem 1rem;align-items:center;margin-bottom:1rem;padding:.85rem 1.15rem;border:1px solid var(--line);border-radius:1rem;background:var(--panel)}.task-streak[hidden]{display:none}.task-streak.is-active{border-color:rgba(var(--coral-rgb),.4);background:linear-gradient(120deg,rgba(var(--coral-rgb),.12),rgba(var(--gold-rgb),.1))}.task-streak-icon{display:grid;place-items:center;width:2.3rem;height:2.3rem;flex:0 0 auto;border-radius:50%;background:rgba(var(--coral-rgb),.14);color:var(--coral)}.task-streak.is-active .task-streak-icon{color:var(--coral)}.task-streak-icon svg{width:1.3rem;height:1.3rem}.task-streak-text{margin:0;font-size:1.05rem;color:var(--text)}.task-streak-text strong{font-size:1.4rem;font-weight:900;color:var(--coral)}.task-streak-hint{flex:1 1 100%;margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}
+    .task-streak{display:flex;flex-wrap:wrap;gap:.35rem 1rem;align-items:center;margin-bottom:1rem;padding:.85rem 1.15rem;border:1px solid var(--line);border-radius:1rem;background:var(--panel)}.task-streak[hidden]{display:none}.task-streak.is-active{border-color:rgba(var(--coral-rgb),.4);background:linear-gradient(120deg,rgba(var(--coral-rgb),.12),rgba(var(--gold-rgb),.1))}.task-streak-icon{display:grid;place-items:center;width:2.3rem;height:2.3rem;flex:0 0 auto;border-radius:50%;background:rgba(var(--coral-rgb),.14);color:var(--coral)}.task-streak.is-active .task-streak-icon{color:var(--coral)}.task-streak-icon svg{width:1.3rem;height:1.3rem}.task-streak-text{margin:0;font-size:1.05rem;color:var(--text)}.task-streak-text strong{font-size:1.4rem;font-weight:900;color:var(--coral)}.task-streak-hint{flex:1 1 100%;margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}.task-streak-xp{flex:1 1 100%;margin:0;color:var(--coral);font-size:.82rem;font-weight:700}.task-streak-xp[hidden]{display:none}
+    .task-xp-feedback{justify-self:start;margin:0;padding:.5rem .9rem;border-radius:999px;background:var(--mint);color:var(--on-accent);font-size:.9rem;font-weight:800}.task-xp-feedback[hidden]{display:none}
+    .task-login-hook{display:flex;gap:.6rem;align-items:flex-start;margin:0;padding:.7rem .9rem;border:1px dashed rgba(var(--coral-rgb),.45);border-radius:.7rem;color:var(--soft);font-size:.88rem;line-height:1.5}.task-login-hook[hidden]{display:none}.task-login-hook svg{width:1.15rem;height:1.15rem;flex:0 0 auto;margin-top:.1rem;color:var(--coral)}.task-login-hook a{color:var(--coral);font-weight:700;text-decoration:underline;text-underline-offset:.15em}
     .task-card{display:grid;gap:1.1rem;padding:clamp(1.4rem,3.5vw,2.4rem);border:1px solid var(--line);border-radius:1.15rem;background:var(--panel);box-shadow:var(--shadow)}.task-card-topline{display:flex;gap:.75rem;align-items:center;justify-content:space-between}.task-card-topline time{color:var(--muted);font-size:.86rem;text-align:right}.task-card h3{margin:0;font-size:clamp(1.5rem,3.2vw,2.15rem);line-height:1.2}
     .task-label{margin:0 0 .3rem;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.task-lesson p:last-child{margin:0;color:var(--muted);line-height:1.7;max-width:62ch}
     .task-do{display:grid;gap:.65rem;padding:1.15rem 1.25rem;border:1px solid rgba(var(--mint-rgb),.3);border-left:4px solid var(--mint);border-radius:.9rem;background:rgba(var(--mint-rgb),.08)}.task-do-head{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin:0}.task-do-head svg{width:1.3rem;height:1.3rem;flex:0 0 auto;color:var(--mint)}.task-do-head strong{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}.task-minutes{padding:.15rem .6rem;border-radius:999px;background:rgba(var(--mint-rgb),.22);color:var(--text);font-size:.75rem;font-weight:700}.task-do-text{margin:0;color:var(--text);font-size:clamp(1.02rem,2vw,1.16rem);font-weight:700;line-height:1.55}.task-steps{display:grid;gap:.45rem;margin:0;padding-left:1.15rem;color:var(--muted);font-size:.93rem;line-height:1.55}.task-steps[hidden]{display:none}

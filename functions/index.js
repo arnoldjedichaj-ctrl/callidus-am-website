@@ -28,6 +28,19 @@ const MONTHLY_VALUS_LIMIT = 10;
 const CENTS_PER_EURO = 100;
 const XP_PER_CENT = XP_PER_VALUS / CENTS_PER_EURO;
 
+// Tagesaufgabe: 100 XP pro erledigtem Tag plus einmalige Streak-Meilensteine.
+// Bewusst klein gegenueber dem Monatslimit (10 VAL = 100.000 XP), damit die
+// Tagesaufgabe motiviert, ohne mit echten Kaeufen zu konkurrieren oder Gaming
+// zu belohnen. Ein perfektes Jahr inkl. aller Meilensteine bleibt unter 5 %
+// der einloesbaren Jahresdecke.
+const DAILY_TASK_XP = 100;
+const DAILY_TASK_MILESTONES = [
+  { days: 7, bonus: 500 },
+  { days: 30, bonus: 2000 },
+  { days: 100, bonus: 5000 },
+  { days: 365, bonus: 10000 },
+];
+
 const PLAN_SCHEMA = {
   type: "OBJECT",
   properties: {
@@ -1291,6 +1304,169 @@ exports.creditMomusXp = onCall(
     const userRef = db.collection("users").doc(uid);
     const { momusDelta, momusTotal, balanceXp } = await reconcileEarnedXp(userRef);
     return { credited: momusDelta, momusTotal, balanceXp };
+  },
+);
+
+// Verschiebt einen YYYY-MM-DD-Schluessel um n Tage (negativ = zurueck).
+function shiftDateKey(dateKey, deltaDays) {
+  const base = new Date(`${dateKey}T12:00:00Z`);
+  base.setUTCDate(base.getUTCDate() + deltaDays);
+  return base.toISOString().slice(0, 10);
+}
+
+function dailyTaskMilestonesFor(streak, alreadyAwarded = []) {
+  const done = new Set(alreadyAwarded.map((value) => Number(value)));
+  return DAILY_TASK_MILESTONES.filter((milestone) => streak >= milestone.days && !done.has(milestone.days));
+}
+
+function dailyTaskSummaryView(summary = {}, todayClaimed = false) {
+  return {
+    currentStreak: Math.max(0, numberValue(summary.currentStreak, 0)),
+    longestStreak: Math.max(0, numberValue(summary.longestStreak, 0)),
+    totalDays: Math.max(0, numberValue(summary.totalDays, 0)),
+    totalXp: Math.max(0, numberValue(summary.totalXp, 0)),
+    milestonesAwarded: Array.isArray(summary.milestonesAwarded) ? summary.milestonesAwarded : [],
+    todayClaimed,
+    perTask: DAILY_TASK_XP,
+    milestones: DAILY_TASK_MILESTONES,
+  };
+}
+
+// Schreibt genau einmal pro Kalendertag (Europe/Berlin) 100 XP + faellige
+// Streak-Meilensteine in den Spend-Topf. Streak und Meilensteine werden aus der
+// serverseitigen Historie berechnet – der localStorage-Streak im Browser ist
+// manipulierbar und darf niemals XP ausloesen. Nur der heutige Tag ist gueltig.
+exports.claimDailyTaskXp = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 30,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const dateKey = publicFoodDateKey();
+    const yesterday = shiftDateKey(dateKey, -1);
+
+    const userRef = db.collection("users").doc(uid);
+    const balanceRef = userRef.collection("balances").doc("current");
+    const summaryRef = userRef.collection("daily_task_xp").doc("_summary");
+    const dayRef = userRef.collection("daily_task_xp").doc(dateKey);
+    const ledgerRef = userRef.collection("valus_ledger").doc();
+
+    const result = await db.runTransaction(async (transaction) => {
+      const [daySnap, summarySnap, balanceSnap] = await Promise.all([
+        transaction.get(dayRef),
+        transaction.get(summaryRef),
+        transaction.get(balanceRef),
+      ]);
+      const summary = summarySnap.exists ? summarySnap.data() || {} : {};
+
+      // Idempotent: heute schon eingeloest -> keine weitere Gutschrift.
+      if (daySnap.exists) {
+        return { alreadyClaimed: true, awarded: 0, bonus: 0, milestones: [], view: dailyTaskSummaryView(summary, true), dateKey };
+      }
+
+      const previousStreak = Math.max(0, numberValue(summary.currentStreak, 0));
+      const streak = summary.lastDate === yesterday ? previousStreak + 1 : 1;
+
+      const dueMilestones = dailyTaskMilestonesFor(streak, summary.milestonesAwarded);
+      const bonus = dueMilestones.reduce((sum, milestone) => sum + milestone.bonus, 0);
+      const award = DAILY_TASK_XP + bonus;
+
+      const balance = balanceSnap.exists ? balanceSnap.data() || {} : {};
+      const poolXp = numberValue(balance.xp ?? balance.current_xp, 0);
+      const momusCredited = Math.max(0, numberValue(balance.momus_xp_credited, 0));
+      const nextXp = poolXp + award;
+
+      const balancePatch = {
+        xp: nextXp,
+        current_xp: nextXp,
+        updated_at: FieldValue.serverTimestamp(),
+      };
+      // Nexus-Wasserstand initialisieren, BEVOR Tages-XP hinzukommt, damit der
+      // erste reconcileEarnedXp die Tages-XP nicht als bereits gutgeschriebenes
+      // Nexus-XP wertet und dadurch verschluckt.
+      if (balance.nexus_xp_credited === undefined || balance.nexus_xp_credited === null) {
+        balancePatch.nexus_xp_credited = Math.max(0, poolXp - momusCredited);
+      }
+      transaction.set(balanceRef, balancePatch, { merge: true });
+
+      const awardedMilestones = [
+        ...(Array.isArray(summary.milestonesAwarded) ? summary.milestonesAwarded.map((value) => Number(value)) : []),
+        ...dueMilestones.map((milestone) => milestone.days),
+      ].sort((a, b) => a - b);
+      const longestStreak = Math.max(streak, numberValue(summary.longestStreak, 0));
+
+      transaction.set(dayRef, {
+        awarded: award,
+        base: DAILY_TASK_XP,
+        bonus,
+        streak,
+        created_at: FieldValue.serverTimestamp(),
+      });
+      transaction.set(summaryRef, {
+        currentStreak: streak,
+        longestStreak,
+        lastDate: dateKey,
+        totalDays: FieldValue.increment(1),
+        totalXp: FieldValue.increment(award),
+        milestonesAwarded: awardedMilestones,
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      transaction.set(ledgerRef, {
+        type: "daily_task_xp",
+        amount: 0,
+        xp_amount: award,
+        base: DAILY_TASK_XP,
+        bonus,
+        streak,
+        description: bonus > 0
+          ? `Tagesaufgabe erledigt – ${streak} Tage in Folge inkl. Bonus`
+          : `Tagesaufgabe erledigt – ${streak} Tage in Folge`,
+        created_at: FieldValue.serverTimestamp(),
+      });
+
+      const view = dailyTaskSummaryView({
+        currentStreak: streak,
+        longestStreak,
+        totalDays: numberValue(summary.totalDays, 0) + 1,
+        totalXp: numberValue(summary.totalXp, 0) + award,
+        milestonesAwarded: awardedMilestones,
+      }, true);
+
+      return { alreadyClaimed: false, awarded: award, base: DAILY_TASK_XP, bonus, milestones: dueMilestones, streak, xpBalance: nextXp, view, dateKey };
+    });
+
+    logger.info("Daily task XP claimed", { uid, dateKey, awarded: result.awarded, streak: result.view.currentStreak, already: result.alreadyClaimed });
+    return result;
+  },
+);
+
+exports.getDailyTaskState = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 20,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const dateKey = publicFoodDateKey();
+    const userRef = db.collection("users").doc(uid);
+    const [summarySnap, daySnap] = await Promise.all([
+      userRef.collection("daily_task_xp").doc("_summary").get(),
+      userRef.collection("daily_task_xp").doc(dateKey).get(),
+    ]);
+    const summary = summarySnap.exists ? summarySnap.data() || {} : {};
+    // Wenn die letzte Erledigung laenger als gestern her ist, ist die Serie abgerissen.
+    const yesterday = shiftDateKey(dateKey, -1);
+    const streakAlive = summary.lastDate === dateKey || summary.lastDate === yesterday;
+    const view = dailyTaskSummaryView(
+      { ...summary, currentStreak: streakAlive ? summary.currentStreak : 0 },
+      daySnap.exists,
+    );
+    return { ...view, dateKey };
   },
 );
 
