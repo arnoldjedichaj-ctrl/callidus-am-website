@@ -1,10 +1,32 @@
 name: Deploy Firebase Functions
 
+# HINWEIS ZUR URSACHE DER FRUEHEREN FEHLER-MAILS
+# --------------------------------------------------------------------------
+# Diese Action war urspruenglich auf das FALSCHE Projekt gestellt: Sie hat die
+# Website-/NEXUS-Funktionen aus functions/index.js (askCallidus, VAL, Digistore,
+# Tagesrezept, Tagesaufgabe-XP ...) mit dem momus-Service-Account nach
+# momus-app-774c9 deployt. Dorthin gehoeren diese Funktionen nicht, und die von
+# ihnen benoetigten Secrets (DIGISTORE24_*) existieren dort auch nicht.
+# Ergebnis: Der Deploy ist bei JEDEM Lauf gescheitert -> Fehler-Mail.
+#
+# Die Website-Funktionen gehoeren nach nexus-app-61494 und werden dort aktuell
+# manuell deployt (npx firebase-tools deploy --only functions --project
+# nexus-app-61494). Deshalb ist der automatische Lauf hier abgeschaltet
+# (nur noch manuell ueber "Run workflow" ausloesbar).
+#
+# AUTOMATISCHES DEPLOY NACH NEXUS SPAETER AKTIVIEREN (optional):
+#   1. Das GitHub-Secret FIREBASE_SERVICE_ACCOUNT auf den NEXUS-Service-Account
+#      setzen (nexus-service-account.json, Projekt nexus-app-61494). Dieser SA
+#      braucht die Rolle "Cloud Functions Admin" + "Service Account User".
+#   2. Unten den auskommentierten "push:"-Trigger wieder aktivieren.
+# Das Projekt unten steht bereits korrekt auf nexus-app-61494.
+# --------------------------------------------------------------------------
+
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'functions/**'
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'functions/**'
   workflow_dispatch:
 
 jobs:
@@ -33,7 +55,7 @@ jobs:
           fi
           printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/sa.json"
 
-      - name: Deploy askCallidus
+      - name: Deploy Functions nach nexus-app-61494
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
-        run: npx -y firebase-tools deploy --only functions --project momus-app-774c9 --non-interactive --force
+        run: npx -y firebase-tools deploy --only functions --project nexus-app-61494 --non-interactive --force
