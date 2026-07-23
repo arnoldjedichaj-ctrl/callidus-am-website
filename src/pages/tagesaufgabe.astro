@@ -250,12 +250,13 @@ const todayCategory = categories[today.category];
 
         if (doneButton) {
           const isDone = done.has(key);
-          doneButton.hidden = !storageAvailable;
+          // Nur der heutige Tag ist abhakbar. Vergangene Tage bleiben zum
+          // Nachlesen sichtbar, koennen aber nicht nachtraeglich abgehakt werden –
+          // so laesst sich die Serie nicht durch Rueckdatieren aufblaehen.
+          doneButton.hidden = !storageAvailable || offset !== 0;
           doneButton.setAttribute('aria-pressed', String(isDone));
           doneButton.classList.toggle('is-done', isDone);
-          doneText.textContent = isDone
-            ? (offset === 0 ? 'Heute erledigt' : 'Erledigt')
-            : (offset === 0 ? 'Als erledigt markieren' : 'Nachträglich abhaken');
+          doneText.textContent = isDone ? 'Heute erledigt' : 'Als erledigt markieren';
         }
       };
 

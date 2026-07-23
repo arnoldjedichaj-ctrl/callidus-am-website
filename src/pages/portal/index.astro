@@ -47,7 +47,12 @@ const firebaseConfig = {
           <div class="portal-kpi portal-xp-kpi">
             <span>XP</span>
             <strong id="portal-xp">-</strong>
-            <small>NEXUS-Aktivitaet und Umwandlung</small>
+            <small>Gesammelt und in VAL umwandelbar</small>
+            <ul class="portal-xp-sources" aria-label="Herkunft der XP">
+              <li><span>NEXUS App</span><strong id="portal-xp-src-nexus">-</strong></li>
+              <li><span>MOMUS App</span><strong id="portal-xp-src-momus">-</strong></li>
+              <li><span>Tagesaufgaben</span><strong id="portal-xp-src-daily">-</strong></li>
+            </ul>
             <form class="portal-convert-form" id="portal-xp-convert-form">
               <label for="portal-xp-convert-amount">NEXUS-XP in VAL</label>
               <div class="portal-convert-row">

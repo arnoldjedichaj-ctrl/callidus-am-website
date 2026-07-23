@@ -612,6 +612,7 @@ function bootPortal() {
       kairosLink,
       valusLedger,
       legacyLedger,
+      dailyTaskSummary,
     ] = await Promise.all([
       docData(...base),
       docData(...base, 'balances', 'current'),
@@ -630,6 +631,7 @@ function bootPortal() {
       docData(...base, 'linked_apps', 'kairos'),
       docsData([...base, 'valus_ledger'], { orderBy: 'created_at', limit: 5 }),
       docsData([...base, ['sani', 'tas_ledger'].join('')], { orderBy: 'created_at', limit: 5 }),
+      docData(...base, 'daily_task_xp', '_summary'),
     ]);
 
     const resolvedBalance = Object.keys(balance).length ? normalizeBalance({ balance, user: userDoc }) : await getValusBalanceFallback();
@@ -650,6 +652,10 @@ function bootPortal() {
 
     text('portal-valus', displayNumber(resolvedBalance.valus, ' VAL'));
     text('portal-xp', displayNumber(visibleXp, ' XP'));
+    // Herkunft der XP (lebenslang verdient je Quelle).
+    text('portal-xp-src-nexus', displayNumber(num(userDoc.total_xp ?? userDoc.current_xp), ' XP'));
+    text('portal-xp-src-momus', displayNumber(num(userDoc.momus_xp_total), ' XP'));
+    text('portal-xp-src-daily', displayNumber(num(dailyTaskSummary.totalXp), ' XP'));
     text('portal-wallet', userDoc.wallet_address ? `${userDoc.wallet_address.slice(0, 6)}...${userDoc.wallet_address.slice(-4)}` : 'Nicht verbunden');
     text('portal-linked-apps', `${linkedCount}/3`);
     setupValusConversion();
@@ -686,8 +692,10 @@ function bootPortal() {
     ];
     renderList('portal-integration-list', integrationItems, 'Noch keine App-Verbindung sichtbar.');
 
-    const callableLedger = await getValusLedgerFallback(5);
-    const ledgerEntries = callableLedger.length ? callableLedger : mergeLedgerEntries(valusLedger, legacyLedger);
+    const callableLedger = await getValusLedgerFallback(10);
+    // Tagesaufgaben-XP sind XP, kein VAL – nicht als "0 VAL" im VAL-Protokoll zeigen.
+    const ledgerEntries = (callableLedger.length ? callableLedger : mergeLedgerEntries(valusLedger, legacyLedger))
+      .filter((entry) => entry.type !== 'daily_task_xp');
 
     renderList(
       'portal-ledger-list',

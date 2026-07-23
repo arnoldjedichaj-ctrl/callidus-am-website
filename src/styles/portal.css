@@ -220,6 +220,33 @@
   line-height: 1.4;
 }
 
+.portal-xp-sources {
+  list-style: none;
+  margin: .6rem 0 0;
+  padding: .6rem 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: .35rem;
+}
+
+.portal-xp-sources li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.portal-xp-sources span {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.portal-xp-sources strong {
+  color: var(--text);
+  font-size: .95rem;
+  font-variant-numeric: tabular-nums;
+}
+
 .portal-convert-form {
   display: grid;
   gap: .45rem;
