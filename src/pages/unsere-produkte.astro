@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Unsere Produkte: callidus A&M Eigenmarke | callidus A&M';
+const description = 'Die callidus A&M Eigenmarke – sorgfältig formulierte Nahrungsergänzungsmittel, in der EU hergestellt, chargenweise laborgeprüft und aus Deutschland versendet.';
+
+const shop = 'https://ywg7pa-bq.myshopify.com';
+
+const products = [
+  {
+    name: '4-fach Magnesium Komplex',
+    category: 'Körper & Ernährung',
+    color: '#3f7f5a',
+    image: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/8b603e19-eee5-4cb1-bbf6-1d686b9d7099_4688ce52-8432-48b5-8b7f-62c7c38dd9c2.jpg?v=1784968924',
+    desc: 'Vier hochwertige Magnesiumverbindungen mit 200 mg elementarem Magnesium. 60 vegane Tabletten.',
+    price: '19,99 €',
+    variant: '58671561113925',
+    lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-magnesium-komplex.pdf',
+  },
+  {
+    name: 'Curcuma + Piperin',
+    category: 'Körper & Ernährung',
+    color: '#3f7f5a',
+    image: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/fe691202-cfe8-4fc3-9da9-6074c5931014_4ec34408-d5f0-4a02-8a4f-a5c6d2e2706c.jpg?v=1784969278',
+    desc: 'Curcuma-Wurzelpulver mit schwarzem Pfeffer Extrakt. Rein pflanzlich, ohne Zusätze. 60 vegane Kapseln.',
+    price: '19,99 €',
+    variant: '58671554167109',
+    lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-curcuma-piperin.pdf',
+  },
+  {
+    name: 'Vitamin D3 + K2 Tropfen',
+    category: 'Sport & Energie',
+    color: '#26301f',
+    image: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/8b400a6b-412d-4449-884d-e3656b515091_4d20af50-61a2-4cdf-b963-59309a7e0d16.jpg?v=1784969178',
+    desc: '1.000 I.E. Vitamin D3 pro Tropfen, kombiniert mit Vitamin K2 als MK-7. 1.700 Tropfen / 50 ml.',
+    price: '16,99 €',
+    variant: '58671539224901',
+    lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-vitamin-d3-k2.pdf',
+  },
+];
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section produkte-hero">
+    <div class="container">
+      <div class="produkte-intro" data-reveal>
+        <p class="eyebrow">callidus A&M · Unsere Eigenmarke</p>
+        <h1>Wir stehen mit unserem Namen dahinter.</h1>
+        <p class="lede">Wir empfehlen nicht nur – wir entwickeln auch selbst. Jede Charge unserer Eigenmarke wird unabhängig im Labor geprüft, in der EU hergestellt und aus Deutschland versendet. Sicher bezahlt wird über Shopify.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section produkte-section">
+    <div class="container">
+      <div class="produkte-grid">
+        {products.map((p, i) => (
+          <article class="produkt-card" data-reveal={i === 0 ? undefined : String((i % 2) + 2)}>
+            <span class="produkt-band" style={`background:${p.color}`}></span>
+            <div class="produkt-img">
+              <img src={p.image} alt={`callidus A&M ${p.name}`} loading="lazy" width="320" height="320" />
+            </div>
+            <div class="produkt-body">
+              <span class="produkt-cat"><span class="produkt-dot" style={`background:${p.color}`}></span>{p.category}</span>
+              <h2 class="produkt-name">{p.name}</h2>
+              <p class="produkt-desc">{p.desc}</p>
+              <div class="produkt-foot">
+                <span class="produkt-price">{p.price}</span>
+                <a class="produkt-buy" href={`${shop}/cart/${p.variant}:1`}>Jetzt kaufen</a>
+              </div>
+              <div class="produkt-meta">
+                <span class="produkt-secure">🔒 Sichere Bezahlung über Shopify</span>
+                <a class="produkt-lab" href={p.lab} target="_blank" rel="noopener">🔬 Laborbericht</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <ul class="produkte-trust" data-reveal>
+        <li><strong>✓</strong> Herstellung in der EU</li>
+        <li><strong>✓</strong> Chargen-laborgeprüft</li>
+        <li><strong>✓</strong> Versand aus Deutschland</li>
+        <li><strong>✓</strong> Vegan</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .produkte-hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) 1rem; }
+  .produkte-intro { max-width: 42rem; }
+  .produkte-intro h1 { margin: 0.4rem 0 0.8rem; }
+  .produkte-section { padding-top: 1.5rem; }
+
+  .produkte-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .produkt-card {
+    position: relative;
+    background: var(--card-bg, #fffef8);
+    border: 1px solid rgba(131, 137, 97, 0.22);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 26px rgba(38, 48, 38, 0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .produkt-card:hover { box-shadow: 0 16px 40px rgba(38, 48, 38, 0.13); transform: translateY(-3px); }
+  .produkt-band { display: block; height: 5px; width: 100%; }
+  .produkt-img {
+    background: #faf8ef;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(131, 137, 97, 0.18);
+  }
+  .produkt-img img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  .produkt-body { padding: 1.15rem 1.35rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+  .produkt-cat {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.64rem; font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--text-muted, #5e6757); margin-bottom: 0.5rem;
+  }
+  .produkt-dot { width: 0.55em; height: 0.55em; border-radius: 50%; display: inline-block; }
+  .produkt-name { font-size: 1.5rem; line-height: 1.14; margin: 0 0 0.35rem; }
+  .produkt-desc { color: var(--text-muted, #5e6757); font-size: 0.9rem; margin: 0 0 1rem; flex: 1; }
+  .produkt-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: auto; }
+  .produkt-price { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .produkt-buy {
+    display: inline-block; background: #3f7f5a; color: #fff; text-decoration: none;
+    font-weight: 800; font-size: 0.9rem; padding: 0.62rem 1.2rem; border-radius: 999px;
+    white-space: nowrap; transition: background 0.18s ease;
+  }
+  .produkt-buy:hover { background: #26301f; }
+  .produkt-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.7rem; }
+  .produkt-secure { font-size: 0.72rem; color: var(--text-muted, #5e6757); }
+  .produkt-lab { font-size: 0.74rem; color: #3f7f5a; font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
+  .produkt-lab:hover { border-bottom-color: #3f7f5a; }
+
+  .produkte-trust {
+    list-style: none; padding: 1.6rem 0 0; margin: 2.4rem 0 0;
+    border-top: 1px solid rgba(131, 137, 97, 0.22);
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1.8rem;
+  }
+  .produkte-trust li { font-size: 0.85rem; font-weight: 600; color: var(--text-muted, #5e6757); }
+  .produkte-trust strong { color: #3f7f5a; }
+
+  @media (max-width: 560px) {
+    .produkt-foot { flex-direction: column; align-items: stretch; }
+    .produkt-buy { text-align: center; }
+  }
+</style>
