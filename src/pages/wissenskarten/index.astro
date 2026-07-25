@@ -181,6 +181,16 @@ const accentColors: Record<string, string> = {
                   </div>
                 )}
 
+                {card.eigenmarke_url && (
+                  <div class="wk-cta-row">
+                    <a class="button wk-affiliate-btn wk-eigenmarke-btn" href={card.eigenmarke_url}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                      Zum eigenen Produkt
+                      <span class="wk-provider-badge">callidus A&M</span>
+                    </a>
+                  </div>
+                )}
+
                 {card.affiliate_url && (
                   <div class="wk-cta-row">
                     <a
@@ -590,6 +600,12 @@ const accentColors: Record<string, string> = {
   padding: .5rem 1.1rem;
   border-radius: .75rem;
 }
+.wk-eigenmarke-btn {
+  background: #3f7f5a;
+  color: #fff;
+  border-color: #3f7f5a;
+}
+.wk-eigenmarke-btn:hover { background: #26301f; border-color: #26301f; }
 .wk-provider-badge {
   font-size: .65rem;
   padding: .15rem .45rem;

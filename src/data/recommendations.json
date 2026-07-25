@@ -50,10 +50,10 @@
       "accent": "mint",
       "title": "Magnesiumbisglycinat: Sanfte Kraft für Muskeln & Nerven",
       "description": "Nicht jedes Magnesium ist gleich. Magnesiumbisglycinat ist die intelligente und sanfte Lösung für eine optimale Versorgung. Bei dieser Form ist das Magnesium an die Aminosäure Glycin gebunden, was es nicht nur außergewöhnlich gut magenverträglich, sondern auch hoch bioverfügbar macht. Ideal zur gezielten Unterstützung der Muskelfunktion, des Nervensystems und für einen entspannten Schlaf – ganz ohne die oft unerwünschten laxativen Nebenwirkungen anderer Magnesiumformen.",
-      "url": "https://amzn.to/4uhyy2w",
-      "provider": "Amazon",
+      "url": "/unsere-produkte/",
+      "provider": "callidus A&M",
       "cta": "Zum Produkt",
-      "affiliate": true
+      "affiliate": false
     },
     {
       "id": "koerper-ernaehrung-naturliches-vitamin-c-die-kraft-der-ganzen-frucht",
@@ -276,12 +276,12 @@
       "category": "koerper-ernaehrung",
       "categoryTitle": "Körper & Ernährung",
       "accent": "mint",
-      "title": "Kurkuma Pulver Bio: Goldene Wurzel für Ihr Wohlbefinden",
-      "description": "Entdecken Sie die goldene Kraft der Natur! Unser 1000g Bio Kurkuma Pulver vom Achterhof ist fein gemahlen und bringt nicht nur eine intensive Farbe, sondern auch die wertvollen Inhaltsstoffe der Kurkumawurzel in Ihre Küche. Ideal für eine wärmende Goldene Milch, als vielseitiges Gewürz in asiatischen Gerichten, Suppen oder Tees – fördern Sie Ihre Vitalität und würzen Sie Ihre Speisen bewusst gesund.",
-      "url": "https://amzn.to/494D6RD",
-      "provider": "Amazon",
+      "title": "Curcuma + Piperin: Die goldene Wurzel als vegane Kapsel",
+      "description": "Curcuma – auch Kurkuma genannt – wird in vielen Kulturen seit Jahrhunderten geschätzt. Unsere veganen Kapseln liefern 600 mg Curcuma-Wurzelpulver, kombiniert mit schwarzem Pfeffer Extrakt. Rein pflanzlich, ohne unnötige Zusätze und chargenweise im Labor geprüft.",
+      "url": "/unsere-produkte/",
+      "provider": "callidus A&M",
       "cta": "Zum Produkt",
-      "affiliate": true
+      "affiliate": false
     },
     {
       "id": "koerper-ernaehrung-sanatura-akazienfaser-pulver-bio-ihr-sanfter-ballaststoff-booster",
@@ -348,12 +348,12 @@
       "category": "koerper-ernaehrung",
       "categoryTitle": "Körper & Ernährung",
       "accent": "mint",
-      "title": "Magnesium Komplex: Calma Corporis – Ihre essentielle Stütze für Nerven & Muskulatur",
-      "description": "Fühlen Sie sich gestresst, müde oder spannen Ihre Muskeln? Unser Magnesium Komplex mit Vitamin B6 ist Ihre Quelle für Calma Corporis – körperliche Ruhe. Magnesium, verstärkt durch Vitamin B6, unterstützt über 300 Körperfunktionen: Es trägt zur normalen Funktion von Nervensystem und Muskulatur bei, reduziert Müdigkeit und fördert Ihren Energiestoffwechsel. Für innere Balance und Leistungsfähigkeit.",
-      "url": "https://coachcecil.de/r?id=5iqjj1",
-      "provider": "Coach Cecil",
+      "title": "4-fach Magnesium Komplex: Ihre Stütze für Nerven & Muskulatur",
+      "description": "Vier hochwertige Magnesiumverbindungen in einer veganen Tablette: Unser 4-fach Magnesium Komplex vereint Bisglycinat, Citrat, Malat und Taurat und liefert 200 mg elementares Magnesium. Magnesium trägt zur Verringerung von Müdigkeit und Ermüdung, zur normalen Muskelfunktion und zur normalen Funktion des Nervensystems bei.",
+      "url": "/unsere-produkte/",
+      "provider": "callidus A&M",
       "cta": "Zum Produkt",
-      "affiliate": true
+      "affiliate": false
     },
     {
       "id": "koerper-ernaehrung-omega-3-komplex-scutum-vitae-ihr-schutz-fur-herz-hirn-zellen",
@@ -529,11 +529,11 @@
       "categoryTitle": "Sport & Energie",
       "accent": "coral",
       "title": "Vitamin D3+K2 Tropfen",
-      "description": "Angesichts des weit verbreiteten Mangels im Winter kann eine Supplementierung sinnvoll sein. Wir empfehlen die Vitamin D3+K2 Tropfen von Nature Love *, da sie laborgeprüft sind, eine hohe Bioverfügbarkeit aufweisen und von Tausenden von Nutzern hervorragend bewertet wurden.",
-      "url": "https://amzn.to/3P917jH",
-      "provider": "Amazon",
+      "description": "Angesichts des weit verbreiteten Mangels im Winter kann eine Supplementierung sinnvoll sein. Unsere Vitamin D3+K2 Tropfen liefern 1.000 I.E. Vitamin D3 pro Tropfen, kombiniert mit Vitamin K2 als MK-7 – laborgeprüft und aus Deutschland versendet. Vitamin D trägt zur normalen Funktion des Immunsystems und zur Erhaltung normaler Knochen bei.",
+      "url": "/unsere-produkte/",
+      "provider": "callidus A&M",
       "cta": "Zum Produkt",
-      "affiliate": true
+      "affiliate": false
     },
     {
       "id": "sport-energie-pre-workout-booster-der-zundschlussel-fur-ihr-training",
