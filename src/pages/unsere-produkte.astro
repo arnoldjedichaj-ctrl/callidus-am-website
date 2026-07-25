@@ -89,6 +89,17 @@ const products = [
         <li><strong>✓</strong> Versand aus Deutschland</li>
         <li><strong>✓</strong> Vegan</li>
       </ul>
+
+      <p class="produkte-legal">
+        Gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer ausgewiesen. Alle Preise zzgl.
+        <a href="/agb/">Versandkosten</a>. Es gelten unsere <a href="/agb/">AGB</a> und die
+        <a href="/widerruf/">Widerrufsbelehrung</a>.
+      </p>
+      <p class="produkte-legal">
+        Nahrungsergänzungsmittel sind kein Ersatz für eine ausgewogene und abwechslungsreiche Ernährung sowie
+        eine gesunde Lebensweise. Die angegebene empfohlene tägliche Verzehrmenge darf nicht überschritten
+        werden. Außerhalb der Reichweite von kleinen Kindern aufbewahren.
+      </p>
     </div>
   </section>
 </BaseLayout>
@@ -158,6 +169,13 @@ const products = [
   }
   .produkte-trust li { font-size: 0.85rem; font-weight: 600; color: var(--text-muted, #5e6757); }
   .produkte-trust strong { color: #3f7f5a; }
+
+  .produkte-legal {
+    max-width: 46rem; margin: 1.2rem auto 0; text-align: center;
+    font-size: 0.76rem; line-height: 1.55; color: var(--text-muted, #5e6757);
+  }
+  .produkte-legal a { color: inherit; text-decoration: underline; }
+  .produkte-legal a:hover { color: #3f7f5a; }
 
   @media (max-width: 560px) {
     .produkt-foot { flex-direction: column; align-items: stretch; }
