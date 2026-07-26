@@ -1,0 +1,156 @@
+<!--
+  Startseite des Shopify-Shops in den callidus-A&M-Markenfarben.
+  Einsetzen: Shopify-Admin -> Onlineshop -> Themes -> Anpassen -> Startseite.
+  Alle vorhandenen Abschnitte entfernen, einen Abschnitt "Custom Liquid"
+  hinzufuegen und diesen Block komplett hineinkopieren.
+-->
+<div class="cam-thanks">
+  <div class="cam-thanks__inner">
+    <span class="cam-thanks__mark">callidus A&amp;M</span>
+    <span class="cam-thanks__eyebrow">Ganzheitliche Gesundheit</span>
+
+    <h1 class="cam-thanks__title">Danke für deinen Einkauf.</h1>
+
+    <p class="cam-thanks__lead">
+      Deine Bestellung ist bei uns eingegangen. Die Bestätigung mit allen Details
+      liegt gleich in deinem Postfach, die Sendungsverfolgung schicken wir nach,
+      sobald das Paket unterwegs ist.
+    </p>
+
+    <a class="cam-thanks__cta" href="https://www.callidus-am.de/">
+      Weiter zu callidus A&amp;M
+    </a>
+
+    <p class="cam-thanks__note">
+      Alle Produkte, Laborberichte und Wissensinhalte findest du auf unserer Website.
+    </p>
+
+    <ul class="cam-thanks__links">
+      <li><a href="https://www.callidus-am.de/unsere-produkte/">Unsere Produkte</a></li>
+      <li><a href="https://www.callidus-am.de/wissenskarten/">Wissenskarten</a></li>
+      <li><a href="https://www.callidus-am.de/impressum/">Impressum &amp; Kontakt</a></li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .cam-thanks {
+    --cam-cream: #f5f7e9;
+    --cam-text: #263026;
+    --cam-green: #3f7f5a;
+    --cam-dark: #26301f;
+    --cam-olive: #838961;
+
+    background:
+      linear-gradient(135deg, rgba(63, 127, 90, 0.10), rgba(131, 137, 97, 0.08)),
+      var(--cam-cream);
+    color: var(--cam-text);
+    padding: clamp(3rem, 9vw, 6.5rem) 1.25rem;
+    text-align: center;
+    font-family: inherit;
+  }
+
+  .cam-thanks__inner {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .cam-thanks__mark {
+    display: block;
+    font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--cam-dark);
+  }
+
+  .cam-thanks__eyebrow {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cam-olive);
+  }
+
+  .cam-thanks__title {
+    margin: clamp(1.5rem, 4vw, 2.25rem) 0 0.9rem;
+    font-size: clamp(1.9rem, 5.5vw, 3rem);
+    line-height: 1.12;
+    font-weight: 800;
+    color: var(--cam-dark);
+  }
+
+  .cam-thanks__lead {
+    margin: 0 auto;
+    max-width: 34rem;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    line-height: 1.6;
+    color: var(--cam-text);
+    opacity: 0.85;
+  }
+
+  .cam-thanks__cta {
+    display: inline-block;
+    margin-top: clamp(1.6rem, 4vw, 2.2rem);
+    padding: 0.95rem 2.1rem;
+    min-height: 48px;
+    border-radius: 999px;
+    background: var(--cam-green);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+
+  .cam-thanks__cta:hover,
+  .cam-thanks__cta:focus-visible {
+    background: var(--cam-dark);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .cam-thanks__note {
+    margin: 1.1rem 0 0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--cam-olive);
+  }
+
+  .cam-thanks__links {
+    list-style: none;
+    margin: clamp(2rem, 5vw, 2.8rem) 0 0;
+    padding: 1.4rem 0 0;
+    border-top: 1px solid rgba(131, 137, 97, 0.28);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 1.8rem;
+  }
+
+  .cam-thanks__links a {
+    color: var(--cam-green);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .cam-thanks__links a:hover,
+  .cam-thanks__links a:focus-visible {
+    border-bottom-color: var(--cam-green);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .cam-thanks {
+      background:
+        linear-gradient(135deg, rgba(63, 127, 90, 0.22), rgba(38, 48, 31, 0.9)),
+        #1b2119;
+      color: #eef1e4;
+    }
+    .cam-thanks__mark,
+    .cam-thanks__title { color: #f5f7e9; }
+    .cam-thanks__lead { color: #eef1e4; }
+  }
+</style>

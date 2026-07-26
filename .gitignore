@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 .tmp/
+tmp/
 .env
 .env.*
 functions/.env

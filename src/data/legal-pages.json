@@ -106,7 +106,20 @@
         ]
       },
       {
-        "heading": "§ 5 Zahlung",
+        "heading": "§ 5 VAL-Guthaben und Einlösung",
+        "paragraphs": [
+          "VAL ist ein Treueguthaben, das Sie als Inhaberin oder Inhaber eines kostenlosen Callidus-Kontos durch Aktivität in unseren Apps und Angeboten erwerben und auf der VAL-Seite aus gesammelten Erfahrungspunkten (XP) umwandeln können. Ein VAL entspricht einem Rabattwert von 1,00 EUR.",
+          "Sie können Ihr VAL-Guthaben ganz oder teilweise als Rabatt auf den Warenwert einsetzen. Nach Auswahl von Produkt und Betrag erstellen wir einen persönlichen, nur einmal verwendbaren Rabattcode. Dieser ist auf das gewählte Produkt beschränkt und ab Erstellung 24 Stunden gültig; er wird im Bestellprozess automatisch angewendet.",
+          "Der Rabatt bezieht sich ausschließlich auf den Warenwert. Versandkosten sind nicht einlösbar und bleiben in jedem Fall zu zahlen. Für die Frage, ob die Grenze für eine versandkostenfreie Lieferung erreicht wird, ist der Bestellwert nach Abzug des Rabatts maßgeblich.",
+          "Eine Kombination des VAL-Rabatts mit weiteren Rabatt- oder Aktionscodes ist nicht möglich.",
+          "Ihr VAL-Guthaben wird erst nach bestätigtem Zahlungseingang endgültig abgebucht. Schließen Sie die Bestellung nicht ab, verfällt der Rabattcode nach Ablauf seiner Gültigkeit und Ihr Guthaben bleibt unberührt.",
+          "Widerrufen Sie eine Bestellung oder erstatten wir den Kaufpreis, schreiben wir das eingesetzte VAL-Guthaben Ihrem Konto wieder gut. Eine Auszahlung des Gegenwerts in Geld erfolgt nicht.",
+          "VAL sind nicht auf andere Personen übertragbar, nicht handelbar und nicht verzinslich. Sie können nicht in Bargeld umgetauscht werden. Ein Anspruch auf den Erwerb oder die Auszahlung von VAL besteht nicht.",
+          "Für die Umwandlung von XP in VAL gilt eine monatliche Obergrenze, auf die wir auf der VAL-Seite hinweisen. Wir behalten uns vor, das VAL-Programm mit angemessener Ankündigung zu ändern oder einzustellen. Bereits erworbenes Guthaben bleibt Ihnen in diesem Fall für eine angemessene Übergangszeit erhalten."
+        ]
+      },
+      {
+        "heading": "§ 6 Zahlung",
         "paragraphs": [
           "Die Zahlung erfolgt über die im Bestellprozess angebotenen Zahlungsarten. Derzeit stehen insbesondere Kreditkarte, PayPal und Klarna zur Verfügung. Die Abwicklung erfolgt über unseren Shop-Dienstleister Shopify und die jeweiligen Zahlungsdienstleister.",
           "Der Kaufpreis ist mit Vertragsschluss zur Zahlung fällig, sofern sich aus der gewählten Zahlungsart nichts anderes ergibt.",
@@ -114,7 +127,7 @@
         ]
       },
       {
-        "heading": "§ 6 Lieferung und Lieferzeit",
+        "heading": "§ 7 Lieferung und Lieferzeit",
         "paragraphs": [
           "Die Lieferung erfolgt aus Deutschland an die von Ihnen angegebene Lieferanschrift. Lieferbar sind die im Bestellprozess auswählbaren Länder.",
           "Angaben zur Lieferzeit finden Sie beim jeweiligen Produkt bzw. im Bestellprozess. Sofern nicht anders angegeben, erfolgt der Versand innerhalb von ein bis zwei Werktagen nach Vertragsschluss und Zahlungseingang.",
@@ -123,13 +136,13 @@
         ]
       },
       {
-        "heading": "§ 7 Eigentumsvorbehalt",
+        "heading": "§ 8 Eigentumsvorbehalt",
         "paragraphs": [
           "Die gelieferte Ware bleibt bis zur vollständigen Bezahlung unser Eigentum."
         ]
       },
       {
-        "heading": "§ 8 Widerrufsrecht",
+        "heading": "§ 9 Widerrufsrecht",
         "paragraphs": [
           "Verbrauchern steht ein gesetzliches Widerrufsrecht zu. Die ausführliche Widerrufsbelehrung sowie das Muster-Widerrufsformular finden Sie unter www.callidus-am.de/widerruf.",
           "Das Widerrufsrecht besteht nicht bei der Lieferung versiegelter Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nicht zur Rückgabe geeignet sind, wenn ihre Versiegelung nach der Lieferung entfernt wurde (§ 312g Abs. 2 Nr. 3 BGB). Dies betrifft insbesondere geöffnete Nahrungsergänzungsmittel.",
@@ -137,7 +150,7 @@
         ]
       },
       {
-        "heading": "§ 9 Mängelhaftung",
+        "heading": "§ 10 Mängelhaftung",
         "paragraphs": [
           "Es gilt das gesetzliche Mängelhaftungsrecht.",
           "Für Verbraucher beträgt die Verjährungsfrist für Mängelansprüche bei neuen Waren zwei Jahre ab Ablieferung der Ware.",
@@ -145,7 +158,7 @@
         ]
       },
       {
-        "heading": "§ 10 Haftung",
+        "heading": "§ 11 Haftung",
         "paragraphs": [
           "Wir haften unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, die auf einer vorsätzlichen oder fahrlässigen Pflichtverletzung von uns oder unseren gesetzlichen Vertretern oder Erfüllungsgehilfen beruhen, sowie für Schäden, die auf Vorsatz oder grober Fahrlässigkeit beruhen, und für Ansprüche nach dem Produkthaftungsgesetz.",
           "Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten – also solcher Pflichten, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags überhaupt erst ermöglicht und auf deren Einhaltung Sie regelmäßig vertrauen dürfen – ist unsere Haftung auf den bei Vertragsschluss vorhersehbaren, vertragstypischen Schaden begrenzt.",
@@ -153,7 +166,7 @@
         ]
       },
       {
-        "heading": "§ 11 Hinweise zu Nahrungsergänzungsmitteln",
+        "heading": "§ 12 Hinweise zu Nahrungsergänzungsmitteln",
         "paragraphs": [
           "Bei den von uns angebotenen Produkten handelt es sich um Nahrungsergänzungsmittel und ausdrücklich nicht um Arzneimittel. Sie sind kein Ersatz für eine ausgewogene und abwechslungsreiche Ernährung sowie eine gesunde Lebensweise.",
           "Die angegebene empfohlene tägliche Verzehrmenge darf nicht überschritten werden. Bitte bewahren Sie die Produkte außerhalb der Reichweite von kleinen Kindern auf.",
@@ -162,14 +175,14 @@
         ]
       },
       {
-        "heading": "§ 12 Streitbeilegung",
+        "heading": "§ 13 Streitbeilegung",
         "paragraphs": [
           "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Unsere E-Mail-Adresse finden Sie in § 1 dieser AGB sowie in unserem Impressum.",
           "Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
         ]
       },
       {
-        "heading": "§ 13 Schlussbestimmungen",
+        "heading": "§ 14 Schlussbestimmungen",
         "paragraphs": [
           "Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Bei Verbrauchern gilt diese Rechtswahl nur insoweit, als dadurch nicht der Schutz entzogen wird, der durch zwingende Bestimmungen des Rechts des Staates gewährt wird, in dem der Verbraucher seinen gewöhnlichen Aufenthalt hat.",
           "Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein oder werden, so bleibt die Wirksamkeit der übrigen Bestimmungen hiervon unberührt.",
