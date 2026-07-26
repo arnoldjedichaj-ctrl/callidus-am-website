@@ -147,7 +147,10 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
       <dl class="wk-sums">
         <div><dt>Zwischensumme</dt><dd id="wk-subtotal">0,00 €</dd></div>
         <div><dt>Versand</dt><dd id="wk-shipping">–</dd></div>
-        <div class="wk-discount" id="wk-discount-row" hidden><dt>VAL-Rabatt</dt><dd id="wk-discount">–</dd></div>
+        <div class="wk-discount" id="wk-discount-row" hidden>
+          <dt>VAL-Rabatt <button type="button" id="wk-discount-remove">entfernen</button></dt>
+          <dd id="wk-discount">–</dd>
+        </div>
         <div class="wk-total"><dt>Gesamt</dt><dd id="wk-total">0,00 €</dd></div>
       </dl>
 
@@ -401,12 +404,19 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
         fab.hidden = count === 0;
         $('wk-fab-badge').textContent = String(count);
 
+        // Kartenbeschriftungen und Liste immer mitziehen — auch bei leerem
+        // Korb, sonst bleibt dort eine Menge stehen, die es nicht mehr gibt.
+        for (const item of items) {
+          const qty = cart.get(item.id) || 0;
+          const add = document.querySelector(`.produkt-add[data-key="${item.id}"]`);
+          if (add) add.textContent = qty > 0 ? `Im Warenkorb (${qty})` : 'In den Warenkorb';
+        }
+        renderCartLines();
+
         if (count === 0) {
           if (!drawer.hidden) closeDrawer();
           return;
         }
-
-        renderCartLines();
 
         const subtotal = subtotalCents();
         const discount = discountCents();
@@ -428,13 +438,6 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
 
         $('wk-checkout').href = buildCheckoutUrl();
         $('wk-checkout').textContent = state.redemption ? 'Zur Kasse mit Rabatt' : 'Zur Kasse';
-
-        // Mengen auf den Produktkarten spiegeln.
-        for (const item of items) {
-          const qty = cart.get(item.id) || 0;
-          const add = document.querySelector(`.produkt-add[data-key="${item.id}"]`);
-          if (add) add.textContent = qty > 0 ? `Im Warenkorb (${qty})` : 'In den Warenkorb';
-        }
 
         renderValSection();
       }
@@ -497,6 +500,14 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
         cart.clear();
         clearRedemption();
         saveCart();
+        render();
+      });
+
+      // Nur den Rabatt zuruecknehmen, ohne den Warenkorb anzutasten. Der Code
+      // bei Shopify bleibt bestehen und laeuft nach 24 Stunden ab; belastet
+      // wird ohnehin erst bei bestaetigter Zahlung.
+      $('wk-discount-remove').addEventListener('click', () => {
+        clearRedemption();
         render();
       });
 
@@ -810,6 +821,18 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
   .wk-sums dt, .wk-sums dd { margin: 0; }
   .wk-sums dd { font-variant-numeric: tabular-nums; }
   .wk-discount dd { color: #3f7f5a; font-weight: 700; }
+  .wk-discount dt { display: inline-flex; align-items: baseline; gap: 0.45rem; }
+  #wk-discount-remove {
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--text-muted, #5e6757);
+    font: inherit;
+    font-size: 0.76rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  #wk-discount-remove:hover { color: #7d2f1e; }
   .wk-total { font-size: 1.1rem; font-weight: 800; padding-top: 0.35rem; }
 
   /* --- VAL-Einlösung in der Schublade --- */
