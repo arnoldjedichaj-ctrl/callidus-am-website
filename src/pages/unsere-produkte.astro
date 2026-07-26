@@ -48,7 +48,15 @@ const products = [
   },
 ];
 
-const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, preisCents: p.preisCents }));
+const redemptionProducts = products.map((p) => ({
+  id: p.key,
+  titel: p.name,
+  preisCents: p.preisCents,
+  variant: p.variant,
+}));
+
+// Muss zu den Versandeinstellungen im Shopify-Shop passen.
+const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
 ---
 
 <BaseLayout lang="de" title={title} description={description}>
@@ -143,7 +151,12 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
                   <span class="produkt-price">{p.price}</span>
                   <span class="produkt-grund">{p.grundpreis}</span>
                 </span>
-                <a class="produkt-buy" href={`${shop}/cart/${p.variant}:1`}>Jetzt kaufen</a>
+                <button class="produkt-buy produkt-add" type="button" data-key={p.key}>In den Warenkorb</button>
+              </div>
+              <div class="produkt-qty" data-qty-for={p.key} hidden>
+                <button type="button" class="produkt-qty-btn" data-step="-1" data-key={p.key} aria-label={`Weniger ${p.name}`}>−</button>
+                <span class="produkt-qty-value" data-qty-value={p.key}>0</span>
+                <button type="button" class="produkt-qty-btn" data-step="1" data-key={p.key} aria-label={`Mehr ${p.name}`}>+</button>
               </div>
               <button class="produkt-redeem-open" type="button" data-product-key={p.key}>VAL einlösen</button>
               <div class="produkt-meta">
@@ -154,6 +167,23 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
           </article>
         ))}
       </div>
+
+      <aside class="warenkorb" id="warenkorb" data-warenkorb hidden aria-live="polite">
+        <div class="warenkorb-inner">
+          <div class="warenkorb-head">
+            <strong>Dein Warenkorb</strong>
+            <button type="button" class="warenkorb-clear" id="warenkorb-clear">leeren</button>
+          </div>
+          <ul class="warenkorb-list" id="warenkorb-list"></ul>
+          <dl class="warenkorb-sums">
+            <div><dt>Zwischensumme</dt><dd id="warenkorb-subtotal">0,00 €</dd></div>
+            <div><dt>Versand</dt><dd id="warenkorb-shipping">–</dd></div>
+            <div class="warenkorb-total"><dt>Gesamt</dt><dd id="warenkorb-total">0,00 €</dd></div>
+          </dl>
+          <p class="warenkorb-hint" id="warenkorb-hint"></p>
+          <a class="produkt-buy warenkorb-checkout" id="warenkorb-checkout" href="#">Zur Kasse</a>
+        </div>
+      </aside>
 
       <ul class="produkte-trust" data-reveal>
         <li><strong>✓</strong> Herstellung in der EU</li>
@@ -176,6 +206,7 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
   </section>
 
   <script id="shop-product-data" type="application/json" set:html={JSON.stringify(redemptionProducts)}></script>
+  <script id="shop-config-data" type="application/json" set:html={JSON.stringify({ shop, versand })}></script>
   <script>
     import { onAuthStateChanged } from 'firebase/auth';
     import { doc, getDoc } from 'firebase/firestore';
@@ -185,6 +216,7 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
       const XP_PER_CENT = 100;
       const CENTS_PER_EURO = 100;
       const items = JSON.parse(document.getElementById('shop-product-data')?.textContent || '[]');
+      const config = JSON.parse(document.getElementById('shop-config-data')?.textContent || '{}');
       const root = document.querySelector('[data-shop-redemption]');
       if (!root || root.dataset.ready === 'true') return;
       root.dataset.ready = 'true';
@@ -212,6 +244,110 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
         el.hidden = !message;
         el.dataset.state = kind;
       };
+
+      // ---- Warenkorb -----------------------------------------------------
+      // Shopify-Warenkorb-Permalinks nehmen mehrere Varianten kommagetrennt
+      // entgegen. Dadurch braucht die Seite weder eigenen Checkout noch
+      // Storefront-Token — der Sprung zur Kasse bleibt ein einfacher Link.
+      const CART_KEY = 'callidus-warenkorb';
+      const MAX_QTY = 20;
+      const cart = new Map();
+      const strictItem = (id) => items.find((item) => item.id === id) || null;
+
+      function loadCart() {
+        try {
+          const raw = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+          for (const entry of Array.isArray(raw) ? raw : []) {
+            const qty = Math.max(0, Math.min(MAX_QTY, Number(entry?.qty) || 0));
+            if (qty > 0 && strictItem(entry?.id)) cart.set(entry.id, qty);
+          }
+        } catch (error) {
+          console.warn('Warenkorb konnte nicht geladen werden', error);
+        }
+      }
+
+      function saveCart() {
+        try {
+          localStorage.setItem(CART_KEY, JSON.stringify([...cart].map(([id, qty]) => ({ id, qty }))));
+        } catch (error) {
+          // Privater Modus oder volle Quota: Warenkorb gilt dann nur fuer diese Sitzung.
+        }
+      }
+
+      const cartSubtotalCents = () => [...cart].reduce(
+        (sum, [id, qty]) => sum + (strictItem(id)?.preisCents || 0) * qty, 0,
+      );
+      const shippingCents = (subtotal) => (
+        subtotal >= config.versand.gratisAbCents ? 0 : config.versand.pauschaleCents
+      );
+
+      function buildCheckoutUrl(discountCode = '') {
+        const parts = [...cart]
+          .filter(([id, qty]) => qty > 0 && strictItem(id))
+          .map(([id, qty]) => `${strictItem(id).variant}:${qty}`);
+        if (!parts.length) return '';
+        const query = discountCode ? `?discount=${encodeURIComponent(discountCode)}` : '';
+        return `${config.shop}/cart/${parts.join(',')}${query}`;
+      }
+
+      function setQty(id, qty) {
+        const next = Math.max(0, Math.min(MAX_QTY, qty));
+        if (next === 0) cart.delete(id);
+        else cart.set(id, next);
+        saveCart();
+        renderCart();
+      }
+
+      function renderCart() {
+        const box = $('warenkorb');
+        const list = $('warenkorb-list');
+        if (!box || !list) return;
+
+        // Mengenanzeige auf den Produktkarten mitziehen.
+        for (const item of items) {
+          const qty = cart.get(item.id) || 0;
+          const row = document.querySelector(`[data-qty-for="${item.id}"]`);
+          const value = document.querySelector(`[data-qty-value="${item.id}"]`);
+          const add = document.querySelector(`.produkt-add[data-key="${item.id}"]`);
+          if (value) value.textContent = String(qty);
+          if (row) row.hidden = qty === 0;
+          if (add) add.hidden = qty > 0;
+        }
+
+        if (cart.size === 0) {
+          box.hidden = true;
+          list.textContent = '';
+          return;
+        }
+        box.hidden = false;
+
+        list.textContent = '';
+        for (const [id, qty] of cart) {
+          const item = strictItem(id);
+          if (!item) continue;
+          const li = document.createElement('li');
+          const name = document.createElement('span');
+          name.textContent = `${qty} × ${item.titel}`;
+          const price = document.createElement('strong');
+          price.textContent = formatEuro(item.preisCents * qty);
+          li.append(name, price);
+          list.append(li);
+        }
+
+        const subtotal = cartSubtotalCents();
+        const shipping = shippingCents(subtotal);
+        $('warenkorb-subtotal').textContent = formatEuro(subtotal);
+        $('warenkorb-shipping').textContent = shipping === 0 ? 'kostenlos' : formatEuro(shipping);
+        $('warenkorb-total').textContent = formatEuro(subtotal + shipping);
+
+        const hint = $('warenkorb-hint');
+        const fehlt = config.versand.gratisAbCents - subtotal;
+        hint.textContent = fehlt > 0
+          ? `Noch ${formatEuro(fehlt)} bis zum kostenlosen Versand.`
+          : 'Versandkostenfrei — die Grenze ist erreicht.';
+
+        $('warenkorb-checkout').href = buildCheckoutUrl();
+      }
 
       function normalizeBalance(payload = {}) {
         const raw = payload.balance || payload.balances || payload;
@@ -286,6 +422,24 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
         });
       }
 
+      document.querySelectorAll('.produkt-add').forEach((button) => {
+        button.addEventListener('click', () => setQty(button.dataset.key, (cart.get(button.dataset.key) || 0) + 1));
+      });
+      document.querySelectorAll('.produkt-qty-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          const key = button.dataset.key;
+          setQty(key, (cart.get(key) || 0) + Number(button.dataset.step));
+        });
+      });
+      $('warenkorb-clear')?.addEventListener('click', () => {
+        cart.clear();
+        saveCart();
+        renderCart();
+      });
+
+      loadCart();
+      renderCart();
+
       $('shop-redemption-product')?.addEventListener('change', updatePreview);
       $('shop-redemption-euro')?.addEventListener('input', updatePreview);
       $('shop-redemption-full')?.addEventListener('click', () => {
@@ -332,7 +486,10 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
           const result = await callable({ productKey: item.id, creditCents: credit });
           const data = result.data || {};
           const rest = formatEuro(data.remainingCents || 0);
-          const checkoutUrl = data.checkoutUrl;
+          // Das eingeloeste Produkt muss im Warenkorb liegen, sonst greift der
+          // variantengebundene Rabattcode im Checkout nicht.
+          if (!cart.get(item.id)) setQty(item.id, 1);
+          const checkoutUrl = buildCheckoutUrl(data.code) || data.checkoutUrl;
           setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest} zzgl. Versand). Der Code wird im Shopify-Checkout automatisch angewendet und gilt 24 Stunden. Dein VAL-Guthaben wird erst nach bestätigter Zahlung abgebucht.`, 'ok');
           if (checkoutUrl) {
             setTimeout(() => {
@@ -416,6 +573,101 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
   .produkt-secure { font-size: 0.72rem; color: var(--text-muted, #5e6757); }
   .produkt-lab { font-size: 0.74rem; color: #3f7f5a; font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
   .produkt-lab:hover { border-bottom-color: #3f7f5a; }
+
+  .produkt-buy[hidden] { display: none; }
+  .produkt-qty {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+    padding: 0.25rem;
+    border: 1px solid rgba(63, 127, 90, 0.35);
+    border-radius: 999px;
+  }
+  .produkt-qty[hidden] { display: none; }
+  .produkt-qty-btn {
+    width: 44px;
+    height: 40px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(63, 127, 90, 0.12);
+    color: #26301f;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .produkt-qty-btn:hover { background: #3f7f5a; color: #fff; }
+  .produkt-qty-value {
+    text-align: center;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .warenkorb {
+    position: sticky;
+    bottom: 1rem;
+    z-index: 5;
+    margin-top: 1.6rem;
+  }
+  .warenkorb[hidden] { display: none; }
+  .warenkorb-inner {
+    max-width: 30rem;
+    margin-left: auto;
+    padding: 1.1rem 1.25rem 1.25rem;
+    border: 1px solid rgba(63, 127, 90, 0.3);
+    border-radius: 14px;
+    background: #fffef8;
+    box-shadow: 0 16px 44px rgba(38, 48, 38, 0.16);
+  }
+  .warenkorb-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.7rem;
+  }
+  .warenkorb-clear {
+    border: 0;
+    background: none;
+    color: var(--text-muted, #5e6757);
+    font: inherit;
+    font-size: 0.78rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .warenkorb-list { list-style: none; margin: 0 0 0.8rem; padding: 0; display: grid; gap: 0.35rem; }
+  .warenkorb-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .warenkorb-sums {
+    margin: 0 0 0.6rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(131, 137, 97, 0.25);
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+  }
+  .warenkorb-sums > div { display: flex; justify-content: space-between; gap: 0.75rem; }
+  .warenkorb-sums dt, .warenkorb-sums dd { margin: 0; }
+  .warenkorb-sums dd { font-variant-numeric: tabular-nums; }
+  .warenkorb-total { font-size: 1.05rem; font-weight: 800; padding-top: 0.3rem; }
+  .warenkorb-hint {
+    margin: 0 0 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #3f7f5a;
+  }
+  .warenkorb-checkout { display: block; text-align: center; min-height: 46px; line-height: 1.6; }
+
+  @media (max-width: 560px) {
+    .warenkorb-inner { max-width: none; }
+  }
 
   .produkt-redeem-open {
     margin-top: 0.7rem;
