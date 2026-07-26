@@ -1258,8 +1258,9 @@ async function createShopifyDiscountCode({ code, title, variantId, creditCents, 
         shippingDiscounts: false,
       },
       customerGets: {
-        appliesOnOneTimePurchase: true,
-        appliesOnSubscription: false,
+        // Weder appliesOnOneTimePurchase noch appliesOnSubscription mitschicken:
+        // Shopify weist beide Felder ab, solange der Shop keine Abos nutzt —
+        // auch mit dem Wert false. Gegen den Shop verifiziert.
         items: {
           products: {
             productVariantsToAdd: [`gid://shopify/ProductVariant/${variantId}`],

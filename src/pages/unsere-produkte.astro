@@ -64,34 +64,6 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
 
   <section class="section produkte-section">
     <div class="container">
-      <div class="produkte-grid">
-        {products.map((p, i) => (
-          <article class="produkt-card" data-reveal={i === 0 ? undefined : String((i % 2) + 2)}>
-            <span class="produkt-band" style={`background:${p.color}`}></span>
-            <div class="produkt-img">
-              <img src={p.image} alt={`callidus A&M ${p.name}`} loading="lazy" width="320" height="320" />
-            </div>
-            <div class="produkt-body">
-              <span class="produkt-cat"><span class="produkt-dot" style={`background:${p.color}`}></span>{p.category}</span>
-              <h2 class="produkt-name">{p.name}</h2>
-              <p class="produkt-desc">{p.desc}</p>
-              <div class="produkt-foot">
-                <span class="produkt-pricebox">
-                  <span class="produkt-price">{p.price}</span>
-                  <span class="produkt-grund">{p.grundpreis}</span>
-                </span>
-                <a class="produkt-buy" href={`${shop}/cart/${p.variant}:1`}>Jetzt kaufen</a>
-              </div>
-              <button class="produkt-redeem-open" type="button" data-product-key={p.key}>VAL einlösen</button>
-              <div class="produkt-meta">
-                <span class="produkt-secure">🔒 Sichere Bezahlung über Shopify</span>
-                <a class="produkt-lab" href={p.lab} target="_blank" rel="noopener">🔬 Laborbericht</a>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
       <div class="shop-redemption-panel" id="val-einloesung" data-shop-redemption data-reveal>
         <div class="shop-redemption-copy">
           <p class="eyebrow">VAL einlösen</p>
@@ -153,6 +125,34 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
             </form>
           </div>
         </div>
+      </div>
+
+      <div class="produkte-grid">
+        {products.map((p, i) => (
+          <article class="produkt-card" data-reveal={i === 0 ? undefined : String((i % 2) + 2)}>
+            <span class="produkt-band" style={`background:${p.color}`}></span>
+            <div class="produkt-img">
+              <img src={p.image} alt={`callidus A&M ${p.name}`} loading="lazy" width="320" height="320" />
+            </div>
+            <div class="produkt-body">
+              <span class="produkt-cat"><span class="produkt-dot" style={`background:${p.color}`}></span>{p.category}</span>
+              <h2 class="produkt-name">{p.name}</h2>
+              <p class="produkt-desc">{p.desc}</p>
+              <div class="produkt-foot">
+                <span class="produkt-pricebox">
+                  <span class="produkt-price">{p.price}</span>
+                  <span class="produkt-grund">{p.grundpreis}</span>
+                </span>
+                <a class="produkt-buy" href={`${shop}/cart/${p.variant}:1`}>Jetzt kaufen</a>
+              </div>
+              <button class="produkt-redeem-open" type="button" data-product-key={p.key}>VAL einlösen</button>
+              <div class="produkt-meta">
+                <span class="produkt-secure">🔒 Sichere Bezahlung über Shopify</span>
+                <a class="produkt-lab" href={p.lab} target="_blank" rel="noopener">🔬 Laborbericht</a>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
 
       <ul class="produkte-trust" data-reveal>
@@ -438,7 +438,7 @@ const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, prei
     grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
     gap: clamp(1rem, 3vw, 2rem);
     align-items: start;
-    margin-top: 2.6rem;
+    margin-bottom: 2.6rem;
     padding: clamp(1.2rem, 3vw, 2rem);
     border: 1px solid rgba(63, 127, 90, 0.26);
     border-radius: 16px;
