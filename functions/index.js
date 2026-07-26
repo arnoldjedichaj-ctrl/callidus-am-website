@@ -15,6 +15,11 @@ const geminiApiKey = defineSecret("GEMINI_API_KEY");
 const falApiKey = defineSecret("FAL_KEY");
 const digistoreApiKey = defineSecret("DIGISTORE24_API_KEY");
 const digistoreIpnPassphrase = defineSecret("DIGISTORE24_IPN_PASSPHRASE");
+// Dev-Dashboard-Apps haben keinen statischen Admin-Token. Der Zugriff laeuft ueber
+// den Client-Credentials-Grant: Client-ID + Secret werden gegen einen Token
+// getauscht, der 24 h gilt. Dasselbe Secret signiert auch die Webhooks.
+const shopifyClientId = defineSecret("SHOPIFY_CLIENT_ID");
+const shopifyClientSecret = defineSecret("SHOPIFY_CLIENT_SECRET");
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const SOURCE_BY_ID = new Map(callidusKnowledge.sources.map((source) => [source.id, source]));
 const CALLABLE_CORS = [
@@ -1004,6 +1009,33 @@ const KINDERBUCH_PRODUCTS = {
   },
 };
 
+// Eigenmarken-Shop (Shopify). Preise in Cent, Varianten-IDs wie auf
+// /unsere-produkte/. Der Rabattcode wird immer auf genau diese Variante
+// beschraenkt, damit eingeloeste VAL nicht auf ein anderes Produkt wandern.
+const SHOPIFY_SHOP_DOMAIN = "ywg7pa-bq.myshopify.com";
+const SHOPIFY_API_VERSION = "2026-01";
+
+const SHOPIFY_PRODUCTS = {
+  magnesium: {
+    id: "magnesium",
+    title: "4-fach Magnesium Komplex",
+    variantId: "58671561113925",
+    priceCents: 1999,
+  },
+  curcuma: {
+    id: "curcuma",
+    title: "Curcuma + Piperin",
+    variantId: "58671554167109",
+    priceCents: 1999,
+  },
+  d3k2: {
+    id: "d3k2",
+    title: "Vitamin D3 + K2 Tropfen",
+    variantId: "58671539224901",
+    priceCents: 1699,
+  },
+};
+
 const STRESS_RESET_PRODUCTS = {
   modul4: {
     id: "modul4",
@@ -1113,6 +1145,145 @@ function isValidIpnSignature(passphrase, params) {
   if (!passphrase || !received) return false;
   return received === digistoreIpnSignature(passphrase, params, false)
     || received === digistoreIpnSignature(passphrase, params, true);
+}
+
+// Token gilt 24 h. Zwischen warmen Instanzen wiederverwenden, aber eine Minute
+// vor Ablauf erneuern, damit kein Aufruf mitten im Request ungueltig wird.
+let shopifyTokenCache = { token: "", expiresAt: 0 };
+
+async function shopifyAccessToken({ force = false } = {}) {
+  const now = Date.now();
+  if (!force && shopifyTokenCache.token && shopifyTokenCache.expiresAt > now + 60000) {
+    return shopifyTokenCache.token;
+  }
+  const clientId = shopifyClientId.value();
+  const clientSecret = shopifyClientSecret.value();
+  if (!clientId || !clientSecret) {
+    throw new Error("Shopify Client-ID/Secret sind nicht konfiguriert.");
+  }
+
+  const response = await fetch(`https://${SHOPIFY_SHOP_DOMAIN}/admin/oauth/access_token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: clientId,
+      client_secret: clientSecret,
+    }).toString(),
+  });
+  const raw = await response.text();
+  let payload = null;
+  try {
+    payload = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`Shopify Token-Endpunkt: unerwartete Antwort (HTTP ${response.status}).`);
+  }
+  const token = cleanString(payload?.access_token, 200);
+  if (!token) {
+    throw new Error(`Shopify Token-Endpunkt: ${cleanString(payload?.error_description || payload?.error || `HTTP ${response.status}`, 300)}`);
+  }
+  const expiresIn = numberValue(payload?.expires_in, 86399);
+  shopifyTokenCache = { token, expiresAt: now + expiresIn * 1000 };
+  return token;
+}
+
+async function shopifyAdminGraphql(query, variables = {}, { retryOnAuthError = true } = {}) {
+  const token = await shopifyAccessToken();
+  const response = await fetch(
+    `https://${SHOPIFY_SHOP_DOMAIN}/admin/api/${SHOPIFY_API_VERSION}/graphql.json`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-Shopify-Access-Token": token,
+      },
+      body: JSON.stringify({ query, variables }),
+    },
+  );
+
+  // Ein zwischenzeitlich zurueckgezogener Token faellt hier auf; einmal frisch holen.
+  if (response.status === 401 && retryOnAuthError) {
+    shopifyTokenCache = { token: "", expiresAt: 0 };
+    await shopifyAccessToken({ force: true });
+    return shopifyAdminGraphql(query, variables, { retryOnAuthError: false });
+  }
+
+  const raw = await response.text();
+  let payload = null;
+  try {
+    payload = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`Shopify Admin API: unerwartete Antwort (HTTP ${response.status}).`);
+  }
+  if (Array.isArray(payload?.errors) && payload.errors.length) {
+    throw new Error(`Shopify Admin API: ${cleanString(payload.errors[0]?.message, 300)}`);
+  }
+  return payload?.data || {};
+}
+
+const SHOPIFY_DISCOUNT_CREATE = `
+  mutation CreateValRedemptionCode($basicCodeDiscount: DiscountCodeBasicInput!) {
+    discountCodeBasicCreate(basicCodeDiscount: $basicCodeDiscount) {
+      codeDiscountNode { id }
+      userErrors { field message code }
+    }
+  }
+`;
+
+const SHOPIFY_DISCOUNT_DELETE = `
+  mutation DeleteValRedemptionCode($id: ID!) {
+    discountCodeDelete(id: $id) {
+      deletedCodeDiscountId
+      userErrors { field message }
+    }
+  }
+`;
+
+// Legt einen einmaligen Rabattcode ueber genau den eingeloesten Betrag an,
+// beschraenkt auf die gekaufte Variante und befristet auf die Reservierungsdauer.
+async function createShopifyDiscountCode({ code, title, variantId, creditCents, expiresAt }) {
+  const data = await shopifyAdminGraphql(SHOPIFY_DISCOUNT_CREATE, {
+    basicCodeDiscount: {
+      title,
+      code,
+      startsAt: new Date().toISOString(),
+      endsAt: expiresAt.toISOString(),
+      usageLimit: 1,
+      appliesOncePerCustomer: true,
+      context: { all: "ALL" },
+      combinesWith: {
+        orderDiscounts: false,
+        productDiscounts: false,
+        shippingDiscounts: false,
+      },
+      customerGets: {
+        appliesOnOneTimePurchase: true,
+        appliesOnSubscription: false,
+        items: {
+          products: {
+            productVariantsToAdd: [`gid://shopify/ProductVariant/${variantId}`],
+          },
+        },
+        value: {
+          discountAmount: {
+            amount: (creditCents / CENTS_PER_EURO).toFixed(2),
+            appliesOnEachItem: false,
+          },
+        },
+      },
+    },
+  });
+  const result = data?.discountCodeBasicCreate || {};
+  const userErrors = Array.isArray(result.userErrors) ? result.userErrors : [];
+  if (userErrors.length) {
+    throw new Error(`Shopify discountCodeBasicCreate: ${cleanString(userErrors[0]?.message, 300)}`);
+  }
+  const nodeId = cleanString(result.codeDiscountNode?.id, 120);
+  if (!nodeId) {
+    throw new Error("Shopify discountCodeBasicCreate: keine Rabatt-ID erhalten.");
+  }
+  return nodeId;
 }
 
 exports.getValusBalance = onCall(
@@ -1578,39 +1749,61 @@ async function createProductRedemption(request, product) {
   });
 
   const voucherExpiresAt = new Date(Date.now() + REDEMPTION_VOUCHER_TTL_MS);
+  const isShopify = product.provider === "shopify";
+  const providerLabel = isShopify ? "Shopify" : "Digistore24";
+  let discountNodeId = "";
+
   try {
-    await digistoreApiCall(digistoreApiKey.value(), "createVoucher", {
-      code: redemptionCode,
-      product_ids: digistoreProductIdNumber(product.productId),
-      expires_at: digistoreTimestamp(voucherExpiresAt),
-      first_amount: (creditCents / CENTS_PER_EURO).toFixed(2),
-      currency: "EUR",
-      is_count_limited: "Y",
-      count_left: 1,
-      upgrade_policy: "valid",
-    });
+    if (isShopify) {
+      discountNodeId = await createShopifyDiscountCode({
+        code: redemptionCode,
+        title: `VAL-Einloesung ${redemptionCode}`,
+        variantId: product.variantId,
+        creditCents,
+        expiresAt: voucherExpiresAt,
+      });
+    } else {
+      await digistoreApiCall(digistoreApiKey.value(), "createVoucher", {
+        code: redemptionCode,
+        product_ids: digistoreProductIdNumber(product.productId),
+        expires_at: digistoreTimestamp(voucherExpiresAt),
+        first_amount: (creditCents / CENTS_PER_EURO).toFixed(2),
+        currency: "EUR",
+        is_count_limited: "Y",
+        count_left: 1,
+        upgrade_policy: "valid",
+      });
+    }
   } catch (error) {
-    logger.error("createVoucher failed", { code: redemptionCode, error: String(error?.message || error) });
+    logger.error("createVoucher failed", {
+      code: redemptionCode,
+      provider: product.provider || "digistore",
+      error: String(error?.message || error),
+    });
     await redemptionRef.set({
       status: "coupon_failed",
       coupon_error: cleanString(error?.message, 300),
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
-    throw new HttpsError("internal", "Der Rabattcode konnte bei Digistore24 nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.");
+    throw new HttpsError("internal", `Der Rabattcode konnte bei ${providerLabel} nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.`);
   }
 
   const voucherParam = encodeURIComponent(redemptionCode);
-  const checkoutUrl = `${product.checkoutUrl}?voucher=${voucherParam}&custom=${voucherParam}`;
+  const checkoutUrl = isShopify
+    ? `${product.checkoutUrl}?discount=${voucherParam}`
+    : `${product.checkoutUrl}?voucher=${voucherParam}&custom=${voucherParam}`;
+  const mappingCollection = product.mappingCollection || "digistore_redemptions";
 
   await Promise.all([
     redemptionRef.set({
       status: "coupon_created",
       checkout_url_with_voucher: checkoutUrl,
       voucher_expires_at: voucherExpiresAt.toISOString(),
+      discount_node_id: discountNodeId,
       coupon_created_at: FieldValue.serverTimestamp(),
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true }),
-    db.collection("digistore_redemptions").doc(redemptionCode.toLowerCase()).set({
+    db.collection(mappingCollection).doc(redemptionCode.toLowerCase()).set({
       code: redemptionCode,
       uid,
       product_type: product.productType,
@@ -1621,6 +1814,7 @@ async function createProductRedemption(request, product) {
       product_title: product.title,
       credit_cents: creditCents,
       status: "coupon_created",
+      discount_node_id: discountNodeId,
       voucher_expires_at: voucherExpiresAt.toISOString(),
       created_at: FieldValue.serverTimestamp(),
     }),
@@ -1692,6 +1886,37 @@ exports.createKursRedemption = onCall(
   },
 );
 
+exports.createShopifyRedemption = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+    secrets: [shopifyClientId, shopifyClientSecret],
+  },
+  async (request) => {
+    const productKey = cleanString(request.data?.productKey ?? request.data?.productId, 40).toLowerCase();
+    const item = SHOPIFY_PRODUCTS[productKey];
+    if (!item) {
+      throw new HttpsError("invalid-argument", "Unbekanntes Shop-Produkt.");
+    }
+    return createProductRedemption(request, {
+      key: item.id,
+      title: item.title,
+      productId: item.variantId,
+      variantId: item.variantId,
+      checkoutUrl: `https://${SHOPIFY_SHOP_DOMAIN}/cart/${item.variantId}:1`,
+      priceCents: item.priceCents,
+      codePrefix: "SH",
+      provider: "shopify",
+      mappingCollection: "shopify_redemptions",
+      redemptionCollection: "shopify_redemptions",
+      productType: "shopify_supplement",
+      ledgerType: "shopify_redemption",
+    });
+  },
+);
+
 const IPN_PAID_EVENTS = new Set(["on_payment"]);
 const IPN_REVERSAL_EVENTS = new Set(["on_refund", "on_chargeback"]);
 
@@ -1704,11 +1929,12 @@ function ipnRedemptionCode(params = {}) {
   return "";
 }
 
-async function settleRedemptionPaid(code, ipn) {
-  const mappingRef = db.collection("digistore_redemptions").doc(code);
+async function settleRedemptionPaid(code, ipn, options = {}) {
+  const { mappingCollection = "digistore_redemptions", source = "digistore24" } = options;
+  const mappingRef = db.collection(mappingCollection).doc(code);
   const mappingSnap = await mappingRef.get();
   if (!mappingSnap.exists) {
-    logger.warn("IPN payment without redemption mapping", { code });
+    logger.warn("IPN payment without redemption mapping", { code, mappingCollection });
     return { handled: false };
   }
   const mapping = mappingSnap.data() || {};
@@ -1755,7 +1981,7 @@ async function settleRedemptionPaid(code, ipn) {
     }, { merge: true });
     transaction.set(ledgerRef, {
       type: mapping.ledger_type || "product_redemption",
-      source: "digistore24",
+      source,
       amount: -settledValus,
       xp_amount: -settledXp,
       description: `Einloesung ${redemption.code || code.toUpperCase()} (${redemption.product_title || redemption.book_title || mapping.product_title || "Produkt"})`,
@@ -1783,8 +2009,9 @@ async function settleRedemptionPaid(code, ipn) {
   });
 }
 
-async function settleRedemptionReversal(code, ipn, event) {
-  const mappingRef = db.collection("digistore_redemptions").doc(code);
+async function settleRedemptionReversal(code, ipn, event, options = {}) {
+  const { mappingCollection = "digistore_redemptions", source = "digistore24" } = options;
+  const mappingRef = db.collection(mappingCollection).doc(code);
   const mappingSnap = await mappingRef.get();
   if (!mappingSnap.exists) return { handled: false };
   const mapping = mappingSnap.data() || {};
@@ -1828,7 +2055,7 @@ async function settleRedemptionReversal(code, ipn, event) {
     }, { merge: true });
     transaction.set(ledgerRef, {
       type: `${mapping.ledger_type || "product_redemption"}_refund`,
-      source: "digistore24",
+      source,
       amount: refundValus,
       xp_amount: refundXp,
       description: `Rueckbuchung Einloesung ${redemption.code || code.toUpperCase()} (${event})`,
@@ -1915,6 +2142,167 @@ exports.digistoreIpn = onRequest(
       logger.error("digistoreIpn failed", { event, orderId, error: String(error?.message || error) });
       res.status(500).send("internal error");
     }
+  },
+);
+
+const SHOPIFY_CODE_PATTERN = /^SH-[A-F0-9]{8}$/i;
+const SHOPIFY_PAID_TOPICS = new Set(["orders/paid"]);
+const SHOPIFY_REVERSAL_TOPICS = new Set(["refunds/create", "orders/cancelled"]);
+
+function isValidShopifyHmac(secret, rawBody, headerValue) {
+  if (!secret || !rawBody || !headerValue) return false;
+  const computed = crypto.createHmac("sha256", secret).update(rawBody).digest("base64");
+  const providedBuf = Buffer.from(String(headerValue), "utf8");
+  const computedBuf = Buffer.from(computed, "utf8");
+  // Laengenpruefung ist noetig: timingSafeEqual wirft bei ungleich langen Buffern.
+  if (providedBuf.length !== computedBuf.length) return false;
+  return crypto.timingSafeEqual(providedBuf, computedBuf);
+}
+
+// Der Einloesecode steht im Bestell-Payload als angewendeter Rabattcode.
+function shopifyRedemptionCode(payload = {}) {
+  const codes = Array.isArray(payload.discount_codes) ? payload.discount_codes : [];
+  for (const entry of codes) {
+    const value = cleanString(typeof entry === "string" ? entry : entry?.code, 60);
+    if (SHOPIFY_CODE_PATTERN.test(value)) return value.toLowerCase();
+  }
+  return "";
+}
+
+// Refund-Payloads enthalten keine Rabattcodes, nur die Bestell-ID. Die Zuordnung
+// laeuft daher ueber die beim Kauf gespeicherte order_id.
+async function shopifyCodeByOrderId(orderId) {
+  const id = cleanString(orderId, 60);
+  if (!id) return "";
+  const snap = await db.collection("shopify_redemptions")
+    .where("order_id", "==", id)
+    .limit(1)
+    .get();
+  return snap.empty ? "" : snap.docs[0].id;
+}
+
+exports.shopifyOrderWebhook = onRequest(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    secrets: [shopifyClientSecret],
+  },
+  async (req, res) => {
+    if (req.method !== "POST") {
+      res.status(405).send("POST only");
+      return;
+    }
+
+    const topic = cleanString(req.get("x-shopify-topic"), 60).toLowerCase();
+    const shopDomain = cleanString(req.get("x-shopify-shop-domain"), 120).toLowerCase();
+    const deliveryId = cleanString(req.get("x-shopify-webhook-id"), 80);
+
+    if (!isValidShopifyHmac(shopifyClientSecret.value(), req.rawBody, req.get("x-shopify-hmac-sha256"))) {
+      logger.warn("shopifyOrderWebhook: invalid hmac", { topic, shopDomain });
+      res.status(401).send("invalid hmac");
+      return;
+    }
+    if (shopDomain && shopDomain !== SHOPIFY_SHOP_DOMAIN) {
+      logger.warn("shopifyOrderWebhook: unexpected shop", { topic, shopDomain });
+      res.status(403).send("unexpected shop");
+      return;
+    }
+
+    const payload = req.body && typeof req.body === "object" ? req.body : {};
+    const isRefund = topic === "refunds/create";
+    const orderId = cleanString(isRefund ? payload.order_id : payload.id, 60);
+    const eventId = deliveryId || crypto.createHash("sha256")
+      .update(`${orderId}|${topic}|${cleanString(payload.id, 60)}`)
+      .digest("hex")
+      .slice(0, 48);
+
+    try {
+      const eventRef = db.collection("shopify_webhook_events").doc(eventId);
+      const alreadySeen = (await eventRef.get()).exists;
+      await eventRef.set({
+        topic,
+        order_id: orderId,
+        shop_domain: shopDomain,
+        email: cleanString(payload.email ?? payload.contact_email, 180),
+        received_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+
+      // Shopify wiederholt Zustellungen. Ohne diese Sperre wuerde derselbe Kauf
+      // mehrfach verbucht werden.
+      if (alreadySeen) {
+        logger.info("shopifyOrderWebhook: duplicate delivery ignored", { eventId, topic, orderId });
+        res.status(200).send("OK");
+        return;
+      }
+
+      const code = shopifyRedemptionCode(payload) || (isRefund ? await shopifyCodeByOrderId(orderId) : "");
+      if (code) {
+        const settleOptions = { mappingCollection: "shopify_redemptions", source: "shopify" };
+        const normalized = { order_id: orderId, email: cleanString(payload.email ?? payload.contact_email, 180) };
+        if (SHOPIFY_PAID_TOPICS.has(topic)) {
+          const outcome = await settleRedemptionPaid(code, normalized, settleOptions);
+          logger.info("shopifyOrderWebhook payment settled", { code, orderId, ...outcome });
+        } else if (SHOPIFY_REVERSAL_TOPICS.has(topic)) {
+          const event = isRefund ? "on_refund" : "on_cancel";
+          const outcome = await settleRedemptionReversal(code, normalized, event, settleOptions);
+          logger.info("shopifyOrderWebhook reversal settled", { code, orderId, event, ...outcome });
+        }
+      }
+
+      res.status(200).send("OK");
+    } catch (error) {
+      logger.error("shopifyOrderWebhook failed", { topic, orderId, error: String(error?.message || error) });
+      res.status(500).send("internal error");
+    }
+  },
+);
+
+// Loescht abgelaufene bzw. eingeloeste Shopify-Rabattcodes, damit die Rabattliste
+// im Shop-Admin nicht mit SH-Codes volllaeuft.
+exports.cleanupShopifyDiscounts = onSchedule(
+  {
+    schedule: "every day 03:45",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    timeoutSeconds: 300,
+    memory: "256MiB",
+    secrets: [shopifyClientId, shopifyClientSecret],
+  },
+  async () => {
+    const cutoff = new Date().toISOString();
+    const snap = await db.collection("shopify_redemptions")
+      .where("voucher_expires_at", "<", cutoff)
+      .limit(200)
+      .get();
+
+    let deleted = 0;
+    let failed = 0;
+
+    for (const docSnap of snap.docs) {
+      const data = docSnap.data() || {};
+      const nodeId = cleanString(data.discount_node_id, 120);
+      if (!nodeId || data.discount_deleted) continue;
+
+      try {
+        const result = await shopifyAdminGraphql(SHOPIFY_DISCOUNT_DELETE, { id: nodeId });
+        const userErrors = result?.discountCodeDelete?.userErrors || [];
+        if (userErrors.length) throw new Error(cleanString(userErrors[0]?.message, 300));
+        await docSnap.ref.set({
+          discount_deleted: true,
+          discount_deleted_at: FieldValue.serverTimestamp(),
+        }, { merge: true });
+        deleted += 1;
+      } catch (error) {
+        failed += 1;
+        logger.warn("cleanupShopifyDiscounts: delete failed", {
+          code: docSnap.id,
+          error: String(error?.message || error),
+        });
+      }
+    }
+
+    logger.info("cleanupShopifyDiscounts done", { scanned: snap.size, deleted, failed });
   },
 );
 

@@ -8,6 +8,8 @@ const shop = 'https://ywg7pa-bq.myshopify.com';
 
 const products = [
   {
+    key: 'magnesium',
+    preisCents: 1999,
     name: '4-fach Magnesium Komplex',
     category: 'Körper & Ernährung',
     color: '#3f7f5a',
@@ -19,6 +21,8 @@ const products = [
     lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-magnesium-komplex.pdf',
   },
   {
+    key: 'curcuma',
+    preisCents: 1999,
     name: 'Curcuma + Piperin',
     category: 'Körper & Ernährung',
     color: '#3f7f5a',
@@ -30,6 +34,8 @@ const products = [
     lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-curcuma-piperin.pdf',
   },
   {
+    key: 'd3k2',
+    preisCents: 1699,
     name: 'Vitamin D3 + K2 Tropfen',
     category: 'Sport & Energie',
     color: '#26301f',
@@ -41,6 +47,8 @@ const products = [
     lab: 'https://cdn.shopify.com/s/files/1/1080/3281/9525/files/callidus-laborbericht-vitamin-d3-k2.pdf',
   },
 ];
+
+const redemptionProducts = products.map((p) => ({ id: p.key, titel: p.name, preisCents: p.preisCents }));
 ---
 
 <BaseLayout lang="de" title={title} description={description}>
@@ -74,6 +82,7 @@ const products = [
                 </span>
                 <a class="produkt-buy" href={`${shop}/cart/${p.variant}:1`}>Jetzt kaufen</a>
               </div>
+              <button class="produkt-redeem-open" type="button" data-product-key={p.key}>VAL einlösen</button>
               <div class="produkt-meta">
                 <span class="produkt-secure">🔒 Sichere Bezahlung über Shopify</span>
                 <a class="produkt-lab" href={p.lab} target="_blank" rel="noopener">🔬 Laborbericht</a>
@@ -81,6 +90,69 @@ const products = [
             </div>
           </article>
         ))}
+      </div>
+
+      <div class="shop-redemption-panel" id="val-einloesung" data-shop-redemption data-reveal>
+        <div class="shop-redemption-copy">
+          <p class="eyebrow">VAL einlösen</p>
+          <h2>VAL-Guthaben für unsere Eigenmarke verwenden.</h2>
+          <p>
+            Dein <strong>VAL-Guthaben</strong> kannst du als Rabattwert für alle Produkte der Eigenmarke einsetzen
+            (<strong>1 VAL = 1,00 €</strong>). Du kannst ein Produkt vollständig oder nur teilweise einlösen und den
+            Rest normal im Shopify-Checkout bezahlen. App-XP wandelst du vorher selbst auf der
+            <a href="/valus/">VAL-Seite</a> in VAL um. Versandkosten bleiben bestehen.
+          </p>
+        </div>
+
+        <div class="shop-redemption-app">
+          <div id="shop-redeem-loading" class="shop-redeem-state">
+            <strong>Guthaben wird geprüft...</strong>
+            <small>Wenn du bereits im Portal angemeldet bist, erscheint dein XP-/VAL-Stand automatisch.</small>
+          </div>
+
+          <div id="shop-redeem-auth" class="shop-redeem-state" hidden>
+            <strong>Anmelden, dann einlösen</strong>
+            <small>Deine XP und VAL werden sicher über dein Callidus-Konto geladen.</small>
+            <a class="produkt-buy" href="/portal/">Zum Portal-Login</a>
+          </div>
+
+          <div id="shop-redeem-dashboard" hidden>
+            <div class="shop-wallet-row">
+              <div>
+                <span>XP</span>
+                <strong id="shop-xp-balance">-</strong>
+              </div>
+              <div>
+                <span>VAL</span>
+                <strong id="shop-val-balance">-</strong>
+              </div>
+              <div>
+                <span>Einlösbar</span>
+                <strong id="shop-credit-balance">-</strong>
+              </div>
+            </div>
+
+            <form class="shop-redemption-form" id="shop-redemption-form">
+              <label for="shop-redemption-product">Produkt auswählen</label>
+              <select id="shop-redemption-product">
+                {redemptionProducts.map((item) => (
+                  <option value={item.id}>{item.titel}</option>
+                ))}
+              </select>
+
+              <label for="shop-redemption-euro">Rabattwert einsetzen</label>
+              <div class="shop-redemption-input-row">
+                <input id="shop-redemption-euro" type="number" min="0.10" max="19.99" step="0.10" value="19.99" />
+                <button class="produkt-buy" type="button" id="shop-redemption-full">Maximal</button>
+              </div>
+
+              <div class="shop-redemption-preview" id="shop-redemption-preview"></div>
+
+              <button class="produkt-buy" type="submit" id="shop-redemption-submit">Einlösecode erstellen</button>
+              <p class="shop-redemption-status" id="shop-redemption-status" hidden></p>
+            </form>
+          </div>
+        </div>
       </div>
 
       <ul class="produkte-trust" data-reveal>
@@ -102,6 +174,189 @@ const products = [
       </p>
     </div>
   </section>
+
+  <script id="shop-product-data" type="application/json" set:html={JSON.stringify(redemptionProducts)}></script>
+  <script>
+    import { onAuthStateChanged } from 'firebase/auth';
+    import { doc, getDoc } from 'firebase/firestore';
+    import { auth, db, getValusBalance, createShopifyRedemption } from '../lib/firebase-client.js';
+
+    (() => {
+      const XP_PER_CENT = 100;
+      const CENTS_PER_EURO = 100;
+      const items = JSON.parse(document.getElementById('shop-product-data')?.textContent || '[]');
+      const root = document.querySelector('[data-shop-redemption]');
+      if (!root || root.dataset.ready === 'true') return;
+      root.dataset.ready = 'true';
+
+      const state = {
+        user: null,
+        balance: { xp: 0, valus: 0 },
+      };
+
+      const $ = (id) => document.getElementById(id);
+      const formatInt = (value) => new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 }).format(Number(value) || 0);
+      const formatEuro = (cents) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format((Number(cents) || 0) / CENTS_PER_EURO);
+      const itemById = (id) => items.find((item) => item.id === id) || items[0];
+      const creditCents = () => Math.floor((Number(state.balance.valus) || 0) * CENTS_PER_EURO);
+      const show = (id) => {
+        ['shop-redeem-loading', 'shop-redeem-auth', 'shop-redeem-dashboard'].forEach((viewId) => {
+          const el = $(viewId);
+          if (el) el.hidden = viewId !== id;
+        });
+      };
+      const setStatus = (message, kind = '') => {
+        const el = $('shop-redemption-status');
+        if (!el) return;
+        el.textContent = message || '';
+        el.hidden = !message;
+        el.dataset.state = kind;
+      };
+
+      function normalizeBalance(payload = {}) {
+        const raw = payload.balance || payload.balances || payload;
+        const user = payload.user || payload.userDoc || {};
+        const valus = Math.max(0, Number(raw.valus ?? raw.val ?? user.valus ?? user.val ?? user.valus_balance ?? 0) || 0);
+        const xp = Math.max(0, Number(raw.xp ?? raw.current_xp ?? raw.total_xp ?? user.current_xp ?? user.total_xp ?? 0) || 0);
+        return { valus, xp };
+      }
+
+      function updateBalanceView() {
+        $('shop-xp-balance').textContent = `${formatInt(state.balance.xp)} XP`;
+        $('shop-val-balance').textContent = `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: 2 }).format(state.balance.valus)} VAL`;
+        $('shop-credit-balance').textContent = formatEuro(creditCents());
+        updatePreview();
+      }
+
+      function selectedCreditCents() {
+        const euro = Number.parseFloat(String($('shop-redemption-euro')?.value || '0').replace(',', '.'));
+        return Math.max(0, Math.round((Number.isFinite(euro) ? euro : 0) * CENTS_PER_EURO));
+      }
+
+      function updatePreview() {
+        const item = itemById($('shop-redemption-product')?.value);
+        const available = creditCents();
+        const desired = selectedCreditCents();
+        const maxCents = Math.min(item?.preisCents || 0, available);
+        const usable = Math.min(desired, maxCents);
+        const rest = Math.max(0, (item?.preisCents || 0) - usable);
+        const preview = $('shop-redemption-preview');
+        if (!preview || !item) return;
+        if (available < 1) {
+          preview.textContent = 'Noch kein einlösbares VAL-Guthaben sichtbar. XP kannst du auf der VAL-Seite in VAL umwandeln.';
+          return;
+        }
+        const tooHigh = desired > maxCents ? ` · maximal aktuell ${formatEuro(maxCents)}` : '';
+        preview.textContent = `${formatEuro(usable)} Rabatt = ${(usable / CENTS_PER_EURO).toLocaleString('de-DE', { maximumFractionDigits: 2 })} VAL · Restbetrag ${formatEuro(rest)} zzgl. Versand${tooHigh}`;
+      }
+
+      async function loadBalance(user) {
+        try {
+          const callable = getValusBalance();
+          const result = await callable({});
+          state.balance = normalizeBalance(result.data || {});
+        } catch (error) {
+          try {
+            const [balanceSnap, userSnap] = await Promise.all([
+              getDoc(doc(db, 'users', user.uid, 'balances', 'current')),
+              getDoc(doc(db, 'users', user.uid)),
+            ]);
+            state.balance = normalizeBalance({
+              balance: balanceSnap.exists() ? balanceSnap.data() : {},
+              user: userSnap.exists() ? userSnap.data() : {},
+            });
+          } catch (fallbackError) {
+            console.warn('Shop balance load failed', error, fallbackError);
+            state.balance = { xp: 0, valus: 0 };
+            setStatus('Guthaben konnte gerade nicht geladen werden. Bitte im Portal anmelden und erneut versuchen.', 'error');
+          }
+        }
+        updateBalanceView();
+      }
+
+      function initAuth() {
+        onAuthStateChanged(auth, async (user) => {
+          state.user = user;
+          if (!user) {
+            show('shop-redeem-auth');
+            return;
+          }
+          show('shop-redeem-dashboard');
+          await loadBalance(user);
+        });
+      }
+
+      $('shop-redemption-product')?.addEventListener('change', updatePreview);
+      $('shop-redemption-euro')?.addEventListener('input', updatePreview);
+      $('shop-redemption-full')?.addEventListener('click', () => {
+        const item = itemById($('shop-redemption-product')?.value);
+        const maxCents = Math.min(item?.preisCents || 0, creditCents());
+        $('shop-redemption-euro').value = (maxCents / CENTS_PER_EURO).toFixed(2);
+        updatePreview();
+      });
+      document.querySelectorAll('.produkt-redeem-open').forEach((button) => {
+        button.addEventListener('click', () => {
+          const key = button.dataset.productKey;
+          const select = $('shop-redemption-product');
+          if (select && key) select.value = key;
+          const item = itemById(key);
+          const maxCents = Math.min(item?.preisCents || 0, creditCents() || item?.preisCents || 0);
+          if ($('shop-redemption-euro')) $('shop-redemption-euro').value = (maxCents / CENTS_PER_EURO).toFixed(2);
+          updatePreview();
+          root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      $('shop-redemption-form')?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setStatus('');
+        if (!state.user) {
+          show('shop-redeem-auth');
+          setStatus('Bitte zuerst im Portal anmelden.', 'error');
+          return;
+        }
+        const item = itemById($('shop-redemption-product')?.value);
+        const desired = selectedCreditCents();
+        const maxCents = Math.min(item?.preisCents || 0, creditCents());
+        const credit = Math.min(desired, maxCents);
+        if (!item || credit < 1) {
+          setStatus('Bitte ein Produkt und einen einlösbaren Betrag auswählen.', 'error');
+          return;
+        }
+        const button = $('shop-redemption-submit');
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        setStatus('Einlösecode wird erstellt...', 'pending');
+        try {
+          const callable = createShopifyRedemption();
+          const result = await callable({ productKey: item.id, creditCents: credit });
+          const data = result.data || {};
+          const rest = formatEuro(data.remainingCents || 0);
+          const checkoutUrl = data.checkoutUrl;
+          setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest} zzgl. Versand). Der Code wird im Shopify-Checkout automatisch angewendet und gilt 24 Stunden. Dein VAL-Guthaben wird erst nach bestätigter Zahlung abgebucht.`, 'ok');
+          if (checkoutUrl) {
+            setTimeout(() => {
+              window.open(checkoutUrl, '_blank', 'noopener');
+            }, 900);
+          }
+        } catch (error) {
+          setStatus(error?.message || 'Einlösung konnte nicht erstellt werden.', 'error');
+        } finally {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+        }
+      });
+
+      show('shop-redeem-loading');
+      try {
+        initAuth();
+      } catch (error) {
+        console.warn('Shop Firebase init failed', error);
+        show('shop-redeem-auth');
+        setStatus('Portal konnte gerade nicht geladen werden. Bitte später erneut versuchen.', 'error');
+      }
+    })();
+  </script>
 </BaseLayout>
 
 <style>
@@ -161,6 +416,144 @@ const products = [
   .produkt-secure { font-size: 0.72rem; color: var(--text-muted, #5e6757); }
   .produkt-lab { font-size: 0.74rem; color: #3f7f5a; font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
   .produkt-lab:hover { border-bottom-color: #3f7f5a; }
+
+  .produkt-redeem-open {
+    margin-top: 0.7rem;
+    width: 100%;
+    min-height: 42px;
+    background: transparent;
+    color: #3f7f5a;
+    border: 1px solid rgba(63, 127, 90, 0.45);
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .produkt-redeem-open:hover { background: #3f7f5a; color: #fff; }
+
+  .shop-redemption-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: start;
+    margin-top: 2.6rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid rgba(63, 127, 90, 0.26);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(63, 127, 90, 0.10), rgba(131, 137, 97, 0.08)), var(--card-bg, #fffef8);
+    box-shadow: 0 18px 50px rgba(38, 48, 38, 0.08);
+  }
+  @media (max-width: 840px) {
+    .shop-redemption-panel { grid-template-columns: 1fr; }
+  }
+  .shop-redemption-copy h2 { margin: 0.4rem 0 0.7rem; font-size: 1.6rem; line-height: 1.15; }
+  .shop-redemption-copy p { max-width: 62ch; margin: 0; color: var(--text-muted, #5e6757); }
+  .shop-redemption-copy a { color: #3f7f5a; }
+  .shop-redemption-app {
+    background: #fffef8;
+    border: 1px solid rgba(131, 137, 97, 0.22);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .shop-redeem-state {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    min-height: 170px;
+  }
+  .shop-redeem-state[hidden],
+  #shop-redeem-dashboard[hidden] { display: none !important; }
+  .shop-redeem-state strong { font-size: 1.1rem; }
+  .shop-redeem-state small { color: var(--text-muted, #5e6757); line-height: 1.55; }
+  .shop-redeem-state .produkt-buy { text-align: center; justify-self: start; }
+
+  .shop-wallet-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 560px) {
+    .shop-wallet-row { grid-template-columns: 1fr; }
+  }
+  .shop-wallet-row div {
+    min-width: 0;
+    padding: 0.8rem;
+    border: 1px solid rgba(131, 137, 97, 0.2);
+    border-radius: 8px;
+    background: #faf8ef;
+  }
+  .shop-wallet-row span {
+    display: block;
+    color: var(--text-muted, #5e6757);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .shop-wallet-row strong {
+    display: block;
+    margin-top: 0.2rem;
+    color: #3f7f5a;
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+  }
+
+  .shop-redemption-form { display: grid; gap: 0.75rem; }
+  .shop-redemption-form label { font-weight: 800; font-size: 0.85rem; }
+  .shop-redemption-form select,
+  .shop-redemption-form input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid rgba(131, 137, 97, 0.35);
+    border-radius: 8px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    padding: 0.65rem 0.75rem;
+  }
+  .shop-redemption-form select:focus,
+  .shop-redemption-form input:focus {
+    outline: 2px solid rgba(63, 127, 90, 0.6);
+    outline-offset: 2px;
+  }
+  .shop-redemption-input-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem;
+  }
+  @media (max-width: 440px) {
+    .shop-redemption-input-row { grid-template-columns: 1fr; }
+  }
+  .shop-redemption-input-row .produkt-buy,
+  #shop-redemption-submit {
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #shop-redemption-submit { min-height: 46px; text-align: center; }
+  #shop-redemption-submit[disabled] { opacity: 0.6; cursor: progress; }
+  .shop-redemption-preview {
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: rgba(63, 127, 90, 0.09);
+    border: 1px solid rgba(63, 127, 90, 0.22);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+  .shop-redemption-status {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(131, 137, 97, 0.12);
+  }
+  .shop-redemption-status[data-state='ok'] { background: rgba(63, 127, 90, 0.14); color: #26301f; }
+  .shop-redemption-status[data-state='error'] { background: rgba(180, 70, 50, 0.12); color: #7d2f1e; }
 
   .produkte-trust {
     list-style: none; padding: 1.6rem 0 0; margin: 2.4rem 0 0;
