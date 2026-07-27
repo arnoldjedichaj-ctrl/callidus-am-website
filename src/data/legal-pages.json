@@ -286,8 +286,8 @@
       {
         "heading": "6. Analyse-Tools",
         "paragraphs": [
-          "und Werbung Wir setzen auf dieser Website derzeit kein eigenes Tracking wie Google Analytics oder vergleichbare WebAnalytics-Dienste ein. Die Website ist trackingarm gestaltet; technisch notwendige Server- und Sicherheitsprotokolle entstehen beim Hosting über GitHub Pages.",
-          "Sofern künftig Analyse- oder Marketingtools eingesetzt werden, werden diese erst nach entsprechender Einwilligung aktiviert und in dieser Datenschutzerklärung transparent benannt."
+          "Nach Ihrer Einwilligung verwenden wir Google Analytics for Firebase, um die Nutzung der Website in aggregierter Form zu messen. Die Analyse wird erst geladen, wenn Sie im Cookie-Hinweis auf „Akzeptieren“ klicken; bei „Nur Notwendige“ werden keine Analytics-Daten an Google übertragen.",
+          "Die Messung ist auf allgemeine Website-Besuche begrenzt. Es werden keine Artikel-, Gesundheits-, Such-, Formular- oder Chat-Inhalte als Analytics-Ereignisparameter übermittelt."
         ]
       },
       {

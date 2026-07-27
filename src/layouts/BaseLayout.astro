@@ -29,6 +29,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & external content',
       cookieTextBefore: 'This website is tracking-free by default. Data is transferred to third-party providers only when you load embedded YouTube videos, the newsletter form, or actively use the chatbot.',
       cookieTextMore: 'More information is available in our',
+      cookieAnalytics: 'By accepting, you also consent to aggregated website usage measurement with Google Analytics.',
       cookiePrivacy: 'privacy policy',
       cookieDecline: 'Necessary only',
       cookieAccept: 'Accept',
@@ -47,6 +48,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & externe Inhalte',
       cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn Sie eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzen, werden Daten an Drittanbieter übertragen.',
       cookieTextMore: 'Mehr Infos in unserer',
+      cookieAnalytics: 'Mit "Akzeptieren" stimmen Sie zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics zu.',
       cookiePrivacy: 'Datenschutzerklärung',
       cookieDecline: 'Nur Notwendige',
       cookieAccept: 'Akzeptieren',
@@ -286,6 +288,7 @@ const socialIcons = {
           <strong>{labels.cookieTitle}</strong>
           <p>
             {labels.cookieTextBefore}
+            {' '}{labels.cookieAnalytics}
             {' '}
             {labels.cookieTextMore} <a href={t.paths.privacy}>{labels.cookiePrivacy}</a>.
           </p>
@@ -740,6 +743,10 @@ const socialIcons = {
         document.addEventListener('astro:page-load', setupAssistant);
       })();
     </script>
+    <script>
+      import { setupConsentAwareAnalytics } from '../scripts/analytics-consent.js';
+      setupConsentAwareAnalytics();
+    </script>
     <script is:inline>
       const revealItems = () => {
         const items = document.querySelectorAll('[data-reveal]');
@@ -847,7 +854,7 @@ const socialIcons = {
       initTrustpilot();
       document.addEventListener('astro:page-load', initTrustpilot);
 
-      const COOKIE_KEY = 'callidus-cookie-consent';
+      const COOKIE_KEY = 'callidus-cookie-consent-v2';
       const setupCookieBanner = () => {
         const banner = document.querySelector('.cookie-banner');
         if (!banner || banner.dataset.ready) return;
