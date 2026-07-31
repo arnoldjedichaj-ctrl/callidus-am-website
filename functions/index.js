@@ -3156,3 +3156,82 @@ exports.getPublicFoodContent = onRequest(
   },
 );
 
+// Gedruckte QR-Codes zeigen auf diese Funktion statt direkt auf die Zielseite.
+// Sie zaehlt den Scan aggregiert pro Kampagne, Motiv und Tag und leitet dann
+// weiter. Bewusst ohne IP, Cookie oder Kennung: dadurch ist die Zaehlung
+// einwilligungsfrei zulaessig. Die angehaengten UTM-Parameter greifen nur
+// zusaetzlich, wenn der Besucher spaeter der Analytics-Einwilligung zustimmt.
+const FLYER_QR_TARGETS = {
+  "a6s": {
+    campaign: "flyer-a6-willkommen",
+    motiv: "vorderseite",
+    url: "https://www.callidus-am.de/unsere-produkte/",
+  },
+  "a6k": {
+    campaign: "flyer-a6-willkommen",
+    motiv: "rueckseite",
+    url: "https://www.callidus-am.de/gesundheits-kompass/",
+  },
+};
+const FLYER_QR_FALLBACK = "https://www.callidus-am.de/";
+// Messenger und Suchdienste holen Links vorab ab. Diese Abrufe wuerden die
+// Auflage kuenstlich erfolgreich aussehen lassen und werden nicht gezaehlt.
+const FLYER_QR_BOT_PATTERN =
+  /bot|crawler|spider|preview|facebookexternalhit|whatsapp|telegram|slack|discord|twitter|linkedin|embedly|curl|wget|python-requests|headless|lighthouse/i;
+const FLYER_QR_COUNT_TIMEOUT_MS = 1200;
+
+exports.flyerScan = onRequest(
+  { region: "us-central1", timeoutSeconds: 15, memory: "256MiB" },
+  async (req, res) => {
+    const target = FLYER_QR_TARGETS[String(req.query.k || "").trim()];
+    const destination = new URL(target ? target.url : FLYER_QR_FALLBACK);
+
+    if (target) {
+      destination.searchParams.set("utm_source", "flyer");
+      destination.searchParams.set("utm_medium", "print");
+      destination.searchParams.set("utm_campaign", target.campaign);
+      destination.searchParams.set("utm_content", target.motiv);
+    }
+
+    const countable =
+      target &&
+      req.method === "GET" &&
+      !FLYER_QR_BOT_PATTERN.test(String(req.get("user-agent") || ""));
+
+    // Zaehlen vor der Weiterleitung: nach dem Senden der Antwort drosselt Cloud
+    // Run die CPU, ein danach gestarteter Schreibvorgang koennte verloren gehen.
+    // Das Zeitlimit sorgt dafuer, dass eine langsame Datenbank den Besucher
+    // trotzdem nie aufhaelt.
+    if (countable) {
+      const dateKey = publicFoodDateKey();
+      const write = db
+        .collection("flyer_scans")
+        .doc(`${target.campaign}__${dateKey}`)
+        .set(
+          {
+            campaign: target.campaign,
+            dateKey,
+            scans: FieldValue.increment(1),
+            motive: { [target.motiv]: FieldValue.increment(1) },
+            updatedAt: FieldValue.serverTimestamp(),
+          },
+          { merge: true },
+        )
+        .catch((error) => {
+          logger.error("Flyer scan count failed", {
+            campaign: target.campaign,
+            error: String(error?.message || error),
+          });
+        });
+
+      await Promise.race([
+        write,
+        new Promise((resolve) => setTimeout(resolve, FLYER_QR_COUNT_TIMEOUT_MS)),
+      ]);
+    }
+
+    res.set("Cache-Control", "no-store");
+    res.redirect(302, destination.toString());
+  },
+);
+
