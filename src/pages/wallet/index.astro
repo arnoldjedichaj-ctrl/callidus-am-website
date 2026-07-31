@@ -102,11 +102,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <strong>Crypto-Wallet</strong>
               <p class="muted" style="margin:.25rem 0 0;font-size:.875rem" id="wallet-address-display">Keine Wallet verbunden</p>
             </div>
-            <button id="btn-connect-wallet" class="button">Wallet verbinden</button>
+            <div class="wallet-actions">
+              <button id="btn-connect-wallet" class="button">Wallet verbinden</button>
+              <button id="btn-unlink-wallet" class="wallet-unlink" type="button" hidden>Wallet trennen</button>
+            </div>
           </div>
           <p class="muted" style="font-size:.8rem;margin-top:.75rem">
             Verbinden Sie eine Ethereum-Wallet (MetaMask o.ä.) um als verifizierter Callidus-Inhaber zusätzliche Vorteile zu erhalten.
+            Die Adresse bleibt Ihrem Konto zugeordnet, bis Sie sie hier trennen — ein Trennen in MetaMask allein genügt dafür nicht.
           </p>
+          <p id="wallet-status" class="wallet-status" hidden></p>
         </div>
 
         <!-- VAL KAUFEN -->
@@ -210,6 +215,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .form-error { color: var(--coral); font-size: .875rem; margin: -.25rem 0; }
     .form-success { color: var(--mint); font-size: .875rem; }
     .form-link { background: none; border: none; color: var(--muted); cursor: pointer; font-size: .85rem; text-decoration: underline; padding: 0; }
+
+    .wallet-actions { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .wallet-unlink {
+      background: none; border: 1px solid var(--line); border-radius: .5rem;
+      padding: .5rem .875rem; color: var(--muted); font: inherit; font-size: .875rem; cursor: pointer;
+      transition: .15s;
+    }
+    .wallet-unlink:hover:not([disabled]) { border-color: #b44632; color: #b44632; }
+    .wallet-unlink[hidden] { display: none; }
+    .wallet-unlink[disabled] { opacity: .5; cursor: not-allowed; }
+    .wallet-status { margin: .75rem 0 0; font-size: .85rem; }
+    .wallet-status[hidden] { display: none; }
+    .wallet-status[data-state='ok'] { color: var(--gold); }
+    .wallet-status[data-state='error'] { color: #b44632; }
 
     .wallet-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
     .wallet-account-meta { color: var(--muted); font-size: .82rem; margin: .35rem 0 0; overflow-wrap: anywhere; }
@@ -479,16 +498,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         }
 
         // Wallet address
-        try {
-          const userSnap = await getDoc(doc(db, 'users', user.uid));
-          const walletAddr = userSnap.data()?.wallet_address;
+        // Die angezeigte Adresse stammt aus dem Nutzerdokument, nicht aus
+        // MetaMask. Deshalb muss sie nach jedem Verknuepfen und Trennen aus
+        // derselben Stelle neu gesetzt werden.
+        const setWalletStatus = (message, kind = '') => {
+          const el = $('wallet-status');
+          if (!el) return;
+          el.textContent = message || '';
+          el.hidden = !message;
+          el.dataset.state = kind;
+        };
+
+        const renderWallet = (walletAddr) => {
           if (walletAddr) {
             $('wallet-address-display').textContent = `${walletAddr.slice(0,6)}...${walletAddr.slice(-4)}`;
             $('btn-connect-wallet').textContent = 'Wallet wechseln';
-          } else if (!window.ethereum) {
-            $('wallet-address-display').textContent = 'Keine Browser-Wallet erkannt.';
-            $('btn-connect-wallet').textContent = 'Wallet erstellen';
+            $('btn-unlink-wallet').hidden = false;
+          } else {
+            $('wallet-address-display').textContent = window.ethereum
+              ? 'Keine Wallet verbunden'
+              : 'Keine Browser-Wallet erkannt.';
+            $('btn-connect-wallet').textContent = window.ethereum ? 'Wallet verbinden' : 'Wallet erstellen';
+            $('btn-unlink-wallet').hidden = true;
           }
+        };
+
+        try {
+          const userSnap = await getDoc(doc(db, 'users', user.uid));
+          renderWallet(userSnap.data()?.wallet_address);
         } catch (_) {}
 
         // Ledger
@@ -614,10 +651,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             });
             const fn = httpsCallable(fns, 'linkWalletAddress');
             await fn({ address, message, signature });
-            $('wallet-address-display').textContent = `${address.slice(0,6)}...${address.slice(-4)}`;
-            $('btn-connect-wallet').textContent = 'Wallet wechseln';
+            renderWallet(address);
+            setWalletStatus('Wallet verknüpft.', 'ok');
           } catch (err) {
             alert('Wallet-Verknüpfung fehlgeschlagen: ' + (err.message || err));
+          }
+        });
+
+        // Wallet trennen
+        $('btn-unlink-wallet')?.addEventListener('click', async () => {
+          const ok = window.confirm(
+            'Wallet wirklich von diesem Konto trennen? Die Adresse wird aus Ihrem Konto entfernt. '
+            + 'Sie können jederzeit wieder eine Wallet verbinden.',
+          );
+          if (!ok) return;
+
+          const button = $('btn-unlink-wallet');
+          button.disabled = true;
+          setWalletStatus('Wallet wird getrennt…', 'pending');
+          try {
+            await httpsCallable(fns, 'unlinkWalletAddress')({});
+            renderWallet(null);
+            setWalletStatus('Wallet getrennt. Die Adresse ist nicht mehr Ihrem Konto zugeordnet.', 'ok');
+          } catch (err) {
+            setWalletStatus('Trennen fehlgeschlagen: ' + (err.message || err), 'error');
+          } finally {
+            button.disabled = false;
           }
         });
       }

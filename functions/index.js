@@ -2428,6 +2428,31 @@ exports.linkWalletAddress = functionsV1
     return { address };
   });
 
+// Gegenstueck zu linkWalletAddress. In MetaMask "Verbindung trennen" entzieht
+// nur die Leseberechtigung im Browser und laesst den hier gespeicherten
+// Datensatz unberuehrt — ohne diese Funktion bliebe eine einmal verknuepfte
+// Adresse dauerhaft am Konto haengen.
+exports.unlinkWalletAddress = functionsV1
+  .region("us-central1")
+  .https.onCall(async (data, context) => {
+    if (!context.auth?.uid) {
+      throw new functionsV1.https.HttpsError("unauthenticated", "Bitte einloggen.");
+    }
+    const uid = context.auth.uid;
+
+    // Immer die UID aus dem Token, nie aus den Daten: so kann niemand die
+    // Wallet eines fremden Kontos loesen.
+    await db.collection("users").doc(uid).set({
+      wallet_address: FieldValue.delete(),
+      wallet_signature: FieldValue.delete(),
+      wallet_message: FieldValue.delete(),
+      wallet_linked_at: FieldValue.delete(),
+      wallet_unlinked_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    return { unlinked: true };
+  });
+
 exports.generateSportEnergyPlan = onCall(
   {
     region: "us-central1",
