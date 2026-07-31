@@ -97,6 +97,23 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
             </div>
           </article>
         ))}
+
+        <article class="produkt-card produkt-card--soon" data-reveal="2">
+          <span class="produkt-band produkt-band--soon"></span>
+          <div class="produkt-img produkt-img--soon" aria-hidden="true">
+            <span class="produkt-soon-mark">+</span>
+          </div>
+          <div class="produkt-body">
+            <span class="produkt-cat"><span class="produkt-dot produkt-dot--soon"></span>In Vorbereitung</span>
+            <h2 class="produkt-name">Weitere Eigenprodukte folgen.</h2>
+            <p class="produkt-desc">
+              Wir arbeiten bereits an den nächsten Formulierungen unserer Eigenmarke – nach denselben
+              Maßstäben: EU-Herstellung, unabhängige Laborprüfung jeder Charge, Versand aus Deutschland.
+              Neue Produkte gehen erst online, wenn sie diese Prüfung bestanden haben.
+            </p>
+            <p class="produkt-soon-hint">Schau gern wieder vorbei – hier erscheinen sie zuerst.</p>
+          </div>
+        </article>
       </div>
 
       <ul class="produkte-trust" data-reveal>
@@ -634,6 +651,38 @@ const versand = { pauschaleCents: 390, gratisAbCents: 3500 };
   .produkt-secure { font-size: 0.72rem; color: var(--text-muted, #5e6757); }
   .produkt-lab { font-size: 0.74rem; color: #3f7f5a; font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
   .produkt-lab:hover { border-bottom-color: #3f7f5a; }
+
+  /* --- Platzhalter-Karte fuer kommende Eigenprodukte --- */
+  .produkt-card--soon {
+    background: transparent;
+    border-style: dashed;
+    border-color: rgba(131, 137, 97, 0.4);
+    box-shadow: none;
+  }
+  .produkt-card--soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(63, 127, 90, 0.5);
+  }
+  .produkt-band--soon { background: repeating-linear-gradient(90deg, rgba(63, 127, 90, 0.55) 0 10px, transparent 10px 20px); }
+  .produkt-img--soon {
+    background: rgba(131, 137, 97, 0.06);
+    border-bottom-style: dashed;
+  }
+  .produkt-soon-mark {
+    font-size: 2.6rem;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(63, 127, 90, 0.45);
+  }
+  .produkt-dot--soon { border: 1.5px dashed rgba(63, 127, 90, 0.75); }
+  .produkt-card--soon .produkt-name { color: var(--text-muted, #5e6757); }
+  .produkt-soon-hint {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #3f7f5a;
+  }
 
   /* --- Schwebender Warenkorb-Button --- */
   .wk-fab {
