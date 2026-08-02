@@ -222,5 +222,31 @@
       "sourceId": "cryotherapy-risks-review",
       "claimNote": "Risiken und Anwendungsgrenzen von Kältekammern und Kaltwasser-Immersion."
     }
+  ],
+  "sauna-wirkung-arten-anleitung": [
+    {
+      "sourceId": "sauna-mortality-kihd-2015",
+      "claimNote": "Grundlage der Zahlen zu Saunahäufigkeit, Herztod und Gesamtsterblichkeit inklusive Hinweis auf das Beobachtungsdesign."
+    },
+    {
+      "sourceId": "sauna-dementia-2017",
+      "claimNote": "Basis für die Aussagen zu Demenz- und Alzheimerrisiko bei häufigem Saunieren."
+    },
+    {
+      "sourceId": "sauna-mayo-review-2018",
+      "claimNote": "Einordnung von Mechanismen, Kreislaufreaktion und Sicherheitsprofil."
+    },
+    {
+      "sourceId": "passive-heating-meta-2025",
+      "claimNote": "Belegt Blutdruck- und Gefäßeffekte passiver Erwärmung aus kontrollierten Studien."
+    },
+    {
+      "sourceId": "sauna-exercise-rct-2022",
+      "claimNote": "Vergleich von Sauna plus Training gegenüber Training allein."
+    },
+    {
+      "sourceId": "sauna-benefits-risks-2001",
+      "claimNote": "Grundlage für Kontraindikationen, Alkoholrisiko und Kreislaufzwischenfälle."
+    }
   ]
 }

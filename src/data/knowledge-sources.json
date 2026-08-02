@@ -390,5 +390,77 @@
       "Sicherheit"
     ],
     "summary": "Übersicht zu therapeutischer Anwendung und Risiken von Kältekammern und Kaltwasser-Immersion."
+  },
+  {
+    "id": "sauna-mortality-kihd-2015",
+    "title": "Association Between Sauna Bathing and Fatal Cardiovascular and All-Cause Mortality Events",
+    "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2130724",
+    "type": "Primärstudie",
+    "topics": [
+      "Sauna",
+      "Herz-Kreislauf",
+      "Sterblichkeit"
+    ],
+    "summary": "Finnische Kohortenstudie mit 2.315 Männern über rund 21 Jahre zu Saunahäufigkeit, plötzlichem Herztod und Gesamtsterblichkeit."
+  },
+  {
+    "id": "sauna-dementia-2017",
+    "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men",
+    "url": "https://academic.oup.com/ageing/article/46/2/245/2654230",
+    "type": "Primärstudie",
+    "topics": [
+      "Sauna",
+      "Gehirn",
+      "Demenz"
+    ],
+    "summary": "Auswertung derselben finnischen Kohorte zum Zusammenhang von Saunahäufigkeit und Demenz- beziehungsweise Alzheimerrisiko."
+  },
+  {
+    "id": "sauna-mayo-review-2018",
+    "title": "Cardiovascular and Other Health Benefits of Sauna Bathing: A Review of the Evidence",
+    "url": "https://www.mayoclinicproceedings.org/article/S0025-6196(18)30275-1/fulltext",
+    "type": "Review",
+    "topics": [
+      "Sauna",
+      "Herz-Kreislauf",
+      "Einordnung"
+    ],
+    "summary": "Übersichtsarbeit zu Wirkungen, Mechanismen und Sicherheitsaspekten von Saunabädern."
+  },
+  {
+    "id": "passive-heating-meta-2025",
+    "title": "Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12490526/",
+    "type": "Review",
+    "topics": [
+      "Sauna",
+      "Blutdruck",
+      "Gefäßfunktion"
+    ],
+    "summary": "Systematische Übersicht und Meta-Analyse randomisierter Studien zu passiver Erwärmung, Blutdruck und Gefäßgesundheit."
+  },
+  {
+    "id": "sauna-exercise-rct-2022",
+    "title": "Effects of regular sauna bathing in conjunction with exercise on cardiovascular function",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394774/",
+    "type": "Primärstudie",
+    "topics": [
+      "Sauna",
+      "Training",
+      "Herz-Kreislauf"
+    ],
+    "summary": "Randomisierte Studie zur Kombination aus regelmäßigem Saunieren und Training im Vergleich zu Training allein."
+  },
+  {
+    "id": "sauna-benefits-risks-2001",
+    "title": "Benefits and risks of sauna bathing",
+    "url": "https://www.amjmed.com/article/S0002-9343(00)00671-9/abstract",
+    "type": "Review",
+    "topics": [
+      "Sauna",
+      "Sicherheit",
+      "Kontraindikationen"
+    ],
+    "summary": "Klassische Übersicht zu Nutzen und Risiken des Saunabadens inklusive Alkohol, Kontraindikationen und Kreislaufreaktionen."
   }
 ]

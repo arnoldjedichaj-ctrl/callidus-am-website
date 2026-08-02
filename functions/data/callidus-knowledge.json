@@ -437,6 +437,42 @@
       "title": "Cryotherapy chambers and cold-water immersion: therapeutic use and risks",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32833356/",
       "type": "Review"
+    },
+    {
+      "id": "sauna-mortality-kihd-2015",
+      "title": "Association Between Sauna Bathing and Fatal Cardiovascular and All-Cause Mortality Events",
+      "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2130724",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "sauna-dementia-2017",
+      "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men",
+      "url": "https://academic.oup.com/ageing/article/46/2/245/2654230",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "sauna-mayo-review-2018",
+      "title": "Cardiovascular and Other Health Benefits of Sauna Bathing: A Review of the Evidence",
+      "url": "https://www.mayoclinicproceedings.org/article/S0025-6196(18)30275-1/fulltext",
+      "type": "Review"
+    },
+    {
+      "id": "passive-heating-meta-2025",
+      "title": "Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12490526/",
+      "type": "Review"
+    },
+    {
+      "id": "sauna-exercise-rct-2022",
+      "title": "Effects of regular sauna bathing in conjunction with exercise on cardiovascular function",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394774/",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "sauna-benefits-risks-2001",
+      "title": "Benefits and risks of sauna bathing",
+      "url": "https://www.amjmed.com/article/S0002-9343(00)00671-9/abstract",
+      "type": "Review"
     }
   ],
   "entries": [
@@ -703,6 +739,56 @@
         "cwi-hypertrophy-meta-2024",
         "winter-swimming-bat-2021",
         "cryotherapy-risks-review"
+      ]
+    },
+    {
+      "title": "Sauna: Wirkung, Arten und richtige Anwendung",
+      "path": "/sauna-wirkung-arten-anleitung/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": [
+        "Sauna",
+        "Wärme",
+        "Regeneration",
+        "Herz-Kreislauf",
+        "Schlaf",
+        "Sport & Energie",
+        "Sicherheit"
+      ],
+      "keywords": [
+        "sauna",
+        "saunieren",
+        "saunagang",
+        "aufguss",
+        "finnische sauna",
+        "biosauna",
+        "sanarium",
+        "dampfbad",
+        "hamam",
+        "infrarotkabine",
+        "infrarotsauna",
+        "banja",
+        "schwitzen",
+        "hitze",
+        "waerme",
+        "saunaregeln",
+        "tauchbecken",
+        "abkuehlen",
+        "hitzeschockproteine",
+        "blutdruck",
+        "entspannung",
+        "erholung",
+        "wechselwarm",
+        "kalt warm"
+      ],
+      "text": "Callidus ordnet die Sauna als angenehmen Erholungsreiz mit echtem, aber begrenzt belegtem Gesundheitsnutzen ein. Saunaarten unterscheiden sich deutlich: finnische Sauna 80 bis 100 Grad bei niedriger Luftfeuchte, Biosauna oder Sanarium 45 bis 60 Grad bei 40 bis 55 Prozent, Dampfbad rund 45 Grad bei nahezu 100 Prozent, Infrarotkabine 40 bis 50 Grad mit Strahlungswaerme. Im Saunagang steigt die Kerntemperatur um ein bis zwei Grad, die Herzfrequenz erreicht 100 bis 150 Schlaege pro Minute - vergleichbar mit moderatem Ausdauertraining, aber ohne Muskelarbeit; der Koerper bildet vermehrt Hitzeschockproteine, nach dem Abkuehlen sinkt der Blutdruck oft fuer Stunden. Kontrollierte Studien belegen Blutdrucksenkung, bessere Gefaessfunktion, Muskelentspannung und Einschlafhilfe; die spektakulaeren finnischen Zahlen zu weniger Herztod und Demenz bei 4 bis 7 Saunagaengen pro Woche stammen aus Beobachtungsstudien und beweisen keine Ursache. Nicht belegt sind Entgiftung ueber den Schweiss, Abnehmen durch Schwitzen oder Sauna als Ersatz fuer Bewegung. Regeln: vorher duschen und abtrocknen, 8 bis 15 Minuten pro Gang, letzte Minute sitzend, abkuehlen erst an frischer Luft und dann kalt von peripher nach zentral, Ruhephase mindestens so lang wie der Saunagang, trinken nach dem letzten Gang, maximal zwei bis drei Gaenge, niemals Alkohol. Tabu bei instabiler Angina, Herzinfarkt in den letzten drei bis sechs Monaten, schwerer Aortenklappenstenose, dekompensierter Herzschwaeche, Fieber und akuten Infekten; in der Schwangerschaft nur nach aerztlicher Ruecksprache, bei Kinderwunsch senkt Hitze die Spermienqualitaet voruebergehend. Sport: nach Ausdauertraining unproblematisch, nach Krafttraining fuer den Muskelaufbau besser geeignet als Kaelte; bei Kombination gilt erst Waerme, dann Kaelte. Realistische Dosis: ein bis zwei Saunabesuche pro Woche mit zwei bis drei Gaengen.",
+      "sourceIds": [
+        "sauna-mortality-kihd-2015",
+        "sauna-dementia-2017",
+        "sauna-mayo-review-2018",
+        "passive-heating-meta-2025",
+        "sauna-exercise-rct-2022",
+        "sauna-benefits-risks-2001"
       ]
     },
     {

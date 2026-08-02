@@ -16,7 +16,8 @@
       "articles": [
         "/3-atemtechniken-fur-mehr-energie/",
         "/die-kunst-des-mentalen-resets/",
-        "/sport-als-stress-killer/"
+        "/sport-als-stress-killer/",
+        "/sauna-wirkung-arten-anleitung/"
       ],
       "tips": [
         "Plane heute eine 3-Minuten-Atempause mit langer Ausatmung.",
@@ -211,6 +212,12 @@
       "summary": "Eisbaden, kalte Dusche und Kneipp sicher dosieren — mit klaren Grenzen.",
       "href": "/eisbaden-wirkung-risiken-anleitung/",
       "accent": "mint"
+    },
+    {
+      "title": "Wärme als Erholungsanker",
+      "summary": "Sauna, Dampfbad und Infrarot sinnvoll dosieren — Wirkung, Regeln und Grenzen.",
+      "href": "/sauna-wirkung-arten-anleitung/",
+      "accent": "gold"
     }
   ]
 }
