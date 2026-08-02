@@ -196,5 +196,31 @@
       "sourceId": "cdc-sleep",
       "claimNote": "Allgemeine Empfehlungen zu Schlafdauer und Schlafumgebung."
     }
+  ],
+  "eisbaden-wirkung-risiken-anleitung": [
+    {
+      "sourceId": "cwi-health-meta-2025",
+      "claimNote": "Grundlage für die Einordnung von Stress-, Schlaf- und Immunwirkungen der Kaltwasser-Immersion."
+    },
+    {
+      "sourceId": "cold-shower-rct-2016",
+      "claimNote": "Zahlen zu kalten Duschen und Krankmeldungen inklusive Einschränkung zu Krankheitstagen."
+    },
+    {
+      "sourceId": "cold-shock-habituation-review-2024",
+      "claimNote": "Belegt die Abschwächung der Kälteschockreaktion durch wiederholte kurze Kältereize."
+    },
+    {
+      "sourceId": "cwi-hypertrophy-meta-2024",
+      "claimNote": "Basis für die Aussage, dass Kälte direkt nach Krafttraining den Muskelaufbau dämpft."
+    },
+    {
+      "sourceId": "winter-swimming-bat-2021",
+      "claimNote": "Einordnung von braunem Fettgewebe und Thermogenese bei regelmäßigen Winterschwimmern."
+    },
+    {
+      "sourceId": "cryotherapy-risks-review",
+      "claimNote": "Risiken und Anwendungsgrenzen von Kältekammern und Kaltwasser-Immersion."
+    }
   ]
 }

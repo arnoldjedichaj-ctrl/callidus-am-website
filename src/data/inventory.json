@@ -1136,5 +1136,20 @@
     "imageCount": 1,
     "images": [],
     "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/eisbaden-wirkung-risiken-anleitung/",
+    "slug": "eisbaden-wirkung-risiken-anleitung",
+    "title": "Eisbaden: Wirkung, Risiken und die richtige Anleitung für Einsteiger",
+    "description": "Eisbaden ehrlich erklärt: welche Arten es gibt, was im Körper passiert, was Studien zu Stress, Schlaf, Immunsystem und Muskelaufbau zeigen – plus Sicherheitsregeln und 4-Wochen-Einstieg.",
+    "h1": [],
+    "h2": [
+      "Eisbaden: Was Kälte wirklich mit Ihrem Körper macht"
+    ],
+    "imageCount": 1,
+    "images": [
+      "/assets/original/081-eisbaden-callidus-am.jpg"
+    ],
+    "status": "ok"
   }
 ]

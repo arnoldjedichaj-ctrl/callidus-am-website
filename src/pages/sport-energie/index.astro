@@ -8,7 +8,10 @@ const description =
   'Sport & Energie bei callidus A&M: Beispiel-Trainingsplan, angepasste Ernaehrung, Regeneration und Einstieg in den geschuetzten Gemini-Coach.';
 
 const heroImage = '/assets/media/coach-athlete/exercise-squat.webp';
-const sportArticles = allArticles.filter((article) => article.category === 'sport-energie').slice(0, 6);
+const sportArticles = allArticles
+  .filter((article) => article.category === 'sport-energie')
+  .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''))
+  .slice(0, 6);
 const sportProducts = recommendations.products.filter((item) => item.category === 'sport-energie').slice(0, 4);
 
 const weekPlan = [

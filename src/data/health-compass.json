@@ -88,7 +88,8 @@
       "articles": [
         "/der-innere-akku/",
         "/die-kraft-des-magnesiums/",
-        "/vitamin-d-das-sonnenhormon/"
+        "/vitamin-d-das-sonnenhormon/",
+        "/eisbaden-wirkung-risiken-anleitung/"
       ],
       "tips": [
         "Plane heute eine echte Tageslichtpause ein.",
@@ -204,6 +205,12 @@
       "summary": "Vitamin D, Magnesium, B12 und Supplement-Sicherheit sauber einordnen.",
       "href": "/wissenskarten/",
       "accent": "coral"
+    },
+    {
+      "title": "Kälte richtig nutzen",
+      "summary": "Eisbaden, kalte Dusche und Kneipp sicher dosieren — mit klaren Grenzen.",
+      "href": "/eisbaden-wirkung-risiken-anleitung/",
+      "accent": "mint"
     }
   ]
 }

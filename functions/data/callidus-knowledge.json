@@ -401,6 +401,42 @@
       "title": "Krypto-Hinweis: rechtliche Einordnung",
       "url": "/krypto-hinweis/",
       "type": "Callidus"
+    },
+    {
+      "id": "cwi-health-meta-2025",
+      "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0317615",
+      "type": "Review"
+    },
+    {
+      "id": "cold-shower-rct-2016",
+      "title": "The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0161749",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "cold-shock-habituation-review-2024",
+      "title": "Habituation of the cold shock response: A systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38211547/",
+      "type": "Review"
+    },
+    {
+      "id": "cwi-hypertrophy-meta-2024",
+      "title": "Throwing cold water on muscle growth: A systematic review with meta-analysis of postexercise cold water immersion on resistance training-induced hypertrophy",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/ejsc.12074",
+      "type": "Review"
+    },
+    {
+      "id": "winter-swimming-bat-2021",
+      "title": "Altered brown fat thermoregulation and enhanced cold-induced thermogenesis in young, healthy, winter-swimming men",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2666379121002664",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "cryotherapy-risks-review",
+      "title": "Cryotherapy chambers and cold-water immersion: therapeutic use and risks",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32833356/",
+      "type": "Review"
     }
   ],
   "entries": [
@@ -614,6 +650,59 @@
       "text": "Ashwagandha wird als pflanzlicher Stoff im Kontext Stress und Schlaf erwähnt. Callidus sollte Nutzen und Sicherheit zurückhaltend darstellen, besonders bei Schwangerschaft, Leberproblemen, Medikamenten oder Vorerkrankungen.",
       "sourceIds": [
         "nccih-ashwagandha"
+      ]
+    },
+    {
+      "title": "Eisbaden: Wirkung, Risiken und Anleitung",
+      "path": "/eisbaden-wirkung-risiken-anleitung/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": [
+        "Eisbaden",
+        "Kälte",
+        "Kaltwasser",
+        "Regeneration",
+        "Stress",
+        "Sport & Energie",
+        "Sicherheit"
+      ],
+      "keywords": [
+        "eisbaden",
+        "eisbad",
+        "eistonne",
+        "ice bath",
+        "kaltwasser",
+        "kaltes wasser",
+        "kalt duschen",
+        "kalte dusche",
+        "wechseldusche",
+        "kneipp",
+        "winterschwimmen",
+        "kryotherapie",
+        "kaeltekammer",
+        "wim hof",
+        "kaelteschock",
+        "afterdrop",
+        "braunes fettgewebe",
+        "abhaerten",
+        "muskelkater",
+        "muskelaufbau",
+        "krafttraining",
+        "regeneration nach dem sport",
+        "hypertrophie",
+        "kaltwasser immersion",
+        "hormesis",
+        "abhaertung",
+        "kalt baden"
+      ],
+      "text": "Callidus ordnet Eisbaden als starken, aber dosierungsabhaengigen Reiz ein - nicht als Wundermittel. Unterschieden werden kalte Dusche, Wechseldusche und Kneipp-Anwendungen, Eistonne (3-10 Grad), offenes Winterwasser, Kaltwasser-Immersion nach dem Sport (10-15 Grad) sowie Kaeltekammern. In den ersten 30 Sekunden loest Kaelte die unwillkuerliche Kaelteschockreaktion mit Schnappatmung, Blutdruck- und Pulsanstieg aus; danach steigen Noradrenalin und Stimmung, nach dem Ausstieg sinkt die Kerntemperatur durch den Afterdrop weiter. Belegt sind vor allem die Gewoehnung an den Kaelteschock, moderate Stressreduktion etwa 12 Stunden spaeter, subjektiv weniger Muskelkater und Hinweise auf bessere Schlafqualitaet; ein RCT zeigte 29 Prozent weniger Krankmeldungen bei kalten Duschen, aber nicht weniger Krankheitstage. Nicht belegt sind Fettabbau und ein pauschal staerkeres Immunsystem. Kaelte direkt nach dem Krafttraining daempft den Muskelaufbau - mindestens 4 bis 6 Stunden Abstand oder trainingsfreie Tage. Klare Grenzen: nie allein, nie unter Alkohol, keine Hyperventilations-Atemuebungen im oder am Wasser (Lebensgefahr), kurze Dauer von 30 Sekunden bis 2 Minuten fuer Einsteiger, aktiv aufwaermen statt heiss duschen. Tabu bei Herzerkrankungen, Rhythmusstoerungen, unbehandeltem Bluthochdruck, Epilepsie, Kaelteurtikaria; in Schwangerschaft und bei Kindern nur nach aerztlicher Ruecksprache. Empfohlener Einstieg: 4 Wochen ueber die kalte Dusche, danach 2 bis 3 kurze Einheiten pro Woche.",
+      "sourceIds": [
+        "cwi-health-meta-2025",
+        "cold-shower-rct-2016",
+        "cold-shock-habituation-review-2024",
+        "cwi-hypertrophy-meta-2024",
+        "winter-swimming-bat-2021",
+        "cryotherapy-risks-review"
       ]
     },
     {

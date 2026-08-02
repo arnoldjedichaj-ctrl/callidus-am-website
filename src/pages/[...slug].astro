@@ -665,6 +665,21 @@ const articleJsonLd = article ? {
                     </div>
                   );
                 }
+                if (block.type === 'links') {
+                  return (
+                    <aside class="notice article-inline-links">
+                      <strong>{block.label || 'Passend weiterlesen'}</strong>
+                      <ul>
+                        {block.items.map((item) => (
+                          <li>
+                            <a href={item.href}>{item.title}</a>
+                            {item.note && <span> — {item.note}</span>}
+                          </li>
+                        ))}
+                      </ul>
+                    </aside>
+                  );
+                }
                 if (block.type === 'measure') {
                   return (
                     <aside class="measure-box">
