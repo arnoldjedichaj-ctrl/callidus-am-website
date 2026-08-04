@@ -248,5 +248,39 @@
       "sourceId": "sauna-benefits-risks-2001",
       "claimNote": "Grundlage für Kontraindikationen, Alkoholrisiko und Kreislaufzwischenfälle."
     }
+  ],
+  "organoide-intelligenz-biocomputing": [
+    {
+      "sourceId": "dishbrain-neuron-2022",
+      "claimNote": "Grundlage der Darstellung des Pong-Experiments und der Zahl von rund 800.000 Nervenzellen."
+    },
+    {
+      "sourceId": "organoid-intelligence-2023",
+      "claimNote": "Einordnung des Forschungsfelds, seiner Ziele und der technischen Voraussetzungen."
+    },
+    {
+      "sourceId": "finalspark-neuroplatform-2024",
+      "claimNote": "Angaben zur Neuroplatform und zum behaupteten Energievorteil gegenüber digitalen Prozessoren."
+    },
+    {
+      "sourceId": "iea-energy-and-ai-2025",
+      "claimNote": "Zahlen zum Stromverbrauch von Rechenzentren 2024 und zur Projektion für 2030."
+    },
+    {
+      "sourceId": "fda-animal-testing-roadmap-2025",
+      "claimNote": "Basis für die Aussage zum schrittweisen Ersatz von Tierversuchen durch menschenbasierte Methoden."
+    },
+    {
+      "sourceId": "brain-organoid-limits-2024",
+      "claimNote": "Belegt die methodischen Grenzen von Hirnorganoiden wie fehlende Gefäße und Variabilität."
+    },
+    {
+      "sourceId": "organoid-ethics-framework-2024",
+      "claimNote": "Grundlage für Bewusstseinsdebatte, Spenderfragen und Governance-Bedarf."
+    },
+    {
+      "sourceId": "everlast-ai-oi-video-2026",
+      "claimNote": "Medienbeitrag, der den Anstoß für diesen Artikel gab."
+    }
   ]
 }

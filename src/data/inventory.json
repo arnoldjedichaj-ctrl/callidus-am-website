@@ -1166,5 +1166,20 @@
       "/assets/original/082-sauna-callidus-am.jpg"
     ],
     "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/organoide-intelligenz-biocomputing/",
+    "slug": "organoide-intelligenz-biocomputing",
+    "title": "Organoide Intelligenz: Wenn menschliche Hirnzellen rechnen",
+    "description": "Biocomputing verständlich erklärt: Was Hirnorganoide sind, wie Zellen im Labor Pong lernten, was das für Medikamentenentwicklung, Tierversuche und personalisierte Medizin bedeutet – und wo die ethischen Grenzen liegen.",
+    "h1": [],
+    "h2": [
+      "Organoide Intelligenz: Wenn menschliche Hirnzellen zu Computern werden"
+    ],
+    "imageCount": 1,
+    "images": [
+      "/assets/original/005-wp-content-uploads-go-x-u-5646fff2-d8b7-4963-8b00-3f5b6f93eda8-l0-t253-w2000-h1747-image-768x671.png"
+    ],
+    "status": "ok"
   }
 ]

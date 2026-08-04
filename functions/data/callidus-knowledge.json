@@ -473,6 +473,48 @@
       "title": "Benefits and risks of sauna bathing",
       "url": "https://www.amjmed.com/article/S0002-9343(00)00671-9/abstract",
       "type": "Review"
+    },
+    {
+      "id": "dishbrain-neuron-2022",
+      "title": "In vitro neurons learn and exhibit sentience when embodied in a simulated game-world",
+      "url": "https://www.cell.com/neuron/fulltext/S0896-6273(22)00806-6",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "organoid-intelligence-2023",
+      "title": "Organoid intelligence (OI): the new frontier in biocomputing and intelligence-in-a-dish",
+      "url": "https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full",
+      "type": "Review"
+    },
+    {
+      "id": "finalspark-neuroplatform-2024",
+      "title": "Open and remotely accessible Neuroplatform for research in wetware computing",
+      "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1376042/full",
+      "type": "Primärstudie"
+    },
+    {
+      "id": "iea-energy-and-ai-2025",
+      "title": "Energy and AI: Energy demand from AI",
+      "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+      "type": "Behörde"
+    },
+    {
+      "id": "fda-animal-testing-roadmap-2025",
+      "title": "FDA Announces Plan to Phase Out Animal Testing Requirement for Monoclonal Antibodies and Other Drugs",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-announces-plan-phase-out-animal-testing-requirement-monoclonal-antibodies-and-other-drugs",
+      "type": "Behörde"
+    },
+    {
+      "id": "brain-organoid-limits-2024",
+      "title": "Limitations of human brain organoids to study neurodegenerative diseases",
+      "url": "https://www.frontiersin.org/journals/cellular-neuroscience/articles/10.3389/fncel.2024.1419526/full",
+      "type": "Review"
+    },
+    {
+      "id": "organoid-ethics-framework-2024",
+      "title": "The ethical landscape of human brain organoids and a mindful innovation framework",
+      "url": "https://www.nature.com/articles/s44222-024-00211-3",
+      "type": "Review"
     }
   ],
   "entries": [
@@ -789,6 +831,55 @@
         "passive-heating-meta-2025",
         "sauna-exercise-rct-2022",
         "sauna-benefits-risks-2001"
+      ]
+    },
+    {
+      "title": "Organoide Intelligenz: Wenn menschliche Hirnzellen rechnen",
+      "path": "/organoide-intelligenz-biocomputing/",
+      "kind": "article",
+      "app": "nexus",
+      "topics": [
+        "Organoide",
+        "Biocomputing",
+        "Zukunft der Gesundheit",
+        "KI",
+        "Tierversuche",
+        "Ethik"
+      ],
+      "keywords": [
+        "organoide intelligenz",
+        "hirnorganoid",
+        "organoid",
+        "biocomputing",
+        "wetware",
+        "dishbrain",
+        "cortical labs",
+        "cl1",
+        "finalspark",
+        "neuroplatform",
+        "pong",
+        "nervenzellen",
+        "neuronen",
+        "stammzellen",
+        "ips zellen",
+        "yamanaka",
+        "tierversuche",
+        "medikamententests",
+        "alzheimer modell",
+        "autismus modell",
+        "bewusstsein",
+        "rechenzentren strom",
+        "energieverbrauch ki"
+      ],
+      "text": "Callidus ordnet organoide Intelligenz nuechtern ein: Hirnorganoide sind millimetergrosse Nervengewebe-Kuegelchen aus induzierten pluripotenten Stammzellen (Yamanaka, Nobelpreis 2012) mit hunderttausenden bis wenigen Millionen Zellen - kein Minigehirn, ohne Blutgefaesse, Sinnesorgane oder Koerper. 2022 zeigte die DishBrain-Studie von Cortical Labs im Journal Neuron, dass rund 800.000 Nervenzellen auf einem Elektrodenchip ihr Aktivitaetsmuster in einer simulierten Pong-Umgebung anpassen; Fachleute werten das als Reflexanpassung an vorhersagbare Reize, nicht als Intelligenz. Seit 2025 verkauft Cortical Labs den Biocomputer CL1 fuer rund 35.000 Dollar, die Schweizer FinalSpark vermietet Fernzugriff auf 16 Organoide. Treiber ist der Energiebedarf: Rechenzentren verbrauchten 2024 laut IEA rund 415 Terawattstunden und koennten bis 2030 auf etwa 945 Terawattstunden steigen, waehrend das menschliche Gehirn mit etwa 20 Watt auskommt. Medizinisch relevant sind Organoide vor allem als Testsystem: Krankheitsmodelle fuer Alzheimer, Parkinson, Epilepsie und Autismus aus Patientenzellen, personalisierte Wirkstofftests, Neurotoxikologie und Ersatz von Tierversuchen - die FDA hat 2025 einen Fahrplan dazu vorgelegt. Grenzen: fehlende Blutgefaesse begrenzen Groesse und Reifung, nekrotische Kerne, hohe Variabilitaet, nicht kopierbar, hoher Pflegeaufwand. Ethisch gilt Bewusstsein aktuell als unwahrscheinlich, ein anerkannter Test fehlt jedoch; Spenderaufklaerung und Governance sind offene Fragen. Fuer die persoenliche Gehirngesundheit bleiben Schlaf, Bewegung, Blutdruck, Blutzucker, Hoeren und soziale Kontakte die wirksamen Hebel.",
+      "sourceIds": [
+        "dishbrain-neuron-2022",
+        "organoid-intelligence-2023",
+        "finalspark-neuroplatform-2024",
+        "iea-energy-and-ai-2025",
+        "fda-animal-testing-roadmap-2025",
+        "brain-organoid-limits-2024",
+        "organoid-ethics-framework-2024"
       ]
     },
     {

@@ -462,5 +462,101 @@
       "Kontraindikationen"
     ],
     "summary": "Klassische Übersicht zu Nutzen und Risiken des Saunabadens inklusive Alkohol, Kontraindikationen und Kreislaufreaktionen."
+  },
+  {
+    "id": "organoid-intelligence-2023",
+    "title": "Organoid intelligence (OI): the new frontier in biocomputing and intelligence-in-a-dish",
+    "url": "https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full",
+    "type": "Review",
+    "topics": [
+      "Organoide",
+      "Biocomputing",
+      "Zukunft der Gesundheit"
+    ],
+    "summary": "Fachlicher Fahrplan zum Forschungsfeld organoide Intelligenz inklusive Technik, Anwendungen und eingebetteter Ethik."
+  },
+  {
+    "id": "dishbrain-neuron-2022",
+    "title": "In vitro neurons learn and exhibit sentience when embodied in a simulated game-world",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(22)00806-6",
+    "type": "Primärstudie",
+    "topics": [
+      "Organoide",
+      "Nervenzellen",
+      "Lernen"
+    ],
+    "summary": "Originalarbeit zu DishBrain: Nervenzellkulturen verändern ihr Verhalten in einer simulierten Pong-Umgebung."
+  },
+  {
+    "id": "finalspark-neuroplatform-2024",
+    "title": "Open and remotely accessible Neuroplatform for research in wetware computing",
+    "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1376042/full",
+    "type": "Primärstudie",
+    "topics": [
+      "Organoide",
+      "Biocomputing",
+      "Energie"
+    ],
+    "summary": "Beschreibung der Neuroplatform mit 16 Hirnorganoiden inklusive Angaben zum Energiebedarf gegenüber digitalen Prozessoren."
+  },
+  {
+    "id": "iea-energy-and-ai-2025",
+    "title": "Energy and AI: Energy demand from AI",
+    "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+    "type": "Behörde",
+    "topics": [
+      "Energie",
+      "KI",
+      "Rechenzentren"
+    ],
+    "summary": "IEA-Analyse zum Stromverbrauch von Rechenzentren mit Basiswert 2024 und Projektion bis 2030."
+  },
+  {
+    "id": "fda-animal-testing-roadmap-2025",
+    "title": "FDA Announces Plan to Phase Out Animal Testing Requirement for Monoclonal Antibodies and Other Drugs",
+    "url": "https://www.fda.gov/news-events/press-announcements/fda-announces-plan-phase-out-animal-testing-requirement-monoclonal-antibodies-and-other-drugs",
+    "type": "Behörde",
+    "topics": [
+      "Tierversuche",
+      "Arzneimittel",
+      "Organoide"
+    ],
+    "summary": "Fahrplan der US-Arzneimittelbehörde zum schrittweisen Ersatz von Tierversuchen durch menschenbasierte Testverfahren."
+  },
+  {
+    "id": "organoid-ethics-framework-2024",
+    "title": "The ethical landscape of human brain organoids and a mindful innovation framework",
+    "url": "https://www.nature.com/articles/s44222-024-00211-3",
+    "type": "Review",
+    "topics": [
+      "Organoide",
+      "Ethik",
+      "Governance"
+    ],
+    "summary": "Übersicht zu ethischen Fragen von Hirnorganoiden inklusive Bewusstseinsdebatte, Spenderrechten und Regulierungsvorschlägen."
+  },
+  {
+    "id": "brain-organoid-limits-2024",
+    "title": "Limitations of human brain organoids to study neurodegenerative diseases",
+    "url": "https://www.frontiersin.org/journals/cellular-neuroscience/articles/10.3389/fncel.2024.1419526/full",
+    "type": "Review",
+    "topics": [
+      "Organoide",
+      "Methodik",
+      "Grenzen"
+    ],
+    "summary": "Fachliche Einordnung der Grenzen von Hirnorganoiden: fehlende Gefäße, nekrotische Kerne, Variabilität und Reifegrad."
+  },
+  {
+    "id": "everlast-ai-oi-video-2026",
+    "title": "Die verstörendste Idee der KI (Organoide Intelligenz) – YouTube-Kanal Everlast AI",
+    "url": "https://www.youtube.com/watch?v=knZUQ8vaO30",
+    "type": "Video",
+    "topics": [
+      "Organoide",
+      "Biocomputing",
+      "Medienbeitrag"
+    ],
+    "summary": "Deutschsprachiges Erklärvideo zu organoider Intelligenz, das den Anstoß für diesen Beitrag gab; die Aussagen wurden anhand der Primärliteratur geprüft."
   }
 ]
