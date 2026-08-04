@@ -104,7 +104,7 @@ img { display: block; max-width: 100%; }
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: clamp(1rem, 3vw, 2rem);
-  padding: .95rem clamp(1rem, 4vw, 3rem);
+  padding: .7rem clamp(1rem, 4vw, 3rem);
   border-bottom: 1px solid var(--chrome-line);
   background:
     linear-gradient(135deg, rgba(245,247,233,.08), transparent 42%),
@@ -128,8 +128,8 @@ img { display: block; max-width: 100%; }
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 2.6rem;
+  height: 2.6rem;
   overflow: hidden;
   border: 1px solid rgba(245, 247, 233, 0.42);
   background: #f5f7e9;
@@ -254,17 +254,47 @@ html[data-theme="dark"] .theme-toggle .moon-icon { opacity: 1; transform: transl
   color: var(--button-text);
   background: var(--button-bg-hover);
 }
-.site-header .language-switch a, .site-header .language-switch, .site-header .theme-toggle {
+.site-header .theme-toggle {
   border-color: var(--chrome-line);
   color: var(--chrome-muted);
 }
-.site-header .language-switch a:hover,
 .site-header .theme-toggle:hover {
   border-color: rgba(245,247,233,.38);
   color: var(--chrome-text);
   background: rgba(245,247,233,.12);
 }
+/* Sprachumschaltung: schlichter Text statt Pille */
+.site-header .language-switch { border: 0; background: none; padding: 0; }
 .site-header .language-switch span { color: var(--chrome-text); }
+.site-header .language-switch a {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  padding: .2rem 0;
+  background: none;
+  color: var(--chrome-muted);
+}
+.site-header .language-switch a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 220ms cubic-bezier(.16, 1, .3, 1), opacity 150ms ease;
+}
+.site-header .language-switch a:hover {
+  color: var(--chrome-text);
+  background: none;
+  transform: none;
+  box-shadow: none;
+}
+.site-header .language-switch a:hover::after { transform: scaleX(1); opacity: .82; }
 
 /* ── NAV GROUPS & DROPDOWNS ──────────────────────────────────── */
 .nav-group { position: relative; }
@@ -445,9 +475,9 @@ html[data-theme="dark"] .theme-toggle .moon-icon { opacity: 1; transform: transl
 }
 
 /* ─────────────────────────────────────────── */
-.language-switch { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem; background: rgba(var(--mint-rgb),.06); }
-.language-switch span { padding: 0.45rem 0.6rem; color: var(--mint); font-size: 0.75rem; font-weight: 900; }
-.language-switch a { padding: 0.45rem 0.65rem; font-size: 0.82rem; }
+.language-switch { display: inline-flex; align-items: center; gap: 0.55rem; }
+.language-switch span { color: var(--chrome-text); font-size: 0.78rem; font-weight: 800; letter-spacing: .04em; }
+.language-switch a { font-size: 0.84rem; }
 
 .section { position: relative; padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem); }
 .section.tight { padding-top: clamp(2rem, 5vw, 4rem); }
