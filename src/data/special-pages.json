@@ -4,7 +4,7 @@
     "path": "/bitte-bestaetigen/",
     "title": "bitte-bestaetigen",
     "hero": "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!",
-    "lead": "Vielen Dank für Ihre Anmeldung. Ihr umfassendes Gratis-Paket (Kompendium, Journal & 3 Video-Module) ist fast freigeschaltet. Bitte prüfen Sie jetzt Ihr Postfach. Aus Datenschutzgründen (DSGVO) benötigen wir Ihre einmalige Bestätigung.",
+    "lead": "Vielen Dank für deine Anmeldung. Dein umfassendes Gratis-Paket (Kompendium, Journal & 3 Video-Module) ist fast freigeschaltet. Bitte prüf jetzt dein Postfach. Aus Datenschutzgründen (DSGVO) brauchen wir deine einmalige Bestätigung.",
     "kind": "funnel",
     "originalUrl": "https://www.callidus-am.de/bitte-bestaetigen/",
     "blocks": [
@@ -15,11 +15,11 @@
       },
       {
         "type": "paragraph",
-        "text": "Öffnen Sie jetzt Ihr E-Mail-Postfach (auch Spam/Werbung prüfen) und klicken Sie auf den Bestätigungslink in der E-Mail mit dem Betreff: \"Ihre Freebies warten – Bestätigung erforderlich\""
+        "text": "Öffne jetzt dein E-Mail-Postfach (schau auch in Spam/Werbung) und klick auf den Bestätigungslink in der E-Mail mit dem Betreff: \"Deine Freebies warten – Bestätigung erforderlich\""
       },
       {
         "type": "paragraph",
-        "text": "Sobald Sie bestätigt haben, leiten wir Sie sofort zu Ihrem Download-Hub weiter, wo alle Videos und PDFs für Sie bereitstehen."
+        "text": "Sobald du bestätigt hast, leiten wir dich sofort zu deinem Download-Hub weiter, wo alle Videos und PDFs für dich bereitstehen."
       }
     ],
     "links": []
@@ -28,19 +28,19 @@
     "slug": "download",
     "path": "/download/",
     "title": "Download Vitamin Kompensium",
-    "hero": "Herzlichen Dank für Ihre Anmeldung!",
-    "lead": "Hier ist Ihr versprochenes Vitamin-Kompendium. Klicken Sie einfach auf den Button, um den Download zu starten.",
+    "hero": "Herzlichen Dank für deine Anmeldung!",
+    "lead": "Hier ist dein versprochenes Vitamin-Kompendium. Klick einfach auf den Button, um den Download zu starten.",
     "kind": "funnel",
     "originalUrl": "https://www.callidus-am.de/download/",
     "blocks": [
       {
         "type": "heading",
         "level": 2,
-        "text": "Herzlichen Dank für Ihre Anmeldung!"
+        "text": "Herzlichen Dank für deine Anmeldung!"
       },
       {
         "type": "paragraph",
-        "text": "Hier ist Ihr versprochenes Vitamin-Kompendium. Klicken Sie einfach auf den Button, um den Download zu starten."
+        "text": "Hier ist dein versprochenes Vitamin-Kompendium. Klick einfach auf den Button, um den Download zu starten."
       }
     ],
     "links": [
@@ -65,7 +65,7 @@
     "path": "/kurs-mitgliederbereich/",
     "title": "kurs-mitgliederbereich",
     "hero": "WILLKOMMEN IM 7-TAGE STRESS-RESET: IHR VOLLER ZUGANG IST FREIGESCHALTET.",
-    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24.",
     "kind": "course",
     "originalUrl": "https://www.callidus-am.de/kurs-mitgliederbereich/",
     "blocks": [
@@ -76,7 +76,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Gratulation zur besten Investition in Ihre mentale Klarheit! Hier finden Sie alle 7 Module, die zugehörigen PDFs und Ihren Zukunftsanker-Bonus. Wir empfehlen, die Module Tag für Tag durchzugehen."
+        "text": "Gratulation zur besten Investition in deine mentale Klarheit! Hier findest du alle 7 Module, die zugehörigen PDFs und deinen Zukunftsanker-Bonus. Wir empfehlen, die Module Tag für Tag durchzugehen."
       },
       {
         "type": "paragraph",
@@ -108,7 +108,7 @@
       },
       {
         "type": "paragraph",
-        "text": "BONUS: Der Zukunftsanker: Verankern Sie die Erfolge emotional, damit die Klarheit und Ruhe Sie dauerhaft begleiten."
+        "text": "BONUS: Der Zukunftsanker: Veranker die Erfolge emotional, damit Klarheit und Ruhe dich dauerhaft begleiten."
       },
       {
         "type": "paragraph",
@@ -117,7 +117,7 @@
       {
         "type": "heading",
         "level": 2,
-        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24."
       }
     ],
     "links": [
@@ -272,7 +272,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Hier finden Sie Erklärungen zu den lateinischen Ausdrücken, die wir auf unserer Reise zu mehr Wohlbefinden verwenden – als Ihr Consilium Certum (sicherer Rat) auf dem Via Ad Salutem (Weg zur Gesundheit)."
+        "text": "Hier findest du Erklärungen zu den lateinischen Ausdrücken, die wir auf unserer Reise zu mehr Wohlbefinden verwenden – als dein Consilium Certum (sicherer Rat) auf dem Via Ad Salutem (Weg zur Gesundheit)."
       },
       {
         "type": "paragraph",
@@ -288,7 +288,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Deutsch: Klug, gewandt, geschickt, erfahren Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir Ihnen bieten."
+        "text": "Deutsch: Klug, gewandt, geschickt, erfahren Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir dir bieten."
       },
       {
         "type": "paragraph",
@@ -304,7 +304,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Deutsch: Sicherer Rat, bewährte Empfehlung Wir bei callidus A&M sind bestrebt, Ihnen stets fundiertes Wissen und verlässliche Ratschläge zu bieten, denen Sie vertrauen können – geprüft und erprobt auf dem Weg zu Ihrem Wohlbefinden."
+        "text": "Deutsch: Sicherer Rat, bewährte Empfehlung Wir bei callidus A&M wollen dir stets fundiertes Wissen und verlässliche Ratschläge bieten, denen du vertrauen kannst – geprüft und erprobt auf dem Weg zu deinem Wohlbefinden."
       },
       {
         "type": "paragraph",
@@ -360,7 +360,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Deutsch: Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen Ihres ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung Ihrer Zukunft. Es ist der Mittelpunkt, der all Ihre Bemühungen vereint und Ihnen hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll Ihnen als digitaler Nexus dienen, um alle Aspekte Ihrer persönlichen Entwicklung zu vernetzen."
+        "text": "Deutsch: Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen deines ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung deiner Zukunft. Es ist der Mittelpunkt, der all deine Bemühungen vereint und dir hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll dir als digitaler Nexus dienen, um alle Aspekte deiner persönlichen Entwicklung zu vernetzen."
       },
       {
         "type": "paragraph",
@@ -417,7 +417,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Deutsch: Weisheit, Wissen, Einsicht Ein fundamentaler Wert bei callidus A&M. Wir möchten Ihnen nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die Ihr Leben bereichern."
+        "text": "Deutsch: Weisheit, Wissen, Einsicht Ein fundamentaler Wert bei callidus A&M. Wir möchten dir nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die dein Leben bereichern."
       },
       {
         "type": "paragraph",
@@ -445,7 +445,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Deutsch: Lebenskraft, Vitalität des Lebens Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die Sie jeden Tag spüren."
+        "text": "Deutsch: Lebenskraft, Vitalität des Lebens Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die du jeden Tag spürst."
       },
       {
         "type": "paragraph",
@@ -475,7 +475,7 @@
       {
         "term": "Callidus",
         "translation": "Klug, gewandt, geschickt, erfahren",
-        "description": "Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir Ihnen bieten."
+        "description": "Dies ist der Kern unseres Markennamens und unserer Philosophie. Es steht für die kluge, bewusste und geschickte Herangehensweise an ein gesundes, erfülltes Leben und die Expertise, die wir dir bieten."
       },
       {
         "term": "Cibus Sanus",
@@ -490,7 +490,7 @@
       {
         "term": "Consilium Certum",
         "translation": "Sicherer Rat, bewährte Empfehlung",
-        "description": "Wir bei callidus A&M sind bestrebt, Ihnen stets fundiertes Wissen und verlässliche Ratschläge zu bieten, denen Sie vertrauen können – geprüft und erprobt auf dem Weg zu Ihrem Wohlbefinden."
+        "description": "Wir bei callidus A&M wollen dir stets fundiertes Wissen und verlässliche Ratschläge bieten, denen du vertrauen kannst – geprüft und erprobt auf dem Weg zu deinem Wohlbefinden."
       },
       {
         "term": "Corpus Sanum",
@@ -559,7 +559,7 @@
       },
       {
         "term": "Nexus",
-        "translation": "Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen Ihres ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung Ihrer Zukunft. Es ist der Mittelpunkt, der all Ihre Bemühungen vereint und Ihnen hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll Ihnen als digitaler Nexus dienen, um alle Aspekte Ihrer persönlichen Entwicklung zu vernetzen.",
+        "translation": "Verbindung, Verknüpfung, Zusammenhalt, Mittelpunkt Im Kontext von callidus A&M und unserer App steht Nexus für die zentrale Verbindung zwischen all den Säulen deines ganzheitlichen Wohlbefindens: Körper, Geist, Seele und die bewusste Gestaltung deiner Zukunft. Es ist der Mittelpunkt, der all deine Bemühungen vereint und dir hilft, eine kohärente und starke Verbindung zu einem gesünderen und erfüllteren Leben aufzubauen. Unsere App soll dir als digitaler Nexus dienen, um alle Aspekte deiner persönlichen Entwicklung zu vernetzen.",
         "description": "------&gt; In Entwicklung &lt;------"
       },
       {
@@ -600,7 +600,7 @@
       {
         "term": "Sapientia",
         "translation": "Weisheit, Wissen, Einsicht",
-        "description": "Ein fundamentaler Wert bei callidus A&M. Wir möchten Ihnen nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die Ihr Leben bereichern."
+        "description": "Ein fundamentaler Wert bei callidus A&M. Wir möchten dir nicht nur Informationen, sondern tiefe Einblicke und praktische Weisheit vermitteln, die dein Leben bereichern."
       },
       {
         "term": "Sol Invictus",
@@ -630,7 +630,7 @@
       {
         "term": "Vigor Vitae",
         "translation": "Lebenskraft, Vitalität des Lebens",
-        "description": "Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die Sie jeden Tag spüren."
+        "description": "Dieser Begriff fasst die Essenz dessen zusammen, was wir bei callidus A&M fördern möchten: Eine Fülle an Energie, Elan und Lebensfreude, die du jeden Tag spürst."
       },
       {
         "term": "Visus Acutus",
@@ -644,7 +644,7 @@
     "path": "/modul-4/",
     "title": "Modul 4",
     "hero": "🗣️ Modul 4 – Fokus auf Sprache & Selbstbild",
-    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24.",
     "kind": "course",
     "originalUrl": "https://www.callidus-am.de/modul-4/",
     "blocks": [
@@ -664,7 +664,7 @@
       {
         "type": "heading",
         "level": 2,
-        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24."
       }
     ],
     "links": [
@@ -690,7 +690,7 @@
     "path": "/modul-5/",
     "title": "Modul 5",
     "hero": "🍃 Modul 5 – Loslassen",
-    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24.",
+    "lead": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24.",
     "kind": "course",
     "originalUrl": "https://www.callidus-am.de/modul-5/",
     "blocks": [
@@ -710,7 +710,7 @@
       {
         "type": "heading",
         "level": 2,
-        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wenden Sie sich bitte an Digistore24."
+        "text": "Wichtiger Hinweis: Die Abrechnung dieses Kaufes wurde durch Digistore24 GmbH abgewickelt. Bei Fragen zur Zahlung wende dich bitte an Digistore24."
       }
     ],
     "links": [
@@ -736,7 +736,7 @@
     "path": "/reset-hub/",
     "title": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
     "hero": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
-    "lead": "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
+    "lead": "Du hast den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
     "kind": "course",
     "originalUrl": "https://www.callidus-am.de/reset-hub/",
     "blocks": [
@@ -748,7 +748,7 @@
       {
         "type": "heading",
         "level": 2,
-        "text": "Sie haben den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle Ihre versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis."
+        "text": "Du hast den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis."
       },
       {
         "type": "paragraph",
@@ -756,7 +756,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Die Module 1-3 haben Ihnen die Basis für Achtsamkeit und Fokus gegeben. Aber wahre, dauerhafte Entlastung liegt in der Integration der Module 4 (Sprache & Selbstbild) bis 7 (Balance) . Dort warten die tiefsten Techniken auf Sie."
+        "text": "Die Module 1-3 haben dir die Basis für Achtsamkeit und Fokus gegeben. Wahre, dauerhafte Entlastung liegt aber in der Integration der Module 4 (Sprache & Selbstbild) bis 7 (Balance). Dort warten die tiefsten Techniken auf dich."
       },
       {
         "type": "paragraph",
@@ -792,7 +792,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Laden Sie den wissenschaftlichen Leitfaden \"Wahre Entlastung\" herunter"
+        "text": "Lade den wissenschaftlichen Leitfaden \"Wahre Entlastung\" herunter"
       },
       {
         "type": "paragraph",
@@ -801,11 +801,11 @@
       {
         "type": "heading",
         "level": 2,
-        "text": "Ihr Sofortstart: 3 Video-Module aus dem Premium-Kurs"
+        "text": "Dein Sofortstart: 3 Video-Module aus dem Premium-Kurs"
       },
       {
         "type": "paragraph",
-        "text": "Erleben Sie die kraftvollen Übungen unter professioneller Anleitung."
+        "text": "Erlebe die kraftvollen Übungen unter professioneller Anleitung."
       },
       {
         "type": "heading",
@@ -844,7 +844,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -852,19 +852,19 @@
       },
       {
         "type": "paragraph",
-        "text": "Ihr persönliches Einführungsangebot: Nur 69,- EUR"
+        "text": "Dein persönliches Einführungsangebot: Nur 69,- EUR"
       },
       {
         "type": "paragraph",
-        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlassen Sie unsere Seite und werden zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
+        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlässt du unsere Seite und wirst zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
       },
       {
         "type": "paragraph",
-        "text": "Noch nicht sicher? Starten Sie mit einem Fokus-Modul"
+        "text": "Noch nicht sicher? Starte mit einem Fokus-Modul"
       },
       {
         "type": "paragraph",
-        "text": "Wir verstehen, dass Sie vielleicht nur an einem spezifischen Bereich arbeiten möchten. Nutzen Sie unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor Sie das komplette System freischalten."
+        "text": "Vielleicht willst du erst einmal nur an einem bestimmten Bereich arbeiten. Nutz unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor du das komplette System freischaltest."
       },
       {
         "type": "paragraph",
@@ -872,7 +872,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -884,7 +884,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -982,7 +982,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Zum Einstieg erhalten Sie ein kostenloses Starter-Paket, mit dem Sie sofort beginnen können:"
+        "text": "Zum Einstieg bekommst du ein kostenloses Starter-Paket, mit dem du sofort loslegen kannst:"
       },
       {
         "type": "paragraph",
@@ -990,7 +990,7 @@
       },
       {
         "type": "paragraph",
-        "text": "2. Das Journal (Modul 1) als Ihr tägliches Werkzeug für Reflexion und Umsetzung."
+        "text": "2. Das Journal (Modul 1) als dein tägliches Werkzeug für Reflexion und Umsetzung."
       },
       {
         "type": "paragraph",
@@ -1129,7 +1129,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -1137,19 +1137,19 @@
       },
       {
         "type": "paragraph",
-        "text": "Ihr persönliches Einführungsangebot: Nur 69,- EUR"
+        "text": "Dein persönliches Einführungsangebot: Nur 69,- EUR"
       },
       {
         "type": "paragraph",
-        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlassen Sie unsere Seite und werden zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
+        "text": "Wichtiger Hinweis zum Kauf: Die Abrechnung dieses Produktes erfolgt vollständig über den deutschen E-Commerce-Anbieter Digistore24 GmbH . Mit Klick auf den Button verlässt du unsere Seite und wirst zur sicheren Bestellabwicklung von Digistore24 weitergeleitet."
       },
       {
         "type": "paragraph",
-        "text": "Noch nicht sicher? Starten Sie mit einem Fokus-Modul"
+        "text": "Noch nicht sicher? Starte mit einem Fokus-Modul"
       },
       {
         "type": "paragraph",
-        "text": "Wir verstehen, dass Sie vielleicht nur an einem spezifischen Bereich arbeiten möchten. Nutzen Sie unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor Sie das komplette System freischalten."
+        "text": "Vielleicht willst du erst einmal nur an einem bestimmten Bereich arbeiten. Nutz unsere Experten-Module 4 und 5 als kraftvollen Einstieg, bevor du das komplette System freischaltest."
       },
       {
         "type": "paragraph",
@@ -1157,7 +1157,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL4 bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -1165,7 +1165,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Ihr persönliches Einführungsangebot: Nur 19,- EUR"
+        "text": "Dein persönliches Einführungsangebot: Nur 19,- EUR"
       },
       {
         "type": "paragraph",
@@ -1173,7 +1173,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in Ihrem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
+        "text": "Der reduzierte Preis ist durch den exklusiven Gutscheincode EINFUEHRUNGSRABATT_MODUL5 bereits in deinem Warenkorb hinterlegt. Es ist keine manuelle Eingabe erforderlich."
       },
       {
         "type": "paragraph",
@@ -1181,7 +1181,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Ihr persönliches Einführungsangebot: Nur 19,- EUR"
+        "text": "Dein persönliches Einführungsangebot: Nur 19,- EUR"
       },
       {
         "type": "paragraph",

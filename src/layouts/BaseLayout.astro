@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import { ui, languages } from '../data/i18n.js';
 import { socialLinks } from '../data/social-links.js';
+import { organizationDescription, organizationSlogan, founders } from '../data/positioning.js';
 import '../styles/global.css';
 
 const {
@@ -13,7 +14,11 @@ const {
   pageType = 'website',
   publishedTime,
   modifiedTime,
+  // Zusätzliches strukturiertes Markup, z. B. FAQPage. Einzelnes Objekt oder Array.
+  jsonLd,
 } = Astro.props;
+
+const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 const t = ui[lang] || ui.de;
 const labels = lang === 'en'
@@ -46,9 +51,9 @@ const labels = lang === 'en'
       socialOpen: (label) => `${label} öffnen`,
       cookieLabel: 'Cookie-Hinweis',
       cookieTitle: 'Cookies & externe Inhalte',
-      cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn Sie eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzen, werden Daten an Drittanbieter übertragen.',
+      cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn du eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzt, werden Daten an Drittanbieter übertragen.',
       cookieTextMore: 'Mehr Infos in unserer',
-      cookieAnalytics: 'Mit "Akzeptieren" stimmen Sie zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics zu.',
+      cookieAnalytics: 'Mit "Akzeptieren" stimmst du zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics zu.',
       cookiePrivacy: 'Datenschutzerklärung',
       cookieDecline: 'Nur Notwendige',
       cookieAccept: 'Akzeptieren',
@@ -79,6 +84,16 @@ const organizationJsonLd = {
   url: siteOrigin,
   logo: new URL('/favicon.png', siteOrigin).href,
   email: 'info@callidus-am.de',
+  description: organizationDescription,
+  slogan: organizationSlogan,
+  founder: founders.map((name) => ({ '@type': 'Person', name })),
+  knowsAbout: [
+    'Ganzheitliche Gesundheit',
+    'Ernährung und Mikronährstoffe',
+    'Stressbewältigung und Schlaf',
+    'Bewegung und Regeneration',
+    'Digitale Gesundheitsbegleitung',
+  ],
   sameAs: [
     'https://www.instagram.com/callidusam/',
     'https://www.youtube.com/@callidus-am',
@@ -127,6 +142,7 @@ const navGroups = [
       { href: t.paths.wallet ?? '/wallet/', label: t.nav.wallet ?? 'Wallet' },
       { href: t.paths.valus ?? '/valus/', label: t.nav.valus ?? 'Valus' },
       { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
+      { href: t.paths.faq ?? '/faq/', label: t.nav.faq ?? 'FAQ' },
     ],
   },
 ];
@@ -174,6 +190,9 @@ const socialIcons = {
     <meta name="twitter:image" content={absoluteSocialImage} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)}></script>
+    {extraJsonLd.map((entry) => (
+      <script type="application/ld+json" set:html={JSON.stringify(entry)}></script>
+    ))}
     <!-- Trustpilot Widget Loader -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <title>{title}</title>
@@ -273,6 +292,8 @@ const socialIcons = {
         <a href={t.paths.legal}>{t.legal.imprint}</a>
         <a href={t.paths.privacy}>{t.legal.privacy}</a>
         <a href={t.paths.methodology ?? '/quellen-methodik/'}>{t.nav.methodology ?? 'Quellen'}</a>
+        <a href={t.paths.faq ?? '/faq/'}>{t.nav.faq ?? 'FAQ'}</a>
+        <a href={t.paths.about}>{t.nav.about}</a>
         <a href={t.paths.terms}>{t.legal.terms}</a>
         <a href="/agb/">{lang === 'en' ? 'Terms of sale' : 'AGB'}</a>
         <a href="/widerruf/">{lang === 'en' ? 'Right of withdrawal' : 'Widerruf'}</a>

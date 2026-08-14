@@ -10,6 +10,17 @@ import videos from '../data/videos.json';
 import structure from '../data/site-structure.json';
 import { categoryForLang } from '../data/i18n.js';
 import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
+import { audience, mission, vision, brandPromise } from '../data/positioning.js';
+import Faq from '../components/Faq.astro';
+import { faqGroupsById, faqJsonLd } from '../data/faq.js';
+
+// Welche FAQ-Gruppen unter welcher Seite erscheinen.
+// /unsere-empfehlungen/ und /gesundheits-kompass/ haben eigene Seitendateien
+// und binden den Faq-Block dort selbst ein.
+const faqBySlug = {
+  'nexus-app': ['nexus'],
+  'uber-uns': ['allgemein'],
+};
 
 // Der frühere Import von articles.json ist jetzt durch allArticles ersetzt,
 // damit auch Momus-Artikel als statische Seiten gebaut werden.
@@ -23,35 +34,35 @@ const customSpecialPages = {
     kind: 'product',
     title: 'NEXUS App | KI-Ernährungstracker & Fitness-Coach',
     hero: 'NEXUS - Ihre persönliche Gesundheits-KI',
-    lead: 'Schluss mit manuellem Tippen. NEXUS kombiniert moderne künstliche Intelligenz mit Ihren Vitaldaten, damit Sie Ernährung, Training, Regeneration und Wohlbefinden wirklich verstehen.',
+    lead: 'Schluss mit manuellem Tippen. NEXUS kombiniert moderne künstliche Intelligenz mit deinen Vitaldaten, damit du Ernährung, Training, Regeneration und Wohlbefinden wirklich verstehst.',
     blocks: [
       { type: 'heading', level: 2, text: 'Lernen Sie NEXUS kennen - Ihre persönliche Gesundheits-KI' },
-      { type: 'paragraph', text: 'Die meisten Fitness-Apps sind lediglich stumme Datenspeicher. Sie zählen Schritte oder Kalorien, erklären Ihnen aber nicht, was das bedeutet. Callidus ändert das.' },
-      { type: 'paragraph', text: 'Im Zentrum unserer App steht NEXUS - eine fortschrittliche KI, die wie ein Expertenteam arbeitet und Ihnen hilft, sich jeden Tag gesünder, fitter und glücklicher zu fühlen.' },
+      { type: 'paragraph', text: 'Die meisten Fitness-Apps sind lediglich stumme Datenspeicher. Sie zählen Schritte oder Kalorien, erklären dir aber nicht, was das bedeutet. Callidus ändert das.' },
+      { type: 'paragraph', text: 'Im Zentrum unserer App steht NEXUS - eine fortschrittliche KI, die wie ein Expertenteam arbeitet und dir hilft, dich jeden Tag gesünder, fitter und glücklicher zu fühlen.' },
       { type: 'heading', level: 2, text: 'Das Herzstück: Ihr Expertenrat' },
-      { type: 'paragraph', text: 'Basierend auf Ihren Daten analysiert Nexus Ihre Situation täglich aus vier Perspektiven: Psychologie, Sportwissenschaft, Ernährung und Gesundheitsanalyse.' },
-      { type: 'listItem', text: 'Der Psychologe überwacht Ihr mentales Gleichgewicht und Ihren Stresspegel.' },
-      { type: 'listItem', text: 'Der Sportwissenschaftler optimiert Ihr Training und Ihre Regeneration.' },
-      { type: 'listItem', text: 'Der Ernährungsexperte prüft auf Nährstoffmängel und Ihre Stoffwechselgesundheit.' },
-      { type: 'listItem', text: 'Der Gesundheitsanalyst erkennt Trends und warnt vor Burnout oder Übertraining.' },
+      { type: 'paragraph', text: 'Auf Basis deiner Daten analysiert Nexus deine Situation täglich aus vier Perspektiven: Psychologie, Sportwissenschaft, Ernährung und Gesundheitsanalyse.' },
+      { type: 'listItem', text: 'Der Psychologe behält dein mentales Gleichgewicht und deinen Stresspegel im Blick.' },
+      { type: 'listItem', text: 'Der Sportwissenschaftler optimiert dein Training und deine Regeneration.' },
+      { type: 'listItem', text: 'Der Ernährungsexperte prüft auf Nährstoffmängel und deine Stoffwechselgesundheit.' },
+      { type: 'listItem', text: 'Der Gesundheitsanalyst erkennt Trends und warnt dich vor Burnout oder Übertraining.' },
       { type: 'heading', level: 2, text: 'Warum Callidus anders ist' },
       { type: 'heading', level: 3, text: 'Intelligente Fotoanalyse' },
-      { type: 'paragraph', text: 'Schluss mit dem lästigen Tippen: Fotografieren Sie einfach Ihr Essen. Die KI erkennt das Gericht, schätzt Kalorien und die wichtigsten Nährstoffe und gibt Ihnen sofort Feedback.' },
+      { type: 'paragraph', text: 'Schluss mit dem lästigen Tippen: Fotografiere einfach dein Essen. Die KI erkennt das Gericht, schätzt Kalorien und die wichtigsten Nährstoffe und gibt dir sofort Feedback.' },
       { type: 'heading', level: 3, text: 'KI-Koch und Rezeptgenerator' },
-      { type: 'paragraph', text: 'Sagen Sie Nexus, was in Ihrem Kühlschrank ist. Der KI-Koch erstellt in Sekunden ein personalisiertes Rezept - inklusive Nährwertangaben, Zubereitungsschritten und Express-Option.' },
+      { type: 'paragraph', text: 'Sag Nexus, was in deinem Kühlschrank ist. Der KI-Koch erstellt in Sekunden ein personalisiertes Rezept - inklusive Nährwertangaben, Zubereitungsschritten und Express-Option.' },
       { type: 'heading', level: 3, text: 'Dynamischer Wochenplan' },
       { type: 'paragraph', text: 'Nexus erstellt jede Woche einen neuen Plan: Erholungsmodus bei Stress, Leistungsmodus für volle Energie oder Stoffwechselbalance für Gewichtsverlust.' },
       { type: 'heading', level: 3, text: 'Professionelle PDF-Berichte' },
-      { type: 'paragraph', text: 'Erstellen Sie mit nur einem Klick Berichte zu Gesundheitstrends und Nährstoffaufnahme - hilfreich für Arzt, Trainer oder die eigene Übersicht.' },
+      { type: 'paragraph', text: 'Erstelle mit nur einem Klick Berichte zu Gesundheitstrends und Nährstoffaufnahme - hilfreich für Arzt, Trainer oder die eigene Übersicht.' },
       { type: 'heading', level: 2, text: 'Weitere Funktionen' },
-      { type: 'paragraph', text: 'Gamifizierung, Motivation, Chat mit Nexus und eine Wissensbibliothek begleiten Sie im Alltag. Ihre Gesundheitsdaten dienen nur einem Zweck: Ihnen zu helfen.' },
-      { type: 'paragraph', text: 'Hören Sie auf, Daten nur zu sammeln. Beginnen Sie, sie zu verstehen. Holen Sie sich Nexus an Ihre Seite.' },
+      { type: 'paragraph', text: 'Gamifizierung, Motivation, Chat mit Nexus und eine Wissensbibliothek begleiten dich im Alltag. Deine Gesundheitsdaten dienen nur einem Zweck: dir zu helfen.' },
+      { type: 'paragraph', text: 'Hör auf, Daten nur zu sammeln. Fang an, sie zu verstehen. Hol dir Nexus an deine Seite.' },
     ],
   },
   'uber-uns': {
     slug: 'uber-uns',
     kind: 'about',
-    title: 'Über uns: Unsere Philosophie & Expertise | callidus A&M',
+    title: 'Über uns: Mission, Vision und wie wir arbeiten | callidus A&M',
     hero: 'Unsere Geschichte: Gesundheit als Herzensangelegenheit',
     lead: 'Herzlich willkommen bei callidus A&M. Wir sind Arnold und Margarita, die Gesichter und Herzen hinter diesem Projekt.',
     blocks: [
@@ -60,18 +71,41 @@ const customSpecialPages = {
       { type: 'paragraph', text: 'Unsere Reise begann nicht mit einem Geschäftsplan, sondern mit einer tiefen persönlichen Überzeugung: dass wahres Wohlbefinden in der Harmonie von Körper, Geist und Seele liegt.' },
       { type: 'paragraph', text: 'Seit über 5 Jahren beschäftigt sich Margarita intensiv mit Naturheilkunde, ganzheitlicher Ernährung und den kraftvollen Werkzeugen, die uns die Natur zur Verfügung stellt.' },
       { type: 'paragraph', text: 'Was als private Leidenschaft begann, um die Gesundheit unserer eigenen Familie zu stärken, wurde schnell zur Berufung. Immer wieder wurden wir im Freundes- und Bekanntenkreis um Rat gefragt und sahen, wie groß der Bedarf an verständlichen, ehrlichen und fundierten Informationen ist.' },
-      { type: 'paragraph', text: 'Mit callidus A&M möchten wir dieses Wissen mit Ihnen teilen. Wir sind keine große Firma, sondern eine Familie, die fest daran glaubt, dass jeder die Kontrolle über seine Gesundheit selbst in die Hand nehmen kann.' },
-      { type: 'heading', level: 2, text: 'Unsere Philosophie: Von uns für Sie geprüft' },
-      { type: 'paragraph', text: 'Jedes Produkt, das Sie in unseren Empfehlungen finden, und jeder Ratschlag in unserem Ratgeber hat einen einfachen Ursprung: Wir nutzen und leben es selbst.' },
-      { type: 'paragraph', text: 'Wir bieten nur an, was uns persönlich überzeugt hat und was den höchsten Qualitäts- und BIO-Standards entspricht.' },
-      { type: 'paragraph', text: 'Unser Ziel ist es, Ihr vertrauenswürdiger Kompass in der oft unübersichtlichen Welt der Gesundheitsprodukte zu sein. Wir freuen uns, Sie auf Ihrem Weg zu mehr Wohlbefinden begleiten zu dürfen.' },
+      { type: 'paragraph', text: 'Mit callidus A&M teilen wir dieses Wissen mit dir. Wir sind keine große Firma, sondern eine Familie, die fest daran glaubt, dass jeder die Kontrolle über seine Gesundheit selbst in die Hand nehmen kann.' },
+
+      { type: 'heading', level: 2, text: 'Unsere Mission' },
+      { type: 'paragraph', text: mission.statement },
+      { type: 'paragraph', text: 'Das heißt konkret: keine Panikmache, keine Wunderversprechen und keine Zahlen, die wir nicht belegen können. Wenn eine Studienlage dünn ist, schreiben wir das hin, statt sie größer klingen zu lassen, als sie ist.' },
+
+      { type: 'heading', level: 2, text: 'Unsere Vision' },
+      { type: 'paragraph', text: vision.statement },
+      { type: 'paragraph', text: 'Genau deshalb wächst Callidus in mehrere Richtungen gleichzeitig: Der Ratgeber liefert das Wissen, der Gesundheits-Kompass ordnet deine Situation ein, die Apps begleiten dich im Alltag und das Portal führt beides zusammen. Es ist ein Vorhaben, kein Sammelsurium.' },
+
+      { type: 'heading', level: 2, text: 'Für wen wir schreiben' },
+      { type: 'paragraph', text: audience.summary },
+      { type: 'paragraph', text: 'Du bist bei uns richtig, wenn:' },
+      ...audience.fits.map((text) => ({ type: 'listItem', text })),
+      { type: 'paragraph', text: 'Wir sind ehrlicherweise nicht die richtige Adresse, wenn:' },
+      ...audience.fitsNot.map((text) => ({ type: 'listItem', text })),
+
+      { type: 'heading', level: 2, text: 'Unsere Philosophie: von uns selbst geprüft' },
+      { type: 'paragraph', text: 'Jedes Produkt, das du in unseren Empfehlungen findest, und jeder Ratschlag in unserem Ratgeber hat einen einfachen Ursprung: Wir nutzen und leben es selbst.' },
+      { type: 'paragraph', text: 'Wir bieten nur an, was uns persönlich überzeugt hat und was den höchsten Qualitäts- und BIO-Standards entspricht. Kein Hersteller kann sich bei uns in eine Empfehlung einkaufen.' },
+      { type: 'paragraph', text: 'Unser Ziel ist es, dein vertrauenswürdiger Kompass in der oft unübersichtlichen Welt der Gesundheitsprodukte zu sein. Wir freuen uns, dich auf deinem Weg zu mehr Wohlbefinden zu begleiten.' },
+
       { type: 'heading', level: 2, text: 'Wie wir Inhalte prüfen' },
       { type: 'paragraph', text: 'Gesundheit braucht Vertrauen. Deshalb trennen wir persönliche Erfahrung, redaktionelle Einordnung, Quellenlage und Produktempfehlung sichtbar voneinander.' },
       { type: 'listItem', text: 'Wir bevorzugen Quellen von Fachgesellschaften, Behörden, wissenschaftlichen Reviews und transparenten Datenbanken.' },
       { type: 'listItem', text: 'Wir kennzeichnen Grenzen klar: Callidus ersetzt keine Diagnose, keine Therapie und keine individuelle medizinische Beratung.' },
       { type: 'listItem', text: 'Empfehlungen werden nicht nur nach Nutzen, sondern auch nach Alltagstauglichkeit, Risiko, Preis und Transparenz eingeordnet.' },
-      { type: 'heading', level: 2, text: 'Warum Sie uns vertrauen können' },
+      { type: 'listItem', text: 'Affiliate-Links kennzeichnen wir mit einem Sternchen. Kaufst du darüber, ändert sich für dich am Preis nichts.' },
+
+      { type: 'heading', level: 2, text: 'Wofür wir stehen' },
+      ...brandPromise.pillars.map((pillar) => ({ type: 'listItem', text: `${pillar.title}: ${pillar.text}` })),
+
+      { type: 'heading', level: 2, text: 'Warum du uns vertrauen kannst' },
       { type: 'paragraph', text: 'Callidus A&M verbindet praktische Naturheilkunde-Erfahrung, digitale Gesundheitsbegleitung und eine konsequente Quellen-Methodik. Unser Anspruch ist nicht Lautstärke, sondern nachvollziehbare Orientierung.' },
+      { type: 'paragraph', text: 'Offene Fragen? Die häufigsten beantworten wir gesammelt auf unserer FAQ-Seite. Alles andere gern direkt an info@callidus-am.de.' },
       { type: 'paragraph', text: 'Herzlichst, Arnold & Margarita' },
     ],
   },
@@ -149,6 +183,7 @@ const articleUpdatedLabel = article?.publishedAt
   : 'Juli 2026';
 const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
 const legalPage = legalPages.find((item) => item.slug === page.slug);
+const pageFaqGroups = faqGroupsById(...(faqBySlug[page.slug] || []));
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
 const categoryRedirectPath = categoryRedirect ? `/ratgeber/#${categoryRedirect.slug}` : null;
 const title = categoryRedirect?.title || legalPage?.title || specialPage?.title || page.title || page.h1?.[0] || 'callidus A&M';
@@ -384,6 +419,7 @@ const articleJsonLd = article ? {
   description={seoDescription}
   ogImage={mainImage}
   pageType={article ? 'article' : 'website'}
+  jsonLd={pageFaqGroups.length > 0 ? faqJsonLd(pageFaqGroups) : undefined}
 >
   {articleJsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)}></script>
@@ -815,6 +851,22 @@ const articleJsonLd = article ? {
       )}
     </article>
   </section>
+
+  {pageFaqGroups.length > 0 && (
+    <section class="section band">
+      <div class="container">
+        <Faq
+          groups={pageFaqGroups}
+          headline="Häufige Fragen dazu"
+          lede="Kurze Antworten auf das, was an dieser Stelle am häufigsten gefragt wird."
+          showGroupTitles={false}
+        />
+        <p style="margin-top:1.5rem;">
+          <a class="button" href="/faq/">Alle Fragen ansehen</a>
+        </p>
+      </div>
+    </section>
+  )}
 
   {page.slug === 'nexus-app' && (
     <>

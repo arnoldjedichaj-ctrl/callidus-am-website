@@ -1,12 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import recommendations from '../../data/recommendations.json';
+import Faq from '../../components/Faq.astro';
+import { faqGroupsById, faqJsonLd } from '../../data/faq.js';
+
+const pageFaqGroups = faqGroupsById('empfehlungen');
 
 const title = 'Empfehlungen für ganzheitliche Gesundheit | callidus A&M';
 const description = 'Kuratierte Produktempfehlungen von callidus A&M für Ernährung, Bewegung, mentale Balance und digitale Gesundheit.';
 const providers = [...new Set(recommendations.products.map((item) => item.provider).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de'));
 ---
-<BaseLayout lang="de" alternatePath="/en/" title={title} description={description}>
+<BaseLayout lang="de" alternatePath="/en/" title={title} description={description} jsonLd={faqJsonLd(pageFaqGroups)}>
   <section class="section">
     <div class="container hero">
       <div data-reveal>
@@ -129,4 +133,15 @@ const providers = [...new Set(recommendations.products.map((item) => item.provid
     setupRecommendationFilter();
     document.addEventListener('astro:page-load', setupRecommendationFilter);
   </script>
+  <section class="section band">
+    <div class="container">
+      <Faq
+        groups={pageFaqGroups}
+        headline="Häufige Fragen zu unseren Empfehlungen"
+        lede="Wie unsere Produktempfehlungen zustande kommen und woran wir verdienen."
+        showGroupTitles={false}
+      />
+      <p style="margin-top:1.5rem;"><a class="button" href="/faq/">Alle Fragen ansehen</a></p>
+    </div>
+  </section>
 </BaseLayout>

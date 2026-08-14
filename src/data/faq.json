@@ -1,0 +1,146 @@
+{
+  "groups": [
+    {
+      "id": "allgemein",
+      "title": "Callidus verstehen",
+      "intro": "Die Fragen, die uns am häufigsten gestellt werden, bevor jemand etwas ausprobiert.",
+      "items": [
+        {
+          "question": "Ersetzt Callidus einen Arztbesuch?",
+          "answer": "Nein, und das ist keine Formalie. Wir ordnen ein, erklären Zusammenhänge und zeigen dir Ansatzpunkte für deinen Alltag. Eine Diagnose, eine Therapie und die Beurteilung deiner persönlichen Situation gehören in ärztliche Hände. Wenn du Beschwerden hast, Medikamente nimmst, schwanger bist oder eine chronische Erkrankung hast, sprich vor jeder Umstellung mit deiner Ärztin oder deinem Arzt."
+        },
+        {
+          "question": "Woher stammen eure Informationen?",
+          "answer": "Wir arbeiten bevorzugt mit Quellen von Fachgesellschaften, Behörden, wissenschaftlichen Übersichtsarbeiten und transparenten Datenbanken. Jeder Beitrag nennt seine Quellen, und wir schreiben dazu, wenn die Studienlage dünn oder widersprüchlich ist. Wie wir dabei genau vorgehen, steht offen auf unserer Seite zu Quellen und Methodik."
+        },
+        {
+          "question": "Verdient ihr Geld an euren Empfehlungen?",
+          "answer": "Teilweise ja. Manche Links auf unseren Empfehlungsseiten sind Affiliate-Links, mit Sternchen gekennzeichnet. Kaufst du darüber, kann callidus A&M eine Provision erhalten, für dich ändert sich der Preis nicht. Wir nehmen nur Produkte auf, die wir selbst nutzen. Kein Hersteller kann sich bei uns in eine Empfehlung einkaufen."
+        },
+        {
+          "question": "Wer steckt hinter callidus A&M?",
+          "answer": "Arnold und Margarita, eine Familie, keine Redaktion und kein Investor. Margarita beschäftigt sich seit über fünf Jahren intensiv mit Naturheilkunde und ganzheitlicher Ernährung. Angefangen hat alles als private Suche nach verlässlichen Antworten für die eigene Familie."
+        },
+        {
+          "question": "Für wen ist Callidus gedacht?",
+          "answer": "Für Menschen mit vollem Alltag, die gesundheitlich etwas verändern wollen und dabei verstehen möchten, warum etwas wirkt. Wir schreiben nicht für Wettkampfsportler und nicht für Menschen, die eine Diagnose suchen. Wenn du wenig Zeit hast und trotzdem fundiert entscheiden willst, bist du bei uns richtig."
+        },
+        {
+          "question": "Warum duzt ihr mich?",
+          "answer": "Weil wir hier über Schlaf, Stress und Alltag mit Familie schreiben, nicht über Aktenvorgänge. Das Du passt zu der Art, wie wir mit Menschen sprechen, die uns im Freundeskreis nach Rat fragen. Genau daraus ist Callidus entstanden."
+        }
+      ]
+    },
+    {
+      "id": "kompass",
+      "title": "Gesundheits-Kompass und Checks",
+      "intro": "Fragen rund um die Einordnung deiner aktuellen Situation.",
+      "items": [
+        {
+          "question": "Ist der Gesundheits-Kompass anonym?",
+          "answer": "Ja. Du kannst den Kompass ohne Anmeldung starten, und deine Antworten werden für die öffentliche Auswertung nicht auf einem Server gespeichert. Erst wenn du dich freiwillig im Portal anmeldest, entsteht ein Verlauf, den du selbst wieder löschen kannst."
+        },
+        {
+          "question": "Wie lange dauert der Kompass?",
+          "answer": "Etwa zwei bis drei Minuten. Du ordnest Stress, Schlaf, Bewegung, Ernährung und Energie grob ein und bekommst sofort eine Rückmeldung dazu, wo dein größter Hebel liegt."
+        },
+        {
+          "question": "Ist das Ergebnis eine Diagnose?",
+          "answer": "Nein. Der Kompass ist eine Selbsteinschätzung, kein Messverfahren. Er sagt dir, welcher Bereich gerade Aufmerksamkeit braucht, und schlägt dir einen passenden nächsten Schritt vor. Er stellt keine Krankheit fest und schließt keine aus."
+        },
+        {
+          "question": "Was unterscheidet Kompass und Checks?",
+          "answer": "Der Kompass verschafft dir einen Überblick über alle fünf Bereiche auf einmal. Die Checks gehen anschließend in einzelne Themen tiefer, etwa in dein Wissen zu Vitaminen oder zur Sicherheit von Nahrungsergänzung."
+        }
+      ]
+    },
+    {
+      "id": "nexus",
+      "title": "NEXUS App",
+      "intro": "Fragen zur App, zu Kosten und zu deinen Daten.",
+      "items": [
+        {
+          "question": "Was kostet NEXUS?",
+          "answer": "Du kannst NEXUS kostenlos installieren und die Grundfunktionen dauerhaft ohne Zahlung nutzen. Erweiterte Funktionen laufen über ein optionales Abo. Es gibt keine automatische Umstellung von kostenlos auf kostenpflichtig, du entscheidest das aktiv in der App."
+        },
+        {
+          "question": "Was passiert mit meinen Gesundheitsdaten?",
+          "answer": "Deine Daten dienen einem einzigen Zweck: dir eine sinnvolle Rückmeldung zu geben. Wir verkaufen keine Gesundheitsdaten und geben sie nicht zu Werbezwecken weiter. Für die KI-Auswertung werden deine Eingaben verarbeitet, die Details dazu stehen in unserer Datenschutzerklärung."
+        },
+        {
+          "question": "Brauche ich einen Fitness-Tracker?",
+          "answer": "Nein. NEXUS funktioniert auch mit dem, was du selbst einträgst, etwa der Fotoanalyse deiner Mahlzeiten. Ein Tracker liefert zusätzliche Daten, ist aber keine Voraussetzung."
+        },
+        {
+          "question": "Wie zuverlässig ist die Fotoanalyse?",
+          "answer": "Sie erkennt das Gericht und schätzt Kalorien und Hauptnährstoffe. Es ist eine Schätzung, keine Laboranalyse. Für den Zweck, Muster über Wochen zu erkennen, reicht diese Genauigkeit. Für exakte Nährwerte ist sie nicht gedacht."
+        },
+        {
+          "question": "Was ist MOMUS?",
+          "answer": "MOMUS ist unsere zweite App und noch in Entwicklung. Sobald sie verfügbar ist, findest du sie im Portal und im Handbuch. Bis dahin bleibt NEXUS der digitale Begleiter von Callidus."
+        }
+      ]
+    },
+    {
+      "id": "empfehlungen",
+      "title": "Empfehlungen und Produkte",
+      "intro": "Wie unsere Produktempfehlungen zustande kommen.",
+      "items": [
+        {
+          "question": "Wie wählt ihr Produkte aus?",
+          "answer": "Wir nehmen nur auf, was wir selbst nutzen und was unseren Qualitäts- und Bio-Ansprüchen genügt. Bewertet wird nicht nur der mögliche Nutzen, sondern auch Alltagstauglichkeit, Risiko, Preis und wie transparent der Hersteller über Inhaltsstoffe und Herkunft informiert."
+        },
+        {
+          "question": "Brauche ich überhaupt Nahrungsergänzung?",
+          "answer": "In vielen Fällen nicht. Eine gute Ernährung deckt den größten Teil ab. Sinnvoll wird Ergänzung dort, wo ein Bedarf tatsächlich nachgewiesen ist, etwa bei Vitamin D im Winter oder in bestimmten Lebensphasen. Deshalb steht bei uns die Einordnung vor der Empfehlung."
+        },
+        {
+          "question": "Warum empfehlt ihr manchmal gar nichts?",
+          "answer": "Weil kein Produkt zu empfehlen manchmal die richtige Antwort ist. Wenn die Datenlage für eine Substanz schwach ist, schreiben wir das hin, statt eine Empfehlung zu erfinden."
+        }
+      ]
+    },
+    {
+      "id": "valus",
+      "title": "Portal, Wallet und VAL",
+      "intro": "Der Bereich, zu dem uns die meisten Rückfragen erreichen.",
+      "items": [
+        {
+          "question": "Was ist VAL?",
+          "answer": "VAL ist ein Guthaben innerhalb der Callidus-Welt. Du sammelst es, indem du unsere Apps und Inhalte nutzt, und kannst es später für Callidus-Angebote einlösen. Es ist ein Treuepunkt-System, keine Geldanlage."
+        },
+        {
+          "question": "Muss ich mich mit Krypto auskennen?",
+          "answer": "Nein. Du kannst Kompass, Ratgeber, Checks, Audio und NEXUS vollständig nutzen, ohne dich jemals mit Wallet oder VAL zu beschäftigen. Der Bereich ist ein zusätzliches Angebot für Interessierte, keine Voraussetzung für irgendetwas."
+        },
+        {
+          "question": "Ist VAL eine Geldanlage?",
+          "answer": "Nein. VAL ist kein Wertpapier, keine Kapitalanlage und kein Zahlungsmittel. Wir versprechen keine Wertsteigerung. Unsere Inhalte zu Krypto sind Bildung, keine Anlageberatung."
+        },
+        {
+          "question": "Wozu brauche ich das Portal?",
+          "answer": "Im Portal laufen deine Ergebnisse zusammen: der Verlauf deiner Kompass-Durchgänge, deine App-Daten und dein VAL-Stand. Ohne Anmeldung funktioniert alles Öffentliche weiterhin, du siehst dann nur keinen Verlauf über die Zeit."
+        }
+      ]
+    },
+    {
+      "id": "datenschutz",
+      "title": "Daten und Newsletter",
+      "intro": "Was wir speichern und was nicht.",
+      "items": [
+        {
+          "question": "Trackt ihr mich auf dieser Website?",
+          "answer": "Standardmäßig nicht. Die Seite ist ohne Tracking aufgebaut. Daten fließen erst dann an Dritte, wenn du selbst ein eingebettetes YouTube-Video lädst, das Newsletter-Formular öffnest oder den Assistenten benutzt. Die Nutzungsmessung mit Google Analytics läuft nur, wenn du im Cookie-Hinweis zustimmst."
+        },
+        {
+          "question": "Was bekomme ich, wenn ich den Newsletter abonniere?",
+          "answer": "Sofort das Vitamin-Kompendium als PDF mit 38 Seiten zu allen 13 essenziellen Vitaminen. Danach etwa einmal im Monat eine Ausgabe mit Impulsen und Empfehlungen. Du kannst dich jederzeit mit einem Klick wieder abmelden."
+        },
+        {
+          "question": "Wie sicher ist der Callidus-Assistent?",
+          "answer": "Deine Frage wird zur Beantwortung an unsere Firebase-Umgebung und an Gemini übertragen. Gib dort keine Angaben ein, die dich eindeutig identifizieren. Der Assistent stellt keine Diagnosen und antwortet auf Basis der Callidus-Wissensbasis und kuratierter Quellen."
+        }
+      ]
+    }
+  ]
+}

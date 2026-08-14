@@ -8,6 +8,12 @@ import healthCompass from '../data/health-compass.json';
 import { homeCopy, categoryForLang } from '../data/i18n.js';
 import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articles.js';
 import { portalAppList } from '../data/portal.js';
+import { audience, mission, vision, brandPromise, problemSolution } from '../data/positioning.js';
+import Faq from '../components/Faq.astro';
+import { faqGroupsById, faqJsonLd } from '../data/faq.js';
+
+// Auf der Startseite steht nur die allgemeine FAQ-Gruppe, damit die Seite kurz bleibt.
+const homeFaqGroups = faqGroupsById('allgemein');
 
 // Alle Artikel inkl. Momus-Beiträge fließen in die Kategorie-Counts.
 const articles = allArticles;
@@ -52,16 +58,6 @@ const featured = getWeeklyFeatured(structure.categories);
 const brevoSignupLink = specialPages
   .find((page) => page.slug === 'stress-reset-kurs')
   ?.links?.find((link) => link.href?.includes('sibforms.com'));
-const resources = [
-  brevoSignupLink && {
-    path: brevoSignupLink.href,
-    external: true,
-    kind: 'funnel',
-    badge: 'Gratis',
-    hero: 'Stress-Reset Gratis-Ressourcen freischalten',
-    lead: 'Tragen Sie sich in die E-Mail-Liste ein und erhalten Sie Zugang zu Kompendium, Journal und den ersten Video-Modulen.',
-  }
-].filter(Boolean);
 const guidedPaths = healthCompass.guidedPaths;
 const todayStarts = [
   {
@@ -101,7 +97,7 @@ const todayStarts = [
   },
 ];
 ---
-<BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description}>
+<BaseLayout lang={lang} alternatePath="/en/" title={copy.title} description={copy.description} jsonLd={faqJsonLd(homeFaqGroups)}>
   <section class="section">
     <div class="container hero">
       <div data-reveal>
@@ -144,40 +140,63 @@ const todayStarts = [
     </div>
   </section>
 
-  <section class="section home-check-cta">
-    <div class="container home-check-panel" data-reveal>
-      <div>
-        <p class="eyebrow">Neu: Callidus Gesundheits-Kompass</p>
-        <h2>Finde deinen nächsten sinnvollen Schritt.</h2>
-        <p>
-          Starte öffentlich ohne Anmeldung, erhalte sofort eine grobe Einordnung und führe
-          deinen Pfad später im Portal mit App-Daten, Verlauf und KI-Begleitung weiter.
-        </p>
+  <section class="section band home-problem">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{problemSolution.problemEyebrow}</p>
+      <h2 data-reveal="2">{problemSolution.problemHeadline}</h2>
+      <div class="problem-grid">
+        {problemSolution.problems.map((item, index) => (
+          <div class="problem-card" data-reveal={String((index % 3) + 1)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
       </div>
-      <div class="home-check-actions" aria-label="Gesundheitschecks starten">
-        <a class="button primary" href="/gesundheits-kompass/#kompass-tool">Kompass starten</a>
-        <a class="button" href="/gesundheits-checks/">Checks ansehen</a>
+      <p class="problem-bridge" data-reveal>{problemSolution.bridge}</p>
+    </div>
+  </section>
+
+  <section class="section home-solution">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{problemSolution.solutionEyebrow}</p>
+      <h2 data-reveal="2">{problemSolution.solutionHeadline}</h2>
+      <div class="solution-grid">
+        {problemSolution.solutions.map((item, index) => (
+          <div class="solution-card" data-reveal={String((index % 3) + 1)}>
+            <span class={`solution-step ${item.accent}`} aria-hidden="true">{index + 1}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            <a class="solution-link" href={item.href}>{item.linkLabel}</a>
+          </div>
+        ))}
+      </div>
+      <div class="solution-actions">
+        <a class="button primary" href="/gesundheits-kompass/#kompass-tool">{copy.primaryCta}</a>
+        <span>Ohne Anmeldung · rund 3 Minuten · kein Ergebnis wird gespeichert</span>
       </div>
     </div>
   </section>
 
-  <section class="section tight home-audio-cta">
-    <div class="container home-audio-panel" data-reveal>
+  <section class="section tight home-audience">
+    <div class="container audience-panel" data-reveal>
       <div>
-        <p class="eyebrow">Neu: Audio-Raum</p>
-        <h2>Klarheit hören, bevor du weiterarbeitest.</h2>
-        <p>
-          Die erste geführte Callidus-Audiofolge ist ein 15-Minuten-Klarheitsreset für Fokus,
-          innere Ordnung und einen konkreten nächsten Schritt. Später können hier weitere Folgen
-          für Atemruhe, Schlafübergang und mentale Ausrichtung folgen.
-        </p>
+        <p class="eyebrow">{audience.eyebrow}</p>
+        <h2>{audience.headline}</h2>
+        <p class="lede">{audience.summary}</p>
       </div>
-      <div class="home-audio-actions" aria-label="Callidus Audio-Raum öffnen">
-        <a class="button primary" href="/audio/">Erste Folge anhören</a>
-        <span>15 Minuten · Musik · Wellenatmosphäre</span>
+      <div class="audience-lists">
+        <div class="audience-list">
+          <h3>Passt zu dir, wenn</h3>
+          <ul>{audience.fits.map((entry) => <li>{entry}</li>)}</ul>
+        </div>
+        <div class="audience-list audience-list-out">
+          <h3>Eher nicht, wenn</h3>
+          <ul>{audience.fitsNot.map((entry) => <li>{entry}</li>)}</ul>
+        </div>
       </div>
     </div>
   </section>
+
   <section class="section tight home-today-start">
     <div class="container">
       <p class="eyebrow" data-reveal>Heute starten</p>
@@ -234,7 +253,7 @@ const todayStarts = [
       <div class="sticky-note" data-reveal>
         <p class="eyebrow">{copy.selectionEyebrow}</p>
         <h2>{copy.selectionHeadline}</h2>
-        <p>Wöchentlich frische Lese-Empfehlungen aus allen Bereichen — plus einen Beitrag aus der Momus-App.</p>
+        <p>Jede Woche frische Lese-Empfehlungen aus allen Bereichen, plus einen Beitrag aus der Momus-App.</p>
         <a class="button" href="/ratgeber/">{copy.allArticles}</a>
       </div>
       <div class="grid featured">
@@ -274,25 +293,49 @@ const todayStarts = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="container split">
-      <div class="sticky-note" data-reveal>
-        <p class="eyebrow">Kurse & Ressourcen</p>
-        <h2>Gratis-Ressourcen für den Stress Reset.</h2>
-        <p>Der Einstieg läuft über die E-Mail-Anmeldung. Danach erhalten Sie Zugang zu Kompendium, Journal und den ersten Video-Modulen.</p>
-        <a class="button primary" href="/stress-reset-kurs/">Stress Reset öffnen</a>
+  <section class="section home-brand">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{brandPromise.eyebrow}</p>
+      <h2 data-reveal="2">{brandPromise.headline}</h2>
+
+      <div class="brand-statements">
+        <div class="brand-statement" data-reveal>
+          <span class="badge mint">{mission.label}</span>
+          <p>{mission.statement}</p>
+        </div>
+        <div class="brand-statement" data-reveal="2">
+          <span class="badge gold">{vision.label}</span>
+          <p>{vision.statement}</p>
+        </div>
       </div>
-      <div class="grid featured">
-        {resources.map((page, index) => (
-          <a class="card" href={page.path} target={page.external ? '_blank' : undefined} rel={page.external ? 'noopener' : undefined} data-reveal={String((index % 3) + 1)}>
+
+      <div class="grid brand-grid">
+        {brandPromise.pillars.map((pillar, index) => (
+          <a class="card brand-pillar" href={pillar.href} data-reveal={String((index % 3) + 1)}>
             <div class="card-body">
-              <span class="badge gold">{page.badge || (page.kind === 'lexicon' ? 'Lexicon' : page.kind === 'funnel' ? 'Download' : 'Kurs')}</span>
-              <h3>{page.hero}</h3>
-              <p>{page.lead}</p>
+              <span class={`badge ${pillar.accent}`}>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+              <span class="brand-pillar-link">{pillar.linkLabel}</span>
             </div>
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section band home-faq">
+    <div class="container">
+      <Faq
+        groups={homeFaqGroups}
+        eyebrow="Häufige Fragen"
+        headline="Bevor du startest, das Wichtigste vorweg."
+        lede="Die Fragen, die uns am häufigsten erreichen. Alle weiteren Themen findest du auf der FAQ-Seite."
+        showGroupTitles={false}
+      />
+      <p class="home-faq-more">
+        <a class="button" href="/faq/">Alle Fragen ansehen</a>
+      </p>
     </div>
   </section>
 
@@ -302,19 +345,23 @@ const todayStarts = [
         <p class="eyebrow">Newsletter & Gratis-Download</p>
         <h2>Das ultimative Vitamin-Kompendium – komplett kostenlos.</h2>
         <p>
-          Erhalten Sie unser umfassendes 38-seitiges E-Book über alle 13 essenziellen Vitamine.
-          Tragen Sie einfach Ihre E-Mail-Adresse ein und Sie erhalten den Download-Link direkt
-          in Ihr Postfach. Zusätzlich einmal im Monat unser exklusiver Newsletter mit
-          Gesundheits-Tipps und Empfehlungen.
+          Du bekommst unser 38-seitiges E-Book über alle 13 essenziellen Vitamine. Trag einfach
+          deine E-Mail-Adresse ein, dann landet der Download-Link direkt in deinem Postfach.
+          Dazu einmal im Monat unser Newsletter mit Impulsen und Empfehlungen.
+        </p>
+        <p>
+          Du willst mehr? Über dieselbe Anmeldung schaltest du auch den
+          <a href="/stress-reset-kurs/">Stress Reset</a> frei: Kompendium, Journal und die ersten
+          Video-Module.
         </p>
         <p style="font-size:.85rem;color:var(--muted);">
-          Mit der Anmeldung akzeptieren Sie unsere
+          Mit der Anmeldung akzeptierst du unsere
           <a href="/datenschutz/">Datenschutzerklärung</a>. Abmeldung jederzeit per Klick möglich.
         </p>
       </div>
       <div data-reveal="2">
         <div id="brevo-embed" class="newsletter-placeholder" data-newsletter-embed data-form-url={brevoSignupLink?.href || ''}>
-          <p>Wir laden das Anmeldeformular von Brevo. Bitte stimmen Sie dafür der Datenübertragung an Brevo zu.</p>
+          <p>Wir laden das Anmeldeformular von Brevo. Bitte stimme dafür der Datenübertragung an Brevo zu.</p>
           <button class="button primary" type="button" data-load-newsletter>Formular laden</button>
         </div>
       </div>
@@ -322,47 +369,172 @@ const todayStarts = [
   </section>
 
   <style>
-    .home-audio-cta { padding-top: 0; }
-    .home-audio-panel {
+    /* --- Problem --- */
+    .problem-grid,
+    .solution-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: clamp(1rem, 4vw, 2rem);
-      align-items: center;
-      padding: clamp(1.2rem, 3vw, 2rem);
-      border: 1px solid rgba(var(--blue-rgb), .24);
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(var(--blue-rgb), .10), rgba(var(--gold-rgb), .10)), var(--panel);
-      box-shadow: var(--shadow);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
     }
-    .home-audio-panel h2 {
-      font-size: clamp(1.8rem, 3vw, 3rem);
+    .problem-card {
+      padding: clamp(1.1rem, 2.5vw, 1.5rem);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--coral);
+      border-radius: 14px;
+      background: var(--panel);
     }
-    .home-audio-panel p {
-      max-width: 68ch;
+    .problem-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: .4rem;
+    }
+    .problem-card p {
+      color: var(--muted);
       margin-bottom: 0;
     }
-    .home-audio-actions {
-      display: grid;
-      justify-items: end;
-      gap: .65rem;
-      min-width: min(100%, 18rem);
+    .problem-bridge {
+      margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+      font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+      font-weight: 900;
+      line-height: 1.3;
+      max-width: 26ch;
+      color: var(--mint);
     }
-    .home-audio-actions span {
+
+    /* --- Lösung --- */
+    .solution-card {
+      position: relative;
+      padding: clamp(1.1rem, 2.5vw, 1.5rem);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .solution-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: .95rem;
+      margin-bottom: .75rem;
+      color: var(--mint);
+      background: rgba(var(--mint-rgb), .14);
+    }
+    .solution-step.blue { color: var(--blue); background: rgba(var(--blue-rgb), .14); }
+    .solution-step.gold { color: var(--gold); background: rgba(var(--gold-rgb), .16); }
+    .solution-card h3 { font-size: 1.12rem; margin-bottom: .4rem; }
+    .solution-card p { color: var(--muted); }
+    .solution-link {
+      font-weight: 850;
+      font-size: .88rem;
+      color: var(--mint);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .solution-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: clamp(1.5rem, 4vw, 2.25rem);
+    }
+    .solution-actions span {
       color: var(--muted);
       font-size: .85rem;
       font-weight: 850;
-      text-align: right;
     }
-    @media (max-width: 760px) {
-      .home-audio-panel {
-        grid-template-columns: 1fr;
-      }
-      .home-audio-actions {
-        justify-items: start;
-      }
-      .home-audio-actions span {
-        text-align: left;
-      }
+
+    /* --- Zielgruppe --- */
+    .audience-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(1.25rem, 4vw, 2.5rem);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(var(--mint-rgb), .08), rgba(var(--blue-rgb), .08)), var(--panel);
+    }
+    .audience-panel .lede { margin-bottom: 0; max-width: 46ch; }
+    .audience-lists {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      align-content: start;
+    }
+    .audience-list h3 {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--mint);
+      margin-bottom: .6rem;
+    }
+    .audience-list-out h3 { color: var(--coral); }
+    .audience-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .5rem;
+    }
+    .audience-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      color: var(--muted);
+      font-size: .93rem;
+      line-height: 1.5;
+    }
+    .audience-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .5em;
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+    .audience-list-out li::before {
+      background: none;
+      border: 2px solid var(--coral);
+      top: .42em;
+    }
+
+    /* --- Marke --- */
+    .brand-statements {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    .brand-statement {
+      padding: clamp(1.1rem, 2.5vw, 1.5rem);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel-2);
+    }
+    .brand-statement p {
+      margin-bottom: 0;
+      font-size: 1.02rem;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+    .brand-grid { margin-top: 1rem; }
+    .brand-pillar-link {
+      display: inline-block;
+      margin-top: .75rem;
+      font-weight: 850;
+      font-size: .86rem;
+      color: var(--mint);
+    }
+
+    /* --- FAQ --- */
+    .home-faq-more { margin-top: 1.75rem; }
+
+    @media (max-width: 860px) {
+      .audience-panel { grid-template-columns: 1fr; }
     }
   </style>
 

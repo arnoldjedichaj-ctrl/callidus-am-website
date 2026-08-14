@@ -27,11 +27,11 @@
       "id": "gehen-nach-dem-essen",
       "category": "bewegung",
       "title": "Zehn Minuten nach der größten Mahlzeit",
-      "lesson": "Nach dem Essen steigt der Blutzucker an. Arbeitende Muskeln nehmen einen Teil davon auf, deshalb kann schon ein kurzer Spaziergang den Anstieg flacher ausfallen lassen. Entscheidend ist nicht das Tempo, sondern dass Sie überhaupt in Bewegung kommen.",
-      "action": "Gehen Sie heute nach Ihrer größten Mahlzeit zehn Minuten spazieren.",
+      "lesson": "Nach dem Essen steigt der Blutzucker an. Arbeitende Muskeln nehmen einen Teil davon auf, deshalb kann schon ein kurzer Spaziergang den Anstieg flacher ausfallen lassen. Entscheidend ist nicht das Tempo, sondern dass du überhaupt in Bewegung kommst.",
+      "action": "Geh heute nach deiner größten Mahlzeit zehn Minuten spazieren.",
       "minutes": 10,
       "steps": [
-        "Legen Sie schon vor dem Essen fest, welche Mahlzeit es heute wird.",
+        "Leg schon vor dem Essen fest, welche Mahlzeit es heute wird.",
         "Direkt nach dem letzten Bissen aufstehen und losgehen – gemütliches Tempo genügt.",
         "Kein Ziel nötig: einmal um den Block zählt genauso."
       ]
@@ -41,7 +41,7 @@
       "category": "ernaehrung",
       "title": "Drei Pflanzen, die diese Woche noch gefehlt haben",
       "lesson": "Für die Darmflora zählt die Vielfalt der pflanzlichen Lebensmittel oft mehr als die reine Menge. Verschiedene Gemüse, Obstsorten, Hülsenfrüchte, Nüsse, Samen und Kräuter bringen jeweils andere Ballaststoffe mit.",
-      "action": "Bringen Sie heute drei pflanzliche Lebensmittel auf den Teller, die diese Woche noch nicht dabei waren.",
+      "action": "Bring heute drei pflanzliche Lebensmittel auf den Teller, die diese Woche noch nicht dabei waren.",
       "minutes": 5,
       "steps": [
         "Kurz durchgehen, was diese Woche schon auf dem Teller lag.",
@@ -54,7 +54,7 @@
       "category": "schlaf",
       "title": "Zehn Minuten Tageslicht in der ersten Stunde",
       "lesson": "Die innere Uhr richtet sich vor allem nach Licht. Helles Tageslicht am Morgen ist ein starkes Signal für den Tag-Nacht-Rhythmus – und selbst ein bedeckter Himmel draußen ist um ein Vielfaches heller als jede Zimmerbeleuchtung.",
-      "action": "Gehen Sie innerhalb der ersten Stunde nach dem Aufstehen zehn Minuten nach draußen.",
+      "action": "Geh innerhalb der ersten Stunde nach dem Aufstehen zehn Minuten nach draußen.",
       "minutes": 10,
       "steps": [
         "Balkon, Garten, Haltestelle oder der Weg zum Bäcker – Hauptsache draußen.",
@@ -66,8 +66,8 @@
       "id": "laenger-ausatmen",
       "category": "ruhe",
       "title": "Länger ausatmen als einatmen",
-      "lesson": "Eine verlängerte Ausatmung ist eines der wenigen Dinge, mit denen sich das vegetative Nervensystem bewusst beeinflussen lässt. Sie brauchen dafür weder Vorkenntnisse noch einen ruhigen Raum – sechs Atemzüge genügen.",
-      "action": "Atmen Sie heute dreimal je sechs Atemzüge lang vier Sekunden ein und sechs Sekunden aus.",
+      "lesson": "Eine verlängerte Ausatmung ist eines der wenigen Dinge, mit denen sich das vegetative Nervensystem bewusst beeinflussen lässt. du brauchst dafür weder Vorkenntnisse noch einen ruhigen Raum – sechs Atemzüge genügen.",
+      "action": "Atme heute dreimal je sechs Atemzüge lang vier Sekunden ein und sechs Sekunden aus.",
       "minutes": 3,
       "steps": [
         "Feste Anlässe wählen: vor dem Rechner, vor dem Essen, vor dem Schlafen.",
@@ -80,10 +80,10 @@
       "category": "wissen",
       "title": "Die ersten drei Zutaten entscheiden",
       "lesson": "Zutatenlisten sind nach Gewicht sortiert: Was vorn steht, ist am meisten enthalten. Ein Blick auf die ersten drei Einträge verrät über ein Produkt oft mehr als die Werbeaussagen auf der Vorderseite.",
-      "action": "Drehen Sie heute ein Produkt aus Ihrem Vorrat um und lesen Sie die ersten drei Zutaten.",
+      "action": "Dreh heute ein Produkt aus deinem Vorrat um und lies die ersten drei Zutaten.",
       "minutes": 2,
       "steps": [
-        "Ein Produkt wählen, das Sie regelmäßig kaufen.",
+        "Ein Produkt wählen, das du regelmäßig kaufst.",
         "Die ersten drei Zutaten lesen – Zucker taucht oft unter anderen Namen auf.",
         "Überlegen, ob die Reihenfolge zu dem passt, was die Verpackung verspricht."
       ]
@@ -91,9 +91,9 @@
     {
       "id": "treppe-statt-aufzug",
       "category": "bewegung",
-      "title": "Heute gehört die Treppe Ihnen",
+      "title": "Heute gehört die Treppe dir",
       "lesson": "Kurze, etwas anstrengende Belastungen über den Tag verteilt summieren sich. Treppensteigen bringt Kreislauf und Beinmuskulatur in wenigen Sekunden auf Touren – ganz ohne Sportkleidung und ohne Termin.",
-      "action": "Nehmen Sie heute bei jeder Gelegenheit unter vier Stockwerken die Treppe statt Aufzug oder Rolltreppe.",
+      "action": "Nimm heute bei jeder Gelegenheit unter vier Stockwerken die Treppe statt Aufzug oder Rolltreppe.",
       "minutes": 2,
       "steps": [
         "Beim ersten Aufzug heute bewusst kurz innehalten und die Treppe suchen.",
@@ -106,7 +106,7 @@
       "category": "ernaehrung",
       "title": "Das Glas Wasser vor dem Kaffee",
       "lesson": "Leichter Flüssigkeitsmangel zeigt sich häufig als Müdigkeit oder Konzentrationsloch – also genau als das, wogegen viele zur nächsten Tasse greifen. Ein Glas Wasser vorweg kostet nichts und beantwortet die Frage zuverlässig.",
-      "action": "Trinken Sie heute vor jedem Kaffee oder Tee zuerst ein Glas Wasser.",
+      "action": "Trink heute vor jedem Kaffee oder Tee zuerst ein Glas Wasser.",
       "minutes": 1,
       "steps": [
         "Ein Glas sichtbar neben die Kaffeemaschine stellen.",
@@ -119,7 +119,7 @@
       "category": "schlaf",
       "title": "Die letzte halbe Stunde ohne Bildschirm",
       "lesson": "Abends geht es weniger um das Licht des Displays als um das, was darauf passiert: Nachrichten, Mails und Videos halten den Kopf wach. Eine ruhige Übergangszeit hilft dem Körper, vom Tagmodus herunterzufahren.",
-      "action": "Legen Sie das Handy heute 30 Minuten vor dem Zubettgehen weg.",
+      "action": "Leg das Handy heute 30 Minuten vor dem Zubettgehen weg.",
       "minutes": 30,
       "steps": [
         "Vorher entscheiden, was stattdessen bereitliegt – Buch, Musik, Dehnen.",
@@ -132,7 +132,7 @@
       "category": "ruhe",
       "title": "Ein leerer Termin im Kalender",
       "lesson": "Pausen, die nicht eingeplant sind, fallen zuerst aus. Ein blockierter Kalendereintrag ist die einfachste Art, dem Tag eine Lücke zu geben, die nicht sofort wieder zugeschüttet wird.",
-      "action": "Blockieren Sie sich heute 15 Minuten im Kalender – ohne Inhalt.",
+      "action": "Blockiere dir heute 15 Minuten im Kalender – ohne Inhalt.",
       "minutes": 15,
       "steps": [
         "Eine realistische Stelle im Tag suchen, kein Wunschzeitfenster.",
@@ -143,9 +143,9 @@
     {
       "id": "ruhepuls-kennen",
       "category": "wissen",
-      "title": "Ihren Ruhepuls einmal selbst messen",
+      "title": "deinen Ruhepuls einmal selbst messen",
       "lesson": "Der Ruhepuls am Morgen ist eine der einfachsten Kennzahlen, die man ohne Geräte erheben kann. Interessant ist nicht der einzelne Wert, sondern wie er sich über Wochen entwickelt – etwa mit mehr Bewegung oder besserem Schlaf.",
-      "action": "Messen Sie morgen früh direkt nach dem Aufwachen 30 Sekunden lang Ihren Puls und notieren Sie den Wert.",
+      "action": "Miss morgen früh direkt nach dem Aufwachen 30 Sekunden lang deinen Puls und notiere den Wert.",
       "minutes": 2,
       "steps": [
         "Noch im Liegen zwei Finger an die Innenseite des Handgelenks legen.",
@@ -159,7 +159,7 @@
       "category": "bewegung",
       "title": "Fünf Minuten, um die Gelenke zu wecken",
       "lesson": "Nach dem Aufstehen sind Gelenke und Muskulatur noch steif – der Körper war stundenlang in derselben Position. Ein paar ruhige, große Bewegungen bringen Gelenkflüssigkeit in Bewegung und machen den Start in den Tag angenehmer.",
-      "action": "Bewegen Sie heute direkt nach dem Aufstehen fünf Minuten lang alle großen Gelenke einmal langsam durch.",
+      "action": "Bewege heute direkt nach dem Aufstehen fünf Minuten lang alle großen Gelenke einmal langsam durch.",
       "minutes": 5,
       "steps": [
         "Schultern kreisen, Arme öffnen und schließen.",
@@ -172,10 +172,10 @@
       "category": "ernaehrung",
       "title": "Eiweiß zum Frühstück einplanen",
       "lesson": "Ein Frühstück nur aus schnellen Kohlenhydraten macht oft schon am Vormittag wieder hungrig. Eine Eiweißquelle dazu hält in der Regel länger satt – Quark, Joghurt, Ei, Käse oder Hülsenfrüchte funktionieren gleichermaßen.",
-      "action": "Ergänzen Sie Ihr Frühstück heute um eine Eiweißquelle.",
+      "action": "Ergänze dein Frühstück heute um eine Eiweißquelle.",
       "minutes": 5,
       "steps": [
-        "Eine Quelle wählen, die Sie ohnehin im Haus haben.",
+        "Eine Quelle wählen, die du ohnehin im Haus hast.",
         "Menge etwa in der Größe einer Handfläche.",
         "Am Vormittag beobachten, wann der Hunger zurückkommt."
       ]
@@ -185,7 +185,7 @@
       "category": "schlaf",
       "title": "Die Aufstehzeit festlegen, nicht die Zubettgehzeit",
       "lesson": "Der Schlafrhythmus lässt sich über den Morgen besser steuern als über den Abend: Einschlafen kann man nicht erzwingen, Aufstehen schon. Eine feste Aufstehzeit zieht die Müdigkeit am Abend nach und nach mit.",
-      "action": "Legen Sie eine feste Aufstehzeit fest und halten Sie sie heute ein.",
+      "action": "Leg eine feste Aufstehzeit fest und halt sie heute ein.",
       "minutes": 1,
       "steps": [
         "Eine Uhrzeit wählen, die auch an schlechten Tagen machbar ist.",
@@ -198,7 +198,7 @@
       "category": "ruhe",
       "title": "Drei Dinge, die heute gut waren",
       "lesson": "Das Gehirn merkt sich Negatives zuverlässiger als Positives – das war evolutionär sinnvoll und ist im Alltag oft unpassend. Wer abends bewusst nach Gelungenem sucht, gleicht diese Schieflage etwas aus.",
-      "action": "Notieren Sie heute Abend drei Dinge, die gut gelaufen sind.",
+      "action": "Notiere heute Abend drei Dinge, die gut gelaufen sind.",
       "minutes": 5,
       "steps": [
         "Klein denken – ein gutes Gespräch zählt.",
@@ -211,7 +211,7 @@
       "category": "wissen",
       "title": "Nährwerte immer pro 100 Gramm vergleichen",
       "lesson": "Auf Verpackungen stehen Nährwerte oft pro Portion – und die Portionsgröße legt der Hersteller selbst fest. Nur die Spalte pro 100 Gramm macht zwei Produkte wirklich vergleichbar.",
-      "action": "Vergleichen Sie heute zwei ähnliche Produkte anhand der Werte pro 100 Gramm.",
+      "action": "Vergleiche heute zwei ähnliche Produkte anhand der Werte pro 100 Gramm.",
       "minutes": 3,
       "steps": [
         "Zwei Produkte derselben Kategorie nebeneinanderlegen.",
@@ -224,10 +224,10 @@
       "category": "bewegung",
       "title": "Telefonate im Stehen führen",
       "lesson": "Langes Sitzen am Stück ist ungünstiger als die Gesamtzeit im Sitzen. Telefonate sind der einfachste Anlass, das Muster zu brechen – sie kommen von allein und brauchen keine Extra-Zeit im Kalender.",
-      "action": "Stehen Sie heute bei jedem Telefonat auf.",
+      "action": "Steh heute bei jedem Telefonat auf.",
       "minutes": 5,
       "steps": [
-        "Beim Klingeln bewusst aufstehen, bevor Sie abnehmen.",
+        "Beim Klingeln bewusst aufstehen, bevor du abnehmest.",
         "Wenn möglich ein paar Schritte gehen.",
         "Nach dem Gespräch kurz stehen bleiben, statt sofort zu sitzen."
       ]
@@ -237,12 +237,12 @@
       "category": "ernaehrung",
       "title": "Zuerst das Gemüse",
       "lesson": "Die Reihenfolge auf dem Teller verändert, wie schnell eine Mahlzeit im Blut ankommt: Ballaststoffe zuerst verlangsamen die Aufnahme des Restes. Und ganz praktisch landet mehr Gemüse im Magen, wenn es zuerst kommt.",
-      "action": "Essen Sie heute bei einer Mahlzeit zuerst das Gemüse, bevor Sie den Rest anfangen.",
+      "action": "Iss heute bei einer Mahlzeit zuerst das Gemüse, bevor du den Rest anfängst.",
       "minutes": 1,
       "steps": [
         "Das Gemüse getrennt auf den Teller geben.",
         "Erst aufessen, dann zum Rest übergehen.",
-        "Kurz wahrnehmen, wie satt Sie danach schon sind."
+        "Kurz wahrnehmen, wie satt du danach schon bist."
       ]
     },
     {
@@ -250,12 +250,12 @@
       "category": "schlaf",
       "title": "Nach 14 Uhr kein Koffein mehr",
       "lesson": "Koffein hat eine Halbwertszeit von mehreren Stunden – der Nachmittagskaffee wirkt also abends noch. Viele Menschen schlafen trotzdem ein, aber die Schlafqualität leidet, ohne dass es auffällt.",
-      "action": "Trinken Sie heute nach 14 Uhr nichts Koffeinhaltiges mehr.",
+      "action": "Trink heute nach 14 Uhr nichts Koffeinhaltiges mehr.",
       "minutes": 1,
       "steps": [
         "Auch schwarzen und grünen Tee sowie Cola mitzählen.",
         "Als Ersatz Kräutertee oder Wasser bereitstellen.",
-        "Abends beobachten, wie schnell Sie müde werden."
+        "Abends beobachten, wie schnell du müde wirst."
       ]
     },
     {
@@ -263,7 +263,7 @@
       "category": "ruhe",
       "title": "Eine Stunde nur eine Sache",
       "lesson": "Paralleles Arbeiten fühlt sich produktiv an, kostet aber bei jedem Wechsel Aufmerksamkeit. Eine Stunde konzentriert an einer Sache bringt meist mehr als drei Stunden im Wechselbetrieb – und ermüdet weniger.",
-      "action": "Arbeiten Sie heute eine Stunde lang an genau einer Aufgabe.",
+      "action": "Arbeite heute eine Stunde lang an genau einer Aufgabe.",
       "minutes": 60,
       "steps": [
         "Eine Aufgabe wählen und alles andere schließen.",
@@ -276,7 +276,7 @@
       "category": "wissen",
       "title": "Zucker hat viele Namen",
       "lesson": "In Zutatenlisten taucht Zucker in Dutzenden Formen auf: Glukosesirup, Dextrose, Maltose, Fruchtsüße, Maltodextrin. Verteilt auf mehrere Namen rutscht er in der Rangfolge nach hinten, obwohl die Summe hoch bleibt.",
-      "action": "Suchen Sie heute auf einer Zutatenliste nach allen Zuckerarten.",
+      "action": "Such heute auf einer Zutatenliste nach allen Zuckerarten.",
       "minutes": 3,
       "steps": [
         "Ein süßes Produkt aus dem Vorrat nehmen.",
@@ -289,11 +289,11 @@
       "category": "bewegung",
       "title": "Den kurzen Weg zu Fuß",
       "lesson": "Ein großer Teil aller Autofahrten ist kürzer als zwei Kilometer. Genau diese Strecken lassen sich meist zu Fuß oder mit dem Rad zurücklegen – oft ohne nennenswerten Zeitverlust, wenn man Parkplatzsuche mitrechnet.",
-      "action": "Erledigen Sie heute einen Weg unter zwei Kilometern zu Fuß oder mit dem Rad.",
+      "action": "Erledige heute einen Weg unter zwei Kilometern zu Fuß oder mit dem Rad.",
       "minutes": 20,
       "steps": [
-        "Überlegen Sie morgens, welcher Weg heute ansteht.",
-        "Rechnen Sie großzügig – zu Fuß sind zwei Kilometer etwa 25 Minuten.",
+        "Überleg morgens, welcher Weg heute ansteht.",
+        "Rechne großzügig – zu Fuß sind zwei Kilometer etwa 25 Minuten.",
         "Wetterfeste Jacke bereitlegen, damit die Ausrede wegfällt."
       ]
     },
@@ -302,7 +302,7 @@
       "category": "ernaehrung",
       "title": "Die Wasserflasche in Sichtweite",
       "lesson": "Trinken scheitert selten am Willen, sondern am Vergessen. Was sichtbar in Reichweite steht, wird deutlich häufiger genutzt – das ist einer der zuverlässigsten Tricks überhaupt.",
-      "action": "Stellen Sie heute früh eine gefüllte Wasserflasche dorthin, wo Sie den Tag verbringen.",
+      "action": "Stell heute früh eine gefüllte Wasserflasche dorthin, wo du den Tag verbringst.",
       "minutes": 2,
       "steps": [
         "Flasche morgens füllen, bevor der Tag startet.",
@@ -315,7 +315,7 @@
       "category": "schlaf",
       "title": "Das Schlafzimmer herunterkühlen",
       "lesson": "Zum Einschlafen senkt der Körper seine Kerntemperatur. Ein kühler Raum unterstützt diesen Vorgang – als Orientierung gelten etwa 16 bis 19 Grad, deutlich weniger als in den meisten Wohnzimmern.",
-      "action": "Lüften Sie heute Abend Ihr Schlafzimmer gründlich und drehen Sie die Heizung herunter.",
+      "action": "Lüfte heute Abend dein Schlafzimmer gründlich und dreh die Heizung herunter.",
       "minutes": 5,
       "steps": [
         "Eine Stunde vor dem Schlafen weit öffnen und durchlüften.",
@@ -328,12 +328,12 @@
       "category": "ruhe",
       "title": "Die Benachrichtigungen abschalten",
       "lesson": "Jede Unterbrechung kostet mehr als die Sekunde, die sie dauert – danach braucht die Konzentration Zeit, um zurückzukommen. Die meisten Benachrichtigungen wären auch eine Stunde später noch aktuell.",
-      "action": "Schalten Sie heute die Benachrichtigungen von mindestens drei Apps ab.",
+      "action": "Schalte heute die Benachrichtigungen von mindestens drei Apps ab.",
       "minutes": 5,
       "steps": [
         "Handy-Einstellungen öffnen und die Liste durchgehen.",
-        "Alles abschalten, was nicht von einem Menschen kommt, der Sie direkt erreicht.",
-        "In einer Woche prüfen, ob Ihnen etwas gefehlt hat."
+        "Alles abschalten, was nicht von einem Menschen kommt, der dich direkt erreicht.",
+        "In einer Woche prüfen, ob dir etwas gefehlt hat."
       ]
     },
     {
@@ -341,20 +341,20 @@
       "category": "wissen",
       "title": "Die eigene Hand als Maß",
       "lesson": "Portionsgrößen lassen sich ohne Waage abschätzen: eine Handfläche für Eiweiß, eine Faust für Gemüse, eine hohle Hand für Beilagen, ein Daumen für Fette. Das Maß wächst mit der Körpergröße mit.",
-      "action": "Schätzen Sie heute eine Mahlzeit mit der Handregel ab.",
+      "action": "Schätze heute eine Mahlzeit mit der Handregel ab.",
       "minutes": 3,
       "steps": [
         "Handfläche = Eiweiß, Faust = Gemüse, hohle Hand = Beilage, Daumen = Fett.",
         "Den Teller danach zusammenstellen.",
-        "Vergleichen, wie nah Sie an Ihrer gewohnten Menge liegen."
+        "Vergleich, wie nah du an deiner gewohnten Menge liegst."
       ]
     },
     {
       "id": "wadenheben-beim-warten",
       "category": "bewegung",
-      "title": "Wadenheben, während Sie ohnehin warten",
+      "title": "Wadenheben, während du ohnehin wartest",
       "lesson": "Die Wadenmuskulatur unterstützt den Rücktransport des Blutes aus den Beinen. Beim Warten steht man meistens still herum – dieselbe Zeit lässt sich nutzen, ohne dass es jemandem auffällt.",
-      "action": "Machen Sie heute an einer Warteschlange oder Ampel zwanzig Mal Wadenheben.",
+      "action": "Mach heute an einer Warteschlange oder Ampel zwanzig Mal Wadenheben.",
       "minutes": 2,
       "steps": [
         "Fest auf beiden Füßen stehen, Knie locker.",
@@ -367,12 +367,12 @@
       "category": "ernaehrung",
       "title": "Einmal Hülsenfrüchte heute",
       "lesson": "Linsen, Bohnen und Kichererbsen liefern Eiweiß und Ballaststoffe zugleich und sind dabei günstig und lange haltbar. In der deutschen Küche kommen sie selten vor – dabei reicht die Dose aus dem Vorrat völlig.",
-      "action": "Bauen Sie heute Hülsenfrüchte in eine Mahlzeit ein.",
+      "action": "Bau heute Hülsenfrüchte in eine Mahlzeit ein.",
       "minutes": 10,
       "steps": [
         "Dose oder Glas aus dem Vorrat nehmen, abtropfen und abspülen.",
         "In Salat, Suppe, Pfanne oder Aufstrich geben.",
-        "Klein anfangen, wenn Sie sie selten essen."
+        "Klein anfangen, wenn du sie selten isst."
       ]
     },
     {
@@ -380,7 +380,7 @@
       "category": "schlaf",
       "title": "Drei Schritte, die immer gleich sind",
       "lesson": "Der Körper reagiert auf Wiederholung. Eine kurze, immer gleiche Abfolge vor dem Schlafen wird mit der Zeit zum Signal – nicht weil sie besonders ist, sondern weil sie vorhersehbar ist.",
-      "action": "Legen Sie heute drei Schritte fest, die Sie jeden Abend in derselben Reihenfolge machen.",
+      "action": "Leg heute drei Schritte fest, die du jedest Abend in derselben Reihenfolge machen.",
       "minutes": 10,
       "steps": [
         "Drei einfache Dinge wählen, etwa Lüften, Zähneputzen, lesen.",
@@ -393,7 +393,7 @@
       "category": "ruhe",
       "title": "Eine Pause, die wirklich Pause ist",
       "lesson": "Eine Pause am Bildschirm ist für den Kopf kaum Erholung – die Aufmerksamkeit arbeitet weiter, nur an anderem Material. Erholsam wird eine Pause meist erst durch Ortswechsel oder Bewegung.",
-      "action": "Machen Sie heute eine Pause komplett ohne Bildschirm.",
+      "action": "Mach heute eine Pause komplett ohne Bildschirm.",
       "minutes": 10,
       "steps": [
         "Aufstehen und den Raum verlassen.",
@@ -406,12 +406,12 @@
       "category": "wissen",
       "title": "Die eigenen Blutdruckwerte kennen",
       "lesson": "Bluthochdruck verursacht lange keine Beschwerden – deshalb wissen viele Menschen nichts davon. Der eigene aktuelle Wert ist eine Grundinformation, die man kennen sollte wie die eigene Schuhgröße.",
-      "action": "Finden Sie heraus, wann Ihr Blutdruck zuletzt gemessen wurde, und notieren Sie den Wert.",
+      "action": "Finde heraus, wann dein Blutdruck zuletzt gemessen wurde, und notiere den Wert.",
       "minutes": 5,
       "steps": [
         "In Unterlagen oder der Apotheken-App nachsehen.",
         "Wenn die Messung lange her ist: Termin oder Apothekenmessung einplanen.",
-        "Wert mit Datum notieren, damit Sie ihn parat haben."
+        "Wert mit Datum notieren, damit du ihn parat hast."
       ],
       "note": "Einzelmessungen schwanken stark und ergeben keine Diagnose. Die Einordnung gehört in ärztliche Hände."
     },
@@ -420,7 +420,7 @@
       "category": "bewegung",
       "title": "Alle dreißig Minuten kurz aufstehen",
       "lesson": "Nicht die Sitzdauer insgesamt ist das Problem, sondern das ununterbrochene Sitzen. Schon kurzes Aufstehen bringt den Kreislauf in Gang und entlastet Rücken und Nacken.",
-      "action": "Stehen Sie heute an jeder halben Stunde einmal kurz auf.",
+      "action": "Steh heute an jeder halben Stunde einmal kurz auf.",
       "minutes": 3,
       "steps": [
         "Eine leise Erinnerung am Handy oder Rechner stellen.",
@@ -433,7 +433,7 @@
       "category": "ernaehrung",
       "title": "Ein Tag ohne gezuckerte Getränke",
       "lesson": "Zucker in flüssiger Form sättigt kaum, wird aber vollständig aufgenommen. Wer ihn weglässt, verändert seine Zuckerbilanz oft spürbar, ohne beim Essen irgendetwas ändern zu müssen.",
-      "action": "Trinken Sie heute keine gezuckerten Getränke – auch keine Säfte.",
+      "action": "Trink heute keine gezuckerten Getränke – auch keine Säfte.",
       "minutes": 1,
       "steps": [
         "Morgens entscheiden, was stattdessen im Kühlschrank steht.",
@@ -446,7 +446,7 @@
       "category": "schlaf",
       "title": "So dunkel wie möglich schlafen",
       "lesson": "Licht ist der stärkste Taktgeber der inneren Uhr – auch nachts. Standby-Lämpchen, Straßenlaternen und ein hell leuchtender Wecker sind kleine Störquellen, die sich fast kostenlos beseitigen lassen.",
-      "action": "Machen Sie Ihr Schlafzimmer heute Nacht so dunkel wie möglich.",
+      "action": "Mach dein Schlafzimmer heute Nacht so dunkel wie möglich.",
       "minutes": 5,
       "steps": [
         "Alle Lichtquellen im Raum suchen, auch kleine LEDs.",
@@ -459,10 +459,10 @@
       "category": "ruhe",
       "title": "Einmal freundlich absagen",
       "lesson": "Dauerhafte Überlastung entsteht selten durch eine große Sache, sondern durch viele kleine Zusagen. Eine Absage ist keine Unhöflichkeit, sondern eine Entscheidung darüber, was heute realistisch möglich ist.",
-      "action": "Sagen Sie heute zu einer Sache freundlich ab, die Sie eigentlich nicht schaffen.",
+      "action": "Sag heute zu einer Sache freundlich ab, die du eigentlich nicht schaffst.",
       "minutes": 5,
       "steps": [
-        "Eine Zusage suchen, die Ihnen heute Druck macht.",
+        "Eine Zusage suchen, die dir heute Druck macht.",
         "Kurz und ohne lange Rechtfertigung absagen.",
         "Wenn möglich einen anderen Zeitpunkt anbieten."
       ]
@@ -472,21 +472,21 @@
       "category": "wissen",
       "title": "Den Bauchumfang statt nur das Gewicht",
       "lesson": "Die Waage unterscheidet nicht zwischen Muskeln, Wasser und Fett. Der Bauchumfang sagt zusätzlich etwas darüber aus, wo Fett sitzt – und diese Verteilung ist medizinisch aussagekräftiger als das reine Gewicht.",
-      "action": "Messen Sie heute einmal Ihren Bauchumfang und notieren Sie ihn.",
+      "action": "Miss heute einmal deinen Bauchumfang und notiere ihn.",
       "minutes": 3,
       "steps": [
         "Maßband auf Höhe des Bauchnabels anlegen, im Stehen.",
         "Nach normalem Ausatmen ablesen, ohne einzuziehen.",
         "Wert mit Datum notieren und in drei Monaten wiederholen."
       ],
-      "note": "Der Wert ist eine Orientierung, kein Befund. Einordnung und Konsequenzen besprechen Sie am besten ärztlich."
+      "note": "Der Wert ist eine Orientierung, kein Befund. Einordnung und Konsequenzen besprech am besten ärztlich."
     },
     {
       "id": "schultern-lockern",
       "category": "bewegung",
       "title": "Schultern lockern am Schreibtisch",
       "lesson": "Bei konzentrierter Arbeit ziehen viele Menschen unbemerkt die Schultern hoch und halten sie dort. Über Stunden entsteht daraus Spannung im Nacken – lösen lässt sie sich in unter einer Minute.",
-      "action": "Lockern Sie heute dreimal bewusst Ihre Schultern.",
+      "action": "Lockere heute dreimal bewusst deine Schultern.",
       "minutes": 2,
       "steps": [
         "Schultern kräftig zu den Ohren ziehen und drei Sekunden halten.",
@@ -499,11 +499,11 @@
       "category": "ernaehrung",
       "title": "Zwanzig Minuten für eine Mahlzeit",
       "lesson": "Das Sättigungsgefühl braucht Zeit, bis es im Kopf ankommt. Wer in acht Minuten isst, merkt oft erst danach, dass es zu viel war – langsames Essen ist deshalb die einfachste Portionskontrolle.",
-      "action": "Nehmen Sie sich heute für eine Mahlzeit bewusst zwanzig Minuten Zeit.",
+      "action": "Nimm dir heute für eine Mahlzeit bewusst zwanzig Minuten Zeit.",
       "minutes": 20,
       "steps": [
         "Besteck zwischendurch ablegen.",
-        "Bildschirm aus, damit Sie das Essen wahrnehmen.",
+        "Bildschirm aus, damit du das Essen wahrnimmst.",
         "Vor dem Nachschlag eine Minute warten."
       ]
     },
@@ -512,7 +512,7 @@
       "category": "schlaf",
       "title": "Abends etwas früher und leichter essen",
       "lesson": "Eine große, fettreiche Mahlzeit kurz vor dem Schlafen beschäftigt die Verdauung noch, wenn der Körper eigentlich herunterfahren will. Für viele reicht schon eine Verschiebung um eine Stunde.",
-      "action": "Essen Sie heute Ihre letzte größere Mahlzeit mindestens drei Stunden vor dem Schlafengehen.",
+      "action": "Iss heute deine letzte größere Mahlzeit mindestens drei Stunden vor dem Schlafengehen.",
       "minutes": 5,
       "steps": [
         "Morgens überlegen, wann heute Abend gegessen wird.",
@@ -524,13 +524,13 @@
       "id": "koerper-durchgehen",
       "category": "ruhe",
       "title": "Zwei Minuten durch den Körper gehen",
-      "lesson": "Anspannung sitzt oft an Stellen, die man nicht bewusst wahrnimmt – Kiefer, Schultern, Hände. Sie einmal gedanklich abzugehen, macht die Spannung sichtbar, und häufig löst sie sich schon dadurch.",
-      "action": "Gehen Sie heute zwei Minuten lang in Gedanken einmal durch Ihren Körper.",
+      "lesson": "Anspannung sitzt oft an Stellen, die man nicht bewusst wahrnimmt – Kiefer, Schultern, Hände. du einmal gedanklich abzugehst, macht die Spannung sichtbar, und häufig löst sie sich schon dadurch.",
+      "action": "Geh heute zwei Minuten lang in Gedanken einmal durch deinen Körper.",
       "minutes": 2,
       "steps": [
         "Ruhig sitzen und die Augen schließen, wenn es angenehm ist.",
         "Von den Füßen aufwärts wandern: Beine, Bauch, Schultern, Kiefer.",
-        "Wo Sie Spannung finden: bewusst ausatmen und lockerlassen."
+        "Wo du Spannung findest: bewusst ausatmen und lockerlassen."
       ]
     },
     {
@@ -538,21 +538,21 @@
       "category": "wissen",
       "title": "Einen Beipackzettel wirklich lesen",
       "lesson": "Beipackzettel sind unbeliebt, enthalten aber genau die Informationen, die im Zweifel zählen: Einnahmezeitpunkt, Wechselwirkungen und was bei vergessener Dosis gilt. Zehn Minuten einmal gelesen ersparen später Unsicherheit.",
-      "action": "Lesen Sie heute den Beipackzettel eines Mittels, das Sie regelmäßig nehmen.",
+      "action": "Lies heute den Beipackzettel eines Mittels, das du regelmäßig nimmst.",
       "minutes": 10,
       "steps": [
         "Abschnitt zu Einnahme und Zeitpunkt lesen.",
         "Abschnitt zu Wechselwirkungen mit anderen Mitteln und Lebensmitteln ansehen.",
         "Offene Fragen notieren."
       ],
-      "note": "Ändern Sie niemals eigenmächtig Dosierung oder Einnahme. Fragen gehören in die Apotheke oder Arztpraxis."
+      "note": "Änder niemals eigenmächtig Dosierung oder Einnahme. Fragen gehören in die Apotheke oder Arztpraxis."
     },
     {
       "id": "einmal-lang-machen",
       "category": "bewegung",
       "title": "Einmal richtig lang machen",
       "lesson": "Der Rücken verbringt den Tag meist in leichter Beugung – am Schreibtisch, am Steuer, am Handy. Eine bewusste Streckung in die Gegenrichtung ist ein einfacher Ausgleich für dieses Muster.",
-      "action": "Strecken Sie sich heute dreimal bewusst in die volle Länge.",
+      "action": "Streck dir heute dreimal bewusst in die volle Länge.",
       "minutes": 2,
       "steps": [
         "Aufstehen, Arme über den Kopf, Fingerspitzen zur Decke.",
@@ -565,7 +565,7 @@
       "category": "ernaehrung",
       "title": "Eine Handvoll Nüsse",
       "lesson": "Nüsse liefern ungesättigte Fettsäuren, Eiweiß und Ballaststoffe in kompakter Form. Weil sie energiereich sind, ist die Menge entscheidend – eine Handvoll ist ein guter, alltagstauglicher Maßstab.",
-      "action": "Essen Sie heute eine Handvoll ungesalzene Nüsse als Snack.",
+      "action": "Iss heute eine Handvoll ungesalzene Nüsse als Snack.",
       "minutes": 2,
       "steps": [
         "Ungesalzen und ungeröstet bevorzugen.",
@@ -579,7 +579,7 @@
       "category": "schlaf",
       "title": "Den Kopf auf einen Zettel legen",
       "lesson": "Gedankenkreisen vor dem Einschlafen entsteht oft aus der Sorge, etwas zu vergessen. Aufgeschrieben verliert eine offene Aufgabe diesen Druck – das Blatt übernimmt das Erinnern.",
-      "action": "Schreiben Sie heute vor dem Schlafengehen alles auf, was Ihnen im Kopf herumgeht.",
+      "action": "Schreib heute vor dem Schlafengehen alles auf, was dir im Kopf herumgeht.",
       "minutes": 5,
       "steps": [
         "Zettel und Stift neben das Bett legen.",
@@ -592,10 +592,10 @@
       "category": "ruhe",
       "title": "Eine Viertelstunde ins Grüne",
       "lesson": "Zeit in Grünanlagen wird in Studien regelmäßig mit besserer Stimmung und niedrigerem Stressempfinden in Verbindung gebracht. Ein Park in der Stadt reicht dafür aus, es braucht keinen Wald.",
-      "action": "Verbringen Sie heute fünfzehn Minuten in einer Grünanlage oder im Park.",
+      "action": "Verbring heute fünfzehn Minuten in einer Grünanlage oder im Park.",
       "minutes": 15,
       "steps": [
-        "Die nächste Grünfläche in Ihrer Nähe aussuchen.",
+        "Die nächste Grünfläche in deiner Nähe aussuchen.",
         "Ohne Ziel hingehen, sitzen oder langsam gehen.",
         "Bewusst schauen, was dort wächst."
       ]
@@ -605,21 +605,21 @@
       "category": "wissen",
       "title": "Wie viel trinken eigentlich sinnvoll ist",
       "lesson": "Die verbreitete Zahl von zwei Litern ist eine grobe Orientierung, kein Naturgesetz: Bedarf hängt von Bewegung, Temperatur, Alter und Ernährung ab. Auch Lebensmittel liefern einen erheblichen Teil der Flüssigkeit.",
-      "action": "Schätzen Sie heute einmal, wie viel Sie tatsächlich trinken.",
+      "action": "Schätze heute einmal, wie viel du tatsächlich trinkst.",
       "minutes": 5,
       "steps": [
         "Alle Getränke des Tages mitzählen, auch Kaffee und Tee.",
         "Am Abend die Summe bilden.",
-        "Mit Ihrem Bedarf abgleichen – bei Hitze und Sport liegt er höher."
+        "Mit deinem Bedarf abgleichen – bei Hitze und Sport liegt er höher."
       ],
-      "note": "Bei Herz- oder Nierenerkrankungen gelten teils abweichende Empfehlungen. Halten Sie sich dann an die ärztliche Vorgabe."
+      "note": "Bei Herz- oder Nierenerkrankungen gelten teils abweichende Empfehlungen. Halt dir dann an die ärztliche Vorgabe."
     },
     {
       "id": "gespraech-spazieren",
       "category": "bewegung",
       "title": "Ein Gespräch spazieren führen",
       "lesson": "Bewegung und Reden lassen sich gut verbinden – viele Menschen sprechen im Gehen sogar offener als sich gegenübersitzend. So entsteht Bewegung, ohne dass Zeit dafür freigeschaufelt werden muss.",
-      "action": "Verlegen Sie heute ein Gespräch oder eine Besprechung nach draußen.",
+      "action": "Verleg heute ein Gespräch oder eine Besprechung nach draußen.",
       "minutes": 20,
       "steps": [
         "Ein Gespräch auswählen, das keine Unterlagen braucht.",
@@ -632,7 +632,7 @@
       "category": "ernaehrung",
       "title": "Einmal Vollkorn statt Weißmehl",
       "lesson": "Vollkorn enthält die Randschichten des Korns und damit mehr Ballaststoffe und Mineralstoffe. Der Unterschied ist beim einzelnen Brot klein, über Monate hinweg aber einer der wirksamsten stillen Tausche.",
-      "action": "Tauschen Sie heute ein Weißmehlprodukt gegen die Vollkornvariante.",
+      "action": "Tausch heute ein Weißmehlprodukt gegen die Vollkornvariante.",
       "minutes": 2,
       "steps": [
         "Eine Stelle wählen: Brot, Nudeln oder Reis.",
@@ -645,10 +645,10 @@
       "category": "schlaf",
       "title": "Wenn Mittagsschlaf, dann kurz",
       "lesson": "Ein kurzer Mittagsschlaf kann die Aufmerksamkeit auffrischen. Wird er zu lang, gerät man in tiefere Schlafphasen und wacht benommen auf – und der Nachtschlaf leidet zusätzlich.",
-      "action": "Halten Sie einen Mittagsschlaf heute auf maximal zwanzig Minuten begrenzt.",
+      "action": "Halt einen Mittagsschlaf heute auf maximal zwanzig Minuten begrenzt.",
       "minutes": 20,
       "steps": [
-        "Wecker auf zwanzig Minuten stellen, bevor Sie sich hinlegen.",
+        "Wecker auf zwanzig Minuten stellen, bevor du sich hinlegst.",
         "Früh am Nachmittag statt spät.",
         "Danach kurz aufstehen und ans Licht gehen."
       ]
@@ -658,12 +658,12 @@
       "category": "ruhe",
       "title": "Ein Stück Musik bewusst hören",
       "lesson": "Musik läuft meist nebenbei. Ein einziges Stück ohne Nebenbeschäftigung zu hören, ist eine der kürzesten Formen von Achtsamkeitsübung – ohne dass es sich nach Übung anfühlt.",
-      "action": "Hören Sie heute ein Musikstück ganz, ohne dabei etwas anderes zu tun.",
+      "action": "Hör heute ein Musikstück ganz, ohne dabei etwas anderes zu tun.",
       "minutes": 5,
       "steps": [
-        "Ein Stück wählen, das Sie mögen.",
+        "Ein Stück wählen, das du mögst.",
         "Hinsetzen, Augen schließen oder aus dem Fenster schauen.",
-        "Auf ein einzelnes Instrument achten, das Ihnen sonst entgeht."
+        "Auf ein einzelnes Instrument achten, das dir sonst entgeht."
       ]
     },
     {
@@ -671,7 +671,7 @@
       "category": "wissen",
       "title": "Mindesthaltbarkeit ist kein Wegwerfdatum",
       "lesson": "Das Mindesthaltbarkeitsdatum sagt, bis wann der Hersteller für Eigenschaften wie Geschmack und Konsistenz einsteht – nicht, wann etwas verdirbt. Anders beim Verbrauchsdatum auf leicht verderblichen Produkten: Das ist eine echte Grenze.",
-      "action": "Prüfen Sie heute ein Produkt mit abgelaufenem Mindesthaltbarkeitsdatum mit den Sinnen.",
+      "action": "Prüf heute ein Produkt mit abgelaufenem Mindesthaltbarkeitsdatum mit den Sinnen.",
       "minutes": 3,
       "steps": [
         "Unterscheiden: mindestens haltbar bis oder zu verbrauchen bis.",
@@ -683,12 +683,12 @@
       "id": "eine-strecke-mit-rad",
       "category": "bewegung",
       "title": "Eine Strecke mit dem Rad",
-      "lesson": "Alltagsbewegung wirkt vor allem dann, wenn sie regelmäßig stattfindet – und regelmäßig wird sie, wenn sie an einen Weg gekoppelt ist, den Sie ohnehin zurücklegen.",
-      "action": "Legen Sie heute eine Strecke mit dem Fahrrad statt mit dem Auto zurück.",
+      "lesson": "Alltagsbewegung wirkt vor allem dann, wenn sie regelmäßig stattfindet – und regelmäßig wird sie, wenn sie an einen Weg gekoppelt ist, den du ohnehin zurücklegst.",
+      "action": "Leg heute eine Strecke mit dem Fahrrad statt mit dem Auto zurück.",
       "minutes": 15,
       "steps": [
         "Abends vorher Reifendruck und Licht prüfen.",
-        "Die Strecke wählen, die Sie am häufigsten fahren.",
+        "Die Strecke wählen, die du am häufigsten fährst.",
         "Nach der Fahrt kurz notieren, wie lange es tatsächlich gedauert hat."
       ]
     },
@@ -696,8 +696,8 @@
       "id": "mit-zettel-einkaufen",
       "category": "ernaehrung",
       "title": "Mit Zettel einkaufen",
-      "lesson": "Spontankäufe im Supermarkt sind gut untersucht: Sie fallen häufiger auf stark verarbeitete Produkte. Eine Liste verschiebt die Entscheidung nach Hause – dorthin, wo Sie nicht hungrig zwischen Regalen stehen.",
-      "action": "Gehen Sie heute nur mit vorbereiteter Liste einkaufen – und nicht hungrig.",
+      "lesson": "Spontankäufe im Supermarkt sind gut untersucht: du fallst häufiger auf stark verarbeitete Produkte. Eine Liste verschiebt die Entscheidung nach Hause – dorthin, wo du nicht hungrig zwischst Regalen stehen.",
+      "action": "Geh heute nur mit vorbereiteter Liste einkaufen – und nicht hungrig.",
       "minutes": 10,
       "steps": [
         "Vor dem Einkauf Vorrat und Kühlschrank durchsehen.",
@@ -710,10 +710,10 @@
       "category": "schlaf",
       "title": "Einmal ohne Snooze aufstehen",
       "lesson": "Die Minuten nach dem Snooze bringen keinen erholsamen Schlaf, sondern zerstückelten – der Körper startet Schlafzyklen, die sofort wieder unterbrochen werden. Das erklärt, warum es sich danach oft schlechter anfühlt.",
-      "action": "Stehen Sie heute beim ersten Klingeln auf, ohne die Schlummertaste zu drücken.",
+      "action": "Steh heute beim ersten Klingeln auf, ohne die Schlummertaste zu drücken.",
       "minutes": 1,
       "steps": [
-        "Wecker so stellen, dass Sie aufstehen müssen, um ihn auszuschalten.",
+        "Wecker so stellen, dass du aufstehst müssen, um ihn auszuschalten.",
         "Direkt aufsetzen, statt liegen zu bleiben.",
         "Sofort Licht anmachen oder Vorhang öffnen."
       ]
@@ -723,10 +723,10 @@
       "category": "ruhe",
       "title": "Fünf Minuten eine Fläche freiräumen",
       "lesson": "Unordnung im Blickfeld erzeugt bei vielen Menschen ein leises Gefühl offener Aufgaben. Eine einzige freigeräumte Fläche wirkt oft überraschend stark – und fünf Minuten sind selbst an vollen Tagen drin.",
-      "action": "Räumen Sie heute fünf Minuten lang eine einzige Fläche frei.",
+      "action": "Räum heute fünf Minuten lang eine einzige Fläche frei.",
       "minutes": 5,
       "steps": [
-        "Eine Fläche wählen, die Sie täglich sehen.",
+        "Eine Fläche wählen, die du täglich siehst.",
         "Wecker auf fünf Minuten stellen.",
         "Nur diese Fläche – nicht den ganzen Raum."
       ]
@@ -736,7 +736,7 @@
       "category": "wissen",
       "title": "Ein Siegel einmal nachschlagen",
       "lesson": "Auf Verpackungen finden sich staatliche Siegel, Verbandszeichen und reine Werbelogos nebeneinander. Nur die ersten beiden haben verbindliche Kriterien – der Rest sieht nur so aus.",
-      "action": "Schlagen Sie heute ein Siegel nach, das Sie regelmäßig auf Produkten sehen.",
+      "action": "Schlag heute ein Siegel nach, das du regelmäßig auf Produkten siehst.",
       "minutes": 5,
       "steps": [
         "Ein Logo von einer Verpackung notieren.",
@@ -749,7 +749,7 @@
       "category": "bewegung",
       "title": "Auf einem Bein stehen beim Zähneputzen",
       "lesson": "Gleichgewicht ist eine Fähigkeit, die ohne Training langsam nachlässt – und die sich ebenso langsam wieder aufbauen lässt. Zähneputzen ist der ideale Anlass, weil es täglich und immer gleich stattfindet.",
-      "action": "Stehen Sie heute beim Zähneputzen auf einem Bein, pro Seite dreißig Sekunden.",
+      "action": "Steh heute beim Zähneputzen auf einem Bein, pro Seite dreißig Sekunden.",
       "minutes": 2,
       "steps": [
         "In der Nähe der Wand oder des Waschbeckens bleiben.",
@@ -763,7 +763,7 @@
       "category": "ernaehrung",
       "title": "Aus Resten eine Mahlzeit machen",
       "lesson": "Ein erheblicher Teil der gekauften Lebensmittel landet im Müll. Reste zu verwerten spart Geld, verlangt etwas Kreativität – und führt oft zu abwechslungsreicheren Tellern als geplantes Kochen.",
-      "action": "Kochen Sie heute eine Mahlzeit ausschließlich aus dem, was schon da ist.",
+      "action": "Koch heute eine Mahlzeit ausschließlich aus dem, was schon da ist.",
       "minutes": 25,
       "steps": [
         "Kühlschrank und Vorrat komplett sichten.",
@@ -776,12 +776,12 @@
       "category": "schlaf",
       "title": "Das Bett bleibt zum Schlafen da",
       "lesson": "Wer im Bett arbeitet, isst und fernsieht, schwächt die Verknüpfung zwischen Bett und Schlaf. Je klarer der Ort einer Sache zugeordnet ist, desto schneller stellt sich der Körper darauf ein.",
-      "action": "Nutzen Sie Ihr Bett heute ausschließlich zum Schlafen.",
+      "action": "Nutz dein Bett heute ausschließlich zum Schlafen.",
       "minutes": 1,
       "steps": [
         "Laptop und Unterlagen aus dem Schlafzimmer nehmen.",
         "Lesen im Sessel statt im Liegen.",
-        "Wenn Sie nachts lange wach liegen: aufstehen und in einem anderen Raum warten."
+        "Wenn du nachts lange wach liegst: aufstehen und in einem anderen Raum warten."
       ]
     },
     {
@@ -789,7 +789,7 @@
       "category": "ruhe",
       "title": "Den Arbeitstag bewusst beenden",
       "lesson": "Ohne klaren Schlusspunkt läuft Arbeit im Kopf weiter, besonders im Homeoffice. Eine kurze, immer gleiche Geste markiert das Ende und hilft dem Kopf, umzuschalten.",
-      "action": "Beenden Sie Ihren Arbeitstag heute mit einer festen kleinen Geste.",
+      "action": "Beende deinen Arbeitstag heute mit einer festen kleinen Geste.",
       "minutes": 5,
       "steps": [
         "Offene Punkte für morgen notieren.",
@@ -802,7 +802,7 @@
       "category": "wissen",
       "title": "Die 10.000 Schritte sind Marketing",
       "lesson": "Die Zahl stammt aus einer japanischen Werbekampagne der 1960er-Jahre, nicht aus der Forschung. Untersuchungen zeigen: Ein großer Teil des Nutzens tritt schon bei deutlich niedrigeren Schrittzahlen ein.",
-      "action": "Finden Sie heute heraus, wie viele Schritte Sie an einem normalen Tag tatsächlich gehen.",
+      "action": "Finde heute heraus, wie viele Schritte du an einem normalst Tag tatsächlich gehen.",
       "minutes": 3,
       "steps": [
         "Schrittzähler am Handy oder an der Uhr ansehen.",
@@ -815,7 +815,7 @@
       "category": "bewegung",
       "title": "Zehn Kniebeugen, solange das Wasser kocht",
       "lesson": "Wartezeiten in der Küche sind kurz, aber es gibt sie jeden Tag. Große Muskelgruppen wie die Oberschenkel lassen sich in dieser Zeit sinnvoll fordern, ganz ohne Geräte.",
-      "action": "Machen Sie heute zehn Kniebeugen, während Wasser kocht oder Kaffee durchläuft.",
+      "action": "Mach heute zehn Kniebeugen, während Wasser kocht oder Kaffee durchläuft.",
       "minutes": 2,
       "steps": [
         "Füße hüftbreit, Zehen leicht nach außen.",
@@ -828,7 +828,7 @@
       "category": "ernaehrung",
       "title": "Kräuter statt Salz",
       "lesson": "Der größte Teil des Salzes stammt nicht aus dem Streuer, sondern aus verarbeiteten Produkten. Beim Selberkochen lässt sich Geschmack trotzdem gut anders erzeugen – über Kräuter, Säure und Schärfe.",
-      "action": "Würzen Sie heute eine Mahlzeit mit Kräutern, Zitrone oder Pfeffer statt mit zusätzlichem Salz.",
+      "action": "Würz heute eine Mahlzeit mit Kräutern, Zitrone oder Pfeffer statt mit zusätzlichem Salz.",
       "minutes": 3,
       "steps": [
         "Erst am Ende abschmecken, nicht automatisch salzen.",
@@ -841,12 +841,12 @@
       "category": "schlaf",
       "title": "Die Runde nach dem Abendessen",
       "lesson": "Ein Spaziergang am Abend verbindet zwei Dinge: leichte Bewegung und den Übergang vom Tag in den Abend. Das Tageslicht kurz vor Sonnenuntergang gibt der inneren Uhr zusätzlich ein Signal.",
-      "action": "Gehen Sie heute nach dem Abendessen zehn Minuten vor die Tür.",
+      "action": "Geh heute nach dem Abendessen zehn Minuten vor die Tür.",
       "minutes": 10,
       "steps": [
         "Direkt nach dem Essen losgehen, bevor man sitzen bleibt.",
         "Gemütliches Tempo, kein Sport.",
-        "Ohne Handy oder mit Musik – wie es Ihnen lieber ist."
+        "Ohne Handy oder mit Musik – wie es dir lieber ist."
       ]
     },
     {
@@ -854,21 +854,21 @@
       "category": "ruhe",
       "title": "Sorgen einen festen Termin geben",
       "lesson": "Sorgen den ganzen Tag mit sich zu tragen, macht sie nicht kleiner. Sie auf ein festes, begrenztes Zeitfenster zu verschieben, hilft vielen Menschen, den Rest des Tages freier zu haben.",
-      "action": "Legen Sie heute ein festes Zeitfenster von zehn Minuten für Ihre Sorgen fest.",
+      "action": "Leg heute ein festes Zeitfenster von zehn Minuten für deine Sorgen fest.",
       "minutes": 10,
       "steps": [
         "Eine Uhrzeit wählen, nicht direkt vor dem Schlafen.",
         "Kommt tagsüber eine Sorge: notieren und auf das Fenster verschieben.",
         "Im Fenster bewusst durchgehen, danach bewusst beenden."
       ],
-      "note": "Wenn Sorgen oder Grübeln Sie dauerhaft belasten, ist das ein Grund, professionelle Unterstützung zu suchen."
+      "note": "Wenn Sorgen oder Grübeln du dauerhaft belastest, ist das ein Grund, professionelle Unterstützung zu suchen."
     },
     {
       "id": "quellen-pruefen",
       "category": "wissen",
       "title": "Bei einer Gesundheitsmeldung die Quelle suchen",
       "lesson": "Zwischen Studie und Schlagzeile liegen meist mehrere Vereinfachungen. Wer nachsieht, wie viele Menschen untersucht wurden und wie lange, kann eine Meldung deutlich besser einordnen.",
-      "action": "Suchen Sie heute bei einer Gesundheitsmeldung die zugrunde liegende Studie.",
+      "action": "Such heute bei einer Gesundheitsmeldung die zugrunde liegende Studie.",
       "minutes": 10,
       "steps": [
         "Im Artikel nach Namen der Studie oder Fachzeitschrift suchen.",
@@ -881,7 +881,7 @@
       "category": "bewegung",
       "title": "Den Einkauf tragen statt rollen",
       "lesson": "Tragen ist Krafttraining im Alltag: Es fordert Griffkraft, Rumpf und Rücken gleichzeitig. Für kleinere Einkäufe braucht es dafür keinen zusätzlichen Termin.",
-      "action": "Tragen Sie heute einen kleineren Einkauf in zwei Taschen nach Hause, statt ihn zu rollen.",
+      "action": "Trag heute einen kleineren Einkauf in zwei Taschen nach Hause, statt ihn zu rollen.",
       "minutes": 10,
       "steps": [
         "Das Gewicht auf beide Seiten gleichmäßig verteilen.",
@@ -895,7 +895,7 @@
       "category": "ernaehrung",
       "title": "Omega-3 auf den Teller bringen",
       "lesson": "Omega-3-Fettsäuren kommen vor allem in fettreichem Fisch vor, pflanzlich in Leinsamen, Walnüssen und Rapsöl. Beide Wege sind alltagstauglich – entscheidend ist die Regelmäßigkeit, nicht die einzelne Portion.",
-      "action": "Bringen Sie heute eine Omega-3-Quelle auf den Teller.",
+      "action": "Bring heute eine Omega-3-Quelle auf den Teller.",
       "minutes": 10,
       "steps": [
         "Tierisch: fettreicher Fisch wie Lachs, Hering oder Makrele.",
@@ -908,7 +908,7 @@
       "category": "schlaf",
       "title": "Warm duschen, um kühler zu werden",
       "lesson": "Eine warme Dusche am Abend wirkt zunächst gegenteilig, führt danach aber dazu, dass der Körper Wärme über die Haut abgibt und die Kerntemperatur schneller sinkt – genau das, was zum Einschlafen nötig ist.",
-      "action": "Duschen Sie heute etwa eine Stunde vor dem Zubettgehen warm.",
+      "action": "Dusch heute etwa eine Stunde vor dem Zubettgehen warm.",
       "minutes": 10,
       "steps": [
         "Ungefähr eine Stunde vorher einplanen, nicht direkt davor.",
@@ -921,12 +921,12 @@
       "category": "ruhe",
       "title": "Eine Stunde ohne Nachrichten",
       "lesson": "Nachrichtenlage und soziale Netzwerke sind darauf ausgelegt, Aufmerksamkeit zu halten. Eine bewusste Stunde ohne beides zeigt oft, wie viel Unruhe daraus entsteht – und wie wenig man verpasst.",
-      "action": "Verbringen Sie heute eine Stunde ohne Nachrichten und soziale Netzwerke.",
+      "action": "Verbring heute eine Stunde ohne Nachrichten und soziale Netzwerke.",
       "minutes": 60,
       "steps": [
-        "Eine Stunde wählen, in der Sie ohnehin nicht erreichbar sein müssen.",
+        "Eine Stunde wählen, in der du ohnehin nicht erreichbar sein musst.",
         "Apps schließen oder Flugmodus einschalten.",
-        "Vorher überlegen, was Sie stattdessen tun."
+        "Vorher überlegen, was du stattdesst tun."
       ]
     },
     {
@@ -934,7 +934,7 @@
       "category": "wissen",
       "title": "Warum 7,5 Stunden besser sein können als 8",
       "lesson": "Schlaf läuft in Zyklen von grob 90 Minuten ab. Wer am Ende eines Zyklus aufwacht, fühlt sich oft frischer als jemand, der mitten aus dem Tiefschlaf gerissen wird – auch bei etwas kürzerer Gesamtdauer.",
-      "action": "Rechnen Sie heute rückwärts, wann Sie ins Bett gehen müssten, um in Zyklen zu schlafen.",
+      "action": "Rechne heute rückwärts, wann du ins Bett gehen müsstest, um in Zyklen zu schlafen.",
       "minutes": 5,
       "steps": [
         "Aufstehzeit festlegen.",
@@ -947,7 +947,7 @@
       "category": "bewegung",
       "title": "Zwei Dehnübungen vor dem Schlafen",
       "lesson": "Dehnen macht nicht automatisch beweglicher, wenn es einmalig passiert – aber es ist ein ruhiger Abschluss des Tages und lenkt die Aufmerksamkeit für ein paar Minuten weg vom Kopf hin zum Körper.",
-      "action": "Dehnen Sie heute Abend zwei Bereiche für je dreißig Sekunden.",
+      "action": "Dehne heute Abend zwei Bereiche für je dreißig Sekunden.",
       "minutes": 3,
       "steps": [
         "Zwei Stellen wählen, die sich heute steif angefühlt haben.",
@@ -960,12 +960,12 @@
       "category": "ernaehrung",
       "title": "Der halbe Teller gehört dem Gemüse",
       "lesson": "Statt Kalorien zu zählen, hilft vielen eine einfache Aufteilung: die Hälfte des Tellers Gemüse, ein Viertel Eiweiß, ein Viertel Beilage. Das funktioniert ohne App und ohne Waage.",
-      "action": "Füllen Sie heute bei einer Mahlzeit den halben Teller mit Gemüse oder Salat.",
+      "action": "Füll heute bei einer Mahlzeit den halben Teller mit Gemüse oder Salat.",
       "minutes": 5,
       "steps": [
         "Zuerst das Gemüse auf den Teller geben, dann den Rest.",
         "Tiefkühlgemüse zählt genauso wie frisches.",
-        "Beim Abräumen kurz prüfen, wie satt Sie geworden sind."
+        "Beim Abräumen kurz prüfen, wie satt du gewordest sind."
       ]
     },
     {
@@ -973,7 +973,7 @@
       "category": "schlaf",
       "title": "Eine Lärmquelle beseitigen",
       "lesson": "Geräusche stören den Schlaf auch dann, wenn man davon nicht aufwacht – der Körper reagiert trotzdem. Häufig gibt es genau eine wiederkehrende Quelle, die sich mit wenig Aufwand entschärfen lässt.",
-      "action": "Suchen Sie heute die störendste Geräuschquelle in Ihrem Schlafzimmer und schalten Sie sie aus.",
+      "action": "Such heute die störendste Geräuschquelle in deinem Schlafzimmer und schalte sie aus.",
       "minutes": 5,
       "steps": [
         "Abends eine Minute still im Raum stehen und hinhören.",
@@ -986,10 +986,10 @@
       "category": "ruhe",
       "title": "Ein Gespräch ohne Anlass",
       "lesson": "Soziale Verbindung gehört zu den am besten belegten Einflussgrößen auf das Wohlbefinden. Im Alltag verschwindet sie leicht zwischen Terminen – ein Anruf ohne Anlass ist der einfachste Gegenzug.",
-      "action": "Melden Sie sich heute bei jemandem, ohne dass es einen Anlass gibt.",
+      "action": "Melde dir heute bei jemandem, ohne dass es einen Anlass gibt.",
       "minutes": 10,
       "steps": [
-        "An eine Person denken, an die Sie zuletzt öfter gedacht haben.",
+        "An eine Person denken, an die du zuletzt öfter gedacht hast.",
         "Anrufen statt schreiben, wenn es geht.",
         "Kein Ziel setzen – fünf Minuten reichen."
       ]
@@ -999,7 +999,7 @@
       "category": "wissen",
       "title": "Muskelmasse ist Vorsorge",
       "lesson": "Ab etwa dem 30. Lebensjahr nimmt die Muskelmasse ohne Training langsam ab. Muskeln sind aber nicht nur Kraft, sondern auch Stoffwechsel und Stabilität – deshalb ist Krafttraining im Alter eher wichtiger als in der Jugend.",
-      "action": "Überlegen Sie heute, wo in Ihrer Woche zweimal Krafttraining Platz hätte.",
+      "action": "Überleg heute, wo in deiner Woche zweimal Krafttraining Platz hätte.",
       "minutes": 10,
       "steps": [
         "Wochenplan ansehen und zwei realistische Zeitfenster suchen.",
@@ -1012,7 +1012,7 @@
       "category": "bewegung",
       "title": "Den Bildschirm auf Augenhöhe bringen",
       "lesson": "Ein zu tief stehender Bildschirm zieht den Kopf nach vorn und unten – über Stunden ist das die häufigste Ursache für verspannte Nacken bei Büroarbeit. Die Korrektur dauert eine Minute und wirkt jeden Tag.",
-      "action": "Stellen Sie heute Ihren Bildschirm so ein, dass die obere Kante auf Augenhöhe liegt.",
+      "action": "Stell heute deinen Bildschirm so ein, dass die obere Kante auf Augenhöhe liegt.",
       "minutes": 5,
       "steps": [
         "Aufrecht hinsetzen und geradeaus schauen.",
@@ -1025,11 +1025,11 @@
       "category": "ernaehrung",
       "title": "Den Nachmittagssnack vorbereiten",
       "lesson": "Um vier Uhr nachmittags entscheidet selten der Vorsatz, sondern das, was in Reichweite liegt. Wer den Snack morgens vorbereitet, trifft die Entscheidung zu einem Zeitpunkt, an dem sie leichter fällt.",
-      "action": "Bereiten Sie heute früh einen Snack für den Nachmittag vor.",
+      "action": "Bereite heute früh einen Snack für den Nachmittag vor.",
       "minutes": 5,
       "steps": [
         "Obst schneiden, Gemüsesticks oder Joghurt bereitstellen.",
-        "Sichtbar platzieren, wo Sie nachmittags sind.",
+        "Sichtbar platzieren, wo du nachmittags bist.",
         "Süßes bewusst außer Sichtweite räumen."
       ]
     },
@@ -1038,7 +1038,7 @@
       "category": "schlaf",
       "title": "Eine Woche lang die Schlafdauer notieren",
       "lesson": "Die meisten Menschen schätzen ihren Schlaf falsch ein – meist zu optimistisch. Ein simpler Zettel mit Zubettgeh- und Aufstehzeit zeigt nach einer Woche ein realistisches Bild, ganz ohne Tracker.",
-      "action": "Notieren Sie ab heute eine Woche lang, wann Sie ins Bett gehen und wann Sie aufstehen.",
+      "action": "Notiere ab heute eine Woche lang, wann du ins Bett gehst und wann du aufstehst.",
       "minutes": 2,
       "steps": [
         "Zettel oder Notiz-App neben dem Bett bereitlegen.",
@@ -1051,12 +1051,12 @@
       "category": "ruhe",
       "title": "Eine Tasse langsam trinken",
       "lesson": "Kurze Rituale wirken als Einschnitt im Tag. Eine Tasse Tee bewusst und ohne Nebenbeschäftigung zu trinken, dauert fünf Minuten und verlangt keinerlei Vorbereitung.",
-      "action": "Trinken Sie heute eine Tasse Tee oder Kaffee ganz bewusst, ohne etwas nebenbei zu tun.",
+      "action": "Trink heute eine Tasse Tee oder Kaffee ganz bewusst, ohne etwas nebenbei zu tun.",
       "minutes": 5,
       "steps": [
         "Hinsetzen, Handy weglegen.",
         "Auf Wärme, Geruch und Geschmack achten.",
-        "Die Tasse leer trinken, bevor Sie weitermachen."
+        "Die Tasse leer trinken, bevor du weitermachst."
       ]
     },
     {
@@ -1064,7 +1064,7 @@
       "category": "wissen",
       "title": "Was Hitze mit dem Körper macht",
       "lesson": "Bei Hitze verliert der Körper über Schwitzen nicht nur Wasser, sondern auch Salze. Durst hinkt dem tatsächlichen Bedarf hinterher – besonders bei älteren Menschen, deren Durstempfinden nachlässt.",
-      "action": "Planen Sie heute, wie Sie am nächsten heißen Tag ausreichend trinken.",
+      "action": "Plan heute, wie du am nächsten heißt Tag ausreichend trinken.",
       "minutes": 5,
       "steps": [
         "Feste Trinkzeiten statt auf Durst zu warten.",
@@ -1078,7 +1078,7 @@
       "category": "bewegung",
       "title": "Die Runde in der Mittagspause",
       "lesson": "Bewegung nach dem Mittagessen wirkt doppelt: Sie unterstützt die Verdauung und hilft gegen das Nachmittagstief, das viele sonst mit Kaffee bekämpfen.",
-      "action": "Gehen Sie heute in der Mittagspause fünfzehn Minuten an die frische Luft.",
+      "action": "Geh heute in der Mittagspause fünfzehn Minuten an die frische Luft.",
       "minutes": 15,
       "steps": [
         "Feste Uhrzeit setzen, sonst fällt die Runde aus.",
@@ -1091,7 +1091,7 @@
       "category": "ernaehrung",
       "title": "Frühstücken ohne Bildschirm",
       "lesson": "Wer nebenbei isst, nimmt Geschmack und Sättigung schlechter wahr und isst tendenziell mehr. Eine Mahlzeit ohne Ablenkung ist die einfachste Form von bewusstem Essen – ganz ohne Methode.",
-      "action": "Frühstücken Sie heute ohne Handy, Fernseher und Zeitung.",
+      "action": "Frühstück heute ohne Handy, Fernseher und Zeitung.",
       "minutes": 10,
       "steps": [
         "Handy in einen anderen Raum legen.",
@@ -1103,8 +1103,8 @@
       "id": "warmes-licht-abends",
       "category": "schlaf",
       "title": "Abends das Licht wärmer machen",
-      "lesson": "Helles, kaltweißes Licht am Abend signalisiert dem Körper Tag. Gedimmtes, warmes Licht in den letzten Stunden ist eine der einfachsten Umstellungen überhaupt – und Sie merken den Unterschied sofort.",
-      "action": "Schalten Sie heute Abend auf gedimmtes, warmes Licht um.",
+      "lesson": "Helles, kaltweißes Licht am Abend signalisiert dem Körper Tag. Gedimmtes, warmes Licht in den letzten Stunden ist eine der einfachsten Umstellungen überhaupt – und du merkst den Unterschied sofort.",
+      "action": "Schalte heute Abend auf gedimmtes, warmes Licht um.",
       "minutes": 3,
       "steps": [
         "Deckenlicht aus, Stehlampe oder kleine Leuchten an.",
@@ -1117,7 +1117,7 @@
       "category": "ruhe",
       "title": "Fenster auf, dreimal tief durchatmen",
       "lesson": "Verbrauchte Luft in geschlossenen Räumen macht müde und unkonzentriert. Kurzes Stoßlüften mit ein paar bewussten Atemzügen ist die kleinste sinnvolle Pause, die es gibt.",
-      "action": "Öffnen Sie heute dreimal das Fenster und atmen Sie dabei je dreimal tief durch.",
+      "action": "Öffne heute dreimal das Fenster und atme dabei je dreimal tief durch.",
       "minutes": 3,
       "steps": [
         "Fenster weit öffnen statt kippen.",
@@ -1130,12 +1130,12 @@
       "category": "wissen",
       "title": "Warum Vitamin D im Winter Thema ist",
       "lesson": "Der Körper bildet Vitamin D über die Haut mithilfe von Sonnenlicht. In unseren Breiten steht die Sonne im Winter zu tief dafür – deshalb sinken die Werte in dieser Zeit bei vielen Menschen.",
-      "action": "Notieren Sie sich heute die Frage nach Ihrem Vitamin-D-Status für den nächsten Arzttermin.",
+      "action": "Notiere dir heute die Frage nach deinem Vitamin-D-Status für den nächsten Arzttermin.",
       "minutes": 3,
       "steps": [
         "Notiz für den nächsten Termin anlegen.",
-        "Aufschreiben, wie viel Zeit Sie im Winter draußen verbringen.",
-        "Bestehende Präparate mitnotieren, die Sie einnehmen."
+        "Aufschreiben, wie viel Zeit du im Winter draußen verbringst.",
+        "Bestehende Präparate mitnotieren, die du einnehmest."
       ],
       "note": "Nahrungsergänzung nicht auf Verdacht einnehmen. Bedarf und Dosierung gehören in ärztliche Abklärung."
     },
@@ -1144,10 +1144,10 @@
       "category": "bewegung",
       "title": "Drei Lieder lang in Bewegung",
       "lesson": "Bewegung muss nicht nach Sport aussehen, um zu zählen. Zu Musik durch die Wohnung zu gehen, aufzuräumen oder zu tanzen bringt den Kreislauf genauso in Schwung – und die meisten machen es länger, weil es Spaß macht.",
-      "action": "Bewegen Sie sich heute drei Lieder lang zu Musik, in welcher Form auch immer.",
+      "action": "Bewege dir heute drei Lieder lang zu Musik, in welcher Form auch immer.",
       "minutes": 10,
       "steps": [
-        "Drei Lieder auswählen, die Sie mögen.",
+        "Drei Lieder auswählen, die du mögst.",
         "Lauter stellen als sonst.",
         "Egal ob Tanzen, Aufräumen oder Gehen – Hauptsache in Bewegung."
       ]
@@ -1157,7 +1157,7 @@
       "category": "ernaehrung",
       "title": "Etwas Fermentiertes probieren",
       "lesson": "Joghurt, Kefir, Sauerkraut oder Kimchi enthalten lebende Kulturen. Wie stark sie im Einzelnen wirken, ist Gegenstand laufender Forschung – als Teil einer abwechslungsreichen Ernährung sind sie unkompliziert und günstig.",
-      "action": "Essen Sie heute eine kleine Portion eines fermentierten Lebensmittels.",
+      "action": "Iss heute eine kleine Portion eines fermentierten Lebensmittels.",
       "minutes": 3,
       "steps": [
         "Joghurt, Kefir, Sauerkraut, Kimchi oder Buttermilch wählen.",
@@ -1170,7 +1170,7 @@
       "category": "schlaf",
       "title": "Am Wochenende nicht komplett umstellen",
       "lesson": "Wer am Wochenende zwei Stunden später aufsteht, verschiebt seine innere Uhr ähnlich wie bei einem Flug über zwei Zeitzonen. Der Montag fühlt sich entsprechend an – und das ganz ohne Reise.",
-      "action": "Verschieben Sie Ihre Aufstehzeit am Wochenende um höchstens eine Stunde.",
+      "action": "Verschieb deine Aufstehzeit am Wochenende um höchstens eine Stunde.",
       "minutes": 1,
       "steps": [
         "Wecker auch am freien Tag stellen.",
@@ -1183,7 +1183,7 @@
       "category": "ruhe",
       "title": "Einen Punkt von der Liste streichen",
       "lesson": "To-do-Listen wachsen schneller, als sie abgearbeitet werden. Manches darauf ist längst nicht mehr wichtig – es steht nur noch da, weil es einmal daraufgeschrieben wurde.",
-      "action": "Streichen Sie heute einen Punkt von Ihrer Liste, ohne ihn zu erledigen.",
+      "action": "Streich heute einen Punkt von deiner Liste, ohne ihn zu erledigen.",
       "minutes": 5,
       "steps": [
         "Liste durchgehen und fragen: Was passiert, wenn das nie passiert?",
@@ -1196,7 +1196,7 @@
       "category": "wissen",
       "title": "Die wichtigen Nummern griffbereit",
       "lesson": "Im Notfall zählt, wie schnell die richtige Nummer gefunden wird. 112 für den Rettungsdienst, 116117 für den ärztlichen Bereitschaftsdienst außerhalb der Sprechzeiten – der Unterschied entlastet beide Seiten.",
-      "action": "Speichern Sie heute die wichtigen Notfallnummern in Ihrem Handy.",
+      "action": "Speichern du heute die wichtigst Notfallnummern in deinem Handy.",
       "minutes": 5,
       "steps": [
         "112 für lebensbedrohliche Notfälle, 116117 für den Bereitschaftsdienst.",

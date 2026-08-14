@@ -57,7 +57,7 @@ const todayCategory = categories[today.category];
     <div class="container">
       <div class="task-section-heading" data-reveal>
         <div><p class="eyebrow">Heute dran</p><h2>Die Aufgabe des Tages</h2></div>
-        <p>Für alle gleich – wählen Sie selbst, ob sie in Ihren Tag passt.</p>
+        <p>Für alle gleich – entscheide selbst, ob sie in deinen Tag passt.</p>
       </div>
 
       <div class="task-streak" data-task-streak hidden aria-live="polite">
@@ -136,7 +136,7 @@ const todayCategory = categories[today.category];
         <div class="task-history-list" data-task-history></div>
       </section>
 
-      <p class="task-disclaimer" data-reveal="3">Die Tagesaufgaben sind allgemeine Anregungen für den Alltag und ersetzen keine individuelle Beratung, Diagnose oder Behandlung. Bei Beschwerden oder bestehenden Erkrankungen halten Sie bitte Rücksprache mit Ihrer Ärztin oder Ihrem Arzt.</p>
+      <p class="task-disclaimer" data-reveal="3">Die Tagesaufgaben sind allgemeine Anregungen für den Alltag und ersetzen keine individuelle Beratung, Diagnose oder Behandlung. Bei Beschwerden oder bestehenden Erkrankungen halte bitte Rücksprache mit deiner Ärztin oder deinem Arzt.</p>
     </div>
   </section>
 
@@ -210,7 +210,7 @@ const todayCategory = categories[today.category];
         streakBox.querySelector('[data-task-streak-count]').textContent = String(count);
         streakBox.querySelector('[data-task-streak-label]').textContent = count === 1 ? 'Tag in Folge' : 'Tage in Folge';
         const hint = streakBox.querySelector('[data-task-streak-hint]');
-        if (count === 0) hint.textContent = 'Haken Sie die heutige Aufgabe ab, um zu starten.';
+        if (count === 0) hint.textContent = 'Hak die heutige Aufgabe ab, um zu starten.';
         else if (!todayDone) hint.textContent = 'Heute noch offen – erledigen und die Serie hält.';
         else hint.textContent = 'Heute erledigt. Weiter so.';
       };

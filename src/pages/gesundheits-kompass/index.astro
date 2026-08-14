@@ -2,6 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import healthCompass from '../../data/health-compass.json';
 import { allArticles } from '../../data/all-articles.js';
+import Faq from '../../components/Faq.astro';
+import { faqGroupsById, faqJsonLd } from '../../data/faq.js';
+
+const pageFaqGroups = faqGroupsById('kompass');
 
 const title = 'Callidus Gesundheits-Kompass | callidus A&M';
 const description = 'Öffentlicher 2-Minuten-Kompass für Stress, Schlaf, Bewegung, Ernährung und Energie mit direkter Auswertung und Portal-Anschluss.';
@@ -20,7 +24,7 @@ const dimensions = Object.entries(healthCompass.dimensions).map(([id, item]) => 
 }));
 ---
 
-<BaseLayout lang="de" title={title} description={description}>
+<BaseLayout lang="de" title={title} description={description} jsonLd={faqJsonLd(pageFaqGroups)}>
   <section class="section health-compass-hero">
     <div class="container split">
       <div data-reveal>
@@ -313,4 +317,15 @@ const dimensions = Object.entries(healthCompass.dimensions).map(([id, item]) => 
       document.addEventListener('astro:page-load', setupHealthCompass);
     })();
   </script>
+  <section class="section band">
+    <div class="container">
+      <Faq
+        groups={pageFaqGroups}
+        headline="Häufige Fragen zum Kompass"
+        lede="Was der Kompass leistet, was er nicht leistet und was mit deinen Antworten passiert."
+        showGroupTitles={false}
+      />
+      <p style="margin-top:1.5rem;"><a class="button" href="/faq/">Alle Fragen ansehen</a></p>
+    </div>
+  </section>
 </BaseLayout>

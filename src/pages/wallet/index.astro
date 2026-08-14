@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Valus Wallet | callidus A&M"
-  description="Ihr persönliches Valus-Guthaben (VAL) — kaufen, einlösen und Wallet verbinden."
+  description="Dein persönliches Valus-Guthaben (VAL) — kaufen, einlösen und Wallet verbinden."
   lang="de"
 >
   <section class="section wallet-section">
@@ -20,7 +20,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p class="eyebrow" data-reveal>Callidus Mitglieder-Bereich</p>
         <h1 data-reveal="2">Valus Wallet</h1>
         <p class="lede" data-reveal="3" style="max-width:480px">
-          Erstellen Sie ein kostenloses Konto oder melden Sie sich an, um Ihr VAL-Guthaben zu verwalten und Kurse vergünstigt zu erhalten.
+          Erstelle ein kostenloses Konto oder melde dich an, um dein VAL-Guthaben zu verwalten und Kurse vergünstigt zu bekommen.
         </p>
 
         <div class="wallet-card" data-reveal="3" style="margin-top:2rem">
@@ -50,7 +50,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <form id="form-register" class="wallet-form" hidden novalidate>
             <label>
               Name
-              <input type="text" id="reg-name" required placeholder="Ihr Name" />
+              <input type="text" id="reg-name" required placeholder="Dein Name" />
             </label>
             <label>
               E-Mail
@@ -108,8 +108,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             </div>
           </div>
           <p class="muted" style="font-size:.8rem;margin-top:.75rem">
-            Verbinden Sie eine Ethereum-Wallet (MetaMask o.ä.) um als verifizierter Callidus-Inhaber zusätzliche Vorteile zu erhalten.
-            Die Adresse bleibt Ihrem Konto zugeordnet, bis Sie sie hier trennen — ein Trennen in MetaMask allein genügt dafür nicht.
+            Verbinde eine Ethereum-Wallet (MetaMask o.ä.), um als verifizierter Callidus-Inhaber zusätzliche Vorteile zu bekommen.
+            Die Adresse bleibt deinem Konto zugeordnet, bis du sie hier trennst — ein Trennen in MetaMask allein genügt dafür nicht.
           </p>
           <p id="wallet-status" class="wallet-status" hidden></p>
         </div>
@@ -117,7 +117,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <!-- VAL KAUFEN -->
         <div data-reveal style="margin-top:2.5rem">
           <h2>VAL kaufen</h2>
-          <p class="muted">Kaufen Sie Valus-Guthaben und lösen Sie es für Rabatte ein.</p>
+          <p class="muted">Kaufe Valus-Guthaben und löse es für Rabatte ein.</p>
           <div class="grid valus-packages" style="margin-top:1rem">
             <button class="wallet-card valus-package-card" data-package="valus_10" data-valus="10" data-eur="7.50">
               <span class="valus-amount">10 VAL</span>
@@ -138,7 +138,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <p id="valus-purchase-error" class="form-error" hidden style="margin-top:.75rem"></p>
           <p class="muted" style="font-size:.75rem;margin-top:.5rem">
-            * Sie werden nach dem Klick sicher zu Digistore24 weitergeleitet (SSL-verschlüsselt).
+            * Nach dem Klick wirst du sicher zu Digistore24 weitergeleitet (SSL-verschlüsselt).
           </p>
         </div>
 
@@ -148,7 +148,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <div style="flex:1;min-width:200px">
               <span class="badge gold">Exklusiv</span>
               <h3 style="margin:.75rem 0 .5rem">Stress-Reset-Kurs</h3>
-              <p class="muted" style="font-size:.9rem">Lösen Sie VAL als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit VAL.</p>
+              <p class="muted" style="font-size:.9rem">Löse VAL als Rabatt auf den vollständigen Kurs ein. Maximal 50% des Preises mit VAL.</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px">
               <div class="valus-redeem-input">
@@ -589,7 +589,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                 window.location.href = result.data.url;
               }
             } catch (err) {
-              const detail = err?.message || err?.details || 'Bitte versuchen Sie es erneut.';
+              const detail = err?.message || err?.details || 'Bitte versuche es erneut.';
               setError('valus-purchase-error', `Checkout konnte nicht gestartet werden: ${detail}`);
               console.error(err);
             } finally {
@@ -609,7 +609,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             const fn = httpsCallable(fns, 'redeemValus');
             const result = await fn({ productId: 'stress_reset_kurs', valusAmount });
             if (result.data?.discountUrl) {
-              setSuccess('redeem-result', `Ihr Rabattlink wurde erstellt. VAL werden erst nach bestaetigtem Kauf abgezogen. Sie werden weitergeleitet...`);
+              setSuccess('redeem-result', `Dein Rabattlink wurde erstellt. VAL werden erst nach bestaetigtem Kauf abgezogen. Du wirst weitergeleitet...`);
               setTimeout(() => window.open(result.data.discountUrl, '_blank'), 1500);
             }
           } catch (err) {
@@ -661,8 +661,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         // Wallet trennen
         $('btn-unlink-wallet')?.addEventListener('click', async () => {
           const ok = window.confirm(
-            'Wallet wirklich von diesem Konto trennen? Die Adresse wird aus Ihrem Konto entfernt. '
-            + 'Sie können jederzeit wieder eine Wallet verbinden.',
+            'Wallet wirklich von diesem Konto trennen? Die Adresse wird aus deinem Konto entfernt. '
+            + 'Du kannst jederzeit wieder eine Wallet verbinden.',
           );
           if (!ok) return;
 
@@ -672,7 +672,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           try {
             await httpsCallable(fns, 'unlinkWalletAddress')({});
             renderWallet(null);
-            setWalletStatus('Wallet getrennt. Die Adresse ist nicht mehr Ihrem Konto zugeordnet.', 'ok');
+            setWalletStatus('Wallet getrennt. Die Adresse ist nicht mehr deinem Konto zugeordnet.', 'ok');
           } catch (err) {
             setWalletStatus('Trennen fehlgeschlagen: ' + (err.message || err), 'error');
           } finally {

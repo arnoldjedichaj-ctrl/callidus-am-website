@@ -1,0 +1,119 @@
+---
+// Wiederverwendbarer FAQ-Block.
+// Nutzt <details>/<summary>, damit das Aufklappen ohne JavaScript und
+// vollständig per Tastatur funktioniert.
+//
+// Props:
+//   groups   Array aus faq.json (bereits gefiltert)
+//   eyebrow  optionales Label über der Überschrift
+//   headline optionale Überschrift
+//   lede     optionaler Einleitungstext
+//   showGroupTitles  bei nur einer Gruppe abschaltbar
+const {
+  groups = [],
+  eyebrow = 'Häufige Fragen',
+  headline = 'Fragen, die du dir wahrscheinlich stellst.',
+  lede,
+  showGroupTitles = true,
+} = Astro.props;
+---
+<div class="faq-block">
+  {eyebrow && <p class="eyebrow" data-reveal>{eyebrow}</p>}
+  {headline && <h2 data-reveal="2">{headline}</h2>}
+  {lede && <p class="lede faq-lede">{lede}</p>}
+
+  {groups.map((group) => (
+    <section class="faq-group" aria-labelledby={`faq-${group.id}`}>
+      {showGroupTitles && <h3 class="faq-group-title" id={`faq-${group.id}`}>{group.title}</h3>}
+      {showGroupTitles && group.intro && <p class="faq-group-intro">{group.intro}</p>}
+      <div class="faq-list">
+        {group.items.map((item) => (
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">{item.question}</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer"><p>{item.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  .faq-lede { max-width: 62ch; margin-top: .75rem; }
+  .faq-group { margin-top: clamp(1.75rem, 4vw, 2.75rem); }
+  .faq-group-title {
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    margin-bottom: .35rem;
+  }
+  .faq-group-intro {
+    color: var(--muted);
+    max-width: 62ch;
+    margin-bottom: 1rem;
+  }
+  .faq-list {
+    display: grid;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    overflow: hidden;
+    transition: border-color .18s ease, background .18s ease;
+  }
+  .faq-item[open] {
+    border-color: rgba(var(--mint-rgb), .42);
+    background: rgba(var(--mint-rgb), .06);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(.85rem, 2vw, 1.1rem) clamp(1rem, 2.5vw, 1.35rem);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: -2px;
+  }
+  .faq-item summary:hover .faq-question { color: var(--mint); }
+  .faq-question { transition: color .18s ease; }
+  .faq-icon {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background: var(--mint);
+    border-radius: 2px;
+  }
+  .faq-icon::before { width: 100%; height: 2px; }
+  .faq-icon::after { width: 2px; height: 100%; transition: transform .2s ease; }
+  .faq-item[open] .faq-icon::after { transform: scaleY(0); }
+  .faq-answer {
+    padding: 0 clamp(1rem, 2.5vw, 1.35rem) clamp(1rem, 2.5vw, 1.3rem);
+  }
+  .faq-answer p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 70ch;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item, .faq-question, .faq-icon::after { transition: none; }
+  }
+</style>

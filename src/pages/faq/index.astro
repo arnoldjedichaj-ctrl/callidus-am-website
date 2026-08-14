@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Faq from '../../components/Faq.astro';
+import { faqGroups, faqJsonLd } from '../../data/faq.js';
+
+const lang = 'de';
+const title = 'Häufige Fragen zu Callidus, NEXUS und VAL | callidus A&M';
+const description =
+  'Antworten auf die häufigsten Fragen zu callidus A&M: Quellen, Affiliate-Links, '
+  + 'Gesundheits-Kompass, NEXUS App, Datenschutz und VAL.';
+---
+<BaseLayout lang={lang} title={title} description={description} jsonLd={faqJsonLd(faqGroups)}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>FAQ</p>
+      <h1 data-reveal="2">Fragen, die du dir wahrscheinlich stellst.</h1>
+      <p class="lede" style="max-width:64ch;">
+        Wir sammeln hier die Fragen, die uns am häufigsten erreichen, samt der Antworten, die wir
+        auch im Freundeskreis geben würden. Fehlt dir etwas, schreib uns an
+        <a href="mailto:info@callidus-am.de">info@callidus-am.de</a>.
+      </p>
+
+      <nav class="faq-jump" aria-label="Zu einem FAQ-Bereich springen">
+        {faqGroups.map((group) => (
+          <a class="faq-jump-link" href={`#faq-${group.id}`}>{group.title}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <Faq groups={faqGroups} eyebrow={null} headline={null} />
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container split">
+      <div class="sticky-note" data-reveal>
+        <p class="eyebrow">Noch offen?</p>
+        <h2>Frag den Callidus-Assistenten.</h2>
+        <p>
+          Der Assistent antwortet aus unserer Wissensbasis und nennt dir die Quellen dazu. Für alles
+          andere erreichst du uns direkt per E-Mail.
+        </p>
+        <a class="button primary" href="/quellen-methodik/">So arbeiten wir</a>
+      </div>
+      <div class="grid" data-reveal="2">
+        <a class="card" href="/uber-uns/">
+          <div class="card-body">
+            <span class="badge gold">Über uns</span>
+            <h3>Wer hinter Callidus steht</h3>
+            <p>Arnold und Margarita, unsere Mission, unsere Vision und wie wir Inhalte prüfen.</p>
+          </div>
+        </a>
+        <a class="card" href="/gesundheits-kompass/#kompass-tool">
+          <div class="card-body">
+            <span class="badge mint">Kompass</span>
+            <h3>In drei Minuten einordnen</h3>
+            <p>Ohne Anmeldung starten und sehen, wo dein größter Hebel liegt.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .faq-jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.5rem;
+    }
+    .faq-jump-link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .4rem .85rem;
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .18s ease, border-color .18s ease;
+    }
+    .faq-jump-link:hover {
+      color: var(--mint);
+      border-color: rgba(var(--mint-rgb), .45);
+    }
+  </style>
+</BaseLayout>
