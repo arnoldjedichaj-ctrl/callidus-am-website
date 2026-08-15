@@ -193,7 +193,7 @@ const seoTitle = article?.seoTitle || title;
 const displayTitle = title.replace(/\s*\|\s*callidus A&M\s*$/i, '');
 const seoDescription = article?.seoDescription || page.description || article?.description || 'callidus A&M';
 const heroLead = legalPage?.lead || (specialPage?.kind === 'lexicon' ? '' : specialPage?.lead) || page.description;
-const mainImage = article?.image || (page.slug === 'nexus-app' ? imageMap.get(page.images?.[1]) : null) || imageMap.get(page.images?.[1]) || imageMap.get(page.images?.[0]);
+const mainImage = article?.image || (page.slug === 'uber-uns' ? '/assets/media/about/arnold-margarita-callidus-v3.png' : null) || (page.slug === 'nexus-app' ? imageMap.get(page.images?.[1]) : null) || imageMap.get(page.images?.[1]) || imageMap.get(page.images?.[0]);
 const sectionEyebrow = article
   ? `${article.readingTime} Min. Lesezeit`
   : categoryRedirect
