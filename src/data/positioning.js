@@ -108,9 +108,9 @@ export const problemSolution = {
     },
     {
       title: 'Die Apps begleiten dich',
-      text: 'NEXUS übersetzt deine Daten in verständliche Hinweise, statt nur Zahlen zu sammeln.',
+      text: 'NEXUS, MOMUS und KAIROS übersetzen deine Daten in verständliche Hinweise, statt nur Zahlen zu sammeln.',
       href: '/nexus-app/',
-      linkLabel: 'NEXUS ansehen',
+      linkLabel: 'Apps ansehen',
       accent: 'gold',
     },
   ],
