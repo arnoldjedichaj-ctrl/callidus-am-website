@@ -723,6 +723,17 @@ const articleJsonLd = article ? {
                     </aside>
                   );
                 }
+                if (block.type === 'partner') {
+                  return (
+                    <aside class="measure-box partner-box">
+                      <span class="badge mint">{block.eyebrow || 'Aus der Region'}</span>
+                      <h3>{block.title}</h3>
+                      <p>{block.text}</p>
+                      <a class="button" href={block.href} target="_blank" rel="noopener">{block.label} ↗</a>
+                      {block.note && <small>{block.note}</small>}
+                    </aside>
+                  );
+                }
                 if (block.type === 'measure') {
                   return (
                     <aside class="measure-box">

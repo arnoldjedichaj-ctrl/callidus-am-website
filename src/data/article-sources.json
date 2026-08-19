@@ -282,5 +282,27 @@
       "sourceId": "everlast-ai-oi-video-2026",
       "claimNote": "Medienbeitrag, der den Anstoß für diesen Artikel gab."
     }
+  ],
+  "krafttraining-frauen-30-minuten": [
+    {
+      "sourceId": "muscle-strengthening-meta-2022",
+      "claimNote": "Grundlage für die Risikoreduktion von 10 bis 17 Prozent und die J-förmige Dosis-Wirkungs-Kurve bei 30 bis 60 Minuten pro Woche."
+    },
+    {
+      "sourceId": "liftmor-rct-2018",
+      "claimNote": "Belegt die Knochendichte-Ergebnisse nach zweimal 30 Minuten angeleitetem Training über acht Monate."
+    },
+    {
+      "sourceId": "cochrane-pfmt-2018",
+      "claimNote": "Grundlage für die Einordnung von Beckenbodentraining als konservative Erstlinienmaßnahme."
+    },
+    {
+      "sourceId": "protein-rt-meta-2018",
+      "claimNote": "Grundlage für die Effektgrößen bei Proteinzufuhr und die Sättigungsgrenze von etwa 1,6 Gramm pro Kilogramm und Tag."
+    },
+    {
+      "sourceId": "who-physical-activity-2020",
+      "claimNote": "Grundlage für die Empfehlung von mindestens zwei Krafttrainingstagen pro Woche."
+    }
   ]
 }

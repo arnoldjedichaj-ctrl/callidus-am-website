@@ -558,5 +558,66 @@
       "Medienbeitrag"
     ],
     "summary": "Deutschsprachiges Erklärvideo zu organoider Intelligenz, das den Anstoß für diesen Beitrag gab; die Aussagen wurden anhand der Primärliteratur geprüft."
+  },
+  {
+    "id": "muscle-strengthening-meta-2022",
+    "title": "Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35228201/",
+    "type": "Metaanalyse",
+    "topics": [
+      "Krafttraining",
+      "Sterblichkeit",
+      "Prävention"
+    ],
+    "summary": "Metaanalyse von 16 Kohortenstudien: muskelkräftigende Aktivität senkt das Risiko für Gesamtsterblichkeit, Herz-Kreislauf-Erkrankungen, Krebs und Diabetes um 10 bis 17 Prozent, mit maximalem Effekt bei etwa 30 bis 60 Minuten pro Woche."
+  },
+  {
+    "id": "liftmor-rct-2018",
+    "title": "High-Intensity Resistance and Impact Training Improves Bone Mineral Density and Physical Function in Postmenopausal Women: The LIFTMOR Randomized Controlled Trial",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28975661/",
+    "type": "Randomisierte kontrollierte Studie",
+    "topics": [
+      "Knochendichte",
+      "Osteoporose",
+      "Krafttraining",
+      "Menopause"
+    ],
+    "summary": "101 Frauen nach der Menopause mit niedriger Knochendichte; zweimal wöchentlich 30 Minuten angeleitetes Training über acht Monate steigerte die Knochendichte an der Lendenwirbelsäule um 2,9 Prozent gegenüber minus 1,2 Prozent in der Kontrollgruppe, bei nur einem gemeldeten unerwünschten Ereignis."
+  },
+  {
+    "id": "cochrane-pfmt-2018",
+    "title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30288727/",
+    "type": "Cochrane-Review",
+    "topics": [
+      "Beckenboden",
+      "Inkontinenz",
+      "Frauengesundheit"
+    ],
+    "summary": "Cochrane-Review über 31 Studien mit 1.817 Frauen: Beckenbodentraining kann Symptome einer Harninkontinenz beseitigen oder bessern und eignet sich als konservative Erstlinienmaßnahme."
+  },
+  {
+    "id": "protein-rt-meta-2018",
+    "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+    "type": "Metaanalyse",
+    "topics": [
+      "Protein",
+      "Krafttraining",
+      "Muskelaufbau"
+    ],
+    "summary": "49 randomisierte Studien mit 1.863 Teilnehmenden: zusätzliches Protein verbessert Kraft- und Muskelzuwächse moderat; oberhalb von etwa 1,6 Gramm Eiweiß pro Kilogramm Körpergewicht und Tag zeigte sich kein weiterer Zugewinn."
+  },
+  {
+    "id": "who-physical-activity-2020",
+    "title": "World Health Organization 2020 guidelines on physical activity and sedentary behaviour",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33239350/",
+    "type": "Leitlinie",
+    "topics": [
+      "Bewegung",
+      "Prävention",
+      "Leitlinie"
+    ],
+    "summary": "WHO-Leitlinie zu körperlicher Aktivität: für Erwachsene werden muskelkräftigende Aktivitäten für alle großen Muskelgruppen an mindestens zwei Tagen pro Woche empfohlen."
   }
 ]
