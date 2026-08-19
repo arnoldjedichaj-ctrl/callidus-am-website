@@ -4,10 +4,10 @@ import Faq from '../../components/Faq.astro';
 import { faqGroups, faqJsonLd } from '../../data/faq.js';
 
 const lang = 'de';
-const title = 'Häufige Fragen zu Callidus, NEXUS und VAL | callidus A&M';
+const title = 'Häufige Fragen zu Callidus, den Apps und VAL | callidus A&M';
 const description =
   'Antworten auf die häufigsten Fragen zu callidus A&M: Quellen, Affiliate-Links, '
-  + 'Gesundheits-Kompass, NEXUS App, Datenschutz und VAL.';
+  + 'Gesundheits-Kompass, die Apps NEXUS, MOMUS und KAIROS, Datenschutz und VAL.';
 ---
 <BaseLayout lang={lang} title={title} description={description} jsonLd={faqJsonLd(faqGroups)}>
   <section class="section">

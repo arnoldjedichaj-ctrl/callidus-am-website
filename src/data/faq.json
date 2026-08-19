@@ -56,8 +56,8 @@
     },
     {
       "id": "nexus",
-      "title": "NEXUS App",
-      "intro": "Fragen zur App, zu Kosten und zu deinen Daten.",
+      "title": "Die Apps: NEXUS, MOMUS & KAIROS",
+      "intro": "Fragen zu unseren drei Apps, zu Kosten und zu deinen Daten.",
       "items": [
         {
           "question": "Was kostet NEXUS?",
@@ -77,7 +77,15 @@
         },
         {
           "question": "Was ist MOMUS?",
-          "answer": "MOMUS ist unsere zweite App und noch in Entwicklung. Sobald sie verfügbar ist, findest du sie im Portal und im Handbuch. Bis dahin bleibt NEXUS der digitale Begleiter von Callidus."
+          "answer": "MOMUS ist unsere zweite App und seit dem Launch im Google Play Store verfügbar. Sie dreht sich um Energie und digitales Wohlbefinden: Energie-Cockpit, Phoenix Path, Brain Games und die Analyse deiner Energie-Lecks. Deine Werte siehst du auch im Portal, die Anleitung steht im Handbuch."
+        },
+        {
+          "question": "Was ist KAIROS?",
+          "answer": "KAIROS ist unsere dritte App und ebenfalls im Google Play Store verfügbar. Sie ist der KI-Companion, der NEXUS und MOMUS zusammenführt: Sprachgespräche, Tagebuch, Erinnerungen und Cross-App-Aktionen, die nur nach deiner ausdrücklichen Bestätigung ausgeführt werden."
+        },
+        {
+          "question": "Brauche ich alle drei Apps?",
+          "answer": "Nein. Jede App funktioniert für sich allein. NEXUS deckt Ernährung und Gesundheit ab, MOMUS deine Energie, KAIROS die KI-Begleitung. Wer alle drei nutzt, kann sie im Portal verknüpfen — dann fließen die Daten zusammen. Für den Preis gibt es entweder Einzel-Abos oder das KAIROS-Bundle für alle drei Apps."
         }
       ]
     },

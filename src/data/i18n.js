@@ -188,10 +188,10 @@ export const homeCopy = {
     allArticles: 'Alle Artikel ansehen',
     appsEyebrow: 'Apps',
     appsHeadline: 'Digitale Begleiter für mehr Klarheit im Alltag.',
-    appsText: 'NEXUS ist der erste digitale Begleiter von callidus A&M. MOMUS ist noch in Entwicklung und kommt später dazu.',
+    appsText: 'NEXUS, MOMUS und KAIROS sind die drei digitalen Begleiter von callidus A&M. Alle drei sind im Google Play Store verfügbar.',
     manualCardTitle: 'App-Handbücher',
-    manualCardText: 'Das Handbuch erklärt dir NEXUS Schritt für Schritt und bereitet den späteren MOMUS-Bereich vor.',
-    nexusCardText: 'Was NEXUS kann, wie die KI arbeitet und was mit deinen Daten passiert.',
+    manualCardText: 'Das Handbuch erklärt dir NEXUS, MOMUS und KAIROS Schritt für Schritt.',
+    nexusCardText: 'Was NEXUS, MOMUS und KAIROS können, wie die KI arbeitet und was mit deinen Daten passiert.',
   },
   en: {
     title: 'callidus A&M: Holistic Health',
@@ -214,10 +214,10 @@ export const homeCopy = {
     allArticles: 'View all articles',
     appsEyebrow: 'Apps',
     appsHeadline: 'Digital companions for more clarity in daily life.',
-    appsText: 'NEXUS is the first digital companion from callidus A&M. MOMUS is still in development and will be added later.',
+    appsText: 'NEXUS, MOMUS and KAIROS are the three digital companions from callidus A&M. All three are available on the Google Play Store.',
     manualCardTitle: 'App manuals',
-    manualCardText: 'The manual already explains NEXUS and prepares the future MOMUS section.',
-    nexusCardText: 'The app page remains available as its own product path and can be expanded later.',
+    manualCardText: 'The manual explains NEXUS, MOMUS and KAIROS step by step.',
+    nexusCardText: 'What NEXUS, MOMUS and KAIROS can do, how the AI works, and what happens to your data.',
   },
 };
 
@@ -246,22 +246,22 @@ export const guideCopy = {
 
 export const manualCopy = {
   de: {
-    title: 'Callidus App-Handbücher | NEXUS und MOMUS',
-    description: 'Benutzerhandbücher für NEXUS und MOMUS als eingebetteter App-Bereich von callidus A&M.',
+    title: 'Callidus App-Handbücher | NEXUS, MOMUS und KAIROS',
+    description: 'Benutzerhandbücher für NEXUS, MOMUS und KAIROS als eingebetteter App-Bereich von callidus A&M.',
     eyebrow: 'App-Handbuch',
     headline: 'Callidus App-Handbücher',
     lede: 'Die bereitgestellte HTML-Datei ist eingebunden und bleibt als eigenständige Handbuchansicht nutzbar. Perfekt für Nutzer, Support, App-Erklärung und Vertrauen.',
     openFullscreen: 'Handbuch im Vollbild öffnen',
-    nexusCta: 'Zur NEXUS App',
+    nexusCta: 'Zu den Apps',
   },
   en: {
-    title: 'Callidus App Manuals | NEXUS and MOMUS',
-    description: 'User manuals for NEXUS and MOMUS as an embedded app documentation area by callidus A&M.',
+    title: 'Callidus App Manuals | NEXUS, MOMUS and KAIROS',
+    description: 'User manuals for NEXUS, MOMUS and KAIROS as an embedded app documentation area by callidus A&M.',
     eyebrow: 'App manual',
     headline: 'Callidus app manuals',
     lede: 'The supplied HTML manual is embedded and remains usable as a standalone manual view. It is ideal for users, support, app explanation, and trust-building.',
     openFullscreen: 'Open manual fullscreen',
-    nexusCta: 'Go to NEXUS app',
+    nexusCta: 'Go to the apps',
   },
 };
 

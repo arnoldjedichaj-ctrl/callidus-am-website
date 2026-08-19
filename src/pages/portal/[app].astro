@@ -94,6 +94,9 @@ const titles = listTitles[app.id] || listTitles.nexus;
           <p class="portal-insight" id="portal-app-insight">Lade...</p>
           <div class="portal-auth-actions">
             <a class="button primary" href={app.appHref}>{app.cta}</a>
+            {app.playHref && (
+              <a class="button" href={app.playHref} target="_blank" rel="noopener">▶ Im Google Play Store</a>
+            )}
             <a class="button" href="/wallet/">Wallet und VAL</a>
           </div>
         </section>

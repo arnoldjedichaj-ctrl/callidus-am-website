@@ -318,7 +318,9 @@
       {
         "heading": "9. Datenschutz in den Callidus Apps (NEXUS, MOMUS, KAIROS)",
         "paragraphs": [
-          "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 11. Juni 2026.",
+          "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 18. August 2026.",
+          "Die Apps sind derzeit ausschließlich für Android über Google Play verfügbar. Eine Version für Apple iOS wird nicht angeboten.",
+          "Die Apps enthalten keine Werbung. Wir binden keine Werbenetzwerke oder Werbe-SDKs Dritter ein, erstellen keine Werbeprofile und geben Ihre Daten nicht zu Werbezwecken weiter.",
           "Verantwortliche Stelle ist die im Abschnitt „Hinweis zur verantwortlichen Stelle\" genannte Callidus A&M, Arnold Jedich. Bei Fragen zum Datenschutz in den Apps erreichen Sie uns unter info@callidus-am.de.",
           "Die Apps nutzen die Firebase-Plattform von Google (Google Ireland Limited bzw. Google LLC). Ihre Konto- und Nutzungsdaten werden in unserem zugriffsgeschützten Firebase-/Google-Cloud-Projekt gespeichert und ausschließlich zur Bereitstellung der App-Funktionen verarbeitet.",
           "Die Nutzung der Apps ist freiwillig. Sensible Funktionen (z. B. Gesundheitsanalysen sowie Dokument- und Fotoanalysen) werden erst nach Ihrer ausdrücklichen Einwilligung aktiviert und können jederzeit mit Wirkung für die Zukunft widerrufen werden."
@@ -335,7 +337,7 @@
       {
         "heading": "11. Gesundheits- und Fitnessdaten",
         "paragraphs": [
-          "In den Apps können Sie Gesundheits- und Fitnessangaben erfassen, z. B. Schrittzahl, Körperdaten (Alter, Größe, Gewicht, BMI), Schlaf, Ernährungs- und Aktivitätsdaten sowie Angaben zu Wohlbefinden und Energie. In MOMUS und NEXUS kann die Schrittzahl – nach Ihrer Freigabe – über Health Connect (Android) bzw. Apple Health (iOS) ausgelesen werden.",
+          "In den Apps können Sie Gesundheits- und Fitnessangaben erfassen, z. B. Schrittzahl, Körperdaten (Alter, Größe, Gewicht, BMI), Schlaf, Ernährungs- und Aktivitätsdaten sowie Angaben zu Wohlbefinden und Energie. In MOMUS und NEXUS kann die Schrittzahl – nach Ihrer Freigabe – über Health Connect (Android) ausgelesen werden.",
           "Diese Angaben gehören zu den besonderen Kategorien personenbezogener Daten. Wir verarbeiten sie ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO, um Ihnen die Analyse-, Tracking- und Coaching-Funktionen bereitzustellen.",
           "Ohne Ihre Einwilligung werden keine Gesundheitsdaten ausgelesen oder ausgewertet. Sie können die Einwilligung jederzeit in den App-Einstellungen oder durch Entzug der jeweiligen Geräte-Berechtigung widerrufen."
         ]
@@ -383,7 +385,7 @@
       {
         "heading": "17. Abonnements und In-App-Käufe",
         "paragraphs": [
-          "Premium-Funktionen können Sie über ein Abonnement bzw. einen In-App-Kauf erwerben. Die Zahlungsabwicklung erfolgt über den jeweiligen App-Store (Google Play bzw. Apple App Store); wir erhalten keine vollständigen Zahlungsdaten.",
+          "Premium-Funktionen können Sie über ein Abonnement bzw. einen In-App-Kauf erwerben. Die Zahlungsabwicklung erfolgt über Google Play; wir erhalten keine vollständigen Zahlungsdaten.",
           "Zur Freischaltung und zum Schutz vor Missbrauch verarbeiten wir Kauf- und Verifizierungsdaten (z. B. Produkt-ID, Bestell-/Order-ID, Kauf-Token, Status und Ablaufdatum). Die Prüfung des Kaufs erfolgt serverseitig über eine gesicherte Funktion. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO."
         ]
       },
@@ -391,7 +393,7 @@
         "heading": "18. Benachrichtigungen und Spracheingabe",
         "paragraphs": [
           "Mit Ihrer Zustimmung senden wir Push-Benachrichtigungen über Firebase Cloud Messaging (Google). Hierzu wird ein gerätebezogenes Token verarbeitet. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; Sie können Benachrichtigungen in den System- oder App-Einstellungen deaktivieren.",
-          "Für die optionale Spracheingabe (Diktierfunktion) wird das Mikrofon genutzt. Die Spracherkennung erfolgt über den Spracherkennungsdienst Ihres Betriebssystems (Google bzw. Apple) und nur, während Sie die Funktion aktiv nutzen."
+          "Für die optionale Spracheingabe (Diktierfunktion) wird das Mikrofon genutzt. Die Spracherkennung erfolgt über den Spracherkennungsdienst Ihres Betriebssystems (Google) und nur, während Sie die Funktion aktiv nutzen."
         ]
       },
       {
@@ -488,7 +490,7 @@
         "paragraphs": [
           "Bei der Kontolöschung in NEXUS werden folgende Daten dauerhaft gelöscht: Profil- und Authentifizierungsdaten, Körper- und Gesundheitsangaben, tägliche Wohlbefindens- und Journal-Einträge, Ernährungs- und Mahlzeiten-Protokolle, aufgezeichnete Aktivitäten und Workout-Routen, Gesundheits-Dashboards und KI-Auswertungen, Chat-Verläufe, Einwilligungs- und Audit-Protokolle sowie Hub-Verlinkungen zu MOMUS und KAIROS.",
           "Bei der Kontolöschung in MOMUS werden folgende Daten dauerhaft gelöscht: Profildaten (Name, Alter, Geschlecht, Körperdaten), alle täglichen Energie-Logs, Energie-Analysen und KI-Berichte, Dokumente und gespeicherte Artikel, Phoenix-Path-Verlauf und Streak-Daten sowie alle mit KAIROS synchronisierten Daten.",
-          "Hinweis zu In-App-Käufen: Das aktive Abo wird über Google Play oder den Apple App Store verwaltet und muss dort separat gekündigt werden.",
+          "Hinweis zu In-App-Käufen: Das aktive Abo wird über Google Play verwaltet und muss dort separat gekündigt werden.",
           "Bei der Kontolöschung in KAIROS werden gelöscht: Profildaten und Authentifizierungsdaten, alle täglichen Check-ins (Intentionen, Stimmungen, Reflexionen), alle Gesprächsverläufe und KI-Antworten, Tagebucheinträge und Gedächtnis-Einträge, Erinnerungen und Kalenderverknüpfungen, Einwilligungs- und Audit-Protokolle sowie Hub-Verlinkungen zu NEXUS und MOMUS."
         ]
       },
