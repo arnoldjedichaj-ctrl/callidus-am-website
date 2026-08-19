@@ -268,6 +268,10 @@ const coachInputs = [
         <span class="badge gold">Empfehlungen</span>
         <h2>Hilfsmittel fuer Training und Energie</h2>
       </div>
+      <div class="notice affiliate-disclosure" data-reveal="2">
+        <strong>Affiliate-Hinweis:</strong>
+        <p>{recommendations.disclosure}</p>
+      </div>
       <div class="product-grid">
         {sportProducts.map((item, index) => (
           <article class="card product-card" data-reveal={String((index % 3) + 1)}>
