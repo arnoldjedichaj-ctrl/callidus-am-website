@@ -1311,6 +1311,71 @@ html[data-theme="dark"] .planet-meta {
   padding: .8rem;
   background: #f5f7e9;
 }
+
+/* Drei QR-Codes im Hero der Apps-Seite: NEXUS, MOMUS und KAIROS. Die Karte ist
+   komplett verlinkt, damit sie am Handy antippbar bleibt - dort laesst sich der
+   Code auf dem eigenen Bildschirm ja nicht scannen. */
+.article-hero .qr-row {
+  display: grid;
+  /* min() statt fixer 160px und min-width:0, sonst drueckt die min-content-
+     Breite des Rasters (3 x 160px) den Hero auf schmalen Displays auf. */
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 640px;
+  justify-self: center;
+  margin-top: .5rem;
+}
+.qr-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  padding: 1rem .75rem .85rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 4px 18px var(--panel-glow);
+  text-decoration: none;
+  color: var(--text);
+  /* border-color bewusst NICHT animiert: die Farbe haengt am Theme-Token und
+     bliebe beim Umschalten auf dem alten Wert stehen. */
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.qr-card:hover,
+.qr-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(var(--gold-rgb), .55);
+  box-shadow: 0 12px 30px var(--panel-glow);
+}
+.qr-card-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: .6rem;
+}
+.qr-card strong {
+  font-size: .92rem;
+  letter-spacing: .04em;
+}
+.qr-card-code {
+  width: 100%;
+  max-width: 168px;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.qr-card small {
+  font-size: .74rem;
+  color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .qr-card { transition: none; }
+  .qr-card:hover, .qr-card:focus-visible { transform: none; }
+}
 .article-hero .about-image {
   width: min(360px, 72vw);
   max-height: 360px;
