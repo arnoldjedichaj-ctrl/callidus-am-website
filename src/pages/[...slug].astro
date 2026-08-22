@@ -11,6 +11,7 @@ import structure from '../data/site-structure.json';
 import { categoryForLang } from '../data/i18n.js';
 import { allArticles, momusAll, appBadgeMeta } from '../data/all-articles.js';
 import { audience, mission, vision, brandPromise } from '../data/positioning.js';
+import { portalAppList } from '../data/portal.js';
 import Faq from '../components/Faq.astro';
 import { faqGroupsById, faqJsonLd } from '../data/faq.js';
 
@@ -446,7 +447,25 @@ const articleJsonLd = article ? {
             <span class="video-play" aria-hidden="true">Play</span>
             <strong>{courseHeroVideo.label}</strong>
           </a>
-        ) : mainImage && <img class={page.slug === 'nexus-app' ? 'article-image qr-image' : page.slug === 'uber-uns' ? 'article-image about-image' : page.slug === 'stress-reset-kurs' ? 'article-image course-image' : 'article-image'} src={mainImage} alt={title} loading="lazy" decoding="async" />}
+        ) : page.slug === 'nexus-app' ? (
+          <div class="qr-row" aria-label="QR-Codes zu den Apps im Google Play Store">
+            {portalAppList.map((app) => (
+              <a class="qr-card" href={app.playHref} target="_blank" rel="noopener">
+                <img class="qr-card-icon" src={app.icon} alt="" width="40" height="40" loading="eager" />
+                <strong>{app.name}</strong>
+                <img
+                  class="qr-card-code"
+                  src={`/assets/qr/${app.id}-play-qr.svg`}
+                  alt={`QR-Code: ${app.name} im Google Play Store`}
+                  width="200"
+                  height="200"
+                  loading="eager"
+                />
+                <small>Scannen oder tippen</small>
+              </a>
+            ))}
+          </div>
+        ) : mainImage && <img class={page.slug === 'uber-uns' ? 'article-image about-image' : page.slug === 'stress-reset-kurs' ? 'article-image course-image' : 'article-image'} src={mainImage} alt={title} loading="lazy" decoding="async" />}
         {page.slug === 'nexus-app' && (
           <div class="actions" style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap;">
             <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener">
