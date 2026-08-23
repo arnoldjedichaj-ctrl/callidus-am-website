@@ -451,8 +451,7 @@ const articleJsonLd = article ? {
           <div class="qr-row" aria-label="QR-Codes zu den Apps im Google Play Store">
             {portalAppList.map((app) => (
               <a class="qr-card" href={app.playHref} target="_blank" rel="noopener">
-                <img class="qr-card-icon" src={app.icon} alt="" width="40" height="40" loading="eager" />
-                <strong>{app.name}</strong>
+                <img class="qr-card-icon" src={app.icon} alt={app.name} width="40" height="40" loading="eager" />
                 <img
                   class="qr-card-code"
                   src={`/assets/qr/${app.id}-play-qr.svg`}
@@ -467,17 +466,15 @@ const articleJsonLd = article ? {
           </div>
         ) : mainImage && <img class={page.slug === 'uber-uns' ? 'article-image about-image' : page.slug === 'stress-reset-kurs' ? 'article-image course-image' : 'article-image'} src={mainImage} alt={title} loading="lazy" decoding="async" />}
         {page.slug === 'nexus-app' && (
-          <div class="actions" style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap;">
-            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener">
-              ▶ NEXUS bei Google Play
-            </a>
-            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidusam.momus" target="_blank" rel="noopener">
-              ▶ MOMUS bei Google Play
-            </a>
-            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidusam.kairos" target="_blank" rel="noopener">
-              ▶ KAIROS bei Google Play
-            </a>
-            <a class="button" href="/handbuch/">Zum App-Handbuch</a>
+          <div class="hero-actions">
+            <div class="hero-actions-store">
+              {portalAppList.map((app) => (
+                <a class="button primary" href={app.playHref} target="_blank" rel="noopener">
+                  ▶ {app.name} bei Google Play
+                </a>
+              ))}
+            </div>
+            <a class="button hero-actions-manual" href="/handbuch/">Zum App-Handbuch</a>
           </div>
         )}
         {article?.media?.length > 0 && (
@@ -942,11 +939,11 @@ const articleJsonLd = article ? {
           <p class="eyebrow" data-reveal>Preise &amp; Abonnements</p>
           <h2 data-reveal="2">Transparent. Fair. Flexibel.</h2>
           <p class="lede" data-reveal="3" style="max-width:58ch;">Jede App hat ihr eigenes Abo — oder du holst das KAIROS-Bundle und schaltest alle drei Apps gleichzeitig auf Premium.</p>
-          <div class="grid" style="margin-top:2.5rem;align-items:stretch;">
+          <div class="grid pricing-grid">
 
             {/* NEXUS */}
-            <article class="card" data-reveal="1" style="position:relative;">
-              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+            <article class="card pricing-card" data-reveal="1">
+              <div class="card-body pricing-card-body">
                 <div class="pricing-app-icon">
                   <img src="/handbuch/assets/app_icon_nexus.png" alt="NEXUS" width="64" height="64" loading="lazy" />
                 </div>
@@ -959,7 +956,7 @@ const articleJsonLd = article ? {
                   <p style="margin:.2rem 0 0;font-size:.75rem;opacity:.55;">(≈ € 5,83 / Monat)</p>
                 </div>
                 <p style="font-size:.82rem;opacity:.65;margin-bottom:.5rem;">Kostenlos: Basis-Tracking, Chat, Wochenplan</p>
-                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                <ul class="pricing-features">
                   <li>Foto-Analyse (Mahlzeiten &amp; Kalorien)</li>
                   <li>KI-Koch &amp; Rezeptgenerator</li>
                   <li>4-Perspektiven-Expertenrat (Premium)</li>
@@ -967,13 +964,15 @@ const articleJsonLd = article ? {
                   <li>Erweiterte Trend-Analysen (Premium)</li>
                   <li>Unbegrenzte KI-Chats (Premium)</li>
                 </ul>
-                <a class="button" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener" style="margin-top:1.5rem;text-align:center;">▶ Im Google Play Store</a>
+                <div class="pricing-card-foot">
+                  <a class="button" href="https://play.google.com/store/apps/details?id=de.callidus.app" target="_blank" rel="noopener">▶ Im Google Play Store</a>
+                </div>
               </div>
             </article>
 
             {/* MOMUS */}
-            <article class="card" data-reveal="2" style="position:relative;">
-              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+            <article class="card pricing-card" data-reveal="2">
+              <div class="card-body pricing-card-body">
                 <div class="pricing-app-icon">
                   <img src="/handbuch/assets/logo_momus.png" alt="MOMUS" width="64" height="64" loading="lazy" />
                 </div>
@@ -986,7 +985,7 @@ const articleJsonLd = article ? {
                   <p style="margin:.2rem 0 0;font-size:.75rem;opacity:.55;">(≈ € 2,50 / Monat)</p>
                 </div>
                 <p style="font-size:.82rem;opacity:.65;margin-bottom:.5rem;">Kostenlos: 5 Gehirnspiele, Energie-Cockpit, Crisis AI</p>
-                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                <ul class="pricing-features">
                   <li>8 Premium Brain Games (Sudoku, N-Back u.v.m.)</li>
                   <li>KI-Energie- &amp; Leak-Analyse</li>
                   <li>Phoenix-Vollversion &amp; Energy Lab</li>
@@ -994,15 +993,17 @@ const articleJsonLd = article ? {
                   <li>Vollständige Bibliothek &amp; Text-to-Speech</li>
                   <li>Unbegrenzte Erinnerungen &amp; Analysen</li>
                 </ul>
-                <a class="button" href="https://play.google.com/store/apps/details?id=de.callidusam.momus" target="_blank" rel="noopener" style="margin-top:1.5rem;text-align:center;">▶ Im Google Play Store</a>
-                <p style="margin-top:.75rem;font-size:.78rem;opacity:.5;text-align:center;">7-Tage-Trial über Google Play verfügbar</p>
+                <div class="pricing-card-foot">
+                  <p class="pricing-note">7-Tage-Trial über Google Play verfügbar</p>
+                  <a class="button" href="https://play.google.com/store/apps/details?id=de.callidusam.momus" target="_blank" rel="noopener">▶ Im Google Play Store</a>
+                </div>
               </div>
             </article>
 
             {/* KAIROS Bundle — highlighted */}
-            <article class="card" data-reveal="3" style="position:relative;border:2px solid #D4AF37;box-shadow:0 0 0 4px rgba(212,175,55,.12);">
-              <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#D4AF37;color:#000;font-size:.72rem;font-weight:800;padding:.3rem .85rem;border-radius:20px;letter-spacing:.08em;white-space:nowrap;">✦ BESTES ANGEBOT</div>
-              <div class="card-body" style="display:flex;flex-direction:column;height:100%;">
+            <article class="card pricing-card pricing-card-featured" data-reveal="3">
+              <div class="pricing-badge">✦ BESTES ANGEBOT</div>
+              <div class="card-body pricing-card-body">
                 <div class="pricing-app-icon pricing-app-icon-bundle">
                   <img src="/handbuch/assets/app_icon_nexus.png" alt="NEXUS" width="40" height="40" loading="lazy" />
                   <img src="/handbuch/assets/logo_momus.png" alt="MOMUS" width="40" height="40" loading="lazy" />
@@ -1017,7 +1018,7 @@ const articleJsonLd = article ? {
                   <p style="margin:.2rem 0 0;font-size:.75rem;opacity:.55;">(≈ € 8,33 / Monat)</p>
                 </div>
                 <p style="font-size:.82rem;color:#D4AF37;font-weight:600;margin-bottom:.5rem;">⚡ Ein Kauf — alle drei Apps premium</p>
-                <ul style="padding-left:1.25rem;line-height:2.1;font-size:.9rem;flex:1;">
+                <ul class="pricing-features">
                   <li>Alles aus NEXUS &amp; MOMUS Premium</li>
                   <li>Voice-First KI mit Gemini 2.5 Flash</li>
                   <li>Council of Integration — 7 KI-Rollen</li>
@@ -1026,8 +1027,10 @@ const articleJsonLd = article ? {
                   <li>Cross-App-Aktionen &amp; Gerätkalender</li>
                   <li>Langzeitgedächtnis &amp; Erinnerungen</li>
                 </ul>
-                <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidusam.kairos" target="_blank" rel="noopener" style="margin-top:1.5rem;text-align:center;">▶ KAIROS im Google Play Store</a>
-                <p style="margin-top:.75rem;font-size:.78rem;opacity:.5;text-align:center;">Das Bundle buchst du in der KAIROS App · 7-Tage-Trial über Google Play</p>
+                <div class="pricing-card-foot">
+                  <p class="pricing-note">Das Bundle buchst du in der KAIROS App · 7-Tage-Trial über Google Play</p>
+                  <a class="button primary" href="https://play.google.com/store/apps/details?id=de.callidusam.kairos" target="_blank" rel="noopener">▶ KAIROS im Google Play Store</a>
+                </div>
               </div>
             </article>
 
@@ -1046,6 +1049,25 @@ const articleJsonLd = article ? {
         .pricing-app-icon { display:flex; justify-content:center; gap:.5rem; margin-bottom:.25rem; }
         .pricing-app-icon img { width:64px; height:64px; object-fit:contain; border-radius:1rem; border:1px solid var(--line); background:var(--panel); padding:.35rem; box-shadow:0 2px 8px rgba(0,0,0,.1); }
         .pricing-app-icon-bundle img { width:40px; height:40px; border-radius:.75rem; }
+
+        /* Oben Platz lassen: das Band der Bundle-Karte ragt ueber den Rand. */
+        .pricing-grid { margin-top:3.25rem; align-items:stretch; }
+        .pricing-card { position:relative; overflow:visible; }
+        .pricing-card-featured { border:2px solid #D4AF37; box-shadow:0 0 0 4px rgba(212,175,55,.12); }
+        /* .card kappt sonst das ueberstehende Band. */
+        .pricing-card-body { display:flex; flex-direction:column; flex:1; }
+        .pricing-badge {
+          position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+          background:#D4AF37; color:#000; font-size:.72rem; font-weight:800;
+          padding:.3rem .85rem; border-radius:20px; letter-spacing:.08em;
+          white-space:nowrap; z-index:1;
+        }
+        .pricing-features { padding-left:1.25rem; line-height:2.1; font-size:.9rem; flex:1; margin-bottom:0; }
+        /* Der Hinweis steht ueber dem Button, damit die Buttons aller drei
+           Karten trotz unterschiedlich langer Hinweise buendig abschliessen. */
+        .pricing-card-foot { display:flex; flex-direction:column; gap:.6rem; margin-top:1.5rem; }
+        .pricing-card-foot .button { text-align:center; }
+        .pricing-note { margin:0; font-size:.78rem; opacity:.6; text-align:center; line-height:1.45; }
       </style>
     </>
   )}
