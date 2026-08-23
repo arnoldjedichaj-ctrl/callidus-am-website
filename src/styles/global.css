@@ -1350,11 +1350,18 @@ html[data-theme="dark"] .planet-meta {
   border-color: rgba(var(--gold-rgb), .55);
   box-shadow: 0 12px 30px var(--panel-glow);
 }
-.qr-card-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  border-radius: .6rem;
+/* Hoehere Spezifitaet als `.article-hero img`, sonst gewinnt dessen
+   width:100%/object-fit:cover. Die Logos sind quadratisch, ihr mittleres Band
+   traegt den Schriftzug - deshalb bewusst beschnitten statt eingepasst, so
+   bleibt der Name gross genug lesbar und ersetzt die fruehere Textzeile. */
+.article-hero .qr-card-icon {
+  width: 100%;
+  height: 46px;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: .5rem;
 }
 .qr-card strong {
   font-size: .92rem;
@@ -1372,6 +1379,24 @@ html[data-theme="dark"] .planet-meta {
   font-size: .74rem;
   color: var(--muted);
 }
+
+/* Aktionsbuttons unter den QR-Karten: mittig, Store-Links als eigene Gruppe,
+   das Handbuch als sekundaere Aktion darunter statt am Ende der Reihe. */
+.article-hero .hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .85rem;
+  width: 100%;
+  margin-top: 1.75rem;
+}
+.hero-actions-store {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+}
+.hero-actions-manual { margin-top: .15rem; }
 @media (prefers-reduced-motion: reduce) {
   .qr-card { transition: none; }
   .qr-card:hover, .qr-card:focus-visible { transform: none; }
