@@ -34,7 +34,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & external content',
       cookieTextBefore: 'This website is tracking-free by default. Data is transferred to third-party providers only when you load embedded YouTube videos, the newsletter form, or actively use the chatbot.',
       cookieTextMore: 'More information is available in our',
-      cookieAnalytics: 'By accepting, you also consent to aggregated website usage measurement with Google Analytics.',
+      cookieAnalytics: 'By accepting, you also consent to aggregated website usage measurement with Google Analytics and to conversion tracking with Google Ads. Both are loaded only after your consent, and you can withdraw it at any time via "Cookie settings" in the footer.',
       cookiePrivacy: 'privacy policy',
       cookieDecline: 'Necessary only',
       cookieAccept: 'Accept',
@@ -53,7 +53,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & externe Inhalte',
       cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn du eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzt, werden Daten an Drittanbieter übertragen.',
       cookieTextMore: 'Mehr Infos in unserer',
-      cookieAnalytics: 'Mit "Akzeptieren" stimmst du zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics zu.',
+      cookieAnalytics: 'Mit "Akzeptieren" stimmst du zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics und dem Conversion-Tracking von Google Ads zu. Beides wird erst nach deiner Zustimmung geladen; du kannst sie jederzeit über "Cookie-Einstellungen" im Fußbereich widerrufen.',
       cookiePrivacy: 'Datenschutzerklärung',
       cookieDecline: 'Nur Notwendige',
       cookieAccept: 'Akzeptieren',
@@ -203,6 +203,28 @@ const socialIcons = {
         document.documentElement.dataset.theme = theme;
       })();
     </script>
+    <!-- Google Consent Mode v2. Steht bewusst vor allen Messskripten und setzt
+         alle Werbe- und Analyse-Kategorien auf "denied". Das Google-Tag selbst
+         wird erst nach aktiver Einwilligung nachgeladen (siehe Cookie-Banner
+         weiter unten) - bis dahin geht keine Anfrage an Google raus. -->
+    <script is:inline>
+      (() => {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+          functionality_storage: 'granted',
+          security_storage: 'granted',
+          wait_for_update: 500,
+        });
+        gtag('js', new Date());
+        gtag('config', 'AW-17709649802');
+      })();
+    </script>
     <ClientRouter />
   </head>
   <body>
@@ -302,6 +324,9 @@ const socialIcons = {
         <a href="/krypto-verstehen/">{t.footerExtras?.krypto ?? 'Krypto verstehen'}</a>
         <a href="/krypto-hinweis/">{t.footerExtras?.kryptoHinweis ?? 'Krypto-Hinweis'}</a>
         <a href="/valus-litepaper.html">{t.footerExtras?.litepaper ?? 'Litepaper'}</a>
+        <button type="button" class="footer-consent-reset" data-cookie-reopen>
+          {lang === 'en' ? 'Cookie settings' : 'Cookie-Einstellungen'}
+        </button>
       </nav>
     </footer>
     <div class="cookie-banner" role="dialog" aria-live="polite" aria-label={labels.cookieLabel} hidden>
@@ -877,6 +902,61 @@ const socialIcons = {
       document.addEventListener('astro:page-load', initTrustpilot);
 
       const COOKIE_KEY = 'callidus-cookie-consent-v2';
+
+      // Google Ads: Das Tag wird ausschliesslich nach Einwilligung geladen.
+      // Vorher steht Consent Mode auf "denied" (siehe <head>), es faellt also
+      // weder ein Cookie noch eine Anfrage an Google an.
+      const GOOGLE_ADS_ID = 'AW-17709649802';
+      let googleAdsRequested = false;
+      const enableGoogleAds = () => {
+        if (typeof window.gtag === 'function') {
+          window.gtag('consent', 'update', {
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            analytics_storage: 'granted',
+          });
+        }
+        if (googleAdsRequested) return;
+        googleAdsRequested = true;
+        const tag = document.createElement('script');
+        tag.async = true;
+        tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_ADS_ID;
+        document.head.appendChild(tag);
+      };
+
+      // Beim Widerruf reicht es nicht, kuenftige Messung zu stoppen: bereits
+      // gesetzte Mess- und Werbe-Cookies werden entfernt, damit nichts
+      // zurueckbleibt, wofuer die Rechtsgrundlage entfallen ist.
+      const clearMeasurementCookies = () => {
+        const hosts = [];
+        const parts = location.hostname.split('.');
+        for (let i = 0; i < parts.length - 1; i += 1) {
+          hosts.push(parts.slice(i).join('.'), '.' + parts.slice(i).join('.'));
+        }
+        hosts.push('');
+        document.cookie.split(';').forEach((entry) => {
+          const name = entry.split('=')[0].trim();
+          if (!/^(_ga|_gac_|_gcl_|_gid)/.test(name)) return;
+          hosts.forEach((host) => {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'
+              + (host ? '; domain=' + host : '');
+          });
+        });
+      };
+
+      const disableGoogleAds = () => {
+        if (typeof window.gtag === 'function') {
+          window.gtag('consent', 'update', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+          });
+        }
+        clearMeasurementCookies();
+      };
+
       const setupCookieBanner = () => {
         const banner = document.querySelector('.cookie-banner');
         if (!banner || banner.dataset.ready) return;
@@ -886,18 +966,45 @@ const socialIcons = {
           document.documentElement.dataset.consent = consent;
           localStorage.setItem(COOKIE_KEY, consent);
           banner.hidden = true;
+          if (consent === 'all') enableGoogleAds();
+          else disableGoogleAds();
           window.dispatchEvent(new CustomEvent('callidus-consent', { detail: consent }));
         };
         if (!stored) {
           banner.hidden = false;
         } else {
           document.documentElement.dataset.consent = stored;
+          if (stored === 'all') enableGoogleAds();
         }
         banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => apply('all'));
         banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => apply('necessary'));
       };
       setupCookieBanner();
       document.addEventListener('astro:page-load', setupCookieBanner);
+
+      // Widerruf: Art. 7 Abs. 3 DSGVO verlangt, dass die Einwilligung so
+      // einfach zurueckziehbar ist, wie sie erteilt wurde. Der Footer-Button
+      // setzt die Auswahl zurueck und zeigt den Hinweis erneut an.
+      const setupConsentReset = () => {
+        document.querySelectorAll('[data-cookie-reopen]').forEach((button) => {
+          if (button.dataset.ready) return;
+          button.dataset.ready = 'true';
+          button.addEventListener('click', () => {
+            localStorage.removeItem(COOKIE_KEY);
+            delete document.documentElement.dataset.consent;
+            disableGoogleAds();
+            const banner = document.querySelector('.cookie-banner');
+            if (banner) {
+              banner.hidden = false;
+              banner.scrollIntoView({ block: 'nearest' });
+              banner.querySelector('[data-cookie-decline]')?.focus();
+            }
+            window.dispatchEvent(new CustomEvent('callidus-consent', { detail: 'reset' }));
+          });
+        });
+      };
+      setupConsentReset();
+      document.addEventListener('astro:page-load', setupConsentReset);
     </script>
   </body>
 </html>

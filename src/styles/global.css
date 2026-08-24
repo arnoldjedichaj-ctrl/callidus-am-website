@@ -1920,6 +1920,21 @@ html[data-theme="dark"] .planet-meta {
 }
 .site-footer { display: grid; grid-template-columns: minmax(260px, 1fr) auto; align-items: start; gap: 1.25rem; padding: 2rem clamp(1rem, 4vw, 3rem); border-top: 1px solid var(--chrome-line); background: var(--footer-bg); color: var(--chrome-text); }
 .site-footer nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+/* Widerruf der Cookie-Einwilligung: als Button ausgezeichnet, weil es eine
+   Aktion ist und kein Ziel - sieht aber aus wie die uebrigen Footer-Links. */
+.footer-consent-reset {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--chrome-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+.footer-consent-reset:hover { color: var(--chrome-text); }
+.footer-consent-reset:focus-visible { outline: 2px solid var(--chrome-text); outline-offset: 3px; }
 .footer-brand { display: grid; gap: .9rem; }
 .footer-brand p { margin: 0; }
 .footer-brand p, .site-footer a { color: var(--chrome-muted); }
