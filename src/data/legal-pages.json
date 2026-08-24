@@ -291,7 +291,17 @@
         ]
       },
       {
-        "heading": "7. Plugins",
+        "heading": "7. Google Ads und Conversion-Tracking",
+        "paragraphs": [
+          "Nach Ihrer Einwilligung setzen wir Google Ads mit Conversion-Tracking ein (Google-Tag, Kennung AW-17709649802). Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Damit messen wir, ob ein Besuch unserer Website auf eine unserer Anzeigen zurückgeht und ob daraus eine von uns definierte Handlung entsteht, etwa ein Seitenaufruf oder ein Kaufabschluss.",
+          "Das Google-Tag wird erst geladen, wenn Sie im Cookie-Hinweis auf „Akzeptieren\" klicken. Wählen Sie „Nur Notwendige\", wird weder das Skript nachgeladen noch eine Verbindung zu Google hergestellt und es wird kein Cookie zu Werbezwecken gesetzt. Wir nutzen dabei den Google Consent Mode v2: Die Kategorien für Werbung und Analyse stehen standardmäßig auf „denied\" und werden ausschließlich durch Ihre aktive Zustimmung auf „granted\" gesetzt.",
+          "Verarbeitet werden dabei insbesondere Ihre gekürzte IP-Adresse, Informationen zu Browser und Endgerät, die aufgerufene Seite, Datum und Uhrzeit sowie eine Kennung, über die ein Anzeigenklick dem späteren Seitenbesuch zugeordnet werden kann. Diese Daten können an Server von Google, auch in die USA, übertragen werden. Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert; ergänzend bestehen Standardvertragsklauseln.",
+          "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen: über „Cookie-Einstellungen\" im Fußbereich jeder Seite. Damit wird Ihre Auswahl zurückgesetzt und Sie können neu entscheiden; die bis zum Widerruf erfolgte Verarbeitung bleibt rechtmäßig.",
+          "Weitere Informationen zur Datenverarbeitung durch Google finden Sie in der Datenschutzerklärung von Google unter https://policies.google.com/privacy und in den Hinweisen zur Werbung unter https://policies.google.com/technologies/ads."
+        ]
+      },
+      {
+        "heading": "8. Plugins",
         "paragraphs": [
           "und Tools YouTube mit erweitertem Datenschutz Diese Website bindet Videos der Website YouTube ein. Betreiber der Website ist die Google Ireland Limited („Google”), Gordon House, Barrow Street, Dublin 4, Irland. Wenn Sie eine dieser Website besuchen, auf denen YouTube eingebunden ist, wird eine Verbindung zu den Servern von YouTube hergestellt. Dabei wird dem YouTube-Server mitgeteilt, welche unserer Seiten Sie besucht haben.",
           "Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube-Account ausloggen. Wir nutzen YouTube im erweiterten Datenschutzmodus. Videos, die im erweiterten Datenschutzmodus abgespielt werden, werden nach Aussage von YouTube nicht zur Personalisierung des Surfens auf YouTube eingesetzt.",
@@ -307,7 +317,7 @@
         ]
       },
       {
-        "heading": "8. Eigene",
+        "heading": "9. Eigene",
         "paragraphs": [
           "Dienste Google Drive Wir haben Google Drive auf dieser Website eingebunden. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland. Google Drive ermöglicht es uns, einen Uploadbereich auf unserer Website einzubinden, in dem Sie Inhalte hochladen können. Wenn Sie Inhalte hochladen, werden diese auf den Servern von Google Drive gespeichert.",
           "Wenn Sie unsere Website betreten, wird außerdem eine Verbindung zu Google Drive aufgebaut, sodass Google Drive feststellen kann, dass Sie unsere Website besucht haben. Die Verwendung von Google Drive erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an einem zuverlässigen Uploadbereich auf seiner Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs.",
@@ -316,7 +326,7 @@
         ]
       },
       {
-        "heading": "9. Datenschutz in den Callidus Apps (NEXUS, MOMUS, KAIROS)",
+        "heading": "10. Datenschutz in den Callidus Apps (NEXUS, MOMUS, KAIROS)",
         "paragraphs": [
           "Dieser Abschnitt informiert über die Verarbeitung personenbezogener Daten in unseren mobilen Anwendungen Callidus NEXUS, Callidus MOMUS und Callidus KAIROS (nachfolgend gemeinsam „die Apps\"). Stand: 18. August 2026.",
           "Die Apps sind derzeit ausschließlich für Android über Google Play verfügbar. Eine Version für Apple iOS wird nicht angeboten.",
@@ -328,7 +338,7 @@
         ]
       },
       {
-        "heading": "10. Konto und Anmeldung",
+        "heading": "11. Konto und Anmeldung",
         "paragraphs": [
           "Für die Nutzung der Apps legen Sie ein Nutzerkonto an. Die Authentifizierung erfolgt über Firebase Authentication (Google). Dabei verarbeiten wir Ihre E-Mail-Adresse und – bei Anmeldung mit Google – Ihren Namen sowie Ihre Google-Konto-Kennung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).",
           "Optional können Sie die Anmeldung per Fingerabdruck oder Gesichtserkennung (biometrische Entsperrung) aktivieren. Die biometrische Prüfung findet ausschließlich lokal auf Ihrem Gerät statt; biometrische Daten werden weder an uns noch an Dritte übertragen oder gespeichert.",
@@ -336,7 +346,7 @@
         ]
       },
       {
-        "heading": "11. Gesundheits- und Fitnessdaten",
+        "heading": "12. Gesundheits- und Fitnessdaten",
         "paragraphs": [
           "In den Apps können Sie Gesundheits- und Fitnessangaben erfassen, z. B. Schrittzahl, Körperdaten (Alter, Größe, Gewicht, BMI), Schlaf, Ernährungs- und Aktivitätsdaten sowie Angaben zu Wohlbefinden und Energie. In MOMUS und NEXUS kann die Schrittzahl – nach Ihrer Freigabe – über Health Connect (Android) ausgelesen werden.",
           "Diese Angaben gehören zu den besonderen Kategorien personenbezogener Daten. Wir verarbeiten sie ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO, um Ihnen die Analyse-, Tracking- und Coaching-Funktionen bereitzustellen.",
@@ -344,7 +354,7 @@
         ]
       },
       {
-        "heading": "12. Dokumenten-Upload und KI-Analyse",
+        "heading": "13. Dokumenten-Upload und KI-Analyse",
         "paragraphs": [
           "Die Apps bieten eine Dokumentenverwaltung mit KI-gestützter Texterkennung und Analyse (z. B. für Arztbriefe, Befunde, Rezepte und sonstige Schreiben). Diese Funktion ist aktiv verfügbar. Wenn Sie sie nutzen, wird der Inhalt des jeweiligen Dokuments zur Verarbeitung an den KI-Dienst Google Gemini übertragen.",
           "Hochgeladene Dokumente und die Analyseergebnisse werden in Ihrem persönlichen, zugriffsgeschützten Konto-Bereich gespeichert. Da Dokumente Gesundheitsdaten enthalten können, erfolgt die Verarbeitung auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO.",
@@ -352,7 +362,7 @@
         ]
       },
       {
-        "heading": "13. KI-Companion und Check-ins in KAIROS",
+        "heading": "14. KI-Companion und Check-ins in KAIROS",
         "paragraphs": [
           "KAIROS bietet tägliche Check-ins (Intention, Stimmungswert, Abend-Reflexion), ein Tagebuch mit Diktierfunktion und ein KI-gestütztes Gespräch (KI-Companion). Check-ins, Reflexionen und Tagebucheinträge können Rückschlüsse auf Ihr seelisches Wohlbefinden zulassen und gehören damit zu den besonderen Kategorien personenbezogener Daten. Die Eingabe ist freiwillig; die Verarbeitung erfolgt auf Grundlage Ihrer ausdrücklichen Einwilligung nach Art. 9 Abs. 2 lit. a DSGVO.",
           "KI-Antworten erzeugt KAIROS nur, wenn Sie der Funktion „KI-Antworten (Gemini)\" ausdrücklich zugestimmt haben (beim Onboarding oder jederzeit im Setup). In diesem Fall werden Ihre Chat-Nachricht sowie – abhängig von Ihren weiteren Einwilligungen – Auszüge Ihrer letzten Check-ins, Tagebucheinträge, gespeicherten Memories, Kalendertermine und Hub-Daten über unsere Cloud Function (Region Frankfurt, europe-west3) an den KI-Dienst Google Gemini übertragen. Ohne diese Einwilligung antwortet KAIROS ausschließlich mit lokaler Logik; es werden keine Inhalte an Gemini übermittelt.",
@@ -361,7 +371,7 @@
         ]
       },
       {
-        "heading": "14. Foto- und Gesichtsanalyse",
+        "heading": "15. Foto- und Gesichtsanalyse",
         "paragraphs": [
           "MOMUS bietet eine optionale Funktion zur Foto- bzw. Gesichtsanalyse (z. B. eine Alterungs-Simulation). Hierfür wird das von Ihnen ausgewählte Foto einmalig an den Dienst FAL AI mit Sitz in den USA übertragen und dort verarbeitet.",
           "FAL AI verarbeitet das Foto als Auftragsverarbeiter und speichert es nach Angaben des Anbieters nicht dauerhaft. Das Analyseergebnis wird auf Ihrem Gerät bzw. in Ihrem Konto gespeichert. Eine Weitergabe an weitere Dritte über FAL AI hinaus erfolgt nicht.",
@@ -369,7 +379,7 @@
         ]
       },
       {
-        "heading": "15. App-Verknüpfung (Companion-Hub)",
+        "heading": "16. App-Verknüpfung (Companion-Hub)",
         "paragraphs": [
           "Unsere Apps können auf Ihren Wunsch miteinander verbunden werden (Companion-Hub), damit z. B. KAIROS auf zusammengefasste Daten aus NEXUS oder MOMUS zugreifen kann. Diese Verknüpfung ist optional und standardmäßig deaktiviert.",
           "Erst wenn Sie den Hub aktivieren, werden Zusammenfassungen (z. B. Tagesstatistiken, Schritt- und Aktivitätswerte sowie Statusinformationen) in Ihrem persönlichen Konto-Bereich gespeichert und zwischen den Apps ausgetauscht. Solange der Hub deaktiviert ist, verbleibt die jeweilige Auswertung – soweit technisch möglich – lokal auf Ihrem Gerät.",
@@ -377,35 +387,35 @@
         ]
       },
       {
-        "heading": "16. Nutzungs- und Geräteanalyse",
+        "heading": "17. Nutzungs- und Geräteanalyse",
         "paragraphs": [
           "MOMUS bietet eine optionale Analyse Ihrer Geräte- und App-Nutzung (z. B. Bildschirmzeit, Nutzung pro App-Kategorie, Nachtnutzung), um Ihnen Hinweise zu Ihren „Energie-Lecks\" zu geben. Diese Auswertung erfolgt standardmäßig nur lokal auf Ihrem Gerät.",
           "Nur wenn Sie den Companion-Hub aktiviert haben, werden ausschließlich Zusammenfassungen dieser Auswertung in Ihrem privaten Konto-Bereich gespeichert. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO."
         ]
       },
       {
-        "heading": "17. Abonnements und In-App-Käufe",
+        "heading": "18. Abonnements und In-App-Käufe",
         "paragraphs": [
           "Premium-Funktionen können Sie über ein Abonnement bzw. einen In-App-Kauf erwerben. Die Zahlungsabwicklung erfolgt über Google Play; wir erhalten keine vollständigen Zahlungsdaten.",
           "Zur Freischaltung und zum Schutz vor Missbrauch verarbeiten wir Kauf- und Verifizierungsdaten (z. B. Produkt-ID, Bestell-/Order-ID, Kauf-Token, Status und Ablaufdatum). Die Prüfung des Kaufs erfolgt serverseitig über eine gesicherte Funktion. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO."
         ]
       },
       {
-        "heading": "18. Benachrichtigungen und Spracheingabe",
+        "heading": "19. Benachrichtigungen und Spracheingabe",
         "paragraphs": [
           "Mit Ihrer Zustimmung senden wir Push-Benachrichtigungen über Firebase Cloud Messaging (Google). Hierzu wird ein gerätebezogenes Token verarbeitet. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; Sie können Benachrichtigungen in den System- oder App-Einstellungen deaktivieren.",
           "Für die optionale Spracheingabe (Diktierfunktion) wird das Mikrofon genutzt. Die Spracherkennung erfolgt über den Spracherkennungsdienst Ihres Betriebssystems (Google) und nur, während Sie die Funktion aktiv nutzen."
         ]
       },
       {
-        "heading": "19. Auftragsverarbeitung und Drittlandübermittlung",
+        "heading": "20. Auftragsverarbeitung und Drittlandübermittlung",
         "paragraphs": [
           "Zur Bereitstellung der Apps setzen wir externe Dienstleister als Auftragsverarbeiter ein, insbesondere Google (Firebase Authentication, Firestore-Datenbank, Cloud Functions, Cloud Messaging sowie Gemini) und FAL AI für die optionale Fotoanalyse. Mit diesen Anbietern bestehen bzw. werden Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO geschlossen.",
           "Dabei kann es zu einer Übermittlung personenbezogener Daten in die USA kommen. Soweit für den Empfänger keine Zertifizierung nach dem EU-US Data Privacy Framework vorliegt, stützen wir die Übermittlung auf die Standardvertragsklauseln der EU-Kommission und/oder – bei sensiblen Funktionen – auf Ihre ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO."
         ]
       },
       {
-        "heading": "20. Speicherdauer, Ihre Rechte und Kontolöschung",
+        "heading": "21. Speicherdauer, Ihre Rechte und Kontolöschung",
         "paragraphs": [
           "Wir speichern Ihre App-Daten, solange Ihr Konto besteht bzw. solange dies für die genannten Zwecke erforderlich ist. Sie können Ihre in den Apps gespeicherten Daten jederzeit über die Export-Funktion in den Einstellungen herunterladen (Recht auf Datenübertragbarkeit, Art. 20 DSGVO).",
           "Sie können Ihr Konto und die zugehörigen Daten jederzeit über die Funktion „Konto löschen\" in den App-Einstellungen dauerhaft löschen. Eine Schritt-für-Schritt-Anleitung finden Sie unter www.callidus-am.de/konto-loeschen. Ihnen stehen zudem die in dieser Datenschutzerklärung genannten Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Aufsichtsbehörde zu.",
@@ -413,7 +423,7 @@
         ]
       },
       {
-        "heading": "21. Onlineshop und Bestellabwicklung (Shopify)",
+        "heading": "22. Onlineshop und Bestellabwicklung (Shopify)",
         "paragraphs": [
           "Für den Verkauf unserer eigenen Produkte nutzen wir die Shop-Plattform Shopify. Anbieter für Nutzer im Europäischen Wirtschaftsraum ist die Shopify International Limited, 2nd Floor Victoria Buildings, 1–2 Haddington Road, Dublin 4, Irland, ein Unternehmen der Shopify Inc., 151 O'Connor Street, Ottawa, Ontario K2P 2L8, Kanada.",
           "Wenn Sie auf unserer Seite auf „Jetzt kaufen“ klicken, werden Sie zur Bestell- und Bezahlseite von Shopify weitergeleitet. Dort verarbeitete Daten sind insbesondere: Vor- und Nachname, Liefer- und Rechnungsanschrift, E-Mail-Adresse, optional Telefonnummer, Bestell- und Zahlungsdaten sowie technische Daten wie IP-Adresse, Browsertyp und Zeitpunkt des Zugriffs.",
@@ -423,7 +433,7 @@
         ]
       },
       {
-        "heading": "22. Zahlungsabwicklung",
+        "heading": "23. Zahlungsabwicklung",
         "paragraphs": [
           "Im Bestellprozess können Sie zwischen verschiedenen Zahlungsarten wählen. Je nach Auswahl werden die für die Zahlung erforderlichen Daten (z. B. Name, Betrag, Zahlungs- bzw. Kartendaten) an den jeweiligen Zahlungsdienstleister übermittelt. Ihre vollständigen Kartendaten werden von uns weder erhoben noch gespeichert.",
           "Zum Einsatz kommen insbesondere: Shopify Payments (technischer Dienstleister: Stripe Payments Europe Ltd., Irland), PayPal (PayPal (Europe) S.à r.l. et Cie, S.C.A., Luxemburg) sowie Klarna (Klarna Bank AB, Schweden).",
@@ -432,7 +442,7 @@
         ]
       },
       {
-        "heading": "23. Versand und Fulfillment",
+        "heading": "24. Versand und Fulfillment",
         "paragraphs": [
           "Unsere Produkte werden durch einen Fulfillment-Dienstleister in Deutschland kommissioniert und versendet. Zur Ausführung Ihrer Bestellung übermitteln wir die dafür erforderlichen Daten (Name, Lieferanschrift, Bestellinhalt sowie – sofern für die Zustellbenachrichtigung angegeben – E-Mail-Adresse oder Telefonnummer) an diesen Dienstleister sowie an das beauftragte Versandunternehmen (z. B. DHL oder UPS).",
           "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung). Eine weitergehende Nutzung dieser Daten zu eigenen Zwecken der Dienstleister findet nicht statt.",
