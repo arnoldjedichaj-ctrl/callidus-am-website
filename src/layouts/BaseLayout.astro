@@ -922,6 +922,13 @@ const socialIcons = {
         const tag = document.createElement('script');
         tag.async = true;
         tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_ADS_ID;
+        // Erst wenn die Bibliothek wirklich da ist, duerfen Conversion-Events
+        // abgesetzt werden. Vorher in die dataLayer-Warteschlange geschriebene
+        // Ereignisse werden nicht zuverlaessig nachgespielt.
+        tag.addEventListener('load', () => {
+          window.callidusGtagReady = true;
+          window.dispatchEvent(new CustomEvent('callidus-gtag-ready'));
+        });
         document.head.appendChild(tag);
       };
 

@@ -185,6 +185,20 @@ const articleUpdatedLabel = article?.publishedAt
 const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
 const legalPage = legalPages.find((item) => item.slug === page.slug);
 const pageFaqGroups = faqGroupsById(...(faqBySlug[page.slug] || []));
+
+// Google-Ads-Conversions: Slug -> Ereignis. Bewusst als Tabelle, damit sich
+// die Zielseite aendern laesst, ohne im Markup zu suchen.
+// "bitte-bestaetigen" ist die Seite, auf die Brevo nach dem Absenden des
+// Formulars zurueckleitet - also der Moment "Lead-Formular gesendet".
+const conversionPages = {
+  'bitte-bestaetigen': {
+    id: 'lead-formular',
+    sendTo: 'AW-17709649802/SZtyCIGa9uYcEIqfz_xB',
+    value: 1.0,
+    currency: 'EUR',
+  },
+};
+const pageConversion = conversionPages[page.slug] || null;
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);
 const categoryRedirectPath = categoryRedirect ? `/ratgeber/#${categoryRedirect.slug}` : null;
 const title = categoryRedirect?.title || legalPage?.title || specialPage?.title || page.title || page.h1?.[0] || 'callidus A&M';
@@ -1248,4 +1262,40 @@ const articleJsonLd = article ? {
     .sr-redeem-status[data-state="error"] { background: rgba(207,34,46,.1); color: #b3261e; }
     .sr-redeem-status[data-state="pending"] { background: rgba(0,0,0,.06); }
   </style>
+  {pageConversion && (
+    <script is:inline define:vars={{ conv: pageConversion }}>
+      (() => {
+        // Feuert nur mit Einwilligung: ohne sie ist das Google-Tag gar nicht
+        // geladen und Consent Mode steht auf "denied".
+        const KEY = 'callidus-conversion-' + conv.id;
+        const hasConsent = () =>
+          localStorage.getItem('callidus-cookie-consent-v2') === 'all';
+        const fire = () => {
+          // Nicht feuern, solange gtag.js nicht geladen ist: der Aufruf landete
+          // sonst nur in der Warteschlange, der Flag unten waere aber gesetzt
+          // und die Conversion damit still verloren.
+          if (!hasConsent() || !window.callidusGtagReady || typeof window.gtag !== 'function') return;
+          // Einmal pro Sitzung. Die transaction_id laesst Google zusaetzlich
+          // serverseitig entdoppeln, falls die Seite neu geladen wird.
+          if (sessionStorage.getItem(KEY)) return;
+          const transactionId =
+            conv.id + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+          sessionStorage.setItem(KEY, transactionId);
+          window.gtag('event', 'conversion', {
+            send_to: conv.sendTo,
+            value: conv.value,
+            currency: conv.currency,
+            transaction_id: transactionId,
+          });
+        };
+        fire();
+        // Wer erst auf dieser Seite zustimmt, wird ebenfalls gezaehlt - dann
+        // aber erst, sobald das Google-Tag fertig geladen ist.
+        window.addEventListener('callidus-gtag-ready', fire);
+        window.addEventListener('callidus-consent', (event) => {
+          if (event.detail === 'all') fire();
+        });
+      })();
+    </script>
+  )}
 </BaseLayout>
