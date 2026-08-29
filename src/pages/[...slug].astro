@@ -188,15 +188,19 @@ const pageFaqGroups = faqGroupsById(...(faqBySlug[page.slug] || []));
 
 // Google-Ads-Conversions: Slug -> Ereignis. Bewusst als Tabelle, damit sich
 // die Zielseite aendern laesst, ohne im Markup zu suchen.
-// "bitte-bestaetigen" ist die Seite, auf die Brevo nach dem Absenden des
-// Formulars zurueckleitet - also der Moment "Lead-Formular gesendet".
+// Beide Seiten sind der Moment "Lead-Formular gesendet", je nachdem wohin das
+// Brevo-Formular zurueckleitet: "download" nutzt das Vitamin-Kompendium-Formular,
+// "bitte-bestaetigen" die uebrigen. Gleiche id und gleiches sendTo bedeuten:
+// Wer in einer Sitzung beide Seiten sieht, wird trotzdem nur einmal gezaehlt.
+const leadConversion = {
+  id: 'lead-formular',
+  sendTo: 'AW-17709649802/SZtyCIGa9uYcEIqfz_xB',
+  value: 1.0,
+  currency: 'EUR',
+};
 const conversionPages = {
-  'bitte-bestaetigen': {
-    id: 'lead-formular',
-    sendTo: 'AW-17709649802/SZtyCIGa9uYcEIqfz_xB',
-    value: 1.0,
-    currency: 'EUR',
-  },
+  'bitte-bestaetigen': leadConversion,
+  download: leadConversion,
 };
 const pageConversion = conversionPages[page.slug] || null;
 const categoryRedirect = structure.categories.find((item) => new URL(page.url).pathname === item.legacyPath);

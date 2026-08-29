@@ -736,7 +736,7 @@
     "path": "/reset-hub/",
     "title": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
     "hero": "HERZLICHEN GLÜCKWUNSCH! IHR VOLLER STRESS-RESET BEGINNT JETZT.",
-    "lead": "Du hast den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle versprochenen Ressourcen gebündelt: Wissen, Werkzeug und Video-Praxis.",
+    "lead": "Du hast den entscheidenden Schritt zu einem neuen Rhythmus gemacht. Hier sind alle versprochenen Ressourcen gebündelt: das Vitamin-Kompendium, das Klangfrequenzen-Kompendium sowie Wissen, Werkzeug und Video-Praxis aus dem Stress-Reset.",
     "kind": "course",
     "originalUrl": "https://www.callidus-am.de/reset-hub/",
     "blocks": [
@@ -892,6 +892,20 @@
       }
     ],
     "links": [
+      {
+        "href": "/assets/documents/001-vitamin-kompendium.pdf",
+        "originalHref": "/assets/documents/001-vitamin-kompendium.pdf",
+        "label": "PDF \"Vitamin-Kompendium\"",
+        "external": false,
+        "download": true
+      },
+      {
+        "href": "/assets/documents/002-klangfrequenzen--meditation-gesundheit-anwendung.pdf",
+        "originalHref": "/assets/documents/002-klangfrequenzen--meditation-gesundheit-anwendung.pdf",
+        "label": "PDF \"Klangfrequenzen-Kompendium\"",
+        "external": false,
+        "download": true
+      },
       {
         "href": "/assets/documents/003-wahre-entlastung.pdf",
         "originalHref": "/wp-content/uploads/go-x/u/73d16680-1d51-4453-88c1-c44111a756ec/Wahre-Entlastung.pdf",
