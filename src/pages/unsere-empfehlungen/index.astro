@@ -10,7 +10,7 @@ const title = 'Empfehlungen für ganzheitliche Gesundheit | callidus A&M';
 const description = 'Kuratierte Produktempfehlungen von callidus A&M für Ernährung, Bewegung, mentale Balance und digitale Gesundheit.';
 const providers = [...new Set(recommendations.products.map((item) => item.provider).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de'));
 ---
-<BaseLayout lang="de" alternatePath="/en/" title={title} description={description} jsonLd={faqJsonLd(pageFaqGroups)}>
+<BaseLayout lang="de" title={title} description={description} jsonLd={faqJsonLd(pageFaqGroups)}>
   <section class="section">
     <div class="container hero">
       <div data-reveal>

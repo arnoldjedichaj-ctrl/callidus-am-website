@@ -179,11 +179,26 @@ const articleSourceEntries = article
       })
       .filter(Boolean)
   : [];
-const articleUpdatedLabel = article?.publishedAt
-  ? new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' }).format(new Date(article.publishedAt))
-  : 'Juli 2026';
+const formatArticleDate = (value) => {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return null;
+  return new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' }).format(date);
+};
+const articlePublishedAt = article?.publishedAt || undefined;
+const articleModifiedAt = article?.updatedAt || articlePublishedAt;
+const articleUpdatedLabel = formatArticleDate(articleModifiedAt) || 'Kein belegtes Datum';
 const specialPage = specialPages.find((item) => item.slug === page.slug) || customSpecialPages[page.slug];
 const legalPage = legalPages.find((item) => item.slug === page.slug);
+const noindexSlugs = new Set([
+  'bitte-bestaetigen',
+  'download',
+  'kurs-mitgliederbereich',
+  'reset-hub',
+  'modul-4',
+  'modul-5',
+]);
+const pageRobots = noindexSlugs.has(page.slug) ? 'noindex, follow' : undefined;
 const pageFaqGroups = faqGroupsById(...(faqBySlug[page.slug] || []));
 
 // Google-Ads-Conversions: Slug -> Ereignis. Bewusst als Tabelle, damit sich
@@ -413,32 +428,39 @@ const specialBlockClass = (block) => {
   if (/Wichtiger Hinweis|Hinweis zur Darstellung/.test(text)) return 'course-note';
   return '';
 };
+const articleUrl = new URL(page.path || `/${page.slug}/`, 'https://www.callidus-am.de').href;
 const articleJsonLd = article ? {
   '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': `${articleUrl}#article`,
   headline: seoTitle,
   description: seoDescription,
+  url: articleUrl,
   image: mainImage ? new URL(mainImage, 'https://www.callidus-am.de').href : undefined,
   citation: articleSourceEntries.length ? articleSourceEntries.map((source) => source.url) : undefined,
   inLanguage: 'de-DE',
-  author: { '@type': 'Organization', name: 'callidus A&M' },
+  datePublished: articlePublishedAt,
+  dateModified: articleModifiedAt,
+  author: { '@id': 'https://www.callidus-am.de/#organization', name: 'callidus A&M' },
   publisher: {
-    '@type': 'Organization',
+    '@id': 'https://www.callidus-am.de/#organization',
     name: 'callidus A&M',
-    logo: { '@type': 'ImageObject', url: 'https://www.callidus-am.de/favicon.svg' },
   },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(page.path || `/${page.slug}/`, 'https://www.callidus-am.de').href },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
 } : null;
 ---
 <BaseLayout
   lang="de"
   alternatePath={article && article.app === 'momus' && Array.isArray(article.blocksEn) && article.blocksEn.length > 0
     ? `/en/guide/${article.slug}/`
-    : '/en/guide/'}
+    : undefined}
   title={seoTitle}
   description={seoDescription}
   ogImage={mainImage}
   pageType={article ? 'article' : 'website'}
+  publishedTime={articlePublishedAt}
+  modifiedTime={articleModifiedAt}
+  robots={pageRobots}
   jsonLd={pageFaqGroups.length > 0 ? faqJsonLd(pageFaqGroups) : undefined}
 >
   {articleJsonLd && (
@@ -515,20 +537,20 @@ const articleJsonLd = article ? {
         {article && (
           <aside class="article-trust-strip" aria-label="Transparenz zu diesem Artikel">
             <div>
-              <span>Aktualisiert</span>
+              <span>Redaktion</span>
+              <strong><a href="/quellen-methodik/">callidus A&amp;M · KI-unterstützt</a></strong>
+            </div>
+            <div>
+              <span>Stand</span>
               <strong>{articleUpdatedLabel}</strong>
             </div>
             <div>
               <span>Quellenstatus</span>
-              <strong>{articleSourceEntries.length ? `${articleSourceEntries.length} Quellen` : 'Methodik verlinkt'}</strong>
+              <strong>{articleSourceEntries.length ? `${articleSourceEntries.length} Quellen` : 'Noch keine Einzelquellen'}</strong>
             </div>
             <div>
-              <span>Einordnung</span>
-              <strong>Alltag / Prävention / Wissen</strong>
-            </div>
-            <div>
-              <span>Grenze</span>
-              <strong>Keine Diagnose</strong>
+              <span>Fachreview</span>
+              <strong>Nicht behauptet</strong>
             </div>
           </aside>
         )}

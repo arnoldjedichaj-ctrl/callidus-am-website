@@ -1,6 +1,37 @@
 ﻿import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+// Die Sitemap ist ein Signal für die öffentlich strategischen Inhalte. Geschützte
+// Bereiche, Funnels, rechtliche Dokumente und das separate Krypto-Lab bleiben
+// erreichbar, werden aber nicht als Kern des Gesundheitsangebots ausgespielt.
+const sitemapExcludedPrefixes = [
+  '/bitte-bestaetigen/',
+  '/download/',
+  '/kurs-mitgliederbereich/',
+  '/reset-hub/',
+  '/modul-4/',
+  '/modul-5/',
+  '/assets/documents/',
+  '/portal/',
+  '/wallet/',
+  '/valus/',
+  '/krypto-',
+];
+
+const sitemapExcludedPaths = new Set([
+  '/agb/',
+  '/datenschutz/',
+  '/impressum/',
+  '/nutzungsbedingungen/',
+  '/widerruf/',
+  '/seiten/',
+]);
+
+const shouldIncludeInSitemap = (page) => {
+  const path = new URL(page).pathname;
+  return !sitemapExcludedPaths.has(path) && !sitemapExcludedPrefixes.some((prefix) => path.startsWith(prefix));
+};
+
 export default defineConfig({
   site: 'https://www.callidus-am.de',
   trailingSlash: 'always',
@@ -15,11 +46,7 @@ export default defineConfig({
       },
       changefreq: 'monthly',
       priority: 0.7,
-      filter: (page) =>
-        !page.includes('/bitte-bestaetigen') &&
-        !page.includes('/download') &&
-        !page.includes('/kurs-mitgliederbereich') &&
-        !page.includes('/reset-hub'),
+      filter: shouldIncludeInSitemap,
       serialize(item) {
         if (item.url === 'https://www.callidus-am.de/') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };

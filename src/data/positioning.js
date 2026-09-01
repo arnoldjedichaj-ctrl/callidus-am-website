@@ -60,8 +60,8 @@ export const brandPromise = {
     {
       title: 'Familie statt Konzern',
       text:
-        'Hinter callidus stehen Arnold und Margarita, keine Redaktion und kein Investor. '
-        + 'Wir empfehlen nur, was wir selbst nutzen.',
+        'Hinter callidus stehen Arnold und Margarita, keine anonyme Großredaktion und kein Investor. '
+        + 'Wir machen unsere redaktionelle Arbeitsweise und Grenzen transparent.',
       accent: 'gold',
       href: '/uber-uns/',
       linkLabel: 'Über uns',
