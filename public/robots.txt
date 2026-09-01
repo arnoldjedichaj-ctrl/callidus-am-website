@@ -1,13 +1,9 @@
 User-agent: *
 Allow: /
 
-# Bereiche, die nicht in den Index gehoeren
-Disallow: /bitte-bestaetigen/
-Disallow: /download/
-Disallow: /kurs-mitgliederbereich/
-Disallow: /reset-hub/
-Disallow: /modul-4/
-Disallow: /modul-5/
+# HTML-Seiten mit noindex bleiben crawlbar, damit Suchmaschinen das noindex-
+# Signal lesen können. Nicht gelistete Mitglieder- und Funnel-Seiten werden
+# zusätzlich aus der Sitemap herausgehalten.
 Disallow: /assets/documents/
 
 Sitemap: https://www.callidus-am.de/sitemap-index.xml
