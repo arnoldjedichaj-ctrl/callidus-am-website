@@ -109,7 +109,12 @@ const websiteJsonLd = {
   inLanguage: lang === 'en' ? 'en-US' : 'de-DE',
   description,
 };
-// Dropdown-Gruppennavigation
+// Die Kopfzeile führt bewusst nur zu den vier wichtigsten Wegen. Alles andere
+// bleibt erreichbar, konkurriert aber nicht mehr mit dem Kernangebot.
+const navPrimary = [
+  { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
+  { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
+];
 const navGroups = [
   {
     label: labels.knowledge,
@@ -120,33 +125,68 @@ const navGroups = [
     ],
   },
   {
-    label: labels.health,
+    label: lang === 'en' ? 'About Callidus' : 'Über Callidus',
     items: [
-      { href: t.paths.sport ?? '/sport-energie/', label: t.nav.sport ?? 'Sport & Energie' },
-      { href: '/gesund-geniessen/', label: lang === 'en' ? 'Healthy recipes' : 'Gesund genießen' },
-      { href: '/tagesaufgabe/', label: lang === 'en' ? 'Daily action' : 'Tagesaufgabe' },
-      { href: t.paths.recommendations, label: t.nav.recommendations },
-      { href: '/unsere-produkte/', label: lang === 'en' ? 'Our products' : 'Unsere Produkte' },
-      { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
-      { href: t.paths.checks ?? '/gesundheits-checks/', label: t.nav.checks ?? 'Checks' },
-      { href: '/audio/', label: t.nav.audio ?? 'Audio' },
-      { href: '/kinderbuch/', label: t.nav.kinderbuch ?? 'Kinderbuch' },
-      { href: t.paths.course, label: t.nav.course },
+      { href: t.paths.about, label: t.nav.about },
       { href: t.paths.apps, label: t.nav.apps },
-    ],
-  },
-  {
-    label: 'callidus',
-    items: [
-      { href: t.paths.portal, label: t.nav.portal },
-      { href: t.paths.wallet ?? '/wallet/', label: t.nav.wallet ?? 'Wallet' },
-      { href: t.paths.valus ?? '/valus/', label: t.nav.valus ?? 'Valus' },
       { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
       { href: t.paths.faq ?? '/faq/', label: t.nav.faq ?? 'FAQ' },
     ],
   },
 ];
-const navStandalone = { href: t.paths.about, label: t.nav.about };
+const footerLabels = lang === 'en'
+  ? { explore: 'Explore', more: 'More from callidus', company: 'Company', lab: 'Callidus Lab', legal: 'Legal' }
+  : { explore: 'Entdecken', more: 'Mehr von callidus', company: 'Unternehmen', lab: 'Callidus Lab', legal: 'Rechtliches' };
+const footerGroups = [
+  {
+    label: footerLabels.explore,
+    items: [
+      { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
+      { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
+      { href: t.paths.guide, label: t.nav.guide },
+      { href: '/audio/', label: t.footerExtras?.audio ?? 'Audio-Raum' },
+    ],
+  },
+  {
+    label: footerLabels.more,
+    items: [
+      { href: t.paths.recommendations, label: t.nav.recommendations },
+      { href: '/unsere-produkte/', label: lang === 'en' ? 'Our products' : 'Unsere Produkte' },
+      { href: t.paths.apps, label: t.nav.apps },
+      { href: '/kinderbuch/', label: t.footerExtras?.kinderbuch ?? 'Kinderbuch' },
+    ],
+  },
+  {
+    label: footerLabels.company,
+    items: [
+      { href: t.paths.about, label: t.nav.about },
+      { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
+      { href: t.paths.faq ?? '/faq/', label: t.nav.faq ?? 'FAQ' },
+      { href: t.paths.portal, label: t.nav.portal },
+    ],
+  },
+  {
+    label: footerLabels.lab,
+    items: [
+      { href: t.paths.wallet ?? '/wallet/', label: t.nav.wallet ?? 'Wallet' },
+      { href: t.paths.valus ?? '/valus/', label: t.nav.valus ?? 'Valus' },
+      { href: '/krypto-verstehen/', label: t.footerExtras?.krypto ?? 'Krypto verstehen' },
+      { href: '/krypto-hinweis/', label: t.footerExtras?.kryptoHinweis ?? 'Krypto-Hinweis' },
+      { href: '/valus-litepaper.html', label: t.footerExtras?.litepaper ?? 'Litepaper' },
+    ],
+  },
+  {
+    label: footerLabels.legal,
+    items: [
+      { href: t.paths.legal, label: t.legal.imprint },
+      { href: t.paths.privacy, label: t.legal.privacy },
+      { href: t.paths.terms, label: t.legal.terms },
+      { href: '/agb/', label: lang === 'en' ? 'Terms of sale' : 'AGB' },
+      { href: '/widerruf/', label: lang === 'en' ? 'Right of withdrawal' : 'Widerruf' },
+      { action: 'cookie', label: lang === 'en' ? 'Cookie settings' : 'Cookie-Einstellungen' },
+    ],
+  },
+];
 const isActive = (href: string) =>
   currentPath === href || (href !== '/' && currentPath.startsWith(href));
 const socialIcons = {
@@ -245,6 +285,11 @@ const socialIcons = {
       </button>
       <div class="header-actions" id="site-menu">
         <nav class="main-nav" aria-label={t.navLabel}>
+          {navPrimary.map((item) => (
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))}
           {navGroups.map((group) => {
             const groupActive = group.items.some(item => isActive(item.href));
             return (
@@ -263,21 +308,11 @@ const socialIcons = {
               </div>
             );
           })}
-          <a href={navStandalone.href} aria-current={isActive(navStandalone.href) ? 'page' : undefined}>
-            {navStandalone.label}
-          </a>
         </nav>
         <div class="language-switch" aria-label={t.languageLabel}>
           <span>{lang.toUpperCase()}</span>
           <a href={switchPath}>{languages[switchLang]}</a>
         </div>
-        <a href={t.paths.wallet} class="wallet-nav-btn" aria-label={labels.walletOpen} title="Valus Wallet">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-            <path d="M16 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
-          </svg>
-          <span id="nav-valus-balance" class="valus-nav-badge" hidden>0</span>
-        </a>
         <button class="theme-toggle" type="button" aria-label={labels.toggleTheme} aria-pressed="false">
           <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="4"></circle>
@@ -310,24 +345,20 @@ const socialIcons = {
           ))}
         </nav>
       </div>
-      <nav class="legal-nav" aria-label={t.legalLabel}>
-        <a href={t.paths.legal}>{t.legal.imprint}</a>
-        <a href={t.paths.privacy}>{t.legal.privacy}</a>
-        <a href={t.paths.methodology ?? '/quellen-methodik/'}>{t.nav.methodology ?? 'Quellen'}</a>
-        <a href={t.paths.faq ?? '/faq/'}>{t.nav.faq ?? 'FAQ'}</a>
-        <a href={t.paths.about}>{t.nav.about}</a>
-        <a href={t.paths.terms}>{t.legal.terms}</a>
-        <a href="/agb/">{lang === 'en' ? 'Terms of sale' : 'AGB'}</a>
-        <a href="/widerruf/">{lang === 'en' ? 'Right of withdrawal' : 'Widerruf'}</a>
-        <a href="/audio/">{t.footerExtras?.audio ?? 'Audio-Raum'}</a>
-        <a href="/kinderbuch/">{t.footerExtras?.kinderbuch ?? 'Kinderbuch'}</a>
-        <a href="/krypto-verstehen/">{t.footerExtras?.krypto ?? 'Krypto verstehen'}</a>
-        <a href="/krypto-hinweis/">{t.footerExtras?.kryptoHinweis ?? 'Krypto-Hinweis'}</a>
-        <a href="/valus-litepaper.html">{t.footerExtras?.litepaper ?? 'Litepaper'}</a>
-        <button type="button" class="footer-consent-reset" data-cookie-reopen>
-          {lang === 'en' ? 'Cookie settings' : 'Cookie-Einstellungen'}
-        </button>
-      </nav>
+      <div class="footer-link-groups">
+        {footerGroups.map((group) => (
+          <nav class="footer-nav-group" aria-label={group.label}>
+            <strong class="footer-nav-heading">{group.label}</strong>
+            <div class="footer-nav-links">
+              {group.items.map((item) => item.action === 'cookie' ? (
+                <button type="button" class="footer-consent-reset" data-cookie-reopen>{item.label}</button>
+              ) : (
+                <a href={item.href}>{item.label}</a>
+              ))}
+            </div>
+          </nav>
+        ))}
+      </div>
     </footer>
     <div class="cookie-banner" role="dialog" aria-live="polite" aria-label={labels.cookieLabel} hidden>
       <div class="cookie-banner-inner">
@@ -455,91 +486,6 @@ const socialIcons = {
         };
         initDropdowns();
         document.addEventListener('astro:page-load', initDropdowns);
-      })();
-    </script>
-    <script is:inline define:vars={{ FB_CONFIG: fbConfig }}>
-      // ── Valus Wallet Balance im Nav ──────────────────────────
-      (() => {
-        let walletInited = false;
-        const initWalletBadge = async () => {
-          if (walletInited) return;
-          walletInited = true;
-          try {
-            const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
-            const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js');
-            const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js');
-            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
-            const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApps()[0];
-            const auth = getAuth(app);
-            const db = getFirestore(app);
-            const fns = getFunctions(app, 'us-central1');
-            const numericValues = (...values) => values
-              .map((value) => Number(value))
-              .filter((value) => Number.isFinite(value));
-            const pickValus = (payload = {}) => {
-              const raw = payload.balance || payload.balances || payload;
-              const user = payload.user || payload.userDoc || {};
-              const canonical = Math.max(0, ...numericValues(raw.valus, raw.val), 0);
-              const legacy = numericValues(
-                raw.san,
-                raw.valus_balance,
-                raw.val_balance,
-                raw.san_balance,
-                raw.valusBalance,
-                raw.sanBalance,
-                raw.current_valus,
-                raw.current_san,
-                raw.balance?.valus,
-                raw.balance?.val,
-                raw.balance?.san,
-                user.valus,
-                user.val,
-                user.san,
-                user.valus_balance,
-                user.val_balance,
-                user.san_balance,
-                user.valusBalance,
-                user.sanBalance,
-                user.current_valus,
-                user.current_san,
-                user.balance?.valus,
-                user.balance?.val,
-                user.balance?.san,
-              );
-              const legacyValue = Math.max(0, ...legacy, 0);
-              if (raw.valus_legacy_migrated || (canonical > 0 && canonical >= legacyValue)) {
-                return canonical;
-              }
-              return canonical + legacyValue;
-            };
-            const setBadge = (value) => {
-              const badge = document.getElementById('nav-valus-balance');
-              if (!badge) return;
-              const valus = Number(value || 0);
-              badge.textContent = Number.isFinite(valus) ? valus.toFixed(0) : '0';
-              badge.hidden = false;
-            };
-            const refreshViaCallable = async () => {
-              try {
-                const result = await httpsCallable(fns, 'getValusBalance')({});
-                setBadge(pickValus(result.data || {}));
-              } catch (_) {}
-            };
-            onAuthStateChanged(auth, (user) => {
-              const badge = document.getElementById('nav-valus-balance');
-              if (!badge) return;
-              if (!user) { badge.hidden = true; return; }
-              refreshViaCallable();
-              onSnapshot(doc(db, 'users', user.uid, 'balances', 'current'), (snap) => {
-                const data = snap.exists() ? snap.data() : {};
-                setBadge(pickValus(data));
-                refreshViaCallable();
-              }, refreshViaCallable);
-            });
-          } catch (_) {}
-        };
-        initWalletBadge();
-        document.addEventListener('astro:page-load', initWalletBadge);
       })();
     </script>
     <script is:inline define:vars={{ FB_CONFIG: fbConfig, ASSISTANT_I18N: t.assistant }}>
