@@ -26,17 +26,35 @@ async function getAnalyticsInstance() {
 
 async function trackWebsiteVisit() {
   if (!hasAnalyticsConsent()) return;
-  const locationKey = window.location.href;
+  const trackedUrl = new URL(window.location.href);
+  const allowedParameters = new Set([
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'gclid',
+    'dclid',
+    'gbraid',
+    'wbraid',
+  ]);
+
+  // Nur sichere Kampagnenparameter behalten: So bleiben z. B. ChatGPT-Referrals
+  // messbar, ohne versehentlich Formular- oder personenbezogene Parameter zu senden.
+  for (const key of [...trackedUrl.searchParams.keys()]) {
+    if (!allowedParameters.has(key)) trackedUrl.searchParams.delete(key);
+  }
+  trackedUrl.hash = '';
+  const locationKey = trackedUrl.href;
   if (locationKey === lastTrackedLocation) return;
 
   const analytics = await getAnalyticsInstance();
   if (!analytics) return;
   lastTrackedLocation = locationKey;
   analytics.logEvent(analytics.analytics, 'page_view', {
-    // Keep website tracking aggregated: do not send article, health-topic, or
-    // search-path details to Analytics.
-    page_location: window.location.origin,
-    page_title: 'callidus A&M Website',
+    // Die konkrete Landingpage ist für SEO-, ChatGPT- und Conversion-Auswertung
+    // erforderlich; gemessen wird weiterhin erst nach Einwilligung.
+    page_location: locationKey,
+    page_title: document.title,
   });
 }
 

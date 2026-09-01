@@ -23,19 +23,25 @@ const category = categoryForLang(rawCategory, 'en');
 const related = momusAll
   .filter((item) => item.slug !== article.slug && item.category === article.category && Array.isArray(item.blocksEn) && item.blocksEn.length > 0)
   .slice(0, 3);
+const articleUrl = new URL(`/en/guide/${article.slug}/`, 'https://www.callidus-am.de').href;
+const articlePublishedAt = article.publishedAt || undefined;
+const articleModifiedAt = article.updatedAt || articlePublishedAt;
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': `${articleUrl}#article`,
   headline: title,
   description,
+  url: articleUrl,
   inLanguage: 'en-US',
-  author: { '@type': 'Organization', name: 'callidus A&M' },
+  datePublished: articlePublishedAt,
+  dateModified: articleModifiedAt,
+  author: { '@id': 'https://www.callidus-am.de/#organization', name: 'callidus A&M' },
   publisher: {
-    '@type': 'Organization',
+    '@id': 'https://www.callidus-am.de/#organization',
     name: 'callidus A&M',
-    logo: { '@type': 'ImageObject', url: 'https://www.callidus-am.de/favicon.svg' },
   },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/en/guide/${article.slug}/`, 'https://www.callidus-am.de').href },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
 };
 ---
 <BaseLayout
@@ -45,6 +51,8 @@ const articleJsonLd = {
   description={description}
   ogImage={article.image}
   pageType="article"
+  publishedTime={articlePublishedAt}
+  modifiedTime={articleModifiedAt}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)}></script>
   <section class="section">

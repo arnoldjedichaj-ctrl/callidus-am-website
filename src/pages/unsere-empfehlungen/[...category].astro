@@ -14,7 +14,7 @@ const products = recommendations.products.filter((item) => item.category === cat
 const title = `${category.title}: Empfehlungen | callidus A&M`;
 const description = `Kuratierte Empfehlungen im Bereich ${category.title} von callidus A&M.`;
 ---
-<BaseLayout lang="de" alternatePath="/unsere-empfehlungen/" title={title} description={description}>
+<BaseLayout lang="de" title={title} description={description}>
   <section class="section">
     <div class="container">
       <p class={`badge ${category.accent}`} data-reveal>{products.length} Empfehlungen</p>

@@ -14,6 +14,7 @@ const {
   pageType = 'website',
   publishedTime,
   modifiedTime,
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1',
   // Zusätzliches strukturiertes Markup, z. B. FAQPage. Einzelnes Objekt oder Array.
   jsonLd,
 } = Astro.props;
@@ -34,7 +35,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & external content',
       cookieTextBefore: 'This website is tracking-free by default. Data is transferred to third-party providers only when you load embedded YouTube videos, the newsletter form, or actively use the chatbot.',
       cookieTextMore: 'More information is available in our',
-      cookieAnalytics: 'By accepting, you also consent to aggregated website usage measurement with Google Analytics and to conversion tracking with Google Ads. Both are loaded only after your consent, and you can withdraw it at any time via "Cookie settings" in the footer.',
+      cookieAnalytics: 'By accepting, you also consent to privacy-conscious, page-level website usage measurement with Google Analytics and to conversion tracking with Google Ads. Both are loaded only after your consent, and you can withdraw it at any time via "Cookie settings" in the footer.',
       cookiePrivacy: 'privacy policy',
       cookieDecline: 'Necessary only',
       cookieAccept: 'Accept',
@@ -53,7 +54,7 @@ const labels = lang === 'en'
       cookieTitle: 'Cookies & externe Inhalte',
       cookieTextBefore: 'Diese Webseite ist standardmäßig tracking-frei. Erst wenn du eingebettete YouTube-Videos, das Newsletter-Formular oder den Chatbot aktiv nutzt, werden Daten an Drittanbieter übertragen.',
       cookieTextMore: 'Mehr Infos in unserer',
-      cookieAnalytics: 'Mit "Akzeptieren" stimmst du zusätzlich der aggregierten Nutzungsanalyse mit Google Analytics und dem Conversion-Tracking von Google Ads zu. Beides wird erst nach deiner Zustimmung geladen; du kannst sie jederzeit über "Cookie-Einstellungen" im Fußbereich widerrufen.',
+      cookieAnalytics: 'Mit "Akzeptieren" stimmst du zusätzlich der datensparsamen, seitenbezogenen Nutzungsanalyse mit Google Analytics und dem Conversion-Tracking von Google Ads zu. Beides wird erst nach deiner Zustimmung geladen; du kannst sie jederzeit über "Cookie-Einstellungen" im Fußbereich widerrufen.',
       cookiePrivacy: 'Datenschutzerklärung',
       cookieDecline: 'Nur Notwendige',
       cookieAccept: 'Akzeptieren',
@@ -71,15 +72,20 @@ const fbConfig = {
   appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
 };
 const canonicalUrl = new URL(currentPath, siteOrigin).href;
+const effectiveRobots = currentPath.startsWith('/portal/') ? 'noindex, follow' : robots;
 const switchPath = alternatePath || (lang === 'de' ? '/en/' : '/');
 const switchLang = lang === 'de' ? 'en' : 'de';
+const hasTranslatedEquivalent = typeof alternatePath === 'string' && alternatePath.length > 0;
 const logoPath = '/assets/original/001-wp-content-uploads-go-x-u-bdfcc883-6576-4ab2-951d-c90c6ccf47d3-image-911x911.png';
 // Social-Sharing-Bild: 1200x630 callidus A&M Logo mit goldenem Verlauf
 const socialImage = ogImage || '/og-image.png';
 const absoluteSocialImage = new URL(socialImage, siteOrigin).href;
+const organizationId = `${siteOrigin}/#organization`;
+const websiteId = `${siteOrigin}/#website`;
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': organizationId,
   name: 'callidus A&M',
   url: siteOrigin,
   logo: new URL('/favicon.png', siteOrigin).href,
@@ -104,16 +110,19 @@ const organizationJsonLd = {
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': websiteId,
   name: 'callidus A&M',
   url: siteOrigin,
   inLanguage: lang === 'en' ? 'en-US' : 'de-DE',
   description,
+  publisher: { '@id': organizationId },
 };
 // Die Kopfzeile führt bewusst nur zu den vier wichtigsten Wegen. Alles andere
 // bleibt erreichbar, konkurriert aber nicht mehr mit dem Kernangebot.
 const navPrimary = [
   { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
   { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
+  { href: t.paths.portal, label: lang === 'en' ? 'Member area' : 'Mein Bereich' },
 ];
 const navGroups = [
   {
@@ -162,7 +171,9 @@ const footerGroups = [
       { href: t.paths.about, label: t.nav.about },
       { href: t.paths.methodology ?? '/quellen-methodik/', label: t.nav.methodology ?? 'Quellen' },
       { href: t.paths.faq ?? '/faq/', label: t.nav.faq ?? 'FAQ' },
-      { href: t.paths.portal, label: t.nav.portal },
+      { href: t.paths.portal, label: lang === 'en' ? 'Portal & login' : 'Portal & Login' },
+      { href: '/portal/coach/', label: lang === 'en' ? 'Sport & Energy Coach' : 'Sport & Energie Coach' },
+      { href: '/kurs-mitgliederbereich/', label: lang === 'en' ? 'Stress Reset access' : 'Stress-Reset-Zugang' },
     ],
   },
   {
@@ -203,13 +214,13 @@ const socialIcons = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f5f7e9" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content={effectiveRobots} />
     <meta name="google-site-verification" content="8KLDJfH1b3S3xeES2mOIT-bH3XPW1SxviRPEsNrJBFk" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang={lang} href={new URL(currentPath, siteOrigin).href} />
-    <link rel="alternate" hreflang={switchLang} href={new URL(switchPath, siteOrigin).href} />
-    <link rel="alternate" hreflang="x-default" href={siteOrigin + '/'} />
+    {hasTranslatedEquivalent && <link rel="alternate" hreflang={switchLang} href={new URL(switchPath, siteOrigin).href} />}
+    {hasTranslatedEquivalent && <link rel="alternate" hreflang="x-default" href={siteOrigin + '/'} />}
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

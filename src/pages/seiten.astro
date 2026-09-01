@@ -21,7 +21,7 @@ const hiddenSpecial = specialPages
   .filter((page) => !officialPages.some((item) => item.path === page.path))
   .map((page) => ({ title: page.hero || page.title, path: page.path, kind: page.kind }));
 ---
-<BaseLayout lang="de" alternatePath="/en/" title={title} description={description}>
+<BaseLayout lang="de" title={title} description={description} robots="noindex, follow">
   <section class="section">
     <div class="container">
       <p class="eyebrow" data-reveal>Interne Übersicht</p>

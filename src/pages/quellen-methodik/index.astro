@@ -14,6 +14,8 @@ const articleMap = new Map(allArticles.map((article) => [article.slug, article])
 const sourcedArticles = Object.entries(articleSources)
   .map(([slug, entries]) => ({ article: articleMap.get(slug), entries }))
   .filter((item) => item.article);
+const datedArticles = allArticles.filter((article) => article.publishedAt || article.updatedAt);
+const articlesWithoutIndividualSources = allArticles.length - sourcedArticles.length;
 const groupedSources = Object.entries(
   knowledgeSources.reduce((groups, source) => {
     groups[source.type] = groups[source.type] || [];
@@ -30,8 +32,8 @@ const groupedSources = Object.entries(
         <p class="eyebrow">Transparenz</p>
         <h1>Quellen, Grenzen und redaktionelle Methodik.</h1>
         <p class="lede">
-          callidus A&M nutzt KI als redaktionelles Werkzeug. Gesundheitsinhalte werden deshalb
-          schrittweise mit externen Quellen verknüpft und klar von medizinischer Beratung getrennt.
+          callidus A&amp;M nutzt KI als redaktionelles Werkzeug. Wir erfinden keine Einzelautor:innen
+          oder Fachreviews: Wo keine echte fachliche Prüfung vorliegt, steht das transparent dabei.
         </p>
       </div>
       <div class="method-metrics" data-reveal="2" aria-label="Quellenstatus">
@@ -44,8 +46,8 @@ const groupedSources = Object.entries(
           <span>Artikel mit Quellenbox</span>
         </div>
         <div>
-          <strong>0</strong>
-          <span>behauptete Fachreviews ohne echte Prüfdaten</span>
+          <strong>{datedArticles.length}</strong>
+          <span>Artikel mit belegtem Datum</span>
         </div>
       </div>
     </div>
@@ -55,11 +57,11 @@ const groupedSources = Object.entries(
     <div class="container method-grid">
       <article class="method-card" data-reveal>
         <span class="badge mint">01</span>
-        <h2>KI-Unterstützung offenlegen</h2>
+        <h2>Redaktion statt erfundener Autor:innen</h2>
         <p>
-          Viele bestehende Inhalte sind redaktionell und KI-unterstützt entstanden. Das wird nicht
-          als ärztliche Prüfung ausgegeben. Fachreview-Hinweise werden erst ergänzt, wenn echte
-          prüfende Personen, Datum und Rolle vorliegen.
+          Viele bestehende Inhalte sind redaktionell und KI-unterstützt entstanden. Verantwortlich
+          ist callidus A&amp;M als Redaktion, nicht eine erfundene Einzelperson. Ein medizinischer
+          Fachreview wird nur genannt, wenn Person, Rolle und Datum nachvollziehbar vorliegen.
         </p>
       </article>
       <article class="method-card" data-reveal="2">
@@ -73,12 +75,42 @@ const groupedSources = Object.entries(
       </article>
       <article class="method-card" data-reveal="3">
         <span class="badge blue">03</span>
-        <h2>Keine Diagnose im Web</h2>
+        <h2>Grenzen sichtbar machen</h2>
         <p>
-          Checks und Chatbot geben Orientierung. Sie diagnostizieren keine Erkrankung, ersetzen keine
-          Laborwerte und geben keine individuelle Therapie- oder Dosierungsanweisung.
+          Quellen, belegte Datumsangaben und der Prüfstatus stehen direkt am Artikel. Fehlt eine
+          Einzelquelle oder ein belegtes Datum, zeigen wir das an, statt einen Aktualitäts- oder
+          Expertenanspruch zu erfinden. Inhalte, Checks und Chatbot ersetzen keine Diagnose oder
+          individuelle Therapie.
         </p>
       </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">Verantwortung</p>
+        <h2>So liest du den Status eines Artikels.</h2>
+        <p class="lede">
+          Jede Artikelseite nennt jetzt Redaktion, Stand, Quellenstatus und Fachreview-Status.
+          Das ist absichtlich kein Qualitätssiegel, sondern eine Einladung, die Einordnung selbst
+          nachzuvollziehen.
+        </p>
+      </div>
+      <div class="method-metrics" data-reveal="2" aria-label="Offene redaktionelle Arbeit">
+        <div>
+          <strong>{articlesWithoutIndividualSources}</strong>
+          <span>Artikel ohne Einzelquellen – in Bearbeitung</span>
+        </div>
+        <div>
+          <strong>0</strong>
+          <span>behauptete Fachreviews ohne echte Prüfdaten</span>
+        </div>
+        <div>
+          <strong>1</strong>
+          <span>Kontakt für Korrekturhinweise: info@callidus-am.de</span>
+        </div>
+      </div>
     </div>
   </section>
 
