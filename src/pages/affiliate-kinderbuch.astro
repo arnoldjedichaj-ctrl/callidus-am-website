@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Affiliate-Support: Callis Gesundheits-Kompass | callidus A&M';
+const description = 'Infos, Werbetexte und Leitlinien für Digistore24-Affiliates der Kinderbuchreihe Callis Gesundheits-Kompass von callidus A&M.';
+const cover = '/assets/kinderbuch/cover-band1.jpg';
+const books = [
+  { id: '709550', band: 'Band 1', title: 'Hör auf deinen Körper', topic: 'Körpersignale verstehen', image: '/assets/kinderbuch/cover-band1.jpg' },
+  { id: '709996', band: 'Band 2', title: 'Das Zucker-Monster', topic: 'Essen, Trinken und Energie', image: '/assets/kinderbuch/cover-band2.jpg' },
+  { id: '710152', band: 'Band 3', title: 'Der Zappelmotor', topic: 'Bewegung, Pausen und Freude', image: '/assets/kinderbuch/cover-band3.jpg' },
+  { id: '710833', band: 'Band 4', title: 'Die Schlaf-Werkstatt', topic: 'Schlaf, Träume und Abendroutinen', image: '/assets/kinderbuch/cover-band4.jpg' },
+  { id: '710837', band: 'Band 5', title: 'Das Gefühls-Wetter', topic: 'Gefühle verstehen und Hilfe holen', image: '/assets/kinderbuch/cover-band5.jpg' },
+  { id: '711028', band: 'Band 6', title: 'Die Abwehr-Polizei', topic: 'Immunsystem und Hygiene', image: '/assets/kinderbuch/cover-band6.jpg' },
+];
+---
+
+<BaseLayout lang="de" title={title} description={description} ogImage={cover} robots="noindex, follow">
+  <section class="section affiliate-hero">
+    <div class="container affiliate-hero-grid">
+      <div data-reveal>
+        <p class="eyebrow">Digistore24 · Affiliate-Support</p>
+        <h1>Callis Gesundheits-Kompass</h1>
+        <p class="lede">Sechs warme Vorlese-Bilderbücher für Kinder von 5 bis 8 – über Körper, Ernährung, Bewegung, Schlaf, Gefühle und das Immunsystem. Kindgerecht erzählt, mit Aquarellbildern, Schlau-Seiten und Mitmach-Ideen.</p>
+        <div class="affiliate-facts" aria-label="Partnerprogramm auf einen Blick">
+          <div><strong>50 %</strong><span>Affiliate-Provision</span></div>
+          <div><strong>9,90 €</strong><span>pro PDF-Band</span></div>
+          <div><strong>sofort</strong><span>Partnerschaftsfreigabe</span></div>
+        </div>
+        <p class="affiliate-note">Nutze für jeden beworbenen Band den passenden, von Digistore24 erzeugten Promolink. So wird die Zuordnung zum jeweiligen Buch zuverlässig erfasst.</p>
+      </div>
+      <figure class="affiliate-image" data-reveal="2">
+        <img src={cover} alt="Cover von Callis Gesundheits-Kompass, Band 1: Hör auf deinen Körper" width="800" height="1280" loading="eager" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container affiliate-grid">
+      <article class="affiliate-card" data-reveal>
+        <p class="eyebrow">Für wen?</p>
+        <h2>Familien, die gemeinsam entdecken</h2>
+        <p>Die Reihe passt zu Eltern, Großeltern und Bezugspersonen, die Kinder im Alter von 5 bis 8 Jahren spielerisch an Körperwissen und alltagstaugliche Selbstfürsorge heranführen möchten.</p>
+      </article>
+      <article class="affiliate-card" data-reveal="2">
+        <p class="eyebrow">Was ist enthalten?</p>
+        <h2>Lesen, verstehen, mitmachen</h2>
+        <p>Jeder PDF-Band verbindet eine Vorlesegeschichte mit Aquarellillustrationen, kindgerechten Schlau-Seiten, Gesprächsanlässen und kleinen Mitmach-Ideen.</p>
+      </article>
+      <article class="affiliate-card affiliate-card-highlight" data-reveal="3">
+        <p class="eyebrow">Konditionen</p>
+        <h2>Deine Partnerschaft</h2>
+        <ul>
+          <li>50 % Provision für jeden der sechs Bände.</li>
+          <li>Alle Partnerschaften werden automatisch akzeptiert.</li>
+          <li>Alle Bände sind digitale PDF-Kinderbücher für je 9,90 €.</li>
+          <li>Du kannst einzelne Bände oder die gesamte Reihe vorstellen.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <p class="eyebrow">Die Reihe</p>
+      <h2>Sechs Themen, sechs passende Einstiege</h2>
+      <div class="book-grid">
+        {books.map((book, index) => (
+          <article class="book-card" data-reveal={index ? String(Math.min(index + 1, 3)) : undefined}>
+            <img src={book.image} alt={`Cover: ${book.band} – ${book.title}`} width="800" height="1280" loading="lazy" />
+            <div>
+              <p class="eyebrow">{book.band} · Produkt-ID {book.id}</p>
+              <h3>{book.title}</h3>
+              <p>{book.topic}</p>
+              <span>9,90 € · 50 % Provision</span>
+              <a href={book.image} download>Cover herunterladen</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight affiliate-copy-section">
+    <div class="container">
+      <p class="eyebrow">Werbemittel</p>
+      <h2>Texte zum direkten Start</h2>
+      <div class="affiliate-copy-grid">
+        <article class="affiliate-copy" data-reveal>
+          <h3>Social Post</h3>
+          <p>Gesundheitsthemen müssen für Kinder nicht trocken oder beängstigend sein. Die Reihe „Callis Gesundheits-Kompass“ erklärt Körper, Gefühle, Schlaf und Ernährung in warmen Vorlesegeschichten – für neugierige Kinder von 5 bis 8 Jahren. Hier findest du die Reihe: <em>[dein Promolink zum passenden Band]</em></p>
+        </article>
+        <article class="affiliate-copy" data-reveal="2">
+          <h3>E-Mail-Impuls</h3>
+          <p><strong>Betreff:</strong> Sechs Vorlesegeschichten, die Kinder stärker machen</p>
+          <p>Kinder stellen große Fragen: Warum bin ich müde? Was passiert mit Gefühlen? Wozu braucht mein Körper Bewegung? „Callis Gesundheits-Kompass“ macht solche Themen in Geschichten, Bildern und kleinen Mitmach-Ideen zugänglich. Entdecke den passenden Band hier: <em>[dein Promolink zum passenden Band]</em></p>
+        </article>
+        <article class="affiliate-copy" data-reveal="3">
+          <h3>Gute Anlässe</h3>
+          <p>Passend für Familien-Newsletter, Eltern-Communities, Vorlesezeiten, Kita- und Grundschulimpulse sowie saisonale Themen wie Schulstart, Einschlafroutinen oder Gefühle im Alltag.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container affiliate-guidelines" data-reveal>
+      <p class="eyebrow">Verantwortungsvolle Vermarktung</p>
+      <h2>Bitte beachte diese Leitlinien</h2>
+      <ul>
+        <li>Affiliate-Links transparent als Werbung bzw. Partnerlink kennzeichnen.</li>
+        <li>Für jeden beworbenen Band den passenden Promolink verwenden.</li>
+        <li>Keine Heil-, Diagnose- oder Therapieversprechen formulieren und keine medizinischen Ratschläge geben.</li>
+        <li>Keine irreführenden Preisangaben verwenden; für Preis und Verfügbarkeit immer auf die Verkaufsseite verweisen.</li>
+        <li>Die Cover dürfen unverändert zur Bewerbung der jeweiligen Bücher verwendet werden.</li>
+        <li>Keine Marken- oder Namensbestandteile von callidus A&amp;M für bezahlte Suchanzeigen verwenden, sofern dies nicht vorher schriftlich abgestimmt wurde.</li>
+      </ul>
+      <p>Fragen, individuelle Werbemittelwünsche oder Kooperationen: <a href="mailto:info@callidus-am.de?subject=Affiliate%20Kinderb%C3%BCcher">info@callidus-am.de</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .affiliate-hero { padding-top: clamp(3rem, 8vw, 6.5rem); }
+  .affiliate-hero-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(250px,.72fr); gap:clamp(2rem,6vw,5rem); align-items:center; }
+  .affiliate-hero h1 { font-size:clamp(2.5rem,6vw,5rem); margin:.15rem 0 .9rem; }
+  .affiliate-image { margin:0; justify-self:end; max-width:350px; position:relative; }
+  .affiliate-image::before { content:''; position:absolute; inset:-1rem 1.7rem 1.7rem -1rem; border:1px solid rgba(var(--gold-rgb),.5); border-radius:1.5rem; z-index:-1; }
+  .affiliate-image img { display:block; width:100%; border-radius:1.25rem; box-shadow:var(--shadow); aspect-ratio:5/8; object-fit:cover; }
+  .affiliate-facts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:1.8rem; border:1px solid var(--line); border-radius:1rem; overflow:hidden; }
+  .affiliate-facts div { padding:1rem .8rem; display:grid; gap:.2rem; text-align:center; background:var(--panel); }
+  .affiliate-facts div + div { border-left:1px solid var(--line); }
+  .affiliate-facts strong { color:var(--gold); font-size:1.25rem; }
+  .affiliate-facts span, .affiliate-note { color:var(--muted); font-size:.85rem; }
+  .affiliate-note { margin:1rem 0 0; }
+  .affiliate-grid, .affiliate-copy-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+  .affiliate-card, .affiliate-copy, .affiliate-guidelines, .book-card { padding:clamp(1.2rem,3vw,2rem); border:1px solid var(--line); border-radius:1rem; background:var(--panel); box-shadow:var(--shadow); }
+  .affiliate-card h2, .affiliate-copy h3, .affiliate-guidelines h2 { margin:.2rem 0 .8rem; }
+  .affiliate-card p, .affiliate-card li, .affiliate-copy p, .affiliate-guidelines li, .book-card p { color:var(--muted); line-height:1.65; }
+  .affiliate-card ul, .affiliate-guidelines ul { padding-left:1.2rem; margin:.8rem 0 0; }
+  .affiliate-card li + li, .affiliate-guidelines li + li { margin-top:.5rem; }
+  .affiliate-card-highlight { background:linear-gradient(145deg,rgba(var(--gold-rgb),.17),var(--panel)); border-color:rgba(var(--gold-rgb),.45); }
+  .book-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1.2rem; }
+  .book-card { display:grid; grid-template-columns:130px minmax(0,1fr); gap:1rem; align-items:center; }
+  .book-card img { width:100%; border-radius:.65rem; box-shadow:var(--shadow); aspect-ratio:5/8; object-fit:cover; }
+  .book-card h3 { margin:.15rem 0 .35rem; }
+  .book-card span { display:block; color:var(--gold); font-weight:700; margin:.5rem 0; }
+  .book-card a { font-size:.9rem; }
+  .affiliate-copy-section { padding-top:2.5rem; }
+  .affiliate-copy { display:flex; flex-direction:column; }
+  .affiliate-guidelines { max-width:900px; }
+  @media (max-width:840px) { .affiliate-hero-grid, .affiliate-grid, .affiliate-copy-grid { grid-template-columns:1fr; } .affiliate-image { justify-self:start; max-width:310px; } .book-grid { grid-template-columns:1fr; } }
+  @media (max-width:460px) { .affiliate-facts { grid-template-columns:1fr; } .affiliate-facts div + div { border-left:0; border-top:1px solid var(--line); } .book-card { grid-template-columns:100px minmax(0,1fr); padding:1rem; } }
+</style>
