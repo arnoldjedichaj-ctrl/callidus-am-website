@@ -466,6 +466,45 @@ const articleJsonLd = article ? {
   {articleJsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)}></script>
   )}
+  {page.slug === 'stress-reset-kurs' && (
+    <script is:inline>
+      (() => {
+        const PRODUCT_ID = 645388;
+        const SCRIPT_ID = 'digistore24-promocode-script';
+        const hasConsent = () => localStorage.getItem('callidus-cookie-consent-v2') === 'all';
+
+        const activatePromocode = () => {
+          const applyPromocode = () => {
+            if (typeof window.digistorePromocode !== 'function') return;
+            window.digistorePromocode({ product_id: PRODUCT_ID, adjust_domain: true });
+          };
+
+          if (typeof window.digistorePromocode === 'function') {
+            applyPromocode();
+            return;
+          }
+
+          const existing = document.getElementById(SCRIPT_ID);
+          if (existing) {
+            existing.addEventListener('load', applyPromocode, { once: true });
+            return;
+          }
+
+          const script = document.createElement('script');
+          script.id = SCRIPT_ID;
+          script.src = 'https://www.digistore24-scripts.com/service/digistore.js';
+          script.async = true;
+          script.addEventListener('load', applyPromocode, { once: true });
+          document.head.append(script);
+        };
+
+        if (hasConsent()) activatePromocode();
+        window.addEventListener('callidus-consent', (event) => {
+          if (event.detail === 'all') activatePromocode();
+        });
+      })();
+    </script>
+  )}
   <section class="section">
     <article class="article-shell">
       <div class="article-hero">
