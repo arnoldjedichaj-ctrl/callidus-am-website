@@ -124,7 +124,7 @@ const books = [
   .affiliate-hero-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(250px,.72fr); gap:clamp(2rem,6vw,5rem); align-items:center; }
   .affiliate-hero h1 { font-size:clamp(2.5rem,6vw,5rem); margin:.15rem 0 .9rem; }
   .affiliate-image { margin:0; justify-self:end; max-width:350px; position:relative; }
-  .affiliate-image::before { content:''; position:absolute; inset:-1rem 1.7rem 1.7rem -1rem; border:1px solid rgba(var(--gold-rgb),.5); border-radius:1.5rem; z-index:-1; }
+  .affiliate-image::before { content:none; }
   .affiliate-image img { display:block; width:100%; height:auto; border-radius:1.25rem; box-shadow:var(--shadow); aspect-ratio:5/8; object-fit:cover; }
   .affiliate-facts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:1.8rem; border:1px solid var(--line); border-radius:1rem; overflow:hidden; }
   .affiliate-facts div { padding:1rem .8rem; display:grid; gap:.2rem; text-align:center; background:var(--panel); }
@@ -135,6 +135,7 @@ const books = [
   .affiliate-grid, .affiliate-copy-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
   .affiliate-card, .affiliate-copy, .affiliate-guidelines, .book-card { padding:clamp(1.2rem,3vw,2rem); border:1px solid var(--line); border-radius:1rem; background:var(--panel); box-shadow:var(--shadow); }
   .affiliate-card h2, .affiliate-copy h3, .affiliate-guidelines h2 { margin:.2rem 0 .8rem; }
+  .affiliate-card h2 { font-size:clamp(1.55rem,2.4vw,2.35rem); line-height:1.08; overflow-wrap:anywhere; }
   .affiliate-card p, .affiliate-card li, .affiliate-copy p, .affiliate-guidelines li, .book-card p { color:var(--muted); line-height:1.65; }
   .affiliate-card ul, .affiliate-guidelines ul { padding-left:1.2rem; margin:.8rem 0 0; }
   .affiliate-card li + li, .affiliate-guidelines li + li { margin-top:.5rem; }
