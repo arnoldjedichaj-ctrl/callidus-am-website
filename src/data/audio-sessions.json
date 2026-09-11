@@ -117,15 +117,14 @@
   {
     "id": "schlafuebergang-004",
     "status": "published",
-    "featured": true,
-    "badge": "Folge 4 · Neu",
+    "featured": false,
+    "badge": "Folge 4",
     "title": "Schlafübergang: den Tag ablegen",
     "shortTitle": "Schlafübergang",
     "duration": "15:00",
     "durationSeconds": 900,
     "publishedAt": "2026-09-11",
     "path": "/audio/schlafuebergang/schlafuebergang-den-tag-ablegen.mp3",
-    "transcriptPath": "/audio/schlafuebergang/schlafuebergang-den-tag-ablegen.txt",
     "accent": "gold",
     "summary": "Der Tag ist vorbei, aber im Kopf geht er weiter? Diese geführte Abendentspannung lädt dich ein, den Körper zu spüren, offene Gedanken für morgen abzulegen und allmählich zur Ruhe zu kommen. Mit warmer Stimme, sanfter Musik und langen Pausen.",
     "bestFor": [
@@ -155,6 +154,48 @@
       "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
       "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 80 Sekunden.",
       "note": "Eigenständiges Callidus-Skript mit Körperscan, gedanklichem Tagesabschluss und offenem Übergang in die Nacht. Keine Heil- oder Einschlafgarantie."
+    }
+  },
+  {
+    "id": "nach-schwierigen-gespraechen-005",
+    "status": "published",
+    "featured": true,
+    "badge": "Folge 5 · Neu",
+    "title": "Nach einem schwierigen Gespräch: wieder bei dir ankommen",
+    "shortTitle": "Wieder bei dir ankommen",
+    "duration": "12:00",
+    "durationSeconds": 720,
+    "publishedAt": "2026-09-11",
+    "path": "/audio/nach-schwierigen-gespraechen/wieder-bei-dir-ankommen.mp3",
+    "accent": "mint",
+    "summary": "Ein Gespräch ist vorbei, aber ein Satz lässt dich nicht los? Diese geführte Pause lädt dich ein, wieder im Moment anzukommen, die eigene Reaktion freundlich wahrzunehmen und mit etwas Abstand über den nächsten Schritt zu entscheiden. Mit warmer Stimme, ruhiger Musik und Zeit zum Nachspüren.",
+    "bestFor": [
+      "Momente nach Kritik, Streit oder einem belastenden Meeting",
+      "Gedanken, die ein Gespräch immer wieder durchspielen",
+      "eine bewusste Pause vor einer Antwort oder Entscheidung"
+    ],
+    "outcomes": [
+      "Körperkontakt und die Umgebung wieder wahrnehmen",
+      "Gefühle, gehörte Worte und eigene Vermutungen unterscheiden",
+      "einen überschaubaren nächsten Schritt oder eine Pause wählen"
+    ],
+    "listenWhen": [
+      "nach einem Gespräch an einem ruhigen Platz",
+      "im Sitzen, mit beiden Füßen auf dem Boden",
+      "bevor eine Nachricht aus dem ersten Impuls heraus entsteht"
+    ],
+    "usageTitle": "Nicht sofort antworten müssen.",
+    "usageText": "Du musst das Gespräch nicht noch einmal durchleben. Die Führung beginnt mit dem Blick in den Raum und dem Kontakt zur Sitzfläche. Danach ist Platz für deine Reaktion, für etwas Abstand zu nachwirkenden Worten und für die Frage, was dir jetzt guttun würde. Dein Atem bleibt dabei in seinem eigenen Rhythmus.",
+    "endingNote": "Zum Abschluss richtest du deine Aufmerksamkeit wieder auf den Raum und deinen nächsten Schritt im Alltag. Auf die letzten Worte folgen rund 45 Sekunden Musik mit einem sanften Ausklang. Die Pause verpflichtet dich weder zum Verzeihen noch zum Nachgeben.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript für Selbstreflexion nach schwierigen Gesprächen, mit offenem Blick, natürlichem Atem und einer ruhigen Rückkehr in den Alltag."
     }
   }
 ]

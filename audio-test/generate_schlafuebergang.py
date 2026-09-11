@@ -1,4 +1,4 @@
-"""Render the original sleep session using the established YouTube TTS account."""
+"""Render guided sessions using the established YouTube TTS account."""
 
 from __future__ import annotations
 
@@ -125,7 +125,7 @@ def assemble(paths: list[Path], config: dict) -> dict:
     if not 0.45 <= scale <= 2.5:
         raise RuntimeError(f"Pacing needs review: pause scale {scale:.2f}")
 
-    voice_path = BASE / "schlafuebergang_voice.wav"
+    voice_path = BASE / f"{STEM}_voice.wav"
     chapters = []
     segments = []
     with wave.open(str(voice_path), "wb") as target_wav:
@@ -154,11 +154,11 @@ def assemble(paths: list[Path], config: dict) -> dict:
     bed = music
     while len(bed) < target * 1000:
         bed = bed.append(music, crossfade=8000)
-    bed_path = BASE / "schlafuebergang_music.wav"
+    bed_path = BASE / f"{STEM}_music.wav"
     bed[:target * 1000].export(bed_path, format="wav")
 
-    voice_normalized = BASE / "schlafuebergang_voice_normalized.wav"
-    music_normalized = BASE / "schlafuebergang_music_normalized.wav"
+    voice_normalized = BASE / f"{STEM}_voice_normalized.wav"
+    music_normalized = BASE / f"{STEM}_music_normalized.wav"
     if not WAVES.exists():
         build_waves(target)
     ffmpeg("-i", str(voice_path), "-af", "loudnorm=I=-19:TP=-3:LRA=9", "-ar", "44100", "-ac", "2", str(voice_normalized))
@@ -166,13 +166,16 @@ def assemble(paths: list[Path], config: dict) -> dict:
 
     output_path = OUTPUT / f"{STEM}.mp3"
     # Normalization happens before the final fade, keeping the ending silent.
-    fade_start = target - 80
+    fade_duration = config.get("fadeOutSeconds", 80)
+    if fade_duration > config["tailSeconds"]:
+        raise RuntimeError("Fade must fit within the music-only ending")
+    fade_start = target - fade_duration
     mix = (
         "[0:a]aformat=channel_layouts=stereo[voice];"
-        f"[1:a]afade=t=in:d=5,afade=t=out:st={fade_start}:d=80[music];"
-        f"[2:a]volume=0.10,afade=t=out:st={fade_start}:d=80[waves];"
+        f"[1:a]afade=t=in:d=5,afade=t=out:st={fade_start}:d={fade_duration}[music];"
+        f"[2:a]volume=0.10,afade=t=out:st={fade_start}:d={fade_duration}[waves];"
         "[voice][music][waves]amix=inputs=3:duration=first:normalize=0,"
-        f"alimiter=limit=0.8414:level=false:latency=true,afade=t=out:st={fade_start}:d=80[out]"
+        f"alimiter=limit=0.8414:level=false:latency=true,afade=t=out:st={fade_start}:d={fade_duration}[out]"
     )
     ffmpeg(
         "-i", str(voice_normalized), "-i", str(music_normalized), "-i", str(WAVES),
@@ -185,7 +188,7 @@ def assemble(paths: list[Path], config: dict) -> dict:
         "title": config["title"], "durationSeconds": target,
         "voice": config["voice"], "model": config["model"],
         "speechSeconds": round(speech_seconds, 2), "pauseScale": round(scale, 3),
-        "tailSeconds": config["tailSeconds"], "fadeOutSeconds": 80,
+        "tailSeconds": config["tailSeconds"], "fadeOutSeconds": fade_duration,
         "music": {"title": "Deep Meditation", "creator": "Grand_Project",
                   "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
                   "license": "https://pixabay.com/service/license-summary/"},
@@ -193,20 +196,24 @@ def assemble(paths: list[Path], config: dict) -> dict:
         "chapters": chapters, "segments": segments,
     }
     (BASE / f"{STEM}.meta.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
-    transcript = [config["title"], "callidus A&M | Geführte Abendentspannung | 15 Minuten", ""]
-    for segment in config["segments"]:
-        if segment.get("chapter"):
-            transcript.extend([segment["chapter"], ""])
-        transcript.extend([segment["text"], ""])
-    (OUTPUT / f"{STEM}.txt").write_text("\n".join(transcript), encoding="utf-8")
     return metadata
 
 
 def main() -> None:
+    global CACHE, OUTPUT, STEM
     parser = argparse.ArgumentParser()
+    parser.add_argument("--script", type=Path, default=SCRIPT)
     parser.add_argument("--sample", action="store_true", help="Generate only the first speech segment")
     args = parser.parse_args()
-    config = json.loads(SCRIPT.read_text(encoding="utf-8"))
+    config = json.loads(args.script.read_text(encoding="utf-8"))
+    slug = config.get("slug", "schlafuebergang")
+    if not slug or any(char not in "abcdefghijklmnopqrstuvwxyz0123456789-" for char in slug):
+        raise ValueError("Session slug must contain only lowercase letters, digits and hyphens")
+    CACHE = BASE / f"{slug}_segments"
+    OUTPUT = BASE.parent / "public/audio" / slug
+    STEM = config.get("stem", STEM)
+    if Path(STEM).name != STEM or "/" in STEM or "\\" in STEM or STEM in ("", ".", ".."):
+        raise ValueError("Output stem must be a filename without directory components")
     CACHE.mkdir(exist_ok=True)
     OUTPUT.mkdir(parents=True, exist_ok=True)
     keys = load_keys()

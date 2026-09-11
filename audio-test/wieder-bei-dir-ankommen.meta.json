@@ -1,0 +1,150 @@
+{
+  "title": "Nach einem schwierigen Gespräch: wieder bei dir ankommen",
+  "durationSeconds": 720,
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "speechSeconds": 331.91,
+  "pauseScale": 0.821,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "license": "https://pixabay.com/service/license-summary/"
+  },
+  "mix": {
+    "voiceLUFS": -19,
+    "musicLUFS": -28,
+    "background": "Generated wave ambience"
+  },
+  "chapters": [
+    {
+      "title": "Im Hier und Jetzt ankommen",
+      "startSeconds": 1.5
+    },
+    {
+      "title": "Die eigene Reaktion wahrnehmen",
+      "startSeconds": 112.8
+    },
+    {
+      "title": "Abstand zu den Worten finden",
+      "startSeconds": 208.51
+    },
+    {
+      "title": "Die eigene Grenze spüren",
+      "startSeconds": 386.31
+    },
+    {
+      "title": "Einen nächsten Schritt wählen",
+      "startSeconds": 529.11
+    }
+  ],
+  "segments": [
+    {
+      "startSeconds": 1.5,
+      "endSeconds": 16.87,
+      "text": "Willkommen. Vielleicht ist ein Gespräch vorbei, aber in dir geht es weiter. Ein Satz, ein Blick oder eine Antwort lässt dich nicht los. Diese zwölf Minuten sind eine Pause für dich. Du musst das Gespräch jetzt nicht zu Ende denken."
+    },
+    {
+      "startSeconds": 23.44,
+      "endSeconds": 40.57,
+      "text": "Such dir einen ruhigen Platz, an dem du für einen Moment sitzen kannst. Lege das Telefon beiseite, wenn das möglich ist. Lass deinen Blick durch den Raum wandern. Bemerke drei einfache Dinge um dich herum. Eine Farbe. Eine Form. Etwas Vertrautes."
+    },
+    {
+      "startSeconds": 50.42,
+      "endSeconds": 65.36,
+      "text": "Spüre die Füße auf dem Boden und den Kontakt zur Sitzfläche. Vielleicht möchtest du dich anlehnen. Du brauchst keine besondere Haltung. Finde nur einen Platz, an dem dein Körper gerade etwas weniger halten muss."
+    },
+    {
+      "startSeconds": 78.49,
+      "endSeconds": 98.02,
+      "text": "Dein Atem darf in seinem eigenen Rhythmus kommen und gehen. Du musst ihn nicht vertiefen oder anhalten. Vielleicht bemerkst du bei einem Ausatmen, dass die Schultern etwas nachgeben können. Wenn nicht, bleib einfach beim Kontakt deiner Füße zum Boden."
+    },
+    {
+      "startSeconds": 112.8,
+      "endSeconds": 128.82,
+      "text": "Was ist gerade am deutlichsten zu spüren? Vielleicht Ärger, Enttäuschung, Unsicherheit oder Müdigkeit. Vielleicht etwas ganz anderes. Ein einziges Wort reicht. Du musst dafür keine Erklärung finden und nichts rechtfertigen."
+    },
+    {
+      "startSeconds": 145.24,
+      "endSeconds": 161.21,
+      "text": "Du kannst innerlich sagen: Da ist gerade Ärger. Oder: Das hat mich getroffen. Die Reaktion darf da sein, ohne dass sie schon bestimmt, was du als Nächstes tun wirst. Für einen Moment genügt es, sie wahrzunehmen."
+    },
+    {
+      "startSeconds": 177.63,
+      "endSeconds": 192.08,
+      "text": "Bemerke, wo sich dein Körper angespannt anfühlt. Vielleicht im Kiefer, im Bauch oder in den Händen. Du musst dort nichts wegmachen. Öffne die Hände, wenn es angenehm ist, oder verändere deine Haltung ein wenig."
+    },
+    {
+      "startSeconds": 208.51,
+      "endSeconds": 225.0,
+      "text": "Vielleicht beginnt dein Kopf das Gespräch erneut. Er formuliert bessere Antworten oder sucht nach einer Erklärung. Wenn du das bemerkst, kannst du freundlich sagen: Ich denke das gerade noch einmal durch. Und dann für einen Augenblick wieder den Raum um dich wahrnehmen."
+    },
+    {
+      "startSeconds": 243.06,
+      "endSeconds": 262.03,
+      "text": "Du musst die Szene jetzt nicht nachspielen. Es reicht, zwischen dem Gespräch und diesem Augenblick zu unterscheiden. Damals wurden Worte gesprochen. Jetzt sitzt du hier. Deine Füße berühren den Boden. Du hast einen Moment Zeit, bevor du über den nächsten Schritt entscheidest."
+    },
+    {
+      "startSeconds": 281.74,
+      "endSeconds": 299.35,
+      "text": "Falls es gerade hilfreich ist, frage dich: Was wurde tatsächlich gesagt, und was vermute ich darüber? Du brauchst keine Antwort zu erzwingen. Vielleicht kannst du eine Vermutung als Vermutung stehen lassen, statt sie schon wie eine Gewissheit zu behandeln."
+    },
+    {
+      "startSeconds": 319.06,
+      "endSeconds": 333.15,
+      "text": "Eine Kritik kann einen hilfreichen Hinweis enthalten. Sie kann unpassend formuliert sein. Sie kann auch ungerecht sein. Du darfst das später in Ruhe prüfen. Du musst weder alles übernehmen noch schon jetzt alles zurückweisen."
+    },
+    {
+      "startSeconds": 351.21,
+      "endSeconds": 367.42,
+      "text": "Ein einzelnes Gespräch beschreibt nicht deinen ganzen Wert. Auch ein eigener Fehler macht nicht deine ganze Person aus. Du kannst Verantwortung für etwas Konkretes übernehmen und trotzdem respektvoll mit dir bleiben. Beides hat nebeneinander Platz."
+    },
+    {
+      "startSeconds": 386.31,
+      "endSeconds": 404.72,
+      "text": "Was wäre dir gerade eine kleine Hilfe? Abstand. Ein Glas Wasser. Ein kurzer Weg an der frischen Luft. Oder ein Gespräch mit einem vertrauten Menschen. Suche nichts Perfektes. Nur etwas, das für die nächsten Minuten zu dir passt."
+    },
+    {
+      "startSeconds": 424.43,
+      "endSeconds": 437.4,
+      "text": "Wenn eine Grenze überschritten wurde, musst du das nicht schönreden. Diese Pause verpflichtet dich weder zum Verzeihen noch zum Nachgeben. Sie gibt dir Raum, später bewusster zu entscheiden, was du ansprechen oder verändern möchtest."
+    },
+    {
+      "startSeconds": 457.11,
+      "endSeconds": 471.04,
+      "text": "Vielleicht passt dieser Satz für dich: Ich darf mir Zeit für eine Antwort nehmen. Oder: Ich kann etwas klären, ohne es sofort klären zu müssen. Wähle nur einen Satz, der sich für dich glaubwürdig anfühlt."
+    },
+    {
+      "startSeconds": 491.57,
+      "endSeconds": 506.94,
+      "text": "Lass den Satz für einen Moment wirken. Du musst ihn nicht ständig wiederholen. Spüre die Sitzfläche und deine Füße. Vielleicht sind noch Gedanken da. Du darfst sie bemerken und trotzdem hier im Raum bleiben."
+    },
+    {
+      "startSeconds": 529.11,
+      "endSeconds": 545.6,
+      "text": "Überlege jetzt, ob für heute überhaupt noch etwas nötig ist. Vielleicht möchtest du später sachlich nachfragen oder einen Punkt notieren. Vielleicht ist es besser, eine Nachricht erst morgen zu lesen. Auch eine bewusst gewählte Pause ist eine Möglichkeit."
+    },
+    {
+      "startSeconds": 564.48,
+      "endSeconds": 580.21,
+      "text": "Wähle, wenn du möchtest, einen kleinen nächsten Schritt. Etwas Überschaubares, das bei dir liegt. Nicht die Reaktion des anderen Menschen. Nicht den Ausgang des ganzen Konflikts. Nur das, was du selbst in Ruhe tun oder vorerst lassen kannst."
+    },
+    {
+      "startSeconds": 599.92,
+      "endSeconds": 614.29,
+      "text": "Nimm diesen Gedanken mit: Ich muss dieses Gespräch jetzt nicht im Kopf weiterführen. Vielleicht gelingt das nur für einen kurzen Moment. Auch dann darfst du deine Aufmerksamkeit wieder etwas Einfachem in deiner Umgebung zuwenden."
+    },
+    {
+      "startSeconds": 634.0,
+      "endSeconds": 649.45,
+      "text": "Spüre nun den Raum wieder deutlicher. Bewege deine Finger und deine Füße. Schau dich um und lass deinen Blick auf etwas ruhen, das du klar erkennen kannst. Du kannst dir Zeit lassen, bevor du aufstehst oder weitergehst."
+    },
+    {
+      "startSeconds": 662.59,
+      "endSeconds": 675.0,
+      "text": "Du brauchst nicht vollkommen ruhig zu sein, um gut für dich zu sorgen. Für den nächsten Moment reicht ein bewusster Schritt. Danke, dass du dir diese Pause genommen hast. Die Musik klingt jetzt langsam aus."
+    }
+  ]
+}

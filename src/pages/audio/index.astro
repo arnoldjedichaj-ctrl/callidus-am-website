@@ -5,7 +5,7 @@ import articles from '../../data/articles.json';
 import structure from '../../data/site-structure.json';
 
 const title = 'Audio-Raum: geführte Klarheit, Fokus und Ruhe | callidus A&M';
-const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Fokus und Abendentspannung. Jetzt anhören: Schlafübergang – den Tag ablegen, 15 Minuten mit sanfter Musik.';
+const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Abendentspannung und bewusste Pausen nach schwierigen Gesprächen. Direkt anhören oder herunterladen.';
 const siteOrigin = 'https://www.callidus-am.de';
 const publishedSessions = audioSessions.filter((session) => session.status === 'published');
 const plannedSessions = audioSessions.filter((session) => session.status === 'planned');
@@ -64,7 +64,7 @@ const audioObjects = publishedSessions.map((session) => ({
         <p class="lede">
           Zeit für einen klareren Kopf und einen ruhigeren Abend.
           Entdecke geführte Sessions für Fokus, Selbstreflexion und Entspannung.
-          Neu: „Schlafübergang: den Tag ablegen“ begleitet dich mit sanfter Musik in die Nacht.
+          {featured && <>Neu: „{featured.title}“. {featured.duration} Minuten Zeit für dich.</>}
         </p>
         <div class="actions">
           <a class="button primary" href="#aktuelle-folge">Jetzt anhören</a>
@@ -90,7 +90,6 @@ const audioObjects = publishedSessions.map((session) => ({
           </div>
           <div class="audio-player-actions">
             <a class="button" href={featured.path} download>Audio herunterladen</a>
-            {featured.transcriptPath && <a class="button" href={featured.transcriptPath} target="_blank" rel="noopener">Text mitlesen</a>}
           </div>
         </aside>
       )}
@@ -188,7 +187,6 @@ const audioObjects = publishedSessions.map((session) => ({
                 </audio>
                 <div class="audio-card-actions">
                   <a class="button" href={session.path} download>Herunterladen</a>
-                  {session.transcriptPath && <a class="button" href={session.transcriptPath} target="_blank" rel="noopener">Text mitlesen</a>}
                 </div>
               </>
             ) : (
@@ -667,7 +665,8 @@ const audioObjects = publishedSessions.map((session) => ({
     flex-direction: column;
   }
   .audio-waveform {
-    grid-template-columns: repeat(14, 1fr);
+    grid-template-columns: repeat(28, minmax(0, 1fr));
+    gap: .15rem;
   }
   .podcast-filter {
     grid-template-columns: 1fr;
