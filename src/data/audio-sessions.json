@@ -116,12 +116,45 @@
   },
   {
     "id": "schlafuebergang-004",
-    "status": "planned",
-    "badge": "Geplant",
+    "status": "published",
+    "featured": true,
+    "badge": "Folge 4 · Neu",
     "title": "Schlafübergang: den Tag ablegen",
     "shortTitle": "Schlafübergang",
-    "duration": "12-18 Min.",
+    "duration": "15:00",
+    "durationSeconds": 900,
+    "publishedAt": "2026-09-11",
+    "path": "/audio/schlafuebergang/schlafuebergang-den-tag-ablegen.mp3",
+    "transcriptPath": "/audio/schlafuebergang/schlafuebergang-den-tag-ablegen.txt",
     "accent": "gold",
-    "summary": "Eine ruhige Abendfolge für Entlastung, Körperwahrnehmung und einen weicheren Übergang in die Nacht."
+    "summary": "Der Tag ist vorbei, aber im Kopf geht er weiter? Diese geführte Abendentspannung lädt dich ein, den Körper zu spüren, offene Gedanken für morgen abzulegen und allmählich zur Ruhe zu kommen. Mit warmer Stimme, sanfter Musik und langen Pausen.",
+    "bestFor": [
+      "Abende, an denen Aufgaben und Gespräche noch nachklingen",
+      "einen ruhigen Abschluss nach einem vollen Tag",
+      "Entspannung im Liegen, ohne Atemvorgaben und ohne Leistungsdruck"
+    ],
+    "outcomes": [
+      "den Kontakt zur Unterlage und zum eigenen Körper wahrnehmen",
+      "offenen Gedanken einen Platz für morgen geben",
+      "in Ruhe bleiben dürfen, ohne sofort einschlafen zu müssen"
+    ],
+    "listenWhen": [
+      "abends im Bett oder an einem geschützten Ruheplatz",
+      "wenn für heute nichts mehr erledigt werden muss",
+      "bei angenehmer, eher niedriger Lautstärke"
+    ],
+    "usageTitle": "Für heute ist genug.",
+    "usageText": "Mach es dir im Liegen bequem und lass deinen Atem in seinem eigenen Rhythmus fließen. Die Folge begleitet dich durch einen sanften Körperscan und lädt dich ein, Unerledigtes gedanklich für morgen abzulegen. Du musst dabei nichts lösen und nicht auf Kommando einschlafen.",
+    "endingNote": "Zum Ende werden die Pausen länger. Auf die letzten Worte folgen rund 90 Sekunden Musik, die sanft in die Stille übergeht. Es gibt kein Aufwecken und keine Aufforderung, die Augen wieder zu öffnen.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 80 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript mit Körperscan, gedanklichem Tagesabschluss und offenem Übergang in die Nacht. Keine Heil- oder Einschlafgarantie."
+    }
   }
 ]

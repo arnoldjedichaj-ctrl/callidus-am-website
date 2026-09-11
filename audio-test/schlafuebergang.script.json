@@ -1,0 +1,112 @@
+{
+  "title": "Schlafübergang: den Tag ablegen",
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "targetSeconds": 900,
+  "leadInSeconds": 1.5,
+  "tailSeconds": 90,
+  "direction": "Lies ausschließlich den Text nach TRANSKRIPT auf Deutsch. Du begleitest einen Erwachsenen am Abend in die Ruhe. Sprich warm, weich und natürlich, mit einer gleichmäßigen, entspannten Stimme. Langsames Sprechtempo, ungefähr 95 Wörter pro Minute. Kurze natürliche Pausen zwischen Sätzen. Kein Flüstern, kein Singen, keine dramatische Betonung. Halte Lautstärke und Klangfarbe über den ganzen Abschnitt stabil. Keine eigenen Ergänzungen und keine gesprochenen Regieanweisungen.",
+  "segments": [
+    {
+      "chapter": "Ankommen",
+      "pause": 6,
+      "text": "Willkommen. Für die nächsten fünfzehn Minuten darf der Tag langsam in den Hintergrund treten. Diese Abendbegleitung ist für einen ruhigen Platz gedacht, an dem du liegen und müde werden darfst. Am Ende musst du nicht wieder wach werden. Die Musik klingt von selbst aus."
+    },
+    {
+      "pause": 10,
+      "text": "Mach es dir so bequem wie gerade möglich. Rücke dein Kissen zurecht. Vielleicht möchtest du dich zudecken oder noch einmal die Position wechseln. Stell die Lautstärke so ein, dass du meine Stimme mühelos hören kannst. Alles Weitere darf für einen Moment warten."
+    },
+    {
+      "pause": 12,
+      "text": "Wenn es angenehm ist, lass die Augen zufallen. Du kannst sie auch geöffnet lassen. Du musst heute weder besonders ruhig sein noch schnell einschlafen. Vielleicht bist du müde. Vielleicht ist dein Kopf noch wach. Beides darf am Anfang so sein."
+    },
+    {
+      "chapter": "Den Körper spüren",
+      "pause": 16,
+      "text": "Spüre zuerst, wo dein Körper die Unterlage berührt. Den Hinterkopf. Die Schultern. Den Rücken. Das Becken. Deine Beine. Du brauchst dich nicht schwerer zu machen. Nimm einfach wahr, wo dein Gewicht bereits getragen wird."
+    },
+    {
+      "pause": 16,
+      "text": "Dein Atem darf kommen und gehen, in seinem eigenen Rhythmus. Du brauchst nicht tiefer zu atmen und keine Luft anzuhalten. Bemerke nur einen Atemzug, so wie er gerade ist. Und dann den nächsten. Ohne eine Zahl erreichen zu müssen."
+    },
+    {
+      "pause": 17,
+      "text": "Wandere mit deiner Aufmerksamkeit zur Stirn. Vielleicht kann sie ein wenig weicher werden. Lass Raum zwischen den Zähnen. Die Zunge darf bequem im Mund liegen. Auch dein Gesicht muss jetzt keinen bestimmten Ausdruck mehr halten."
+    },
+    {
+      "pause": 18,
+      "text": "Spüre den Nacken und die Schultern. Falls du dort Spannung bemerkst, musst du sie nicht wegmachen. Vielleicht ist schon eine kleine Veränderung der Haltung angenehm. Deine Arme dürfen ruhen. Die Hände liegen offen oder so, wie es sich für dich richtig anfühlt."
+    },
+    {
+      "pause": 20,
+      "text": "Nun der Rücken. Die Brust. Der Bauch. Nimm wahr, welche Stellen sich beim Atmen von selbst bewegen. Du musst den Bauch nicht einziehen und dich nicht aufrichten. Für diesen Moment gibt es nichts darzustellen. Du darfst einfach hier liegen."
+    },
+    {
+      "pause": 20,
+      "text": "Spüre dein Becken, deine Oberschenkel und deine Knie. Dann die Unterschenkel, die Fersen und die Füße. Vielleicht spürst du Wärme. Vielleicht Kühle oder fast nichts. Es gibt keine bestimmte Empfindung, die du herstellen musst. Die Unterlage trägt dich auch dann."
+    },
+    {
+      "chapter": "Den Tag ablegen",
+      "pause": 14,
+      "text": "Wenn du magst, stell dir einen Tisch vor, auf dem du ablegen kannst, was dich heute beschäftigt hat. Er muss nicht deutlich vor dir erscheinen. Eine einfache Vorstellung reicht. Hier darf etwas liegen bleiben, ohne verloren zu gehen."
+    },
+    {
+      "pause": 19,
+      "text": "Vielleicht gibt es eine Aufgabe, die heute offen geblieben ist. Du musst sie jetzt nicht lösen. Gib ihr in Gedanken einen kurzen Namen und lege sie auf diesen Tisch. Du entscheidest morgen, wann du dich darum kümmerst. Für diese Nacht darf die Aufgabe ruhen."
+    },
+    {
+      "pause": 21,
+      "text": "Vielleicht beschäftigt dich ein Gespräch. Etwas, das du gesagt hast. Oder etwas, das du gern gesagt hättest. Du brauchst es heute nicht noch einmal durchzuspielen. Auch dieser Gedanke bekommt einen Platz. Ein offenes Gespräch darf offen bleiben, während du dich ausruhst."
+    },
+    {
+      "pause": 18,
+      "text": "Manches lässt sich nicht einfach ablegen. Wenn ein Gedanke wiederkommt, hast du nichts falsch gemacht. Bemerke ihn freundlich und spüre erneut den Kontakt zum Kissen oder zur Decke. Du musst nicht mit jedem Gedanken weitergehen, der auftaucht."
+    },
+    {
+      "pause": 18,
+      "text": "Vielleicht hilft dir ein kurzer Satz: Für heute ist genug. Nicht alles ist fertig. Nicht alles ist geklärt. Und trotzdem darf dieser Tag enden. Sag dir diesen Satz einmal in deinem eigenen Tempo. Für heute ist genug."
+    },
+    {
+      "chapter": "Den Anspruch loslassen",
+      "pause": 22,
+      "text": "Lass nun auch den Rückblick ein wenig in Ruhe. Du musst den Tag nicht bewerten. Kein inneres Zeugnis ausstellen. Weder die gelungenen noch die schwierigen Momente müssen jetzt noch einmal geordnet werden. Du bist hier. Dieser Augenblick verlangt keine Bilanz."
+    },
+    {
+      "pause": 22,
+      "text": "Bemerke etwas Einfaches, das gerade da ist. Den Stoff deiner Decke. Die Temperatur auf deiner Haut. Ein fernes Geräusch. Du brauchst diese Wahrnehmung nicht festzuhalten. Lass sie kommen und wieder in den Hintergrund treten."
+    },
+    {
+      "pause": 24,
+      "text": "Vielleicht hörst du die Musik deutlicher, wenn meine Stimme still wird. Vielleicht bemerkst du vor allem deinen Körper. Du musst dich für nichts entscheiden. Lass deine Aufmerksamkeit dort ruhen, wo es für dich gerade am wenigsten Anstrengung braucht."
+    },
+    {
+      "pause": 25,
+      "text": "Auch der Wunsch einzuschlafen darf etwas weicher werden. Du brauchst nicht zu prüfen, ob es schon funktioniert. Diese Minuten dürfen einfach ruhige Minuten sein. Ein Gedanke weniger, dem du folgen musst. Eine kleine Pause vom Wollen."
+    },
+    {
+      "chapter": "In die Nacht gleiten",
+      "pause": 26,
+      "text": "Spüre noch einmal die Hände. Den Raum um die Schultern. Das Gewicht deines Kopfes auf dem Kissen. Wenn du dich bewegen möchtest, bewege dich. Danach darfst du wieder ankommen. Ruhe muss nicht vollkommen reglos sein."
+    },
+    {
+      "pause": 28,
+      "text": "Ich werde jetzt weniger sprechen und mehr Zeit zwischen den Worten lassen. Du brauchst nicht auf den nächsten Satz zu warten. Meine Stimme darf allmählich unwichtiger werden. Und wenn du schon weggedämmert bist, musst du nichts nachholen."
+    },
+    {
+      "pause": 30,
+      "text": "Der Tag darf hinter dir liegen. Was morgen wichtig ist, bekommt morgen wieder Raum. Jetzt ist da die Unterlage. Dein Atem in seinem eigenen Rhythmus. Und Zeit, in der du nichts erledigen musst."
+    },
+    {
+      "pause": 30,
+      "text": "Vielleicht passt für dich dieser Gedanke: Ich darf für heute aufhören. Lass die Worte wieder gehen. Es ist nicht nötig, sie zu wiederholen. Du kannst einfach der nächsten stillen Pause Raum lassen."
+    },
+    {
+      "pause": 30,
+      "text": "Du darfst wach ruhen. Du darfst müde werden. Du darfst meine Worte aus dem Blick verlieren. Es gibt jetzt kein Ziel mehr, das du für diese Begleitung erreichen musst."
+    },
+    {
+      "pause": 0,
+      "text": "Das waren meine letzten Worte für heute. Die Musik begleitet dich noch ein wenig und wird langsam leiser. Du brauchst nichts mehr zu tun. Für heute ist genug. Gute Nacht."
+    }
+  ]
+}

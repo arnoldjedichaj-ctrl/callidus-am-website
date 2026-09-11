@@ -5,11 +5,11 @@ import articles from '../../data/articles.json';
 import structure from '../../data/site-structure.json';
 
 const title = 'Audio-Raum: geführte Klarheit, Fokus und Ruhe | callidus A&M';
-const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Fokus, innere Ordnung und ruhige Mikro-Routinen im Alltag.';
+const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Fokus und Abendentspannung. Jetzt anhören: Schlafübergang – den Tag ablegen, 15 Minuten mit sanfter Musik.';
 const siteOrigin = 'https://www.callidus-am.de';
 const publishedSessions = audioSessions.filter((session) => session.status === 'published');
 const plannedSessions = audioSessions.filter((session) => session.status === 'planned');
-const featured = publishedSessions[0];
+const featured = publishedSessions.find((session) => session.featured) || publishedSessions[0];
 const podcastCategoryFor = (article) => {
   const haystack = `${article.slug || ''} ${article.title || ''} ${article.description || ''} ${(article.h2 || []).join(' ')}`.toLowerCase();
   return structure.categories.find((category) =>
@@ -39,7 +39,7 @@ const audioObjects = publishedSessions.map((session) => ({
   name: session.title,
   description: session.summary,
   contentUrl: new URL(session.path, siteOrigin).href,
-  duration: `PT${Math.round((session.durationSeconds || 0) / 60)}M`,
+  duration: `PT${session.durationSeconds || 0}S`,
   encodingFormat: 'audio/mpeg',
   inLanguage: 'de-DE',
   datePublished: session.publishedAt,
@@ -62,8 +62,9 @@ const audioObjects = publishedSessions.map((session) => ({
         <p class="eyebrow">Callidus Audio-Raum</p>
         <h1>Geführte Klarheit, wenn der Kopf zu voll ist.</h1>
         <p class="lede">
-          Kuratierte Audio-Sessions für Fokus, innere Ordnung und kurze mentale Reset-Momente.
-          Neben dem 15-Minuten-Klarheitsreset findest du hier auch intensive Breathwork und klare Sprachimpulse ohne Hintergrundmusik.
+          Zeit für einen klareren Kopf und einen ruhigeren Abend.
+          Entdecke geführte Sessions für Fokus, Selbstreflexion und Entspannung.
+          Neu: „Schlafübergang: den Tag ablegen“ begleitet dich mit sanfter Musik in die Nacht.
         </p>
         <div class="actions">
           <a class="button primary" href="#aktuelle-folge">Jetzt anhören</a>
@@ -79,7 +80,7 @@ const audioObjects = publishedSessions.map((session) => ({
           </div>
           <h2 id="featured-audio-title">{featured.title}</h2>
           <p>{featured.summary}</p>
-          <audio class="audio-player" controls preload="metadata" src={featured.path}>
+          <audio class="audio-player" controls preload="metadata" src={featured.path} aria-label={featured.title}>
             Dein Browser kann diese Audio-Datei nicht direkt abspielen.
           </audio>
           <div class="audio-waveform" aria-hidden="true">
@@ -89,6 +90,7 @@ const audioObjects = publishedSessions.map((session) => ({
           </div>
           <div class="audio-player-actions">
             <a class="button" href={featured.path} download>Audio herunterladen</a>
+            {featured.transcriptPath && <a class="button" href={featured.transcriptPath} target="_blank" rel="noopener">Text mitlesen</a>}
           </div>
         </aside>
       )}
@@ -103,8 +105,8 @@ const audioObjects = publishedSessions.map((session) => ({
             <path d="M4 6h16M7 12h10M10 18h4"></path>
           </svg>
         </span>
-        <h2>Sortieren</h2>
-        <p>Die Führung hilft, offene Gedanken aus dem Kopf zu nehmen und in eine ruhigere Reihenfolge zu bringen.</p>
+        <h2>Ankommen</h2>
+        <p>Den Bildschirm beiseitelegen und die Aufmerksamkeit für einen Moment auf den eigenen Körper richten.</p>
       </article>
       <article class="audio-principle" data-reveal="2">
         <span class="audio-icon" aria-hidden="true">
@@ -113,8 +115,8 @@ const audioObjects = publishedSessions.map((session) => ({
             <circle cx="12" cy="12" r="2.6"></circle>
           </svg>
         </span>
-        <h2>Fokussieren</h2>
-        <p>Statt alles auf einmal zu wollen, wird am Ende ein einzelner nächster Schritt wichtiger als perfekte Pläne.</p>
+        <h2>Sortieren</h2>
+        <p>Gedanken mit etwas Abstand betrachten: Was braucht jetzt Aufmerksamkeit, und was darf bis morgen warten?</p>
       </article>
       <article class="audio-principle" data-reveal="3">
         <span class="audio-icon" aria-hidden="true">
@@ -122,8 +124,8 @@ const audioObjects = publishedSessions.map((session) => ({
             <path d="m5 12 4 4L19 6"></path>
           </svg>
         </span>
-        <h2>Handeln</h2>
-        <p>Die Session endet nicht im Schweben, sondern mit einer kleinen, alltagstauglichen Entscheidung.</p>
+        <h2>Zur Ruhe kommen</h2>
+        <p>Es muss nicht immer der nächste Schritt sein. Am Abend darf auch das Aufhören seinen Platz bekommen.</p>
       </article>
     </div>
   </section>
@@ -132,14 +134,13 @@ const audioObjects = publishedSessions.map((session) => ({
     <section class="section band">
       <div class="container split audio-detail-split">
         <div class="sticky-note" data-reveal>
-          <p class="eyebrow">So nutzt du die Folge</p>
-          <h2>15 Minuten, ein ruhiger Ort, keine Leistung.</h2>
+          <p class="eyebrow">{featured.shortTitle} · {featured.duration} Minuten</p>
+          <h2>{featured.usageTitle || '15 Minuten, ein ruhiger Ort, keine Leistung.'}</h2>
           <p>
-            Setz dich bequem hin, nutze bei Bedarf Kopfhörer und lass das Audio im Hintergrund tragen.
-            Die Folge arbeitet bewusst ohne starkes Luftanhalten oder forcierte Atemtechnik.
+            {featured.usageText || 'Setz dich bequem hin, nutze bei Bedarf Kopfhörer und lass das Audio im Hintergrund tragen. Die Folge arbeitet bewusst ohne starkes Luftanhalten oder forcierte Atemtechnik.'}
           </p>
           <p>
-            Wenn sich etwas unangenehm anfühlt, brich die Session ab, öffne die Augen und orientiere dich im Raum.
+            {featured.endingNote || 'Wenn sich etwas unangenehm anfühlt, brich die Session ab, öffne die Augen und orientiere dich im Raum.'}
           </p>
         </div>
         <div class="audio-use-panel" data-reveal="2">
@@ -150,7 +151,7 @@ const audioObjects = publishedSessions.map((session) => ({
             </ul>
           </div>
           <div>
-            <h3>Am Ende soll entstehen</h3>
+            <h3>Im Mittelpunkt</h3>
             <ul>
               {featured.outcomes.map((item) => <li>{item}</li>)}
             </ul>
@@ -169,7 +170,7 @@ const audioObjects = publishedSessions.map((session) => ({
   <section class="section">
     <div class="container">
       <p class="eyebrow" data-reveal>Audiothek</p>
-      <h2 data-reveal="2">Aktuelle und kommende Folgen.</h2>
+      <h2 data-reveal="2">{plannedSessions.length ? 'Aktuelle und kommende Folgen.' : 'Deine geführten Sessions.'}</h2>
       <div class="audio-session-grid">
         {audioSessions.map((session, index) => (
           <article class={`audio-session-card audio-session-${session.status}`} data-reveal={String((index % 3) + 1)}>
@@ -182,11 +183,12 @@ const audioObjects = publishedSessions.map((session) => ({
             {session.status === 'published' ? (
               <>
                 {session.safety && <p class="audio-card-safety">{session.safety}</p>}
-                <audio class="audio-card-player" controls preload="metadata" src={session.path}>
+                <audio class="audio-card-player" controls preload="metadata" src={session.path} aria-label={session.title}>
                   Dein Browser kann diese Audio-Datei nicht direkt abspielen.
                 </audio>
                 <div class="audio-card-actions">
                   <a class="button" href={session.path} download>Herunterladen</a>
+                  {session.transcriptPath && <a class="button" href={session.transcriptPath} target="_blank" rel="noopener">Text mitlesen</a>}
                 </div>
               </>
             ) : (
@@ -260,8 +262,9 @@ const audioObjects = publishedSessions.map((session) => ({
           <p class="eyebrow">Transparenz</p>
           <h2>Produktion, Rechte und Einordnung.</h2>
           <p class="lede">
-            Professionelle Audio-Angebote sollten klar sagen, was sie sind: eine geführte Selbstreflexion,
-            kein Heilversprechen und keine medizinische oder psychotherapeutische Behandlung.
+            Die geführten Sessions sind Einladungen zur Entspannung und Selbstreflexion.
+            Sie versprechen keine bestimmte Wirkung und ersetzen keine medizinische oder psychotherapeutische Behandlung.
+            Diese Produktionsangaben gehören zur aktuellen Folge „{featured.title}“.
           </p>
         </div>
         <div class="audio-trust-panel" data-reveal="2">
