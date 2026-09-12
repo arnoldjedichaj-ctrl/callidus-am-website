@@ -1,0 +1,84 @@
+{
+  "title": "Erfolg im Alltag: dein eigenes Maß",
+  "slug": "erfolg-im-alltag",
+  "stem": "erfolg-dein-eigenes-mass",
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "targetSeconds": 600,
+  "leadInSeconds": 1.5,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "direction": "Sprich auf Deutsch mit der warmen, natürlichen Aoede-Stimme. Ruhige, erwachsene und zugewandte Führung, klar verständlich, gelassen und wach, nicht schläfrig. Mittleres langsames Sprechtempo, natürliche kurze Satzpausen. Keine übertriebenen Betonungen, kein Flüstern, kein Pathos. Lies ausschließlich den Text nach TRANSKRIPT wortgetreu. Keine Einleitung hinzufügen, keine Anweisungen vorlesen, keine Musik erzeugen.",
+  "segments": [
+    {
+      "chapter": "Ankommen",
+      "pause": 12,
+      "text": "Willkommen. Heute geht es um Erfolg, der in dein wirkliches Leben passt. Nicht um ein perfektes Bild und nicht darum, andere zu überholen. Wir nehmen uns Zeit für die Frage: Woran würdest du selbst merken, dass etwas in eine gute Richtung geht?"
+    },
+    {
+      "pause": 16,
+      "text": "Setz dich an einen ruhigen Ort. Bitte höre nicht beim Fahren oder bei Aufgaben zu, die deine volle Aufmerksamkeit brauchen. Lass die Augen offen oder senke den Blick. Wenn dir eine Frage nicht guttut, überspring sie oder beende die Übung."
+    },
+    {
+      "pause": 20,
+      "text": "Spüre den Boden unter deinen Füßen und die Sitzfläche unter dir. Lass deinen Atem von selbst kommen und gehen. Für die nächsten Minuten musst du nichts beweisen. Auch wenn dein Tag bisher schwierig war, darfst du von hier aus beginnen."
+    },
+    {
+      "chapter": "Dein Maßstab",
+      "pause": 24,
+      "text": "Wenn du das Wort Erfolg hörst, welches Bild taucht zuerst auf? Vielleicht Geld, Anerkennung oder ein großes Ergebnis. Vielleicht ein ruhiger Nachmittag mit deiner Familie. Nimm dieses erste Bild wahr, ohne entscheiden zu müssen, ob es richtig ist."
+    },
+    {
+      "pause": 24,
+      "text": "Frage dich nun: Ist das wirklich mein Maßstab, oder habe ich ihn übernommen? Es kann beides darin stecken. Du musst fremde Erwartungen nicht bekämpfen. Für einen Moment darf nur deutlicher werden, was dir selbst wichtig ist."
+    },
+    {
+      "pause": 24,
+      "text": "Denk an einen gewöhnlichen Tag, der sich für dich stimmig anfühlen würde. Was wäre darin anders? Vielleicht würdest du eine Aufgabe abschließen, eine Pause einhalten oder einem Menschen aufmerksam zuhören. Wähle etwas, das du tatsächlich beeinflussen kannst."
+    },
+    {
+      "pause": 22,
+      "text": "Erfolg soll hier bedeuten: einen sinnvollen Fortschritt erkennen, der zu deinen Werten und deinen Möglichkeiten passt. Er darf klein sein. Er muss nicht sichtbar für andere sein. Und er darf Raum für Gesundheit, Beziehungen und Erholung lassen."
+    },
+    {
+      "chapter": "Ein machbares Ziel",
+      "pause": 24,
+      "text": "Wähle für die nächsten Tage ein überschaubares Vorhaben. Nicht das ganze Projekt, sondern einen Teil davon. Nicht immer geduldig sein, sondern in einem Gespräch erst zuhören. Was wäre ein Ergebnis, das du ohne große Erklärung erkennen könntest?"
+    },
+    {
+      "pause": 24,
+      "text": "Stell dir kurz vor, dieser kleine Schritt wäre getan. Was wäre dadurch leichter oder hilfreicher? Bleib bei einer gewöhnlichen Szene. Eine geordnete Unterlage. Eine geklärte Frage. Ein freier Abend. Dieses Bild gibt eine Richtung, es ist keine Vorhersage."
+    },
+    {
+      "pause": 24,
+      "text": "Schau nun ebenso ehrlich auf das, was im Weg stehen könnte. Vielleicht fehlende Zeit, Unsicherheit oder der Griff zum Handy. Wähle ein Hindernis. Manche Bedingungen kannst du nicht selbst ändern. Dann darf dein Vorhaben kleiner werden oder Unterstützung brauchen."
+    },
+    {
+      "chapter": "Einen Plan finden",
+      "pause": 24,
+      "text": "Für ein Hindernis, das du beeinflussen kannst, formuliere eine einfache Antwort. Wenn diese Situation eintritt, dann mache ich diesen kleinen Schritt. Zum Beispiel: Wenn ich nach dem Frühstück meinen Becher abstelle, öffne ich für fünf Minuten die Unterlagen."
+    },
+    {
+      "pause": 24,
+      "text": "Prüfe deinen Satz. Weißt du, wann du beginnst? Ist die Handlung konkret? Ist sie auch an einem durchschnittlichen Tag machbar? Passe sie so lange an, bis du keinen besonderen Mut und keinen perfekten freien Vormittag dafür voraussetzen musst."
+    },
+    {
+      "pause": 20,
+      "text": "Was wäre eine freundliche Alternative, falls es nicht klappt? Vielleicht ein neuer Zeitpunkt oder eine noch kleinere Handlung. Ein verpasster Versuch macht dich nicht erfolglos. Er gibt dir eine Information darüber, was dein Plan noch berücksichtigen muss."
+    },
+    {
+      "chapter": "Mitnehmen",
+      "pause": 20,
+      "text": "Lege auch fest, wann für diesen Schritt genug getan ist. Fünf Minuten. Eine Nachricht. Ein geklärter Punkt. Du darfst aufhören, wenn dein vereinbarter Teil erledigt ist. Fortschritt braucht nicht jedes Mal eine sofortige Steigerung."
+    },
+    {
+      "pause": 16,
+      "text": "Wiederhole innerlich deinen eigenen Maßstab und deinen nächsten Schritt. Vielleicht möchtest du beides nach dieser Session notieren. Nicht als Vertrag gegen dich selbst, sondern als Erinnerung daran, was du bewusst ausprobieren möchtest."
+    },
+    {
+      "chapter": "Abschluss",
+      "pause": 0,
+      "text": "Spüre wieder den Raum um dich. Beweg deine Hände und richte den Blick auf einen Gegenstand in deiner Nähe. Du musst heute kein anderes Leben vorweisen. Ein passender, machbarer Schritt genügt als Anfang. Nimm deine eigene Definition von Erfolg mit in den Tag."
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "title": "Bewusstsein und Fokus: eine Sache zur Zeit",
+  "durationSeconds": 600,
+  "voice": "Aoede",
+  "model": "gemini-2.5-pro-preview-tts",
+  "speechSeconds": 288.66,
+  "pauseScale": 0.803,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "license": "https://pixabay.com/service/license-summary/"
+  },
+  "mix": {
+    "voiceLUFS": -19,
+    "musicLUFS": -28,
+    "background": "Generated wave ambience"
+  },
+  "chapters": [
+    {
+      "title": "Ankommen",
+      "startSeconds": 1.5
+    },
+    {
+      "title": "Den Moment wahrnehmen",
+      "startSeconds": 59.99
+    },
+    {
+      "title": "Abschweifen und zurückkehren",
+      "startSeconds": 173.45
+    },
+    {
+      "title": "Den Blick weiten",
+      "startSeconds": 321.35
+    },
+    {
+      "title": "Eine Sache wählen",
+      "startSeconds": 357.05
+    },
+    {
+      "title": "Mitnehmen",
+      "startSeconds": 507.1
+    },
+    {
+      "title": "Abschluss",
+      "startSeconds": 536.95
+    }
+  ],
+  "segments": [
+    {
+      "startSeconds": 1.5,
+      "endSeconds": 21.15,
+      "text": "Willkommen. Diese Session ist eine kleine Übung im bewussten Lenken deiner Aufmerksamkeit. Du musst deinen Kopf dafür nicht leer bekommen. Wir üben, etwas wahrzunehmen, Abschweifen zu bemerken und freundlich zurückzukehren. Danach wählst du eine Sache für deinen nächsten Abschnitt im Alltag."
+    },
+    {
+      "startSeconds": 30.78,
+      "endSeconds": 47.15,
+      "text": "Setz dich an einen ruhigen Ort und unterbrich andere Aufgaben. Nicht beim Fahren oder beim Bedienen von Maschinen hören. Lass deine Augen gern offen. Wenn du unruhiger wirst oder dich unwohl fühlst, orientiere dich im Raum oder höre auf."
+    },
+    {
+      "startSeconds": 59.99,
+      "endSeconds": 77.92,
+      "text": "Schau auf einen Gegenstand in deiner Nähe. Vielleicht eine Tasse, ein Buch oder eine Pflanze. Nimm eine Farbe wahr. Dann eine Form. Du brauchst den Gegenstand nicht zu bewerten. Lass deinen Blick für einen Moment bei seinen sichtbaren Einzelheiten bleiben."
+    },
+    {
+      "startSeconds": 95.58,
+      "endSeconds": 115.71,
+      "text": "Spüre nun den Kontakt deiner Füße zum Boden. Vielleicht Druck, Wärme oder einfach die Position. Wenn Körperempfindungen gerade unangenehm sind, bleib stattdessen bei deinem Gegenstand. Wähle für die folgenden Minuten einen dieser beiden einfachen Anker."
+    },
+    {
+      "startSeconds": 134.97,
+      "endSeconds": 154.18,
+      "text": "Dein Atem läuft dabei in seinem eigenen Rhythmus weiter. Du brauchst nicht tiefer zu atmen und nichts anzuhalten. Richte deine Aufmerksamkeit auf den gewählten Anker. Nicht mit aller Kraft, sondern so, als würdest du etwas in Ruhe genauer kennenlernen."
+    },
+    {
+      "startSeconds": 173.45,
+      "endSeconds": 190.78,
+      "text": "Vielleicht ist inzwischen ein Gedanke aufgetaucht. Eine Aufgabe, eine Erinnerung oder die Frage, ob du es richtig machst. Wenn du das bemerkst, kannst du innerlich kurz sagen: Gedanke. Und dann wieder die Farbe oder den Kontakt zum Boden wahrnehmen."
+    },
+    {
+      "startSeconds": 210.04,
+      "endSeconds": 226.77,
+      "text": "Abschweifen ist kein Grund, mit dir zu schimpfen. Das Bemerken gehört zu dieser Übung. Du musst den Gedanken nicht fertigdenken und nicht vertreiben. Kehre einfach noch einmal zurück. In der nächsten Pause hast du Zeit, das selbst auszuprobieren."
+    },
+    {
+      "startSeconds": 247.64,
+      "endSeconds": 264.33,
+      "text": "Vielleicht lenkt dich ein Geräusch ab. Nimm es kurz wahr und lass es Teil deiner Umgebung sein. Entscheide dann erneut, wohin du deine Aufmerksamkeit richten möchtest. Auch bei offenen Augen kannst du einen ruhigen Bezugspunkt wiederfinden."
+    },
+    {
+      "startSeconds": 283.59,
+      "endSeconds": 300.48,
+      "text": "Bleib für eine weitere Pause bei deinem Anker. Du brauchst nicht zu zählen, wie oft du abschweifst. Jedes freundliche Zurückkehren reicht für diesen Moment. Wenn es heute schwerfällt, darf die Übung trotzdem klein und unvollkommen bleiben."
+    },
+    {
+      "startSeconds": 321.35,
+      "endSeconds": 339.4,
+      "text": "Lass die Aufmerksamkeit jetzt etwas weiter werden. Nimm neben deinem Bezugspunkt auch den Raum wahr. Geräusche, Licht und die Position deines Körpers. Du musst nicht alles gleichzeitig genau erfassen. Es genügt, den Blick nicht mehr so eng zu halten."
+    },
+    {
+      "startSeconds": 357.05,
+      "endSeconds": 373.62,
+      "text": "Was steht nach dieser Session an? Vielleicht mehrere Dinge zugleich. Wähle nur eine Tätigkeit, der du als Nächstes etwas Zeit geben möchtest. Nicht unbedingt die größte Aufgabe. Eine, die jetzt sinnvoll ist und zu deiner verfügbaren Kraft passt."
+    },
+    {
+      "startSeconds": 392.88,
+      "endSeconds": 413.14,
+      "text": "Wie sieht der Anfang dieser Tätigkeit aus? Eine Datei öffnen, einen Absatz lesen oder einen Teller abräumen. Mach den Einstieg so konkret, dass du ihn ausführen kannst. Ein allgemeines Vorhaben wie konzentrierter sein braucht dafür eine sichtbare erste Handlung."
+    },
+    {
+      "startSeconds": 432.4,
+      "endSeconds": 452.29,
+      "text": "Was könnte währenddessen warten? Vielleicht eine Benachrichtigung oder eine zweite Aufgabe. Entscheide, ob du für einen kurzen Zeitraum eine Ablenkung beiseitelegen möchtest. Lass notwendige Erreichbarkeit bestehen. Du gestaltest einen passenden Rahmen, keinen vollkommen abgeschotteten Tag."
+    },
+    {
+      "startSeconds": 471.55,
+      "endSeconds": 489.44,
+      "text": "Und wenn ein anderer Gedanke auftaucht? Du kannst ihn bei Bedarf kurz notieren und zur gewählten Tätigkeit zurückkehren. Manchmal ist eine Unterbrechung wirklich wichtig. Dann darfst du neu entscheiden. Fokus bedeutet hier bewusste Wahl, nicht stures Durchhalten."
+    },
+    {
+      "startSeconds": 507.1,
+      "endSeconds": 524.11,
+      "text": "Lege einen überschaubaren Abschnitt fest. Vielleicht fünf oder zehn Minuten, danach eine neue Entscheidung. Nimm noch einmal deinen Anker wahr. Dieses Zurückkehren kannst du als Erinnerung mitnehmen, ohne von dir dauernde Konzentration zu verlangen."
+    },
+    {
+      "startSeconds": 536.95,
+      "endSeconds": 555.0,
+      "text": "Schau dich im Raum um, bewege deine Hände und richte dich bequem auf. Du musst jetzt nicht alles gleichzeitig ordnen. Eine Sache, ein Anfang und die Erlaubnis, bei Bedarf zurückzukehren. Lass die Musik ausklingen und beginne dann in deinem eigenen Tempo."
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "title": "Selbstvertrauen: dem nächsten Schritt trauen",
+  "durationSeconds": 600,
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "speechSeconds": 298.42,
+  "pauseScale": 0.797,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "license": "https://pixabay.com/service/license-summary/"
+  },
+  "mix": {
+    "voiceLUFS": -19,
+    "musicLUFS": -28,
+    "background": "Generated wave ambience"
+  },
+  "chapters": [
+    {
+      "title": "Ankommen",
+      "startSeconds": 1.5
+    },
+    {
+      "title": "Eine überschaubare Situation",
+      "startSeconds": 98.0
+    },
+    {
+      "title": "Erfahrungen würdigen",
+      "startSeconds": 210.79
+    },
+    {
+      "title": "Freundlich mit Unsicherheit",
+      "startSeconds": 318.54
+    },
+    {
+      "title": "Einen Versuch vorbereiten",
+      "startSeconds": 395.59
+    },
+    {
+      "title": "Mitnehmen",
+      "startSeconds": 500.62
+    },
+    {
+      "title": "Abschluss",
+      "startSeconds": 533.99
+    }
+  ],
+  "segments": [
+    {
+      "startSeconds": 1.5,
+      "endSeconds": 20.55,
+      "text": "Willkommen. Selbstvertrauen muss nicht laut sein. Es kann bedeuten, etwas zu versuchen, obwohl noch Unsicherheit da ist. In dieser Session suchst du keine perfekte Version von dir. Du sammelst ehrliche Gründe, dir einen nächsten kleinen Schritt zuzutrauen."
+    },
+    {
+      "startSeconds": 30.12,
+      "endSeconds": 46.21,
+      "text": "Mach es dir an einem ruhigen Ort im Sitzen bequem. Nicht beim Fahren oder während einer Tätigkeit, die Aufmerksamkeit braucht. Deine Augen dürfen offen bleiben. Du kannst jede Frage auslassen, die Haltung ändern oder jederzeit aufhören."
+    },
+    {
+      "startSeconds": 58.96,
+      "endSeconds": 82.05,
+      "text": "Nimm wahr, wie die Sitzfläche dich trägt. Spüre deine Füße, ohne sie besonders fest aufzudrücken. Dein Atem darf seinen eigenen Rhythmus behalten. Du musst dich nicht erst vollkommen ruhig fühlen, um freundlich mit dir umgehen zu können."
+    },
+    {
+      "startSeconds": 98.0,
+      "endSeconds": 117.13,
+      "text": "Denk an etwas Kleines, bei dem du dir mehr Vertrauen wünschst. Eine Frage stellen. Einen Gedanken aussprechen. Etwas zum ersten Mal ausprobieren. Wähle keine gefährliche oder überwältigende Situation. Es geht um einen machbaren Versuch in deinem Alltag."
+    },
+    {
+      "startSeconds": 134.66,
+      "endSeconds": 153.11,
+      "text": "Was befürchtest du dabei? Vielleicht eine unvollständige Antwort, einen Fehler oder einen unsicheren Moment. Benenne die Befürchtung in wenigen Worten. Lass die Geschichte danach nicht weiterlaufen. Eine Befürchtung beschreibt eine Möglichkeit, nicht schon das Ergebnis."
+    },
+    {
+      "startSeconds": 172.25,
+      "endSeconds": 191.66,
+      "text": "Frag dich: Was müsste ich dafür tatsächlich können? Vielleicht gut vorbereitet sein, zuhören oder nachfragen. Nicht alles wissen. Nicht von allen gemocht werden. Unterscheide die wirkliche Aufgabe von den zusätzlichen Ansprüchen, die du an dich stellst."
+    },
+    {
+      "startSeconds": 210.79,
+      "endSeconds": 226.2,
+      "text": "Erinnere dich an einen kleinen Moment, in dem du schon einmal mit Unsicherheit umgegangen bist. Du hast vielleicht einen Termin vereinbart, um Hilfe gebeten oder etwas nach einem Fehler erneut versucht. Es muss keine große Erfolgsgeschichte sein."
+    },
+    {
+      "startSeconds": 245.33,
+      "endSeconds": 263.7,
+      "text": "Was hast du damals konkret getan? Hast du dich vorbereitet, eine Pause gemacht oder jemanden gefragt? Schau auf dein Handeln, nicht auf ein perfektes Ergebnis. Vielleicht findest du darin eine Fähigkeit, die dir auch heute zur Verfügung steht."
+    },
+    {
+      "startSeconds": 282.83,
+      "endSeconds": 301.0,
+      "text": "Wenn gerade keine passende Erinnerung kommt, brauchst du keine zu erfinden. Frage stattdessen: Welche Unterstützung könnte meinen nächsten Versuch leichter machen? Eine Notiz, eine Probe oder ein Gespräch mit einem vertrauten Menschen dürfen dazugehören."
+    },
+    {
+      "startSeconds": 318.54,
+      "endSeconds": 337.27,
+      "text": "Hör kurz auf die Worte, die du an dich richtest. Würdest du genauso mit jemandem sprechen, den du beim Lernen begleiten möchtest? Du musst dir nichts Großes einreden. Suche einen Satz, der zugleich ehrlich und respektvoll ist."
+    },
+    {
+      "startSeconds": 356.4,
+      "endSeconds": 376.45,
+      "text": "Vielleicht passt: Ich darf mich vorbereiten und trotzdem nervös sein. Oder: Ich kann nachfragen, wenn ich etwas nicht weiß. Vielleicht auch: Ein Fehler ist ein Ereignis, kein vollständiges Urteil über mich. Wähle deinen eigenen Satz oder lass diese Vorschläge vorbeiziehen."
+    },
+    {
+      "startSeconds": 395.59,
+      "endSeconds": 413.56,
+      "text": "Stell dir nun nur den Anfang deiner kleinen Situation vor. Wie setzt du dich hin? Welchen ersten Satz sagst du? Was liegt als Unterstützung bereit? Du musst keinen triumphalen Ausgang sehen. Übe gedanklich lediglich einen brauchbaren Einstieg."
+    },
+    {
+      "startSeconds": 432.69,
+      "endSeconds": 450.46,
+      "text": "Und wenn du ins Stocken gerätst? Erlaube dir eine einfache Reaktion. Einen Moment nachdenken. Um Wiederholung bitten. Sagen, dass du etwas später beantwortest. Vertrauen darf auch heißen, dir eine hilfreiche Antwort auf Schwierigkeiten zuzutrauen."
+    },
+    {
+      "startSeconds": 469.59,
+      "endSeconds": 484.68,
+      "text": "Wähle jetzt den kleinsten echten Versuch, den du machen möchtest. Vielleicht ist es erst die Vorbereitung. Entscheide selbst, wann er passt und wer dich unterstützen kann. Du brauchst keine riskante Mutprobe, um dich ernst zu nehmen."
+    },
+    {
+      "startSeconds": 500.62,
+      "endSeconds": 521.23,
+      "text": "Spüre noch einmal deine Hände und deine Füße. Nimm deinen ehrlichen Satz mit. Du darfst unsicher sein und trotzdem Fähigkeiten haben. Du darfst lernen, ohne dich dabei kleinzureden. Lass für einen Moment beides nebeneinander stehen."
+    },
+    {
+      "startSeconds": 533.99,
+      "endSeconds": 555.0,
+      "text": "Richte deine Aufmerksamkeit wieder nach außen. Sieh dich um und bewege dich so, wie es angenehm ist. Der nächste Schritt muss nicht beweisen, wer du bist. Er darf einfach eine Erfahrung werden. Danke, dass du dir heute mit etwas mehr Geduld begegnet bist."
+    }
+  ]
+}

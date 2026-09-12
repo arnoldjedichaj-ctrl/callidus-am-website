@@ -1,0 +1,84 @@
+{
+  "title": "Selbstreflexion: dich selbst verstehen",
+  "slug": "selbstreflexion",
+  "stem": "selbstreflexion-dich-selbst-verstehen",
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "targetSeconds": 600,
+  "leadInSeconds": 1.5,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "direction": "Sprich auf Deutsch mit der warmen, natürlichen Aoede-Stimme. Ruhige, erwachsene und zugewandte Führung, klar verständlich, gelassen und wach, nicht schläfrig. Mittleres langsames Sprechtempo, natürliche kurze Satzpausen. Keine übertriebenen Betonungen, kein Flüstern, kein Pathos. Lies ausschließlich den Text nach TRANSKRIPT wortgetreu. Keine Einleitung hinzufügen, keine Anweisungen vorlesen, keine Musik erzeugen.",
+  "segments": [
+    {
+      "chapter": "Ankommen",
+      "pause": 12,
+      "text": "Willkommen. Diese Zeit gehört der Frage, wie es dir gerade wirklich geht. Nicht, wie du sein solltest. Nicht, was andere von dir erwarten. Du darfst dich kennenlernen, ohne heute ein Urteil über dich zu fällen."
+    },
+    {
+      "pause": 16,
+      "text": "Such dir einen ruhigen Platz im Sitzen. Nutze diese Übung nicht beim Fahren. Deine Augen dürfen offen bleiben. Wenn etwas unangenehm wird, schau dich im Raum um oder beende die Session. Du entscheidest, wie weit du mitgehen möchtest."
+    },
+    {
+      "pause": 20,
+      "text": "Spüre, wo dein Körper getragen wird. Vielleicht an den Füßen, am Rücken oder unter deinen Händen. Du musst deinen Atem nicht verändern. Nimm einfach wahr, was schon da ist. Auch Unruhe darf zu diesem Moment gehören."
+    },
+    {
+      "chapter": "Wahrnehmen",
+      "pause": 22,
+      "text": "Frag dich nun: Was beschäftigt mich gerade? Wähle etwas Kleines aus deinem Alltag. Vielleicht ein vorschnelles Ja, ein aufgeschobener Anruf oder ein Moment, in dem du dich wohlgefühlt hast. Lass besonders belastende Erinnerungen heute beiseite."
+    },
+    {
+      "pause": 24,
+      "text": "Betrachte diesen Moment so sachlich wie möglich. Wo warst du? Was ist tatsächlich passiert? Was hast du gesagt oder getan? Bleib bei wenigen Einzelheiten. Du brauchst keine vollständige Geschichte und musst nichts noch einmal durchleben."
+    },
+    {
+      "pause": 22,
+      "text": "Achte jetzt auf die Bedeutung, die du dem Ereignis gegeben hast. Vielleicht war da der Gedanke: Ich muss das allein schaffen. Oder: Ich darf niemanden enttäuschen. Ein Gedanke kann sehr überzeugend klingen und trotzdem nur eine mögliche Deutung sein."
+    },
+    {
+      "pause": 24,
+      "text": "Du kannst innerlich formulieren: Ich bemerke den Gedanken, dass ich alles allein schaffen muss. Probiere diese Form mit deinem eigenen Gedanken. Nicht, um ihn wegzuschieben. Sondern um zu hören, was du dir gerade selbst erzählst."
+    },
+    {
+      "chapter": "Gefühle und Bedürfnisse",
+      "pause": 24,
+      "text": "Welche Stimmung gehört dazu? Vielleicht Ärger, Erleichterung, Unsicherheit oder Freude. Du musst kein genaues Wort finden. Ein ungefähres Gefühl reicht. Und wenn du gerade nichts benennen kannst, ist auch das eine ehrliche Beobachtung."
+    },
+    {
+      "pause": 24,
+      "text": "Was könnte dir in diesem Moment wichtig gewesen sein? Ruhe, Zugehörigkeit, Verlässlichkeit, Freiheit oder Unterstützung? Das sind Möglichkeiten, keine vorgegebenen Antworten. Gib deiner eigenen Antwort etwas Zeit. Auch zwei widersprüchliche Wünsche dürfen nebeneinander stehen."
+    },
+    {
+      "pause": 22,
+      "text": "Vielleicht wolltest du helfen und warst gleichzeitig erschöpft. Vielleicht wolltest du ehrlich sein und niemanden verletzen. Du musst nicht sofort eine Seite auswählen. Es kann genügen, beide Anliegen zu erkennen und ernst zu nehmen."
+    },
+    {
+      "chapter": "Freundlich prüfen",
+      "pause": 20,
+      "text": "Stell dir vor, ein Mensch, den du schätzt, würde dir genau davon erzählen. Was würdest du zuerst verstehen wollen? Welche Frage würdest du freundlich stellen? Richte eine solche Frage jetzt an dich, ohne eine schnelle Lösung zu verlangen."
+    },
+    {
+      "pause": 22,
+      "text": "Überlege: Was hat in dieser Situation bereits zu mir gepasst? Vielleicht hast du zugehört, eine Grenze bemerkt oder etwas Neues versucht. Halte dich an etwas Konkretes. Selbstreflexion darf auch das sehen, was nicht verändert werden muss."
+    },
+    {
+      "pause": 24,
+      "text": "Und was möchtest du beim nächsten Mal anders ausprobieren? Wähle nur eine kleine Veränderung. Erst kurz nachdenken, bevor du zusagst. Eine Rückfrage stellen. Oder früher eine Pause machen. Es geht um einen Versuch, nicht um eine neue Pflicht."
+    },
+    {
+      "chapter": "Mitnehmen",
+      "pause": 20,
+      "text": "Fasse deine Beobachtung in einem einfachen Satz zusammen. Zum Beispiel: Ich merke, dass mir Zeit zum Entscheiden wichtig ist. Oder: Ich brauche nicht immer sofort eine Antwort. Nimm nur einen Satz, der sich für dich ehrlich anfühlt."
+    },
+    {
+      "pause": 16,
+      "text": "Du brauchst heute kein abschließendes Bild von dir. Menschen verändern sich, und nicht jeder Tag zeigt dieselbe Seite. Lass die betrachtete Situation jetzt wieder ruhen. Spüre deine Hände und den Kontakt deiner Füße zum Boden."
+    },
+    {
+      "chapter": "Abschluss",
+      "pause": 0,
+      "text": "Schau dich langsam um. Nimm Farben, Formen und die Geräusche deiner Umgebung wahr. Beweg deine Schultern, wenn du möchtest. Du kehrst mit einer Beobachtung zurück, nicht mit einem Urteil. Danke, dass du dir diese Zeit zum Zuhören gegeben hast."
+    }
+  ]
+}

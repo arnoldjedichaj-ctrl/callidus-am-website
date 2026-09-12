@@ -95,6 +95,20 @@ def synthesize(item: tuple[int, dict], config: dict, keys: list[str]) -> Path:
                 continue
             if response.status_code != 200:
                 last_error = f"HTTP {response.status_code}"
+                if response.status_code == 429:
+                    try:
+                        details = response.json().get("error", {}).get("details", [])
+                    except ValueError:
+                        details = []
+                    # Only log quota fields, never headers, keys or request objects.
+                    for detail in details:
+                        for violation in detail.get("violations", []):
+                            quota = violation.get("quotaId", "")
+                            print(f"  Quota: {quota}; limit: {violation.get('quotaValue', 'unknown')}", flush=True)
+                            if "perday" in quota.lower():
+                                raise RuntimeError(f"Daily TTS quota exhausted: {quota}")
+                        if detail.get("retryDelay"):
+                            print(f"  Suggested retry delay: {detail['retryDelay']}", flush=True)
                 if response.status_code in (400, 401, 403, 404):
                     break
                 print(f"  {last_error}; retrying", flush=True)
@@ -204,6 +218,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--script", type=Path, default=SCRIPT)
     parser.add_argument("--sample", action="store_true", help="Generate only the first speech segment")
+    parser.add_argument("--workers", type=int, choices=(1, 2), default=2, help="Concurrent TTS requests")
     args = parser.parse_args()
     config = json.loads(args.script.read_text(encoding="utf-8"))
     slug = config.get("slug", "schlafuebergang")
@@ -220,8 +235,11 @@ def main() -> None:
     if args.sample:
         print(synthesize((0, config["segments"][0]), config, keys))
         return
-    with ThreadPoolExecutor(max_workers=2) as executor:
+    executor = ThreadPoolExecutor(max_workers=args.workers)
+    try:
         paths = list(executor.map(lambda item: synthesize(item, config, keys), enumerate(config["segments"])))
+    finally:
+        executor.shutdown(wait=True, cancel_futures=True)
     meta = assemble(paths, config)
     print(f"Done: {OUTPUT / (STEM + '.mp3')}; {meta['durationSeconds']} seconds", flush=True)
 

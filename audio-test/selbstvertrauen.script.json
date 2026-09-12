@@ -1,0 +1,85 @@
+{
+  "title": "Selbstvertrauen: dem nächsten Schritt trauen",
+  "slug": "selbstvertrauen",
+  "stem": "selbstvertrauen-dem-naechsten-schritt-trauen",
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "targetSeconds": 600,
+  "leadInSeconds": 1.5,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "direction": "Sprich auf Deutsch mit der warmen, natürlichen Aoede-Stimme. Ruhige, erwachsene und zugewandte Führung, klar verständlich, gelassen und wach, nicht schläfrig. Mittleres langsames Sprechtempo, natürliche kurze Satzpausen. Keine übertriebenen Betonungen, kein Flüstern, kein Pathos. Lies ausschließlich den Text nach TRANSKRIPT wortgetreu. Keine Einleitung hinzufügen, keine Anweisungen vorlesen, keine Musik erzeugen.",
+  "segments": [
+    {
+      "chapter": "Ankommen",
+      "pause": 12,
+      "text": "Willkommen. Selbstvertrauen muss nicht laut sein. Es kann bedeuten, etwas zu versuchen, obwohl noch Unsicherheit da ist. In dieser Session suchst du keine perfekte Version von dir. Du sammelst ehrliche Gründe, dir einen nächsten kleinen Schritt zuzutrauen."
+    },
+    {
+      "pause": 16,
+      "text": "Mach es dir an einem ruhigen Ort im Sitzen bequem. Nicht beim Fahren oder während einer Tätigkeit, die Aufmerksamkeit braucht. Deine Augen dürfen offen bleiben. Du kannst jede Frage auslassen, die Haltung ändern oder jederzeit aufhören."
+    },
+    {
+      "pause": 20,
+      "text": "Nimm wahr, wie die Sitzfläche dich trägt. Spüre deine Füße, ohne sie besonders fest aufzudrücken. Dein Atem darf seinen eigenen Rhythmus behalten. Du musst dich nicht erst vollkommen ruhig fühlen, um freundlich mit dir umgehen zu können."
+    },
+    {
+      "chapter": "Eine überschaubare Situation",
+      "pause": 22,
+      "text": "Denk an etwas Kleines, bei dem du dir mehr Vertrauen wünschst. Eine Frage stellen. Einen Gedanken aussprechen. Etwas zum ersten Mal ausprobieren. Wähle keine gefährliche oder überwältigende Situation. Es geht um einen machbaren Versuch in deinem Alltag."
+    },
+    {
+      "pause": 24,
+      "text": "Was befürchtest du dabei? Vielleicht eine unvollständige Antwort, einen Fehler oder einen unsicheren Moment. Benenne die Befürchtung in wenigen Worten. Lass die Geschichte danach nicht weiterlaufen. Eine Befürchtung beschreibt eine Möglichkeit, nicht schon das Ergebnis."
+    },
+    {
+      "pause": 24,
+      "text": "Frag dich: Was müsste ich dafür tatsächlich können? Vielleicht gut vorbereitet sein, zuhören oder nachfragen. Nicht alles wissen. Nicht von allen gemocht werden. Unterscheide die wirkliche Aufgabe von den zusätzlichen Ansprüchen, die du an dich stellst."
+    },
+    {
+      "chapter": "Erfahrungen würdigen",
+      "pause": 24,
+      "text": "Erinnere dich an einen kleinen Moment, in dem du schon einmal mit Unsicherheit umgegangen bist. Du hast vielleicht einen Termin vereinbart, um Hilfe gebeten oder etwas nach einem Fehler erneut versucht. Es muss keine große Erfolgsgeschichte sein."
+    },
+    {
+      "pause": 24,
+      "text": "Was hast du damals konkret getan? Hast du dich vorbereitet, eine Pause gemacht oder jemanden gefragt? Schau auf dein Handeln, nicht auf ein perfektes Ergebnis. Vielleicht findest du darin eine Fähigkeit, die dir auch heute zur Verfügung steht."
+    },
+    {
+      "pause": 22,
+      "text": "Wenn gerade keine passende Erinnerung kommt, brauchst du keine zu erfinden. Frage stattdessen: Welche Unterstützung könnte meinen nächsten Versuch leichter machen? Eine Notiz, eine Probe oder ein Gespräch mit einem vertrauten Menschen dürfen dazugehören."
+    },
+    {
+      "chapter": "Freundlich mit Unsicherheit",
+      "pause": 24,
+      "text": "Hör kurz auf die Worte, die du an dich richtest. Würdest du genauso mit jemandem sprechen, den du beim Lernen begleiten möchtest? Du musst dir nichts Großes einreden. Suche einen Satz, der zugleich ehrlich und respektvoll ist."
+    },
+    {
+      "pause": 24,
+      "text": "Vielleicht passt: Ich darf mich vorbereiten und trotzdem nervös sein. Oder: Ich kann nachfragen, wenn ich etwas nicht weiß. Vielleicht auch: Ein Fehler ist ein Ereignis, kein vollständiges Urteil über mich. Wähle deinen eigenen Satz oder lass diese Vorschläge vorbeiziehen."
+    },
+    {
+      "chapter": "Einen Versuch vorbereiten",
+      "pause": 24,
+      "text": "Stell dir nun nur den Anfang deiner kleinen Situation vor. Wie setzt du dich hin? Welchen ersten Satz sagst du? Was liegt als Unterstützung bereit? Du musst keinen triumphalen Ausgang sehen. Übe gedanklich lediglich einen brauchbaren Einstieg."
+    },
+    {
+      "pause": 24,
+      "text": "Und wenn du ins Stocken gerätst? Erlaube dir eine einfache Reaktion. Einen Moment nachdenken. Um Wiederholung bitten. Sagen, dass du etwas später beantwortest. Vertrauen darf auch heißen, dir eine hilfreiche Antwort auf Schwierigkeiten zuzutrauen."
+    },
+    {
+      "pause": 20,
+      "text": "Wähle jetzt den kleinsten echten Versuch, den du machen möchtest. Vielleicht ist es erst die Vorbereitung. Entscheide selbst, wann er passt und wer dich unterstützen kann. Du brauchst keine riskante Mutprobe, um dich ernst zu nehmen."
+    },
+    {
+      "chapter": "Mitnehmen",
+      "pause": 16,
+      "text": "Spüre noch einmal deine Hände und deine Füße. Nimm deinen ehrlichen Satz mit. Du darfst unsicher sein und trotzdem Fähigkeiten haben. Du darfst lernen, ohne dich dabei kleinzureden. Lass für einen Moment beides nebeneinander stehen."
+    },
+    {
+      "chapter": "Abschluss",
+      "pause": 0,
+      "text": "Richte deine Aufmerksamkeit wieder nach außen. Sieh dich um und bewege dich so, wie es angenehm ist. Der nächste Schritt muss nicht beweisen, wer du bist. Er darf einfach eine Erfahrung werden. Danke, dass du dir heute mit etwas mehr Geduld begegnet bist."
+    }
+  ]
+}

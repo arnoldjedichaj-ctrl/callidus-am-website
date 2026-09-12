@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import audioSessions from '../../data/audio-sessions.json';
+import audioResearch from '../../data/audio-research.json';
 import articles from '../../data/articles.json';
 import structure from '../../data/site-structure.json';
 
@@ -9,6 +10,8 @@ const description = 'Geführte Audio-Sessions von callidus A&M für Klarheit, Ab
 const siteOrigin = 'https://www.callidus-am.de';
 const publishedSessions = audioSessions.filter((session) => session.status === 'published');
 const plannedSessions = audioSessions.filter((session) => session.status === 'planned');
+const regularSessions = audioSessions.filter((session) => !session.safety);
+const intensiveSessions = publishedSessions.filter((session) => session.safety);
 const featured = publishedSessions.find((session) => session.featured) || publishedSessions[0];
 const podcastCategoryFor = (article) => {
   const haystack = `${article.slug || ''} ${article.title || ''} ${article.description || ''} ${(article.h2 || []).join(' ')}`.toLowerCase();
@@ -171,22 +174,22 @@ const audioObjects = publishedSessions.map((session) => ({
       <p class="eyebrow" data-reveal>Audiothek</p>
       <h2 data-reveal="2">{plannedSessions.length ? 'Aktuelle und kommende Folgen.' : 'Deine geführten Sessions.'}</h2>
       <div class="audio-session-grid">
-        {audioSessions.map((session, index) => (
-          <article class={`audio-session-card audio-session-${session.status}`} data-reveal={String((index % 3) + 1)}>
+        {regularSessions.map((session, index) => (
+          <article id={session.id} class={`audio-session-card audio-session-${session.status}`} data-reveal={String((index % 3) + 1)}>
             <div class="audio-card-meta">
               <span class={`badge ${session.accent}`}>{session.badge}</span>
               <span>{session.duration}</span>
             </div>
-            <h3>{session.title}</h3>
-            <p>{session.summary}</p>
+            <h3>{session.cardTitle || session.title}</h3>
+            <p class="audio-card-summary">{session.summary}</p>
             {session.status === 'published' ? (
               <>
-                {session.safety && <p class="audio-card-safety">{session.safety}</p>}
                 <audio class="audio-card-player" controls preload="metadata" src={session.path} aria-label={session.title}>
                   Dein Browser kann diese Audio-Datei nicht direkt abspielen.
                 </audio>
                 <div class="audio-card-actions">
                   <a class="button" href={session.path} download>Herunterladen</a>
+                  {session.research?.length > 0 && <a class="audio-source-link" href="#quellen" aria-label={`Quellen und Einordnung: ${session.title}`}>Quellen</a>}
                 </div>
               </>
             ) : (
@@ -195,6 +198,52 @@ const audioObjects = publishedSessions.map((session) => ({
           </article>
         ))}
       </div>
+      {intensiveSessions.map((session) => (
+        <article class="audio-intensive-session" id={session.id} aria-labelledby={`${session.id}-title`}>
+          <div>
+            <div class="audio-card-meta">
+              <span class={`badge ${session.accent}`}>{session.badge} · Intensiv</span>
+              <span>{session.duration}</span>
+            </div>
+            <h3 id={`${session.id}-title`}>{session.title}</h3>
+            <p>{session.summary}</p>
+          </div>
+          <div>
+            <p class="audio-card-safety" id={`${session.id}-safety`}>{session.safety}</p>
+            <audio class="audio-card-player" controls preload="metadata" src={session.path} aria-label={session.title} aria-describedby={`${session.id}-safety`}>
+              Dein Browser kann diese Audio-Datei nicht direkt abspielen.
+            </audio>
+            <div class="audio-card-actions">
+              <a class="button" href={session.path} download>Herunterladen</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section band" id="quellen">
+    <div class="container audio-research">
+      <p class="eyebrow">Hintergrund und Einordnung</p>
+      <h2>Was Forschung beitragen kann.</h2>
+      <p class="lede">
+        Unsere Audio-Sessions sind eigenständige Übungen, keine wissenschaftlich geprüften Behandlungsprogramme.
+        Die folgenden Quellen erklären einzelne Ansätze der vier neuen Folgen.
+        Sie belegen weder die Wirkung unserer Aufnahmen noch einen garantierten persönlichen Erfolg.
+      </p>
+      {audioResearch.map((source) => (
+        <details id={`quelle-${source.id}`}>
+          <summary>{source.title}</summary>
+          <p class="audio-research-sessions">Bezug: {source.sessions}</p>
+          <p>{source.text}</p>
+          <a href={source.url} target="_blank" rel="noopener">{source.citation}: Studie ansehen</a>
+        </details>
+      ))}
+      <p class="audio-research-note">
+        Meditation ist nicht für alle Menschen in jeder Situation angenehm. Bei Unwohlsein darfst du abbrechen.
+        Das <a href="https://www.nccih.nih.gov/health/meditation-and-mindfulness-effectiveness-and-safety" target="_blank" rel="noopener">NCCIH ordnet Forschung, Grenzen und mögliche Risiken ein</a>.
+        Diese Quellen sind insbesondere kein Sicherheits- oder Wirksamkeitsnachweis für intensive Breathwork.
+      </p>
     </div>
   </section>
 
@@ -480,6 +529,7 @@ const audioObjects = publishedSessions.map((session) => ({
 .audio-session-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1rem;
   margin-top: 1.5rem;
 }
@@ -536,12 +586,13 @@ const audioObjects = publishedSessions.map((session) => ({
 .podcast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1rem;
   margin-top: 1rem;
 }
 .podcast-card {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: .8rem;
   padding: clamp(1rem, 3vw, 1.25rem);
 }
@@ -550,7 +601,15 @@ const audioObjects = publishedSessions.map((session) => ({
   margin: 0;
 }
 .podcast-card h3 {
-  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-size: 1.25rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.podcast-card > p {
+  flex: 1;
+}
+.podcast-card[hidden] {
+  display: none;
 }
 .podcast-source-link {
   align-self: center;
@@ -563,20 +622,30 @@ const audioObjects = publishedSessions.map((session) => ({
   color: var(--muted);
 }
 .audio-session-card {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 8px;
   gap: .8rem;
   padding: clamp(1rem, 3vw, 1.25rem);
 }
 .audio-card-player {
   width: 100%;
   min-height: 40px;
+  flex-shrink: 0;
   accent-color: var(--mint);
 }
 .audio-card-actions {
   display: flex;
   flex-wrap: wrap;
   gap: .55rem;
+}
+.audio-source-link {
+  align-self: center;
+  color: var(--mint);
+  font-size: .9rem;
+  text-decoration: underline;
+  text-underline-offset: .2em;
 }
 .audio-card-safety {
   border: 1px solid rgba(var(--coral-rgb), .26);
@@ -588,7 +657,64 @@ const audioObjects = publishedSessions.map((session) => ({
   line-height: 1.55;
 }
 .audio-session-card h3 {
-  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-size: 1.3rem;
+  line-height: 1.35;
+  min-height: 2.7em;
+  overflow-wrap: anywhere;
+}
+.audio-card-summary {
+  flex: 1;
+}
+.audio-intensive-session {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(var(--coral-rgb), .4);
+}
+.audio-intensive-session h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0 .7rem;
+}
+.audio-intensive-session .audio-card-safety {
+  margin: 0 0 1rem;
+}
+.audio-intensive-session .audio-card-actions {
+  margin-top: .8rem;
+}
+.audio-research > .lede {
+  max-width: 75ch;
+}
+.audio-research details {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 6rem;
+}
+.audio-research summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+.audio-research details p {
+  max-width: 85ch;
+}
+.audio-research a {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.audio-research summary:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 4px;
+}
+.audio-research-sessions,
+.audio-research-note {
+  color: var(--muted);
+  font-size: .9rem;
+}
+.audio-research-note {
+  margin-top: 1.3rem;
+  max-width: 90ch;
 }
 .audio-session-planned {
   background:
@@ -654,6 +780,7 @@ const audioObjects = publishedSessions.map((session) => ({
   .audio-hero-grid,
   .audio-detail-split,
   .audio-trust-split,
+  .audio-intensive-session,
   .audio-intro-grid {
     grid-template-columns: 1fr;
   }

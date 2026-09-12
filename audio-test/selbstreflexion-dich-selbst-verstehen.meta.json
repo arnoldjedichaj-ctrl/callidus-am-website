@@ -1,0 +1,129 @@
+{
+  "title": "Selbstreflexion: dich selbst verstehen",
+  "durationSeconds": 600,
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "speechSeconds": 286.26,
+  "pauseScale": 0.857,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "license": "https://pixabay.com/service/license-summary/"
+  },
+  "mix": {
+    "voiceLUFS": -19,
+    "musicLUFS": -28,
+    "background": "Generated wave ambience"
+  },
+  "chapters": [
+    {
+      "title": "Ankommen",
+      "startSeconds": 1.5
+    },
+    {
+      "title": "Wahrnehmen",
+      "startSeconds": 93.65
+    },
+    {
+      "title": "Gefühle und Bedürfnisse",
+      "startSeconds": 244.05
+    },
+    {
+      "title": "Freundlich prüfen",
+      "startSeconds": 359.37
+    },
+    {
+      "title": "Mitnehmen",
+      "startSeconds": 469.37
+    },
+    {
+      "title": "Abschluss",
+      "startSeconds": 533.51
+    }
+  ],
+  "segments": [
+    {
+      "startSeconds": 1.5,
+      "endSeconds": 18.39,
+      "text": "Willkommen. Diese Zeit gehört der Frage, wie es dir gerade wirklich geht. Nicht, wie du sein solltest. Nicht, was andere von dir erwarten. Du darfst dich kennenlernen, ohne heute ein Urteil über dich zu fällen."
+    },
+    {
+      "startSeconds": 28.67,
+      "endSeconds": 44.84,
+      "text": "Such dir einen ruhigen Platz im Sitzen. Nutze diese Übung nicht beim Fahren. Deine Augen dürfen offen bleiben. Wenn etwas unangenehm wird, schau dich im Raum um oder beende die Session. Du entscheidest, wie weit du mitgehen möchtest."
+    },
+    {
+      "startSeconds": 58.55,
+      "endSeconds": 76.52,
+      "text": "Spüre, wo dein Körper getragen wird. Vielleicht an den Füßen, am Rücken oder unter deinen Händen. Du musst deinen Atem nicht verändern. Nimm einfach wahr, was schon da ist. Auch Unruhe darf zu diesem Moment gehören."
+    },
+    {
+      "startSeconds": 93.65,
+      "endSeconds": 111.74,
+      "text": "Frag dich nun: Was beschäftigt mich gerade? Wähle etwas Kleines aus deinem Alltag. Vielleicht ein vorschnelles Ja, ein aufgeschobener Anruf oder ein Moment, in dem du dich wohlgefühlt hast. Lass besonders belastende Erinnerungen heute beiseite."
+    },
+    {
+      "startSeconds": 130.58,
+      "endSeconds": 149.07,
+      "text": "Betrachte diesen Moment so sachlich wie möglich. Wo warst du? Was ist tatsächlich passiert? Was hast du gesagt oder getan? Bleib bei wenigen Einzelheiten. Du brauchst keine vollständige Geschichte und musst nichts noch einmal durchleben."
+    },
+    {
+      "startSeconds": 169.63,
+      "endSeconds": 186.36,
+      "text": "Achte jetzt auf die Bedeutung, die du dem Ereignis gegeben hast. Vielleicht war da der Gedanke: Ich muss das allein schaffen. Oder: Ich darf niemanden enttäuschen. Ein Gedanke kann sehr überzeugend klingen und trotzdem nur eine mögliche Deutung sein."
+    },
+    {
+      "startSeconds": 205.21,
+      "endSeconds": 223.5,
+      "text": "Du kannst innerlich formulieren: Ich bemerke den Gedanken, dass ich alles allein schaffen muss. Probiere diese Form mit deinem eigenen Gedanken. Nicht, um ihn wegzuschieben. Sondern um zu hören, was du dir gerade selbst erzählst."
+    },
+    {
+      "startSeconds": 244.05,
+      "endSeconds": 262.79,
+      "text": "Welche Stimmung gehört dazu? Vielleicht Ärger, Erleichterung, Unsicherheit oder Freude. Du musst kein genaues Wort finden. Ein ungefähres Gefühl reicht. Und wenn du gerade nichts benennen kannst, ist auch das eine ehrliche Beobachtung."
+    },
+    {
+      "startSeconds": 283.34,
+      "endSeconds": 304.87,
+      "text": "Was könnte dir in diesem Moment wichtig gewesen sein? Ruhe, Zugehörigkeit, Verlässlichkeit, Freiheit oder Unterstützung? Das sind Möglichkeiten, keine vorgegebenen Antworten. Gib deiner eigenen Antwort etwas Zeit. Auch zwei widersprüchliche Wünsche dürfen nebeneinander stehen."
+    },
+    {
+      "startSeconds": 325.43,
+      "endSeconds": 340.52,
+      "text": "Vielleicht wolltest du helfen und warst gleichzeitig erschöpft. Vielleicht wolltest du ehrlich sein und niemanden verletzen. Du musst nicht sofort eine Seite auswählen. Es kann genügen, beide Anliegen zu erkennen und ernst zu nehmen."
+    },
+    {
+      "startSeconds": 359.37,
+      "endSeconds": 375.22,
+      "text": "Stell dir vor, ein Mensch, den du schätzt, würde dir genau davon erzählen. Was würdest du zuerst verstehen wollen? Welche Frage würdest du freundlich stellen? Richte eine solche Frage jetzt an dich, ohne eine schnelle Lösung zu verlangen."
+    },
+    {
+      "startSeconds": 392.35,
+      "endSeconds": 410.6,
+      "text": "Überlege: Was hat in dieser Situation bereits zu mir gepasst? Vielleicht hast du zugehört, eine Grenze bemerkt oder etwas Neues versucht. Halte dich an etwas Konkretes. Selbstreflexion darf auch das sehen, was nicht verändert werden muss."
+    },
+    {
+      "startSeconds": 429.44,
+      "endSeconds": 448.81,
+      "text": "Und was möchtest du beim nächsten Mal anders ausprobieren? Wähle nur eine kleine Veränderung. Erst kurz nachdenken, bevor du zusagst. Eine Rückfrage stellen. Oder früher eine Pause machen. Es geht um einen Versuch, nicht um eine neue Pflicht."
+    },
+    {
+      "startSeconds": 469.37,
+      "endSeconds": 485.78,
+      "text": "Fasse deine Beobachtung in einem einfachen Satz zusammen. Zum Beispiel: Ich merke, dass mir Zeit zum Entscheiden wichtig ist. Oder: Ich brauche nicht immer sofort eine Antwort. Nimm nur einen Satz, der sich für dich ehrlich anfühlt."
+    },
+    {
+      "startSeconds": 502.91,
+      "endSeconds": 519.8,
+      "text": "Du brauchst heute kein abschließendes Bild von dir. Menschen verändern sich, und nicht jeder Tag zeigt dieselbe Seite. Lass die betrachtete Situation jetzt wieder ruhen. Spüre deine Hände und den Kontakt deiner Füße zum Boden."
+    },
+    {
+      "startSeconds": 533.51,
+      "endSeconds": 555.0,
+      "text": "Schau dich langsam um. Nimm Farben, Formen und die Geräusche deiner Umgebung wahr. Beweg deine Schultern, wenn du möchtest. Du kehrst mit einer Beobachtung zurück, nicht mit einem Urteil. Danke, dass du dir diese Zeit zum Zuhören gegeben hast."
+    }
+  ]
+}

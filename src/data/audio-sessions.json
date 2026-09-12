@@ -5,12 +5,13 @@
     "badge": "Folge 1",
     "title": "Klarheitsreset: Fokus und nächster Schritt",
     "shortTitle": "Klarheitsreset",
+    "cardTitle": "Klarheitsreset",
     "duration": "15:00",
     "durationSeconds": 900,
     "publishedAt": "2026-07-07",
     "path": "/audio/klarheitsreset/klarheitsreset-fokus-naechster-schritt.mp3",
     "accent": "mint",
-    "summary": "Eine ruhige geführte Audio-Session für innere Ordnung, klare Prioritäten und einen nächsten machbaren Schritt.",
+    "summary": "Gedanken sammeln, Prioritäten klären und einen machbaren nächsten Schritt wählen. Eine ruhige Pause mit warmer Stimme, Musik und Wellen.",
     "bestFor": [
       "mentale Überladung und zu viele offene Gedanken",
       "einen klaren Start in Arbeit, Planung oder Entscheidung",
@@ -48,7 +49,7 @@
     "publishedAt": "2026-07-07",
     "path": "/audio/power-breathwork/power-breathwork-energie-klarheit.mp3",
     "accent": "coral",
-    "summary": "Eine intensive geführte Breathwork-Folge für Fortgeschrittene mit aktiven Atemrunden, klarer Warnung und ruhigen Integrationspausen.",
+    "summary": "Intensive Atemrunden mit Integrationspausen für Fortgeschrittene. Bitte beachte vor dem Anhören die vollständigen Sicherheitshinweise; diese Folge ist keine sanfte Atemübung.",
     "bestFor": [
       "fortgeschrittene Nutzer mit stabiler Atem- und Körperwahrnehmung",
       "aktive mentale Entladung und Energieaufbau",
@@ -82,12 +83,13 @@
     "badge": "Folge 3",
     "title": "Die Kraft klarer Gedanken",
     "shortTitle": "Klare Gedanken",
+    "cardTitle": "Kraft klarer Gedanken",
     "duration": "7:51",
     "durationSeconds": 471,
     "publishedAt": "2026-07-13",
     "path": "/audio/kraft-klarer-gedanken/kraft-klarer-gedanken-yt-aoede.mp3",
     "accent": "blue",
-    "summary": "Eine klare, ruhig erzählte Audio-Folge über Ziele, Wünsche, Wohlstand, Sprache und den nächsten ehrlichen Schritt.",
+    "summary": "Ziele, Wünsche und den eigenen inneren Dialog betrachten. Ein ruhig erzählter Impuls für eine alltagstaugliche Ausrichtung, ganz ohne Hintergrundmusik.",
     "bestFor": [
       "mentale Ausrichtung ohne Musik oder Atemtechnik",
       "Momente, in denen Ziele, Geld und Selbstbild nüchterner sortiert werden sollen",
@@ -121,12 +123,13 @@
     "badge": "Folge 4",
     "title": "Schlafübergang: den Tag ablegen",
     "shortTitle": "Schlafübergang",
+    "cardTitle": "Schlafübergang",
     "duration": "15:00",
     "durationSeconds": 900,
     "publishedAt": "2026-09-11",
     "path": "/audio/schlafuebergang/schlafuebergang-den-tag-ablegen.mp3",
     "accent": "gold",
-    "summary": "Der Tag ist vorbei, aber im Kopf geht er weiter? Diese geführte Abendentspannung lädt dich ein, den Körper zu spüren, offene Gedanken für morgen abzulegen und allmählich zur Ruhe zu kommen. Mit warmer Stimme, sanfter Musik und langen Pausen.",
+    "summary": "Den Körper spüren, offene Gedanken für morgen ablegen und zur Ruhe kommen. Eine sanfte Abendentspannung mit Musik, ohne Aufwecken.",
     "bestFor": [
       "Abende, an denen Aufgaben und Gespräche noch nachklingen",
       "einen ruhigen Abschluss nach einem vollen Tag",
@@ -159,8 +162,8 @@
   {
     "id": "nach-schwierigen-gespraechen-005",
     "status": "published",
-    "featured": true,
-    "badge": "Folge 5 · Neu",
+    "featured": false,
+    "badge": "Folge 5",
     "title": "Nach einem schwierigen Gespräch: wieder bei dir ankommen",
     "shortTitle": "Wieder bei dir ankommen",
     "duration": "12:00",
@@ -168,7 +171,7 @@
     "publishedAt": "2026-09-11",
     "path": "/audio/nach-schwierigen-gespraechen/wieder-bei-dir-ankommen.mp3",
     "accent": "mint",
-    "summary": "Ein Gespräch ist vorbei, aber ein Satz lässt dich nicht los? Diese geführte Pause lädt dich ein, wieder im Moment anzukommen, die eigene Reaktion freundlich wahrzunehmen und mit etwas Abstand über den nächsten Schritt zu entscheiden. Mit warmer Stimme, ruhiger Musik und Zeit zum Nachspüren.",
+    "summary": "Nach Kritik oder Streit innehalten, die eigene Reaktion wahrnehmen und Abstand gewinnen. Eine geführte Pause vor deiner nächsten Antwort.",
     "bestFor": [
       "Momente nach Kritik, Streit oder einem belastenden Meeting",
       "Gedanken, die ein Gespräch immer wieder durchspielen",
@@ -196,6 +199,192 @@
       "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
       "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
       "note": "Eigenständiges Callidus-Skript für Selbstreflexion nach schwierigen Gesprächen, mit offenem Blick, natürlichem Atem und einer ruhigen Rückkehr in den Alltag."
+    },
+    "cardTitle": "Nach schwierigen Gesprächen"
+  },
+  {
+    "id": "selbstreflexion-006",
+    "status": "published",
+    "featured": true,
+    "badge": "Folge 6 · Neu",
+    "title": "Selbstreflexion: dich selbst verstehen",
+    "cardTitle": "Selbstreflexion & Bewusstsein",
+    "shortTitle": "Dich selbst verstehen",
+    "accent": "mint",
+    "summary": "Gedanken, Gefühle und eigene Bedürfnisse unterscheiden. Eine freundliche Bestandsaufnahme mit Raum für neue Perspektiven, ohne dich vorschnell zu bewerten.",
+    "bestFor": [
+      "eine ruhige Bestandsaufnahme im Alltag",
+      "Momente mit widersprüchlichen Wünschen",
+      "Neugier auf eigene Reaktionen und Bedürfnisse"
+    ],
+    "outcomes": [
+      "Beobachtung und Deutung unterscheiden",
+      "Gefühle und wichtige Anliegen benennen",
+      "eine kleine Veränderung ausprobieren"
+    ],
+    "listenWhen": [
+      "in einer ruhigen Pause im Sitzen",
+      "wenn du dich selbst besser verstehen möchtest",
+      "ohne besonders belastende Erinnerungen aufzugreifen"
+    ],
+    "usageTitle": "Verstehen, ohne dich zu verurteilen.",
+    "usageText": "Du betrachtest eine kleine Alltagssituation, unterscheidest Ereignis und Deutung und fragst nach deinen Gefühlen und Bedürfnissen. Zum Schluss wählst du eine Beobachtung oder einen kleinen Versuch für den Alltag. Du musst weder alles erklären noch sofort eine Lösung finden.",
+    "research": [
+      "selbstmitgefuehl",
+      "achtsamkeit"
+    ],
+    "duration": "10:00",
+    "durationSeconds": 600,
+    "publishedAt": "2026-09-12",
+    "path": "/audio/selbstreflexion/selbstreflexion-dich-selbst-verstehen.mp3",
+    "endingNote": "Zum Abschluss orientierst du dich wieder im Raum und kehrst in deinem eigenen Tempo in den Alltag zurück. Auf die letzten Worte folgen rund 45 Sekunden Musik mit sanftem Ausklang.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript mit natürlicher Atmung und Rückkehr in den Alltag. Die konkrete Audio-Session wurde nicht wissenschaftlich auf Wirksamkeit geprüft."
+    }
+  },
+  {
+    "id": "erfolg-im-alltag-007",
+    "status": "published",
+    "featured": false,
+    "badge": "Folge 7 · Neu",
+    "title": "Erfolg im Alltag: dein eigenes Maß",
+    "cardTitle": "Erfolg im Alltag",
+    "shortTitle": "Dein eigenes Maß",
+    "accent": "gold",
+    "summary": "Erfolg nach eigenen Werten definieren und einen machbaren Schritt planen. Mit ehrlichem Blick auf Hindernisse, verfügbare Kraft und Erholung.",
+    "bestFor": [
+      "Ziele ohne ständigen Vergleich mit anderen",
+      "ein Vorhaben, das im Alltag Platz finden soll",
+      "einen eigenen Maßstab jenseits von Geld und Status"
+    ],
+    "outcomes": [
+      "einen persönlich stimmigen Fortschritt benennen",
+      "ein Hindernis und eine passende Handlung bestimmen",
+      "einen konkreten Wenn-dann-Plan formulieren"
+    ],
+    "listenWhen": [
+      "vor einer Wochenplanung",
+      "wenn Erwartungen zu groß geworden sind",
+      "mit einem kleinen, beeinflussbaren Vorhaben"
+    ],
+    "usageTitle": "Erfolg darf zu deinem Leben passen.",
+    "usageText": "Was wäre für dich ein sinnvoller Fortschritt? Du wählst ein überschaubares Ziel, betrachtest ein mögliches Hindernis und formulierst einen konkreten Wenn-dann-Plan. Erholung und Grenzen gehören ausdrücklich dazu. Gedanken allein garantieren kein Ergebnis.",
+    "research": [
+      "zielplanung"
+    ],
+    "duration": "10:00",
+    "durationSeconds": 600,
+    "publishedAt": "2026-09-12",
+    "path": "/audio/erfolg-im-alltag/erfolg-dein-eigenes-mass.mp3",
+    "endingNote": "Zum Abschluss orientierst du dich wieder im Raum und kehrst in deinem eigenen Tempo in den Alltag zurück. Auf die letzten Worte folgen rund 45 Sekunden Musik mit sanftem Ausklang.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript mit natürlicher Atmung und Rückkehr in den Alltag. Die konkrete Audio-Session wurde nicht wissenschaftlich auf Wirksamkeit geprüft."
+    }
+  },
+  {
+    "id": "selbstvertrauen-008",
+    "status": "published",
+    "featured": false,
+    "badge": "Folge 8 · Neu",
+    "title": "Selbstvertrauen: dem nächsten Schritt trauen",
+    "cardTitle": "Selbstvertrauen",
+    "shortTitle": "Dem nächsten Schritt trauen",
+    "accent": "coral",
+    "summary": "Eigene Fähigkeiten erkennen und einen kleinen Versuch vorbereiten. Eine ruhige Begleitung für mehr Zutrauen, auch wenn du noch unsicher bist.",
+    "bestFor": [
+      "einen bevorstehenden kleinen Schritt außerhalb der Routine",
+      "Zweifel trotz vorhandener Fähigkeiten",
+      "einen respektvolleren Umgang mit eigenen Fehlern"
+    ],
+    "outcomes": [
+      "wirkliche Anforderungen von überhöhten Ansprüchen trennen",
+      "eigene Erfahrungen und Unterstützung sammeln",
+      "einen machbaren Einstieg gedanklich vorbereiten"
+    ],
+    "listenWhen": [
+      "vor einer überschaubaren neuen Aufgabe",
+      "an einem ruhigen Platz im Sitzen",
+      "wenn du Ermutigung ohne große Versprechen suchst"
+    ],
+    "usageTitle": "Unsicher sein und trotzdem etwas versuchen.",
+    "usageText": "Du schaust auf eine kleine bevorstehende Situation, auf vorhandene Erfahrungen und auf hilfreiche Unterstützung. Statt übertriebener Affirmationen findest du einen ehrlichen Satz und bereitest den Anfang deines nächsten Versuchs vor. Eine riskante Mutprobe gehört nicht dazu.",
+    "research": [
+      "selbstmitgefuehl"
+    ],
+    "duration": "10:00",
+    "durationSeconds": 600,
+    "publishedAt": "2026-09-12",
+    "path": "/audio/selbstvertrauen/selbstvertrauen-dem-naechsten-schritt-trauen.mp3",
+    "endingNote": "Zum Abschluss orientierst du dich wieder im Raum und kehrst in deinem eigenen Tempo in den Alltag zurück. Auf die letzten Worte folgen rund 45 Sekunden Musik mit sanftem Ausklang.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript mit natürlicher Atmung und Rückkehr in den Alltag. Die konkrete Audio-Session wurde nicht wissenschaftlich auf Wirksamkeit geprüft."
+    }
+  },
+  {
+    "id": "bewusstsein-fokus-009",
+    "status": "published",
+    "featured": false,
+    "badge": "Folge 9 · Neu",
+    "title": "Bewusstsein und Fokus: eine Sache zur Zeit",
+    "cardTitle": "Bewusstsein & Fokus",
+    "shortTitle": "Eine Sache zur Zeit",
+    "accent": "blue",
+    "summary": "Eine Sache wahrnehmen, Abschweifen bemerken und freundlich zurückkehren. Eine geführte Pause mit klarem Einstieg in deine nächste Tätigkeit.",
+    "bestFor": [
+      "Aufmerksamkeit zwischen vielen Aufgaben",
+      "einen bewussten Übergang in eine Arbeitsphase",
+      "Fokus ohne forcierte Atmung oder Leistungsdruck"
+    ],
+    "outcomes": [
+      "einen äußeren oder körperlichen Anker wählen",
+      "Abschweifen wahrnehmen und zurückkehren",
+      "eine konkrete nächste Tätigkeit bestimmen"
+    ],
+    "listenWhen": [
+      "vor einer kurzen Arbeits- oder Lernphase",
+      "mit offenen Augen an einem ruhigen Ort",
+      "wenn du eine Sache zur Zeit angehen möchtest"
+    ],
+    "usageTitle": "Zurückkehren gehört zur Übung.",
+    "usageText": "Du richtest deine Aufmerksamkeit auf einen Gegenstand oder den Kontakt deiner Füße zum Boden. Gedanken dürfen auftauchen; du übst das freundliche Zurückkehren. Danach bestimmst du einen überschaubaren Tätigkeitsabschnitt und einen konkreten Einstieg. Dein Atem bleibt natürlich.",
+    "research": [
+      "achtsamkeit"
+    ],
+    "duration": "10:00",
+    "durationSeconds": 600,
+    "publishedAt": "2026-09-12",
+    "path": "/audio/bewusstsein-fokus/bewusstsein-fokus-eine-sache-zur-zeit.mp3",
+    "endingNote": "Zum Abschluss orientierst du dich wieder im Raum und kehrst in deinem eigenen Tempo in den Alltag zurück. Auf die letzten Worte folgen rund 45 Sekunden Musik mit sanftem Ausklang.",
+    "production": {
+      "voice": "Synthetische TTS-Stimme: Gemini TTS Aoede",
+      "musicTitle": "Deep Meditation",
+      "musicCreator": "Grand_Project",
+      "musicSource": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+      "musicLicense": "Pixabay Content License",
+      "musicLicenseUrl": "https://pixabay.com/service/license-summary/",
+      "background": "Ruhige Musik mit dezent beigemischter, generierter Wellen-Atmosphäre; sanfter Ausklang über 40 Sekunden.",
+      "note": "Eigenständiges Callidus-Skript mit natürlicher Atmung und Rückkehr in den Alltag. Die konkrete Audio-Session wurde nicht wissenschaftlich auf Wirksamkeit geprüft."
     }
   }
 ]

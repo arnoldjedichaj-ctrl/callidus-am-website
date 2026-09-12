@@ -1,0 +1,129 @@
+{
+  "title": "Erfolg im Alltag: dein eigenes Maß",
+  "durationSeconds": 600,
+  "voice": "Aoede",
+  "model": "gemini-2.5-flash-preview-tts",
+  "speechSeconds": 292.58,
+  "pauseScale": 0.821,
+  "tailSeconds": 45,
+  "fadeOutSeconds": 40,
+  "music": {
+    "title": "Deep Meditation",
+    "creator": "Grand_Project",
+    "source": "https://pixabay.com/music/meditationspiritual-deep-meditation-192828/",
+    "license": "https://pixabay.com/service/license-summary/"
+  },
+  "mix": {
+    "voiceLUFS": -19,
+    "musicLUFS": -28,
+    "background": "Generated wave ambience"
+  },
+  "chapters": [
+    {
+      "title": "Ankommen",
+      "startSeconds": 1.5
+    },
+    {
+      "title": "Dein Maßstab",
+      "startSeconds": 97.2
+    },
+    {
+      "title": "Ein machbares Ziel",
+      "startSeconds": 243.73
+    },
+    {
+      "title": "Einen Plan finden",
+      "startSeconds": 361.56
+    },
+    {
+      "title": "Mitnehmen",
+      "startSeconds": 470.03
+    },
+    {
+      "title": "Abschluss",
+      "startSeconds": 533.35
+    }
+  ],
+  "segments": [
+    {
+      "startSeconds": 1.5,
+      "endSeconds": 18.75,
+      "text": "Willkommen. Heute geht es um Erfolg, der in dein wirkliches Leben passt. Nicht um ein perfektes Bild und nicht darum, andere zu überholen. Wir nehmen uns Zeit für die Frage: Woran würdest du selbst merken, dass etwas in eine gute Richtung geht?"
+    },
+    {
+      "startSeconds": 28.6,
+      "endSeconds": 46.05,
+      "text": "Setz dich an einen ruhigen Ort. Bitte höre nicht beim Fahren oder bei Aufgaben zu, die deine volle Aufmerksamkeit brauchen. Lass die Augen offen oder senke den Blick. Wenn dir eine Frage nicht guttut, überspring sie oder beende die Übung."
+    },
+    {
+      "startSeconds": 59.18,
+      "endSeconds": 80.79,
+      "text": "Spüre den Boden unter deinen Füßen und die Sitzfläche unter dir. Lass deinen Atem von selbst kommen und gehen. Für die nächsten Minuten musst du nichts beweisen. Auch wenn dein Tag bisher schwierig war, darfst du von hier aus beginnen."
+    },
+    {
+      "startSeconds": 97.2,
+      "endSeconds": 115.81,
+      "text": "Wenn du das Wort Erfolg hörst, welches Bild taucht zuerst auf? Vielleicht Geld, Anerkennung oder ein großes Ergebnis. Vielleicht ein ruhiger Nachmittag mit deiner Familie. Nimm dieses erste Bild wahr, ohne entscheiden zu müssen, ob es richtig ist."
+    },
+    {
+      "startSeconds": 135.5,
+      "endSeconds": 150.99,
+      "text": "Frage dich nun: Ist das wirklich mein Maßstab, oder habe ich ihn übernommen? Es kann beides darin stecken. Du musst fremde Erwartungen nicht bekämpfen. Für einen Moment darf nur deutlicher werden, was dir selbst wichtig ist."
+    },
+    {
+      "startSeconds": 170.68,
+      "endSeconds": 189.54,
+      "text": "Denk an einen gewöhnlichen Tag, der sich für dich stimmig anfühlen würde. Was wäre darin anders? Vielleicht würdest du eine Aufgabe abschließen, eine Pause einhalten oder einem Menschen aufmerksam zuhören. Wähle etwas, das du tatsächlich beeinflussen kannst."
+    },
+    {
+      "startSeconds": 209.23,
+      "endSeconds": 225.68,
+      "text": "Erfolg soll hier bedeuten: einen sinnvollen Fortschritt erkennen, der zu deinen Werten und deinen Möglichkeiten passt. Er darf klein sein. Er muss nicht sichtbar für andere sein. Und er darf Raum für Gesundheit, Beziehungen und Erholung lassen."
+    },
+    {
+      "startSeconds": 243.73,
+      "endSeconds": 262.34,
+      "text": "Wähle für die nächsten Tage ein überschaubares Vorhaben. Nicht das ganze Projekt, sondern einen Teil davon. Nicht immer geduldig sein, sondern in einem Gespräch erst zuhören. Was wäre ein Ergebnis, das du ohne große Erklärung erkennen könntest?"
+    },
+    {
+      "startSeconds": 282.03,
+      "endSeconds": 302.28,
+      "text": "Stell dir kurz vor, dieser kleine Schritt wäre getan. Was wäre dadurch leichter oder hilfreicher? Bleib bei einer gewöhnlichen Szene. Eine geordnete Unterlage. Eine geklärte Frage. Ein freier Abend. Dieses Bild gibt eine Richtung, es ist keine Vorhersage."
+    },
+    {
+      "startSeconds": 321.98,
+      "endSeconds": 341.87,
+      "text": "Schau nun ebenso ehrlich auf das, was im Weg stehen könnte. Vielleicht fehlende Zeit, Unsicherheit oder der Griff zum Handy. Wähle ein Hindernis. Manche Bedingungen kannst du nicht selbst ändern. Dann darf dein Vorhaben kleiner werden oder Unterstützung brauchen."
+    },
+    {
+      "startSeconds": 361.56,
+      "endSeconds": 378.73,
+      "text": "Für ein Hindernis, das du beeinflussen kannst, formuliere eine einfache Antwort. Wenn diese Situation eintritt, dann mache ich diesen kleinen Schritt. Zum Beispiel: Wenn ich nach dem Frühstück meinen Becher abstelle, öffne ich für fünf Minuten die Unterlagen."
+    },
+    {
+      "startSeconds": 398.42,
+      "endSeconds": 415.47,
+      "text": "Prüfe deinen Satz. Weißt du, wann du beginnst? Ist die Handlung konkret? Ist sie auch an einem durchschnittlichen Tag machbar? Passe sie so lange an, bis du keinen besonderen Mut und keinen perfekten freien Vormittag dafür voraussetzen musst."
+    },
+    {
+      "startSeconds": 435.17,
+      "endSeconds": 453.62,
+      "text": "Was wäre eine freundliche Alternative, falls es nicht klappt? Vielleicht ein neuer Zeitpunkt oder eine noch kleinere Handlung. Ein verpasster Versuch macht dich nicht erfolglos. Er gibt dir eine Information darüber, was dein Plan noch berücksichtigen muss."
+    },
+    {
+      "startSeconds": 470.03,
+      "endSeconds": 487.88,
+      "text": "Lege auch fest, wann für diesen Schritt genug getan ist. Fünf Minuten. Eine Nachricht. Ein geklärter Punkt. Du darfst aufhören, wenn dein vereinbarter Teil erledigt ist. Fortschritt braucht nicht jedes Mal eine sofortige Steigerung."
+    },
+    {
+      "startSeconds": 504.29,
+      "endSeconds": 520.22,
+      "text": "Wiederhole innerlich deinen eigenen Maßstab und deinen nächsten Schritt. Vielleicht möchtest du beides nach dieser Session notieren. Nicht als Vertrag gegen dich selbst, sondern als Erinnerung daran, was du bewusst ausprobieren möchtest."
+    },
+    {
+      "startSeconds": 533.35,
+      "endSeconds": 555.0,
+      "text": "Spüre wieder den Raum um dich. Beweg deine Hände und richte den Blick auf einen Gegenstand in deiner Nähe. Du musst heute kein anderes Leben vorweisen. Ein passender, machbarer Schritt genügt als Anfang. Nimm deine eigene Definition von Erfolg mit in den Tag."
+    }
+  ]
+}
