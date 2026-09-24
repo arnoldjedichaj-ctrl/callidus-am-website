@@ -1,0 +1,429 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { bundle, formatEuro, modules, products } from '../data/stress-reset.js';
+
+const title = 'Mitgliederbereich 7-Tage-Stress-Reset | callidus A&M';
+const description = 'Deine gekauften Module des 7-Tage-Stress-Reset.';
+
+// Nur Metadaten gehen in die Seite. Video- und PDF-Links liefert erst die
+// Cloud Function nach der Zugangspruefung (zeitlich begrenzte Signed URLs).
+const moduleData = modules.map((module) => {
+  const product = products.find((item) => item.id !== 'bundle' && item.modules.includes(module.id));
+  return {
+    id: module.id,
+    number: module.number,
+    title: module.title,
+    subtitle: module.subtitle,
+    pdfTitle: module.pdfTitle,
+    buyUrl: product?.checkoutUrl || null,
+    price: product ? formatEuro(product.priceCents) : null,
+  };
+});
+const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCents) };
+---
+
+<BaseLayout lang="de" title={title} description={description} robots="noindex, follow">
+  <section class="section member-hero">
+    <div class="container">
+      <p class="eyebrow">7-Tage-Stress-Reset</p>
+      <h1>Mitgliederbereich</h1>
+      <p class="lede">Hier findest du alle Module, die du gekauft hast – Video und Arbeitsblatt. Wir empfehlen, die Module Tag für Tag durchzugehen.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container" data-member-root>
+      <div id="member-loading" class="member-panel">
+        <strong>Zugang wird geprüft …</strong>
+      </div>
+
+      <div id="member-auth" class="member-panel member-auth" hidden>
+        <div>
+          <span class="badge gold">Anmelden</span>
+          <h2>Mit deiner Kauf-E-Mail anmelden</h2>
+          <p>
+            Nutze die E-Mail-Adresse, die du bei Digistore24 angegeben hast. Noch kein Callidus-Konto?
+            Dann lege es hier mit genau dieser Adresse an – deine Module werden automatisch freigeschaltet.
+          </p>
+          <p class="member-muted">Du hast schon ein Konto im Portal oder in der NEXUS-App? Dann einfach damit anmelden.</p>
+        </div>
+        <div>
+          <div class="member-tabs" role="tablist" aria-label="Anmeldung">
+            <button class="member-tab active" type="button" data-tab="login">Anmelden</button>
+            <button class="member-tab" type="button" data-tab="register">Konto erstellen</button>
+          </div>
+          <form id="member-login-form" class="member-form">
+            <label>E-Mail <input id="member-login-email" type="email" autocomplete="email" required /></label>
+            <label>Passwort <input id="member-login-password" type="password" autocomplete="current-password" required /></label>
+            <div class="member-actions">
+              <button class="button primary" type="submit">Anmelden</button>
+              <button class="button" type="button" data-google>Mit Google</button>
+              <button class="member-link" type="button" id="member-reset">Passwort vergessen</button>
+            </div>
+          </form>
+          <form id="member-register-form" class="member-form" hidden>
+            <label>E-Mail (wie beim Kauf) <input id="member-register-email" type="email" autocomplete="email" required /></label>
+            <label>Passwort <input id="member-register-password" type="password" autocomplete="new-password" minlength="6" required /></label>
+            <div class="member-actions">
+              <button class="button primary" type="submit">Konto erstellen</button>
+              <button class="button" type="button" data-google>Mit Google</button>
+            </div>
+          </form>
+          <p class="member-status" id="member-auth-status" hidden></p>
+        </div>
+      </div>
+
+      <div id="member-verify" class="member-panel" hidden>
+        <span class="badge gold">Fast geschafft</span>
+        <h2>Bitte bestätige deine E-Mail-Adresse</h2>
+        <p>
+          Wir haben eine Bestätigungsmail an <strong data-member-email></strong> geschickt. Das schützt deinen Kurs:
+          Nur wer die Kauf-Adresse bestätigt, bekommt Zugang. Danach hier auf „Ich habe bestätigt“ tippen.
+        </p>
+        <div class="member-actions">
+          <button class="button primary" type="button" id="member-verified">Ich habe bestätigt</button>
+          <button class="button" type="button" id="member-resend">Mail erneut senden</button>
+          <button class="member-link" type="button" data-signout>Abmelden</button>
+        </div>
+        <p class="member-status" id="member-verify-status" hidden></p>
+      </div>
+
+      <div id="member-empty" class="member-panel" hidden>
+        <span class="badge gold">Noch nichts freigeschaltet</span>
+        <h2>Unter <span data-member-email></span> ist noch kein Kauf hinterlegt.</h2>
+        <p>
+          Direkt nach dem Kauf kann es ein bis zwei Minuten dauern, bis Digistore24 uns den Kauf meldet – wir prüfen
+          automatisch noch einmal. Hast du mit einer anderen E-Mail-Adresse gekauft? Dann ordne den Kauf unten über
+          die Bestellnummer aus deiner Kaufbestätigung zu.
+        </p>
+        <div class="member-actions">
+          <button class="button" type="button" id="member-retry">Erneut prüfen</button>
+          <a class="button" href="/stress-reset-kurs/#angebot">Zum Kursangebot</a>
+          <button class="member-link" type="button" data-signout>Mit anderem Konto anmelden</button>
+        </div>
+      </div>
+
+      <div id="member-content" hidden>
+        <div class="member-bar">
+          <span>Angemeldet als <strong data-member-email></strong></span>
+          <button class="member-link" type="button" data-signout>Abmelden</button>
+        </div>
+        <p class="member-status" id="member-media-status" hidden></p>
+        <div class="member-grid" id="member-grid"></div>
+        <aside class="member-upgrade" id="member-upgrade" hidden>
+          <div>
+            <span class="badge gold">Komplettkurs</span>
+            <p>Alle sieben Module plus Bonus „Der Zukunftsanker“ für {bundleOffer.price}.</p>
+          </div>
+          <a class="button primary" href={bundleOffer.url} target="_blank" rel="noopener">Komplettkurs kaufen</a>
+        </aside>
+      </div>
+
+      <details class="member-claim" id="member-claim" hidden>
+        <summary>Kauf mit einer anderen E-Mail-Adresse zuordnen</summary>
+        <form id="member-claim-form" class="member-form">
+          <label>
+            Bestellnummer aus der Digistore24-Kaufbestätigung
+            <input id="member-claim-order" type="text" autocomplete="off" placeholder="z. B. ABCD1234" required />
+          </label>
+          <div class="member-actions">
+            <button class="button primary" type="submit">Kauf zuordnen</button>
+          </div>
+          <p class="member-status" id="member-claim-status" hidden></p>
+        </form>
+      </details>
+
+      <p class="member-help">
+        Probleme mit dem Zugang? Schreib uns an <a href="mailto:info@callidus-am.de?subject=Zugang%20Stress-Reset">info@callidus-am.de</a>
+        und nenne deine Bestellnummer. Die Abrechnung deines Kaufs erfolgte über die Digistore24 GmbH.
+      </p>
+      <script id="member-module-data" type="application/json" set:html={JSON.stringify(moduleData)}></script>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const mountMemberArea = async () => {
+    const root = document.querySelector('[data-member-root]');
+    if (!root || root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+
+    const authApi = await import('firebase/auth');
+    const { auth, getStressResetAccess, claimStressResetOrder } = await import('../lib/firebase-client.js');
+
+    const modules = JSON.parse(document.getElementById('member-module-data')?.textContent || '[]');
+    const $ = (id) => document.getElementById(id);
+    const panels = ['member-loading', 'member-auth', 'member-verify', 'member-empty', 'member-content'];
+    const show = (id) => panels.forEach((panel) => { $(panel).hidden = panel !== id; });
+    const setStatus = (id, message, kind = '') => {
+      const el = $(id);
+      if (!el) return;
+      el.textContent = message || '';
+      el.hidden = !message;
+      el.dataset.state = kind;
+    };
+    const authMessage = (code) => ({
+      'auth/invalid-credential': 'E-Mail oder Passwort stimmen nicht.',
+      'auth/wrong-password': 'E-Mail oder Passwort stimmen nicht.',
+      'auth/user-not-found': 'Zu dieser E-Mail gibt es noch kein Konto. Lege es unter „Konto erstellen“ an.',
+      'auth/email-already-in-use': 'Für diese E-Mail gibt es schon ein Konto. Bitte anmelden.',
+      'auth/weak-password': 'Das Passwort braucht mindestens 6 Zeichen.',
+      'auth/invalid-email': 'Bitte eine gültige E-Mail-Adresse eingeben.',
+      'auth/popup-closed-by-user': 'Das Google-Fenster wurde geschlossen.',
+      'auth/too-many-requests': 'Zu viele Versuche. Bitte kurz warten.',
+    }[code] || 'Das hat nicht geklappt. Bitte erneut versuchen.');
+    const fillEmail = (user) => document.querySelectorAll('[data-member-email]').forEach((el) => { el.textContent = user?.email || ''; });
+    const needsVerification = (user) => !user.emailVerified && user.providerData.some((p) => p.providerId === 'password');
+
+    const sendVerification = async (user) => {
+      try {
+        await authApi.sendEmailVerification(user, { url: `${location.origin}/kurs-mitgliederbereich/` });
+      } catch (error) {
+        if (error?.code === 'auth/unauthorized-continue-uri') await authApi.sendEmailVerification(user);
+        else throw error;
+      }
+    };
+
+    const moduleCard = (module, item) => {
+      const card = document.createElement('article');
+      card.className = `member-module${item ? '' : ' locked'}`;
+      card.id = module.number ? `modul-${module.number}` : 'bonus';
+      const label = module.number ? `Modul ${module.number}` : 'Bonus';
+
+      const media = document.createElement('div');
+      media.className = 'member-media';
+      if (item?.videoUrl) {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.preload = 'none';
+        video.playsInline = true;
+        video.src = item.videoUrl;
+        video.setAttribute('controlslist', 'nodownload');
+        // Signed URLs laufen nach einigen Stunden ab: dann einmal neu laden.
+        video.addEventListener('error', () => { if (!root.dataset.refreshed) { root.dataset.refreshed = 'true'; loadAccess(); } }, { once: true });
+        media.append(video);
+      } else {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'member-placeholder';
+        placeholder.textContent = item ? 'Video wird gerade bereitgestellt.' : 'Gesperrt';
+        media.append(placeholder);
+      }
+
+      const body = document.createElement('div');
+      body.className = 'member-body';
+      body.innerHTML = '<span class="badge mint"></span><h2></h2><p></p><div class="member-actions"></div>';
+      body.querySelector('.badge').textContent = label;
+      body.querySelector('h2').textContent = module.title;
+      body.querySelector('p').textContent = module.subtitle;
+      const actions = body.querySelector('.member-actions');
+      if (item?.pdfUrl) {
+        const pdf = document.createElement('a');
+        pdf.className = 'button';
+        pdf.href = item.pdfUrl;
+        pdf.target = '_blank';
+        pdf.rel = 'noopener';
+        pdf.textContent = `PDF „${module.pdfTitle}“`;
+        actions.append(pdf);
+      } else if (!item && module.buyUrl) {
+        const buy = document.createElement('a');
+        buy.className = 'button';
+        buy.href = module.buyUrl;
+        buy.target = '_blank';
+        buy.rel = 'noopener';
+        buy.textContent = `Freischalten – ${module.price}`;
+        actions.append(buy);
+      } else if (!item) {
+        const note = document.createElement('small');
+        note.textContent = 'Im Komplettkurs enthalten.';
+        actions.append(note);
+      }
+      card.append(media, body);
+      return card;
+    };
+
+    let retries = 0;
+    let retryTimer = null;
+    const loadAccess = async () => {
+      clearTimeout(retryTimer);
+      const user = auth.currentUser;
+      if (!user) { show('member-auth'); return; }
+      fillEmail(user);
+      $('member-claim').hidden = false;
+      if (needsVerification(user)) {
+        show('member-verify');
+        // Bestehende Konten (Portal, NEXUS) haben oft noch keine Bestaetigungsmail
+        // bekommen: einmal pro Sitzung automatisch senden.
+        let alreadySent = false;
+        try { alreadySent = sessionStorage.getItem(`srk-verify-${user.uid}`) === '1'; } catch {}
+        if (!alreadySent) {
+          try {
+            await sendVerification(user);
+            try { sessionStorage.setItem(`srk-verify-${user.uid}`, '1'); } catch {}
+          } catch (error) {
+            setStatus('member-verify-status', authMessage(error.code), 'error');
+          }
+        }
+        return;
+      }
+      try {
+        const { data } = await getStressResetAccess()({});
+        const owned = new Set(data.owned || []);
+        if (!owned.size) {
+          show('member-empty');
+          // Die IPN von Digistore24 kommt manchmal erst nach der Weiterleitung an.
+          if (retries < 6) { retries += 1; retryTimer = setTimeout(loadAccess, 10000); }
+          return;
+        }
+        const content = new Map((data.content || []).map((item) => [item.id, item]));
+        const grid = $('member-grid');
+        grid.replaceChildren(...modules.map((module) => moduleCard(module, owned.has(module.id) ? (content.get(module.id) || {}) : null)));
+        $('member-upgrade').hidden = owned.has('bonus');
+        setStatus('member-media-status', data.mediaError ? 'Einige Inhalte konnten gerade nicht geladen werden. Bitte die Seite in ein paar Minuten neu laden.' : '', 'error');
+        show('member-content');
+        const target = new URLSearchParams(location.search).get('modul');
+        if (target) document.getElementById(`modul-${target}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (error) {
+        console.warn('Stress-Reset access failed', error);
+        show('member-empty');
+      }
+    };
+
+    document.querySelectorAll('.member-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.member-tab').forEach((item) => item.classList.toggle('active', item === tab));
+        $('member-login-form').hidden = tab.dataset.tab !== 'login';
+        $('member-register-form').hidden = tab.dataset.tab !== 'register';
+        setStatus('member-auth-status', '');
+      });
+    });
+
+    $('member-login-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      setStatus('member-auth-status', '');
+      try {
+        await authApi.signInWithEmailAndPassword(auth, $('member-login-email').value.trim(), $('member-login-password').value);
+      } catch (error) {
+        setStatus('member-auth-status', authMessage(error.code), 'error');
+      }
+    });
+
+    $('member-register-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      setStatus('member-auth-status', '');
+      try {
+        await authApi.createUserWithEmailAndPassword(auth, $('member-register-email').value.trim(), $('member-register-password').value);
+      } catch (error) {
+        setStatus('member-auth-status', authMessage(error.code), 'error');
+      }
+    });
+
+    document.querySelectorAll('[data-google]').forEach((button) => button.addEventListener('click', async () => {
+      setStatus('member-auth-status', '');
+      try {
+        await authApi.signInWithPopup(auth, new authApi.GoogleAuthProvider());
+      } catch (error) {
+        setStatus('member-auth-status', authMessage(error.code), 'error');
+      }
+    }));
+
+    $('member-reset').addEventListener('click', async () => {
+      const email = $('member-login-email').value.trim();
+      if (!email) { setStatus('member-auth-status', 'Bitte zuerst deine E-Mail-Adresse eintragen.', 'error'); return; }
+      try {
+        await authApi.sendPasswordResetEmail(auth, email);
+        setStatus('member-auth-status', 'Wir haben dir eine E-Mail zum Zurücksetzen geschickt.', 'ok');
+      } catch (error) {
+        setStatus('member-auth-status', authMessage(error.code), 'error');
+      }
+    });
+
+    $('member-verified').addEventListener('click', async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+      await user.reload();
+      if (!user.emailVerified) {
+        setStatus('member-verify-status', 'Die Bestätigung ist noch nicht angekommen. Bitte den Link in der Mail öffnen – auch im Spam-Ordner nachsehen.', 'error');
+        return;
+      }
+      await user.getIdToken(true);
+      setStatus('member-verify-status', '');
+      loadAccess();
+    });
+
+    $('member-resend').addEventListener('click', async () => {
+      try {
+        await sendVerification(auth.currentUser);
+        setStatus('member-verify-status', 'Neue Bestätigungsmail ist unterwegs.', 'ok');
+      } catch (error) {
+        setStatus('member-verify-status', authMessage(error.code), 'error');
+      }
+    });
+
+    $('member-retry').addEventListener('click', () => { retries = 0; loadAccess(); });
+    document.querySelectorAll('[data-signout]').forEach((button) => button.addEventListener('click', () => authApi.signOut(auth)));
+
+    $('member-claim-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      setStatus('member-claim-status', 'Wird geprüft …', 'pending');
+      try {
+        await claimStressResetOrder()({ orderId: $('member-claim-order').value.trim() });
+        setStatus('member-claim-status', 'Kauf zugeordnet.', 'ok');
+        loadAccess();
+      } catch (error) {
+        setStatus('member-claim-status', error?.message || 'Zuordnung fehlgeschlagen.', 'error');
+      }
+    });
+
+    authApi.onAuthStateChanged(auth, (user) => {
+      retries = 0;
+      $('member-claim').hidden = !user;
+      if (!user) { show('member-auth'); return; }
+      show('member-loading');
+      loadAccess();
+    });
+  };
+  mountMemberArea();
+  document.addEventListener('astro:page-load', mountMemberArea);
+</script>
+
+<style>
+  [data-member-root] [hidden] { display: none !important; }
+  .member-hero { padding-top: clamp(3rem, 8vw, 6rem); }
+  .member-hero h1 { font-size: clamp(2.3rem, 5vw, 4rem); margin: .15rem 0 .8rem; }
+  .member-panel { padding: clamp(1.2rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); box-shadow: var(--shadow); }
+  .member-panel h2 { margin: .2rem 0 .7rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+  .member-panel p { color: var(--soft); max-width: 70ch; }
+  .member-auth { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
+  .member-muted, .member-help { color: var(--muted); font-size: .92rem; }
+  .member-help { margin-top: 2rem; }
+  .member-tabs { display: flex; gap: .4rem; margin-bottom: 1rem; }
+  .member-tab { flex: 1; padding: .6rem; border: 1px solid var(--line); border-radius: .6rem; background: transparent; color: var(--text); font: inherit; font-weight: 700; cursor: pointer; }
+  .member-tab.active { background: var(--button-bg); color: var(--button-text); border-color: var(--button-bg); }
+  .member-form { display: grid; gap: .8rem; }
+  .member-form label { display: grid; gap: .3rem; font-size: .88rem; font-weight: 700; }
+  .member-form input { padding: .7rem .8rem; border-radius: .6rem; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; }
+  .member-actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .member-link { background: none; border: 0; padding: 0; color: var(--mint); text-decoration: underline; font: inherit; cursor: pointer; }
+  .member-status { font-size: .88rem; padding: .6rem .75rem; border-radius: .6rem; margin: .8rem 0 0; background: rgba(0,0,0,.05); }
+  .member-status[data-state="ok"] { background: rgba(var(--mint-rgb), .14); color: var(--mint); }
+  .member-status[data-state="error"] { background: rgba(var(--coral-rgb), .14); color: var(--coral); }
+  .member-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem; color: var(--muted); margin-bottom: 1rem; }
+  .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+  .member-grid :global(.member-module) { overflow: hidden; border: 1px solid rgba(var(--mint-rgb), .24); border-radius: 1rem; background: linear-gradient(145deg, rgba(var(--mint-rgb), .09), rgba(var(--gold-rgb), .055)); box-shadow: 0 20px 56px rgba(0,0,0,.12); scroll-margin-top: 6rem; }
+  .member-grid :global(.member-module.locked) { opacity: .72; box-shadow: none; }
+  .member-grid :global(.member-media video), .member-grid :global(.member-placeholder) { display: block; width: 100%; aspect-ratio: 16 / 9; background: #111; }
+  .member-grid :global(.member-placeholder) { display: grid; place-items: center; color: rgba(255,255,255,.75); font-weight: 700; background: linear-gradient(135deg, rgba(var(--gold-rgb), .5), rgba(var(--mint-rgb), .45)); }
+  .member-grid :global(.member-body) { display: grid; gap: .6rem; padding: 1rem; }
+  .member-grid :global(.member-body .badge) { margin: 0; }
+  .member-grid :global(.member-body h2) { margin: 0; font-size: 1.2rem; }
+  .member-grid :global(.member-body p) { margin: 0; color: var(--muted); }
+  .member-grid :global(.member-body small) { color: var(--muted); }
+  .member-upgrade { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.2rem; border: 1px solid rgba(var(--gold-rgb), .45); border-radius: 1rem; background: linear-gradient(145deg, rgba(var(--gold-rgb), .15), var(--panel)); }
+  .member-upgrade p { margin: .2rem 0 0; }
+  .member-claim { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 1px dashed var(--line); border-radius: 1rem; }
+  .member-claim summary { cursor: pointer; font-weight: 700; }
+  .member-claim form { margin-top: 1rem; max-width: 28rem; }
+  @media (max-width: 820px) {
+    .member-auth { grid-template-columns: 1fr; }
+  }
+</style>

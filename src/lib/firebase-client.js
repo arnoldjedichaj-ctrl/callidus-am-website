@@ -23,6 +23,8 @@ export const getValusBalance = () => httpsCallable(fns, 'getValusBalance');
 export const redeemValus = () => httpsCallable(fns, 'redeemValus');
 export const createKinderbuchRedemption = () => httpsCallable(fns, 'createKinderbuchRedemption');
 export const createKursRedemption = () => httpsCallable(fns, 'createKursRedemption');
+export const getStressResetAccess = () => httpsCallable(fns, 'getStressResetAccess');
+export const claimStressResetOrder = () => httpsCallable(fns, 'claimStressResetOrder');
 export const createShopifyRedemption = () => httpsCallable(fns, 'createShopifyRedemption');
 export const linkWalletAddress = () => httpsCallable(fns, 'linkWalletAddress');
 export const convertNexusXpToValus = () => httpsCallable(fns, 'convertNexusXpToValus');

@@ -1,0 +1,17 @@
+---
+// Alte Digistore24-Dankeseite fuer Modul 4. Die Inhalte liegen jetzt geschuetzt
+// im Mitgliederbereich, deshalb nur noch eine Weiterleitung.
+import BaseLayout from '../layouts/BaseLayout.astro';
+const target = '/kurs-mitgliederbereich/?modul=4';
+---
+
+<BaseLayout lang="de" title="Modul 4 | 7-Tage-Stress-Reset" description="Weiterleitung zum Mitgliederbereich." robots="noindex, follow">
+  <section class="section">
+    <div class="container">
+      <h1>Modul 4</h1>
+      <p>Deine Module findest du jetzt im Mitgliederbereich.</p>
+      <a class="button primary" href={target}>Zum Mitgliederbereich</a>
+    </div>
+  </section>
+  <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+</BaseLayout>

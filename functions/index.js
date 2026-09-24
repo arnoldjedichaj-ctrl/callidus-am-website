@@ -7,6 +7,7 @@ const admin = require("firebase-admin");
 const { FieldValue } = require("firebase-admin/firestore");
 const crypto = require("crypto");
 const callidusKnowledge = require("./data/callidus-knowledge.json");
+const stressResetCourse = require("./data/stress-reset-course.json");
 
 admin.initializeApp();
 
@@ -1036,29 +1037,19 @@ const SHOPIFY_PRODUCTS = {
   },
 };
 
-const STRESS_RESET_PRODUCTS = {
-  modul4: {
-    id: "modul4",
-    title: "Stress-Reset – Modul 4",
-    productId: "digistore_643822",
-    checkoutUrl: "https://www.digistore24.com/product/643822",
-    priceCents: 2900,
-  },
-  modul5: {
-    id: "modul5",
-    title: "Stress-Reset – Modul 5",
-    productId: "digistore_645365",
-    checkoutUrl: "https://www.digistore24.com/product/645365",
-    priceCents: 2900,
-  },
-  bundle: {
-    id: "bundle",
-    title: "Stress-Reset – Kompletter 7-Tage-Kurs",
-    productId: "digistore_645388",
-    checkoutUrl: "https://www.digistore24.com/product/645388",
-    priceCents: 11600,
-  },
-};
+// Produkte, Preise und Module kommen aus einer gemeinsamen Datei, die auch die
+// Website liest. Nur Produkte mit Digistore-ID sind kaufbar/einloesbar.
+const STRESS_RESET_PRODUCTS = Object.fromEntries(
+  stressResetCourse.products
+    .filter((product) => product.digistoreProductId)
+    .map((product) => [product.id, {
+      id: product.id,
+      title: product.title,
+      productId: `digistore_${product.digistoreProductId}`,
+      checkoutUrl: `https://www.digistore24.com/product/${product.digistoreProductId}`,
+      priceCents: product.priceCents,
+    }]),
+);
 
 function centsFromValus(value) {
   return Math.max(0, Math.floor(numberValue(value, 0) * CENTS_PER_EURO));
@@ -2127,6 +2118,11 @@ exports.digistoreIpn = onRequest(
         return;
       }
 
+      const courseOutcome = await recordCourseOrder(params, event);
+      if (courseOutcome.handled) {
+        logger.info("digistoreIpn course order", { orderId, event, status: courseOutcome.status });
+      }
+
       const code = ipnRedemptionCode(params);
       if (code) {
         if (IPN_PAID_EVENTS.has(event)) {
@@ -2143,6 +2139,219 @@ exports.digistoreIpn = onRequest(
       logger.error("digistoreIpn failed", { event, orderId, error: String(error?.message || error) });
       res.status(500).send("internal error");
     }
+  },
+);
+
+// ── Stress-Reset-Kurs: Zugang ─────────────────────────────────────────────
+// Jeder bezahlte Kurs-Kauf landet per Digistore24-IPN als
+// course_orders/{orderId}_{productId}. Zugang hat, wer mit der Kauf-E-Mail
+// (verifiziert) angemeldet ist oder die Bestellung per Bestellnummer seinem
+// Konto zugeordnet hat. Videos und PDFs liegen in einem privaten Bucket und
+// werden nur als zeitlich begrenzte Signed URLs ausgegeben.
+const COURSE_ORDERS = "course_orders";
+const STRESS_RESET_BY_DIGISTORE_ID = new Map(
+  stressResetCourse.products
+    .filter((product) => product.digistoreProductId)
+    .map((product) => [String(product.digistoreProductId), product]),
+);
+const COURSE_CLAIM_LIMIT_PER_HOUR = 10;
+
+function normalizeEmail(value) {
+  return cleanString(value, 180).toLowerCase();
+}
+
+function courseOrderDocId(orderId, productId) {
+  return `${orderId}_${productId}`.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 120);
+}
+
+// Schreibt den Kurs-Kauf bzw. dessen Rueckabwicklung. Eine Rueckbuchung bleibt
+// bestehen, auch wenn die Zahlungs-IPN verspaetet danach eintrifft.
+async function recordCourseOrder(params, event) {
+  const productId = digistoreProductIdNumber(params.product_id);
+  const product = STRESS_RESET_BY_DIGISTORE_ID.get(productId);
+  const orderId = cleanString(params.order_id, 60).toUpperCase();
+  if (!product || !orderId) return { handled: false };
+  const paid = IPN_PAID_EVENTS.has(event);
+  const reversal = IPN_REVERSAL_EVENTS.has(event);
+  if (!paid && !reversal) return { handled: false };
+
+  const ref = db.collection(COURSE_ORDERS).doc(courseOrderDocId(orderId, productId));
+  return db.runTransaction(async (transaction) => {
+    const snap = await transaction.get(ref);
+    const existing = snap.exists ? snap.data() : {};
+    const base = {
+      course: stressResetCourse.courseId,
+      order_id: orderId,
+      product_id: productId,
+      product_key: product.id,
+      modules: product.modules,
+      email: normalizeEmail(params.email) || existing.email || "",
+      source: existing.source || "ipn",
+      updated_at: FieldValue.serverTimestamp(),
+    };
+    if (reversal) {
+      transaction.set(ref, {
+        ...base,
+        status: "refunded",
+        refund_event: event,
+        refunded_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
+      return { handled: true, status: "refunded" };
+    }
+    if (existing.status === "refunded") return { handled: true, status: "refunded" };
+    transaction.set(ref, {
+      ...base,
+      status: "paid",
+      paid_at: existing.paid_at || FieldValue.serverTimestamp(),
+    }, { merge: true });
+    return { handled: true, status: "paid" };
+  });
+}
+
+// Kaeufe, die vor dieser Funktion per IPN eingegangen sind, stehen nur in
+// digistore_ipn_events. Beim ersten Zugriff werden sie nachgetragen.
+async function backfillCourseOrdersFromIpn(field, values) {
+  const cleanValues = [...new Set(values.filter(Boolean))].slice(0, 10);
+  if (!cleanValues.length) return 0;
+  const snap = await db.collection("digistore_ipn_events").where(field, "in", cleanValues).limit(200).get();
+  const events = snap.docs
+    .map((doc) => doc.data() || {})
+    .filter((item) => STRESS_RESET_BY_DIGISTORE_ID.has(digistoreProductIdNumber(item.product_id)))
+    .sort((a, b) => (a.received_at?.toMillis?.() || 0) - (b.received_at?.toMillis?.() || 0));
+  let written = 0;
+  for (const item of events) {
+    const outcome = await recordCourseOrder({ ...(item.payload || {}), ...item }, cleanString(item.event, 40).toLowerCase());
+    if (outcome.handled) written += 1;
+  }
+  return written;
+}
+
+async function courseOrdersFor(uid, email) {
+  const queries = [db.collection(COURSE_ORDERS).where("claimed_uid", "==", uid).get()];
+  if (email) queries.push(db.collection(COURSE_ORDERS).where("email", "==", email).get());
+  const results = await Promise.all(queries);
+  const byId = new Map();
+  for (const result of results) {
+    for (const doc of result.docs) byId.set(doc.id, doc.data() || {});
+  }
+  return [...byId.values()].filter((order) => order.course === stressResetCourse.courseId);
+}
+
+async function signedCourseUrl(path) {
+  if (!path) return null;
+  const file = admin.storage().bucket(stressResetCourse.bucket).file(path);
+  const [exists] = await file.exists();
+  if (!exists) return null;
+  const [url] = await file.getSignedUrl({
+    version: "v4",
+    action: "read",
+    expires: Date.now() + stressResetCourse.signedUrlHours * 60 * 60 * 1000,
+  });
+  return url;
+}
+
+async function stressResetAccessFor(request) {
+  const uid = requireAuth(request);
+  const token = request.auth.token || {};
+  const emailVerified = token.email_verified === true;
+  // Ohne bestaetigte E-Mail koennte sich jeder mit fremder Kauf-Adresse
+  // registrieren. Dann zaehlen nur per Bestellnummer zugeordnete Kaeufe.
+  const email = emailVerified ? normalizeEmail(token.email) : "";
+
+  let orders = await courseOrdersFor(uid, email);
+  if (email && !orders.length) {
+    const added = await backfillCourseOrdersFromIpn("email", [email, cleanString(token.email, 180)]);
+    if (added) orders = await courseOrdersFor(uid, email);
+  }
+
+  const owned = new Set();
+  for (const order of orders) {
+    if (order.status !== "paid") continue;
+    for (const moduleId of order.modules || []) owned.add(moduleId);
+  }
+
+  let mediaError = false;
+  const content = await Promise.all(
+    stressResetCourse.modules
+      .filter((module) => owned.has(module.id))
+      .map(async (module) => {
+        try {
+          const [videoUrl, pdfUrl] = await Promise.all([signedCourseUrl(module.video), signedCourseUrl(module.pdf)]);
+          return { id: module.id, videoUrl, pdfUrl };
+        } catch (error) {
+          // Haeufigste Ursache: dem Functions-Dienstkonto fehlt die Rolle
+          // "Service Account Token Creator" (iam.serviceAccounts.signBlob).
+          mediaError = true;
+          logger.error("stress reset signed url failed", { moduleId: module.id, error: String(error?.message || error) });
+          return { id: module.id, videoUrl: null, pdfUrl: null };
+        }
+      }),
+  );
+
+  return {
+    email: cleanString(token.email, 180),
+    emailVerified,
+    owned: [...owned],
+    content,
+    mediaError,
+    expiresInHours: stressResetCourse.signedUrlHours,
+  };
+}
+
+exports.getStressResetAccess = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => stressResetAccessFor(request),
+);
+
+exports.claimStressResetOrder = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 60,
+    memory: "256MiB",
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const uid = requireAuth(request);
+    const orderId = cleanString(request.data?.orderId, 60).toUpperCase();
+    if (!/^[A-Z0-9-]{4,40}$/.test(orderId)) {
+      throw new HttpsError("invalid-argument", "Bitte die Bestellnummer aus deiner Digistore24-Kaufbestaetigung eingeben.");
+    }
+
+    // Gegen Durchprobieren von Bestellnummern: begrenzte Versuche pro Stunde.
+    const hour = new Date().toISOString().slice(0, 13);
+    const rateRef = db.collection("users").doc(uid).collection("rate_limits").doc(`course_claim_${hour}`);
+    const rateSnap = await rateRef.get();
+    if (Number(rateSnap.data()?.count || 0) >= COURSE_CLAIM_LIMIT_PER_HOUR) {
+      throw new HttpsError("resource-exhausted", "Zu viele Versuche. Bitte in einer Stunde erneut probieren.");
+    }
+    await rateRef.set({ count: FieldValue.increment(1), updated_at: FieldValue.serverTimestamp() }, { merge: true });
+
+    let snap = await db.collection(COURSE_ORDERS).where("order_id", "==", orderId).get();
+    if (snap.empty) {
+      await backfillCourseOrdersFromIpn("order_id", [orderId, cleanString(request.data?.orderId, 60)]);
+      snap = await db.collection(COURSE_ORDERS).where("order_id", "==", orderId).get();
+    }
+    if (snap.empty) {
+      throw new HttpsError("not-found", "Zu dieser Bestellnummer ist kein Stress-Reset-Kauf bekannt. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
+    }
+    const orders = snap.docs.map((doc) => ({ ref: doc.ref, ...doc.data() }));
+    if (orders.some((order) => order.claimed_uid && order.claimed_uid !== uid)) {
+      throw new HttpsError("already-exists", "Diese Bestellung ist bereits einem anderen Konto zugeordnet. Bitte schreib uns, falls das nicht stimmt.");
+    }
+    if (!orders.some((order) => order.status === "paid")) {
+      throw new HttpsError("failed-precondition", "Diese Bestellung wurde erstattet oder ist nicht bezahlt.");
+    }
+    const batch = db.batch();
+    for (const order of orders) {
+      batch.set(order.ref, { claimed_uid: uid, claimed_at: FieldValue.serverTimestamp() }, { merge: true });
+    }
+    await batch.commit();
+    return stressResetAccessFor(request);
   },
 );
 

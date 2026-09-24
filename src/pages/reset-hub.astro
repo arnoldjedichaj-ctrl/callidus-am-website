@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { bundle, dayModules, formatEuro, freeResources, sixtySecondReset } from '../data/stress-reset.js';
+
+const title = 'Dein Gratis-Starterpaket | callidus A&M';
+const description = 'Kompendium, Journal und eine 60-Sekunden-Übung aus dem 7-Tage-Stress-Reset.';
+---
+
+<BaseLayout lang="de" title={title} description={description} robots="noindex, follow">
+  <section class="section hub-hero">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Gratis-Starterpaket</p>
+      <h1 data-reveal="2">Schön, dass du da bist. Hier ist alles, was wir dir versprochen haben.</h1>
+      <p class="lede" data-reveal="3">
+        Wissen zum Nachlesen, ein Werkzeug für jeden Tag und eine Übung, die du sofort ausprobieren kannst.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <div class="hub-resources">
+        {freeResources.map((resource, index) => (
+          <a class="hub-resource" href={resource.href} download data-reveal={String((index % 3) + 1)}>
+            <span>{resource.kind} · PDF</span>
+            <strong>{resource.title}</strong>
+            <p>{resource.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container hub-exercise" data-reveal>
+      <div>
+        <p class="eyebrow">Kostprobe aus dem Kurs</p>
+        <h2>Der 60-Sekunden-Reset</h2>
+        <p>
+          Die verlängerte Ausatmung wirkt direkt auf den Teil des Nervensystems, der für Beruhigung zuständig ist.
+          Probier sie im Auto vor der Haustür, vor einem unangenehmen Telefonat oder abends, wenn der Kopf nicht
+          aufhören will.
+        </p>
+      </div>
+      <ol>
+        {sixtySecondReset.map((step) => <li>{step}</li>)}
+      </ol>
+      <p class="hub-tip">Der Trick liegt im Verhältnis: Die Ausatmung ist länger als die Einatmung.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Der nächste Schritt</p>
+      <h2 data-reveal="2">Aus einer Übung wird ein System: der 7-Tage-Stress-Reset</h2>
+      <p class="hub-muted" data-reveal>
+        In sieben geführten Video-Modulen mit Arbeitsblatt baust du aus einzelnen Übungen eine Routine, die hält –
+        rund zehn Minuten am Tag.
+      </p>
+      <ol class="hub-days">
+        {dayModules.map((module) => (
+          <li><span>Tag {module.number}</span> <strong>{module.title}</strong> – {module.subtitle}</li>
+        ))}
+      </ol>
+      <div class="hub-cta" data-reveal>
+        <a class="button primary" href="/stress-reset-kurs/#angebot">Kompletter Kurs für {formatEuro(bundle.priceCents)}</a>
+        <a class="button" href="/stress-reset-kurs/#angebot">Einzelne Module ansehen</a>
+      </div>
+      <p class="hub-muted">Schon gekauft? <a href="/kurs-mitgliederbereich/">Zum Mitgliederbereich</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub-hero { padding-top: clamp(3rem, 8vw, 6rem); }
+  .hub-hero h1 { font-size: clamp(2rem, 4.6vw, 3.6rem); max-width: 22ch; margin: .2rem 0 .9rem; }
+  .hub-resources { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .9rem; }
+  .hub-resource { display: grid; gap: .35rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); border-radius: 1rem; background: linear-gradient(135deg, rgba(var(--mint-rgb), .10), rgba(var(--blue-rgb), .06)); text-decoration: none; transition: transform 180ms ease, border-color 180ms ease; }
+  .hub-resource:hover { transform: translateY(-3px); border-color: rgba(var(--mint-rgb), .5); }
+  .hub-resource span { color: var(--gold); font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; }
+  .hub-resource strong { color: var(--text); font-size: 1.15rem; }
+  .hub-resource p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.5; }
+  .hub-exercise { display: grid; gap: 1rem; padding: clamp(1.3rem, 3vw, 2.2rem); border: 1px solid rgba(var(--gold-rgb), .45); border-radius: 1.1rem; background: linear-gradient(145deg, rgba(var(--gold-rgb), .15), var(--panel)); box-shadow: var(--shadow); }
+  .hub-exercise h2 { margin: .2rem 0 .6rem; }
+  .hub-exercise p { margin: 0; max-width: 70ch; color: var(--soft); }
+  .hub-exercise ol { margin: 0; padding-left: 1.3rem; display: grid; gap: .45rem; font-weight: 700; }
+  .hub-tip { color: var(--muted) !important; font-style: italic; }
+  .hub-muted { color: var(--muted); max-width: 70ch; }
+  .hub-days { margin: 1.2rem 0; padding-left: 0; list-style: none; display: grid; gap: .5rem; }
+  .hub-days li { padding: .65rem .9rem; border-left: 4px solid rgba(var(--mint-rgb), .58); background: rgba(var(--mint-rgb), .055); border-radius: 0 .7rem .7rem 0; color: var(--muted); }
+  .hub-days span { color: var(--gold); font-weight: 900; text-transform: uppercase; font-size: .78rem; letter-spacing: .08em; margin-right: .4rem; }
+  .hub-days strong { color: var(--text); }
+  .hub-cta { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.5rem 0 1rem; }
+</style>

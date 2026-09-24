@@ -37,3 +37,6 @@ buchprojekt/kinderbuch-band1/callis-kompass-band1-arbeitsfassung.pdf
 
 # Interne Strategie-Dokumente nie committen
 *.docx
+
+# --- Kursinhalte (Videos/PDFs) liegen im privaten Cloud-Storage, nie im Repo ---
+course-media/
