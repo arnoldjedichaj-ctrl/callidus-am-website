@@ -4,7 +4,7 @@
     "path": "/bitte-bestaetigen/",
     "title": "bitte-bestaetigen",
     "hero": "WICHTIGER SCHRITT: NUR NOCH EIN KLICK ZU IHREN GRATIS-RESSOURCEN!",
-    "lead": "Vielen Dank für deine Anmeldung. Dein umfassendes Gratis-Paket (Kompendium, Journal & 3 Video-Module) ist fast freigeschaltet. Bitte prüf jetzt dein Postfach. Aus Datenschutzgründen (DSGVO) brauchen wir deine einmalige Bestätigung.",
+    "lead": "Vielen Dank für deine Anmeldung. Dein Gratis-Paket (Kompendien, Journal & 60-Sekunden-Übung) ist fast freigeschaltet. Bitte prüf jetzt dein Postfach. Aus Datenschutzgründen (DSGVO) brauchen wir deine einmalige Bestätigung.",
     "kind": "funnel",
     "originalUrl": "https://www.callidus-am.de/bitte-bestaetigen/",
     "blocks": [
@@ -19,7 +19,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Sobald du bestätigt hast, leiten wir dich sofort zu deinem Download-Hub weiter, wo alle Videos und PDFs für dich bereitstehen."
+        "text": "Sobald du bestätigt hast, leiten wir dich sofort zu deinem Download-Hub weiter, wo alle Gratis-PDFs und die 60-Sekunden-Übung für dich bereitstehen."
       }
     ],
     "links": []

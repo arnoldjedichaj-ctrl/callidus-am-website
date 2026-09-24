@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StressResetRedemption from '../components/StressResetRedemption.astro';
+import specialPages from '../data/special-pages.json';
+import {
+  bundle,
+  courseImage,
+  dayModules,
+  formatEuro,
+  products,
+  singleModuleOffers,
+  singleModulesTotalCents,
+} from '../data/stress-reset.js';
+
+const title = '7-Tage-Stress-Reset: Videokurs für mehr Ruhe im Alltag | callidus A&M';
+const description = 'Sieben geführte Video-Module, sieben Arbeitsblätter, rund zehn Minuten am Tag. Der 7-Tage-Stress-Reset von callidus A&M – kompletter Kurs oder einzelne Module.';
+
+// Dasselbe Brevo-Formular wie auf der Startseite (Liste #7).
+const brevoSignupUrl = specialPages
+  .find((item) => item.slug === 'stress-reset-kurs')
+  ?.links?.find((link) => link.href?.includes('sibforms.com'))?.href;
+
+const allSinglesAvailable = singleModuleOffers.every((offer) => offer.product);
+const redemptionModules = products.map((product) => ({
+  id: product.id,
+  label: product.id === 'bundle' ? 'Kompletter 7-Tage-Kurs' : `Modul ${product.modules[0].replace('m', '')}`,
+  preisCents: product.priceCents,
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: '7-Tage-Stress-Reset',
+  description,
+  inLanguage: 'de-DE',
+  provider: { '@id': 'https://www.callidus-am.de/#organization', name: 'callidus A&M' },
+  offers: {
+    '@type': 'Offer',
+    price: (bundle.priceCents / 100).toFixed(2),
+    priceCurrency: 'EUR',
+    category: 'Paid',
+    url: 'https://www.callidus-am.de/stress-reset-kurs/',
+  },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: 'PT10M',
+  },
+};
+---
+
+<BaseLayout lang="de" title={title} description={description} ogImage={courseImage} jsonLd={jsonLd}>
+  <script is:inline define:vars={{ affiliateProductId: Number(bundle.digistoreProductId) }}>
+    // Digistore24-Affiliate-Zuordnung, erst nach Zustimmung zu allen Cookies.
+    (() => {
+      const SCRIPT_ID = 'digistore24-promocode-script';
+      const hasConsent = () => {
+        try { return localStorage.getItem('callidus-cookie-consent-v2') === 'all'; } catch { return false; }
+      };
+      const activatePromocode = () => {
+        const applyPromocode = () => {
+          if (typeof window.digistorePromocode !== 'function') return;
+          window.digistorePromocode({ product_id: affiliateProductId, adjust_domain: true });
+        };
+        if (typeof window.digistorePromocode === 'function') { applyPromocode(); return; }
+        const existing = document.getElementById(SCRIPT_ID);
+        if (existing) { existing.addEventListener('load', applyPromocode, { once: true }); return; }
+        const script = document.createElement('script');
+        script.id = SCRIPT_ID;
+        script.src = 'https://www.digistore24-scripts.com/service/digistore.js';
+        script.async = true;
+        script.addEventListener('load', applyPromocode, { once: true });
+        document.head.append(script);
+      };
+      if (hasConsent()) activatePromocode();
+      window.addEventListener('callidus-consent', (event) => {
+        if (event.detail === 'all') activatePromocode();
+      });
+    })();
+  </script>
+
+  <section class="section srk-hero">
+    <div class="container srk-hero-grid">
+      <div data-reveal>
+        <p class="eyebrow">Videokurs · 7 Tage · rund 10 Minuten am Tag</p>
+        <h1>7-Tage-Stress-Reset</h1>
+        <p class="lede">
+          Ein sanfter Weg aus dem Dauerstress: sieben geführte Video-Module mit Arbeitsblatt,
+          gemacht für Menschen, die wenig Zeit haben, aber viel Verantwortung tragen.
+        </p>
+        <div class="srk-hero-actions">
+          <a class="button primary" href="#angebot">Kurs ansehen – {formatEuro(bundle.priceCents)}</a>
+          <a class="button" href="#gratis">Erst gratis reinschnuppern</a>
+        </div>
+        <ul class="srk-facts" aria-label="Der Kurs auf einen Blick">
+          <li><strong>7</strong><span>Video-Module</span></li>
+          <li><strong>7</strong><span>PDF-Arbeitsblätter</span></li>
+          <li><strong>+1</strong><span>Bonus-Modul</span></li>
+        </ul>
+      </div>
+      <figure class="srk-hero-image" data-reveal="2">
+        <img src={courseImage} alt="Entspannte Person mit Tablet als Symbol für den 7-Tage-Stress-Reset" width="807" height="969" loading="eager" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <p class="eyebrow" data-reveal>So funktioniert das Programm</p>
+      <h2 data-reveal="2">Jeder Tag: verstehen, anwenden, integrieren.</h2>
+      <div class="srk-steps">
+        <article class="srk-card" data-reveal>
+          <span class="badge mint">Verstehen</span>
+          <p>Kurze Impulse erklären, was bei Stress in deinem Körper passiert.</p>
+        </article>
+        <article class="srk-card" data-reveal="2">
+          <span class="badge mint">Anwenden</span>
+          <p>Eine geführte Mini-Übung aktiviert dein Ruhe-System – du folgst einfach der Stimme im Video.</p>
+        </article>
+        <article class="srk-card" data-reveal="3">
+          <span class="badge mint">Integrieren</span>
+          <p>Reflexionsfragen im Arbeitsblatt festigen, was du erlebt hast.</p>
+        </article>
+      </div>
+      <p class="srk-muted" data-reveal>Keine App, kein Druck. Nur du und ein paar Minuten bewusste Aufmerksamkeit.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Die sieben Tage</p>
+      <h2 data-reveal="2">Was dich im Kurs erwartet</h2>
+      <ol class="srk-days">
+        {dayModules.map((module, index) => (
+          <li data-reveal={String((index % 3) + 1)}>
+            <span class="srk-day">Tag {module.number}</span>
+            <div>
+              <strong>{module.title}</strong>
+              <p>{module.subtitle} {module.description}</p>
+            </div>
+          </li>
+        ))}
+        <li class="srk-day-bonus" data-reveal>
+          <span class="srk-day">Bonus</span>
+          <div>
+            <strong>Der Zukunftsanker</strong>
+            <p>Verankere die Erfolge emotional, damit Klarheit und Ruhe dich dauerhaft begleiten. Nur im Komplettkurs.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="srk-benefits" data-reveal>
+        <p><strong>Nach diesen sieben Tagen</strong> hast du kein weiteres Ritual, sondern ein System, das dich überall begleitet: im Auto, am Schreibtisch, beim Zubettgehen.</p>
+        <p class="srk-quote">„Ruhe ist nicht die Abwesenheit von Bewegung, sondern die Fähigkeit, inmitten des Lebens still zu bleiben.“</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="angebot">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Angebot</p>
+      <h2 data-reveal="2">Kompletter Kurs oder einzelne Module</h2>
+
+      <article class="srk-offer" data-reveal>
+        <div>
+          <span class="badge gold">Empfehlung</span>
+          <h3>{bundle.title}</h3>
+          <ul>
+            <li>Alle 7 Video-Module</li>
+            <li>Alle 7 PDF-Arbeitsblätter inklusive Journal</li>
+            <li>Bonus-Modul „Der Zukunftsanker“</li>
+            <li>Dauerhafter Zugang im Mitgliederbereich</li>
+          </ul>
+        </div>
+        <div class="srk-offer-buy">
+          <p class="srk-price">{formatEuro(bundle.priceCents)}</p>
+          {allSinglesAvailable && (
+            <p class="srk-compare">Einzeln gekauft kosten die sieben Module zusammen {formatEuro(singleModulesTotalCents)}.</p>
+          )}
+          <a class="button primary" href={bundle.checkoutUrl} target="_blank" rel="noopener">Kompletten Kurs kaufen</a>
+          <small>Einmalzahlung über Digistore24, kein Abo.</small>
+        </div>
+      </article>
+
+      <h3 class="srk-subhead" data-reveal>Lieber mit einem Thema starten?</h3>
+      <p class="srk-muted" data-reveal>Jedes Modul funktioniert auch für sich – mit Video und Arbeitsblatt.</p>
+      <div class="srk-modules">
+        {singleModuleOffers.map(({ module, product }, index) => (
+          <article class="srk-module" data-reveal={String((index % 3) + 1)}>
+            <span class="badge mint">Modul {module.number}</span>
+            <h4>{module.title}</h4>
+            <p>{module.subtitle}</p>
+            {product ? (
+              <div class="srk-module-buy">
+                <strong>{formatEuro(product.priceCents)}</strong>
+                <a class="button" href={product.checkoutUrl} target="_blank" rel="noopener">Modul kaufen</a>
+              </div>
+            ) : (
+              <p class="srk-module-soon">Aktuell im Komplettkurs enthalten.</p>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <p class="srk-legal" data-reveal>
+        Die Abrechnung erfolgt vollständig über die Digistore24 GmbH. Mit Klick auf einen Kauf-Button verlässt du
+        unsere Seite. Nach dem Kauf meldest du dich im <a href="/kurs-mitgliederbereich/">Mitgliederbereich</a> mit
+        der E-Mail-Adresse an, die du bei Digistore24 angegeben hast – dort sind deine Module sofort freigeschaltet.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <StressResetRedemption modules={redemptionModules} />
+    </div>
+  </section>
+
+  <section class="section tight" id="gratis">
+    <div class="container srk-free">
+      <div data-reveal>
+        <p class="eyebrow">Gratis-Einstieg</p>
+        <h2>Erst ausprobieren, dann entscheiden.</h2>
+        <p>
+          Trag dich ein und du bekommst das Kompendium „Wahre Entlastung“, das Stress-Reset-Journal, das
+          Vitamin- und das Klangfrequenzen-Kompendium sowie eine 60-Sekunden-Atemübung aus dem Kurs.
+          Die Video-Module selbst sind Teil des Kurses.
+        </p>
+        {brevoSignupUrl && (
+          <a class="button primary" href={brevoSignupUrl} target="_blank" rel="noopener">Gratis-Starterpaket holen</a>
+        )}
+        <p class="srk-muted">Mit der Anmeldung akzeptierst du unsere <a href="/datenschutz/">Datenschutzerklärung</a>. Abmeldung jederzeit per Klick.</p>
+      </div>
+      <aside class="srk-card srk-member" data-reveal="2">
+        <span class="badge gold">Schon gekauft?</span>
+        <p>Deine Module findest du im Mitgliederbereich. Melde dich dort mit deiner Kauf-E-Mail an.</p>
+        <a class="button" href="/kurs-mitgliederbereich/">Zum Mitgliederbereich</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="container">
+      <p class="srk-legal">
+        Der Kurs ist eine Alltagshilfe zur Entspannung und ersetzt keine ärztliche oder psychotherapeutische
+        Behandlung. Hinweis zur Darstellung: Alle visuellen Darstellungen dienen der Veranschaulichung der
+        Kursinhalte und zeigen nicht zwingend reale Kundinnen, Kunden oder Teilnehmende.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .srk-hero { padding-top: clamp(3rem, 8vw, 6rem); }
+  .srk-hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(240px, .7fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .srk-hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); margin: .15rem 0 .9rem; }
+  .srk-hero-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+  .srk-hero-image { margin: 0; justify-self: end; max-width: 360px; }
+  .srk-hero-image img { display: block; width: 100%; height: auto; border-radius: 1.25rem; box-shadow: var(--shadow); aspect-ratio: 807 / 969; object-fit: cover; }
+  .srk-facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 1.8rem 0 0; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+  .srk-facts li { padding: 1rem .6rem; display: grid; gap: .2rem; text-align: center; background: var(--panel); }
+  .srk-facts li + li { border-left: 1px solid var(--line); }
+  .srk-facts strong { color: var(--gold); font-size: 1.35rem; }
+  .srk-facts span { color: var(--muted); font-size: .85rem; }
+  .srk-card { padding: clamp(1.1rem, 3vw, 1.6rem); border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); box-shadow: var(--shadow); }
+  .srk-card p { margin: 0; color: var(--muted); line-height: 1.6; }
+  .srk-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .srk-muted { color: var(--muted); margin-top: 1rem; }
+  .srk-days { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .7rem; }
+  .srk-days li { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: start; padding: 1rem 1.1rem; border-left: 4px solid rgba(var(--mint-rgb), .58); background: rgba(var(--mint-rgb), .055); border-radius: 0 .8rem .8rem 0; }
+  .srk-days li.srk-day-bonus { border-left-color: rgba(var(--gold-rgb), .8); background: rgba(var(--gold-rgb), .1); }
+  .srk-day { color: var(--gold); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; padding-top: .2rem; }
+  .srk-days strong { font-size: 1.1rem; }
+  .srk-days p { margin: .25rem 0 0; color: var(--muted); line-height: 1.55; }
+  .srk-benefits { margin-top: 1.5rem; max-width: 70ch; }
+  .srk-quote { font-style: italic; color: var(--muted); }
+  .srk-offer { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(220px, .7fr); gap: 2rem; align-items: center; margin-top: 1.5rem; padding: clamp(1.3rem, 3vw, 2.2rem); border: 1px solid rgba(var(--gold-rgb), .45); border-radius: 1.1rem; background: linear-gradient(145deg, rgba(var(--gold-rgb), .17), var(--panel)); box-shadow: var(--shadow); }
+  .srk-offer h3 { margin: .2rem 0 .8rem; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; }
+  .srk-offer ul { margin: 0; padding-left: 1.2rem; color: var(--soft); line-height: 1.7; }
+  .srk-offer-buy { display: grid; gap: .6rem; justify-items: start; }
+  .srk-price { margin: 0; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900; color: var(--text); line-height: 1; }
+  .srk-compare, .srk-offer-buy small { margin: 0; color: var(--muted); font-size: .9rem; }
+  .srk-subhead { margin: 2.5rem 0 .2rem; }
+  .srk-modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .srk-module { display: grid; gap: .35rem; align-content: start; padding: 1rem; border: 1px solid rgba(var(--mint-rgb), .24); border-radius: 1rem; background: linear-gradient(145deg, rgba(var(--mint-rgb), .08), rgba(var(--gold-rgb), .05)); }
+  .srk-module .badge { margin-bottom: 0; }
+  .srk-module h4 { margin: 0; font-size: 1.1rem; }
+  .srk-module p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .srk-module-buy { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: .6rem; }
+  .srk-module-buy strong { font-size: 1.2rem; }
+  .srk-module-buy .button { min-height: 2.5rem; padding: .6rem .9rem; white-space: nowrap; }
+  .srk-module-soon { margin-top: .6rem !important; font-size: .85rem !important; }
+  .srk-legal { color: var(--muted); font-size: .92rem; max-width: 80ch; margin-top: 1.6rem; }
+  .srk-free { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(220px, .6fr); gap: 2rem; align-items: center; }
+  .srk-free h2 { margin: .2rem 0 .8rem; }
+  .srk-free .button { margin-top: .6rem; }
+  .srk-member { display: grid; gap: .8rem; justify-items: start; }
+  .srk-member .badge { margin-bottom: 0; }
+  @media (max-width: 820px) {
+    .srk-hero-grid, .srk-offer, .srk-free { grid-template-columns: 1fr; }
+    .srk-hero-image { justify-self: start; max-width: 260px; }
+    .srk-steps { grid-template-columns: 1fr; }
+    .srk-days li { grid-template-columns: 1fr; gap: .3rem; }
+  }
+</style>

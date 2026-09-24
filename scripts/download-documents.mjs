@@ -49,6 +49,13 @@ for (const [index, href] of urls.entries()) {
   const publicPathOnDisk = join(publicDir, filename);
   const publicPath = `/assets/documents/${filename}`;
 
+  // Kostenpflichtige Kurs-PDFs (Modul 2-7) liegen im privaten Kurs-Speicher und
+  // duerfen nicht wieder oeffentlich unter public/ landen.
+  if (/modul-[2-7]/i.test(filename)) {
+    results.push({ href, filename, publicPath: null, note: 'privat (Kurs-Speicher)' });
+    continue;
+  }
+
   try {
     let note = 'ok';
     try {

@@ -432,7 +432,7 @@ const articleIndex = Object.fromEntries(allArticles.map((article) => [
           if (SIGNUP_URL) {
             const plan = node('div', 'check-plan-cta');
             plan.append(node('strong', '', 'Möchtest du deinen persönlichen Plan?'));
-            plan.append(node('p', '', 'Sichere dir die kostenlosen Callidus-Ressourcen: Kompendium, Journal und Video-Module — plus regelmäßige Gesundheitsimpulse per E-Mail.'));
+            plan.append(node('p', '', 'Sichere dir die kostenlosen Callidus-Ressourcen: Kompendium, Journal und eine 60-Sekunden-Übung aus dem Stress-Reset — plus regelmäßige Gesundheitsimpulse per E-Mail.'));
             const planLink = node('a', 'button primary', 'Persönlichen Plan freischalten');
             planLink.href = SIGNUP_URL;
             planLink.target = '_blank';

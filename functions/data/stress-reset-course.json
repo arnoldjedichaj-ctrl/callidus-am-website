@@ -1,0 +1,104 @@
+{
+  "_hinweis": "Zentrale Quelle fuer den Stress-Reset-Kurs. Website (Verkaufsseite, Mitgliederbereich, VAL-Einloesung) und Cloud Functions (IPN-Freischaltung, Zugangspruefung) lesen diese Datei. Produkte mit digistoreProductId null werden auf der Website nicht verkauft. Preise in Cent muessen exakt dem Digistore24-Produktpreis entsprechen.",
+  "courseId": "stress-reset",
+  "bucket": "nexus-app-61494-kurse",
+  "signedUrlHours": 4,
+  "modules": [
+    {
+      "id": "m1",
+      "number": 1,
+      "title": "Der Reset-Knopf",
+      "subtitle": "Sofort aus dem Stressmodus kommen.",
+      "description": "Manchmal braucht es keinen ganzen Tag – nur einen bewussten Moment. Dieses Modul führt dich Schritt für Schritt aus der Anspannung zurück in deine Mitte.",
+      "video": "stress-reset/modul-1.mp4",
+      "pdf": "stress-reset/modul-1-journal.pdf",
+      "pdfTitle": "Stress-Reset-Journal"
+    },
+    {
+      "id": "m2",
+      "number": 2,
+      "title": "Wahrnehmen statt Reagieren",
+      "subtitle": "Reize bewusst verarbeiten.",
+      "description": "Stress beginnt, wenn wir automatisch reagieren. Hier lernst du, innezuhalten – zu beobachten, statt zu kämpfen.",
+      "video": "stress-reset/modul-2.mp4",
+      "pdf": "stress-reset/modul-2-morgen-mindset.pdf",
+      "pdfTitle": "Morgen-Mindset"
+    },
+    {
+      "id": "m3",
+      "number": 3,
+      "title": "Ankommen im Körper",
+      "subtitle": "Spannung lösen, Präsenz gewinnen.",
+      "description": "Der Körper spricht – oft leiser, als der Kopf zuhört. In diesem Modul lernst du, ihn wieder wahrzunehmen.",
+      "video": "stress-reset/modul-3.mp4",
+      "pdf": "stress-reset/modul-3-fokus-und-klarheit.pdf",
+      "pdfTitle": "Fokus & Klarheit"
+    },
+    {
+      "id": "m4",
+      "number": 4,
+      "title": "Sprache & Selbstbild",
+      "subtitle": "Innere Worte verändern den Alltag.",
+      "description": "Was du zu dir selbst sagst, prägt dein Nervensystem. Erkenne, wie du mit Sprache Balance schaffst.",
+      "video": "stress-reset/modul-4.mp4",
+      "pdf": "stress-reset/modul-4-sprache-und-selbstbild.pdf",
+      "pdfTitle": "Fokus auf Sprache & Selbstbild"
+    },
+    {
+      "id": "m5",
+      "number": 5,
+      "title": "Loslassen",
+      "subtitle": "Kontrolle abgeben und regenerieren.",
+      "description": "Wahre Entlastung entsteht, wenn du Kontrolle nicht brauchst. Hier lernst du, Spannung abzugeben und Vertrauen zuzulassen.",
+      "video": "stress-reset/modul-5.mp4",
+      "pdf": "stress-reset/modul-5-loslassen.pdf",
+      "pdfTitle": "Loslassen"
+    },
+    {
+      "id": "m6",
+      "number": 6,
+      "title": "Energie tanken",
+      "subtitle": "Bewegung & Atem für Vitalität.",
+      "description": "Kurze Bewegungs- und Atemimpulse, die dich wieder in deine Kraft bringen – ohne Trainingsplan und ohne Druck.",
+      "video": "stress-reset/modul-6.mp4",
+      "pdf": "stress-reset/modul-6-energie-tanken.pdf",
+      "pdfTitle": "Energie tanken"
+    },
+    {
+      "id": "m7",
+      "number": 7,
+      "title": "Balance leben",
+      "subtitle": "Ruhe dauerhaft integrieren.",
+      "description": "Aus sieben Tagen wird ein System: Du verankerst die Übungen so, dass sie dich im Alltag begleiten.",
+      "video": "stress-reset/modul-7.mp4",
+      "pdf": "stress-reset/modul-7-balance-leben.pdf",
+      "pdfTitle": "Balance leben"
+    },
+    {
+      "id": "bonus",
+      "number": null,
+      "title": "Der Zukunftsanker",
+      "subtitle": "Bonus zum Komplettkurs.",
+      "description": "Veranker die Erfolge emotional, damit Klarheit und Ruhe dich dauerhaft begleiten.",
+      "video": "stress-reset/bonus-zukunftsanker.mp4",
+      "pdf": null,
+      "pdfTitle": null
+    }
+  ],
+  "products": [
+    {
+      "id": "bundle",
+      "title": "Kompletter 7-Tage-Stress-Reset",
+      "digistoreProductId": "645388",
+      "priceCents": 6900,
+      "modules": ["m1", "m2", "m3", "m4", "m5", "m6", "m7", "bonus"]
+    },
+    { "id": "modul1", "title": "Stress-Reset – Modul 1", "digistoreProductId": "737185", "priceCents": 1900, "modules": ["m1"] },
+    { "id": "modul2", "title": "Stress-Reset – Modul 2", "digistoreProductId": "737187", "priceCents": 1900, "modules": ["m2"] },
+    { "id": "modul3", "title": "Stress-Reset – Modul 3", "digistoreProductId": "737188", "priceCents": 1900, "modules": ["m3"] },
+    { "id": "modul4", "title": "Stress-Reset – Modul 4", "digistoreProductId": "643822", "priceCents": 1900, "modules": ["m4"] },
+    { "id": "modul5", "title": "Stress-Reset – Modul 5", "digistoreProductId": "645365", "priceCents": 1900, "modules": ["m5"] },
+    { "id": "modul6", "title": "Stress-Reset – Modul 6", "digistoreProductId": "737189", "priceCents": 1900, "modules": ["m6"] },
+    { "id": "modul7", "title": "Stress-Reset – Modul 7", "digistoreProductId": "737190", "priceCents": 1900, "modules": ["m7"] }
+  ]
+}
