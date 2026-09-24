@@ -93,12 +93,12 @@
       "priceCents": 6900,
       "modules": ["m1", "m2", "m3", "m4", "m5", "m6", "m7", "bonus"]
     },
-    { "id": "modul1", "title": "Stress-Reset – Modul 1", "digistoreProductId": null, "priceCents": 1900, "modules": ["m1"] },
-    { "id": "modul2", "title": "Stress-Reset – Modul 2", "digistoreProductId": null, "priceCents": 1900, "modules": ["m2"] },
-    { "id": "modul3", "title": "Stress-Reset – Modul 3", "digistoreProductId": null, "priceCents": 1900, "modules": ["m3"] },
+    { "id": "modul1", "title": "Stress-Reset – Modul 1", "digistoreProductId": "737185", "priceCents": 1900, "modules": ["m1"] },
+    { "id": "modul2", "title": "Stress-Reset – Modul 2", "digistoreProductId": "737187", "priceCents": 1900, "modules": ["m2"] },
+    { "id": "modul3", "title": "Stress-Reset – Modul 3", "digistoreProductId": "737188", "priceCents": 1900, "modules": ["m3"] },
     { "id": "modul4", "title": "Stress-Reset – Modul 4", "digistoreProductId": "643822", "priceCents": 1900, "modules": ["m4"] },
     { "id": "modul5", "title": "Stress-Reset – Modul 5", "digistoreProductId": "645365", "priceCents": 1900, "modules": ["m5"] },
-    { "id": "modul6", "title": "Stress-Reset – Modul 6", "digistoreProductId": null, "priceCents": 1900, "modules": ["m6"] },
-    { "id": "modul7", "title": "Stress-Reset – Modul 7", "digistoreProductId": null, "priceCents": 1900, "modules": ["m7"] }
+    { "id": "modul6", "title": "Stress-Reset – Modul 6", "digistoreProductId": "737189", "priceCents": 1900, "modules": ["m6"] },
+    { "id": "modul7", "title": "Stress-Reset – Modul 7", "digistoreProductId": "737190", "priceCents": 1900, "modules": ["m7"] }
   ]
 }
