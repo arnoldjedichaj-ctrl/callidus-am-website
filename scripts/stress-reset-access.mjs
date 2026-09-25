@@ -40,7 +40,11 @@ async function grant(emailInput, productKey, orderIdInput = '') {
     throw new Error(`Ungueltig: "${emailInput}" / "${productKey}". Produkte: ${course.products.map((item) => item.id).join(', ')}`);
   }
   const orderId = String(orderIdInput || '').trim().toUpperCase();
-  const docId = `manual-${createHash('sha256').update(`${email}|${product.id}|${orderId}`).digest('hex').slice(0, 20)}`;
+  // Mit Bestellnummer dieselbe ID wie in der IPN-Verarbeitung (functions/index.js,
+  // courseOrderDocId), sonst legt eine spaetere Erstattung einen zweiten Datensatz an.
+  const docId = orderId && product.digistoreProductId
+    ? `${orderId}_${product.digistoreProductId}`.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 120)
+    : `manual-${createHash('sha256').update(`${email}|${product.id}`).digest('hex').slice(0, 20)}`;
   await orders.doc(docId).set({
     course: course.courseId,
     order_id: orderId || docId,
