@@ -69,7 +69,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
               <button class="button" type="button" data-google>Mit Google</button>
             </div>
           </form>
-          <p class="member-status" id="member-auth-status" hidden></p>
+          <p class="member-status" id="member-auth-status" role="status" aria-live="polite" hidden></p>
         </div>
       </div>
 
@@ -85,7 +85,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
           <button class="button" type="button" id="member-resend">Mail erneut senden</button>
           <button class="member-link" type="button" data-signout>Abmelden</button>
         </div>
-        <p class="member-status" id="member-verify-status" hidden></p>
+        <p class="member-status" id="member-verify-status" role="status" aria-live="polite" hidden></p>
       </div>
 
       <div id="member-empty" class="member-panel" hidden>
@@ -103,12 +103,21 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
         </div>
       </div>
 
+      <div id="member-error" class="member-panel" hidden role="alert">
+        <span class="badge gold">Technische Störung</span>
+        <h2>Dein Zugang konnte gerade nicht geprüft werden.</h2>
+        <p>Das liegt nicht an deinem Kauf. Bitte versuche es in ein paar Minuten noch einmal. Kauf bitte nicht erneut – schreib uns, wenn es weiterhin nicht klappt.</p>
+        <div class="member-actions">
+          <button class="button primary" type="button" data-member-retry>Erneut versuchen</button>
+        </div>
+      </div>
+
       <div id="member-content" hidden>
         <div class="member-bar">
           <span>Angemeldet als <strong data-member-email></strong></span>
           <button class="member-link" type="button" data-signout>Abmelden</button>
         </div>
-        <p class="member-status" id="member-media-status" hidden></p>
+        <p class="member-status" id="member-media-status" role="status" aria-live="polite" hidden></p>
         <div class="member-grid" id="member-grid"></div>
         <aside class="member-upgrade" id="member-upgrade" hidden>
           <div>
@@ -126,10 +135,14 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
             Bestellnummer aus der Digistore24-Kaufbestätigung
             <input id="member-claim-order" type="text" autocomplete="off" placeholder="z. B. ABCD1234" required />
           </label>
+          <label>
+            E-Mail-Adresse, mit der du gekauft hast
+            <input id="member-claim-email" type="email" autocomplete="off" required />
+          </label>
           <div class="member-actions">
             <button class="button primary" type="submit">Kauf zuordnen</button>
           </div>
-          <p class="member-status" id="member-claim-status" hidden></p>
+          <p class="member-status" id="member-claim-status" role="status" aria-live="polite" hidden></p>
         </form>
       </details>
 
@@ -153,7 +166,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
 
     const modules = JSON.parse(document.getElementById('member-module-data')?.textContent || '[]');
     const $ = (id) => document.getElementById(id);
-    const panels = ['member-loading', 'member-auth', 'member-verify', 'member-empty', 'member-content'];
+    const panels = ['member-loading', 'member-auth', 'member-verify', 'member-empty', 'member-error', 'member-content'];
     const show = (id) => panels.forEach((panel) => { $(panel).hidden = panel !== id; });
     const setStatus = (id, message, kind = '') => {
       const el = $(id);
@@ -284,7 +297,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
         if (target) document.getElementById(`modul-${target}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } catch (error) {
         console.warn('Stress-Reset access failed', error);
-        show('member-empty');
+        show('member-error');
       }
     };
 
@@ -360,13 +373,16 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
     });
 
     $('member-retry').addEventListener('click', () => { retries = 0; loadAccess(); });
+    document.querySelector('[data-member-retry]').addEventListener('click', () => { retries = 0; show('member-loading'); loadAccess(); });
+    // Video- und PDF-Links gelten nur einige Stunden: bei offener Seite rechtzeitig erneuern.
+    setInterval(() => { if (auth.currentUser && !$('member-content').hidden) loadAccess(); }, 3 * 60 * 60 * 1000);
     document.querySelectorAll('[data-signout]').forEach((button) => button.addEventListener('click', () => authApi.signOut(auth)));
 
     $('member-claim-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       setStatus('member-claim-status', 'Wird geprüft …', 'pending');
       try {
-        await claimStressResetOrder()({ orderId: $('member-claim-order').value.trim() });
+        await claimStressResetOrder()({ orderId: $('member-claim-order').value.trim(), email: $('member-claim-email').value.trim() });
         setStatus('member-claim-status', 'Kauf zugeordnet.', 'ok');
         loadAccess();
       } catch (error) {

@@ -799,7 +799,9 @@ function canonicalValusFromBalance(balance = {}) {
   return maxNumberValue(balance.valus, balance.val);
 }
 
-function legacyValusFromSources(balance = {}, user = {}) {
+// Nur Felder aus balances/current: Das Nutzerdokument (users/{uid}) darf der
+// Nutzer laut Firestore-Regeln selbst beschreiben, es ist keine Guthabenquelle.
+function legacyValusFromSources(balance = {}) {
   return maxNumberValue(
     balance.san,
     balance.valus_balance,
@@ -812,26 +814,13 @@ function legacyValusFromSources(balance = {}, user = {}) {
     balance.balance?.valus,
     balance.balance?.val,
     balance.balance?.san,
-    user.valus,
-    user.val,
-    user.san,
-    user.valus_balance,
-    user.val_balance,
-    user.san_balance,
-    user.valusBalance,
-    user.sanBalance,
-    user.current_valus,
-    user.current_san,
-    user.balance?.valus,
-    user.balance?.val,
-    user.balance?.san,
   );
 }
 
 function valusFromSources(balance = {}, user = {}) {
   const canonical = canonicalValusFromBalance(balance);
   if (balance.valus_legacy_migrated) return canonical;
-  const legacy = legacyValusFromSources(balance, user);
+  const legacy = legacyValusFromSources(balance);
   if (canonical > 0 && canonical >= legacy) return canonical;
   return canonical + legacy;
 }
@@ -840,11 +829,18 @@ function valusFromSources(balance = {}, user = {}) {
 // hier hinein (via reconcileEarnedXp/creditMomusXp). Deshalb hier NUR den Topf
 // lesen — sonst koennte in xpFromSources addiertes, aber nicht abgebuchtes XP
 // mehrfach in VAL umgewandelt werden.
-function xpFromSources(balance = {}, user = {}) {
-  return numberValue(
-    balance.xp ?? balance.current_xp ?? user.current_xp ?? user.total_xp,
-    0,
-  );
+function xpFromSources(balance = {}) {
+  return numberValue(balance.xp ?? balance.current_xp, 0);
+}
+
+// Fuer offene Rabattcodes reserviertes VAL (in Cent). Es bleibt im Guthaben,
+// darf aber nicht fuer einen zweiten Code verwendet werden.
+function reservedValusCents(balance = {}) {
+  return Math.max(0, Math.round(numberValue(balance.valus_reserved_cents, 0)));
+}
+
+function availableValusCents(balance = {}, user = {}) {
+  return Math.max(0, centsFromValus(valusFromSources(balance, user)) - reservedValusCents(balance));
 }
 
 // Berechnet die noch nicht in den Spend-Topf eingeflossenen Betraege je Quelle.
@@ -912,7 +908,7 @@ async function reconcileEarnedXp(userRef) {
 }
 
 function publicBalance(balance = {}, user = {}) {
-  const valus = valusFromSources(balance, user);
+  const valus = valusFromCents(availableValusCents(balance, user));
   return {
     valus,
     val: valus,
@@ -1658,6 +1654,55 @@ exports.getValusCheckoutUrl = onCall(
 // Zentrale Einloese-Logik fuer alle Produkttypen (Kinderbuch, Stress-Reset-Kurs, spaetere).
 // product = { key, title, productId, checkoutUrl, priceCents, codePrefix,
 //             redemptionCollection, productType, ledgerType }
+// Gibt die Reservierung eines Codes genau einmal frei (Fehler oder Ablauf).
+async function releaseValusReservation(uid, redemptionCollection, code, reason) {
+  const userRef = db.collection("users").doc(uid);
+  const balanceRef = userRef.collection("balances").doc("current");
+  const redemptionRef = userRef.collection(redemptionCollection).doc(code);
+  return db.runTransaction(async (transaction) => {
+    const [redemptionSnap, balanceSnap] = await Promise.all([
+      transaction.get(redemptionRef),
+      transaction.get(balanceRef),
+    ]);
+    const redemption = redemptionSnap.exists ? redemptionSnap.data() : null;
+    if (!redemption || redemption.reservation_released || redemption.status === "paid") return false;
+    const reserved = Math.max(0, Math.round(numberValue(redemption.reserved_cents, 0)));
+    const balance = balanceSnap.exists ? balanceSnap.data() : {};
+    transaction.set(balanceRef, {
+      valus_reserved_cents: Math.max(0, reservedValusCents(balance) - reserved),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    transaction.set(redemptionRef, {
+      reservation_released: true,
+      reservation_released_reason: reason,
+      ...(reason === "expired" ? { status: "expired" } : {}),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    return true;
+  });
+}
+
+// Abgelaufene, nie bezahlte Codes geben ihr reserviertes VAL wieder frei.
+// Eine Stunde Puffer, falls die Zahlungsmeldung kurz nach Ablauf eintrifft.
+async function releaseExpiredReservations(mappingCollection) {
+  const cutoff = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  const snap = await db.collection(mappingCollection).where("voucher_expires_at", "<", cutoff).limit(500).get();
+  let released = 0;
+  for (const docSnap of snap.docs) {
+    const data = docSnap.data() || {};
+    if (data.status === "paid" || data.status === "refunded" || data.reservation_released || !data.uid) continue;
+    try {
+      if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, "expired")) {
+        released += 1;
+      }
+      await docSnap.ref.set({ reservation_released: true, status: "expired" }, { merge: true });
+    } catch (error) {
+      logger.warn("releaseExpiredReservations failed", { code: docSnap.id, error: String(error?.message || error) });
+    }
+  }
+  return released;
+}
+
 async function createProductRedemption(request, product) {
   const uid = requireAuth(request);
   const creditCents = parseCreditCents(request.data || {}, product.priceCents);
@@ -1677,8 +1722,7 @@ async function createProductRedemption(request, product) {
     ]);
     const user = userSnap.exists ? userSnap.data() : {};
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
-    const currentValus = valusFromSources(balance, user);
-    const valusCreditCents = centsFromValus(currentValus);
+    const valusCreditCents = availableValusCents(balance, user);
 
     // Es wird ausschliesslich VAL eingeloest. XP muss der Nutzer vorher bewusst
     // ueber die VAL-Seite in VAL umwandeln (convertNexusXpToValus).
@@ -1693,9 +1737,16 @@ async function createProductRedemption(request, product) {
     const appliedValusAmount = valusFromCents(creditCents);
     const remainingCents = Math.max(0, product.priceCents - creditCents);
 
+    // Betrag sofort reservieren, damit dasselbe Guthaben nicht fuer mehrere
+    // offene Codes reicht. Freigabe bei Zahlung, Fehler oder Ablauf.
+    transaction.set(balanceRef, {
+      valus_reserved_cents: reservedValusCents(balance) + creditCents,
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
     transaction.set(redemptionRef, {
       code: redemptionCode,
       status: "pending_purchase",
+      reserved_cents: creditCents,
       uid,
       user_email: cleanString(request.auth?.token?.email, 180),
       product_key: product.key,
@@ -1777,6 +1828,7 @@ async function createProductRedemption(request, product) {
       coupon_error: cleanString(error?.message, 300),
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
+    await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed");
     throw new HttpsError("internal", `Der Rabattcode konnte bei ${providerLabel} nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.`);
   }
 
@@ -1963,11 +2015,15 @@ async function settleRedemptionPaid(code, ipn, options = {}) {
 
     // Nur den Spend-Topf (balances/current) veraendern. user.current_xp NICHT
     // anfassen — das ist der Nexus-Level-Fortschritt und gehoert der Nexus-App.
+    const releaseCents = redemption.reservation_released
+      ? 0
+      : Math.max(0, Math.round(numberValue(redemption.reserved_cents, 0)));
     transaction.set(balanceRef, {
       valus: nextValus,
       val: nextValus,
       xp: nextXp,
       current_xp: nextXp,
+      valus_reserved_cents: Math.max(0, reservedValusCents(balance) - releaseCents),
       valus_legacy_migrated: true,
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
@@ -1982,6 +2038,7 @@ async function settleRedemptionPaid(code, ipn, options = {}) {
     });
     transaction.set(redemptionRef, {
       status: "paid",
+      reservation_released: true,
       needs_review: needsReview,
       settled_xp_amount: settledXp,
       settled_valus_amount: settledValus,
@@ -2258,11 +2315,16 @@ async function stressResetAccessFor(request) {
   // registrieren. Dann zaehlen nur per Bestellnummer zugeordnete Kaeufe.
   const email = emailVerified ? normalizeEmail(token.email) : "";
 
-  let orders = await courseOrdersFor(uid, email);
-  if (email && !orders.length) {
-    const added = await backfillCourseOrdersFromIpn("email", [email, cleanString(token.email, 180)]);
-    if (added) orders = await courseOrdersFor(uid, email);
+  if (email) {
+    // users/{uid}/meta ist in den Firestore-Regeln nicht freigegeben, also nur serverseitig.
+    const markerRef = db.collection("users").doc(uid).collection("meta").doc("course_backfill");
+    const marker = (await markerRef.get()).data() || {};
+    if (marker.email !== email) {
+      await backfillCourseOrdersFromIpn("email", [email, cleanString(token.email, 180)]);
+      await markerRef.set({ email, done_at: FieldValue.serverTimestamp() });
+    }
   }
+  const orders = await courseOrdersFor(uid, email);
 
   const owned = new Set();
   for (const order of orders) {
@@ -2318,8 +2380,9 @@ exports.claimStressResetOrder = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const orderId = cleanString(request.data?.orderId, 60).toUpperCase();
-    if (!/^[A-Z0-9-]{4,40}$/.test(orderId)) {
-      throw new HttpsError("invalid-argument", "Bitte die Bestellnummer aus deiner Digistore24-Kaufbestaetigung eingeben.");
+    const purchaseEmail = normalizeEmail(request.data?.email);
+    if (!/^[A-Z0-9-]{4,40}$/.test(orderId) || !purchaseEmail.includes("@")) {
+      throw new HttpsError("invalid-argument", "Bitte Bestellnummer und Kauf-E-Mail aus deiner Digistore24-Kaufbestaetigung eingeben.");
     }
 
     // Gegen Durchprobieren von Bestellnummern: begrenzte Versuche pro Stunde.
@@ -2337,20 +2400,29 @@ exports.claimStressResetOrder = onCall(
       snap = await db.collection(COURSE_ORDERS).where("order_id", "==", orderId).get();
     }
     if (snap.empty) {
-      throw new HttpsError("not-found", "Zu dieser Bestellnummer ist kein Stress-Reset-Kauf bekannt. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
+      throw new HttpsError("not-found", "Bestellnummer und Kauf-E-Mail passen zu keinem Stress-Reset-Kauf. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
     }
-    const orders = snap.docs.map((doc) => ({ ref: doc.ref, ...doc.data() }));
-    if (orders.some((order) => order.claimed_uid && order.claimed_uid !== uid)) {
-      throw new HttpsError("already-exists", "Diese Bestellung ist bereits einem anderen Konto zugeordnet. Bitte schreib uns, falls das nicht stimmt.");
+    // Bestellnummer allein reicht nicht: Die Kauf-E-Mail muss passen. Gleiche
+    // Fehlermeldung wie bei unbekannter Nummer, damit nichts verraten wird.
+    const refs = snap.docs
+      .filter((doc) => normalizeEmail(doc.get("email")) === purchaseEmail)
+      .map((doc) => doc.ref);
+    if (!refs.length) {
+      throw new HttpsError("not-found", "Bestellnummer und Kauf-E-Mail passen zu keinem Stress-Reset-Kauf. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
     }
-    if (!orders.some((order) => order.status === "paid")) {
-      throw new HttpsError("failed-precondition", "Diese Bestellung wurde erstattet oder ist nicht bezahlt.");
-    }
-    const batch = db.batch();
-    for (const order of orders) {
-      batch.set(order.ref, { claimed_uid: uid, claimed_at: FieldValue.serverTimestamp() }, { merge: true });
-    }
-    await batch.commit();
+    await db.runTransaction(async (transaction) => {
+      const docs = await Promise.all(refs.map((ref) => transaction.get(ref)));
+      const orders = docs.map((doc) => doc.data() || {});
+      if (orders.some((order) => order.claimed_uid && order.claimed_uid !== uid)) {
+        throw new HttpsError("already-exists", "Diese Bestellung ist bereits einem anderen Konto zugeordnet. Bitte schreib uns, falls das nicht stimmt.");
+      }
+      if (!orders.some((order) => order.status === "paid")) {
+        throw new HttpsError("failed-precondition", "Diese Bestellung wurde erstattet oder ist nicht bezahlt.");
+      }
+      for (const ref of refs) {
+        transaction.set(ref, { claimed_uid: uid, claimed_at: FieldValue.serverTimestamp() }, { merge: true });
+      }
+    });
     return stressResetAccessFor(request);
   },
 );
@@ -2512,7 +2584,8 @@ exports.cleanupShopifyDiscounts = onSchedule(
       }
     }
 
-    logger.info("cleanupShopifyDiscounts done", { scanned: snap.size, deleted, failed });
+    const released = await releaseExpiredReservations("shopify_redemptions");
+    logger.info("cleanupShopifyDiscounts done", { scanned: snap.size, deleted, failed, released });
   },
 );
 
@@ -2557,7 +2630,8 @@ exports.cleanupDigistoreVouchers = onSchedule(
       }
     }
 
-    logger.info("cleanupDigistoreVouchers done", { scanned: coupons.length, deleted, failed });
+    const released = await releaseExpiredReservations("digistore_redemptions");
+    logger.info("cleanupDigistoreVouchers done", { scanned: coupons.length, deleted, failed, released });
   },
 );
 
