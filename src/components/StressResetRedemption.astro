@@ -143,7 +143,7 @@ const { modules: kursRedemptionModules } = Astro.props;
         const data = result.data || {};
         const rest = formatEuro(data.remainingCents || 0);
         const checkoutUrl = data.checkoutUrl || data.product?.checkoutUrl;
-        setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest}). Der Code wird im Digistore24-Checkout automatisch angewendet. Das VAL ist für diesen Code reserviert und wird nach dem Kauf abgebucht; ungenutzt wird es nach 24 Stunden wieder frei.`, 'ok');
+        setStatus(`Rabattcode ${data.code} wurde erstellt (${formatEuro(data.creditCents || credit)} Rabatt, Restbetrag ${rest}). Der Code wird im Digistore24-Checkout automatisch angewendet. Das VAL ist für diesen Code reserviert und wird nach dem Kauf abgebucht; ungenutzt wird es spätestens rund 25 Stunden nach Erstellung wieder frei.`, 'ok');
         // Als Link statt automatischem Fenster: Popup-Blocker verhindern sonst den Checkout.
         const checkoutLink = $('sr-redeem-checkout');
         if (checkoutUrl && checkoutLink) { checkoutLink.href = checkoutUrl; checkoutLink.hidden = false; checkoutLink.focus(); }
