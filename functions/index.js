@@ -1,10 +1,11 @@
 ﻿const { onCall, onRequest, HttpsError } = require("firebase-functions/v2/https");
 const { onSchedule } = require("firebase-functions/v2/scheduler");
+const { onDocumentWritten } = require("firebase-functions/v2/firestore");
 const functionsV1 = require("firebase-functions/v1");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
 const admin = require("firebase-admin");
-const { FieldValue } = require("firebase-admin/firestore");
+const { FieldValue, FieldPath } = require("firebase-admin/firestore");
 const crypto = require("crypto");
 const callidusKnowledge = require("./data/callidus-knowledge.json");
 const stressResetCourse = require("./data/stress-reset-course.json");
@@ -1683,25 +1684,58 @@ async function releaseValusReservation(uid, redemptionCollection, code, reason) 
 }
 
 // Abgelaufene, nie bezahlte Codes geben ihr reserviertes VAL wieder frei.
-// Eine Stunde Puffer, falls die Zahlungsmeldung kurz nach Ablauf eintrifft.
+// Gelesen werden nur offene Codes ("creating"/"coupon_created"); erledigte
+// verlassen die Abfrage, weil ihr Status wechselt. Seitenweise bis zum Ende.
+const RESERVATION_RELEASE_GRACE_MS = 15 * 60 * 1000;
+const OPEN_REDEMPTION_STATUSES = ["creating", "coupon_created"];
+
 async function releaseExpiredReservations(mappingCollection) {
-  const cutoff = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const snap = await db.collection(mappingCollection).where("voucher_expires_at", "<", cutoff).limit(500).get();
+  const cutoff = Date.now() - RESERVATION_RELEASE_GRACE_MS;
   let released = 0;
-  for (const docSnap of snap.docs) {
-    const data = docSnap.data() || {};
-    if (data.status === "paid" || data.status === "refunded" || data.reservation_released || !data.uid) continue;
-    try {
-      if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, "expired")) {
-        released += 1;
+  let last = null;
+  for (;;) {
+    let query = db.collection(mappingCollection)
+      .where("status", "in", OPEN_REDEMPTION_STATUSES)
+      .orderBy(FieldPath.documentId())
+      .limit(200);
+    if (last) query = query.startAfter(last);
+    const snap = await query.get();
+    if (snap.empty) break;
+    for (const docSnap of snap.docs) {
+      const data = docSnap.data() || {};
+      const expiresAt = Date.parse(data.voucher_expires_at || "");
+      if (!Number.isFinite(expiresAt) || expiresAt > cutoff || !data.uid) continue;
+      try {
+        if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, "expired")) {
+          released += 1;
+        }
+        await docSnap.ref.set({ reservation_released: true, status: "expired", updated_at: FieldValue.serverTimestamp() }, { merge: true });
+      } catch (error) {
+        logger.warn("releaseExpiredReservations failed", { code: docSnap.id, error: String(error?.message || error) });
       }
-      await docSnap.ref.set({ reservation_released: true, status: "expired" }, { merge: true });
-    } catch (error) {
-      logger.warn("releaseExpiredReservations failed", { code: docSnap.id, error: String(error?.message || error) });
     }
+    last = snap.docs[snap.docs.length - 1];
+    if (snap.size < 200) break;
   }
   return released;
 }
+
+// Stuendlich und unabhaengig von Digistore/Shopify: Ein Rabattcode gilt 24 h,
+// danach wird das VAL nach spaetestens rund 25 h wieder frei.
+exports.releaseValusReservations = onSchedule(
+  {
+    schedule: "every 60 minutes",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    timeoutSeconds: 300,
+    memory: "256MiB",
+  },
+  async () => {
+    const digistore = await releaseExpiredReservations("digistore_redemptions");
+    const shopify = await releaseExpiredReservations("shopify_redemptions");
+    logger.info("releaseValusReservations done", { digistore, shopify });
+  },
+);
 
 async function createProductRedemption(request, product) {
   const uid = requireAuth(request);
@@ -1714,6 +1748,9 @@ async function createProductRedemption(request, product) {
   const balanceRef = userRef.collection("balances").doc("current");
   const redemptionCode = `${product.codePrefix}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
   const redemptionRef = userRef.collection(product.redemptionCollection).doc(redemptionCode.toLowerCase());
+  const mappingCollection = product.mappingCollection || "digistore_redemptions";
+  const mappingRef = db.collection(mappingCollection).doc(redemptionCode.toLowerCase());
+  const voucherExpiresAt = new Date(Date.now() + REDEMPTION_VOUCHER_TTL_MS);
 
   const result = await db.runTransaction(async (transaction) => {
     const [userSnap, balanceSnap] = await Promise.all([
@@ -1743,6 +1780,22 @@ async function createProductRedemption(request, product) {
       valus_reserved_cents: reservedValusCents(balance) + creditCents,
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
+    // Die Zuordnung entsteht zusammen mit der Reservierung. So findet der
+    // Freigabe-Job jede Reservierung, auch wenn die Funktion danach abbricht.
+    transaction.set(mappingRef, {
+      code: redemptionCode,
+      uid,
+      product_type: product.productType,
+      product_key: product.key,
+      product_id: product.productId,
+      redemption_collection: product.redemptionCollection,
+      ledger_type: product.ledgerType,
+      product_title: product.title,
+      credit_cents: creditCents,
+      status: "creating",
+      voucher_expires_at: voucherExpiresAt.toISOString(),
+      created_at: FieldValue.serverTimestamp(),
+    });
     transaction.set(redemptionRef, {
       code: redemptionCode,
       status: "pending_purchase",
@@ -1791,7 +1844,6 @@ async function createProductRedemption(request, product) {
     };
   });
 
-  const voucherExpiresAt = new Date(Date.now() + REDEMPTION_VOUCHER_TTL_MS);
   const isShopify = product.provider === "shopify";
   const providerLabel = isShopify ? "Shopify" : "Digistore24";
   let discountNodeId = "";
@@ -1828,6 +1880,7 @@ async function createProductRedemption(request, product) {
       coupon_error: cleanString(error?.message, 300),
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
+    await mappingRef.set({ status: "coupon_failed", updated_at: FieldValue.serverTimestamp() }, { merge: true });
     await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed");
     throw new HttpsError("internal", `Der Rabattcode konnte bei ${providerLabel} nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.`);
   }
@@ -1836,8 +1889,6 @@ async function createProductRedemption(request, product) {
   const checkoutUrl = isShopify
     ? `${product.checkoutUrl}?discount=${voucherParam}`
     : `${product.checkoutUrl}?voucher=${voucherParam}&custom=${voucherParam}`;
-  const mappingCollection = product.mappingCollection || "digistore_redemptions";
-
   await Promise.all([
     redemptionRef.set({
       status: "coupon_created",
@@ -1847,21 +1898,11 @@ async function createProductRedemption(request, product) {
       coupon_created_at: FieldValue.serverTimestamp(),
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true }),
-    db.collection(mappingCollection).doc(redemptionCode.toLowerCase()).set({
-      code: redemptionCode,
-      uid,
-      product_type: product.productType,
-      product_key: product.key,
-      product_id: product.productId,
-      redemption_collection: product.redemptionCollection,
-      ledger_type: product.ledgerType,
-      product_title: product.title,
-      credit_cents: creditCents,
+    mappingRef.set({
       status: "coupon_created",
       discount_node_id: discountNodeId,
-      voucher_expires_at: voucherExpiresAt.toISOString(),
-      created_at: FieldValue.serverTimestamp(),
-    }),
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true }),
   ]);
 
   return {
@@ -2370,60 +2411,58 @@ exports.getStressResetAccess = onCall(
   async (request) => stressResetAccessFor(request),
 );
 
+// Selbst-Zuordnung per Bestellnummer ist abgeschaltet: Bestellnummer und
+// Kauf-E-Mail beweisen nicht, dass jemand Zugriff auf das Kauf-Postfach hat.
+// Kaeufe mit abweichender E-Mail ordnet der Support mit
+// scripts/stress-reset-access.mjs zu.
 exports.claimStressResetOrder = onCall(
   {
     region: "us-central1",
-    timeoutSeconds: 60,
+    timeoutSeconds: 30,
     memory: "256MiB",
     cors: CALLABLE_CORS,
   },
-  async (request) => {
-    const uid = requireAuth(request);
-    const orderId = cleanString(request.data?.orderId, 60).toUpperCase();
-    const purchaseEmail = normalizeEmail(request.data?.email);
-    if (!/^[A-Z0-9-]{4,40}$/.test(orderId) || !purchaseEmail.includes("@")) {
-      throw new HttpsError("invalid-argument", "Bitte Bestellnummer und Kauf-E-Mail aus deiner Digistore24-Kaufbestaetigung eingeben.");
-    }
+  async () => {
+    throw new HttpsError(
+      "failed-precondition",
+      "Bitte schreib uns an info@callidus-am.de mit deiner Bestellnummer, wir schalten den Kauf fuer dein Konto frei.",
+    );
+  },
+);
 
-    // Gegen Durchprobieren von Bestellnummern: begrenzte Versuche pro Stunde.
-    const hour = new Date().toISOString().slice(0, 13);
-    const rateRef = db.collection("users").doc(uid).collection("rate_limits").doc(`course_claim_${hour}`);
-    const rateSnap = await rateRef.get();
-    if (Number(rateSnap.data()?.count || 0) >= COURSE_CLAIM_LIMIT_PER_HOUR) {
-      throw new HttpsError("resource-exhausted", "Zu viele Versuche. Bitte in einer Stunde erneut probieren.");
-    }
-    await rateRef.set({ count: FieldValue.increment(1), updated_at: FieldValue.serverTimestamp() }, { merge: true });
+// Jeder bezahlte Kurskauf landet in der Brevo-Kaeuferliste. Die Lead-Sequenz
+// schliesst Kontakte dieser Liste aus, auch wenn der Kauf waehrend einer
+// Wartezeit passiert. Bestehende Abmeldungen bleiben unberuehrt: createContact
+// mit updateEnabled setzt keinen Newsletter-Status zurueck.
+const brevoApiKey = defineSecret("BREVO_API_KEY");
+const BREVO_BUYER_LIST_ID = 8;
 
-    let snap = await db.collection(COURSE_ORDERS).where("order_id", "==", orderId).get();
-    if (snap.empty) {
-      await backfillCourseOrdersFromIpn("order_id", [orderId, cleanString(request.data?.orderId, 60)]);
-      snap = await db.collection(COURSE_ORDERS).where("order_id", "==", orderId).get();
-    }
-    if (snap.empty) {
-      throw new HttpsError("not-found", "Bestellnummer und Kauf-E-Mail passen zu keinem Stress-Reset-Kauf. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
-    }
-    // Bestellnummer allein reicht nicht: Die Kauf-E-Mail muss passen. Gleiche
-    // Fehlermeldung wie bei unbekannter Nummer, damit nichts verraten wird.
-    const refs = snap.docs
-      .filter((doc) => normalizeEmail(doc.get("email")) === purchaseEmail)
-      .map((doc) => doc.ref);
-    if (!refs.length) {
-      throw new HttpsError("not-found", "Bestellnummer und Kauf-E-Mail passen zu keinem Stress-Reset-Kauf. Direkt nach dem Kauf kann es ein bis zwei Minuten dauern.");
-    }
-    await db.runTransaction(async (transaction) => {
-      const docs = await Promise.all(refs.map((ref) => transaction.get(ref)));
-      const orders = docs.map((doc) => doc.data() || {});
-      if (orders.some((order) => order.claimed_uid && order.claimed_uid !== uid)) {
-        throw new HttpsError("already-exists", "Diese Bestellung ist bereits einem anderen Konto zugeordnet. Bitte schreib uns, falls das nicht stimmt.");
-      }
-      if (!orders.some((order) => order.status === "paid")) {
-        throw new HttpsError("failed-precondition", "Diese Bestellung wurde erstattet oder ist nicht bezahlt.");
-      }
-      for (const ref of refs) {
-        transaction.set(ref, { claimed_uid: uid, claimed_at: FieldValue.serverTimestamp() }, { merge: true });
-      }
+exports.syncCourseBuyerToBrevo = onDocumentWritten(
+  {
+    document: "course_orders/{orderDocId}",
+    region: "us-central1",
+    secrets: [brevoApiKey],
+    timeoutSeconds: 60,
+    memory: "256MiB",
+  },
+  async (event) => {
+    const after = event.data?.after?.data();
+    if (!after || after.status !== "paid" || !after.email || after.brevo_buyer_synced_at) return;
+    const response = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "api-key": brevoApiKey.value(),
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({ email: after.email, listIds: [BREVO_BUYER_LIST_ID], updateEnabled: true }),
     });
-    return stressResetAccessFor(request);
+    if (!response.ok && response.status !== 204) {
+      const text = await response.text();
+      logger.error("syncCourseBuyerToBrevo failed", { status: response.status, body: cleanString(text, 300) });
+      throw new Error(`Brevo ${response.status}`);
+    }
+    await event.data.after.ref.set({ brevo_buyer_synced_at: FieldValue.serverTimestamp() }, { merge: true });
   },
 );
 
@@ -2584,8 +2623,7 @@ exports.cleanupShopifyDiscounts = onSchedule(
       }
     }
 
-    const released = await releaseExpiredReservations("shopify_redemptions");
-    logger.info("cleanupShopifyDiscounts done", { scanned: snap.size, deleted, failed, released });
+    logger.info("cleanupShopifyDiscounts done", { scanned: snap.size, deleted, failed });
   },
 );
 
@@ -2630,8 +2668,7 @@ exports.cleanupDigistoreVouchers = onSchedule(
       }
     }
 
-    const released = await releaseExpiredReservations("digistore_redemptions");
-    logger.info("cleanupDigistoreVouchers done", { scanned: coupons.length, deleted, failed, released });
+    logger.info("cleanupDigistoreVouchers done", { scanned: coupons.length, deleted, failed });
   },
 );
 

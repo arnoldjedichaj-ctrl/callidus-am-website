@@ -93,8 +93,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
         <h2>Unter <span data-member-email></span> ist noch kein Kauf hinterlegt.</h2>
         <p>
           Direkt nach dem Kauf kann es ein bis zwei Minuten dauern, bis Digistore24 uns den Kauf meldet – wir prüfen
-          automatisch noch einmal. Hast du mit einer anderen E-Mail-Adresse gekauft? Dann ordne den Kauf unten über
-          die Bestellnummer aus deiner Kaufbestätigung zu.
+          automatisch noch einmal. Hast du mit einer anderen E-Mail-Adresse gekauft? Dann melde dich mit dieser Adresse an – oder schreib uns an info@callidus-am.de mit deiner Bestellnummer, dann schalten wir den Kauf für dein Konto frei.
         </p>
         <div class="member-actions">
           <button class="button" type="button" id="member-retry">Erneut prüfen</button>
@@ -128,23 +127,6 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
         </aside>
       </div>
 
-      <details class="member-claim" id="member-claim" hidden>
-        <summary>Kauf mit einer anderen E-Mail-Adresse zuordnen</summary>
-        <form id="member-claim-form" class="member-form">
-          <label>
-            Bestellnummer aus der Digistore24-Kaufbestätigung
-            <input id="member-claim-order" type="text" autocomplete="off" placeholder="z. B. ABCD1234" required />
-          </label>
-          <label>
-            E-Mail-Adresse, mit der du gekauft hast
-            <input id="member-claim-email" type="email" autocomplete="off" required />
-          </label>
-          <div class="member-actions">
-            <button class="button primary" type="submit">Kauf zuordnen</button>
-          </div>
-          <p class="member-status" id="member-claim-status" role="status" aria-live="polite" hidden></p>
-        </form>
-      </details>
 
       <p class="member-help">
         Probleme mit dem Zugang? Schreib uns an <a href="mailto:info@callidus-am.de?subject=Zugang%20Stress-Reset">info@callidus-am.de</a>
@@ -162,7 +144,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
     root.dataset.ready = 'true';
 
     const authApi = await import('firebase/auth');
-    const { auth, getStressResetAccess, claimStressResetOrder } = await import('../lib/firebase-client.js');
+    const { auth, getStressResetAccess } = await import('../lib/firebase-client.js');
 
     const modules = JSON.parse(document.getElementById('member-module-data')?.textContent || '[]');
     const $ = (id) => document.getElementById(id);
@@ -261,7 +243,6 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
       const user = auth.currentUser;
       if (!user) { show('member-auth'); return; }
       fillEmail(user);
-      $('member-claim').hidden = false;
       if (needsVerification(user)) {
         show('member-verify');
         // Bestehende Konten (Portal, NEXUS) haben oft noch keine Bestaetigungsmail
@@ -378,21 +359,9 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
     setInterval(() => { if (auth.currentUser && !$('member-content').hidden) loadAccess(); }, 3 * 60 * 60 * 1000);
     document.querySelectorAll('[data-signout]').forEach((button) => button.addEventListener('click', () => authApi.signOut(auth)));
 
-    $('member-claim-form').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      setStatus('member-claim-status', 'Wird geprüft …', 'pending');
-      try {
-        await claimStressResetOrder()({ orderId: $('member-claim-order').value.trim(), email: $('member-claim-email').value.trim() });
-        setStatus('member-claim-status', 'Kauf zugeordnet.', 'ok');
-        loadAccess();
-      } catch (error) {
-        setStatus('member-claim-status', error?.message || 'Zuordnung fehlgeschlagen.', 'error');
-      }
-    });
 
     authApi.onAuthStateChanged(auth, (user) => {
       retries = 0;
-      $('member-claim').hidden = !user;
       if (!user) { show('member-auth'); return; }
       show('member-loading');
       loadAccess();
@@ -436,9 +405,6 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
   .member-grid :global(.member-body small) { color: var(--muted); }
   .member-upgrade { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.2rem; border: 1px solid rgba(var(--gold-rgb), .45); border-radius: 1rem; background: linear-gradient(145deg, rgba(var(--gold-rgb), .15), var(--panel)); }
   .member-upgrade p { margin: .2rem 0 0; }
-  .member-claim { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 1px dashed var(--line); border-radius: 1rem; }
-  .member-claim summary { cursor: pointer; font-weight: 700; }
-  .member-claim form { margin-top: 1rem; max-width: 28rem; }
   @media (max-width: 820px) {
     .member-auth { grid-template-columns: 1fr; }
   }
