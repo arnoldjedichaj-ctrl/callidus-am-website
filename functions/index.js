@@ -1656,17 +1656,26 @@ exports.getValusCheckoutUrl = onCall(
 // product = { key, title, productId, checkoutUrl, priceCents, codePrefix,
 //             redemptionCollection, productType, ledgerType }
 // Gibt die Reservierung eines Codes genau einmal frei (Fehler oder Ablauf).
-async function releaseValusReservation(uid, redemptionCollection, code, reason) {
+async function releaseValusReservation(uid, redemptionCollection, code, reason, mappingCollection) {
   const userRef = db.collection("users").doc(uid);
   const balanceRef = userRef.collection("balances").doc("current");
   const redemptionRef = userRef.collection(redemptionCollection).doc(code);
+  const mappingRef = mappingCollection ? db.collection(mappingCollection).doc(code) : null;
   return db.runTransaction(async (transaction) => {
-    const [redemptionSnap, balanceSnap] = await Promise.all([
+    const [redemptionSnap, balanceSnap, mappingSnap] = await Promise.all([
       transaction.get(redemptionRef),
       transaction.get(balanceRef),
+      mappingRef ? transaction.get(mappingRef) : null,
     ]);
     const redemption = redemptionSnap.exists ? redemptionSnap.data() : null;
-    if (!redemption || redemption.reservation_released || redemption.status === "paid") return false;
+    if (!redemption || ["paid", "refunded"].includes(redemption.status)
+      || ["paid", "refunded"].includes(mappingSnap?.data()?.status)) return false;
+    if (mappingRef) transaction.set(mappingRef, {
+      reservation_released: true,
+      status: reason === "expired" ? "expired" : "reservation_released",
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    if (redemption.reservation_released) return false;
     const reserved = Math.max(0, Math.round(numberValue(redemption.reserved_cents, 0)));
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
     transaction.set(balanceRef, {
@@ -1684,10 +1693,10 @@ async function releaseValusReservation(uid, redemptionCollection, code, reason) 
 }
 
 // Abgelaufene, nie bezahlte Codes geben ihr reserviertes VAL wieder frei.
-// Gelesen werden nur offene Codes ("creating"/"coupon_created"); erledigte
+// Gelesen werden offene oder fehlgeschlagene Codes; erledigte
 // verlassen die Abfrage, weil ihr Status wechselt. Seitenweise bis zum Ende.
 const RESERVATION_RELEASE_GRACE_MS = 15 * 60 * 1000;
-const OPEN_REDEMPTION_STATUSES = ["creating", "coupon_created"];
+const OPEN_REDEMPTION_STATUSES = ["creating", "coupon_created", "coupon_failed"];
 
 async function releaseExpiredReservations(mappingCollection) {
   const cutoff = Date.now() - RESERVATION_RELEASE_GRACE_MS;
@@ -1704,12 +1713,13 @@ async function releaseExpiredReservations(mappingCollection) {
     for (const docSnap of snap.docs) {
       const data = docSnap.data() || {};
       const expiresAt = Date.parse(data.voucher_expires_at || "");
-      if (!Number.isFinite(expiresAt) || expiresAt > cutoff || !data.uid) continue;
+      if (!data.uid || (data.status !== "coupon_failed"
+        && (!Number.isFinite(expiresAt) || expiresAt > cutoff))) continue;
+      const reason = data.status === "coupon_failed" ? "coupon_failed" : "expired";
       try {
-        if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, "expired")) {
+        if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, reason, mappingCollection)) {
           released += 1;
         }
-        await docSnap.ref.set({ reservation_released: true, status: "expired", updated_at: FieldValue.serverTimestamp() }, { merge: true });
       } catch (error) {
         logger.warn("releaseExpiredReservations failed", { code: docSnap.id, error: String(error?.message || error) });
       }
@@ -1881,7 +1891,7 @@ async function createProductRedemption(request, product) {
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
     await mappingRef.set({ status: "coupon_failed", updated_at: FieldValue.serverTimestamp() }, { merge: true });
-    await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed");
+    await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed", mappingCollection);
     throw new HttpsError("internal", `Der Rabattcode konnte bei ${providerLabel} nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.`);
   }
 
@@ -2437,32 +2447,80 @@ exports.claimStressResetOrder = onCall(
 const brevoApiKey = defineSecret("BREVO_API_KEY");
 const BREVO_BUYER_LIST_ID = 8;
 
+// Read current state on each attempt: retries may carry an older event snapshot.
+async function syncCourseBuyer(ref) {
+  const order = (await ref.get()).data();
+  const email = normalizeEmail(order?.email);
+  if (!order || order.status !== "paid" || !email
+    || (order.brevo_buyer_synced_at && order.brevo_buyer_synced_email === email)) return false;
+  const response = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    signal: AbortSignal.timeout(15000),
+    headers: { "api-key": brevoApiKey.value(), "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({ email, listIds: [BREVO_BUYER_LIST_ID], updateEnabled: true }),
+  });
+  if (!response.ok) {
+    // Do not log provider responses containing customer data.
+    logger.error("syncCourseBuyerToBrevo failed", { orderDocId: ref.id, status: response.status });
+    throw new Error(`Brevo ${response.status}`);
+  }
+  await db.runTransaction(async (transaction) => {
+    const current = (await transaction.get(ref)).data();
+    if (current?.status === "paid" && normalizeEmail(current.email) === email) {
+      transaction.set(ref, {
+        brevo_buyer_synced_at: FieldValue.serverTimestamp(),
+        brevo_buyer_synced_email: email,
+      }, { merge: true });
+    }
+  });
+  return true;
+}
+
 exports.syncCourseBuyerToBrevo = onDocumentWritten(
   {
     document: "course_orders/{orderDocId}",
     region: "us-central1",
     secrets: [brevoApiKey],
+    retry: true,
     timeoutSeconds: 60,
     memory: "256MiB",
   },
   async (event) => {
-    const after = event.data?.after?.data();
-    if (!after || after.status !== "paid" || !after.email || after.brevo_buyer_synced_at) return;
-    const response = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: {
-        "api-key": brevoApiKey.value(),
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify({ email: after.email, listIds: [BREVO_BUYER_LIST_ID], updateEnabled: true }),
-    });
-    if (!response.ok && response.status !== 204) {
-      const text = await response.text();
-      logger.error("syncCourseBuyerToBrevo failed", { status: response.status, body: cleanString(text, 300) });
-      throw new Error(`Brevo ${response.status}`);
+    if (event.data?.after?.exists) await syncCourseBuyer(event.data.after.ref);
+  },
+);
+
+// Recover missed events, old purchases and failures beyond the event retry window.
+exports.reconcileCourseBuyersToBrevo = onSchedule(
+  {
+    schedule: "every 60 minutes",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    secrets: [brevoApiKey],
+    timeoutSeconds: 540,
+    memory: "256MiB",
+  },
+  async () => {
+    let last = null;
+    let synced = 0;
+    let failed = 0;
+    for (;;) {
+      let query = db.collection(COURSE_ORDERS).where("status", "==", "paid")
+        .orderBy(FieldPath.documentId()).limit(100);
+      if (last) query = query.startAfter(last);
+      const page = await query.get();
+      if (page.empty) break;
+      for (const doc of page.docs) {
+        try { if (await syncCourseBuyer(doc.ref)) synced += 1; }
+        catch (error) {
+          failed += 1;
+          logger.warn("reconcileCourseBuyersToBrevo failed", { orderDocId: doc.id });
+        }
+      }
+      last = page.docs[page.docs.length - 1];
+      if (page.size < 100) break;
     }
-    await event.data.after.ref.set({ brevo_buyer_synced_at: FieldValue.serverTimestamp() }, { merge: true });
+    logger.info("reconcileCourseBuyersToBrevo done", { synced, failed });
   },
 );
 
