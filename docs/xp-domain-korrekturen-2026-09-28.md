@@ -26,6 +26,10 @@ Prüfung: sechs isolierte Tests in `scripts/test-xp-trust.cjs`, zusätzlich die 
 
 ## Digistore24 und Erstattung
 
-Laut Nutzer sind Module 6 und 7 seit heute genehmigt; 1, 2 und 3 warten weiter auf Genehmigung.
+Am 28.09.2026 direkt in der angemeldeten Digistore24-Produktliste geprüft: Module 1, 2, 3, 6 und 7 sind inzwischen alle genehmigt. Auch Module 4, 5 und der Komplettkurs sind genehmigt.
 
 Für einen echten Erstattungstest wird eine geeignete bezahlte Testbestellung ohne zusätzlichen gültigen Kurszugang benötigt. H4VKAJPL gehört zu einem Konto mit weiter gültigem Komplettkurs. Die Erstattung nur des Einzelmoduls kann daher keine vollständige Zugangssperre belegen. Keine echte Rückzahlung ausgelöst.
+
+## Veröffentlichung
+
+Firebase bestätigt die erfolgreiche produktive Aktualisierung von `getValusBalance`, `convertNexusXpToValus`, `creditMomusXp` und `claimDailyTaskXp` am 28.09.2026.
