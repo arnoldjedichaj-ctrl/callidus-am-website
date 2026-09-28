@@ -180,11 +180,11 @@ function bootPortal() {
     const raw = payload.balance || payload.balances || payload;
     const user = payload.user || payload.userDoc || {};
     const valus = valusFromSources(raw, user);
-    const xp = num(raw.xp ?? raw.current_xp ?? raw.total_xp);
+    const xp = raw.xpPolicy === 'server_verified_only' ? num(raw.xp) : 0;
     return {
       valus,
       xp,
-      hasXp: raw.xp != null || raw.current_xp != null || raw.total_xp != null,
+      hasXp: raw.xpPolicy === 'server_verified_only',
     };
   }
 
@@ -445,7 +445,7 @@ function bootPortal() {
       event.preventDefault();
       const xpAmount = Number.parseInt(input.value, 10) || 0;
       if (xpAmount < XP_PER_VALUS) {
-        setStatus('portal-xp-convert-status', `Minimum ${XP_PER_VALUS} NEXUS-XP.`, 'error');
+        setStatus('portal-xp-convert-status', `Minimum ${XP_PER_VALUS} bestätigte Belohnungs-XP.`, 'error');
         return;
       }
       if (xpAmount % XP_PER_VALUS !== 0) {
@@ -453,14 +453,14 @@ function bootPortal() {
         return;
       }
       const valusAmount = Math.floor(xpAmount / XP_PER_VALUS);
-      if (!window.confirm(`${xpAmount} NEXUS-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) {
+      if (!window.confirm(`${xpAmount} bestätigte Belohnungs-XP wirklich in ${valusAmount} VAL umwandeln? Dieser Schritt kann nicht automatisch rueckgaengig gemacht werden.`)) {
         setStatus('portal-xp-convert-status', '');
         return;
       }
 
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');
-      setStatus('portal-xp-convert-status', 'Wandle NEXUS-XP in VAL um...', 'pending');
+      setStatus('portal-xp-convert-status', 'Wandle bestätigte Belohnungs-XP in VAL um...', 'pending');
       try {
         const callable = state.api.httpsCallable(state.fns, 'convertNexusXpToValus');
         const result = await callable({ xpAmount, source: 'nexus' });
@@ -469,7 +469,7 @@ function bootPortal() {
         text('portal-xp', displayNumber(balance.xp, ' XP'));
         setStatus(
           'portal-xp-convert-status',
-          `${xpAmount} NEXUS-XP wurden in ${Math.floor(xpAmount / XP_PER_VALUS)} VAL umgewandelt.`,
+          `${xpAmount} bestätigte Belohnungs-XP wurden in ${Math.floor(xpAmount / XP_PER_VALUS)} VAL umgewandelt.`,
           'ok',
         );
         if (state.user) await loadOverview(state.user);

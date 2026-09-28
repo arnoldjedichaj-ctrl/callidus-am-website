@@ -844,68 +844,24 @@ function availableValusCents(balance = {}, user = {}) {
   return Math.max(0, centsFromValus(valusFromSources(balance, user)) - reservedValusCents(balance));
 }
 
-// Berechnet die noch nicht in den Spend-Topf eingeflossenen Betraege je Quelle.
-// Wasserstandsmarken: momus_xp_credited (Momus) und nexus_xp_credited (Nexus).
-// - Momus: Quelle ist user.momus_xp_total (monoton, bereits "ausgebbares" XP).
-// - Nexus: Quelle ist user.total_xp (lebenslang verdient, monoton). Beim ersten
-//   Abgleich wird nexus_xp_credited selbst-initialisiert auf den bereits im Topf
-//   liegenden Nicht-Momus-Anteil (balance.xp - momus_xp_credited), damit schon
-//   vorhandenes Nexus-XP NICHT doppelt gutgeschrieben wird.
-function earnedXpDeltas(user = {}, balance = {}) {
-  const poolXp = numberValue(balance.xp ?? balance.current_xp, 0);
-  const momusCredited = Math.max(0, numberValue(balance.momus_xp_credited, 0));
-  const momusTotal = Math.max(0, numberValue(user.momus_xp_total, 0));
-  const momusDelta = Math.max(0, momusTotal - momusCredited);
-
-  const nexusTotal = Math.max(0, numberValue(user.total_xp, 0));
-  const nexusInit = balance.nexus_xp_credited === undefined || balance.nexus_xp_credited === null;
-  const nexusCredited = nexusInit
-    ? Math.max(0, poolXp - momusCredited)
-    : Math.max(0, numberValue(balance.nexus_xp_credited, 0));
-  const nexusDelta = Math.max(0, nexusTotal - nexusCredited);
-
-  return { poolXp, momusTotal, momusDelta, nexusTotal, nexusDelta, nexusInit };
+// Separate, server-only subcollection (not in the client-write allowlist).
+// Never initialize this balance from client XP or the legacy mixed XP pool.
+function verifiedXp(data = {}) {
+  const xp = Number(data.xp);
+  return Number.isSafeInteger(xp) && xp >= 0 ? xp : 0;
 }
 
-// Bucht offenes Momus- und Nexus-XP idempotent und transaktionssicher in
-// balances/current.xp. Die Wasserstandsmarken werden atomar mitgezogen, damit
-// dieselben XP niemals doppelt gutgeschrieben werden.
+// Compatibility entry point: app totals remain display/level data only.
 async function reconcileEarnedXp(userRef) {
-  const balanceRef = userRef.collection("balances").doc("current");
-  return db.runTransaction(async (transaction) => {
-    const [userSnap, balanceSnap] = await Promise.all([
-      transaction.get(userRef),
-      transaction.get(balanceRef),
-    ]);
-    const user = userSnap.exists ? userSnap.data() : {};
-    const balance = balanceSnap.exists ? balanceSnap.data() : {};
-    const { poolXp, momusTotal, momusDelta, nexusTotal, nexusDelta, nexusInit } = earnedXpDeltas(user, balance);
-    const totalDelta = momusDelta + nexusDelta;
-
-    // Nichts gutzuschreiben UND Marken bereits gesetzt -> No-op.
-    if (totalDelta <= 0 && !nexusInit) {
-      return { user, balance, momusDelta: 0, nexusDelta: 0, momusTotal, nexusTotal, balanceXp: poolXp };
-    }
-
-    const newXp = poolXp + totalDelta;
-    const patch = {
-      xp: newXp,
-      current_xp: newXp,
-      momus_xp_credited: momusTotal,
-      nexus_xp_credited: nexusTotal,
-      updated_at: FieldValue.serverTimestamp(),
-    };
-    transaction.set(balanceRef, patch, { merge: true });
-    return {
-      user,
-      balance: { ...balance, ...patch },
-      momusDelta,
-      nexusDelta,
-      momusTotal,
-      nexusTotal,
-      balanceXp: newXp,
-    };
-  });
+  const [userSnap, balanceSnap, rewardSnap] = await Promise.all([
+    userRef.get(), userRef.collection("balances").doc("current").get(),
+    userRef.collection("valus_xp_rewards").doc("current").get(),
+  ]);
+  const user = userSnap.data() || {};
+  const balance = { ...(balanceSnap.data() || {}), redeemable_xp: verifiedXp(rewardSnap.data()) };
+  return { user, balance, momusDelta: 0, nexusDelta: 0,
+    momusTotal: numberValue(user.momus_xp_total, 0),
+    nexusTotal: numberValue(user.total_xp, 0), balanceXp: balance.redeemable_xp };
 }
 
 function publicBalance(balance = {}, user = {}) {
@@ -913,7 +869,9 @@ function publicBalance(balance = {}, user = {}) {
   return {
     valus,
     val: valus,
-    xp: xpFromSources(balance, user),
+    xp: verifiedXp({ xp: balance.redeemable_xp }),
+    legacyXp: xpFromSources(balance),
+    xpPolicy: "server_verified_only",
     rate: {
       xpPerValus: XP_PER_VALUS,
       monthlyValusLimit: MONTHLY_VALUS_LIMIT,
@@ -1285,7 +1243,7 @@ exports.getValusBalance = onCall(
   async (request) => {
     const uid = requireAuth(request);
     const userRef = db.collection("users").doc(uid);
-    // Offenes Momus- und Nexus-XP zuerst sicher in den Spend-Topf abgleichen, dann anzeigen.
+    // Only server-confirmed reward XP is offered for conversion.
     const { user, balance } = await reconcileEarnedXp(userRef);
     const monthSnap = await userRef.collection("valus_conversions").doc(monthKey()).get();
     const convertedThisMonth = numberValue(monthSnap.data()?.valus, 0);
@@ -1354,8 +1312,8 @@ exports.convertNexusXpToValus = onCall(
       throw new HttpsError("failed-precondition", "Aktuell kann nur NEXUS- oder Momus-XP in VAL umgewandelt werden.");
     }
 
-    const xpAmount = Number.parseInt(request.data?.xpAmount, 10);
-    if (!Number.isFinite(xpAmount)) {
+    const xpAmount = Number(request.data?.xpAmount);
+    if (!Number.isSafeInteger(xpAmount)) {
       throw new HttpsError("invalid-argument", "Bitte XP-Betrag eingeben.");
     }
     if (xpAmount < XP_PER_VALUS) {
@@ -1373,20 +1331,18 @@ exports.convertNexusXpToValus = onCall(
     const balanceRef = userRef.collection("balances").doc("current");
     const conversionRef = userRef.collection("valus_conversions").doc(monthKey());
     const ledgerRef = userRef.collection("valus_ledger").doc();
-
-    // Offenes Momus-/Nexus-XP zuerst sicher in den Spend-Topf abgleichen, damit auch
-    // frisch verdientes XP umgewandelt werden kann (setzt die Wasserstandsmarken).
-    await reconcileEarnedXp(userRef);
+    const rewardRef = userRef.collection("valus_xp_rewards").doc("current");
 
     const result = await db.runTransaction(async (transaction) => {
-      const [userSnap, balanceSnap, conversionSnap] = await Promise.all([
+      const [userSnap, balanceSnap, conversionSnap, rewardSnap] = await Promise.all([
         transaction.get(userRef),
         transaction.get(balanceRef),
         transaction.get(conversionRef),
+        transaction.get(rewardRef),
       ]);
       const user = userSnap.exists ? userSnap.data() : {};
       const balance = balanceSnap.exists ? balanceSnap.data() : {};
-      const availableXp = xpFromSources(balance, user);
+      const availableXp = verifiedXp(rewardSnap.data());
       const alreadyConverted = numberValue(conversionSnap.data()?.valus, 0);
       const remainingValus = MONTHLY_VALUS_LIMIT - alreadyConverted;
 
@@ -1394,7 +1350,7 @@ exports.convertNexusXpToValus = onCall(
         throw new HttpsError("resource-exhausted", `Monatslimit erreicht. Verfuegbar sind noch ${Math.max(0, remainingValus)} VAL.`);
       }
       if (availableXp < xpAmount) {
-        throw new HttpsError("failed-precondition", `Nicht genug XP vorhanden. Aktuell verfuegbar: ${availableXp} XP.`);
+        throw new HttpsError("failed-precondition", `Nur serverseitig bestaetigte Belohnungs-XP sind umwandelbar. Verfuegbar: ${availableXp} XP. Bisherige App-XP und Level bleiben erhalten.`);
       }
 
       const nextXp = availableXp - xpAmount;
@@ -1404,14 +1360,15 @@ exports.convertNexusXpToValus = onCall(
       const balancePayload = {
         valus: nextValus,
         val: nextValus,
-        xp: nextXp,
-        current_xp: nextXp,
+        xp: Math.max(0, xpFromSources(balance) - xpAmount),
+        current_xp: Math.max(0, xpFromSources(balance) - xpAmount),
         xp_source: source,
         valus_legacy_migrated: true,
         updated_at: FieldValue.serverTimestamp(),
       };
 
       transaction.set(balanceRef, balancePayload, { merge: true });
+      transaction.set(rewardRef, { xp: nextXp, updated_at: FieldValue.serverTimestamp() }, { merge: true });
       transaction.set(conversionRef, {
         source,
         valus: FieldValue.increment(valusAmount),
@@ -1423,7 +1380,8 @@ exports.convertNexusXpToValus = onCall(
         source,
         amount: valusAmount,
         xp_amount: xpAmount,
-        description: `${source === "momus" ? "Momus" : "NEXUS"}-XP in VAL umgewandelt`,
+        description: "Bestaetigte Belohnungs-XP in VAL umgewandelt",
+        xp_policy: "server_verified_only",
         created_at: FieldValue.serverTimestamp(),
       });
 
@@ -1432,6 +1390,7 @@ exports.convertNexusXpToValus = onCall(
           valus: nextValus,
           val: nextValus,
           xp: nextXp,
+          xpPolicy: "server_verified_only",
           rate: {
             xpPerValus: XP_PER_VALUS,
             monthlyValusLimit: MONTHLY_VALUS_LIMIT,
@@ -1448,10 +1407,7 @@ exports.convertNexusXpToValus = onCall(
   },
 );
 
-// Wird von der Momus-App aufgerufen (MomusXpService._creditToWallet), sobald neue
-// Momus-XP gebankt wurden. Schreibt den Zuwachs seit dem letzten Kredit idempotent
-// in balances/current.xp, damit das XP-Guthaben auf der Website angezeigt und via
-// convertNexusXpToValus in VAL umgewandelt werden kann.
+// Compatibility endpoint for older apps: self-reported XP no longer earns VAL.
 exports.creditMomusXp = onCall(
   {
     region: "europe-west3",
@@ -1513,12 +1469,14 @@ exports.claimDailyTaskXp = onCall(
     const summaryRef = userRef.collection("daily_task_xp").doc("_summary");
     const dayRef = userRef.collection("daily_task_xp").doc(dateKey);
     const ledgerRef = userRef.collection("valus_ledger").doc();
+    const rewardRef = userRef.collection("valus_xp_rewards").doc("current");
 
     const result = await db.runTransaction(async (transaction) => {
-      const [daySnap, summarySnap, balanceSnap] = await Promise.all([
+      const [daySnap, summarySnap, balanceSnap, rewardSnap] = await Promise.all([
         transaction.get(dayRef),
         transaction.get(summaryRef),
         transaction.get(balanceRef),
+        transaction.get(rewardRef),
       ]);
       const summary = summarySnap.exists ? summarySnap.data() || {} : {};
 
@@ -1551,6 +1509,10 @@ exports.claimDailyTaskXp = onCall(
         balancePatch.nexus_xp_credited = Math.max(0, poolXp - momusCredited);
       }
       transaction.set(balanceRef, balancePatch, { merge: true });
+      transaction.set(rewardRef, {
+        xp: verifiedXp(rewardSnap.data()) + award,
+        updated_at: FieldValue.serverTimestamp(),
+      }, { merge: true });
 
       const awardedMilestones = [
         ...(Array.isArray(summary.milestonesAwarded) ? summary.milestonesAwarded.map((value) => Number(value)) : []),
@@ -1656,17 +1618,26 @@ exports.getValusCheckoutUrl = onCall(
 // product = { key, title, productId, checkoutUrl, priceCents, codePrefix,
 //             redemptionCollection, productType, ledgerType }
 // Gibt die Reservierung eines Codes genau einmal frei (Fehler oder Ablauf).
-async function releaseValusReservation(uid, redemptionCollection, code, reason) {
+async function releaseValusReservation(uid, redemptionCollection, code, reason, mappingCollection) {
   const userRef = db.collection("users").doc(uid);
   const balanceRef = userRef.collection("balances").doc("current");
   const redemptionRef = userRef.collection(redemptionCollection).doc(code);
+  const mappingRef = mappingCollection ? db.collection(mappingCollection).doc(code) : null;
   return db.runTransaction(async (transaction) => {
-    const [redemptionSnap, balanceSnap] = await Promise.all([
+    const [redemptionSnap, balanceSnap, mappingSnap] = await Promise.all([
       transaction.get(redemptionRef),
       transaction.get(balanceRef),
+      mappingRef ? transaction.get(mappingRef) : null,
     ]);
     const redemption = redemptionSnap.exists ? redemptionSnap.data() : null;
-    if (!redemption || redemption.reservation_released || redemption.status === "paid") return false;
+    if (!redemption || ["paid", "refunded"].includes(redemption.status)
+      || ["paid", "refunded"].includes(mappingSnap?.data()?.status)) return false;
+    if (mappingRef) transaction.set(mappingRef, {
+      reservation_released: true,
+      status: reason === "expired" ? "expired" : "reservation_released",
+      updated_at: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    if (redemption.reservation_released) return false;
     const reserved = Math.max(0, Math.round(numberValue(redemption.reserved_cents, 0)));
     const balance = balanceSnap.exists ? balanceSnap.data() : {};
     transaction.set(balanceRef, {
@@ -1684,10 +1655,10 @@ async function releaseValusReservation(uid, redemptionCollection, code, reason) 
 }
 
 // Abgelaufene, nie bezahlte Codes geben ihr reserviertes VAL wieder frei.
-// Gelesen werden nur offene Codes ("creating"/"coupon_created"); erledigte
+// Gelesen werden offene oder fehlgeschlagene Codes; erledigte
 // verlassen die Abfrage, weil ihr Status wechselt. Seitenweise bis zum Ende.
 const RESERVATION_RELEASE_GRACE_MS = 15 * 60 * 1000;
-const OPEN_REDEMPTION_STATUSES = ["creating", "coupon_created"];
+const OPEN_REDEMPTION_STATUSES = ["creating", "coupon_created", "coupon_failed"];
 
 async function releaseExpiredReservations(mappingCollection) {
   const cutoff = Date.now() - RESERVATION_RELEASE_GRACE_MS;
@@ -1704,12 +1675,13 @@ async function releaseExpiredReservations(mappingCollection) {
     for (const docSnap of snap.docs) {
       const data = docSnap.data() || {};
       const expiresAt = Date.parse(data.voucher_expires_at || "");
-      if (!Number.isFinite(expiresAt) || expiresAt > cutoff || !data.uid) continue;
+      if (!data.uid || (data.status !== "coupon_failed"
+        && (!Number.isFinite(expiresAt) || expiresAt > cutoff))) continue;
+      const reason = data.status === "coupon_failed" ? "coupon_failed" : "expired";
       try {
-        if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, "expired")) {
+        if (await releaseValusReservation(data.uid, data.redemption_collection || "kinderbuch_redemptions", docSnap.id, reason, mappingCollection)) {
           released += 1;
         }
-        await docSnap.ref.set({ reservation_released: true, status: "expired", updated_at: FieldValue.serverTimestamp() }, { merge: true });
       } catch (error) {
         logger.warn("releaseExpiredReservations failed", { code: docSnap.id, error: String(error?.message || error) });
       }
@@ -1881,7 +1853,7 @@ async function createProductRedemption(request, product) {
       updated_at: FieldValue.serverTimestamp(),
     }, { merge: true });
     await mappingRef.set({ status: "coupon_failed", updated_at: FieldValue.serverTimestamp() }, { merge: true });
-    await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed");
+    await releaseValusReservation(uid, product.redemptionCollection, redemptionCode.toLowerCase(), "coupon_failed", mappingCollection);
     throw new HttpsError("internal", `Der Rabattcode konnte bei ${providerLabel} nicht erstellt werden. Dein Guthaben wurde nicht belastet. Bitte versuche es spaeter erneut.`);
   }
 
@@ -2437,32 +2409,80 @@ exports.claimStressResetOrder = onCall(
 const brevoApiKey = defineSecret("BREVO_API_KEY");
 const BREVO_BUYER_LIST_ID = 8;
 
+// Read current state on each attempt: retries may carry an older event snapshot.
+async function syncCourseBuyer(ref) {
+  const order = (await ref.get()).data();
+  const email = normalizeEmail(order?.email);
+  if (!order || order.status !== "paid" || !email
+    || (order.brevo_buyer_synced_at && order.brevo_buyer_synced_email === email)) return false;
+  const response = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    signal: AbortSignal.timeout(15000),
+    headers: { "api-key": brevoApiKey.value(), "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({ email, listIds: [BREVO_BUYER_LIST_ID], updateEnabled: true }),
+  });
+  if (!response.ok) {
+    // Do not log provider responses containing customer data.
+    logger.error("syncCourseBuyerToBrevo failed", { orderDocId: ref.id, status: response.status });
+    throw new Error(`Brevo ${response.status}`);
+  }
+  await db.runTransaction(async (transaction) => {
+    const current = (await transaction.get(ref)).data();
+    if (current?.status === "paid" && normalizeEmail(current.email) === email) {
+      transaction.set(ref, {
+        brevo_buyer_synced_at: FieldValue.serverTimestamp(),
+        brevo_buyer_synced_email: email,
+      }, { merge: true });
+    }
+  });
+  return true;
+}
+
 exports.syncCourseBuyerToBrevo = onDocumentWritten(
   {
     document: "course_orders/{orderDocId}",
     region: "us-central1",
     secrets: [brevoApiKey],
+    retry: true,
     timeoutSeconds: 60,
     memory: "256MiB",
   },
   async (event) => {
-    const after = event.data?.after?.data();
-    if (!after || after.status !== "paid" || !after.email || after.brevo_buyer_synced_at) return;
-    const response = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: {
-        "api-key": brevoApiKey.value(),
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify({ email: after.email, listIds: [BREVO_BUYER_LIST_ID], updateEnabled: true }),
-    });
-    if (!response.ok && response.status !== 204) {
-      const text = await response.text();
-      logger.error("syncCourseBuyerToBrevo failed", { status: response.status, body: cleanString(text, 300) });
-      throw new Error(`Brevo ${response.status}`);
+    if (event.data?.after?.exists) await syncCourseBuyer(event.data.after.ref);
+  },
+);
+
+// Recover missed events, old purchases and failures beyond the event retry window.
+exports.reconcileCourseBuyersToBrevo = onSchedule(
+  {
+    schedule: "every 60 minutes",
+    timeZone: "Europe/Berlin",
+    region: "us-central1",
+    secrets: [brevoApiKey],
+    timeoutSeconds: 540,
+    memory: "256MiB",
+  },
+  async () => {
+    let last = null;
+    let synced = 0;
+    let failed = 0;
+    for (;;) {
+      let query = db.collection(COURSE_ORDERS).where("status", "==", "paid")
+        .orderBy(FieldPath.documentId()).limit(100);
+      if (last) query = query.startAfter(last);
+      const page = await query.get();
+      if (page.empty) break;
+      for (const doc of page.docs) {
+        try { if (await syncCourseBuyer(doc.ref)) synced += 1; }
+        catch (error) {
+          failed += 1;
+          logger.warn("reconcileCourseBuyersToBrevo failed", { orderDocId: doc.id });
+        }
+      }
+      last = page.docs[page.docs.length - 1];
+      if (page.size < 100) break;
     }
-    await event.data.after.ref.set({ brevo_buyer_synced_at: FieldValue.serverTimestamp() }, { merge: true });
+    logger.info("reconcileCourseBuyersToBrevo done", { synced, failed });
   },
 );
 
