@@ -27,6 +27,7 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
     <div class="container">
       <p class="eyebrow">7-Tage-Stress-Reset</p>
       <h1>Mitgliederbereich</h1>
+      <p><a href="/portal/#meine-kurse">← Meine Kurse in Mein Bereich</a></p>
       <p class="lede">Hier findest du alle Module, die du gekauft hast – Video und Arbeitsblatt. Wir empfehlen, die Module Tag für Tag durchzugehen.</p>
     </div>
   </section>
@@ -275,7 +276,8 @@ const bundleOffer = { url: bundle.checkoutUrl, price: formatEuro(bundle.priceCen
         setStatus('member-media-status', data.mediaError ? 'Einige Inhalte konnten gerade nicht geladen werden. Bitte die Seite in ein paar Minuten neu laden.' : '', 'error');
         show('member-content');
         const target = new URLSearchParams(location.search).get('modul');
-        if (target) document.getElementById(`modul-${target}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const targetId = target ? `modul-${target}` : location.hash === '#bonus' ? 'bonus' : '';
+        if (targetId) document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } catch (error) {
         console.warn('Stress-Reset access failed', error);
         show('member-error');

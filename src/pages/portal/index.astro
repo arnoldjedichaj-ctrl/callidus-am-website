@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PortalGate from '../../components/PortalGate.astro';
+import PortalCourses from '../../components/PortalCourses.astro';
 import { portalAppList, portalNavList } from '../../data/portal.js';
 import healthCompass from '../../data/health-compass.json';
 import '../../styles/portal.css';
@@ -16,8 +17,8 @@ const firebaseConfig = {
 ---
 
 <BaseLayout
-  title="Callidus Portal | NEXUS, MOMUS & KAIROS"
-  description="Geschuetzter Callidus Mitgliederbereich fuer Wallet, VAL, XP und die freigegebenen Daten aus NEXUS, MOMUS und KAIROS."
+  title="Mein Bereich | Kurse, Apps & Wallet | callidus A&M"
+  description="Dein persönlicher Callidus-Bereich für gekaufte Kurse, Apps, Wallet und bestätigte Belohnungen."
   lang="de"
 >
   <section class="section portal-section">
@@ -26,17 +27,20 @@ const firebaseConfig = {
         <div class="portal-hero" data-reveal>
           <div>
             <p class="eyebrow">Callidus Portal</p>
-            <h1>Ein Konto fuer deine Apps.</h1>
+            <h1>Deine Kurse und Apps an einem Ort.</h1>
             <p class="lede portal-copy">
-              Wallet, Valus, XP und freigegebene App-Daten laufen hier in einem geschuetzten Bereich zusammen.
+              Hier findest du deine gekauften Kurse, deine Wallet und die freigegebenen Daten deiner Apps.
             </p>
           </div>
           <nav class="portal-subnav" aria-label="Portal Bereiche">
             <a href="/portal/" aria-current="page">Portal</a>
+            <a href="#meine-kurse">Meine Kurse</a>
             <a href="/wallet/">Wallet</a>
             {portalNavList.map((app) => <a href={app.href}>{app.name}</a>)}
           </nav>
         </div>
+
+        <PortalCourses />
 
         <div class="portal-kpi-grid" data-reveal="2" style="margin-top:1.25rem">
           <div class="portal-kpi">

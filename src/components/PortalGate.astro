@@ -17,9 +17,9 @@ const {
 
   <section id="portal-auth" class="portal-auth-card" hidden>
     <p class="eyebrow">Callidus Login</p>
-    <h2>Portal anmelden</h2>
+    <h2>In Mein Bereich anmelden</h2>
     <p class="portal-copy">
-      Ein Konto verbindet Wallet, VAL, XP und die freigegebenen App-Daten aus NEXUS, MOMUS und KAIROS.
+      Ein Callidus-Konto verbindet deine Kurse, Wallet und Apps. Du kannst dich mit E-Mail und Passwort oder mit Google anmelden.
     </p>
 
     <!-- Info-Box: Welcher Account? -->
@@ -27,12 +27,16 @@ const {
       <strong>Welchen Account verwenden?</strong>
       <ul>
         <li>
+          <span class="portal-info-dot portal-info-dot--all"></span>
+          <span><strong>Stress-Reset gekauft?</strong> Verwende die E-Mail-Adresse aus deinem Digistore-Kauf. Ohne bisheriges Callidus-Konto wähle „Konto erstellen“. Nach der Bestätigung deiner E-Mail werden deine gekauften Module zugeordnet. Der Kauf allein erstellt noch kein Konto.</span>
+        </li>
+        <li>
           <span class="portal-info-dot portal-info-dot--nexus"></span>
           <span><strong>NEXUS-Nutzer</strong> — direkt mit dem NEXUS-App-Account einloggen</span>
         </li>
         <li>
           <span class="portal-info-dot portal-info-dot--momus"></span>
-          <span><strong>MOMUS / KAIROS</strong> — hier einmalig neu registrieren (separate Konten bis zur vollen Integration)</span>
+          <span><strong>MOMUS / KAIROS</strong> — wenn du noch kein Callidus-/NEXUS-Konto hast, hier einmalig registrieren (separate App-Konten bis zur vollen Integration)</span>
         </li>
         <li>
           <span class="portal-info-dot portal-info-dot--all"></span>
@@ -43,7 +47,7 @@ const {
 
     <div class="portal-auth-tabs" role="tablist" aria-label="Portal Anmeldung">
       <button class="portal-tab active" type="button" data-auth-tab="login">Login</button>
-      <button class="portal-tab" type="button" data-auth-tab="register">Neu erstellen</button>
+      <button class="portal-tab" type="button" data-auth-tab="register">Konto erstellen</button>
     </div>
 
     <form id="portal-login-form" class="portal-auth-form">
