@@ -2,7 +2,7 @@
 
 Sechs E-Mails über 13 Tage für alle, die sich auf der Website die kostenlosen Downloads
 holen. Ziel der Strecke: Vertrauen aufbauen → Brücke von Nährstoffen zu Stress → Verkauf
-des 7-Tage-Stress-Reset (69 €), am Ende Downsell (Einzelmodule je 19 €) und ein Hinweis auf die
+des 7-Tage-Stress-Reset (99 €), am Ende Downsell (Einzelmodule je 19 €) und ein Hinweis auf die
 Kinderbücher für Eltern.
 
 ## Wie der Funnel wirklich läuft (Stand 29.08.2026, abends)
@@ -104,6 +104,6 @@ kleine Textänderungen kannst du die HTML-Dateien direkt bearbeiten – das Ger�
 (Kopfzeile, Footer, Button-Stil) ist in jeder Datei vollständig enthalten.
 
 **24.09.2026 – Kurs komplett kostenpflichtig:** Mail 1 und 4 versprechen keine Video-Module
-mehr (Starter-Paket = Kompendien, Journal, 60-Sekunden-Übung). Mail 5 nennt 69 € ohne
+mehr (Starter-Paket = Kompendien, Journal, 60-Sekunden-Übung). Mail 5 nennt den Komplettpreis (seit 02.10.2026 99 €) ohne
 Streichpreis und verlinkt ohne Gutschein, Mail 6 nennt 19 € pro Modul. Diese vier Vorlagen in
 Brevo neu einfügen. Details: `docs/stress-reset-paywall-golive.md`.

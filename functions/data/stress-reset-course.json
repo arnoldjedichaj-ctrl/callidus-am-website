@@ -90,7 +90,7 @@
       "id": "bundle",
       "title": "Kompletter 7-Tage-Stress-Reset",
       "digistoreProductId": "645388",
-      "priceCents": 6900,
+      "priceCents": 9900,
       "modules": ["m1", "m2", "m3", "m4", "m5", "m6", "m7", "bonus"]
     },
     { "id": "modul1", "title": "Stress-Reset – Modul 1", "digistoreProductId": "737185", "priceCents": 1900, "modules": ["m1"] },
