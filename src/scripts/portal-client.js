@@ -28,6 +28,7 @@ function bootPortal() {
     dirty: false,
   };
   const XP_PER_VALUS = 10000;
+  let courseRequest = 0;
 
   const $ = (id) => document.getElementById(id);
   const text = (id, value) => {
@@ -46,6 +47,78 @@ function bootPortal() {
       if (el) el.hidden = viewId !== id;
     });
   };
+
+  // Keep course failures independent of the app dashboard. Invalidate pending
+  // results on sign-out/account changes so another user's modules cannot flash.
+  function resetCourses() {
+    courseRequest += 1;
+    if (!$('portal-course-status')) return;
+    text('portal-course-status', 'Deine Kurskäufe werden geprüft …');
+    for (const id of ['modules', 'help', 'open', 'verify', 'offer', 'support']) {
+      $(`portal-course-${id}`).hidden = true;
+    }
+    root.querySelectorAll('[data-course-module]').forEach((row) => {
+      row.querySelector('[data-course-open]').hidden = true;
+      row.querySelector('[data-course-locked]').hidden = false;
+    });
+    $('portal-course-retry').disabled = false;
+  }
+
+  async function loadCourses(user) {
+    if (!$('portal-course-status')) return;
+    resetCourses();
+    const request = courseRequest;
+    const current = () => request === courseRequest && state.user?.uid === user.uid && root.isConnected;
+    $('portal-course-retry').disabled = true;
+    try {
+      await user.reload();
+      if (!current()) return;
+      if (!user.emailVerified) {
+        text('portal-course-status', 'Bestätige deine E-Mail, damit wir deinen Kauf zuordnen können.');
+        text('portal-course-help', `Nutze dieselbe E-Mail-Adresse wie beim Kauf. Angemeldet bist du mit ${user.email || 'deinem Callidus-Konto'}. Auf der Kursseite kannst du die Bestätigungsmail anfordern.`);
+        $('portal-course-help').hidden = false;
+        $('portal-course-verify').hidden = false;
+        return;
+      }
+      // Refresh the token after returning from an email verification link.
+      await user.getIdToken(true);
+      if (!current()) return;
+      const { data } = await state.api.httpsCallable(state.fns, 'getStressResetAccess')({});
+      if (!current()) return;
+      if (!Array.isArray(data?.owned)) throw new Error('Missing course access response');
+      const owned = new Set(data.owned);
+      const rows = [...root.querySelectorAll('[data-course-module]')];
+      const unlocked = rows.filter((row) => owned.has(row.dataset.courseModule));
+      if (unlocked.length === 0) {
+        text('portal-course-status', 'Für dieses Konto ist noch kein Kurs freigeschaltet.');
+        text('portal-course-help', `Angemeldet als ${user.email}. Gerade gekauft? Die Freischaltung kann ein bis zwei Minuten dauern. Prüfe den Status danach erneut. Bei einer anderen Kauf-E-Mail melde dich mit dem passenden Konto an oder kontaktiere uns mit deiner Bestellnummer. Bitte kaufe nicht erneut.`);
+        $('portal-course-offer').hidden = false;
+        $('portal-course-support').hidden = false;
+      } else {
+        text('portal-course-status', unlocked.length === rows.length
+          ? 'Dein Komplettkurs ist freigeschaltet – alle sieben Module und der Bonus.'
+          : `${unlocked.length} von ${rows.length} Kursinhalten sind freigeschaltet.`);
+        for (const row of rows) {
+          const available = owned.has(row.dataset.courseModule);
+          row.querySelector('[data-course-open]').hidden = !available;
+          row.querySelector('[data-course-locked]').hidden = available;
+        }
+        $('portal-course-modules').hidden = false;
+        $('portal-course-open').hidden = false;
+        text('portal-course-help', 'Öffne ein freigeschaltetes Modul, um das Video und das Arbeitsblatt auf der Kursseite zu nutzen.');
+      }
+      $('portal-course-help').hidden = false;
+    } catch (error) {
+      if (!current()) return;
+      text('portal-course-status', 'Dein Kaufstatus konnte gerade nicht geprüft werden.');
+      text('portal-course-help', 'Bitte versuche es erneut oder öffne die Kursseite. Eine technische Störung bedeutet nicht, dass dein Kauf fehlt. Bitte kaufe nicht erneut.');
+      $('portal-course-help').hidden = false;
+      $('portal-course-support').hidden = false;
+      $('portal-course-open').hidden = false;
+    } finally {
+      if (current()) $('portal-course-retry').disabled = false;
+    }
+  }
 
   function todayKey() {
     const date = new Date();
@@ -548,6 +621,9 @@ function bootPortal() {
       setError('portal-auth-error', 'E-Mail zum Zuruecksetzen wurde gesendet.');
     });
     $('portal-signout')?.addEventListener('click', () => state.api.signOut(state.auth));
+    $('portal-course-retry')?.addEventListener('click', () => {
+      if (state.user) void loadCourses(state.user);
+    });
   }
 
   async function initFirebase() {
@@ -570,11 +646,13 @@ function bootPortal() {
     setupAuthHandlers();
     authApi.onAuthStateChanged(state.auth, async (user) => {
       state.user = user;
+      resetCourses();
       if (!user) {
         show('portal-auth');
         return;
       }
       show('portal-content');
+      if (portalView === 'overview') void loadCourses(user);
       await loadPortal(user);
     });
   }

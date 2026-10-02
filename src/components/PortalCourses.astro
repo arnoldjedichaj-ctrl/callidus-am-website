@@ -1,0 +1,36 @@
+---
+import { modules } from '../data/stress-reset.js';
+---
+
+<section class="portal-panel portal-courses" id="meine-kurse" aria-labelledby="portal-courses-heading">
+  <p class="eyebrow">Meine Kurse</p>
+  <h2 id="portal-courses-heading">7-Tage-Stress-Reset</h2>
+  <p id="portal-course-status" role="status" aria-live="polite">Deine Kurskäufe werden geprüft …</p>
+  <ul id="portal-course-modules" class="portal-course-modules" hidden>
+    {modules.map((module) => (
+      <li data-course-module={module.id}>
+        <span>{module.number ? `Modul ${module.number}` : 'Bonus'} · {module.title}</span>
+        <span data-course-locked>Noch nicht gekauft</span>
+        <a href={`/kurs-mitgliederbereich/${module.number ? `?modul=${module.number}` : '#bonus'}`} data-course-open hidden>Öffnen</a>
+      </li>
+    ))}
+  </ul>
+  <p id="portal-course-help" class="portal-copy" hidden></p>
+  <div class="portal-course-actions">
+    <a class="button primary" id="portal-course-open" href="/kurs-mitgliederbereich/" hidden>Kurs öffnen</a>
+    <a class="button primary" id="portal-course-verify" href="/kurs-mitgliederbereich/" hidden>E-Mail bestätigen</a>
+    <a class="button" id="portal-course-offer" href="/stress-reset-kurs/#angebot" hidden>Kursangebot ansehen</a>
+    <button class="button" type="button" id="portal-course-retry">Kaufstatus erneut prüfen</button>
+    <a id="portal-course-support" href="mailto:info@callidus-am.de?subject=Zugang%20Stress-Reset" hidden>Hilfe zum Kurszugang</a>
+  </div>
+</section>
+
+<style>
+  .portal-courses { margin-top: 1.25rem; scroll-margin-top: 6rem; }
+  h2 { margin-top: .25rem; }
+  .portal-course-modules { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .5rem; }
+  .portal-course-modules li { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .5rem 1rem; padding: .75rem 0; border-bottom: 1px solid var(--line); }
+  [data-course-locked] { color: var(--muted); font-size: .9rem; }
+  [data-course-open] { font-weight: 700; }
+  .portal-course-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1rem; }
+</style>
