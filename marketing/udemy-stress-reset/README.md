@@ -72,10 +72,10 @@ Quelle: Udemy „Course Quality Checklist: Use of AI“.
 > **Wichtiger Hinweis:** Der Kurs ist eine Alltagshilfe zur Entspannung und ersetzt keine
 > ärztliche oder psychotherapeutische Behandlung.
 >
-> **Hinweis zum Einsatz von KI:** Konzept, Übungen und Inhalte dieses Kurses stammen von
-> callidus A&M. Bei der Produktion der Videos wurden KI-Werkzeuge eingesetzt (unter anderem
-> für Teile der Bildgestaltung sowie für Sprecherin und Moderation). Alle Inhalte wurden von
-> uns erstellt, geprüft und freigegeben. *(Vor dem Einreichen an die tatsächliche Produktion anpassen.)*
+> **Hinweis zum Einsatz von KI:** Konzept, Übungen, Texte und Schnitt dieses Kurses stammen
+> von Arnold Jedich (callidus A&M). Die Moderatorin ist ein KI-Avatar, ihre Stimme ist
+> KI-generiert, und die Bilder und Animationen wurden mit KI erstellt. Alle Inhalte wurden von
+> uns geschrieben, geprüft und freigegeben.
 
 ## 3. Lernziele (mind. 4)
 
