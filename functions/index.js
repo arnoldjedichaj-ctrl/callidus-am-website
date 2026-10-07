@@ -3600,3 +3600,77 @@ exports.flyerScan = onRequest(
   },
 );
 
+// ---------------------------------------------------------------------------
+// Quellencheck: Gesundheitsaussagen gegen Studien pruefen (Seite /quellencheck/)
+// ---------------------------------------------------------------------------
+const claimCheck = require("./claimcheck");
+const CLAIMCHECK_LIMITS = { session: 8, ip: 20, global: 400 };
+
+function requestIp(request) {
+  const forwarded = String(request.rawRequest?.headers?.["x-forwarded-for"] || "").split(",")[0].trim();
+  return forwarded || request.rawRequest?.ip || "unknown";
+}
+
+// Zaehlt Browser, IP und Gesamtmenge pro Tag in einer Transaktion, damit
+// parallele Anfragen oder neue Browser-Kennungen das Limit nicht umgehen.
+async function enforceClaimCheckRate(sessionId, ip) {
+  const day = todayKey();
+  const col = db.collection("public_claimcheck_rate");
+  const refs = {
+    session: col.doc(`${day}_s_${publicChatSessionId(sessionId)}`),
+    ip: col.doc(`${day}_ip_${publicChatSessionId(ip)}`),
+    global: col.doc(`${day}_global`),
+  };
+  await db.runTransaction(async (tx) => {
+    const snaps = await Promise.all(Object.values(refs).map((ref) => tx.get(ref)));
+    const counts = Object.fromEntries(Object.keys(refs).map((key, i) => [key, snaps[i].exists ? Number(snaps[i].data().count || 0) : 0]));
+    if (counts.global >= CLAIMCHECK_LIMITS.global) {
+      throw new HttpsError("resource-exhausted", "Der Quellencheck ist für heute ausgelastet. Bitte morgen wieder.");
+    }
+    if (counts.session >= CLAIMCHECK_LIMITS.session || counts.ip >= CLAIMCHECK_LIMITS.ip) {
+      throw new HttpsError("resource-exhausted", "Das Tageslimit für den Quellencheck ist erreicht. Bitte morgen wieder.");
+    }
+    for (const [key, ref] of Object.entries(refs)) {
+      tx.set(ref, { count: counts[key] + 1, day, updated_at: FieldValue.serverTimestamp() }, { merge: true });
+    }
+  });
+}
+
+exports.checkHealthClaims = onCall(
+  {
+    region: "us-central1",
+    timeoutSeconds: 150,
+    memory: "512MiB",
+    maxInstances: 5,
+    secrets: [geminiApiKey],
+    cors: CALLABLE_CORS,
+  },
+  async (request) => {
+    const text = cleanString(request.data?.text, claimCheck.MAX_INPUT_CHARS);
+    if (!text || text.length < 12) {
+      throw new HttpsError("invalid-argument", "Bitte gib eine Aussage mit mindestens einem kurzen Satz ein.");
+    }
+    const safetyAnswer = safetyAnswerFor(text);
+    if (safetyAnswer) {
+      return { aussagen: [], hinweis: safetyAnswer, safety: true };
+    }
+    await enforceClaimCheckRate(cleanString(request.data?.sessionId, 120), requestIp(request));
+
+    // Bewertung mit dem bereits hinterlegten Gemini-Schluessel.
+    const geminiKey = geminiApiKey.value();
+    if (!geminiKey) {
+      throw new HttpsError("unavailable", "Der Quellencheck ist gerade nicht verfügbar.");
+    }
+    const llm = claimCheck.makeJsonLlm([
+      claimCheck.makeGeminiProvider({ apiKey: geminiKey, model: process.env.CLAIMCHECK_MODEL || DEFAULT_MODEL }),
+    ]);
+
+    try {
+      const result = await claimCheck.runClaimCheck(text, { llm, budgetMs: 135000 });
+      return { ...result, geprueft_am: new Date().toISOString() };
+    } catch (error) {
+      logger.error("Quellencheck fehlgeschlagen", { error: error.message });
+      throw new HttpsError("unavailable", "Die Prüfung ist gerade nicht möglich. Bitte versuche es in ein paar Minuten erneut.");
+    }
+  },
+);
