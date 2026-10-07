@@ -1,0 +1,483 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import beispiel from '../../data/quellencheck-beispiel.json';
+
+const title = 'Quellencheck: Was sagt die Forschung? | callidus A&M';
+const description = 'Gesundheitsaussage eingeben und sehen, was Studien dazu zeigen: Studienlage auf einer Skala, Belegsicherheit und wörtliche Belegstellen aus der Forschung.';
+const beispiele = [
+  'Vitamin C verhindert Erkältungen.',
+  'Magnesium hilft gegen Wadenkrämpfe.',
+  'Intervallfasten senkt den Blutdruck.',
+];
+const fbConfig = {
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+};
+---
+
+<BaseLayout lang="de" title={title} description={description}>
+  <section class="section qc-hero">
+    <div class="container qc-hero-grid">
+      <div class="qc-intro" data-reveal>
+        <p class="eyebrow">Callidus Quellencheck</p>
+        <h1>Was sagt die Forschung wirklich?</h1>
+        <p class="lede">Gib eine Gesundheitsaussage ein. Wir suchen passende Studien und zeigen, wie gut sie belegt ist.</p>
+      </div>
+
+      <form class="qc-form" data-qc-form data-reveal="2" novalidate>
+        <label for="qc-text" class="qc-label">Aussage oder kurzer Text</label>
+        <textarea id="qc-text" name="text" rows="5" maxlength="1200" required
+          aria-describedby="qc-help qc-error"
+          placeholder="z. B. aus einem Artikel, einer Werbung oder einem Social-Media-Post"></textarea>
+        <p id="qc-help" class="qc-help"><span data-qc-count>0</span> von 1.200 Zeichen. Bis zu drei Aussagen werden geprüft.</p>
+        <p id="qc-error" class="qc-error" data-qc-error role="alert" hidden></p>
+        <div class="qc-chips" aria-label="Beispielaussagen">
+          {beispiele.map((b) => <button type="button" class="qc-chip" data-qc-example={b}>{b}</button>)}
+        </div>
+        <div class="qc-actions">
+          <button type="submit" class="button primary" data-qc-submit>Aussage prüfen</button>
+          <button type="button" class="qc-link" data-qc-demo>Beispielergebnis ansehen</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section tight qc-results-section" aria-live="polite">
+    <div class="container">
+      <div class="qc-loading" data-qc-loading hidden>
+        <div class="qc-skeleton-gauge" aria-hidden="true"></div>
+        <div>
+          <p class="qc-loading-title">Studien werden gesucht und gelesen</p>
+          <p class="qc-loading-text">Das dauert meist 30 bis 60 Sekunden. <span data-qc-elapsed>0</span> s</p>
+          <ol class="qc-steps">
+            <li>Aussagen im Text erkennen</li>
+            <li>Passende Studien in Europe PMC suchen</li>
+            <li>Jede Studie einzeln gegen die Aussage prüfen</li>
+          </ol>
+        </div>
+      </div>
+      <p class="qc-notice" data-qc-notice hidden></p>
+      <div class="qc-results" data-qc-results></div>
+    </div>
+  </section>
+
+  <section class="section band qc-method" id="methodik">
+    <div class="container qc-method-grid">
+      <div>
+        <h2>So entsteht die Bewertung</h2>
+        <p>Die KI liest jede gefundene Studienzusammenfassung einzeln und sagt nur, ob sie zur Aussage passt und in welche Richtung sie zeigt. Die Gesamtbewertung rechnet danach eine feste, offengelegte Regel aus.</p>
+      </div>
+      <dl class="qc-rules">
+        <div><dt>Nur belegte Einschätzungen zählen</dt><dd>Jede Einschätzung braucht einen Satz, der wörtlich in der Studie steht. Fehlt er, zählt die Studie nicht mit.</dd></div>
+        <div><dt>Starke Studien wiegen mehr</dt><dd>Meta-Analysen und Übersichtsarbeiten zählen dreifach, randomisierte Studien doppelt, andere Arbeiten nur halb. Nur teilweise passende Studien zählen zur Hälfte. Ein Urteil gibt es erst mit mindestens einer direkt passenden Meta-Analyse oder randomisierten Studie.</dd></div>
+        <div><dt>Studienlage und Sicherheit getrennt</dt><dd>Die Skala zeigt die Richtung der Studien. Die Belegsicherheit zeigt, wie viele starke Studien es gibt und wie einig sie sind.</dd></div>
+        <div><dt>Ehrlich bei zu wenig Daten</dt><dd>Gibt es zu wenig passende Studien, erscheint keine Bewertung, sondern ein klarer Hinweis.</dd></div>
+      </dl>
+    </div>
+    <div class="container">
+      <p class="qc-disclaimer">Automatische Auswertung von Studienzusammenfassungen. Sie kann Fehler enthalten, ersetzt keine ärztliche Beratung und bewertet keine persönliche Situation. Mehr unter <a href="/quellen-methodik/">Quellen &amp; Methodik</a>.</p>
+    </div>
+  </section>
+
+  <template id="qc-claim-template">
+    <article class="qc-claim">
+      <header class="qc-claim-head">
+        <p class="qc-claim-kicker">Geprüfte Aussage</p>
+        <h3 class="qc-claim-text"></h3>
+      </header>
+      <div class="qc-verdict">
+        <figure class="qc-gauge-wrap">
+          <svg class="qc-gauge" viewBox="0 0 240 140" role="img">
+            <title></title>
+            <g class="qc-arcs"></g>
+            <g class="qc-needle">
+              <line x1="120" y1="120" x2="120" y2="38"></line>
+              <circle cx="120" cy="120" r="7"></circle>
+            </g>
+          </svg>
+          <figcaption class="qc-gauge-scale"><span>widerspricht</span><span>gemischt</span><span>gut belegt</span></figcaption>
+        </figure>
+        <div class="qc-verdict-text">
+          <p class="qc-level"></p>
+          <p class="qc-certainty"><span class="qc-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="qc-certainty-label"></span></p>
+          <p class="qc-summary"></p>
+          <p class="qc-limit"></p>
+        </div>
+      </div>
+      <div class="qc-sources">
+        <h4>Studien, die zur Aussage passen</h4>
+        <ul class="qc-source-list"></ul>
+        <details class="qc-other" hidden>
+          <summary></summary>
+          <ul class="qc-source-list qc-source-list-other"></ul>
+        </details>
+      </div>
+    </article>
+  </template>
+
+  <script is:inline define:vars={{ BEISPIEL: beispiel, QC_FB_CONFIG: fbConfig }}>
+    (() => {
+      const LEVEL_INDEX = { widerspricht: 0, eher_nicht: 1, gemischt: 2, eher_belegt: 3, belegt: 4 };
+      const SEGMENT_VARS = ['--qc-neg', '--qc-neg-soft', '--qc-mid', '--qc-pos-soft', '--qc-pos'];
+      const STANCE = {
+        stuetzt: { label: 'stützt die Aussage', cls: 'pos' },
+        widerspricht: { label: 'widerspricht', cls: 'neg' },
+        gemischt: { label: 'gemischt', cls: 'mid' },
+        keine_aussage: { label: 'keine klare Aussage', cls: 'none' },
+      };
+      const RELEVANZ = { passt: 'passt genau', teilweise: 'passt teilweise', passt_nicht: 'passt nicht' };
+      const CERTAINTY = { niedrig: 1, mittel: 2, hoch: 3 };
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const form = document.querySelector('[data-qc-form]');
+      const textarea = form.querySelector('textarea');
+      const count = form.querySelector('[data-qc-count]');
+      const errorEl = form.querySelector('[data-qc-error]');
+      const submit = form.querySelector('[data-qc-submit]');
+      const loading = document.querySelector('[data-qc-loading]');
+      const elapsedEl = document.querySelector('[data-qc-elapsed]');
+      const notice = document.querySelector('[data-qc-notice]');
+      const results = document.querySelector('[data-qc-results]');
+      const template = document.getElementById('qc-claim-template');
+
+      const svgNs = 'http://www.w3.org/2000/svg';
+      const polar = (deg, r) => {
+        const rad = (deg * Math.PI) / 180;
+        return [120 + r * Math.cos(rad), 120 - r * Math.sin(rad)];
+      };
+      const arcPath = (from, to, r) => {
+        const [x1, y1] = polar(from, r);
+        const [x2, y2] = polar(to, r);
+        return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+      };
+
+      function drawArcs(group, activeIndex) {
+        for (let i = 0; i < 5; i += 1) {
+          const from = 180 - i * 36 - 1.2;
+          const to = 180 - (i + 1) * 36 + 1.2;
+          const path = document.createElementNS(svgNs, 'path');
+          path.setAttribute('d', arcPath(from, to, 92));
+          path.setAttribute('class', 'qc-arc' + (activeIndex === i ? ' is-active' : ''));
+          path.style.stroke = `var(${SEGMENT_VARS[i]})`;
+          group.append(path);
+        }
+      }
+
+      function sessionId() {
+        try {
+          let id = localStorage.getItem('qc_session');
+          if (!id) {
+            id = crypto.randomUUID();
+            localStorage.setItem('qc_session', id);
+          }
+          return id;
+        } catch {
+          return 'anon';
+        }
+      }
+
+      function sourceItem(q) {
+        const li = document.createElement('li');
+        li.className = 'qc-source';
+        const stance = STANCE[q.richtung] || STANCE.keine_aussage;
+        const meta = document.createElement('p');
+        meta.className = 'qc-source-meta';
+        const badge = document.createElement('span');
+        badge.className = `qc-badge qc-badge-${stance.cls}`;
+        badge.textContent = stance.label;
+        const info = document.createElement('span');
+        info.textContent = [q.art, q.jahr, RELEVANZ[q.relevanz]].filter(Boolean).join(', ');
+        meta.append(badge, info);
+        const titleLink = document.createElement('a');
+        titleLink.className = 'qc-source-title';
+        titleLink.href = q.url;
+        titleLink.target = '_blank';
+        titleLink.rel = 'noopener';
+        titleLink.textContent = q.titel;
+        li.append(meta, titleLink);
+        if (q.zitat) {
+          const quote = document.createElement('blockquote');
+          quote.lang = 'en';
+          quote.textContent = `„${q.zitat}“`;
+          li.append(quote);
+        }
+        if (q.erklaerung) {
+          const p = document.createElement('p');
+          p.className = 'qc-source-note';
+          p.textContent = q.erklaerung;
+          li.append(p);
+        }
+        if (!q.verified) {
+          const p = document.createElement('p');
+          p.className = 'qc-source-flag';
+          p.textContent = 'Kein wörtlicher Beleg gefunden, zählt nicht zur Bewertung.';
+          li.append(p);
+        }
+        return li;
+      }
+
+      function summaryText(quellen) {
+        const counted = quellen.filter((q) => q.verified && q.relevanz !== 'passt_nicht');
+        const n = (r) => counted.filter((q) => q.richtung === r).length;
+        if (!counted.length) return 'Keine der gefundenen Studien passt genau genug zur Aussage.';
+        const verb = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+        return `Gewertet: ${verb(counted.length, 'Studie', 'Studien')}. ${verb(n('stuetzt'), 'stützt', 'stützen')}, ${verb(n('widerspricht'), 'widerspricht', 'widersprechen')}, ${n('gemischt')} gemischt.`;
+      }
+
+      function renderClaim(a, index) {
+        const node = template.content.firstElementChild.cloneNode(true);
+        node.style.setProperty('--qc-index', index);
+        node.querySelector('.qc-claim-text').textContent = a.aussage;
+        const e = a.ergebnis || {};
+        const unclear = e.level === 'unklar' || e.value === null || e.value === undefined;
+        const activeIndex = unclear ? -1 : LEVEL_INDEX[e.level];
+        const svg = node.querySelector('.qc-gauge');
+        drawArcs(svg.querySelector('.qc-arcs'), activeIndex);
+        svg.querySelector('title').textContent = unclear
+          ? `Keine Bewertung: ${e.label || 'zu wenig passende Studien'}`
+          : `Studienlage: ${e.label}, Belegsicherheit ${e.certainty}`;
+        const needle = svg.querySelector('.qc-needle');
+        if (unclear) {
+          node.classList.add('is-unclear');
+          needle.style.display = 'none';
+        } else {
+          const target = Math.max(-1, Math.min(1, e.value)) * 90;
+          needle.style.transform = reduceMotion ? `rotate(${target}deg)` : 'rotate(0deg)';
+          if (!reduceMotion) requestAnimationFrame(() => requestAnimationFrame(() => { needle.style.transform = `rotate(${target}deg)`; }));
+        }
+        node.querySelector('.qc-level').textContent = unclear ? (e.label || 'Zu wenig passende Studien') : e.label;
+        node.querySelector('.qc-level').dataset.level = unclear ? 'unklar' : e.level;
+        const cert = node.querySelector('.qc-certainty');
+        if (unclear) {
+          cert.hidden = true;
+        } else {
+          cert.dataset.bars = CERTAINTY[e.certainty] || 1;
+          node.querySelector('.qc-certainty-label').textContent = `Belegsicherheit: ${e.certainty}`;
+        }
+        node.querySelector('.qc-summary').textContent = summaryText(a.quellen || []);
+        node.querySelector('.qc-limit').textContent = a.einschraenkung || '';
+        const fitting = (a.quellen || []).filter((q) => q.relevanz !== 'passt_nicht');
+        const other = (a.quellen || []).filter((q) => q.relevanz === 'passt_nicht');
+        const list = node.querySelector('.qc-source-list');
+        if (fitting.length) fitting.forEach((q) => list.append(sourceItem(q)));
+        else {
+          const li = document.createElement('li');
+          li.className = 'qc-source-empty';
+          li.textContent = 'Keine passende Studie gefunden.';
+          list.append(li);
+        }
+        if (other.length) {
+          const details = node.querySelector('.qc-other');
+          details.hidden = false;
+          details.querySelector('summary').textContent = other.length === 1
+            ? '1 weitere gefundene Studie passt nicht zur Aussage'
+            : `${other.length} weitere gefundene Studien passen nicht zur Aussage`;
+          other.forEach((q) => details.querySelector('.qc-source-list-other').append(sourceItem(q)));
+        }
+        return node;
+      }
+
+      function render(data) {
+        results.replaceChildren();
+        notice.hidden = true;
+        if (data.beispiel) {
+          notice.textContent = 'Beispielergebnis einer echten Prüfung. Gib oben eine eigene Aussage ein.';
+          notice.hidden = false;
+        }
+        if (!data.aussagen || !data.aussagen.length) {
+          notice.textContent = data.hinweis || 'Im Text wurde keine überprüfbare Gesundheitsaussage gefunden.';
+          notice.hidden = false;
+          return;
+        }
+        data.aussagen.forEach((a, i) => results.append(renderClaim(a, i)));
+        results.firstElementChild?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      function setError(message) {
+        errorEl.textContent = message;
+        errorEl.hidden = !message;
+        textarea.setAttribute('aria-invalid', message ? 'true' : 'false');
+      }
+
+      let timer = null;
+      function setLoading(on) {
+        loading.hidden = !on;
+        submit.disabled = on;
+        submit.textContent = on ? 'Prüfung läuft' : 'Aussage prüfen';
+        clearInterval(timer);
+        if (on) {
+          const start = Date.now();
+          elapsedEl.textContent = '0';
+          timer = setInterval(() => { elapsedEl.textContent = String(Math.round((Date.now() - start) / 1000)); }, 1000);
+          results.replaceChildren();
+          notice.hidden = true;
+        }
+      }
+
+      let callable = null;
+      async function getCallable() {
+        if (callable) return callable;
+        if (!QC_FB_CONFIG?.apiKey) return null;
+        const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js');
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/11.8.1/firebase-functions.js');
+        const app = getApps().length === 0 ? initializeApp(QC_FB_CONFIG) : getApps()[0];
+        callable = httpsCallable(getFunctions(app, 'us-central1'), 'checkHealthClaims', { timeout: 160000 });
+        return callable;
+      }
+
+      textarea.addEventListener('input', () => {
+        count.textContent = String(textarea.value.length);
+        if (!errorEl.hidden) setError('');
+      });
+      form.querySelectorAll('[data-qc-example]').forEach((chip) => chip.addEventListener('click', () => {
+        textarea.value = chip.dataset.qcExample;
+        count.textContent = String(textarea.value.length);
+        textarea.focus();
+      }));
+      form.querySelector('[data-qc-demo]').addEventListener('click', () => render(BEISPIEL));
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const text = textarea.value.trim();
+        if (text.length < 12) {
+          setError('Bitte gib mindestens einen kurzen Satz ein, zum Beispiel „Vitamin C verhindert Erkältungen.“');
+          textarea.focus();
+          return;
+        }
+        setError('');
+        setLoading(true);
+        try {
+          const call = window.__qcCall || await getCallable();
+          if (!call) throw new Error('Der Quellencheck ist gerade nicht erreichbar.');
+          const response = await call({ text, sessionId: sessionId() });
+          render(response.data || response);
+        } catch (error) {
+          notice.textContent = error?.message || 'Die Prüfung ist gerade nicht möglich. Bitte versuche es später erneut.';
+          notice.hidden = false;
+        } finally {
+          setLoading(false);
+        }
+      });
+
+      if (new URLSearchParams(location.search).has('beispiel')) render(BEISPIEL);
+    })();
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .qc-hero { padding-bottom: clamp(1.5rem, 4vw, 3rem); }
+  .qc-hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+  .qc-intro h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); line-height: 1.05; margin: 0.4rem 0 1rem; }
+
+  /* Skala: divergierend, zwei Pole plus neutrale Mitte (farbenblind-geprüft). */
+  .qc-results-section, .qc-hero, .qc-method {
+    --qc-neg: #c25a2c; --qc-neg-soft: #dd9b7a; --qc-mid: #b9bcab; --qc-pos-soft: #6fb0c6; --qc-pos: #00789a;
+  }
+  html[data-theme="dark"] .qc-results-section,
+  html[data-theme="dark"] .qc-hero,
+  html[data-theme="dark"] .qc-method {
+    --qc-neg: #d6683a; --qc-neg-soft: #9b5a3e; --qc-mid: #5c665e; --qc-pos-soft: #2b7e92; --qc-pos: #14a2c4;
+  }
+
+  .qc-form { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: clamp(1rem, 3vw, 1.6rem); box-shadow: 0 18px 50px rgba(58, 64, 38, 0.10); display: grid; gap: 0.6rem; }
+  .qc-label { font-weight: 800; color: var(--text); }
+  .qc-form textarea { width: 100%; resize: vertical; min-height: 8rem; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 0.8rem; padding: 0.85rem 1rem; line-height: 1.5; }
+  .qc-form textarea::placeholder { color: var(--muted); }
+  .qc-form textarea:focus-visible { outline: 3px solid rgba(var(--mint-rgb), 0.45); outline-offset: 2px; border-color: var(--mint); }
+  .qc-form textarea[aria-invalid="true"] { border-color: var(--coral); }
+  .qc-help { color: var(--muted); font-size: 0.9rem; margin: 0; }
+  .qc-error { color: var(--coral); font-weight: 700; font-size: 0.92rem; margin: 0; }
+  .qc-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .qc-chip { font: inherit; font-size: 0.88rem; color: var(--soft); background: rgba(var(--gold-rgb), 0.12); border: 1px solid var(--line); border-radius: 999px; padding: 0.38rem 0.8rem; cursor: pointer; transition: background 160ms ease, transform 160ms ease; }
+  .qc-chip:hover { background: rgba(var(--gold-rgb), 0.22); }
+  .qc-chip:active { transform: scale(0.98); }
+  .qc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 0.4rem; }
+  .qc-actions .button[disabled] { opacity: 0.7; cursor: progress; }
+  .qc-link { font: inherit; font-weight: 700; color: var(--mint); background: none; border: 0; padding: 0.4rem 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+  .qc-loading[hidden], .qc-notice[hidden], .qc-certainty[hidden] { display: none; }
+  .qc-loading { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: center; padding: 1.5rem; border: 1px dashed var(--line); border-radius: 0.8rem; }
+  .qc-skeleton-gauge { width: 220px; height: 112px; border-radius: 112px 112px 0 0; border: 22px solid rgba(var(--gold-rgb), 0.18); border-bottom: 0; position: relative; overflow: hidden; }
+  .qc-skeleton-gauge::after { content: ""; position: absolute; inset: -22px; background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.28), transparent); animation: qc-shimmer 1.6s infinite; }
+  .qc-loading-title { font-weight: 800; font-size: 1.15rem; margin: 0 0 0.3rem; }
+  .qc-loading-text { color: var(--muted); margin: 0 0 0.8rem; }
+  .qc-steps { margin: 0; padding-left: 1.2rem; color: var(--soft); display: grid; gap: 0.25rem; }
+  @keyframes qc-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+  .qc-notice { padding: 0.9rem 1.1rem; border-radius: 0.8rem; background: rgba(var(--gold-rgb), 0.14); color: var(--text); font-weight: 600; }
+  .qc-results { display: grid; gap: 1.5rem; }
+
+  .qc-claim { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: clamp(1.1rem, 3vw, 2rem); animation: qc-enter 520ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--qc-index, 0) * 120ms); }
+  @keyframes qc-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .qc-claim-kicker { color: var(--muted); font-size: 0.85rem; font-weight: 700; margin: 0 0 0.2rem; }
+  .qc-claim-text { font-size: clamp(1.25rem, 2.4vw, 1.6rem); margin: 0 0 1.2rem; line-height: 1.25; }
+
+  .qc-verdict { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: clamp(1rem, 4vw, 2.5rem); align-items: center; }
+  .qc-gauge-wrap { margin: 0; }
+  .qc-gauge { width: 100%; height: auto; display: block; overflow: visible; }
+  .qc-gauge .qc-arc { fill: none; stroke-width: 22; opacity: 0.32; transition: opacity 400ms ease 500ms; }
+  .qc-gauge .qc-arc.is-active { opacity: 1; }
+  .is-unclear .qc-gauge .qc-arc { stroke: var(--qc-mid) !important; opacity: 0.25; stroke-dasharray: 6 5; }
+  .qc-needle { transform-origin: 120px 120px; transform-box: view-box; transition: transform 1100ms cubic-bezier(0.34, 1.4, 0.5, 1) 150ms; }
+  .qc-needle line { stroke: var(--text); stroke-width: 4; stroke-linecap: round; }
+  .qc-needle circle { fill: var(--text); stroke: var(--panel); stroke-width: 3; }
+  .qc-gauge-scale { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; }
+
+  .qc-level { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 900; margin: 0 0 0.5rem; line-height: 1.1; color: var(--text); padding-left: 0.75rem; border-left: 6px solid var(--qc-mid); }
+  .qc-level[data-level="widerspricht"] { border-color: var(--qc-neg); }
+  .qc-level[data-level="eher_nicht"] { border-color: var(--qc-neg-soft); }
+  .qc-level[data-level="eher_belegt"] { border-color: var(--qc-pos-soft); }
+  .qc-level[data-level="belegt"] { border-color: var(--qc-pos); }
+  .qc-level[data-level="unklar"] { border-left-style: dashed; }
+  .qc-certainty { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; color: var(--soft); margin: 0 0 0.8rem; }
+  .qc-bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; }
+  .qc-bars i { width: 6px; border-radius: 2px; background: var(--line); }
+  .qc-bars i:nth-child(1) { height: 8px; }
+  .qc-bars i:nth-child(2) { height: 13px; }
+  .qc-bars i:nth-child(3) { height: 18px; }
+  .qc-certainty[data-bars="1"] .qc-bars i:nth-child(-n+1),
+  .qc-certainty[data-bars="2"] .qc-bars i:nth-child(-n+2),
+  .qc-certainty[data-bars="3"] .qc-bars i:nth-child(-n+3) { background: var(--text); }
+  .qc-summary { margin: 0 0 0.4rem; color: var(--text); }
+  .qc-limit { margin: 0; color: var(--muted); }
+
+  .qc-sources { margin-top: 1.6rem; }
+  .qc-sources h4 { font-size: 1rem; margin: 0 0 0.8rem; }
+  .qc-source-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+  .qc-source { padding: 1rem; border-radius: 0.8rem; background: rgba(var(--gold-rgb), 0.07); border: 1px solid var(--line); }
+  .qc-source-empty { color: var(--muted); }
+  .qc-source-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); margin: 0 0 0.45rem; }
+  .qc-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 800; color: var(--text); }
+  .qc-badge::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 2px; background: var(--qc-mid); }
+  .qc-badge-pos::before { background: var(--qc-pos); }
+  .qc-badge-neg::before { background: var(--qc-neg); }
+  .qc-badge-none::before { background: transparent; border: 1.5px solid var(--muted); }
+  .qc-source-title { display: block; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .qc-source blockquote { margin: 0.6rem 0 0; padding-left: 0.75rem; border-left: 3px solid var(--line); font-style: italic; color: var(--soft); font-size: 0.92rem; line-height: 1.45; }
+  .qc-source-note { margin: 0.5rem 0 0; font-size: 0.92rem; }
+  .qc-source-flag { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--coral); font-weight: 700; }
+  .qc-other { margin-top: 1rem; }
+  .qc-other summary { cursor: pointer; color: var(--muted); font-weight: 700; margin-bottom: 0.8rem; }
+
+  .qc-method-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3rem); }
+  .qc-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem 2rem; margin: 0; }
+  .qc-rules dt { font-weight: 800; margin-bottom: 0.25rem; }
+  .qc-rules dd { margin: 0; color: var(--soft); }
+  .qc-disclaimer { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; max-width: 80ch; }
+
+  @media (max-width: 900px) {
+    .qc-hero-grid, .qc-method-grid { grid-template-columns: 1fr; }
+    .qc-verdict { grid-template-columns: 1fr; }
+    .qc-gauge-wrap { max-width: 320px; }
+    .qc-source-list, .qc-rules { grid-template-columns: 1fr; }
+    .qc-loading { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .qc-claim, .qc-skeleton-gauge::after { animation: none; }
+    .qc-needle, .qc-gauge .qc-arc { transition: none; }
+  }
+</style>

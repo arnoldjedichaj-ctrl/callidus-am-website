@@ -1,0 +1,265 @@
+{
+ "aussagen": [
+  {
+   "aussage": "Vitamin C verhindert Erkältungen.",
+   "suchanfrage": "vitamin C + common cold",
+   "ergebnis": {
+    "level": "widerspricht",
+    "label": "Studien widersprechen",
+    "value": -0.67,
+    "certainty": "mittel",
+    "weight": 6
+   },
+   "quellen": [
+    {
+     "titel": "Vitamin C for preventing and treating the common cold.",
+     "jahr": "2013",
+     "zeitschrift": "The Cochrane database of systematic reviews",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/23440782/",
+     "relevanz": "passt",
+     "richtung": "widerspricht",
+     "zitat": "The failure of vitamin C supplementation to reduce the incidence of colds in the general population indicates that routine vitamin C supplementation is not justified, yet vitamin C may be useful for people exposed to brief periods of severe physical exercise.",
+     "verified": true,
+     "erklaerung": "Vitamin C verhindert in der Allgemeinbevölkerung keine Erkältungen."
+    },
+    {
+     "titel": "Vitamin C and Infections.",
+     "jahr": "2017",
+     "zeitschrift": "Nutrients",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/28353648/",
+     "relevanz": "passt",
+     "richtung": "widerspricht",
+     "zitat": "Vitamin C administration does not decrease the average incidence of colds in the general population, yet it halved the number of colds in physically active people.",
+     "verified": true,
+     "erklaerung": "Vitamin C senkt die Häufigkeit von Erkältungen in der Allgemeinbevölkerung nicht."
+    },
+    {
+     "titel": "Vitamin C for the common cold and pneumonia.",
+     "jahr": "2025",
+     "zeitschrift": "Polish archives of internal medicine",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/39803741/",
+     "relevanz": "passt",
+     "richtung": "widerspricht",
+     "zitat": "In controlled trials in the general human population, vitamin C at a dose greater than 1 g/day did not prevent common colds.",
+     "verified": true,
+     "erklaerung": "Vitamin C verhindert in der Allgemeinbevölkerung keine Erkältungen."
+    },
+    {
+     "titel": "Vitamin C reduces the severity of common colds: a meta-analysis.",
+     "jahr": "2023",
+     "zeitschrift": "BMC public health",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/38082300/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "Compared to placebo, vitamin C significantly decreased the severity of the common cold by 15% (95% CI 9-21%).",
+     "verified": true,
+     "erklaerung": "Vitamin C reduziert die Schwere von Erkältungen, aber nicht deren Auftreten."
+    },
+    {
+     "titel": "Immune-enhancing role of vitamin C and zinc and effect on clinical conditions.",
+     "jahr": "2006",
+     "zeitschrift": "Annals of nutrition & metabolism",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/16373990/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "These trials document that adequate intakes of vitamin C and zinc ameliorate symptoms and shorten the duration of respiratory tract infections including the common cold.",
+     "verified": true,
+     "erklaerung": "Studien zeigen, dass Vitamin C die Dauer von Erkältungen verkürzt, aber keine klare Prävention."
+    },
+    {
+     "titel": "Dietary Sources, Bioavailability, and Functions of Ascorbic Acid (Vitamin C) and Its Role in the Common Cold, Tissue Healing, and Iron Metabolism.",
+     "jahr": "2023",
+     "zeitschrift": "Cureus",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/38146585/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "It improves the immunity of the body, reduces the severity of allergies, and aids in the management of infectious disorders.",
+     "verified": true,
+     "erklaerung": "Vitamin C kann die Immunität stärken, aber die Prävention von Erkältungen ist nicht eindeutig belegt."
+    }
+   ],
+   "einschraenkung": "Die meisten Studien zeigen keinen signifikanten Effekt von Vitamin C auf die Inzidenz von Erkältungen in der Allgemeinbevölkerung; nur bei stark körperlich belasteten Personen kann die Häufigkeit reduziert werden, und die Evidenz ist durch kleine Stichprobengrößen und heterogene Designs begrenzt."
+  },
+  {
+   "aussage": "Magnesium hilft gegen Muskelkrämpfe.",
+   "suchanfrage": "magnesium + muscle cramps",
+   "ergebnis": {
+    "level": "eher_nicht",
+    "label": "Eher nicht belegt",
+    "value": -0.44,
+    "certainty": "mittel",
+    "weight": 6.75
+   },
+   "quellen": [
+    {
+     "titel": "The Role of Electrolytes in Muscle Pain Syndromes: A Systematic Review and Meta-Analysis With Implications for Temporomandibular Disorder.",
+     "jahr": "2026",
+     "zeitschrift": "International dental journal",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/41812583/",
+     "relevanz": "passt",
+     "richtung": "gemischt",
+     "zitat": "Magnesium was most frequently studied (10 RCTs). In pregnancy-associated cramps (4 trials, N≈364), magnesium significantly reduced cramp frequency compared with placebo (pooled RR 1.35, 95% CI: 1.05-1.74, P = .02).",
+     "verified": true,
+     "erklaerung": "Magnesium hilft bei Schwangerschaftskrämpfen, aber bei anderen Gruppen ist die Wirkung unklar."
+    },
+    {
+     "titel": "Magnesium for skeletal muscle cramps.",
+     "jahr": "2020",
+     "zeitschrift": "The Cochrane database of systematic reviews",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/32956536/",
+     "relevanz": "passt",
+     "richtung": "widerspricht",
+     "zitat": "It is unlikely that magnesium supplementation provides clinically meaningful cramp prophylaxis to older adults experiencing skeletal muscle cramps.",
+     "verified": true,
+     "erklaerung": "Eine Cochrane‑Review kommt zu dem Schluss, dass Magnesium bei Muskelkrämpfen keine klare Wirkung hat."
+    },
+    {
+     "titel": "Spinocerebellar ataxia 2 (SCA2).",
+     "jahr": "2008",
+     "zeitschrift": "Cerebellum (London, England)",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/18418684/",
+     "relevanz": "passt",
+     "richtung": "gemischt",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Magnesium wird in SCA2 als Behandlung für Muskelkrämpfe erwähnt, aber die Studie bezieht sich auf eine seltene Erkrankung."
+    },
+    {
+     "titel": "Hypomagnesaemia due to use of proton pump inhibitors--a review.",
+     "jahr": "2009",
+     "zeitschrift": "The Netherlands journal of medicine",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/19581665/",
+     "relevanz": "passt",
+     "richtung": "gemischt",
+     "zitat": "After oral magnesium repletion both abnormalities resolved.",
+     "verified": true,
+     "erklaerung": "Ein Fallbericht zeigt, dass Magnesium bei Muskelkrämpfen durch Hypomagnesiämie geholfen hat."
+    },
+    {
+     "titel": "Shaoyao-Gancao decoction for the treatment of muscle cramps in maintenance hemodialysis: A prospective randomized crossover controlled trial.",
+     "jahr": "2025",
+     "zeitschrift": "Journal of ethnopharmacology",
+     "art": "Randomisierte Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/40204247/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Ein chinesisches Kraut, nicht Magnesium, wirkt bei Dialysekrämpfen; Magnesium wird nicht untersucht."
+    },
+    {
+     "titel": "Exercise and mineral status of athletes: calcium, magnesium, phosphorus, and iron.",
+     "jahr": "1995",
+     "zeitschrift": "Medicine and science in sports and exercise",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/7658944/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "Limited data have suggested that magnesium status is indirectly related to strength improvement as well as the incidence of muscle cramps.",
+     "verified": true,
+     "erklaerung": "Erhöhte Magnesiumwerte könnten Muskelkrämpfe reduzieren, aber die Daten sind unklar."
+    }
+   ],
+   "einschraenkung": "Viele Studien haben kleine Stichprobengrößen, heterogene Populationen oder sind nicht auf allgemeine Muskelkrämpfe ausgelegt, was die Aussagekraft einschränkt."
+  },
+  {
+   "aussage": "Intervallfasten senkt den Blutdruck.",
+   "suchanfrage": "intermittent fasting + blood pressure",
+   "ergebnis": {
+    "level": "unklar",
+    "label": "Zu wenig passende Studien",
+    "value": null,
+    "certainty": null,
+    "weight": 0.75
+   },
+   "quellen": [
+    {
+     "titel": "Intermittent Fasting and Obesity-Related Health Outcomes: An Umbrella Review of Meta-analyses of Randomized Clinical Trials.",
+     "jahr": "2021",
+     "zeitschrift": "JAMA network open",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/34919135/",
+     "relevanz": "passt",
+     "richtung": "stuetzt",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Mehrere Meta‑Analysen zeigen, dass Intervallfasten den Blutdruck senkt."
+    },
+    {
+     "titel": "Age-Specific Analysis of the Effects of Intermittent Fasting on Body Composition and Cardiometabolic Markers in Healthy Adults and Individuals with Overweight or Obesity: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+     "jahr": "2026",
+     "zeitschrift": "Nutrients",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/42280443/",
+     "relevanz": "passt",
+     "richtung": "gemischt",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Bei älteren Erwachsenen senkt Intervallfasten Blutdruck, aber die Evidenz ist schwach."
+    },
+    {
+     "titel": "Intermittent Fasting for the Prevention of Cardiovascular Disease Risks: Systematic Review and Network Meta-Analysis.",
+     "jahr": "2025",
+     "zeitschrift": "Current nutrition reports",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/40705196/",
+     "relevanz": "passt",
+     "richtung": "stuetzt",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Modifizierte Intervallfasten senkt Blutdruck deutlich."
+    },
+    {
+     "titel": "Beneficial effects of intermittent fasting and caloric restriction on the cardiovascular and cerebrovascular systems.",
+     "jahr": "2005",
+     "zeitschrift": "The Journal of nutritional biochemistry",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/15741046/",
+     "relevanz": "passt",
+     "richtung": "stuetzt",
+     "zitat": "Both IF and CR enhance cardiovascular and brain functions and improve several risk factors for coronary artery disease and stroke including a reduction in blood pressure and increased insulin sensitivity.",
+     "verified": true,
+     "erklaerung": "Intervallfasten senkt Blutdruck, wie in dieser Tier- und Menschenstudie gezeigt."
+    },
+    {
+     "titel": "Meal Timing and Frequency: Implications for Cardiovascular Disease Prevention: A Scientific Statement From the American Heart Association.",
+     "jahr": "2017",
+     "zeitschrift": "Circulation",
+     "art": "Sonstige Studie",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/28137935/",
+     "relevanz": "teilweise",
+     "richtung": "gemischt",
+     "zitat": "Such eating styles can have various effects on cardiometabolic health markers, namely obesity, lipid profile, insulin resistance, and blood pressure.",
+     "verified": true,
+     "erklaerung": "Die Studie bezieht sich auf verschiedene Essgewohnheiten, nicht ausschließlich Intervallfasten, und berichtet nur allgemein über Blutdruckwirkungen."
+    },
+    {
+     "titel": "The effects of intermittent fasting on BMI, fasting blood glucose, and blood pressure in women with overweight or obesity: a systematic review and meta-analysis with dose-response relationships.",
+     "jahr": "2026",
+     "zeitschrift": "Frontiers in nutrition",
+     "art": "Meta-Analyse / Übersichtsarbeit",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/42221756/",
+     "relevanz": "passt_nicht",
+     "richtung": "widerspricht",
+     "zitat": "",
+     "verified": false,
+     "erklaerung": "Bei Frauen mit Übergewicht zeigte diese Studie keinen Blutdruckeffekt."
+    }
+   ],
+   "einschraenkung": "Viele Studien haben kurze Follow‑Up‑Dauern, kleine Stichprobengrößen oder eingeschränkte Bevölkerungsgruppen, was die Aussagekraft der Blutdruckeffekte begrenzt."
+  }
+ ],
+ "hinweis": "",
+ "geprueft_am": "2026-10-07T00:00:00Z",
+ "beispiel": true
+}
