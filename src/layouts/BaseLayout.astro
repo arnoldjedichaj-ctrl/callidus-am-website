@@ -131,6 +131,7 @@ const navGroups = [
       { href: t.paths.guide, label: t.nav.guide },
       { href: '/wissenskarten/', label: labels.healthKnowledge },
       { href: t.paths.lexicon, label: t.nav.lexicon },
+      ...(lang === 'de' ? [{ href: '/quellencheck/', label: 'Quellencheck' }] : []),
     ],
   },
   {
@@ -154,6 +155,7 @@ const footerGroups = [
       { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
       { href: t.paths.guide, label: t.nav.guide },
       { href: '/audio/', label: t.footerExtras?.audio ?? 'Audio-Raum' },
+      ...(lang === 'de' ? [{ href: '/quellencheck/', label: 'Quellencheck' }] : []),
     ],
   },
   {
