@@ -17,80 +17,101 @@ const fbConfig = {
   messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
 };
+const stufen = [
+  { cls: 'pos', name: 'Gut belegt', text: 'Gute Studien sprechen klar dafür, dass die Aussage zutrifft, für die untersuchten Gruppen.' },
+  { cls: 'pos-soft', name: 'Eher belegt', text: 'Studien sprechen eher dafür, die Belege sind aber nicht eindeutig.' },
+  { cls: 'mid', name: 'Gemischt', text: 'Die Studien kommen zu unterschiedlichen Ergebnissen.' },
+  { cls: 'neg-soft', name: 'Eher nicht belegt', text: 'Studien sprechen eher dagegen.' },
+  { cls: 'neg', name: 'Studien widersprechen', text: 'Gute Studien sprechen dagegen, dass die Aussage zutrifft.' },
+];
 ---
 
 <BaseLayout lang="de" title={title} description={description}>
-  <section class="section qc-hero">
-    <div class="container qc-hero-grid">
-      <div class="qc-intro" data-reveal>
-        <p class="eyebrow">Callidus Quellencheck</p>
-        <h1>Was sagt die Forschung wirklich?</h1>
-        <p class="lede">Gib eine Gesundheitsaussage ein. Wir suchen passende Studien und zeigen, wie gut sie belegt ist.</p>
-      </div>
-
-      <form class="qc-form" data-qc-form data-reveal="2" novalidate>
-        <label for="qc-text" class="qc-label">Aussage oder kurzer Text</label>
-        <textarea id="qc-text" name="text" rows="5" maxlength="1200" required
-          aria-describedby="qc-help qc-error"
-          placeholder="z. B. aus einem Artikel, einer Werbung oder einem Social-Media-Post"></textarea>
-        <p id="qc-help" class="qc-help"><span data-qc-count>0</span> von 1.200 Zeichen. Bis zu drei Aussagen werden geprüft.</p>
-        <p id="qc-error" class="qc-error" data-qc-error role="alert" hidden></p>
-        <div class="qc-chips" aria-label="Beispielaussagen">
-          {beispiele.map((b) => <button type="button" class="qc-chip" data-qc-example={b}>{b}</button>)}
+  <div class="qc-page">
+    <section class="section qc-hero">
+      <div class="container qc-hero-grid">
+        <div class="qc-intro" data-reveal>
+          <p class="eyebrow">Callidus Quellencheck</p>
+          <h1>Was sagt die Forschung wirklich?</h1>
+          <p class="lede">Gib eine Gesundheitsaussage ein. Wir prüfen sie gegen Studien und zeigen, wie gut sie belegt ist.</p>
+          <button type="button" class="qc-info-trigger" data-qc-info-open aria-haspopup="dialog">
+            <span class="qc-info-dot" aria-hidden="true">i</span>So entsteht die Bewertung
+          </button>
         </div>
-        <div class="qc-actions">
-          <button type="submit" class="button primary" data-qc-submit>Aussage prüfen</button>
-          <button type="button" class="qc-link" data-qc-demo>Beispielergebnis ansehen</button>
-        </div>
-      </form>
-    </div>
-  </section>
 
-  <section class="section tight qc-results-section" aria-live="polite">
-    <div class="container">
-      <div class="qc-loading" data-qc-loading hidden>
-        <div class="qc-skeleton-gauge" aria-hidden="true"></div>
-        <div>
-          <p class="qc-loading-title">Studien werden gesucht und gelesen</p>
-          <p class="qc-loading-text">Das dauert meist 30 bis 60 Sekunden. <span data-qc-elapsed>0</span> s</p>
-          <ol class="qc-steps">
-            <li>Aussagen im Text erkennen</li>
-            <li>Passende Studien in Europe PMC suchen</li>
-            <li>Jede Studie einzeln gegen die Aussage prüfen</li>
-          </ol>
-        </div>
+        <form class="qc-console qc-glass" data-qc-form data-reveal="2" novalidate>
+          <label for="qc-text" class="qc-label">Aussage oder kurzer Text</label>
+          <textarea id="qc-text" name="text" rows="4" maxlength="1200" required
+            aria-describedby="qc-help qc-error"
+            placeholder="z. B. aus einem Artikel, einer Werbung oder einem Social-Media-Post"></textarea>
+          <div class="qc-console-row">
+            <p id="qc-help" class="qc-help"><span class="qc-mono" data-qc-count>0</span> / 1.200 Zeichen, bis zu drei Aussagen</p>
+            <p id="qc-error" class="qc-error" data-qc-error role="alert" hidden></p>
+          </div>
+          <div class="qc-chips" aria-label="Beispielaussagen">
+            {beispiele.map((b) => <button type="button" class="qc-chip" data-qc-example={b}>{b}</button>)}
+          </div>
+          <div class="qc-actions">
+            <button type="submit" class="qc-run" data-qc-submit>Aussage prüfen</button>
+            <button type="button" class="qc-link" data-qc-demo>Beispielergebnis ansehen</button>
+          </div>
+        </form>
       </div>
-      <p class="qc-notice" data-qc-notice hidden></p>
-      <div class="qc-results" data-qc-results></div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section band qc-method" id="methodik">
-    <div class="container qc-method-grid">
-      <div>
-        <h2>So entsteht die Bewertung</h2>
-        <p>Die KI liest jede gefundene Studienzusammenfassung einzeln und sagt nur, ob sie zur Aussage passt und in welche Richtung sie zeigt. Die Gesamtbewertung rechnet danach eine feste, offengelegte Regel aus.</p>
+    <section class="section tight qc-results-section" aria-live="polite">
+      <div class="container">
+        <div class="qc-loading qc-glass" data-qc-loading hidden>
+          <div class="qc-scan" aria-hidden="true"><span></span></div>
+          <div>
+            <p class="qc-loading-title">Studien werden gesucht und gelesen <span class="qc-mono" data-qc-elapsed>0</span><span class="qc-mono"> s</span></p>
+            <ol class="qc-steps">
+              <li>Aussagen im Text erkennen</li>
+              <li>Passende Studien in Europe PMC suchen</li>
+              <li>Jede Studie einzeln gegen die Aussage prüfen</li>
+            </ol>
+          </div>
+        </div>
+        <p class="qc-notice" data-qc-notice hidden></p>
+        <div class="qc-results" data-qc-results></div>
+        <p class="qc-disclaimer">Automatische Auswertung von Studienzusammenfassungen. Kann Fehler enthalten, ersetzt keine ärztliche Beratung und bewertet keine persönliche Situation.</p>
       </div>
-      <dl class="qc-rules">
-        <div><dt>Nur belegte Einschätzungen zählen</dt><dd>Jede Einschätzung braucht einen Satz, der wörtlich in der Studie steht. Fehlt er, zählt die Studie nicht mit.</dd></div>
-        <div><dt>Starke Studien wiegen mehr</dt><dd>Meta-Analysen und Übersichtsarbeiten zählen dreifach, randomisierte Studien doppelt, andere Arbeiten nur halb. Nur teilweise passende Studien zählen zur Hälfte. Ein Urteil gibt es erst mit mindestens einer direkt passenden Meta-Analyse oder randomisierten Studie.</dd></div>
-        <div><dt>Was „gut belegt“ heißt</dt><dd>Gute Studien sprechen dafür, dass die Aussage zutrifft, für die untersuchten Gruppen. Das ist keine Garantie für jeden Einzelfall. Die Belegsicherheit zeigt, wie viele starke Studien es gibt und wie einig sie sind.</dd></div>
-        <div><dt>Ehrlich bei zu wenig Daten</dt><dd>Gibt es zu wenig passende Studien, erscheint keine Bewertung, sondern ein klarer Hinweis.</dd></div>
-      </dl>
+    </section>
+  </div>
+
+  <dialog class="qc-dialog" data-qc-dialog aria-labelledby="qc-dialog-title">
+    <div class="qc-dialog-inner">
+      <header class="qc-dialog-head">
+        <h2 id="qc-dialog-title">So entsteht die Bewertung</h2>
+        <button type="button" class="qc-close" data-qc-info-close aria-label="Fenster schließen">×</button>
+      </header>
+      <ol class="qc-flow">
+        <li><span class="qc-flow-n qc-mono">01</span><div><strong>Studien finden</strong><p>Passende Studien werden in Europe PMC gesucht, zuerst viel zitierte Übersichtsarbeiten. Zurückgezogene Studien und Protokolle fallen heraus.</p></div></li>
+        <li><span class="qc-flow-n qc-mono">02</span><div><strong>Jede Studie einzeln prüfen</strong><p>Die KI liest jede Zusammenfassung und sagt nur, ob sie zur Aussage passt und in welche Richtung sie zeigt.</p></div></li>
+        <li><span class="qc-flow-n qc-mono">03</span><div><strong>Wörtlicher Beleg</strong><p>Jede Einschätzung braucht einen Satz, der wörtlich in der Studie steht. Fehlt er, zählt die Studie nicht.</p></div></li>
+        <li><span class="qc-flow-n qc-mono">04</span><div><strong>Feste Regel statt KI-Urteil</strong><p>Meta-Analysen zählen dreifach, randomisierte Studien doppelt, andere Arbeiten halb. Ein Urteil gibt es erst mit mindestens einer direkt passenden Meta-Analyse oder randomisierten Studie.</p></div></li>
+      </ol>
+      <h3 class="qc-dialog-sub">Was die Skala bedeutet</h3>
+      <ul class="qc-legend">
+        {stufen.map((s) => <li><span class={`qc-swatch qc-swatch-${s.cls}`} aria-hidden="true"></span><strong>{s.name}</strong><span>{s.text}</span></li>)}
+        <li><span class="qc-swatch qc-swatch-none" aria-hidden="true"></span><strong>Keine Bewertung</strong><span>Zu wenig passende, belastbare Studien. Das heißt nicht, dass die Aussage falsch ist.</span></li>
+      </ul>
+      <p class="qc-dialog-note">Die Belegsicherheit zeigt getrennt davon, wie viele starke Studien es gibt und wie einig sie sind. Kein Ergebnis ist eine Garantie für den Einzelfall. Mehr unter <a href="/quellen-methodik/">Quellen &amp; Methodik</a>.</p>
     </div>
-    <div class="container">
-      <p class="qc-disclaimer">Automatische Auswertung von Studienzusammenfassungen. Sie kann Fehler enthalten, ersetzt keine ärztliche Beratung und bewertet keine persönliche Situation. Mehr unter <a href="/quellen-methodik/">Quellen &amp; Methodik</a>.</p>
-    </div>
-  </section>
+  </dialog>
 
   <template id="qc-claim-template">
-    <article class="qc-claim">
+    <article class="qc-claim qc-glass">
       <header class="qc-claim-head">
-        <p class="qc-claim-kicker">Geprüfte Aussage</p>
-        <h3 class="qc-claim-text"></h3>
+        <div>
+          <p class="qc-kicker">Geprüfte Aussage</p>
+          <h3 class="qc-claim-text"></h3>
+        </div>
+        <button type="button" class="qc-info-mini" data-qc-info-open aria-label="So entsteht die Bewertung">i</button>
       </header>
       <div class="qc-verdict">
         <figure class="qc-dial">
+          <div class="qc-dial-stage">
           <svg class="qc-gauge" viewBox="0 0 260 146" role="img">
             <title></title>
             <defs>
@@ -102,9 +123,9 @@ const fbConfig = {
                 <stop offset="1" style="stop-color: var(--qc-pos)"></stop>
               </linearGradient>
             </defs>
+            <g class="qc-ticks"></g>
             <path class="qc-track" d="M 22 130 A 108 108 0 0 1 238 130"></path>
             <path class="qc-fill" pathLength="1"></path>
-            <g class="qc-ticks"></g>
             <g class="qc-knob">
               <circle class="qc-knob-ring" cx="130" cy="22" r="12"></circle>
               <circle class="qc-knob-dot" cx="130" cy="22" r="5"></circle>
@@ -114,17 +135,21 @@ const fbConfig = {
             <span class="qc-dial-label"></span>
             <span class="qc-dial-sub">Studienlage</span>
           </div>
+          </div>
           <figcaption class="qc-gauge-scale"><span>widerspricht</span><span>gemischt</span><span>gut belegt</span></figcaption>
         </figure>
-        <div class="qc-verdict-text">
+        <div class="qc-panel">
           <p class="qc-meaning"></p>
-          <ul class="qc-tally" aria-label="Gewertete Studien"></ul>
-          <p class="qc-certainty"><span class="qc-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="qc-certainty-label"></span></p>
+          <div class="qc-stats"></div>
+          <div class="qc-certainty">
+            <span class="qc-certainty-label"></span>
+            <span class="qc-segments" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
           <aside class="qc-limit"><strong>Wichtig zu wissen</strong><span class="qc-limit-text"></span></aside>
         </div>
       </div>
       <div class="qc-sources">
-        <h4 class="qc-sources-title">Studien, die zur Aussage passen</h4>
+        <h4 class="qc-sources-title"></h4>
         <ul class="qc-source-list"></ul>
         <details class="qc-other" hidden>
           <summary></summary>
@@ -137,13 +162,21 @@ const fbConfig = {
   <script is:inline define:vars={{ BEISPIEL: beispiel, QC_FB_CONFIG: fbConfig }}>
     (() => {
       const STANCE = {
-        stuetzt: { label: 'stützt die Aussage', cls: 'pos' },
+        stuetzt: { label: 'stützt', cls: 'pos' },
         widerspricht: { label: 'widerspricht', cls: 'neg' },
         gemischt: { label: 'gemischt', cls: 'mid' },
         keine_aussage: { label: 'keine klare Aussage', cls: 'none' },
       };
       const RELEVANZ = { passt: 'passt genau', teilweise: 'passt teilweise', passt_nicht: 'passt nicht' };
       const CERTAINTY = { niedrig: 1, mittel: 2, hoch: 3 };
+      const ACCENT = { widerspricht: '--qc-neg', eher_nicht: '--qc-neg-soft', gemischt: '--qc-mid', eher_belegt: '--qc-pos-soft', belegt: '--qc-pos' };
+      const MEANING = {
+        belegt: 'Gute Studien sprechen klar dafür, dass die Aussage zutrifft, zumindest für die untersuchten Gruppen.',
+        eher_belegt: 'Studien sprechen eher dafür, dass die Aussage zutrifft. Die Belege sind aber nicht eindeutig.',
+        gemischt: 'Die Studien kommen zu unterschiedlichen Ergebnissen. Ob die Aussage zutrifft, ist offen.',
+        eher_nicht: 'Studien sprechen eher dagegen, dass die Aussage zutrifft.',
+        widerspricht: 'Gute Studien sprechen dagegen, dass die Aussage zutrifft.',
+      };
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const form = document.querySelector('[data-qc-form]');
@@ -156,14 +189,14 @@ const fbConfig = {
       const notice = document.querySelector('[data-qc-notice]');
       const results = document.querySelector('[data-qc-results]');
       const template = document.getElementById('qc-claim-template');
+      const dialog = document.querySelector('[data-qc-dialog]');
 
-      const MEANING = {
-        belegt: 'Gute Studien sprechen klar dafür, dass die Aussage zutrifft, zumindest für die untersuchten Gruppen.',
-        eher_belegt: 'Studien sprechen eher dafür, dass die Aussage zutrifft. Die Belege sind aber nicht eindeutig.',
-        gemischt: 'Die Studien kommen zu unterschiedlichen Ergebnissen. Ob die Aussage zutrifft, ist offen.',
-        eher_nicht: 'Studien sprechen eher dagegen, dass die Aussage zutrifft.',
-        widerspricht: 'Gute Studien sprechen dagegen, dass die Aussage zutrifft.',
-      };
+      // Info-Fenster: oeffnet sich ueber jeden Info-Knopf, schliesst per Knopf, Esc oder Klick daneben.
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('[data-qc-info-open]')) dialog.showModal();
+        if (event.target.closest('[data-qc-info-close]') || event.target === dialog) dialog.close();
+      });
+
       const svgNs = 'http://www.w3.org/2000/svg';
       const CX = 130, CY = 130, R = 108;
       const point = (v, r = R) => {
@@ -176,16 +209,20 @@ const fbConfig = {
         svg.querySelector('.qc-grad').id = gradId;
         svg.querySelector('.qc-track').style.stroke = `url(#${gradId})`;
         const ticks = svg.querySelector('.qc-ticks');
-        [-0.6, -0.2, 0.2, 0.6].forEach((v) => {
-          const [x1, y1] = point(v, R + 13);
-          const [x2, y2] = point(v, R + 19);
+        const majors = [-1, -0.6, -0.2, 0.2, 0.6, 1];
+        for (let i = 0; i <= 40; i += 1) {
+          const v = -1 + i / 20;
+          const major = majors.some((m) => Math.abs(m - v) < 0.001);
+          const [x1, y1] = point(v, R + 14);
+          const [x2, y2] = point(v, R + (major ? 22 : 18));
           const line = document.createElementNS(svgNs, 'line');
           line.setAttribute('x1', x1.toFixed(1));
           line.setAttribute('y1', y1.toFixed(1));
           line.setAttribute('x2', x2.toFixed(1));
           line.setAttribute('y2', y2.toFixed(1));
+          if (major) line.setAttribute('class', 'is-major');
           ticks.append(line);
-        });
+        }
         const fill = svg.querySelector('.qc-fill');
         const knob = svg.querySelector('.qc-knob');
         if (value === null) {
@@ -219,13 +256,13 @@ const fbConfig = {
       }
 
       function sourceItem(q) {
-        const li = document.createElement('li');
-        li.className = 'qc-source';
         const stance = STANCE[q.richtung] || STANCE.keine_aussage;
+        const li = document.createElement('li');
+        li.className = `qc-source qc-stance-${stance.cls}`;
         const meta = document.createElement('p');
         meta.className = 'qc-source-meta';
         const badge = document.createElement('span');
-        badge.className = `qc-badge qc-badge-${stance.cls}`;
+        badge.className = 'qc-badge';
         badge.textContent = stance.label;
         const info = document.createElement('span');
         info.textContent = [q.art, q.jahr, RELEVANZ[q.relevanz]].filter(Boolean).join(', ');
@@ -237,41 +274,49 @@ const fbConfig = {
         titleLink.rel = 'noopener';
         titleLink.textContent = q.titel;
         li.append(meta, titleLink);
-        if (q.zitat) {
-          const quote = document.createElement('blockquote');
-          quote.lang = 'en';
-          quote.textContent = `„${q.zitat}“`;
-          li.append(quote);
-        }
         if (q.erklaerung) {
           const p = document.createElement('p');
           p.className = 'qc-source-note';
           p.textContent = q.erklaerung;
           li.append(p);
         }
-        if (!q.verified) {
+        if (q.zitat) {
+          const details = document.createElement('details');
+          details.className = 'qc-quote';
+          const summary = document.createElement('summary');
+          summary.textContent = 'Beleg aus der Studie';
+          const quote = document.createElement('blockquote');
+          quote.lang = 'en';
+          quote.textContent = `„${q.zitat}“`;
+          details.append(summary, quote);
+          li.append(details);
+        } else if (!q.verified) {
           const p = document.createElement('p');
           p.className = 'qc-source-flag';
-          p.textContent = 'Kein wörtlicher Beleg gefunden, zählt nicht zur Bewertung.';
+          p.textContent = 'Kein wörtlicher Beleg, zählt nicht zur Bewertung.';
           li.append(p);
         }
         return li;
       }
 
-      function tally(quellen) {
+      function stats(quellen) {
         const counted = quellen.filter((q) => q.verified && q.relevanz !== 'passt_nicht');
         const n = (r) => counted.filter((q) => q.richtung === r).length;
         return [
-          { cls: 'pos', count: n('stuetzt'), one: 'stützt', many: 'stützen' },
-          { cls: 'neg', count: n('widerspricht'), one: 'widerspricht', many: 'widersprechen' },
-          { cls: 'mid', count: n('gemischt'), one: 'gemischt', many: 'gemischt' },
+          { cls: 'pos', count: n('stuetzt'), label: 'stützen' },
+          { cls: 'neg', count: n('widerspricht'), label: 'widersprechen' },
+          { cls: 'mid', count: n('gemischt'), label: 'gemischt' },
         ].map((x) => {
-          const li = document.createElement('li');
-          li.className = `qc-tally-item qc-badge-${x.cls}`;
-          const num = document.createElement('b');
+          const tile = document.createElement('div');
+          tile.className = `qc-stat qc-stat-${x.cls}`;
+          const num = document.createElement('span');
+          num.className = 'qc-stat-num qc-mono';
           num.textContent = String(x.count);
-          li.append(num, ` ${x.count === 1 ? x.one : x.many}`);
-          return li;
+          const label = document.createElement('span');
+          label.className = 'qc-stat-label';
+          label.textContent = x.label;
+          tile.append(num, label);
+          return tile;
         });
       }
 
@@ -281,24 +326,25 @@ const fbConfig = {
         node.querySelector('.qc-claim-text').textContent = a.aussage;
         const e = a.ergebnis || {};
         const unclear = e.level === 'unklar' || e.level === 'fehler' || e.value === null || e.value === undefined;
+        node.dataset.level = unclear ? 'unklar' : e.level;
+        node.style.setProperty('--qc-accent', `var(${unclear ? '--qc-mid' : ACCENT[e.level]})`);
+        if (unclear) node.classList.add('is-unclear');
         const svg = node.querySelector('.qc-gauge');
         drawDial(svg, unclear ? null : Math.max(-1, Math.min(1, e.value)), index);
         svg.querySelector('title').textContent = unclear
           ? `Keine Bewertung: ${e.label || 'zu wenig passende Studien'}`
           : `Studienlage: ${e.label}, Belegsicherheit ${e.certainty}`;
-        if (unclear) node.classList.add('is-unclear');
-        node.dataset.level = unclear ? 'unklar' : e.level;
         node.querySelector('.qc-dial-label').textContent = unclear ? 'Keine Bewertung' : e.label;
         node.querySelector('.qc-meaning').textContent = unclear
           ? `${e.label || 'Zu wenig passende Studien'}. Für ein Urteil fehlen passende, belastbare Studien. Das heißt nicht, dass die Aussage falsch ist.`
           : MEANING[e.level];
-        const tallyList = node.querySelector('.qc-tally');
-        if (unclear) tallyList.remove();
-        else tally(a.quellen || []).forEach((li) => tallyList.append(li));
+        const statsEl = node.querySelector('.qc-stats');
         const cert = node.querySelector('.qc-certainty');
         if (unclear) {
-          cert.hidden = true;
+          statsEl.remove();
+          cert.remove();
         } else {
+          stats(a.quellen || []).forEach((tile) => statsEl.append(tile));
           cert.dataset.bars = CERTAINTY[e.certainty] || 1;
           node.querySelector('.qc-certainty-label').textContent = `Belegsicherheit: ${e.certainty}`;
         }
@@ -307,7 +353,9 @@ const fbConfig = {
         else limit.remove();
         const fitting = (a.quellen || []).filter((q) => q.relevanz !== 'passt_nicht');
         const other = (a.quellen || []).filter((q) => q.relevanz === 'passt_nicht');
-        node.querySelector('.qc-sources-title').textContent = `Studien, die zur Aussage passen (${fitting.length})`;
+        node.querySelector('.qc-sources-title').textContent = fitting.length === 1
+          ? '1 passende Studie'
+          : `${fitting.length} passende Studien`;
         const list = node.querySelector('.qc-source-list');
         if (fitting.length) fitting.forEach((q) => list.append(sourceItem(q)));
         else {
@@ -340,7 +388,7 @@ const fbConfig = {
           return;
         }
         data.aussagen.forEach((a, i) => results.append(renderClaim(a, i)));
-        results.firstElementChild?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        (data.beispiel ? notice : results.firstElementChild)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       }
 
       function setError(message) {
@@ -415,130 +463,191 @@ const fbConfig = {
 </BaseLayout>
 
 <style is:global>
-  .qc-hero { padding-bottom: clamp(1rem, 2.5vw, 1.75rem); }
-  .qc-results-section.section.tight { padding-top: 0.5rem; }
-  .qc-hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
-  .qc-intro h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); line-height: 1.05; margin: 0.4rem 0 1rem; }
-
-  /* Skala: divergierend, zwei Pole plus neutrale Mitte (farbenblind-geprüft). */
-  .qc-results-section, .qc-hero, .qc-method {
+  /* Farben der Skala: divergierend, farbenblind-geprüft (Pole und neutrale Mitte). */
+  .qc-page, .qc-dialog {
     --qc-neg: #c25a2c; --qc-neg-soft: #dd9b7a; --qc-mid: #b9bcab; --qc-pos-soft: #6fb0c6; --qc-pos: #00789a;
+    --qc-glass: rgba(255, 255, 255, 0.62);
+    --qc-glass-edge: rgba(255, 255, 255, 0.85);
+    --qc-glass-line: rgba(77, 86, 58, 0.16);
+    --qc-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
   }
-  html[data-theme="dark"] .qc-results-section,
-  html[data-theme="dark"] .qc-hero,
-  html[data-theme="dark"] .qc-method {
+  html[data-theme="dark"] .qc-page, html[data-theme="dark"] .qc-dialog {
     --qc-neg: #d6683a; --qc-neg-soft: #9b5a3e; --qc-mid: #5c665e; --qc-pos-soft: #2b7e92; --qc-pos: #14a2c4;
+    --qc-glass: rgba(17, 29, 24, 0.62);
+    --qc-glass-edge: rgba(218, 238, 224, 0.10);
+    --qc-glass-line: rgba(218, 238, 224, 0.12);
+  }
+  .qc-mono { font-family: var(--qc-mono); font-variant-numeric: tabular-nums; }
+
+  /* Glasflaeche mit feiner Lichtkante, Fallback ohne Transparenz. */
+  .qc-glass {
+    background: var(--qc-glass);
+    border: 1px solid var(--qc-glass-line);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 var(--qc-glass-edge), 0 24px 60px rgba(30, 36, 20, 0.12);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .qc-glass { background: var(--panel); backdrop-filter: none; -webkit-backdrop-filter: none; }
   }
 
-  .qc-form { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: clamp(1rem, 3vw, 1.6rem); box-shadow: 0 18px 50px rgba(58, 64, 38, 0.10); display: grid; gap: 0.6rem; }
-  .qc-label { font-weight: 800; color: var(--text); }
-  .qc-form textarea { width: 100%; resize: vertical; min-height: 8rem; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 0.8rem; padding: 0.85rem 1rem; line-height: 1.5; }
-  .qc-form textarea::placeholder { color: var(--muted); }
-  .qc-form textarea:focus-visible { outline: 3px solid rgba(var(--mint-rgb), 0.45); outline-offset: 2px; border-color: var(--mint); }
-  .qc-form textarea[aria-invalid="true"] { border-color: var(--coral); }
-  .qc-help { color: var(--muted); font-size: 0.9rem; margin: 0; }
-  .qc-error { color: var(--coral); font-weight: 700; font-size: 0.92rem; margin: 0; }
+  .qc-hero { padding-bottom: clamp(1rem, 2.5vw, 1.75rem); }
+  .qc-hero-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+  .qc-intro h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); line-height: 1.05; margin: 0.4rem 0 1rem; letter-spacing: -0.02em; }
+  .qc-info-trigger { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.25rem; font: inherit; font-weight: 700; color: var(--text); background: none; border: 0; padding: 0; cursor: pointer; }
+  .qc-info-trigger:hover { color: var(--mint); }
+  .qc-info-dot, .qc-info-mini { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 999px; border: 1.5px solid currentColor; font-family: Georgia, serif; font-style: italic; font-weight: 700; font-size: 0.95rem; line-height: 1; }
+  .qc-info-mini { flex: none; color: var(--muted); background: none; cursor: pointer; transition: color 160ms ease, transform 160ms ease; }
+  .qc-info-mini:hover { color: var(--text); transform: scale(1.06); }
+
+  .qc-console { padding: clamp(1rem, 3vw, 1.5rem); display: grid; gap: 0.75rem; }
+  .qc-label { font-weight: 800; color: var(--text); font-size: 0.95rem; }
+  .qc-console textarea { width: 100%; resize: vertical; min-height: 7rem; font: inherit; font-size: 1.05rem; color: var(--text); background: var(--bg); border: 1px solid var(--qc-glass-line); border-radius: 0.75rem; padding: 0.9rem 1rem; line-height: 1.5; transition: border-color 160ms ease, box-shadow 160ms ease; }
+  .qc-console textarea::placeholder { color: var(--muted); }
+  .qc-console textarea:focus-visible { outline: none; border-color: var(--qc-pos); box-shadow: 0 0 0 4px color-mix(in srgb, var(--qc-pos) 22%, transparent); }
+  .qc-console textarea[aria-invalid="true"] { border-color: var(--qc-neg); }
+  .qc-console-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+  .qc-help { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .qc-error { color: var(--coral); font-weight: 700; font-size: 0.9rem; margin: 0; }
   .qc-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .qc-chip { font: inherit; font-size: 0.88rem; color: var(--soft); background: rgba(var(--gold-rgb), 0.12); border: 1px solid var(--line); border-radius: 999px; padding: 0.38rem 0.8rem; cursor: pointer; transition: background 160ms ease, transform 160ms ease; }
-  .qc-chip:hover { background: rgba(var(--gold-rgb), 0.22); }
+  .qc-chip { font: inherit; font-size: 0.85rem; color: var(--soft); background: transparent; border: 1px solid var(--qc-glass-line); border-radius: 999px; padding: 0.38rem 0.85rem; cursor: pointer; transition: border-color 160ms ease, color 160ms ease, transform 160ms ease; }
+  .qc-chip:hover { border-color: var(--qc-pos); color: var(--text); }
   .qc-chip:active { transform: scale(0.98); }
-  .qc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 0.4rem; }
-  .qc-actions .button[disabled] { opacity: 0.7; cursor: progress; }
+  .qc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin-top: 0.25rem; }
+  .qc-run { font: inherit; font-weight: 800; letter-spacing: 0.01em; color: var(--button-text); background: var(--button-bg); border: 0; border-radius: 999px; padding: 0.8rem 1.6rem; cursor: pointer; box-shadow: 0 10px 26px color-mix(in srgb, var(--button-bg) 40%, transparent); transition: transform 160ms ease, background 160ms ease; }
+  .qc-run:hover { background: var(--button-bg-hover); transform: translateY(-1px); }
+  .qc-run:active { transform: translateY(1px); }
+  .qc-run[disabled] { opacity: 0.7; cursor: progress; transform: none; }
   .qc-link { font: inherit; font-weight: 700; color: var(--mint); background: none; border: 0; padding: 0.4rem 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 
-  .qc-loading[hidden], .qc-notice[hidden], .qc-certainty[hidden] { display: none; }
-  .qc-loading { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: center; padding: 1.5rem; border: 1px dashed var(--line); border-radius: 0.8rem; }
-  .qc-skeleton-gauge { width: 220px; height: 112px; border-radius: 112px 112px 0 0; border: 22px solid rgba(var(--gold-rgb), 0.18); border-bottom: 0; position: relative; overflow: hidden; }
-  .qc-skeleton-gauge::after { content: ""; position: absolute; inset: -22px; background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.28), transparent); animation: qc-shimmer 1.6s infinite; }
-  .qc-loading-title { font-weight: 800; font-size: 1.15rem; margin: 0 0 0.3rem; }
-  .qc-loading-text { color: var(--muted); margin: 0 0 0.8rem; }
+  .qc-results-section.section.tight { padding-top: 0.5rem; }
+  .qc-loading[hidden], .qc-notice[hidden] { display: none; }
+  .qc-loading { display: grid; grid-template-columns: 96px 1fr; gap: 1.5rem; align-items: center; padding: 1.4rem 1.6rem; margin-bottom: 1.5rem; }
+  .qc-scan { width: 96px; height: 96px; border-radius: 999px; border: 2px solid var(--qc-glass-line); position: relative; overflow: hidden; }
+  .qc-scan span { position: absolute; inset: 0; border-radius: 999px; background: conic-gradient(from 0deg, transparent 0deg, color-mix(in srgb, var(--qc-pos) 55%, transparent) 70deg, transparent 90deg); animation: qc-spin 1.6s linear infinite; }
+  .qc-loading-title { font-weight: 800; font-size: 1.1rem; margin: 0 0 0.6rem; }
   .qc-steps { margin: 0; padding-left: 1.2rem; color: var(--soft); display: grid; gap: 0.25rem; }
-  @keyframes qc-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+  @keyframes qc-spin { to { transform: rotate(360deg); } }
 
-  .qc-notice { padding: 0.9rem 1.1rem; border-radius: 0.8rem; background: rgba(var(--gold-rgb), 0.14); color: var(--text); font-weight: 600; }
-  .qc-results { display: grid; gap: 1.5rem; }
+  .qc-notice { padding: 0.85rem 1.1rem; border-radius: 0.75rem; border: 1px dashed var(--qc-glass-line); color: var(--soft); font-weight: 600; margin: 0 0 1.25rem; }
+  .qc-results { display: grid; gap: 1.75rem; }
+  .qc-disclaimer { margin: 2rem 0 0; color: var(--muted); font-size: 0.85rem; max-width: 80ch; }
 
-  .qc-claim { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: clamp(1.1rem, 3vw, 2rem); animation: qc-enter 520ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--qc-index, 0) * 120ms); }
+  /* Ergebniskarte als Instrumententafel. */
+  .qc-claim { --qc-accent: var(--qc-mid); position: relative; overflow: hidden; padding: clamp(1.1rem, 3vw, 2rem); animation: qc-enter 560ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--qc-index, 0) * 120ms); }
+  .qc-claim::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, transparent, var(--qc-accent), transparent); }
   @keyframes qc-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  .qc-claim-kicker { color: var(--muted); font-size: 0.85rem; font-weight: 700; margin: 0 0 0.2rem; }
-  .qc-claim-text { font-size: clamp(1.25rem, 2.4vw, 1.6rem); margin: 0 0 1.2rem; line-height: 1.25; }
+  .qc-claim-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.4rem; }
+  .qc-kicker { color: var(--muted); font-size: 0.8rem; font-weight: 700; margin: 0 0 0.25rem; }
+  .qc-claim-text { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: 0; line-height: 1.25; }
 
-  .qc-verdict { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(1.25rem, 4vw, 2.75rem); align-items: center; }
-
-  /* Regler: durchgehender Verlauf, Fuellung von der Mitte zum Ergebnis, Knopf auf dem Bogen. */
-  .qc-dial { position: relative; margin: 0; padding: 1.4rem 1.4rem 1rem; border-radius: 0.8rem; background: radial-gradient(120% 90% at 50% 100%, rgba(var(--gold-rgb), 0.16), rgba(var(--gold-rgb), 0.04)); border: 1px solid var(--line); }
+  .qc-verdict { display: grid; grid-template-columns: minmax(280px, 400px) 1fr; gap: clamp(1.25rem, 4vw, 2.5rem); align-items: stretch; }
+  .qc-dial { position: relative; margin: 0; display: grid; align-content: center; padding: 1.5rem 1.4rem 1rem; border-radius: 0.9rem; border: 1px solid var(--qc-glass-line); background: radial-gradient(90% 75% at 50% 92%, color-mix(in srgb, var(--qc-accent) 26%, transparent), transparent 72%), var(--bg); }
   .qc-gauge { width: 100%; height: auto; display: block; overflow: visible; }
-  .qc-track { fill: none; stroke-width: 18; stroke-linecap: round; opacity: 0.22; }
-  .qc-fill { fill: none; stroke-width: 18; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1) 200ms; }
-  .qc-ticks line { stroke: var(--muted); stroke-width: 2; stroke-linecap: round; opacity: 0.6; }
+  .qc-ticks line { stroke: var(--muted); stroke-width: 1.2; opacity: 0.45; }
+  .qc-ticks line.is-major { stroke-width: 2; opacity: 0.9; }
+  .qc-track { fill: none; stroke-width: 16; stroke-linecap: round; opacity: 0.2; }
+  .qc-fill { fill: none; stroke-width: 16; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1) 200ms; }
   .qc-knob { transform-origin: 130px 130px; transform-box: view-box; transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 200ms; }
-  .qc-knob-ring { fill: var(--panel); stroke: var(--text); stroke-width: 3; filter: drop-shadow(0 3px 6px rgba(58, 64, 38, 0.28)); }
-  .qc-knob-dot { fill: var(--text); }
-  .is-unclear .qc-track { opacity: 0.35; stroke: var(--qc-mid) !important; stroke-dasharray: 3 7; stroke-linecap: butt; }
-  .qc-dial-readout { position: absolute; left: 0; right: 0; bottom: 2.5rem; display: grid; justify-items: center; gap: 0.15rem; pointer-events: none; }
-  .qc-dial-label { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 900; line-height: 1.15; color: var(--text); text-align: center; padding: 0 3.2rem; }
-  .qc-dial-sub { font-size: 0.78rem; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; }
-  .qc-gauge-scale { display: grid; grid-template-columns: 1fr auto 1fr; color: var(--muted); font-size: 0.8rem; margin-top: 0.4rem; }
+  .qc-knob-ring { fill: var(--panel); stroke: var(--text); stroke-width: 3; filter: drop-shadow(0 0 8px color-mix(in srgb, var(--qc-accent) 60%, transparent)); }
+  .qc-knob-dot { fill: var(--qc-accent); }
+  .is-unclear .qc-track { opacity: 0.4; stroke: var(--qc-mid) !important; stroke-dasharray: 2 7; stroke-linecap: butt; }
+  .qc-dial-stage { position: relative; }
+  .qc-dial-readout { position: absolute; left: 0; right: 0; bottom: 0.2rem; display: grid; justify-items: center; gap: 0.15rem; pointer-events: none; }
+  .qc-dial-label { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 900; line-height: 1.15; color: var(--text); text-align: center; padding: 0 3.4rem; }
+  .qc-dial-sub { font-family: var(--qc-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+  .qc-gauge-scale { display: grid; grid-template-columns: 1fr auto 1fr; color: var(--muted); font-size: 0.78rem; margin-top: 0.4rem; }
   .qc-gauge-scale span:last-child { text-align: right; }
 
-  .qc-verdict-text { display: grid; gap: 0.9rem; align-content: center; }
-  .qc-meaning { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 700; line-height: 1.4; margin: 0; color: var(--text); padding-left: 0.9rem; border-left: 5px solid var(--qc-mid); }
-  .qc-claim[data-level="widerspricht"] .qc-meaning { border-color: var(--qc-neg); }
-  .qc-claim[data-level="eher_nicht"] .qc-meaning { border-color: var(--qc-neg-soft); }
-  .qc-claim[data-level="eher_belegt"] .qc-meaning { border-color: var(--qc-pos-soft); }
-  .qc-claim[data-level="belegt"] .qc-meaning { border-color: var(--qc-pos); }
-  .qc-claim[data-level="unklar"] .qc-meaning { border-left-style: dashed; }
-  .qc-tally { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .qc-tally-item { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--soft); font-size: 0.9rem; }
-  .qc-tally-item b { color: var(--text); font-size: 1rem; }
-  .qc-tally-item::before { content: ""; width: 0.65rem; height: 0.65rem; border-radius: 2px; background: var(--qc-mid); }
-  .qc-tally-item.qc-badge-pos::before { background: var(--qc-pos); }
-  .qc-tally-item.qc-badge-neg::before { background: var(--qc-neg); }
-  .qc-certainty { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; color: var(--soft); margin: 0; }
-  .qc-bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; }
-  .qc-bars i { width: 6px; border-radius: 2px; background: var(--line); }
-  .qc-bars i:nth-child(1) { height: 8px; }
-  .qc-bars i:nth-child(2) { height: 13px; }
-  .qc-bars i:nth-child(3) { height: 18px; }
-  .qc-certainty[data-bars="1"] .qc-bars i:nth-child(-n+1),
-  .qc-certainty[data-bars="2"] .qc-bars i:nth-child(-n+2),
-  .qc-certainty[data-bars="3"] .qc-bars i:nth-child(-n+3) { background: var(--text); }
-  .qc-limit { display: grid; gap: 0.25rem; padding: 0.85rem 1rem; border-radius: 0.8rem; background: rgba(var(--gold-rgb), 0.1); color: var(--soft); font-size: 0.95rem; line-height: 1.5; }
-  .qc-limit strong { color: var(--text); font-size: 0.85rem; }
+  .qc-panel { display: grid; gap: 1rem; align-content: center; }
+  .qc-meaning { font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 750; line-height: 1.35; margin: 0; color: var(--text); }
+  .qc-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+  .qc-stat { display: grid; gap: 0.1rem; padding: 0.75rem 0.9rem; border-radius: 0.75rem; border: 1px solid var(--qc-glass-line); background: var(--bg); position: relative; overflow: hidden; }
+  .qc-stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--qc-mid); }
+  .qc-stat-pos::before { background: var(--qc-pos); }
+  .qc-stat-neg::before { background: var(--qc-neg); }
+  .qc-stat-num { font-size: 1.9rem; font-weight: 700; line-height: 1; color: var(--text); }
+  .qc-stat-label { font-size: 0.82rem; color: var(--muted); }
+  .qc-certainty { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 0.9rem; border-radius: 0.75rem; border: 1px solid var(--qc-glass-line); }
+  .qc-certainty-label { font-weight: 700; color: var(--soft); }
+  .qc-segments { display: inline-flex; gap: 4px; }
+  .qc-segments i { width: 28px; height: 8px; border-radius: 3px; background: var(--qc-glass-line); }
+  .qc-certainty[data-bars="1"] .qc-segments i:nth-child(-n+1),
+  .qc-certainty[data-bars="2"] .qc-segments i:nth-child(-n+2),
+  .qc-certainty[data-bars="3"] .qc-segments i:nth-child(-n+3) { background: var(--text); }
+  .qc-limit { display: grid; gap: 0.25rem; padding: 0.8rem 0.95rem; border-radius: 0.75rem; background: color-mix(in srgb, var(--qc-accent) 12%, transparent); color: var(--soft); font-size: 0.93rem; line-height: 1.5; }
+  .qc-limit strong { color: var(--text); font-size: 0.8rem; font-family: var(--qc-mono); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  .qc-sources { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
-  .qc-sources h4 { font-size: 1rem; margin: 0 0 0.8rem; }
-  .qc-source-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
-  .qc-source { padding: 1rem; border-radius: 0.8rem; background: rgba(var(--gold-rgb), 0.07); border: 1px solid var(--line); }
+  .qc-sources { margin-top: 1.8rem; }
+  .qc-sources-title { font-size: 0.95rem; margin: 0 0 0.9rem; color: var(--soft); }
+  .qc-source-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+  .qc-source { --qc-stance: var(--qc-mid); padding: 0.95rem 1rem 0.95rem 1.15rem; border-radius: 0.8rem; border: 1px solid var(--qc-glass-line); background: var(--bg); position: relative; transition: transform 180ms ease, border-color 180ms ease; }
+  .qc-source:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--qc-stance) 55%, transparent); }
+  .qc-source::before { content: ""; position: absolute; left: 0; top: 0.9rem; bottom: 0.9rem; width: 3px; border-radius: 0 3px 3px 0; background: var(--qc-stance); }
+  .qc-stance-pos { --qc-stance: var(--qc-pos); }
+  .qc-stance-neg { --qc-stance: var(--qc-neg); }
+  .qc-stance-none { --qc-stance: transparent; }
   .qc-source-empty { color: var(--muted); }
-  .qc-source-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); margin: 0 0 0.45rem; }
-  .qc-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 800; color: var(--text); }
-  .qc-badge::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 2px; background: var(--qc-mid); }
-  .qc-badge-pos::before { background: var(--qc-pos); }
-  .qc-badge-neg::before { background: var(--qc-neg); }
-  .qc-badge-none::before { background: transparent; border: 1.5px solid var(--muted); }
-  .qc-source-title { display: block; font-weight: 700; color: var(--text); line-height: 1.3; }
-  .qc-source blockquote { margin: 0.6rem 0 0; padding-left: 0.75rem; border-left: 3px solid var(--line); font-style: italic; color: var(--soft); font-size: 0.92rem; line-height: 1.45; }
-  .qc-source-note { margin: 0.5rem 0 0; font-size: 0.92rem; }
-  .qc-source-flag { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--coral); font-weight: 700; }
+  .qc-source-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); margin: 0 0 0.45rem; }
+  .qc-badge { font-weight: 800; color: var(--text); padding: 0.12rem 0.5rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--qc-stance) 60%, var(--qc-glass-line)); }
+  .qc-stance-none .qc-badge { border-color: var(--qc-glass-line); color: var(--muted); }
+  .qc-source-title { display: block; font-weight: 700; color: var(--text); line-height: 1.3; text-decoration: none; }
+  .qc-source-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .qc-source-note { margin: 0.45rem 0 0; font-size: 0.9rem; color: var(--soft); }
+  .qc-quote { margin-top: 0.55rem; }
+  .qc-quote summary { cursor: pointer; font-size: 0.82rem; font-weight: 700; color: var(--muted); }
+  .qc-quote summary:hover { color: var(--text); }
+  .qc-quote blockquote { margin: 0.5rem 0 0; padding-left: 0.75rem; border-left: 2px solid var(--qc-glass-line); font-style: italic; color: var(--soft); font-size: 0.88rem; line-height: 1.45; }
+  .qc-source-flag { margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; }
   .qc-other { margin-top: 1rem; }
-  .qc-other summary { cursor: pointer; color: var(--muted); font-weight: 700; margin-bottom: 0.8rem; }
+  .qc-other summary { cursor: pointer; color: var(--muted); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.8rem; }
 
-  .qc-method-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3rem); }
-  .qc-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem 2rem; margin: 0; }
-  .qc-rules dt { font-weight: 800; margin-bottom: 0.25rem; }
-  .qc-rules dd { margin: 0; color: var(--soft); }
-  .qc-disclaimer { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; max-width: 80ch; }
+  /* Info-Fenster */
+  .qc-dialog:not([open]) { display: none; }
+  .qc-dialog[open] { position: fixed; inset: 0; margin: auto; overflow-y: auto; }
+  .qc-dialog { width: min(720px, calc(100% - 2rem)); max-height: min(86dvh, 860px); padding: 0; border: 1px solid var(--qc-glass-line); border-radius: 1.1rem; background: var(--panel); color: var(--text); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35); }
+  .qc-dialog::backdrop { background: rgba(10, 14, 10, 0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .qc-dialog[open] { animation: qc-pop 260ms cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes qc-pop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+  .qc-dialog-inner { padding: clamp(1.25rem, 4vw, 2rem); }
+  .qc-dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+  .qc-dialog-head h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.8rem); }
+  .qc-close { width: 2.4rem; height: 2.4rem; border-radius: 999px; border: 1px solid var(--qc-glass-line); background: var(--bg); color: var(--text); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  .qc-close:hover { border-color: var(--text); }
+  .qc-flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+  .qc-flow li { display: grid; grid-template-columns: 3rem 1fr; gap: 0.9rem; align-items: start; padding: 0.9rem 1rem; border-radius: 0.8rem; border: 1px solid var(--qc-glass-line); background: var(--bg); }
+  .qc-flow-n { font-size: 1.3rem; font-weight: 700; color: var(--qc-pos); }
+  .qc-flow p { margin: 0.2rem 0 0; color: var(--soft); font-size: 0.93rem; }
+  .qc-dialog-sub { font-size: 1rem; margin: 1.5rem 0 0.75rem; }
+  .qc-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+  .qc-legend li { display: grid; grid-template-columns: 1.4rem 10.5rem 1fr; gap: 0.6rem; align-items: baseline; font-size: 0.92rem; color: var(--soft); }
+  .qc-legend strong { color: var(--text); }
+  .qc-swatch { width: 1rem; height: 1rem; border-radius: 4px; transform: translateY(2px); }
+  .qc-swatch-pos { background: var(--qc-pos); }
+  .qc-swatch-pos-soft { background: var(--qc-pos-soft); }
+  .qc-swatch-mid { background: var(--qc-mid); }
+  .qc-swatch-neg-soft { background: var(--qc-neg-soft); }
+  .qc-swatch-neg { background: var(--qc-neg); }
+  .qc-swatch-none { border: 1.5px dashed var(--muted); }
+  .qc-dialog-note { margin: 1.25rem 0 0; color: var(--muted); font-size: 0.88rem; }
 
   @media (max-width: 900px) {
-    .qc-hero-grid, .qc-method-grid { grid-template-columns: 1fr; }
+    .qc-hero-grid { grid-template-columns: 1fr; }
     .qc-verdict { grid-template-columns: 1fr; }
-    .qc-dial { max-width: 420px; }
-    .qc-source-list, .qc-rules { grid-template-columns: 1fr; }
-    .qc-loading { grid-template-columns: 1fr; }
+    .qc-dial { max-width: 440px; width: 100%; justify-self: center; }
+    .qc-source-list { grid-template-columns: 1fr; }
+    .qc-loading { grid-template-columns: 1fr; justify-items: start; }
+    .qc-legend li { grid-template-columns: 1.4rem 1fr; }
+    .qc-legend li span:last-child { grid-column: 2; }
+  }
+  @media (max-width: 480px) {
+    .qc-stat { padding: 0.6rem 0.65rem; }
+    .qc-stat-num { font-size: 1.5rem; }
+    .qc-stat-label { font-size: 0.74rem; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .qc-claim, .qc-skeleton-gauge::after { animation: none; }
-    .qc-fill, .qc-knob { transition: none; }
+    .qc-claim, .qc-scan span, .qc-dialog[open] { animation: none; }
+    .qc-fill, .qc-knob, .qc-source { transition: none; }
   }
 </style>
