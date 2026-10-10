@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+// English book page: "Strength Training for Women Over 40" (Callidus, KDP 2026).
+// The free companion PDF path is linked from inside the Kindle edition — do not move it.
+const asset = '/assets/books/strength-training-women-over-40';
+const companionPdf = '/downloads/strength-training-women-over-40-logs.pdf';
+const readingSample = `${asset}/reading-sample.pdf`;
+// Amazon search by ISBN works for the paperback and shows the linked Kindle edition once both are live.
+const amazonUrl = 'https://www.amazon.com/s?k=9798161420966';
+
+const inside = [
+  { title: '24 sessions, all written out', text: 'Every workout of the 12-week plan, with exercises, sets, reps, rest, and one simple rule for when to add weight.', accent: 'mint' },
+  { title: '12 movements, 3 levels each', text: 'Every exercise has an easier and a harder version, so you can start where you are and still be challenged in week twelve.', accent: 'coral' },
+  { title: 'Built for real weeks', text: 'What to do after a missed session, a bad night’s sleep, or a whole week away — without guilt or “make-up” workouts.', accent: 'gold' },
+  { title: 'Food that supports training', text: 'Five simple eating habits, six high-protein recipes, three example days, and an honest look at supplements.', accent: 'mint' },
+];
+const examples = [
+  { src: `${asset}/ex-01C-chair-squat.jpg`, title: 'Chair squat', label: 'Squat' },
+  { src: `${asset}/ex-03C-rdl.jpg`, title: 'Dumbbell hip hinge', label: 'Hinge' },
+  { src: `${asset}/ex-08C-row.jpg`, title: 'Chair-supported row', label: 'Pull' },
+  { src: `${asset}/ex-07C-overhead-press.jpg`, title: 'Seated overhead press', label: 'Push' },
+];
+const editions = [
+  { name: 'Paperback', detail: '137 pages · 7 × 10 in · write-in workout pages', price: '$17.99' },
+  { name: 'Kindle eBook', detail: 'Full-color illustrations · phone-friendly session tables', price: '$7.99' },
+];
+---
+<BaseLayout
+  lang="en"
+  title="Strength Training for Women Over 40 — A 12-Week Dumbbell Plan for Beginners | Callidus"
+  description="A clear 12-week dumbbell plan for women over 40: two 30-minute home workouts a week, 12 illustrated movements with easier and harder options, recipes, and a free printable workout log."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container st-hero">
+      <figure class="st-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Book cover: Strength Training for Women Over 40 — A 12-Week Dumbbell Plan for Beginners, by Callidus" width="600" height="857" loading="eager" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Strong for the Long Run · Book 1</p>
+        <h1 data-reveal="2">Strength Training for Women Over 40</h1>
+        <p class="st-sub" data-reveal="2">A 12-Week Dumbbell Plan for Beginners</p>
+        <p class="lede" data-reveal="3">
+          Two 30-minute workouts a week, at home, with two pairs of dumbbells, a chair, a wall,
+          and your kitchen counter. Every session is written out for you — what to do, how many reps,
+          how long to rest, and how to tell when you’re ready for heavier weights.
+        </p>
+        <div class="actions" data-reveal="3">
+          <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">View on Amazon</a>
+          <a class="button" href={readingSample} target="_blank" rel="noopener">Read a free sample (PDF)</a>
+        </div>
+        <ul class="st-facts" data-reveal="3">
+          <li><strong>12</strong><span>weeks</span></li>
+          <li><strong>2×</strong><span>a week</span></li>
+          <li><strong>~30</strong><span>minutes</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="free-log">
+    <div class="container st-download">
+      <div data-reveal>
+        <p class="eyebrow">Free download</p>
+        <h2>Printable workout log & milestone checks</h2>
+        <p>
+          For readers of the Kindle edition — and anyone who wants extra pages: the full 12-week log
+          for Sessions A and B, plus the Week 0, Week 4, and Week 12 milestone checks. Ten pages, ready to print.
+          No sign-up required.
+        </p>
+      </div>
+      <div class="st-download-card" data-reveal="2">
+        <strong>strength-training-women-over-40-logs.pdf</strong>
+        <small>10 pages · PDF · 1.2 MB</small>
+        <a class="button primary" href={companionPdf} download>Download the free log</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Inside the book</p>
+      <h2 data-reveal="2">A plan you can follow tomorrow</h2>
+      <div class="st-grid">
+        {inside.map((item, index) => (
+          <article class={`st-card ${item.accent}`} data-reveal={String((index % 3) + 1)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>A look at the exercises</p>
+      <h2 data-reveal="2">Clear illustrations for every move</h2>
+      <div class="st-gallery">
+        {examples.map((ex) => (
+          <figure class="st-ex" data-reveal>
+            <img src={ex.src} alt={`Illustration: ${ex.title}, start and finish position`} loading="lazy" />
+            <figcaption><span>{ex.label}</span><strong>{ex.title}</strong></figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="st-note">Illustrations in the Kindle edition are in full color; the paperback is printed in black and white.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Editions</p>
+      <h2 data-reveal="2">Paperback or Kindle</h2>
+      <div class="st-editions">
+        {editions.map((ed) => (
+          <div class="st-edition" data-reveal>
+            <h3>{ed.name}</h3>
+            <p>{ed.detail}</p>
+            <span class="st-price">{ed.price}</span>
+          </div>
+        ))}
+      </div>
+      <div class="actions" style="margin-top:1.2rem">
+        <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">View on Amazon</a>
+      </div>
+      <p class="st-note">
+        US list prices. Availability and prices may vary by Amazon marketplace. New listings can take a few days
+        to appear in Amazon search.
+      </p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container st-honest" data-reveal>
+      <h2>Honest about what this book is</h2>
+      <p>
+        This book provides general information about exercise and nutrition. It is not medical advice and not a
+        personal exercise prescription. If you have a heart condition, osteoporosis, a recent injury or surgery, or
+        another health condition, talk to your doctor before starting. The text and illustrations were created with
+        AI assistance and checked against published guidance; they have not been reviewed by a certified trainer or
+        physical therapist.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .st-hero { display: grid; grid-template-columns: minmax(200px, 340px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .st-hero { grid-template-columns: 1fr; } .st-cover { max-width: 260px; } }
+  .st-hero > *, .st-download > *, .st-grid > *, .st-editions > * { min-width: 0; }
+  .st-hero .actions { flex-wrap: wrap; }
+  .st-cover img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 24px 60px rgba(15, 76, 92, 0.35); }
+  .st-sub { font-size: 1.2rem; font-weight: 700; margin: -0.3rem 0 0.8rem; color: var(--coral); }
+  .st-facts { display: flex; gap: 1.6rem; list-style: none; padding: 0; margin: 1.4rem 0 0; }
+  .st-facts li { display: grid; }
+  .st-facts strong { font-size: 1.8rem; line-height: 1; color: var(--mint); }
+  .st-facts span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .st-download { display: grid; grid-template-columns: 1fr minmax(260px, 360px); gap: 1.5rem; align-items: center; }
+  @media (max-width: 760px) { .st-download { grid-template-columns: 1fr; } }
+  .st-download-card { display: grid; gap: 0.5rem; padding: 1.4rem; border-radius: 12px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .st-download-card small { color: var(--muted); }
+  .st-download-card strong { word-break: break-all; }
+  .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .st-card { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .st-card.coral { border-top-color: var(--coral); }
+  .st-card.gold { border-top-color: var(--gold); }
+  .st-card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+  .st-card p { margin: 0; }
+  .st-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .st-ex { margin: 0; overflow: hidden; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .st-ex img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: #fff; }
+  .st-ex figcaption { padding: 0.8rem 0.9rem; background: var(--bg-soft); }
+  .st-ex span { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); }
+  .st-ex strong { color: var(--text); }
+  .st-editions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .st-edition { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--line); }
+  .st-edition h3 { margin: 0 0 0.4rem; }
+  .st-edition p { margin: 0 0 0.8rem; color: var(--muted); }
+  .st-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
+  .st-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
+  .st-honest { max-width: 820px; }
+  .st-honest p { color: var(--muted); }
+</style>
