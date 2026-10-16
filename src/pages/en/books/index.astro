@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BookShelf from '../../../components/BookShelf.astro';
+// Overview of Callidus books in English. Add new books in src/data/books.js.
+---
+<BaseLayout
+  lang="en"
+  alternatePath="/buecher/"
+  title="Books by Callidus | Callidus"
+  description="Practical, honest health guides by Callidus – with free printable logs and templates for every book."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Books</p>
+      <h1 data-reveal="2">Books by Callidus</h1>
+      <p class="lede" data-reveal="3">
+        Health knowledge that stays honest and works in real life. Every book comes with free printable
+        templates – no sign-up needed.
+      </p>
+      <BookShelf lang="en" />
+      <p class="note">German editions and children's books: <a href="/buecher/">Bücher auf Deutsch</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .note { margin-top: 1.6rem; font-size: 0.9rem; color: var(--muted); }
+</style>

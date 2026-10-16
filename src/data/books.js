@@ -1,0 +1,57 @@
+// Zentrale Bücherliste für /buecher/, /en/books/, die Startseite und den Footer.
+// Neues Buch: Eintrag oben ergänzen (neuestes zuerst). Kinderbücher bleiben als Serie
+// gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
+export const books = [
+  {
+    id: 'heute-mal-nicht-alles',
+    lang: 'de',
+    group: 'ratgeber',
+    title: 'Heute mal nicht alles',
+    subtitle: 'Nervensystem regulieren: Das ehrliche 4-Wochen-Programm gegen Daueranspannung',
+    teaser: 'Vier Wochen, acht kleine Werkzeuge, etwa 10 Minuten am Tag – und sechs Mythen-Labore, die Vagus-Versprechen ehrlich prüfen.',
+    href: '/buecher/heute-mal-nicht-alles/',
+    cover: '/assets/books/heute-mal-nicht-alles/cover.jpg',
+    download: { href: '/downloads/heute-mal-nicht-alles-vordrucke.pdf', label: 'Vordrucke: Logbuch, Listen, Akuthilfe-Karte' },
+    status: 'Erscheint in Kürze',
+    isNew: true,
+  },
+  {
+    id: 'krafttraining-frauen-ab-40',
+    lang: 'de',
+    group: 'ratgeber',
+    title: 'Krafttraining für Frauen ab 40',
+    subtitle: 'Dein 12-Wochen-Hantelplan für zu Hause',
+    teaser: 'Zwei Einheiten pro Woche à etwa 30 Minuten, 12 illustrierte Übungen mit je drei Stufen, Rezepte und Trainingsprotokoll.',
+    href: '/buecher/krafttraining-frauen-ab-40/',
+    cover: '/assets/books/krafttraining-frauen-ab-40/cover.jpg',
+    download: { href: '/downloads/krafttraining-frauen-ab-40-vorlagen.pdf', label: 'Trainingsprotokoll & Meilenstein-Checks' },
+    status: 'Erhältlich',
+  },
+  {
+    id: 'callis-gesundheits-kompass',
+    lang: 'de',
+    group: 'kinder',
+    title: 'Callis Gesundheits-Kompass',
+    subtitle: 'Bilderbuch-Reihe für Kinder von 5 bis 8 – 6 Bände',
+    teaser: 'Calli, Mira und Noah entdecken Körpersignale, Essen, Bewegung, Schlaf, Gefühle und das Immunsystem. Zum Vorlesen, ohne Angst und Verbote.',
+    href: '/kinderbuch/',
+    cover: '/assets/kinderbuch/cover-band1.jpg',
+    covers: [1, 2, 3, 4, 5, 6].map((n) => `/assets/kinderbuch/cover-band${n}.jpg`),
+    download: { href: '/kinderbuch/#ausmalbilder', label: 'Ausmalbilder zu allen Bänden' },
+    status: '6 Bände erhältlich',
+  },
+  {
+    id: 'strength-training-women-over-40',
+    lang: 'en',
+    group: 'ratgeber',
+    title: 'Strength Training for Women Over 40',
+    subtitle: 'Your 12-Week Dumbbell Plan at Home',
+    teaser: 'Two sessions a week, about 30 minutes each, 12 illustrated exercises with three levels, recipes and a printable training log.',
+    href: '/en/books/strength-training-women-over-40/',
+    cover: '/assets/books/strength-training-women-over-40/cover.jpg',
+    download: { href: '/downloads/strength-training-women-over-40-logs.pdf', label: 'Printable training log' },
+    status: 'Available',
+  },
+];
+
+export const booksFor = (lang) => books.filter((b) => b.lang === lang);

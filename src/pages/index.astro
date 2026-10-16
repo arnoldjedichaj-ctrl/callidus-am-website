@@ -10,10 +10,13 @@ import { allArticles, getWeeklyFeatured, appBadgeMeta } from '../data/all-articl
 import { portalAppList } from '../data/portal.js';
 import { audience, mission, vision, brandPromise, problemSolution } from '../data/positioning.js';
 import Faq from '../components/Faq.astro';
+import { booksFor } from '../data/books.js';
 import { faqGroupsById, faqJsonLd } from '../data/faq.js';
 
 // Auf der Startseite steht nur die allgemeine FAQ-Gruppe, damit die Seite kurz bleibt.
 const homeFaqGroups = faqGroupsById('allgemein');
+// Bücher-Teaser: die drei neuesten deutschen Titel aus src/data/books.js.
+const homeBooks = booksFor('de').slice(0, 3);
 
 // Alle Artikel inkl. Momus-Beiträge fließen in die Kategorie-Counts.
 const articles = allArticles;
@@ -293,6 +296,26 @@ const todayStarts = [
     </div>
   </section>
 
+  <section class="section home-books">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Bücher von Callidus</p>
+      <h2 data-reveal="2">Lesen, ausprobieren, ausdrucken.</h2>
+      <div class="home-books-grid">
+        {homeBooks.map((book, index) => (
+          <a class="card home-book" href={book.href} data-reveal={String(index + 1)}>
+            <img src={book.cover} alt="" loading="lazy" decoding="async" />
+            <div class="card-body">
+              <span class={`badge ${book.isNew ? 'gold' : 'mint'}`}>{book.isNew ? 'Neu' : book.group === 'kinder' ? 'Kinderbuch' : 'Ratgeber'}</span>
+              <h3>{book.title}</h3>
+              <p>{book.subtitle}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="home-books-more" data-reveal><a href="/buecher/">Alle Bücher und kostenlosen Vordrucke</a></p>
+    </div>
+  </section>
+
   <section class="section home-brand">
     <div class="container">
       <p class="eyebrow" data-reveal>{brandPromise.eyebrow}</p>
@@ -532,6 +555,15 @@ const todayStarts = [
 
     /* --- FAQ --- */
     .home-faq-more { margin-top: 1.75rem; }
+
+    /* --- Bücher --- */
+    .home-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.4rem; }
+    .home-book { display: grid; grid-template-columns: 96px 1fr; gap: 0.9rem; align-items: start; padding: 1rem; }
+    .card.home-book img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 20px rgba(15, 40, 50, 0.22); }
+    .home-book .card-body { padding: 0; }
+    .home-book h3 { margin: 0.35rem 0 0.3rem; font-size: 1.05rem; }
+    .home-book p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+    .home-books-more { margin-top: 1.2rem; font-weight: 700; }
 
     @media (max-width: 860px) {
       .audience-panel { grid-template-columns: 1fr; }

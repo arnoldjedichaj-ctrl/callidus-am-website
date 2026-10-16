@@ -1,0 +1,68 @@
+---
+// Bücherregal für /buecher/ und /en/books/. Daten aus src/data/books.js.
+import { booksFor } from '../data/books.js';
+const { lang = 'de' } = Astro.props;
+const en = lang === 'en';
+const list = booksFor(lang);
+const groups = en
+  ? [{ key: 'ratgeber', title: 'Guides for adults', items: list }]
+  : [
+      { key: 'ratgeber', title: 'Ratgeber für Erwachsene', items: list.filter((b) => b.group === 'ratgeber') },
+      { key: 'kinder', title: 'Kinderbücher', items: list.filter((b) => b.group === 'kinder') },
+    ];
+const t = en
+  ? { open: 'View book', series: 'View series', free: 'Free download' }
+  : { open: 'Zum Buch', series: 'Zur Reihe', free: 'Kostenloser Download' };
+---
+{groups.filter((g) => g.items.length).map((group) => (
+  <div class="shelf-group" id={group.key}>
+    <h2>{group.title}</h2>
+    <div class="shelf">
+      {group.items.map((book) => (
+        <article class={`shelf-book${book.covers ? ' is-series' : ''}`}>
+          <a class="shelf-cover" href={book.href} aria-label={book.title}>
+            {book.covers
+              ? <span class="shelf-covers">{book.covers.map((c, i) => <img src={c} alt="" loading="lazy" style={`--i:${i}`} />)}</span>
+              : <img src={book.cover} alt={`${en ? "Book cover" : "Buchcover"}: ${book.title}`} loading="lazy" />}
+          </a>
+          <div class="shelf-body">
+            <span class={`shelf-status${book.isNew ? ' is-new' : ''}`}>{book.status}</span>
+            <h3><a href={book.href}>{book.title}</a></h3>
+            <p class="shelf-sub">{book.subtitle}</p>
+            <p>{book.teaser}</p>
+            <div class="shelf-actions">
+              <a class="button primary" href={book.href}>{book.covers ? t.series : t.open}</a>
+              {book.download && <a class="shelf-dl" href={book.download.href}>{t.free}: {book.download.label}</a>}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+))}
+
+<style>
+  .shelf-group { margin-top: 2.2rem; }
+  .shelf-group h2 { margin-bottom: 1rem; }
+  .shelf { display: grid; gap: 1.4rem; }
+  .shelf-book { display: grid; grid-template-columns: 170px 1fr; gap: 1.5rem; padding: 1.4rem; border-radius: 12px;
+    background: var(--bg-soft); border: 1px solid var(--line); align-items: start; }
+  .shelf-book.is-series { grid-template-columns: 260px 1fr; }
+  @media (max-width: 640px) {
+    .shelf-book, .shelf-book.is-series { grid-template-columns: 1fr; }
+    .shelf-cover { max-width: 180px; }
+    .shelf-book.is-series .shelf-cover { max-width: 280px; }
+  }
+  .shelf-book > * { min-width: 0; }
+  .shelf-cover img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 12px 30px rgba(15, 40, 50, 0.25); }
+  .shelf-covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .shelf-covers img { aspect-ratio: 1 / 1; object-fit: cover; }
+  .shelf-status { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--mint); margin-bottom: 0.3rem; }
+  .shelf-status.is-new { color: var(--gold); }
+  .shelf-body h3 { margin: 0 0 0.25rem; font-size: 1.3rem; }
+  .shelf-body h3 a { color: inherit; text-decoration: none; }
+  .shelf-sub { margin: 0 0 0.6rem; font-weight: 700; color: var(--muted); }
+  .shelf-actions { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: center; margin-top: 0.8rem; }
+  .shelf-dl { font-size: 0.9rem; font-weight: 600; }
+</style>

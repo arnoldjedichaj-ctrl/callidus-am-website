@@ -122,6 +122,7 @@ const websiteJsonLd = {
 const navPrimary = [
   { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
   { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
+  { href: lang === 'en' ? '/en/books/' : '/buecher/', label: lang === 'en' ? 'Books' : 'Bücher' },
   { href: t.paths.portal, label: lang === 'en' ? 'Member area' : 'Mein Bereich' },
 ];
 const navGroups = [
@@ -164,6 +165,7 @@ const footerGroups = [
       { href: t.paths.recommendations, label: t.nav.recommendations },
       { href: '/unsere-produkte/', label: lang === 'en' ? 'Our products' : 'Unsere Produkte' },
       { href: t.paths.apps, label: t.nav.apps },
+      { href: lang === 'en' ? '/en/books/' : '/buecher/', label: lang === 'en' ? 'Books' : 'Bücher' },
       { href: '/kinderbuch/', label: t.footerExtras?.kinderbuch ?? 'Kinderbuch' },
     ],
   },

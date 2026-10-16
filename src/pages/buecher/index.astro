@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookShelf from '../../components/BookShelf.astro';
+import { books } from '../../data/books.js';
+// Übersicht aller Callidus-Bücher. Neue Bücher nur in src/data/books.js eintragen.
+const downloads = books.filter((b) => b.lang === 'de' && b.download);
+---
+<BaseLayout
+  lang="de"
+  alternatePath="/en/books/"
+  title="Bücher von Callidus – Ratgeber und Kinderbücher | Callidus"
+  description="Alle Bücher von Callidus: alltagstaugliche Gesundheitsratgeber für Erwachsene und die Bilderbuch-Reihe „Callis Gesundheits-Kompass“ für Kinder – mit kostenlosen Vordrucken zum Ausdrucken."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Bücher</p>
+      <h1 data-reveal="2">Bücher von Callidus</h1>
+      <p class="lede" data-reveal="3">
+        Gesundheitswissen, das ehrlich bleibt und im Alltag funktioniert – als Taschenbuch, Kindle-E-Book und für die
+        Kleinsten als Bilderbuch. Zu jedem Buch gibt es hier die kostenlosen Vordrucke und Materialien.
+      </p>
+      <BookShelf lang="de" />
+    </div>
+  </section>
+
+  <section class="section band" id="downloads">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Für Leserinnen und Leser</p>
+      <h2 data-reveal="2">Kostenlose Downloads zu den Büchern</h2>
+      <p>Ohne Anmeldung. Praktisch für alle, die das E-Book lesen oder zusätzliche Seiten brauchen.</p>
+      <ul class="dl-list">
+        {downloads.map((b) => (
+          <li><a href={b.download.href}>{b.download.label}</a><span>{b.title}</span></li>
+        ))}
+      </ul>
+      <p class="dl-en">English editions: <a href="/en/books/">Callidus books in English</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dl-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.6rem; max-width: 760px; }
+  .dl-list li { display: grid; gap: 0.1rem; padding: 0.8rem 1rem; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .dl-list a { font-weight: 700; }
+  .dl-list span { font-size: 0.85rem; color: var(--muted); }
+  .dl-en { margin-top: 1.4rem; font-size: 0.9rem; color: var(--muted); }
+</style>
