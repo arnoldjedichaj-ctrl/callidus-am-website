@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+// US book page: "Not Everything, Not Today" (Callidus A&M, KDP 2026).
+// The book prints the short URL callidus-am.de/not-everything-today (redirects here)
+// and links to the printables. Do not change the PDF path.
+const asset = '/assets/books/not-everything-not-today';
+const printables = '/downloads/not-everything-not-today-printables.pdf';
+const readingSample = `${asset}/sample.pdf`;
+// Set to the Amazon.com /dp/<ASIN> link once the book is live.
+const amazonUrl = '';
+
+const inside = [
+  { title: 'Four weeks of short test runs', text: 'Each day starts with an everyday scene and ends with a small exercise: one minute, about five minutes, or longer if you feel like it. The one minute counts.', accent: 'mint' },
+  { title: '8 tools that fit real days', text: 'Orienting, a long exhale, movement breaks, an evening transition – and in Week 3, what often helps most: crossing things off, handing them off, asking clearly.', accent: 'coral' },
+  { title: '6 Myth Labs', text: 'Vagus nerve resets, ice water, humming, ear clips, smartwatch scores: each promise is checked against the research, with separate verdicts for evidence and safety.', accent: 'gold' },
+  { title: 'Honest about what is not proven', text: '37 studies and expert sources, each matched to a claim. No cure claims, no diagnosis. And a Pizza Rule for the days when nothing works.', accent: 'mint' },
+];
+const downloads = [
+  'Pocket help card (cut out and fold)',
+  'Your Starting Point and the four-week comparison',
+  'Logbook for Weeks 1 to 4',
+  'The List of Things That Aren’t Happening Today',
+  'My Rough-Day Plan',
+  'Weekly Check-In and your plan on half a page',
+];
+const people = [
+  { name: 'Jenna, 43', text: 'Project manager, two kids, a parents’ group text with 47 unread messages. She notices the tension only when she snaps the lunch box shut.' },
+  { name: 'Bridget, 54', text: 'Med-surg nurse on rotating shifts, gallows humor, loud guitar music in the parked car. Her mom leaves four-minute voicemails.' },
+  { name: 'Selin, 36', text: 'Digital agency, smartwatch, tracks her sleep every night. Tries every wellness trend – and takes you along into the Myth Labs.' },
+];
+const editions = [
+  { name: 'Paperback', detail: '118 pages · 6 × 9 in · logbook and forms to write in', price: '$14.99' },
+  { name: 'Kindle eBook', detail: 'Color images · linked sources · printables on this page', price: '$6.99' },
+];
+---
+<BaseLayout
+  lang="en"
+  alternatePath="/buecher/heute-mal-nicht-alles/"
+  title="Not Everything, Not Today – A 4-Week Nervous System Regulation Workbook | Callidus"
+  description="An honest 4-week workbook for women who are always on: about 10 minutes a day, 8 everyday tools, 6 Myth Labs on vagus nerve trends, and free printable templates."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container nt-hero">
+      <figure class="nt-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Book cover: Not Everything, Not Today – nervous system regulation for women who are always on, about 10 minutes a day, by Callidus" width="600" height="960" loading="eager" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>New book · Self-help</p>
+        <h1 data-reveal="2">Not Everything, Not Today</h1>
+        <p class="nt-sub" data-reveal="2">A 4-Week Nervous System Regulation Workbook for Women Who Are Always On</p>
+        <p class="lede" data-reveal="3">
+          For everyone who is still on at night. Four weeks, eight small tools, about ten minutes a day. No vagus reset,
+          no cold plunge, no guilt. Instead: three women whose Tuesday evenings may look familiar, and honest answers
+          about what the research actually shows.
+        </p>
+        <div class="actions" data-reveal="3">
+          {amazonUrl
+            ? <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">View on Amazon</a>
+            : <a class="button primary" href="#printables">Download the printables</a>}
+          <a class="button" href={readingSample} target="_blank" rel="noopener">Free sample (PDF)</a>
+        </div>
+        <ul class="nt-facts" data-reveal="3">
+          <li><strong>4</strong><span>weeks</span></li>
+          <li><strong>8</strong><span>tools</span></li>
+          <li><strong>~10</strong><span>min a day</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="printables">
+    <div class="container nt-download">
+      <div data-reveal>
+        <p class="eyebrow">Free download</p>
+        <h2>All printables in one PDF</h2>
+        <p>
+          For Kindle readers – and for everyone who would rather write on paper at the kitchen table.
+          Ten pages, US Letter, no sign-up:
+        </p>
+        <ul class="nt-list">
+          {downloads.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="nt-note">The audio breathing guide will be added here soon.</p>
+      </div>
+      <div class="nt-download-card" data-reveal="2">
+        <strong>not-everything-not-today-printables.pdf</strong>
+        <small>10 pages · US Letter · PDF · 0.2 MB</small>
+        <a class="button primary" href={printables} download>Download the free printables</a>
+        <small>The numbers on the help card are for the United States. In an emergency, call 911.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>What’s inside</p>
+      <h2 data-reveal="2">Less program, more real life</h2>
+      <div class="nt-grid">
+        {inside.map((item, index) => (
+          <article class={`nt-card ${item.accent}`} data-reveal={String((index % 3) + 1)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>The people in the book</p>
+      <h2 data-reveal="2">Jenna, Bridget, and Selin don’t exist. Their Tuesday evenings probably do.</h2>
+      <div class="nt-grid">
+        {people.map((p, index) => (
+          <article class="nt-person" data-reveal={String(index + 1)}>
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+          </article>
+        ))}
+      </div>
+      <blockquote class="nt-quote" data-reveal>
+        “I’ll call you back in ten minutes” is a complete sentence.
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Editions</p>
+      <h2 data-reveal="2">Paperback or Kindle</h2>
+      <div class="nt-editions">
+        {editions.map((ed) => (
+          <div class="nt-edition" data-reveal>
+            <h3>{ed.name}</h3>
+            <p>{ed.detail}</p>
+            <span class="nt-price">{ed.price}</span>
+          </div>
+        ))}
+      </div>
+      <div class="actions" style="margin-top:1.2rem">
+        {amazonUrl
+          ? <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">View on Amazon</a>
+          : <span class="button is-disabled" aria-disabled="true">Coming soon to Amazon</span>}
+      </div>
+      <p class="nt-note">Prices for Amazon.com. A German edition, „Heute mal nicht alles“, is also available.</p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container nt-honest" data-reveal>
+      <h2>What this book is – honestly</h2>
+      <p>
+        This book offers general information about stress, recovery, and everyday life. It is not a substitute for medical
+        or mental health advice, diagnosis, or treatment. The program as a whole has not been tested in studies; individual
+        claims are backed by sources or clearly marked as unclear. Research, writing, translation, and illustrations were
+        created with the help of AI tools and checked against the cited sources. The book has not been reviewed by a
+        physician or a therapist. If you are in crisis, call or text 988. In an emergency, call 911.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nt-hero { display: grid; grid-template-columns: minmax(200px, 320px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .nt-hero { grid-template-columns: 1fr; } .nt-cover { max-width: 240px; } }
+  .nt-hero > *, .nt-download > *, .nt-grid > *, .nt-editions > * { min-width: 0; }
+  .nt-hero .actions { flex-wrap: wrap; }
+  .nt-cover { margin: 0; }
+  .nt-cover img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 24px 60px rgba(30, 59, 51, 0.38); }
+  .nt-hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; margin-bottom: 0.9rem; }
+  .nt-sub { font-size: 1.15rem; font-weight: 700; margin: -0.3rem 0 0.8rem; color: var(--gold); }
+  .nt-facts { display: flex; gap: 1.6rem; list-style: none; padding: 0; margin: 1.4rem 0 0; }
+  .nt-facts li { display: grid; }
+  .nt-facts strong { font-size: 1.8rem; line-height: 1; color: var(--mint); }
+  .nt-facts span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .nt-download { display: grid; grid-template-columns: 1fr minmax(260px, 360px); gap: 1.5rem; align-items: center; }
+  @media (max-width: 760px) { .nt-download { grid-template-columns: 1fr; } }
+  .nt-list { margin: 0.4rem 0 0.8rem; padding-left: 1.2rem; }
+  .nt-list li { margin-bottom: 0.25rem; }
+  .nt-download-card { display: grid; gap: 0.5rem; padding: 1.4rem; border-radius: 12px; background: var(--bg-soft); border-top: 4px solid var(--gold); }
+  .nt-download-card small { color: var(--muted); }
+  .nt-download-card strong { word-break: break-all; }
+  .nt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .nt-card { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .nt-card.coral { border-top-color: var(--coral); }
+  .nt-card.gold { border-top-color: var(--gold); }
+  .nt-card h3, .nt-person h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+  .nt-card p, .nt-person p { margin: 0; }
+  .nt-person { padding: 1.4rem; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .nt-quote { margin: 1.6rem 0 0; padding: 1rem 1.2rem; border-left: 4px solid var(--gold); font-size: 1.15rem; font-style: italic; max-width: 720px; }
+  .nt-editions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .nt-edition { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--line); }
+  .nt-edition h3 { margin: 0 0 0.4rem; }
+  .nt-edition p { margin: 0 0 0.8rem; color: var(--muted); }
+  .nt-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
+  .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+  .nt-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
+  .nt-honest { max-width: 820px; }
+  .nt-honest p { color: var(--muted); }
+</style>
