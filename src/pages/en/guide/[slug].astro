@@ -18,6 +18,9 @@ export function getStaticPaths() {
 const { article } = Astro.props;
 const title = article.titleEn || article.title;
 const description = article.descriptionEn || article.description;
+// Im Suchergebnis nur die Pointe vor dem Doppelpunkt plus klarer Satire-Hinweis.
+const satireHead = title.split(':')[0].trim();
+const seoTitle = satireHead.length < title.length ? `${satireHead} – Satire | callidus A&M` : `${title} | callidus A&M`;
 const rawCategory = structure.categories.find((category) => category.slug === article.category) || structure.categories[0];
 const category = categoryForLang(rawCategory, 'en');
 const related = momusAll
@@ -33,6 +36,7 @@ const articleJsonLd = {
   headline: title,
   description,
   url: articleUrl,
+  genre: 'Satire',
   inLanguage: 'en-US',
   datePublished: articlePublishedAt,
   dateModified: articleModifiedAt,
@@ -47,7 +51,7 @@ const articleJsonLd = {
 <BaseLayout
   lang="en"
   alternatePath={article.path}
-  title={`${title} | callidus A&M`}
+  title={seoTitle}
   description={description}
   ogImage={article.image}
   pageType="article"

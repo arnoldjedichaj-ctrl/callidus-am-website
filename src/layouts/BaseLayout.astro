@@ -22,6 +22,12 @@ const {
 const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 const t = ui[lang] || ui.de;
+// Google kürzt Titel ab etwa 60 Zeichen. Dann fällt lieber der Marken-Suffix weg als
+// der eigentliche Inhalt; og:title und twitter:title behalten die volle Form.
+const titleMaxLength = 60;
+const documentTitle = title.length > titleMaxLength
+  ? title.replace(/\s*[|–-]\s*callidus(?: A&M)?\s*$/i, '')
+  : title;
 const labels = lang === 'en'
   ? {
       knowledge: 'Knowledge',
@@ -249,7 +255,7 @@ const socialIcons = {
     ))}
     <!-- Trustpilot Widget Loader -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-    <title>{title}</title>
+    <title>{documentTitle}</title>
     <script is:inline>
       (() => {
         const stored = localStorage.getItem('callidus-theme');

@@ -32,7 +32,7 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
       <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;" data-reveal="3">
         {totalArticles} Artikel insgesamt &middot;
         <span class="app-badge app-badge-nexus">NEXUS</span> {nexusCount}
-        <span class="app-badge app-badge-momus" style="margin-left:.5rem;">MOMUS</span> {momusCount}
+        <span class="app-badge app-badge-momus" style="margin-left:.5rem;">MOMUS · Satire</span> {momusCount}
       </p>
 
       <form class="ratgeber-filter" data-article-filter data-reveal="2" aria-label="Artikel filtern">
@@ -54,7 +54,7 @@ const momusCount = allArticles.filter((a) => a.app === 'momus').length;
           <select name="app">
             <option value="">Alle Apps</option>
             <option value="nexus">NEXUS</option>
-            <option value="momus">MOMUS</option>
+            <option value="momus">MOMUS · Satire</option>
           </select>
         </label>
         <button type="reset">Zurücksetzen</button>
