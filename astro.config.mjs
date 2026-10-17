@@ -40,6 +40,12 @@ const sitemapRedirectPaths = new Set([
   '/heute-mal-nicht-alles/',
   '/not-everything-today/',
   '/unsere-empfehlungen/geist-and-seele-1/',
+  '/biologische-verjungung/',
+  '/metformin-vs-spermidin/',
+  '/blockchain-ihre-gesundheit/',
+  '/ihr-digitaler-gesundheits-butler/',
+  '/jenseits-der-pille/',
+  '/digitale-alchemie/',
 ]);
 
 const shouldIncludeInSitemap = (page) => {

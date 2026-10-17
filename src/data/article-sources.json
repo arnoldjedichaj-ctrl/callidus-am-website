@@ -140,11 +140,31 @@
   "die-kraft-des-magnesiums": [
     {
       "sourceId": "nih-magnesium",
-      "claimNote": "Referenzdaten zu Magnesium, Quellen, Supplementen und Sicherheit."
+      "claimNote": "Referenzdaten zu Funktionen, Lebensmitteln, Mangelursachen, Wechselwirkungen und Sicherheit."
     },
     {
       "sourceId": "bfr-max-supplements",
-      "claimNote": "Sicherheitshinweis zu Nahrungsergänzung und Höchstmengen."
+      "claimNote": "Höchstmenge von 250 mg Magnesium in Nahrungsergänzungsmitteln."
+    },
+    {
+      "sourceId": "dge-magnesium-2022",
+      "claimNote": "Offizielle Zufuhrempfehlung in Deutschland."
+    },
+    {
+      "sourceId": "cochrane-magnesium-cramps-2020",
+      "claimNote": "Magnesium und Wadenkrämpfe."
+    },
+    {
+      "sourceId": "zhang-magnesium-bp-2016",
+      "claimNote": "Magnesium und Blutdruck."
+    },
+    {
+      "sourceId": "magnesium-bp-meta-2025",
+      "claimNote": "Aktuelle Effektgröße beim Blutdruck."
+    },
+    {
+      "sourceId": "mah-magnesium-insomnia-2021",
+      "claimNote": "Magnesium und Schlaf."
     }
   ],
   "gehen-als-training": [
@@ -186,11 +206,39 @@
   "vitamin-d-das-sonnenhormon": [
     {
       "sourceId": "nih-vitamin-d",
-      "claimNote": "Referenzdaten zu Vitamin D, Status, Quellen und Sicherheit."
+      "claimNote": "Referenzdaten zu Funktion, Status, Lebensmitteln und Sicherheit von Vitamin D."
     },
     {
       "sourceId": "bfr-max-supplements",
-      "claimNote": "Sicherheitshinweis zu Supplementierung und Höchstmengen."
+      "claimNote": "Höchstmenge von 20 µg Vitamin D in Nahrungsergänzungsmitteln."
+    },
+    {
+      "sourceId": "bfr-vitamin-d-faq",
+      "claimNote": "Empfehlungen zu Sonne, Zufuhr und Höchstmengen in Deutschland."
+    },
+    {
+      "sourceId": "rabenberg-degs-vitamin-d-2015",
+      "claimNote": "Versorgungslage in Deutschland."
+    },
+    {
+      "sourceId": "vital-vitamin-d-2019",
+      "claimNote": "Kein Schutz vor Krebs und Herz-Kreislauf-Erkrankungen bei Gesunden."
+    },
+    {
+      "sourceId": "vital-vitamin-d-fractures-2022",
+      "claimNote": "Kein Bruchschutz bei gut versorgten Menschen."
+    },
+    {
+      "sourceId": "keum-vitamin-d-cancer-2019",
+      "claimNote": "Vitamin D und Krebssterblichkeit."
+    },
+    {
+      "sourceId": "jolliffe-vitamin-d-ari-2021",
+      "claimNote": "Vitamin D und Atemwegsinfekte."
+    },
+    {
+      "sourceId": "avenell-cochrane-vitamin-d-fractures-2014",
+      "claimNote": "Bruchschutz bei älteren Menschen mit Risiko."
     }
   ],
   "vitamin-c-mythen": [
@@ -413,6 +461,46 @@
     {
       "sourceId": "issn-protein-exercise",
       "claimNote": "Einordnung von Proteinmenge und -verteilung beim Training."
+    }
+  ],
+  "die-biologische-uhr-verlangsamen": [
+    {
+      "sourceId": "mandsager-fitness-mortality-2018",
+      "claimNote": "Fitness als stärkster Longevity-Hebel."
+    },
+    {
+      "sourceId": "momma-muscle-strengthening-2022",
+      "claimNote": "Krafttraining und geringeres Sterberisiko."
+    },
+    {
+      "sourceId": "smartage-spermidine-2022",
+      "claimNote": "Spermidin beim Menschen."
+    },
+    {
+      "sourceId": "walton-masters-metformin-2019",
+      "claimNote": "Nachteil von Metformin bei Gesunden."
+    },
+    {
+      "sourceId": "afar-tame-trial",
+      "claimNote": "Status der Metformin-Forschung."
+    },
+    {
+      "sourceId": "nmn-nr-muscle-meta-2025",
+      "claimNote": "NAD+-Booster im Faktencheck."
+    }
+  ],
+  "die-personalisierte-revolution": [
+    {
+      "sourceId": "bfarm-diga-verzeichnis",
+      "claimNote": "Grundlage für die Aussagen zu Apps auf Rezept."
+    },
+    {
+      "sourceId": "apple-heart-study-2019",
+      "claimNote": "Nutzen und Grenzen von Wearables."
+    },
+    {
+      "sourceId": "food4me-celis-morales-2017",
+      "claimNote": "Einordnung von Gen-Diäten."
     }
   ]
 }
