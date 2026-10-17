@@ -66,11 +66,11 @@
   {
     "url": "https://www.callidus-am.de/ashwagandha/",
     "slug": "ashwagandha",
-    "title": "Ashwagandha: Wirkung & Anwendung der Schlafbeere bei Stress | callidus A&M",
-    "description": "Was ist Ashwagandha und wie wirkt es? Wie dieses natürliche Adaptogen aus dem Ayurveda dir helfen kann, Stress abzubauen und besser zu schlafen.",
+    "title": "Ashwagandha: Wirkung, Studien, Dosierung und Risiken",
+    "description": "Ashwagandha (Schlafbeere) ehrlich eingeordnet: was Meta-Analysen zu Stress, Cortisol und Schlaf zeigen, welche Dosis in Studien genutzt wurde, wer es nicht nehmen sollte und was das BfR zu Leberschäden sagt.",
     "h1": [],
     "h2": [
-      "Was ist Ashwagandha? Wie die Schlafbeere bei Stress und innerer Unruhe helfen kann."
+      "Was ist Ashwagandha?"
     ],
     "imageCount": 2,
     "images": [
@@ -286,11 +286,11 @@
   {
     "url": "https://www.callidus-am.de/der-schlaf-reset/",
     "slug": "der-schlaf-reset",
-    "title": "Besser schlafen: 5 Abendrituale für einen erholsamen Schlaf | callidus A&M",
-    "description": "Du kannst nicht einschlafen oder wachst oft auf? 5 einfache Abendrituale, die dir helfen, zur Ruhe zu kommen und deine Schlafqualität zu verbessern.",
+    "title": "Besser schlafen: Was laut Studien wirklich hilft",
+    "description": "Besser schlafen mit Studienlage statt Mythen: wie viel Schlaf du brauchst, was Koffein, Alkohol, Licht und Bewegung bewirken, was Melatonin kann – plus 14-Tage-Plan und Methoden aus der Schlaftherapie.",
     "h1": [],
     "h2": [
-      "Der Schlaf-Reset: Wie du mit 5 einfachen Abendritualen wieder erholsam schläfst"
+      "Warum Schlaf die Basis für alles andere ist"
     ],
     "imageCount": 2,
     "images": [
@@ -1101,11 +1101,11 @@
   {
     "url": "https://www.callidus-am.de/omega-3-fettsaeuren/",
     "slug": "omega-3-fettsaeuren",
-    "title": "Omega-3-Fettsäuren: Wirkung, Tagesbedarf und die besten Quellen",
-    "description": "Was bewirken Omega-3-Fettsäuren wirklich? EPA, DHA und ALA einfach erklärt: Wirkung auf Herz und Gehirn, Tagesbedarf, die besten Lebensmittel und worauf du bei Kapseln achten solltest.",
+    "title": "Omega-3-Fettsäuren: Wirkung, Bedarf, Quellen und Kapseln im Faktencheck",
+    "description": "Omega-3-Fettsäuren ehrlich erklärt: EPA, DHA und ALA, was große Studien zu Herz, Gehirn und Stimmung zeigen, wie viel du brauchst, die besten Lebensmittel, Algenöl für Veganer und worauf du bei Kapseln achtest.",
     "h1": [],
     "h2": [
-      "Omega-3-Fettsäuren: Wirkung, Tagesbedarf und die besten Quellen"
+      "Was Omega-3-Fettsäuren sind"
     ],
     "imageCount": 1,
     "images": [],
@@ -1179,6 +1179,36 @@
     "imageCount": 1,
     "images": [
       "/assets/original/005-wp-content-uploads-go-x-u-5646fff2-d8b7-4963-8b00-3f5b6f93eda8-l0-t253-w2000-h1747-image-768x671.png"
+    ],
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/nervensystem-regulieren/",
+    "slug": "nervensystem-regulieren",
+    "title": "Nervensystem regulieren: Was bei Daueranspannung wirklich hilft",
+    "description": "Nervensystem regulieren ohne Hype: was bei Daueranspannung passiert, welche Übungen Studien stützen (Atmung, Bewegung, Muskelentspannung, Grübel-Stopp) und welche Vagus-Versprechen nicht halten.",
+    "h1": [],
+    "h2": [
+      "Was „Nervensystem regulieren“ eigentlich bedeutet"
+    ],
+    "imageCount": 1,
+    "images": [
+      "/assets/original/025-wp-content-uploads-go-x-u-f09322c5-cefc-4717-a203-bbd26892545f-l0-t96-w1280-h1089-image.jpg"
+    ],
+    "status": "ok"
+  },
+  {
+    "url": "https://www.callidus-am.de/krafttraining-ab-40/",
+    "slug": "krafttraining-ab-40",
+    "title": "Krafttraining ab 40: Warum es jetzt zählt und wie du startest",
+    "description": "Krafttraining ab 40 ehrlich erklärt: was Studien zu Lebenserwartung, Knochen und Wechseljahren zeigen, wie viel Training reicht, wie viel Protein du brauchst – plus Einsteigerplan für zu Hause.",
+    "h1": [],
+    "h2": [
+      "Warum Muskeln ab 40 zur Gesundheitsfrage werden"
+    ],
+    "imageCount": 1,
+    "images": [
+      "/assets/original/018-wp-content-uploads-go-x-u-e86f1034-ab13-4d60-8d7f-05a924f85e91-l0-t88-w2000-h1701-image-1366x1162.png"
     ],
     "status": "ok"
   }

@@ -34,10 +34,10 @@ const customSpecialPages = {
     slug: 'nexus-app',
     kind: 'product',
     title: 'NEXUS, MOMUS & KAIROS | Die Callidus Apps im Google Play Store',
-    hero: 'NEXUS - Ihre persönliche Gesundheits-KI',
+    hero: 'NEXUS - Deine persönliche Gesundheits-KI',
     lead: 'Schluss mit manuellem Tippen. NEXUS kombiniert moderne künstliche Intelligenz mit deinen Vitaldaten, damit du Ernährung, Training, Regeneration und Wohlbefinden wirklich verstehst.',
     blocks: [
-      { type: 'heading', level: 2, text: 'Lernen Sie NEXUS kennen - Ihre persönliche Gesundheits-KI' },
+      { type: 'heading', level: 2, text: 'Lerne NEXUS kennen - deine persönliche Gesundheits-KI' },
       { type: 'paragraph', text: 'Die meisten Fitness-Apps sind lediglich stumme Datenspeicher. Sie zählen Schritte oder Kalorien, erklären dir aber nicht, was das bedeutet. Callidus ändert das.' },
       { type: 'paragraph', text: 'Im Zentrum unserer App steht NEXUS - eine fortschrittliche KI, die wie ein Expertenteam arbeitet und dir hilft, dich jeden Tag gesünder, fitter und glücklicher zu fühlen.' },
       { type: 'heading', level: 2, text: 'Das Herzstück: Ihr Expertenrat' },
@@ -199,6 +199,9 @@ const noindexSlugs = new Set([
 ]);
 const pageRobots = noindexSlugs.has(page.slug) ? 'noindex, follow' : undefined;
 const pageFaqGroups = faqGroupsById(...(faqBySlug[page.slug] || []));
+// Artikel können eigene FAQ mitbringen (article.faq: [{ question, answer }]).
+const articleFaq = Array.isArray(article?.faq) ? article.faq : [];
+const faqGroupsForSchema = [...pageFaqGroups, ...(articleFaq.length ? [{ items: articleFaq }] : [])];
 
 // Google-Ads-Conversions: Slug -> Ereignis. Bewusst als Tabelle, damit sich
 // die Zielseite aendern laesst, ohne im Markup zu suchen.
@@ -368,6 +371,13 @@ const specialBlockClass = (block) => {
   if (/Wichtiger Hinweis|Hinweis zur Darstellung/.test(text)) return 'course-note';
   return '';
 };
+// Verantwortlicher Redakteur der NEXUS-Ratgeber (Byline und Article-Schema).
+const articleEditor = {
+  '@type': 'Person',
+  name: 'Arnold Jedich',
+  url: 'https://www.callidus-am.de/uber-uns/',
+  worksFor: { '@id': 'https://www.callidus-am.de/#organization' },
+};
 const articleUrl = new URL(page.path || `/${page.slug}/`, 'https://www.callidus-am.de').href;
 const articleJsonLd = article ? {
   '@context': 'https://schema.org',
@@ -382,7 +392,9 @@ const articleJsonLd = article ? {
   inLanguage: 'de-DE',
   datePublished: articlePublishedAt,
   dateModified: articleModifiedAt,
-  author: { '@id': 'https://www.callidus-am.de/#organization', name: 'callidus A&M' },
+  author: article.app === 'momus'
+    ? { '@id': 'https://www.callidus-am.de/#organization', name: 'callidus A&M' }
+    : articleEditor,
   publisher: {
     '@id': 'https://www.callidus-am.de/#organization',
     name: 'callidus A&M',
@@ -402,7 +414,7 @@ const articleJsonLd = article ? {
   publishedTime={articlePublishedAt}
   modifiedTime={articleModifiedAt}
   robots={pageRobots}
-  jsonLd={pageFaqGroups.length > 0 ? faqJsonLd(pageFaqGroups) : undefined}
+  jsonLd={faqGroupsForSchema.length > 0 ? faqJsonLd(faqGroupsForSchema) : undefined}
 >
   {articleJsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)}></script>
@@ -473,7 +485,9 @@ const articleJsonLd = article ? {
           <aside class="article-trust-strip" aria-label="Transparenz zu diesem Artikel">
             <div>
               <span>Redaktion</span>
-              <strong><a href="/quellen-methodik/">callidus A&amp;M · KI-unterstützt</a></strong>
+              <strong>{article.app === 'momus'
+                ? <a href="/quellen-methodik/">callidus A&amp;M · KI-unterstützt</a>
+                : <><a href="/uber-uns/">{articleEditor.name}</a> · <a href="/quellen-methodik/">KI-unterstützt</a></>}</strong>
             </div>
             <div>
               <span>Stand</span>
@@ -611,6 +625,25 @@ const articleJsonLd = article ? {
                 if (block.type === 'list') {
                   return <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
                 }
+                if (block.type === 'answer') {
+                  return (
+                    <div class="notice article-answer">
+                      <strong>{block.label || 'Kurz gesagt'}</strong>
+                      <p>{block.text}</p>
+                    </div>
+                  );
+                }
+                if (block.type === 'table') {
+                  return (
+                    <div class="article-table-wrap">
+                      <table class="article-table">
+                        {block.caption && <caption>{block.caption}</caption>}
+                        <thead><tr>{block.head.map((cell) => <th scope="col">{cell}</th>)}</tr></thead>
+                        <tbody>{block.rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody>
+                      </table>
+                    </div>
+                  );
+                }
                 if (block.type === 'cta') {
                   return (
                     <div class="article-cta" style="margin:2rem 0;display:flex;flex-direction:column;gap:.5rem;align-items:flex-start;">
@@ -650,6 +683,17 @@ const articleJsonLd = article ? {
                 }
                 return <p>{block.text}</p>;
               })}
+              {articleFaq.length > 0 && (
+                <section class="article-faq" aria-labelledby="article-faq-heading">
+                  <h2 id="article-faq-heading">Häufige Fragen</h2>
+                  {articleFaq.map((item) => (
+                    <details>
+                      <summary>{item.question}</summary>
+                      <p>{item.answer}</p>
+                    </details>
+                  ))}
+                </section>
+              )}
               <div class="notice">
                 <strong>Hinweis:</strong>
                 <p>Dieser Gesundheitsartikel ersetzt keine medizinische Beratung. Bei Beschwerden, Medikamenten oder Vorerkrankungen bitte fachlichen Rat einholen.</p>

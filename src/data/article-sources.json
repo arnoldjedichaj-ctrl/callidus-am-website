@@ -17,6 +17,22 @@
     {
       "sourceId": "nccih-ashwagandha",
       "claimNote": "Nutzen und Sicherheit von Ashwagandha-Präparaten werden zurückhaltend eingeordnet."
+    },
+    {
+      "sourceId": "ashwagandha-cortisol-meta-2025",
+      "claimNote": "Grundlage für die Aussagen zu Stress und Cortisol."
+    },
+    {
+      "sourceId": "cheah-ashwagandha-sleep-2021",
+      "claimNote": "Grundlage für die Aussagen zum Schlaf und zur Dosis."
+    },
+    {
+      "sourceId": "bjornsson-ashwagandha-liver-2020",
+      "claimNote": "Beleg für Leberrisiken."
+    },
+    {
+      "sourceId": "bfr-ashwagandha",
+      "claimNote": "Behördliche Risikoeinschätzung in Deutschland."
     }
   ],
   "darmgesundheit-mit-akazienfaser": [
@@ -81,12 +97,44 @@
   ],
   "der-schlaf-reset": [
     {
-      "sourceId": "cdc-sleep",
-      "claimNote": "Schlafdauer, Schlafqualität und gesundheitliche Bedeutung von Schlaf."
+      "sourceId": "watson-sleep-duration-2015",
+      "claimNote": "Grundlage für die empfohlene Schlafdauer."
     },
     {
-      "sourceId": "who-stress-guide",
-      "claimNote": "Stressreduktion als Teil der Abendroutine."
+      "sourceId": "gardiner-caffeine-sleep-2023",
+      "claimNote": "Zahlen zu Koffein und Schlaf sowie zum empfohlenen Abstand."
+    },
+    {
+      "sourceId": "gardiner-alcohol-sleep-2025",
+      "claimNote": "Beleg für die Wirkung von Alkohol auf den REM-Schlaf."
+    },
+    {
+      "sourceId": "riemann-european-insomnia-guideline-2023",
+      "claimNote": "Empfehlung der KVT-I als erste Behandlung."
+    },
+    {
+      "sourceId": "ferracioli-oda-melatonin-2013",
+      "claimNote": "Effektgröße von Melatonin."
+    },
+    {
+      "sourceId": "melatonin-chronic-insomnia-2022",
+      "claimNote": "Einschränkung der Melatonin-Wirkung bei Erwachsenen."
+    },
+    {
+      "sourceId": "haghayegh-warm-bath-2019",
+      "claimNote": "Beleg für das warme Bad als Einschlafhilfe."
+    },
+    {
+      "sourceId": "kredlow-exercise-sleep-2015",
+      "claimNote": "Beleg für Bewegung als Schlafhilfe."
+    },
+    {
+      "sourceId": "evening-light-chang-2015",
+      "claimNote": "Leuchtende Bildschirme am Abend verzögern Melatonin und Einschlafen."
+    },
+    {
+      "sourceId": "sleep-hygiene-irish-2015",
+      "claimNote": "Einordnung der klassischen Schlafhygiene-Regeln."
     }
   ],
   "die-kraft-des-magnesiums": [
@@ -166,11 +214,31 @@
   "omega-3-fettsaeuren": [
     {
       "sourceId": "nih-omega3",
-      "claimNote": "Grundlage für Aussagen zu Formen (ALA/EPA/DHA), Umwandlungsrate, Quellen und Bedarf."
+      "claimNote": "Grundlage für Formen (ALA/EPA/DHA), Umwandlungsrate, Quellen und Gehalt in Lebensmitteln."
     },
     {
       "sourceId": "efsa-dha-epa-claims",
-      "claimNote": "Zugelassene Health Claims zu EPA/DHA (Herzfunktion, Gehirn, Sehkraft, Triglyceride)."
+      "claimNote": "Zugelassene Health Claims zu EPA/DHA (Herzfunktion, Triglyceride)."
+    },
+    {
+      "sourceId": "efsa-omega3-safety-2012",
+      "claimNote": "Sicherheitsgrenze für Omega-3-Präparate."
+    },
+    {
+      "sourceId": "vital-omega3-2019",
+      "claimNote": "Einordnung von Kapseln zur Herzinfarkt-Vorbeugung."
+    },
+    {
+      "sourceId": "gencer-omega3-af-2021",
+      "claimNote": "Risiko hochdosierter Omega-3-Präparate."
+    },
+    {
+      "sourceId": "liao-omega3-depression-2019",
+      "claimNote": "Omega-3 und Stimmung."
+    },
+    {
+      "sourceId": "harris-omega3-index-2004",
+      "claimNote": "Zielwerte des Omega-3-Index."
     }
   ],
   "intervallfasten-16-8-anleitung": [
@@ -281,6 +349,70 @@
     {
       "sourceId": "everlast-ai-oi-video-2026",
       "claimNote": "Medienbeitrag, der den Anstoß für diesen Artikel gab."
+    }
+  ],
+  "nervensystem-regulieren": [
+    {
+      "sourceId": "laborde-slow-breathing-2022",
+      "claimNote": "Grundlage für die Wirkung langsamen Atmens auf HRV und Puls."
+    },
+    {
+      "sourceId": "balban-cyclic-sighing-2023",
+      "claimNote": "Beleg für Cyclic Sighing und lange Ausatmung."
+    },
+    {
+      "sourceId": "grossman-polyvagal-2023",
+      "claimNote": "Einordnung der Polyvagal-Theorie."
+    },
+    {
+      "sourceId": "singh-activity-mental-health-2023",
+      "claimNote": "Beleg für Bewegung als Stress- und Angstreduktion."
+    },
+    {
+      "sourceId": "manzoni-relaxation-anxiety-2008",
+      "claimNote": "Beleg für Progressive Muskelentspannung und Entspannungsverfahren."
+    },
+    {
+      "sourceId": "dippel-worry-postponement-2023",
+      "claimNote": "Beleg für die feste Grübelzeit."
+    },
+    {
+      "sourceId": "ackermann-diving-response-2022",
+      "claimNote": "Grundlage für die Akut-Hilfe mit kaltem Wasser."
+    },
+    {
+      "sourceId": "mcewen-allostatic-load-1998",
+      "claimNote": "Erklärung von Daueranspannung als allostatische Last."
+    }
+  ],
+  "krafttraining-ab-40": [
+    {
+      "sourceId": "momma-muscle-strengthening-2022",
+      "claimNote": "Zahlen zu Krafttraining, Lebenserwartung und Erkrankungsrisiken."
+    },
+    {
+      "sourceId": "liftmor-watson-2018",
+      "claimNote": "Beleg für Krafttraining bei niedriger Knochendichte."
+    },
+    {
+      "sourceId": "who-physical-activity-2020",
+      "claimNote": "Empfohlene Trainingsmenge."
+    },
+    {
+      "sourceId": "borde-rt-dose-older-2015",
+      "claimNote": "Grundlage für Sätze, Wiederholungen und Häufigkeit."
+    },
+    {
+      "sourceId": "morton-protein-rt-2018",
+      "claimNote": "Obergrenze sinnvoller Proteinzufuhr beim Muskelaufbau."
+    },
+    {
+      "sourceId": "dge-protein-2017",
+      "claimNote": "Offizielle Proteinempfehlung in Deutschland."
+    },
+    {
+      "sourceId": "issn-protein-exercise",
+      "claimNote": "Einordnung von Proteinmenge und -verteilung beim Training."
     }
   ]
 }

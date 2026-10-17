@@ -558,5 +558,354 @@
       "Medienbeitrag"
     ],
     "summary": "Deutschsprachiges Erklärvideo zu organoider Intelligenz, das den Anstoß für diesen Beitrag gab; die Aussagen wurden anhand der Primärliteratur geprüft."
+  },
+  {
+    "id": "laborde-slow-breathing-2022",
+    "title": "Effects of voluntary slow breathing on heart rate and heart rate variability: A systematic review and a meta-analysis",
+    "url": "https://doi.org/10.1016/j.neubiorev.2022.104711",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Atmung",
+      "HRV",
+      "Stress"
+    ],
+    "summary": "223 Studien: Langsames Atmen erhöht die vagal vermittelte Herzratenvariabilität während, direkt nach und nach mehrwöchigem Üben."
+  },
+  {
+    "id": "balban-cyclic-sighing-2023",
+    "title": "Brief structured respiration practices enhance mood and reduce physiological arousal",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9873947/",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Atmung",
+      "Stimmung"
+    ],
+    "summary": "Ein Monat, 5 Minuten täglich: Cyclic Sighing verbesserte die Stimmung stärker als Achtsamkeitsmeditation."
+  },
+  {
+    "id": "grossman-polyvagal-2023",
+    "title": "Fundamental challenges and likely refutations of the five basic premises of the polyvagal theory",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37230290/",
+    "type": "Übersichtsarbeit",
+    "topics": [
+      "Vagusnerv",
+      "Polyvagal-Theorie"
+    ],
+    "summary": "Kritische Prüfung der fünf Kernannahmen der Polyvagal-Theorie mit dem Ergebnis, dass sie kaum haltbar sind."
+  },
+  {
+    "id": "singh-activity-mental-health-2023",
+    "title": "Effectiveness of physical activity interventions for improving depression, anxiety and distress: an overview of systematic reviews",
+    "url": "https://doi.org/10.1136/bjsports-2022-106195",
+    "type": "Umbrella-Review",
+    "topics": [
+      "Bewegung",
+      "Angst",
+      "Stress"
+    ],
+    "summary": "97 Übersichtsarbeiten, 1.039 Studien: mittlere Effekte körperlicher Aktivität auf Depression, Angst und psychische Belastung."
+  },
+  {
+    "id": "manzoni-relaxation-anxiety-2008",
+    "title": "Relaxation training for anxiety: a ten-years systematic review with meta-analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2427027/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Entspannung",
+      "PMR",
+      "Angst"
+    ],
+    "summary": "27 Studien: Entspannungsverfahren zeigen mittlere bis große Effekte auf Angst."
+  },
+  {
+    "id": "dippel-worry-postponement-2023",
+    "title": "Worry postponement: a meta-analysis of randomized trials (Dippel, Brosschot, Verkuil)",
+    "url": "https://scholarlypublications.universiteitleiden.nl/access/item%3A4105123/view",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Grübeln",
+      "Sorgen"
+    ],
+    "summary": "7 randomisierte Studien, 999 Teilnehmende: Grübel-Aufschub verringert Dauer und Häufigkeit von Sorgen mit kleinen Effekten."
+  },
+  {
+    "id": "ackermann-diving-response-2022",
+    "title": "The diving response and cardiac vagal activity: A systematic review and meta-analysis",
+    "url": "https://openresearch.lsbu.ac.uk/download/8043ba89d3648a12fcd75ab044545bb67ddf40561961e83c66e618c99c74bdbd/1802072/Psychophysiology%20-%202022%20-%20Ackermann%20-%20The%20diving%20response%20and%20cardiac%20vagal%20activity%20%20A%20systematic%20review%20and%20meta%E2%80%90analysis.pdf",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Tauchreflex",
+      "Vagusnerv",
+      "Kälte"
+    ],
+    "summary": "Kaltes Wasser im Gesicht löst eine vagale Reaktion mit verlangsamtem Herzschlag aus; Hinweise auf weniger Angst."
+  },
+  {
+    "id": "mcewen-allostatic-load-1998",
+    "title": "Protective and damaging effects of stress mediators (McEwen, NEJM 1998)",
+    "url": "https://doi.org/10.1056/NEJM199801153380307",
+    "type": "Übersichtsarbeit",
+    "topics": [
+      "Stress",
+      "Allostatische Last"
+    ],
+    "summary": "Grundlagenarbeit zum Konzept der allostatischen Last durch chronischen Stress."
+  },
+  {
+    "id": "watson-sleep-duration-2015",
+    "title": "Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the AASM and Sleep Research Society",
+    "url": "https://doi.org/10.5665/sleep.4716",
+    "type": "Konsens-Statement",
+    "topics": [
+      "Schlaf",
+      "Schlafdauer"
+    ],
+    "summary": "Erwachsene von 18 bis 60 Jahren sollten regelmäßig mindestens 7 Stunden schlafen."
+  },
+  {
+    "id": "gardiner-caffeine-sleep-2023",
+    "title": "The effect of caffeine on subsequent sleep: A systematic review and meta-analysis",
+    "url": "https://doi.org/10.1016/j.smrv.2023.101764",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Koffein",
+      "Schlaf"
+    ],
+    "summary": "24 Studien: Koffein verkürzt die Schlafzeit um 45 Minuten und senkt die Schlafeffizienz um 7 Prozent."
+  },
+  {
+    "id": "gardiner-alcohol-sleep-2025",
+    "title": "The effect of alcohol on subsequent sleep in healthy adults: A systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39631226/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Alkohol",
+      "Schlaf",
+      "REM"
+    ],
+    "summary": "27 Studien: Alkohol verzögert und verkürzt den REM-Schlaf schon in niedriger Dosis."
+  },
+  {
+    "id": "riemann-european-insomnia-guideline-2023",
+    "title": "The European Insomnia Guideline: An update on the diagnosis and treatment of insomnia 2023",
+    "url": "https://doi.org/10.1111/jsr.14035",
+    "type": "Leitlinie",
+    "topics": [
+      "Insomnie",
+      "KVT-I"
+    ],
+    "summary": "KVT-I ist die Behandlung der ersten Wahl bei chronischer Insomnie, persönlich oder digital."
+  },
+  {
+    "id": "ferracioli-oda-melatonin-2013",
+    "title": "Meta-Analysis: Melatonin for the Treatment of Primary Sleep Disorders",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3656905/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Melatonin",
+      "Schlaf"
+    ],
+    "summary": "19 Studien: Melatonin verkürzt die Einschlafzeit um etwa 7 Minuten."
+  },
+  {
+    "id": "melatonin-chronic-insomnia-2022",
+    "title": "Efficacy of melatonin for chronic insomnia: Systematic reviews and meta-analyses",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36179487/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Melatonin",
+      "Insomnie"
+    ],
+    "summary": "Bei Erwachsenen mit chronischer Insomnie keine signifikante Verbesserung durch Melatonin."
+  },
+  {
+    "id": "haghayegh-warm-bath-2019",
+    "title": "Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis",
+    "url": "https://doi.org/10.1016/j.smrv.2019.04.008",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Schlaf",
+      "Temperatur"
+    ],
+    "summary": "Warmes Wasser (40–42,5 °C) 1–2 Stunden vor dem Schlafen verkürzt die Einschlafzeit."
+  },
+  {
+    "id": "kredlow-exercise-sleep-2015",
+    "title": "The effects of physical activity on sleep: a meta-analytic review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25596964/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Bewegung",
+      "Schlaf"
+    ],
+    "summary": "66 Studien: regelmäßige Bewegung verbessert die Schlafqualität moderat."
+  },
+  {
+    "id": "momma-muscle-strengthening-2022",
+    "title": "Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases: a systematic review and meta-analysis of cohort studies",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35228201/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Krafttraining",
+      "Sterblichkeit"
+    ],
+    "summary": "16 Kohortenstudien: 30–60 Minuten Krafttraining pro Woche mit 10–20 % geringerem Sterberisiko verbunden."
+  },
+  {
+    "id": "liftmor-watson-2018",
+    "title": "High-Intensity Resistance and Impact Training Improves Bone Mineral Density and Physical Function in Postmenopausal Women With Osteopenia and Osteoporosis: The LIFTMOR Randomized Controlled Trial",
+    "url": "https://doi.org/10.1002/jbmr.3284",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Krafttraining",
+      "Knochendichte",
+      "Wechseljahre"
+    ],
+    "summary": "Angeleitetes intensives Training verbesserte Knochendichte und Funktion bei Frauen nach der Menopause."
+  },
+  {
+    "id": "who-physical-activity-2020",
+    "title": "World Health Organization 2020 guidelines on physical activity and sedentary behaviour",
+    "url": "https://doi.org/10.1136/bjsports-2020-102955",
+    "type": "Leitlinie",
+    "topics": [
+      "Bewegung",
+      "Krafttraining"
+    ],
+    "summary": "150–300 Min. moderate Ausdauer pro Woche plus Kräftigung an mindestens zwei Tagen."
+  },
+  {
+    "id": "borde-rt-dose-older-2015",
+    "title": "Dose-Response Relationships of Resistance Training in Healthy Old Adults: A Systematic Review and Meta-Analysis",
+    "url": "https://doi.org/10.1007/s40279-015-0385-9",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Krafttraining",
+      "Ältere Erwachsene"
+    ],
+    "summary": "Optimale Dosis für Kraft- und Muskelzuwachs bei älteren Erwachsenen."
+  },
+  {
+    "id": "morton-protein-rt-2018",
+    "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Protein",
+      "Krafttraining"
+    ],
+    "summary": "49 Studien: Protein unterstützt den Muskelzuwachs bis etwa 1,6 g pro kg Körpergewicht."
+  },
+  {
+    "id": "dge-protein-2017",
+    "title": "DGE: Neuer Referenzwert für die Proteinzufuhr ab 65 Jahren",
+    "url": "https://www.dge.de/fileadmin/dok/presse/meldungen/2011-2018/DGE-Pressemeldung-aktuell-08-2017-Referenzwert-Protein.pdf",
+    "type": "Fachgesellschaft",
+    "topics": [
+      "Protein",
+      "Ältere Erwachsene"
+    ],
+    "summary": "0,8 g/kg bis 64 Jahre, 1,0 g/kg ab 65 Jahren."
+  },
+  {
+    "id": "efsa-omega3-safety-2012",
+    "title": "Scientific Opinion on the Tolerable Upper Intake Level of EPA, DHA and DPA",
+    "url": "https://www.efsa.europa.eu/en/efsajournal/pub/2815",
+    "type": "Behörde",
+    "topics": [
+      "Omega-3",
+      "Sicherheit"
+    ],
+    "summary": "Bis zu 5 g EPA und DHA täglich gelten für Erwachsene als unbedenklich."
+  },
+  {
+    "id": "vital-omega3-2019",
+    "title": "Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer (VITAL)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6392053/",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Omega-3",
+      "Herz"
+    ],
+    "summary": "Über 25.000 Teilnehmende: kein signifikanter Effekt auf schwere Herz-Kreislauf-Ereignisse, weniger Herzinfarkte in Nebenauswertungen."
+  },
+  {
+    "id": "gencer-omega3-af-2021",
+    "title": "Effect of Long-Term Marine Omega-3 Fatty Acids Supplementation on the Risk of Atrial Fibrillation in Randomized Controlled Trials of Cardiovascular Outcomes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9109217/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Omega-3",
+      "Vorhofflimmern"
+    ],
+    "summary": "7 Studien, 81.210 Teilnehmende: 25 % höheres Risiko für Vorhofflimmern, über 1 g täglich 49 %."
+  },
+  {
+    "id": "liao-omega3-depression-2019",
+    "title": "Efficacy of omega-3 PUFAs in depression: A meta-analysis",
+    "url": "https://doi.org/10.1038/s41398-019-0515-5",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Omega-3",
+      "Depression"
+    ],
+    "summary": "26 Studien: EPA-betonte Präparate verbessern depressive Symptome, reines DHA nicht."
+  },
+  {
+    "id": "harris-omega3-index-2004",
+    "title": "The Omega-3 Index: a new risk factor for death from coronary heart disease?",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15208005/",
+    "type": "Übersichtsarbeit",
+    "topics": [
+      "Omega-3-Index",
+      "Herz"
+    ],
+    "summary": "Ein Omega-3-Index ab 8 % war mit dem geringsten, unter 4 % mit dem höchsten Risiko verbunden."
+  },
+  {
+    "id": "ashwagandha-cortisol-meta-2025",
+    "title": "Effects of Ashwagandha Supplements on Cortisol, Stress, and Anxiety Levels in Adults: A Systematic Review and Meta-Analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12242034/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Ashwagandha",
+      "Stress",
+      "Cortisol"
+    ],
+    "summary": "15 Studien, 873 Teilnehmende: Stress und Cortisol nach 8 Wochen gesenkt, Evidenz mit geringer Sicherheit."
+  },
+  {
+    "id": "cheah-ashwagandha-sleep-2021",
+    "title": "Effect of Ashwagandha (Withania somnifera) extract on sleep: A systematic review and meta-analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8462692/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Ashwagandha",
+      "Schlaf"
+    ],
+    "summary": "5 Studien, 400 Erwachsene: kleiner, signifikanter Effekt auf den Schlaf, stärker bei Insomnie, ab 600 mg und 8 Wochen."
+  },
+  {
+    "id": "bjornsson-ashwagandha-liver-2020",
+    "title": "Ashwagandha-induced liver injury: A case series from Iceland and the US Drug-Induced Liver Injury Network",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31991029/",
+    "type": "Fallserie",
+    "topics": [
+      "Ashwagandha",
+      "Leber",
+      "Sicherheit"
+    ],
+    "summary": "Leberschäden mit Gelbsucht 2 bis 12 Wochen nach Beginn der Einnahme, Erholung nach Absetzen."
+  },
+  {
+    "id": "bfr-ashwagandha",
+    "title": "BfR: Ashwagandha (Schlafbeere)-Präparate mit möglichen Gesundheitsrisiken",
+    "url": "https://mobil.bfr.bund.de/cm/343/ashwagandha-schlafbeeren-praeparate-mit-moeglichen-gesundheitsrisiken.pdf",
+    "type": "Behörde",
+    "topics": [
+      "Ashwagandha",
+      "Sicherheit"
+    ],
+    "summary": "Datenlage reicht für eine sichere Höchstmenge nicht aus; Abraten bei Lebererkrankungen und in der Stillzeit."
   }
 ]
