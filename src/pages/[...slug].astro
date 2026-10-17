@@ -221,7 +221,10 @@ const categoryRedirect = structure.categories.find((item) => new URL(page.url).p
 const categoryRedirectPath = categoryRedirect ? `/ratgeber/#${categoryRedirect.slug}` : null;
 const title = categoryRedirect?.title || legalPage?.title || specialPage?.title || page.title || page.h1?.[0] || 'callidus A&M';
 // SEO-Titel/-Description nur für <head> und JSON-LD; die sichtbare H1 und der Lead bleiben unverändert.
-const seoTitle = article?.seoTitle || title;
+// MOMUS-Satire: im Suchergebnis nur die Pointe vor dem Doppelpunkt plus klarer Satire-Hinweis.
+const satireHead = article?.app === 'momus' ? title.split(':')[0].trim() : '';
+const seoTitle = article?.seoTitle
+  || (satireHead && satireHead.length < title.length ? `${satireHead} – Satire | callidus A&M` : title);
 // Sichtbare H1 ohne den Marken-Suffix aus dem Title-Tag.
 const displayTitle = title.replace(/\s*\|\s*callidus A&M\s*$/i, '');
 const seoDescription = article?.seoDescription || page.description || article?.description || 'callidus A&M';
@@ -370,9 +373,10 @@ const articleJsonLd = article ? {
   '@context': 'https://schema.org',
   '@type': 'Article',
   '@id': `${articleUrl}#article`,
-  headline: seoTitle,
+  headline: article.app === 'momus' ? displayTitle : seoTitle,
   description: seoDescription,
   url: articleUrl,
+  genre: article.app === 'momus' ? 'Satire' : undefined,
   image: mainImage ? new URL(mainImage, 'https://www.callidus-am.de').href : undefined,
   citation: articleSourceEntries.length ? articleSourceEntries.map((source) => source.url) : undefined,
   inLanguage: 'de-DE',
