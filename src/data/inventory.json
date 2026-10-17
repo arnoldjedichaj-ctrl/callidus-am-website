@@ -81,23 +81,6 @@
     "status": "ok"
   },
   {
-    "url": "https://www.callidus-am.de/biologische-verjungung/",
-    "slug": "biologische-verjungung",
-    "title": "Biologische Verjüngung: Wie du deine Zellen & Haut erneuerst | callidus A&M",
-    "description": "Mehr als nur Hautpflege: wie du mit den richtigen Nährstoffen und Gewohnheiten die biologische Verjüngung von innen heraus unterstützt.",
-    "h1": [],
-    "h2": [
-      "Biologische Verjüngung: Ein praktischer Leitfaden zur Erneuerung von innen"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/2bc7784f-598f-4087-a51e-76e83819c684/l153,t43,w1810,h1810/image-1366x1366.png"
-    ],
-    "localHtml": "source/content-html/biologische-verjungung.html",
-    "status": "ok"
-  },
-  {
     "url": "https://www.callidus-am.de/bitte-bestaetigen/",
     "slug": "bitte-bestaetigen",
     "title": "bitte-bestaetigen",
@@ -113,23 +96,6 @@
       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
     ],
     "localHtml": "source/content-html/bitte-bestaetigen.html",
-    "status": "ok"
-  },
-  {
-    "url": "https://www.callidus-am.de/blockchain-ihre-gesundheit/",
-    "slug": "blockchain-ihre-gesundheit",
-    "title": "Wie Blockchain deine Gesundheitsdaten sicherer macht",
-    "description": "Wie Blockchain-Technologie Patientendaten schützt, Medikamentenfälschungen verhindert und die digitale Gesundheitsakte sicherer machen kann — verständlich erklärt.",
-    "h1": [],
-    "h2": [
-      "Blockchain im Gesundheitswesen: Die Zukunft deiner Daten und Diagnosen"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/1f8698ec-35a2-48ca-b4fc-bea569579d0e/l149,t63,w1062,h903/image.png"
-    ],
-    "localHtml": "source/content-html/blockchain-ihre-gesundheit.html",
     "status": "ok"
   },
   {
@@ -320,11 +286,11 @@
   {
     "url": "https://www.callidus-am.de/die-biologische-uhr-verlangsamen/",
     "slug": "die-biologische-uhr-verlangsamen",
-    "title": "Gesundes Altern: Wie wir die biologische Uhr verlangsamen können | callidus A&M",
-    "description": "Ist Altern eine Krankheit? Die Wissenschaft der Langlebigkeit (Longevity) und wie Ansätze wie Senolytika und NAD+ den Alterungsprozess verlangsamen.",
+    "title": "Gesund altern: Was die biologische Uhr wirklich verlangsamt",
+    "description": "Longevity ohne Hype: was biologisches Alter bedeutet, welche Gewohnheiten nachweislich am stärksten wirken und was Studien zu Metformin, Spermidin, NAD+-Boostern, Senolytika und Kollagen wirklich zeigen.",
     "h1": [],
     "h2": [
-      "Gesundes Altern: Wie die Wissenschaft lernt, unsere biologische Uhr zu verlangsamen"
+      "Biologisches und chronologisches Alter"
     ],
     "imageCount": 2,
     "images": [
@@ -354,11 +320,11 @@
   {
     "url": "https://www.callidus-am.de/die-kraft-des-magnesiums/",
     "slug": "die-kraft-des-magnesiums",
-    "title": "Die Kraft des Magnesiums: Wichtig für Muskeln & Nerven | callidus A&M",
-    "description": "Müde, verspannt oder unruhig? Warum ein Magnesiummangel die Ursache sein könnte und wie du deine Speicher mit den richtigen Lebensmitteln auffüllst.",
+    "title": "Magnesium: Wirkung, Bedarf, Mangel und Präparate im Faktencheck",
+    "description": "Magnesium ehrlich erklärt: wofür der Körper es braucht, wie viel du brauchst, wann ein Mangel droht, was Studien zu Krämpfen, Schlaf, Blutdruck und Migräne zeigen und welches Präparat sinnvoll ist.",
     "h1": [],
     "h2": [
-      "Die Kraft des Magnesiums: Warum dieses Mineral für Muskeln und Nerven unerlässlich ist"
+      "Wofür dein Körper Magnesium braucht"
     ],
     "imageCount": 2,
     "images": [
@@ -388,11 +354,11 @@
   {
     "url": "https://www.callidus-am.de/die-personalisierte-revolution/",
     "slug": "die-personalisierte-revolution",
-    "title": "Personalisierte Gesundheit: Wie Gen-Analyse & KI die Medizin revolutionieren | callidus A&M",
-    "description": "Die Zukunft ist persönlich: wie DNA-basierte Ernährung (Nutrigenomik) und KI-Analysen die Gesundheitsvorsorge für immer verändern werden.",
+    "title": "Zukunft der Gesundheit: Was von KI, Gen-Tests und smarten Pillen schon real ist",
+    "description": "Personalisierte Medizin, KI-Gesundheitsbegleiter, Wearables, Gesundheits-Apps auf Rezept und smarte Pillen: was davon heute schon funktioniert, was Studien zeigen und was noch Zukunftsmusik ist.",
     "h1": [],
     "h2": [
-      "Die stille Revolution: Wie personalisierte Biologie unsere Gesundheit neu definiert."
+      "Von der Einheitsmedizin zur persönlichen Gesundheit"
     ],
     "imageCount": 2,
     "images": [
@@ -400,23 +366,6 @@
       "https://www.callidus-am.de/wp-content/uploads/go-x/u/181fae69-b926-4ae9-8306-50c4b429368d/l52,t0,w953,h953/image.png"
     ],
     "localHtml": "source/content-html/die-personalisierte-revolution.html",
-    "status": "ok"
-  },
-  {
-    "url": "https://www.callidus-am.de/digitale-alchemie/",
-    "slug": "digitale-alchemie",
-    "title": "Digitale Alchemie: Wie Neuro-Tech unsere Emotionen steuert | callidus A&M",
-    "description": "Die Zukunft ist fühlbar: wie tragbare Neuro-Technologie und digitale Therapeutika es uns ermöglichen, Stress, Fokus und Kreativität in Echtzeit zu steuern.",
-    "h1": [],
-    "h2": [
-      "Digitale Alchemie: Wie wir lernen, unsere Gehirnwellen und Emotionen in Echtzeit zu steuern"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/60bcdf4d-daa9-4e60-88c9-10db805bbb2d/l0,t105,w2000,h1701/image-1366x1162.png"
-    ],
-    "localHtml": "source/content-html/digitale-alchemie.html",
     "status": "ok"
   },
   {
@@ -471,23 +420,6 @@
     "status": "ok"
   },
   {
-    "url": "https://www.callidus-am.de/ihr-digitaler-gesundheits-butler/",
-    "slug": "ihr-digitaler-gesundheits-butler",
-    "title": "Der digitale Gesundheits-Butler: Wie KI & Roboter uns begleiten | callidus A&M",
-    "description": "Die Zukunft der Gesundheit ist persönlich und immer verfügbar: wie KI als dein digitaler Butler und empathischer Coach dein Wohlbefinden revolutionieren wird.",
-    "h1": [],
-    "h2": [
-      "Dein digitaler Gesundheits-Butler: Wie KI & Roboter zu unseren persönlichen Begleitern werden"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/c69eb68e-5c3a-42c6-95d8-db5d309bcf43/l14,t167,w1825,h1825/image-1366x1366.png"
-    ],
-    "localHtml": "source/content-html/ihr-digitaler-gesundheits-butler.html",
-    "status": "ok"
-  },
-  {
     "url": "https://www.callidus-am.de/impressum/",
     "slug": "impressum",
     "title": "Impressum",
@@ -501,23 +433,6 @@
       "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png"
     ],
     "localHtml": "source/content-html/impressum.html",
-    "status": "ok"
-  },
-  {
-    "url": "https://www.callidus-am.de/jenseits-der-pille/",
-    "slug": "jenseits-der-pille",
-    "title": "Die Zukunft der Medizin: Jenseits der Pille | callidus A&M",
-    "description": "Von smarten Implantaten, die Werte in Echtzeit messen, bis hin zu 3D-gedruckten Organen: die revolutionären Behandlungsmethoden der Zukunft.",
-    "h1": [],
-    "h2": [
-      "Jenseits der Pille: Die revolutionären Behandlungsmethoden der Zukunft"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/2f7f5a63-da65-491e-a24e-196b0a8c0525/l0,t0,w1889,h1889/image-1366x1366.png"
-    ],
-    "localHtml": "source/content-html/jenseits-der-pille.html",
     "status": "ok"
   },
   {
@@ -593,23 +508,6 @@
       "https://www.callidus-am.de/wp-content/uploads/go-x/u/218940fa-b27e-4c33-933a-63e3e7de4b50/l0,t354,w1280,h742/image.jpg"
     ],
     "localHtml": "source/content-html/lexicon-vitae.html",
-    "status": "ok"
-  },
-  {
-    "url": "https://www.callidus-am.de/metformin-vs-spermidin/",
-    "slug": "metformin-vs-spermidin",
-    "title": "Metformin & Spermidin: Die Wissenschaft hinter dem langen Leben | callidus A&M",
-    "description": "Ein Medikament und ein Naturstoff im Fokus der Anti-Aging-Forschung: wie Metformin und Spermidin unsere zelluläre Langlebigkeit beeinflussen könnten.",
-    "h1": [],
-    "h2": [
-      "Metformin & Spermidin: Der Wettlauf um die Formel für ein langes, gesundes Leben"
-    ],
-    "imageCount": 2,
-    "images": [
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/bdfcc883-6576-4ab2-951d-c90c6ccf47d3/image-911x911.png",
-      "https://www.callidus-am.de/wp-content/uploads/go-x/u/63e95552-976a-409b-8f4a-0cf5883343b8/l0,t45,w2000,h1764/image-1366x1205.png"
-    ],
-    "localHtml": "source/content-html/metformin-vs-spermidin.html",
     "status": "ok"
   },
   {
@@ -1052,11 +950,11 @@
   {
     "url": "https://www.callidus-am.de/vitamin-d-das-sonnenhormon/",
     "slug": "vitamin-d-das-sonnenhormon",
-    "title": "Vitamin D: Das Sonnenhormon für Knochen & Immunsystem | callidus A&M",
-    "description": "Warum Vitamin D so wichtig ist und wieso viele Menschen in Deutschland im Winter unterversorgt sind. Alles zu Funktion, Quellen und Mangel.",
+    "title": "Vitamin D: Bedarf, Mangel, Dosierung und Studienlage",
+    "description": "Vitamin D ehrlich erklärt: wie viel du brauchst, wann ein Mangel droht, welche Werte gut sind, was Studien zu Knochen, Infekten, Krebs und Herz zeigen und wie du sicher dosierst.",
     "h1": [],
     "h2": [
-      "Vitamin D (Calciferol): Das Sonnenhormon für Knochen, Muskeln und Immunsystem"
+      "Was Vitamin D im Körper macht"
     ],
     "imageCount": 2,
     "images": [

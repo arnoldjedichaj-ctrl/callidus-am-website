@@ -907,5 +907,230 @@
       "Sicherheit"
     ],
     "summary": "Datenlage reicht für eine sichere Höchstmenge nicht aus; Abraten bei Lebererkrankungen und in der Stillzeit."
+  },
+  {
+    "id": "bfr-vitamin-d-faq",
+    "title": "BfR: Ausgewählte Fragen und Antworten zu Vitamin D",
+    "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/ausgewaehlte-fragen-und-antworten-zu-vitamin-d/",
+    "type": "Behörde",
+    "topics": [
+      "Vitamin D",
+      "Sonne",
+      "Zufuhr"
+    ],
+    "summary": "Schätzwert 20 µg ohne Eigensynthese, Sonnenempfehlung, Höchstmengen und Risiken."
+  },
+  {
+    "id": "rabenberg-degs-vitamin-d-2015",
+    "title": "Vitamin D status among adults in Germany – results from the German Health Interview and Examination Survey for Adults (DEGS1)",
+    "url": "https://doi.org/10.1186/s12889-015-2016-7",
+    "type": "Bevölkerungsstudie",
+    "topics": [
+      "Vitamin D",
+      "Versorgung"
+    ],
+    "summary": "Gut die Hälfte der Erwachsenen in Deutschland unter 50 nmol/l."
+  },
+  {
+    "id": "vital-vitamin-d-2019",
+    "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease (VITAL)",
+    "url": "https://doi.org/10.1056/NEJMoa1809944",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Vitamin D",
+      "Krebs",
+      "Herz"
+    ],
+    "summary": "2.000 IE täglich senkten weder Krebs noch schwere Herz-Kreislauf-Ereignisse."
+  },
+  {
+    "id": "vital-vitamin-d-fractures-2022",
+    "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+    "url": "https://doi.org/10.1056/NEJMoa2202106",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Vitamin D",
+      "Knochenbrüche"
+    ],
+    "summary": "Keine Senkung des Bruchrisikos bei allgemein gesunden Erwachsenen."
+  },
+  {
+    "id": "keum-vitamin-d-cancer-2019",
+    "title": "Vitamin D supplementation and total cancer incidence and mortality: a meta-analysis of randomized controlled trials",
+    "url": "https://doi.org/10.1093/annonc/mdz059",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Vitamin D",
+      "Krebs"
+    ],
+    "summary": "Keine geringere Krebshäufigkeit, aber etwa 13 % geringere Krebssterblichkeit."
+  },
+  {
+    "id": "jolliffe-vitamin-d-ari-2021",
+    "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of stratified aggregate data",
+    "url": "https://doi.org/10.1016/S2213-8587(21)00051-6",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Vitamin D",
+      "Infekte"
+    ],
+    "summary": "Kleiner Schutzeffekt gegen Atemwegsinfekte bei täglicher Gabe von 400–1.000 IE."
+  },
+  {
+    "id": "avenell-cochrane-vitamin-d-fractures-2014",
+    "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men (Cochrane)",
+    "url": "https://doi.org/10.1002/14651858.CD000227.pub4",
+    "type": "Cochrane-Review",
+    "topics": [
+      "Vitamin D",
+      "Kalzium",
+      "Knochenbrüche"
+    ],
+    "summary": "Vitamin D mit Kalzium senkt das Hüftbruchrisiko bei älteren Menschen leicht, Vitamin D allein nicht."
+  },
+  {
+    "id": "dge-magnesium-2022",
+    "title": "DGE: Ausgewählte Fragen und Antworten zu Magnesium",
+    "url": "https://www.dge.de/fileadmin/dok/gesunde-ernaehrung/faq/DGE-FAQ-Magnesium-2022.pdf",
+    "type": "Fachgesellschaft",
+    "topics": [
+      "Magnesium",
+      "Zufuhr"
+    ],
+    "summary": "Schätzwerte 300 mg (Frauen) und 350 mg (Männer) pro Tag; kein geeigneter Biomarker für den Status."
+  },
+  {
+    "id": "cochrane-magnesium-cramps-2020",
+    "title": "Magnesium for skeletal muscle cramps (Cochrane Review)",
+    "url": "https://doi.org/10.1002/14651858.CD009402.pub3",
+    "type": "Cochrane-Review",
+    "topics": [
+      "Magnesium",
+      "Muskelkrämpfe"
+    ],
+    "summary": "Bei älteren Menschen mit gewöhnlichen Krämpfen wahrscheinlich kein klinisch relevanter Nutzen."
+  },
+  {
+    "id": "zhang-magnesium-bp-2016",
+    "title": "Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of Randomized Double-Blind Placebo-Controlled Trials",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27402922/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Magnesium",
+      "Blutdruck"
+    ],
+    "summary": "34 Studien: Blutdrucksenkung um etwa 2 mmHg systolisch."
+  },
+  {
+    "id": "magnesium-bp-meta-2025",
+    "title": "Magnesium Supplementation and Blood Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12529988/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Magnesium",
+      "Blutdruck"
+    ],
+    "summary": "38 Studien: etwa 2,8 mmHg systolisch, stärker bei Bluthochdruck oder niedrigem Magnesium."
+  },
+  {
+    "id": "mah-magnesium-insomnia-2021",
+    "title": "Oral magnesium supplementation for insomnia in older adults: a Systematic Review & Meta-Analysis",
+    "url": "https://doi.org/10.1186/s12906-021-03297-z",
+    "type": "Meta-Analyse",
+    "topics": [
+      "Magnesium",
+      "Schlaf"
+    ],
+    "summary": "Drei kleine Studien: etwas schnelleres Einschlafen, geringe Evidenzqualität."
+  },
+  {
+    "id": "mandsager-fitness-mortality-2018",
+    "title": "Association of Cardiorespiratory Fitness With Long-term Mortality Among Adults Undergoing Exercise Treadmill Testing",
+    "url": "https://doi.org/10.1001/jamanetworkopen.2018.3605",
+    "type": "Kohortenstudie",
+    "topics": [
+      "Fitness",
+      "Sterblichkeit",
+      "Altern"
+    ],
+    "summary": "Über 120.000 Menschen: geringe Fitness mit deutlich höherem Sterberisiko verbunden, ohne Obergrenze des Nutzens."
+  },
+  {
+    "id": "smartage-spermidine-2022",
+    "title": "Effects of Spermidine Supplementation on Cognition and Biomarkers in Older Adults With Subjective Cognitive Decline (SmartAge)",
+    "url": "https://doi.org/10.1001/jamanetworkopen.2022.13875",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Spermidin",
+      "Gedächtnis"
+    ],
+    "summary": "12 Monate Spermidin: kein Effekt auf das Gedächtnis gegenüber Placebo."
+  },
+  {
+    "id": "walton-masters-metformin-2019",
+    "title": "Metformin blunts muscle hypertrophy in response to progressive resistance exercise training in older adults (MASTERS)",
+    "url": "https://doi.org/10.1111/acel.13039",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Metformin",
+      "Krafttraining"
+    ],
+    "summary": "Metformin schwächte den Muskelzuwachs durch Krafttraining bei über 65-Jährigen ab."
+  },
+  {
+    "id": "afar-tame-trial",
+    "title": "AFAR: The TAME Trial (Targeting Aging with Metformin)",
+    "url": "https://www.afar.org/research/TAME/",
+    "type": "Studienbeschreibung",
+    "topics": [
+      "Metformin",
+      "Altern"
+    ],
+    "summary": "Geplante Studie mit 3.000 Menschen ohne Diabetes zur Wirkung von Metformin auf Alterskrankheiten."
+  },
+  {
+    "id": "nmn-nr-muscle-meta-2025",
+    "title": "The Effect of Nicotinamide Mononucleotide and Riboside on Skeletal Muscle Mass and Function: A Systematic Review and Meta-Analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12022230/",
+    "type": "Meta-Analyse",
+    "topics": [
+      "NAD+",
+      "NMN",
+      "Muskeln"
+    ],
+    "summary": "Keine überzeugenden Effekte von NMN und NR auf Muskelmasse und Funktion bei Älteren."
+  },
+  {
+    "id": "bfarm-diga-verzeichnis",
+    "title": "BfArM: DiGA-Verzeichnis (Digitale Gesundheitsanwendungen)",
+    "url": "https://diga.bfarm.de/de/verzeichnis",
+    "type": "Behörde",
+    "topics": [
+      "DiGA",
+      "Digitale Gesundheit"
+    ],
+    "summary": "Offizielles Verzeichnis der in Deutschland verordnungsfähigen Gesundheits-Apps."
+  },
+  {
+    "id": "apple-heart-study-2019",
+    "title": "Large-Scale Assessment of a Smartwatch to Identify Atrial Fibrillation (Apple Heart Study)",
+    "url": "https://doi.org/10.1056/NEJMoa1901183",
+    "type": "Studie",
+    "topics": [
+      "Wearables",
+      "Vorhofflimmern"
+    ],
+    "summary": "Über 400.000 Teilnehmende: 0,52 % Benachrichtigungen, bei etwa einem Drittel Vorhofflimmern bestätigt."
+  },
+  {
+    "id": "food4me-celis-morales-2017",
+    "title": "Effect of personalized nutrition on health-related behaviour change: evidence from the Food4Me European randomized controlled trial",
+    "url": "https://doi.org/10.1093/ije/dyw186",
+    "type": "Randomisierte Studie",
+    "topics": [
+      "Personalisierte Ernährung",
+      "Nutrigenomik"
+    ],
+    "summary": "Personalisierte Beratung verbesserte die Ernährung, Gen-Daten brachten keinen Zusatznutzen."
   }
 ]
