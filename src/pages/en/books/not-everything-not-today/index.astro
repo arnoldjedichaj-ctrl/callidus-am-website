@@ -5,6 +5,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 // and links to the printables. Do not change the PDF path.
 const asset = '/assets/books/not-everything-not-today';
 const printables = '/downloads/not-everything-not-today-printables.pdf';
+const breathingGuide = '/downloads/not-everything-not-today-breathing-guide.mp3';
 const readingSample = `${asset}/sample.pdf`;
 // Set to the Amazon.com /dp/<ASIN> link once the book is live.
 const amazonUrl = '';
@@ -81,7 +82,19 @@ const editions = [
         <ul class="nt-list">
           {downloads.map((d) => <li>{d}</li>)}
         </ul>
-        <p class="nt-note">The audio breathing guide will be added here soon.</p>
+        <div class="nt-audio" id="breathing-guide">
+          <h3>Audio breathing guide</h3>
+          <p>
+            Tool ② “Long Exhale” from Week 1, with a calm voice and soft background music. About 10 minutes.
+            Just breathe out a little longer than you breathe in – no beat to follow, no need to count.
+            Stop and breathe normally if you feel dizzy, breathing gets harder, or you feel anxious.
+          </p>
+          <audio controls preload="none" src={breathingGuide}>
+            <a href={breathingGuide}>Download the breathing guide (MP3)</a>
+          </audio>
+          <a class="nt-audio-dl" href={breathingGuide} download>Download MP3 (10 min · 12 MB)</a>
+          <small>The voice is AI-generated. Music: “Deep Meditation” by Grand_Project (Pixabay).</small>
+        </div>
       </div>
       <div class="nt-download-card" data-reveal="2">
         <strong>not-everything-not-today-printables.pdf</strong>
@@ -195,6 +208,12 @@ const editions = [
   .nt-edition p { margin: 0 0 0.8rem; color: var(--muted); }
   .nt-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
   .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+  .nt-audio { margin-top: 1.4rem; padding: 1.2rem 1.4rem; border-radius: 12px; background: var(--bg-soft); border-left: 4px solid var(--mint); display: grid; gap: 0.6rem; }
+  .nt-audio h3 { margin: 0; font-size: 1.05rem; }
+  .nt-audio p { margin: 0; }
+  .nt-audio audio { width: 100%; }
+  .nt-audio-dl { font-weight: 700; }
+  .nt-audio small { color: var(--muted); }
   .nt-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
   .nt-honest { max-width: 820px; }
   .nt-honest p { color: var(--muted); }

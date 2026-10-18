@@ -5,6 +5,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 // und verweist auf die Vordrucke. Pfad des PDFs nicht mehr ändern.
 const asset = '/assets/books/heute-mal-nicht-alles';
 const vordrucke = '/downloads/heute-mal-nicht-alles-vordrucke.pdf';
+const atembegleiter = '/downloads/heute-mal-nicht-alles-atembegleiter.mp3';
 const readingSample = `${asset}/leseprobe.pdf`;
 // Sobald die Ausgaben bei Amazon live sind: Link auf /dp/<ASIN> setzen.
 const amazonUrl = '';
@@ -25,11 +26,11 @@ const downloads = [
 ];
 const people = [
   { name: 'Jana, 43', text: 'Projektleiterin, zwei Kinder, Elternchat mit 47 ungelesenen Nachrichten. Merkt die Anspannung erst, wenn sie die Brotdose zuklappt.' },
-  { name: 'Birgit, 54', text: 'Pflegekraft im Schichtdienst, Galgenhumor, hört Metal im geparkten Auto. Ihre Mutter schickt Sprachnachrichten von knapp vier Minuten.' },
+  { name: 'Birgit, 54', text: 'Pflegekraft im Schichtdienst, Galgenhumor, hört laute Gitarrenmusik im geparkten Auto. Ihre Mutter schickt Sprachnachrichten von knapp vier Minuten.' },
   { name: 'Selin, 36', text: 'Agentur, Smartwatch, misst ihren Schlaf jede Nacht. Probiert jeden Trend aus – und nimmt dich mit in die Mythen-Labore.' },
 ];
 const editions = [
-  { name: 'Taschenbuch', detail: '119 Seiten · 15,2 × 22,9 cm · Logbuch und Vordrucke zum Reinschreiben', price: '16,99 €' },
+  { name: 'Taschenbuch', detail: '120 Seiten · 15,2 × 22,9 cm · Logbuch und Vordrucke zum Reinschreiben', price: '16,99 €' },
   { name: 'Kindle E-Book', detail: 'Farbige Abbildungen · Quellen verlinkt · Vordrucke hier zum Ausdrucken', price: '7,99 €' },
 ];
 ---
@@ -80,7 +81,19 @@ const editions = [
         <ul class="hm-list">
           {downloads.map((d) => <li>{d}</li>)}
         </ul>
-        <p class="hm-note">Der Atembegleiter zum Anhören folgt in Kürze an dieser Stelle.</p>
+        <div class="hm-audio" id="atembegleiter">
+          <h3>Atembegleiter zum Anhören</h3>
+          <p>
+            Werkzeug ② „Langes Ausatmen“ aus Woche 1, mit ruhiger Stimme und leiser Hintergrundmusik. Etwa 10 Minuten.
+            Die Stimme leitet dich an und zählt leise mit – als Angebot: Du musst weder mitzählen noch dem Takt folgen.
+            Hör auf und atme normal weiter, wenn dir schwindelig wird, du schlechter Luft bekommst oder Angst aufkommt.
+          </p>
+          <audio controls preload="none" src={atembegleiter}>
+            <a href={atembegleiter}>Atembegleiter (MP3) herunterladen</a>
+          </audio>
+          <a class="hm-audio-dl" href={atembegleiter} download>MP3 herunterladen (10 Min. · 13 MB)</a>
+          <small>Die Stimme ist KI-generiert. Musik: „Deep Meditation“ von Grand_Project (Pixabay).</small>
+        </div>
       </div>
       <div class="hm-download-card" data-reveal="2">
         <strong>heute-mal-nicht-alles-vordrucke.pdf</strong>
@@ -194,6 +207,12 @@ const editions = [
   .hm-edition p { margin: 0 0 0.8rem; color: var(--muted); }
   .hm-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
   .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+  .hm-audio { margin-top: 1.4rem; padding: 1.2rem 1.4rem; border-radius: 12px; background: var(--bg-soft); border-left: 4px solid var(--mint); display: grid; gap: 0.6rem; }
+  .hm-audio h3 { margin: 0; font-size: 1.05rem; }
+  .hm-audio p { margin: 0; }
+  .hm-audio audio { width: 100%; }
+  .hm-audio-dl { font-weight: 700; }
+  .hm-audio small { color: var(--muted); }
   .hm-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
   .hm-honest { max-width: 820px; }
   .hm-honest p { color: var(--muted); }
