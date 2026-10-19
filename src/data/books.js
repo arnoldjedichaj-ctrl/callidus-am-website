@@ -12,7 +12,7 @@ export const books = [
     href: '/buecher/heute-mal-nicht-alles/',
     cover: '/assets/books/heute-mal-nicht-alles/cover.jpg',
     download: { href: '/downloads/heute-mal-nicht-alles-vordrucke.pdf', label: 'Vordrucke: Logbuch, Listen, Akuthilfe-Karte' },
-    status: 'Erscheint in Kürze',
+    status: 'Neu erschienen',
     isNew: true,
   },
   {
@@ -50,7 +50,7 @@ export const books = [
     href: '/en/books/not-everything-not-today/',
     cover: '/assets/books/not-everything-not-today/cover.jpg',
     download: { href: '/downloads/not-everything-not-today-printables.pdf', label: 'Printables: logbook, lists, pocket help card' },
-    status: 'Coming soon',
+    status: 'Just released',
     isNew: true,
   },
   {
