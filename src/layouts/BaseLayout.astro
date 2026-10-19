@@ -155,6 +155,8 @@ const footerGroups = [
       { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
       { href: t.paths.guide, label: t.nav.guide },
       { href: '/audio/', label: t.footerExtras?.audio ?? 'Audio-Raum' },
+      { href: '/gesund-geniessen/', label: lang === 'en' ? 'Healthy recipes' : 'Mahlzeitenempfehlungen' },
+      { href: '/tagesaufgabe/', label: lang === 'en' ? 'Daily tasks' : 'Tägliche Aufgaben' },
       ...(lang === 'de' ? [{ href: '/quellencheck/', label: 'Quellencheck' }] : []),
     ],
   },
