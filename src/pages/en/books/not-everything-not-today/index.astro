@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { bonusFor } from '../../../../data/book-bonus.js';
 // US book page: "Not Everything, Not Today" (Callidus A&M, KDP 2026).
 // The book prints the short URL callidus-am.de/not-everything-today (redirects here)
 // and links to the printables. Do not change the PDF path.
@@ -33,6 +34,7 @@ const editions = [
   { name: 'Paperback', detail: '118 pages · 6 × 9 in · logbook and forms to write in', price: '$14.99' },
   { name: 'Kindle eBook', detail: 'Color images · linked sources · printables on this page', price: '$6.99' },
 ];
+const bonus = bonusFor('en');
 ---
 <BaseLayout
   lang="en"
@@ -104,6 +106,24 @@ const editions = [
       </div>
     </div>
   </section>
+  {bonus.formUrl && (
+    <section class="section">
+      <div class="container bonus-teaser">
+        <div data-reveal>
+          <p class="eyebrow">There is an easier way</p>
+          <h2>All bonus material in one email</h2>
+          <p>
+            The download above stays free and needs no sign-up – that does not change. If you would
+            rather get the material for all books in one go, we will send it to you in a single email.
+          </p>
+        </div>
+        <div data-reveal="2">
+          <a class="button" href={bonus.href}>Get the bonus bundle by email</a>
+        </div>
+      </div>
+    </section>
+  )}
+
 
   <section class="section">
     <div class="container">
@@ -175,6 +195,10 @@ const editions = [
 </BaseLayout>
 
 <style>
+  .bonus-teaser { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+  .bonus-teaser > * { min-width: 0; }
+  @media (max-width: 760px) { .bonus-teaser { grid-template-columns: 1fr; } }
+
   .nt-hero { display: grid; grid-template-columns: minmax(200px, 320px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (max-width: 760px) { .nt-hero { grid-template-columns: 1fr; } .nt-cover { max-width: 240px; } }
   .nt-hero > *, .nt-download > *, .nt-grid > *, .nt-editions > * { min-width: 0; }

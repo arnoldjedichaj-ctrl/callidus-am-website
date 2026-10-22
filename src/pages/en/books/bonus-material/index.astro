@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BrevoSignup from '../../../../components/BrevoSignup.astro';
+import { bonusFor } from '../../../../data/book-bonus.js';
+
+// Collected bonus material for all books. Future books print this URL, so it
+// must not move.
+const bonus = bonusFor('en');
+---
+
+<BaseLayout
+  lang="en"
+  alternatePath="/buecher/bonusmaterial/"
+  title="Bonus material for the books | Callidus"
+  description="All printables, logs and audio companions for the Callidus books, bundled into one email. Every single file stays freely available on its book page."
+>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow" data-reveal>Bonus material</p>
+      <h1 data-reveal="2">Everything extra, in one email</h1>
+      <p class="lede" data-reveal="3">
+        Each book comes with material to print and to listen to. Instead of collecting it from
+        several pages, we send you the whole set at once — one email, no drip campaign.
+      </p>
+
+      <div class="bonus-list" data-reveal="3">
+        {bonus.items.map((item) => (
+          <div class="bonus-item">
+            <strong>{item.title}</strong>
+            <small>{item.detail}</small>
+          </div>
+        ))}
+      </div>
+
+      <div data-reveal="3">
+        <BrevoSignup
+          formUrl={bonus.formUrl}
+          title="Sign-up for the book bonus material"
+          hint="We load the sign-up form from Brevo. Please agree to the data transfer to Brevo first."
+          buttonLabel="Load sign-up form"
+          pendingNote="The sign-up is being set up right now. Please check back in a few days."
+        />
+      </div>
+
+      <p class="bonus-legal" data-reveal="3">
+        You will receive a confirmation email and have to confirm your sign-up with one click.
+        By signing up you accept our <a href="/datenschutz/">privacy policy</a>.
+        You can unsubscribe at any time with one click.
+      </p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container narrow">
+      <h2 data-reveal>Rather skip the sign-up?</h2>
+      <p data-reveal="2">
+        That is fine, and it stays fine. Every single file remains freely available on its own
+        book page — no email address, no detour:
+      </p>
+      <ul class="bonus-links" data-reveal="2">
+        <li><a href="/en/books/not-everything-not-today/#printables">Not Everything, Not Today — printables and breathing guide</a></li>
+        <li><a href="/en/books/strength-training-women-over-40/#free-log">Strength Training for Women Over 40 — training log</a></li>
+      </ul>
+      <p data-reveal="2">
+        The email bundle is simply the more convenient option, not a gate.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .bonus-list { display: grid; gap: .75rem; margin: 2rem 0; }
+    .bonus-item {
+      display: grid;
+      gap: .25rem;
+      padding: 1rem 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .bonus-item small { color: var(--muted); }
+    .bonus-legal { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
+    .bonus-links { display: grid; gap: .5rem; margin: 1rem 0 1.5rem; padding-left: 1.1rem; }
+  </style>
+</BaseLayout>

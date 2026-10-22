@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { bonusFor } from '../../../../data/book-bonus.js';
 // English book page: "Strength Training for Women Over 40" (Callidus, KDP 2026).
 // The free companion PDF path is linked from inside the Kindle edition — do not move it.
 const asset = '/assets/books/strength-training-women-over-40';
@@ -24,6 +25,7 @@ const editions = [
   { name: 'Paperback', detail: '137 pages · 7 × 10 in · write-in workout pages', price: '$17.99' },
   { name: 'Kindle eBook', detail: 'Full-color illustrations · phone-friendly session tables', price: '$7.99' },
 ];
+const bonus = bonusFor('en');
 ---
 <BaseLayout
   lang="en"
@@ -77,6 +79,24 @@ const editions = [
       </div>
     </div>
   </section>
+  {bonus.formUrl && (
+    <section class="section">
+      <div class="container bonus-teaser">
+        <div data-reveal>
+          <p class="eyebrow">There is an easier way</p>
+          <h2>All bonus material in one email</h2>
+          <p>
+            The download above stays free and needs no sign-up – that does not change. If you would
+            rather get the material for all books in one go, we will send it to you in a single email.
+          </p>
+        </div>
+        <div data-reveal="2">
+          <a class="button" href={bonus.href}>Get the bonus bundle by email</a>
+        </div>
+      </div>
+    </section>
+  )}
+
 
   <section class="section">
     <div class="container">
@@ -147,6 +167,10 @@ const editions = [
 </BaseLayout>
 
 <style>
+  .bonus-teaser { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+  .bonus-teaser > * { min-width: 0; }
+  @media (max-width: 760px) { .bonus-teaser { grid-template-columns: 1fr; } }
+
   .st-hero { display: grid; grid-template-columns: minmax(200px, 340px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (max-width: 760px) { .st-hero { grid-template-columns: 1fr; } .st-cover { max-width: 260px; } }
   .st-hero > *, .st-download > *, .st-grid > *, .st-editions > * { min-width: 0; }

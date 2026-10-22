@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BrevoSignup from '../../../components/BrevoSignup.astro';
+import { bonusFor } from '../../../data/book-bonus.js';
+
+// Sammelseite fuer das Bonusmaterial aller Buecher. Diese URL drucken kuenftige
+// Buecher ab – sie darf deshalb nicht umziehen.
+const bonus = bonusFor('de');
+---
+
+<BaseLayout
+  lang="de"
+  alternatePath="/en/books/bonus-material/"
+  title="Bonusmaterial zu den Büchern | Callidus"
+  description="Alle Vordrucke, Protokolle und Audios zu den Büchern von Callidus gebündelt in einer E-Mail. Die einzelnen Dateien bleiben auf den Buchseiten frei abrufbar."
+>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow" data-reveal>Bonusmaterial</p>
+      <h1 data-reveal="2">Alles Zusatzmaterial in einer E-Mail</h1>
+      <p class="lede" data-reveal="3">
+        Zu jedem Buch gehört Material zum Ausdrucken und Mithören. Statt es dir auf vier Seiten
+        zusammenzusuchen, schicken wir dir alles gebündelt – einmalig, in einer Mail.
+      </p>
+
+      <div class="bonus-list" data-reveal="3">
+        {bonus.items.map((item) => (
+          <div class="bonus-item">
+            <strong>{item.title}</strong>
+            <small>{item.detail}</small>
+          </div>
+        ))}
+      </div>
+
+      <div data-reveal="3">
+        <BrevoSignup
+          formUrl={bonus.formUrl}
+          title="Anmeldung Bonusmaterial zu den Büchern"
+          buttonLabel="Anmeldeformular laden"
+        />
+      </div>
+
+      <p class="bonus-legal" data-reveal="3">
+        Du bekommst eine Bestätigungsmail und musst die Anmeldung darin per Klick bestätigen.
+        Mit der Anmeldung akzeptierst du unsere <a href="/datenschutz/">Datenschutzerklärung</a>.
+        Abmeldung jederzeit per Klick möglich.
+      </p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container narrow">
+      <h2 data-reveal>Lieber ohne Anmeldung?</h2>
+      <p data-reveal="2">
+        Kein Problem – und daran ändert sich auch nichts. Jede einzelne Datei liegt weiterhin
+        frei auf der jeweiligen Buchseite, ohne E-Mail-Adresse, ohne Umweg:
+      </p>
+      <ul class="bonus-links" data-reveal="2">
+        <li><a href="/buecher/heute-mal-nicht-alles/#vordrucke">Heute mal nicht alles – Vordrucke und Atembegleiter</a></li>
+        <li><a href="/buecher/krafttraining-frauen-ab-40/#free-log">Krafttraining für Frauen ab 40 – Trainingsprotokoll</a></li>
+        <li><a href="/kinderbuch/#ausmalbilder">Callis Gesundheits-Kompass – Ausmalbilder</a></li>
+      </ul>
+      <p data-reveal="2">
+        Das Paket per Mail ist nur die bequemere Variante, kein Zugangsschlüssel.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .bonus-list { display: grid; gap: .75rem; margin: 2rem 0; }
+    .bonus-item {
+      display: grid;
+      gap: .25rem;
+      padding: 1rem 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .bonus-item small { color: var(--muted); }
+    .bonus-legal { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
+    .bonus-links { display: grid; gap: .5rem; margin: 1rem 0 1.5rem; padding-left: 1.1rem; }
+  </style>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+// Einwilligungs-gesteuertes Brevo-Anmeldeformular.
+// Das Formular wird erst nach ausdruecklicher Zustimmung geladen, damit vorher
+// keine Daten an Brevo gehen. Mehrere Instanzen pro Seite sind erlaubt.
+// Ohne formUrl wird ein ehrlicher Platzhalter gezeigt statt eines leeren iframes.
+interface Props {
+  formUrl?: string;
+  title: string;
+  hint?: string;
+  buttonLabel?: string;
+  pendingNote?: string;
+}
+
+const {
+  formUrl = '',
+  title,
+  hint = 'Wir laden das Anmeldeformular von Brevo. Bitte stimme dafür der Datenübertragung an Brevo zu.',
+  buttonLabel = 'Formular laden',
+  pendingNote = 'Die Anmeldung wird gerade eingerichtet. Schau in ein paar Tagen noch einmal vorbei.',
+} = Astro.props;
+---
+
+{formUrl ? (
+  <div class="newsletter-placeholder" data-brevo-signup data-form-url={formUrl} data-form-title={title}>
+    <p>{hint}</p>
+    <button class="button primary" type="button" data-brevo-load>{buttonLabel}</button>
+  </div>
+) : (
+  <div class="newsletter-placeholder">
+    <p>{pendingNote}</p>
+  </div>
+)}
+
+<script is:inline>
+  (() => {
+    const mountAll = (onlyWithConsent) => {
+      document.querySelectorAll('[data-brevo-signup]').forEach((wrapper) => {
+        if (wrapper.dataset.mounted) return;
+        const url = wrapper.dataset.formUrl;
+        if (!url) return;
+        if (onlyWithConsent && localStorage.getItem('callidus-cookie-consent') !== 'all') return;
+        wrapper.dataset.mounted = 'true';
+        const frame = document.createElement('iframe');
+        frame.className = 'newsletter-embed';
+        frame.src = url;
+        frame.title = wrapper.dataset.formTitle || 'Anmeldeformular';
+        frame.loading = 'lazy';
+        wrapper.replaceChildren(frame);
+      });
+    };
+
+    const setup = () => {
+      document.querySelectorAll('[data-brevo-signup]').forEach((wrapper) => {
+        if (wrapper.dataset.ready) return;
+        wrapper.dataset.ready = 'true';
+        wrapper.querySelector('[data-brevo-load]')?.addEventListener('click', () => {
+          localStorage.setItem('callidus-cookie-consent', 'all');
+          document.documentElement.dataset.consent = 'all';
+          mountAll(false);
+        });
+      });
+      mountAll(true);
+    };
+
+    window.addEventListener('callidus-consent', (event) => {
+      if (event.detail === 'all') mountAll(false);
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup);
+    } else {
+      setup();
+    }
+  })();
+</script>

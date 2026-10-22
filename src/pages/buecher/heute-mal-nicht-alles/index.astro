@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { bonusFor } from '../../../data/book-bonus.js';
 // Buchseite „Heute mal nicht alles“ (Callidus A&M, KDP 2026).
 // Das Buch druckt die Kurzadresse callidus-am.de/heute-mal-nicht-alles (Weiterleitung hierher)
 // und verweist auf die Vordrucke. Pfad des PDFs nicht mehr ändern.
@@ -33,6 +34,7 @@ const editions = [
   { name: 'Taschenbuch', detail: '120 Seiten · 15,2 × 22,9 cm · Logbuch und Vordrucke zum Reinschreiben', price: '16,99 €' },
   { name: 'Kindle E-Book', detail: 'Farbige Abbildungen · Quellen verlinkt · Vordrucke hier zum Ausdrucken', price: '7,99 €' },
 ];
+const bonus = bonusFor('de');
 ---
 <BaseLayout
   lang="de"
@@ -103,6 +105,24 @@ const editions = [
       </div>
     </div>
   </section>
+  {bonus.formUrl && (
+    <section class="section">
+      <div class="container bonus-teaser">
+        <div data-reveal>
+          <p class="eyebrow">Bequemer geht auch</p>
+          <h2>Alles Bonusmaterial in einer E-Mail</h2>
+          <p>
+            Der Download oben bleibt frei und ohne Anmeldung – daran ändert sich nichts. Wenn du
+            das Material zu allen Büchern lieber gebündelt bekommst, schicken wir es dir in einer Mail.
+          </p>
+        </div>
+        <div data-reveal="2">
+          <a class="button" href={bonus.href}>Bonuspaket per Mail anfordern</a>
+        </div>
+      </div>
+    </section>
+  )}
+
 
   <section class="section">
     <div class="container">
@@ -175,6 +195,10 @@ const editions = [
 </BaseLayout>
 
 <style>
+  .bonus-teaser { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+  .bonus-teaser > * { min-width: 0; }
+  @media (max-width: 760px) { .bonus-teaser { grid-template-columns: 1fr; } }
+
   .hm-hero { display: grid; grid-template-columns: minmax(200px, 320px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (max-width: 760px) { .hm-hero { grid-template-columns: 1fr; } .hm-cover { max-width: 240px; } }
   .hm-hero > *, .hm-download > *, .hm-grid > *, .hm-editions > * { min-width: 0; }
