@@ -11,7 +11,7 @@
 // Buchseiten bleiben ausgeblendet.
 export const bookBonus = {
   de: {
-    formUrl: '',
+    formUrl: 'https://42261e04.sibforms.com/v2/serve/MUIFAONzU-Y2Atkvid91AI2togFdezdUGUt4-9y4IixzyK_jlzdtP4PgY2W4S_aKWo_DrU8lBG9UJO9uZVoGCmoHkeJadvEJakyYL4F8gznaV7AOsyGd0spAjBhsdgeeOAVQy9lGp1smG9fMzJbRKbeSOFDDmkJPovmxI59QRYfisEekueJ-xIE2icL94KjC4Uv4-rrm9NK5oaIW',
     href: '/buecher/bonusmaterial/',
     items: [
       { title: 'Vordrucke „Heute mal nicht alles“', detail: 'Logbuch, Listen und Akuthilfe-Karte, zehn Seiten A4' },
@@ -20,7 +20,7 @@ export const bookBonus = {
     ],
   },
   en: {
-    formUrl: '',
+    formUrl: 'https://42261e04.sibforms.com/v2/serve/MUIFALVVxdwDxj6S8Zm9D7IHsRUVbJkkAD4D8beqCRXVYy5L88Vt_gvv_5lDBI46QklAuyHtkEeHUBzUZYV-SlXn5TcN6OBruHLn8q-JPDI5Wx0AFVEkfRdRW6utXSFLgAvTn3oGWqLBrM_mYgKtPOWx_p7PBqZvumattScGO5QqMWo5YUdCsB7n-XI2-F7v2o3tIuBdLaB_IF8_',
     href: '/en/books/bonus-material/',
     items: [
       { title: 'Printables for “Not Everything, Not Today”', detail: 'Logbook, lists and pocket help card, ten pages' },
