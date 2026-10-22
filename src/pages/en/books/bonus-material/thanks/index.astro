@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+
+// Landing page after the opt-in confirmation click. Without it, sign-ups end up
+// on Brevo's default page. The links are repeated here so nobody has to wait
+// for the email.
+---
+
+<BaseLayout
+  lang="en"
+  alternatePath="/buecher/bonusmaterial/danke/"
+  title="Sign-up confirmed | Callidus"
+  description="Your sign-up for the bonus material is confirmed. Every file is right here, ready to open."
+  robots="noindex, follow"
+>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow" data-reveal>Bonus material</p>
+      <h1 data-reveal="2">Confirmed — your material is on its way</h1>
+      <p class="lede" data-reveal="3">
+        Thank you. The email with all the download links has gone out and should arrive within a
+        few minutes. If you would rather not wait, here are the same files.
+      </p>
+
+      <ul class="danke-links" data-reveal="3">
+        <li><a href="/downloads/not-everything-not-today-printables.pdf">Printables for “Not Everything, Not Today” (PDF)</a></li>
+        <li><a href="/downloads/not-everything-not-today-breathing-guide.mp3">Guided breathing audio for “Not Everything, Not Today” (MP3)</a></li>
+        <li><a href="/downloads/strength-training-women-over-40-logs.pdf">Training log for “Strength Training for Women Over 40” (PDF)</a></li>
+      </ul>
+
+      <p data-reveal="3">
+        When the next book brings new material, we will send it to the same address. You can
+        unsubscribe at any time with one click at the bottom of any email.
+      </p>
+
+      <p data-reveal="3">
+        <a class="button primary" href="/en/books/">To the books</a>
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .danke-links { display: grid; gap: .5rem; margin: 1.5rem 0 2rem; padding-left: 1.1rem; }
+  </style>
+</BaseLayout>

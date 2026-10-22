@@ -3,6 +3,12 @@
 // Das Formular wird erst nach ausdruecklicher Zustimmung geladen, damit vorher
 // keine Daten an Brevo gehen. Mehrere Instanzen pro Seite sind erlaubt.
 // Ohne formUrl wird ein ehrlicher Platzhalter gezeigt statt eines leeren iframes.
+//
+// Einwilligung: eigener Schluessel `callidus-brevo-consent`. Der Button hier darf
+// NICHT die allgemeine Cookie-Zustimmung setzen - sonst wuerde mit dem Formular
+// auch Analytics/Google Ads scharf geschaltet. Wer dem Banner bereits komplett
+// zugestimmt hat (`callidus-cookie-consent-v2 === 'all'`, siehe BaseLayout),
+// bekommt das Formular direkt. Ein Widerruf ueber das Banner entfernt es wieder.
 interface Props {
   formUrl?: string;
   title: string;
@@ -21,7 +27,14 @@ const {
 ---
 
 {formUrl ? (
-  <div class="newsletter-placeholder" data-brevo-signup data-form-url={formUrl} data-form-title={title}>
+  <div
+    class="newsletter-placeholder"
+    data-brevo-signup
+    data-form-url={formUrl}
+    data-form-title={title}
+    data-hint={hint}
+    data-button-label={buttonLabel}
+  >
     <p>{hint}</p>
     <button class="button primary" type="button" data-brevo-load>{buttonLabel}</button>
   </div>
@@ -33,37 +46,75 @@ const {
 
 <script is:inline>
   (() => {
-    const mountAll = (onlyWithConsent) => {
-      document.querySelectorAll('[data-brevo-signup]').forEach((wrapper) => {
-        if (wrapper.dataset.mounted) return;
-        const url = wrapper.dataset.formUrl;
-        if (!url) return;
-        if (onlyWithConsent && localStorage.getItem('callidus-cookie-consent') !== 'all') return;
-        wrapper.dataset.mounted = 'true';
-        const frame = document.createElement('iframe');
-        frame.className = 'newsletter-embed';
-        frame.src = url;
-        frame.title = wrapper.dataset.formTitle || 'Anmeldeformular';
-        frame.loading = 'lazy';
-        wrapper.replaceChildren(frame);
-      });
+    const BANNER_KEY = 'callidus-cookie-consent-v2';
+    const BREVO_KEY = 'callidus-brevo-consent';
+
+    const read = (key) => {
+      try { return localStorage.getItem(key); } catch { return null; }
+    };
+    const write = (key, value) => {
+      try { localStorage.setItem(key, value); } catch { /* privater Modus */ }
+    };
+    const drop = (key) => {
+      try { localStorage.removeItem(key); } catch { /* privater Modus */ }
+    };
+
+    const allowed = () => read(BANNER_KEY) === 'all' || read(BREVO_KEY) === 'granted';
+
+    const mount = (wrapper) => {
+      if (wrapper.dataset.mounted) return;
+      const url = wrapper.dataset.formUrl;
+      if (!url) return;
+      wrapper.dataset.mounted = 'true';
+      const frame = document.createElement('iframe');
+      frame.className = 'newsletter-embed';
+      frame.src = url;
+      frame.title = wrapper.dataset.formTitle || 'Anmeldeformular';
+      frame.loading = 'lazy';
+      wrapper.replaceChildren(frame);
+    };
+
+    // Widerruf: iframe entfernen und den Hinweis wiederherstellen, sonst bliebe
+    // die Verbindung zu Brevo trotz zurueckgezogener Einwilligung bestehen.
+    const unmount = (wrapper) => {
+      if (!wrapper.dataset.mounted) return;
+      delete wrapper.dataset.mounted;
+      const text = document.createElement('p');
+      text.textContent = wrapper.dataset.hint || '';
+      const button = document.createElement('button');
+      button.className = 'button primary';
+      button.type = 'button';
+      button.dataset.brevoLoad = '';
+      button.textContent = wrapper.dataset.buttonLabel || 'Formular laden';
+      button.addEventListener('click', grant);
+      wrapper.replaceChildren(text, button);
+    };
+
+    const each = (fn) => document.querySelectorAll('[data-brevo-signup]').forEach(fn);
+
+    const grant = () => {
+      write(BREVO_KEY, 'granted');
+      each(mount);
+    };
+
+    const revoke = () => {
+      drop(BREVO_KEY);
+      each(unmount);
     };
 
     const setup = () => {
-      document.querySelectorAll('[data-brevo-signup]').forEach((wrapper) => {
-        if (wrapper.dataset.ready) return;
-        wrapper.dataset.ready = 'true';
-        wrapper.querySelector('[data-brevo-load]')?.addEventListener('click', () => {
-          localStorage.setItem('callidus-cookie-consent', 'all');
-          document.documentElement.dataset.consent = 'all';
-          mountAll(false);
-        });
+      each((wrapper) => {
+        if (!wrapper.dataset.ready) {
+          wrapper.dataset.ready = 'true';
+          wrapper.querySelector('[data-brevo-load]')?.addEventListener('click', grant);
+        }
+        if (allowed()) mount(wrapper);
       });
-      mountAll(true);
     };
 
     window.addEventListener('callidus-consent', (event) => {
-      if (event.detail === 'all') mountAll(false);
+      if (event.detail === 'all') each(mount);
+      else revoke();
     });
 
     if (document.readyState === 'loading') {
@@ -71,5 +122,6 @@ const {
     } else {
       setup();
     }
+    document.addEventListener('astro:page-load', setup);
   })();
 </script>

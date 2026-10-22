@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+// Zielseite nach dem Klick auf den Bestaetigungslink im Opt-in-Mail. Ohne sie
+// landen Anmeldungen auf Brevos englischer Standardseite. Die Links stehen hier
+// gleich mit, damit niemand auf die Mail warten muss.
+---
+
+<BaseLayout
+  lang="de"
+  alternatePath="/en/books/bonus-material/thanks/"
+  title="Anmeldung bestätigt | Callidus"
+  description="Deine Anmeldung zum Bonusmaterial ist bestätigt. Hier liegen alle Dateien direkt zum Öffnen."
+  robots="noindex, follow"
+>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow" data-reveal>Bonusmaterial</p>
+      <h1 data-reveal="2">Bestätigt – das Material ist unterwegs</h1>
+      <p class="lede" data-reveal="3">
+        Danke dir. Die Mail mit allen Downloadlinks ist raus und sollte in ein paar Minuten da
+        sein. Falls du nicht warten willst: Hier sind dieselben Dateien direkt.
+      </p>
+
+      <ul class="danke-links" data-reveal="3">
+        <li><a href="/downloads/heute-mal-nicht-alles-vordrucke.pdf">Vordrucke „Heute mal nicht alles“ (PDF)</a></li>
+        <li><a href="/downloads/heute-mal-nicht-alles-atembegleiter.mp3">Atembegleiter „Heute mal nicht alles“ (MP3)</a></li>
+        <li><a href="/downloads/krafttraining-frauen-ab-40-vorlagen.pdf">Trainingsprotokoll „Krafttraining für Frauen ab 40“ (PDF)</a></li>
+        <li><a href="/kinderbuch/#ausmalbilder">Ausmalbilder zu „Callis Gesundheits-Kompass“</a></li>
+      </ul>
+
+      <p data-reveal="3">
+        Wenn im nächsten Buch neues Material dazukommt, schicken wir es dir an dieselbe Adresse.
+        Abmelden kannst du dich jederzeit mit einem Klick am Ende jeder Mail.
+      </p>
+
+      <p data-reveal="3">
+        <a class="button primary" href="/buecher/">Zu den Büchern</a>
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .danke-links { display: grid; gap: .5rem; margin: 1.5rem 0 2rem; padding-left: 1.1rem; }
+  </style>
+</BaseLayout>

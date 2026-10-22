@@ -19,8 +19,9 @@ const bonus = bonusFor('en');
       <p class="eyebrow" data-reveal>Bonus material</p>
       <h1 data-reveal="2">Everything extra, in one email</h1>
       <p class="lede" data-reveal="3">
-        Each book comes with material to print and to listen to. Instead of collecting it from
-        several pages, we send you the whole set at once — one email, no drip campaign.
+        Our books come with printables, training logs and audio to listen along to. Instead of
+        collecting them from several pages, we send you every download link at once, in a single
+        email.
       </p>
 
       <div class="bonus-list" data-reveal="3">
@@ -32,6 +33,15 @@ const bonus = bonusFor('en');
         ))}
       </div>
 
+      <p class="bonus-legal" data-reveal="3">
+        What you are signing up for: the callidus A&amp;M newsletter — occasional notes on health,
+        new books and our own offers. The download links come once, collected in one email, right
+        after you confirm. We first send a confirmation email that you have to confirm with one
+        click; without that click we do not add you to the list. You can unsubscribe at any time
+        with one click at the bottom of any email. How we handle your data is set out in our
+        <a href="/datenschutz/">privacy policy</a>.
+      </p>
+
       <div data-reveal="3">
         <BrevoSignup
           formUrl={bonus.formUrl}
@@ -41,12 +51,6 @@ const bonus = bonusFor('en');
           pendingNote="The sign-up is being set up right now. Please check back in a few days."
         />
       </div>
-
-      <p class="bonus-legal" data-reveal="3">
-        You will receive a confirmation email and have to confirm your sign-up with one click.
-        By signing up you accept our <a href="/datenschutz/">privacy policy</a>.
-        You can unsubscribe at any time with one click.
-      </p>
     </div>
   </section>
 
@@ -54,7 +58,7 @@ const bonus = bonusFor('en');
     <div class="container narrow">
       <h2 data-reveal>Rather skip the sign-up?</h2>
       <p data-reveal="2">
-        That is fine, and it stays fine. Every single file remains freely available on its own
+        No problem, and that will not change. Every single file stays freely available on its own
         book page — no email address, no detour:
       </p>
       <ul class="bonus-links" data-reveal="2">

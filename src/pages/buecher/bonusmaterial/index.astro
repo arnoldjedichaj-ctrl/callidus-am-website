@@ -19,8 +19,9 @@ const bonus = bonusFor('de');
       <p class="eyebrow" data-reveal>Bonusmaterial</p>
       <h1 data-reveal="2">Alles Zusatzmaterial in einer E-Mail</h1>
       <p class="lede" data-reveal="3">
-        Zu jedem Buch gehört Material zum Ausdrucken und Mithören. Statt es dir auf vier Seiten
-        zusammenzusuchen, schicken wir dir alles gebündelt – einmalig, in einer Mail.
+        Zu unseren Büchern gehören Vordrucke, Trainingsprotokolle und Audios zum Mithören. Statt
+        sie dir auf mehreren Seiten zusammenzusuchen, schicken wir dir alle Downloadlinks
+        einmalig gesammelt in einer Mail.
       </p>
 
       <div class="bonus-list" data-reveal="3">
@@ -32,6 +33,16 @@ const bonus = bonusFor('de');
         ))}
       </div>
 
+      <p class="bonus-legal" data-reveal="3">
+        Worauf du dich damit einlässt: Du abonnierst den Newsletter von callidus A&amp;M –
+        gelegentliche Impulse zu Gesundheit, neue Bücher und eigene Angebote. Die Downloadlinks
+        bekommst du einmalig gesammelt, direkt nach deiner Bestätigung. Zuerst schicken wir dir
+        eine Bestätigungsmail, die du per Klick bestätigen musst; ohne diesen Klick nehmen wir
+        dich nicht in den Verteiler auf. Abmelden kannst du dich jederzeit mit einem Klick am
+        Ende jeder Mail. Wie wir deine Daten verarbeiten, steht in der
+        <a href="/datenschutz/">Datenschutzerklärung</a>.
+      </p>
+
       <div data-reveal="3">
         <BrevoSignup
           formUrl={bonus.formUrl}
@@ -39,12 +50,6 @@ const bonus = bonusFor('de');
           buttonLabel="Anmeldeformular laden"
         />
       </div>
-
-      <p class="bonus-legal" data-reveal="3">
-        Du bekommst eine Bestätigungsmail und musst die Anmeldung darin per Klick bestätigen.
-        Mit der Anmeldung akzeptierst du unsere <a href="/datenschutz/">Datenschutzerklärung</a>.
-        Abmeldung jederzeit per Klick möglich.
-      </p>
     </div>
   </section>
 
