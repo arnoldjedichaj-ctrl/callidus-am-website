@@ -620,27 +620,61 @@ const todayStarts = [
 
   <script is:inline>
     (() => {
+      // Einwilligung wie in BrevoSignup.astro: Der Banner-Schluessel ist
+      // `callidus-cookie-consent-v2` (siehe BaseLayout). Der Button hier setzt nur
+      // die eigene Brevo-Einwilligung, nicht die allgemeine Zustimmung - sonst
+      // liefe mit dem Formular auch Analytics/Google Ads an. Ein Widerruf entfernt
+      // das iframe wieder.
+      const BANNER_KEY = 'callidus-cookie-consent-v2';
+      const BREVO_KEY = 'callidus-brevo-consent';
+      const read = (key) => {
+        try { return localStorage.getItem(key); } catch { return null; }
+      };
+
       const setupNewsletter = () => {
         const wrapper = document.querySelector('[data-newsletter-embed]');
         if (!wrapper || wrapper.dataset.ready) return;
         wrapper.dataset.ready = 'true';
         const url = wrapper.dataset.formUrl;
         if (!url) return;
+        const hint = wrapper.querySelector('p')?.textContent || '';
+        const label = wrapper.querySelector('[data-load-newsletter]')?.textContent || 'Formular laden';
+
         const mount = () => {
+          if (wrapper.dataset.mounted) return;
+          wrapper.dataset.mounted = 'true';
           wrapper.innerHTML = '<iframe class="newsletter-embed" src="' + url + '" title="Newsletter-Anmeldung Vitamin-Kompendium" loading="lazy"></iframe>';
         };
-        const consent = localStorage.getItem('callidus-cookie-consent');
-        if (consent === 'all') {
+
+        const grant = () => {
+          try { localStorage.setItem(BREVO_KEY, 'granted'); } catch { /* privater Modus */ }
           mount();
-          return;
-        }
-        wrapper.querySelector('[data-load-newsletter]')?.addEventListener('click', () => {
-          localStorage.setItem('callidus-cookie-consent', 'all');
-          document.documentElement.dataset.consent = 'all';
-          mount();
-        });
+        };
+
+        const unmount = () => {
+          if (!wrapper.dataset.mounted) return;
+          delete wrapper.dataset.mounted;
+          const text = document.createElement('p');
+          text.textContent = hint;
+          const button = document.createElement('button');
+          button.className = 'button primary';
+          button.type = 'button';
+          button.dataset.loadNewsletter = '';
+          button.textContent = label;
+          button.addEventListener('click', grant);
+          wrapper.replaceChildren(text, button);
+        };
+
+        if (read(BANNER_KEY) === 'all' || read(BREVO_KEY) === 'granted') mount();
+        wrapper.querySelector('[data-load-newsletter]')?.addEventListener('click', grant);
+
         window.addEventListener('callidus-consent', (event) => {
-          if (event.detail === 'all') mount();
+          if (event.detail === 'all') {
+            mount();
+          } else {
+            try { localStorage.removeItem(BREVO_KEY); } catch { /* privater Modus */ }
+            unmount();
+          }
         });
       };
       setupNewsletter();

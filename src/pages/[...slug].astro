@@ -1012,7 +1012,18 @@ const articleJsonLd = article ? {
   )}
   <script is:inline>
     (() => {
-      const COOKIE_KEY = 'callidus-cookie-consent';
+      // Banner-Schluessel ist `callidus-cookie-consent-v2` (siehe BaseLayout).
+      // "Video laden" setzt nur diese eigene YouTube-Einwilligung: weder die
+      // allgemeine Zustimmung (sonst liefe auch Analytics/Google Ads an) noch das
+      // globale `callidus-consent`-Event, das sonst nebenbei andere Einbettungen
+      // wie das Brevo-Formular mitladen wuerde. Ein Widerruf baut den Platzhalter
+      // wieder auf.
+      const BANNER_KEY = 'callidus-cookie-consent-v2';
+      const YOUTUBE_KEY = 'callidus-youtube-consent';
+      const read = (key) => {
+        try { return localStorage.getItem(key); } catch { return null; }
+      };
+
       const setupVideoEmbeds = () => {
         document.querySelectorAll('[data-video-embed]').forEach((wrapper) => {
           if (wrapper.dataset.embedReady) return;
@@ -1021,7 +1032,11 @@ const articleJsonLd = article ? {
           const title = wrapper.dataset.title || 'Callidus Video';
           if (!youtubeId) return;
 
+          const placeholder = wrapper.innerHTML;
+
           const mount = () => {
+            if (wrapper.dataset.mounted) return;
+            wrapper.dataset.mounted = 'true';
             const iframe = document.createElement('iframe');
             iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
             iframe.title = title;
@@ -1033,20 +1048,33 @@ const articleJsonLd = article ? {
             wrapper.classList.add('is-loaded');
           };
 
-          if (localStorage.getItem(COOKIE_KEY) === 'all') {
+          const grant = () => {
+            try { localStorage.setItem(YOUTUBE_KEY, 'granted'); } catch { /* privater Modus */ }
             mount();
-            return;
-          }
+          };
 
-          wrapper.querySelector('[data-load-youtube]')?.addEventListener('click', () => {
-            localStorage.setItem(COOKIE_KEY, 'all');
-            document.documentElement.dataset.consent = 'all';
-            window.dispatchEvent(new CustomEvent('callidus-consent', { detail: 'all' }));
-            mount();
-          });
+          const bindButton = () => {
+            wrapper.querySelector('[data-load-youtube]')?.addEventListener('click', grant);
+          };
+
+          const unmount = () => {
+            if (!wrapper.dataset.mounted) return;
+            delete wrapper.dataset.mounted;
+            wrapper.classList.remove('is-loaded');
+            wrapper.innerHTML = placeholder;
+            bindButton();
+          };
+
+          if (read(BANNER_KEY) === 'all' || read(YOUTUBE_KEY) === 'granted') mount();
+          bindButton();
 
           window.addEventListener('callidus-consent', (event) => {
-            if (event.detail === 'all') mount();
+            if (event.detail === 'all') {
+              mount();
+            } else {
+              try { localStorage.removeItem(YOUTUBE_KEY); } catch { /* privater Modus */ }
+              unmount();
+            }
           });
         });
       };
