@@ -41,6 +41,18 @@ export const books = [
     status: '6 Bände erhältlich',
   },
   {
+    id: 'the-weather-inside-me',
+    lang: 'en',
+    group: 'kinder',
+    title: 'The Weather Inside Me',
+    subtitle: 'A Read-Aloud Story About Big Feelings – a Calli’s Compass Book',
+    teaser: 'Joy is like sunshine, sadness like rain, anger like thunder. Pippa the feelings cloud shows Mira and Noah that every kind of weather belongs, and that every kind passes.',
+    href: '/en/books/the-weather-inside-me/',
+    cover: '/assets/books/the-weather-inside-me/cover.jpg',
+    status: 'Just released',
+    isNew: true,
+  },
+  {
     id: 'not-everything-not-today',
     lang: 'en',
     group: 'ratgeber',
