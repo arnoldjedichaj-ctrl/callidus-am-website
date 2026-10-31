@@ -17,6 +17,7 @@ export const bookBonus = {
       { title: 'Vordrucke „Heute mal nicht alles“', detail: 'Logbuch, Listen und Akuthilfe-Karte, zehn Seiten A4' },
       { title: 'Atembegleiter „Heute mal nicht alles“', detail: 'Audio zum Mitatmen, für die Akutmomente' },
       { title: 'Trainingsprotokoll „Krafttraining für Frauen ab 40“', detail: '12-Wochen-Protokoll für Einheit A und B plus Meilenstein-Checks' },
+      { title: 'Vorlagen „ADHS bei Männern – spät erkannt“', detail: 'Terminblatt, Belastungsampel, Krisenplan und weitere Blätter zum Ausfüllen' },
     ],
   },
   en: {

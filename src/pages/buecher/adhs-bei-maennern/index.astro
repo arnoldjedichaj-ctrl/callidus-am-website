@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+// Buchseite „ADHS bei Männern – spät erkannt“ (Callidus A&M, KDP 2026).
+// amazonUrl bleibt leer, bis das Buch bei Amazon live ist. Dann /dp/<ASIN> eintragen.
+const asset = '/assets/books/adhs-bei-maennern';
+const amazonUrl = '';
+const readingSample = `${asset}/leseprobe.pdf`;
+
+const parts = [
+  { title: 'Einordnen', text: 'Späte Diagnose, Abklärung vorbereiten, Fragen zur Behandlung, Mythen im Faktencheck.' },
+  { title: 'Im Job', text: 'Anfangen, Termine, Absprachen, Prioritäten und die Frage, ob du es sagst.' },
+  { title: 'In der Beziehung', text: 'Absprachen, Streit unterbrechen, Aufgaben ganz übernehmen, ein Kapitel für deine Partnerin oder deinen Partner.' },
+  { title: 'Als Vater', text: 'Morgenchaos, Überlastung, Reparieren nach dem Ausraster, die Frage nach den eigenen Kindern.' },
+  { title: 'Stabil bleiben', text: 'Schlaf, Papierkram, Alkohol, Autofahren, ein Krisenplan und der Wiedereinstieg.' },
+];
+---
+<BaseLayout
+  lang="de"
+  title="ADHS bei Männern – spät erkannt: Werkzeuge für den Alltag | Callidus"
+  description="42 kurze Kapitel für Männer mit später ADHS-Diagnose oder Verdacht: Job, Beziehung und Vatersein, je ein Werkzeug, mit Quellen und ohne Heilversprechen."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container ad-hero">
+      <figure class="ad-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Buchcover: ADHS bei Männern – spät erkannt" width="600" height="960" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Buch · Erscheint in Kürze</p>
+        <h1 data-reveal="2">ADHS bei Männern – spät erkannt</h1>
+        <p class="ad-sub" data-reveal="2">Werkzeuge für Job, Beziehung und Vatersein</p>
+        <p class="lede" data-reveal="3">
+          Du hast jahrelang irgendwie funktioniert. Jetzt hast du eine Diagnose oder einen Verdacht, und vieles
+          ergibt plötzlich Sinn. Dieses Buch erklärt ehrlich, was man über ADHS bei Erwachsenen weiß und was nicht.
+          Dazu gibt es kleine Werkzeuge, die du nach einem kurzen Kapitel ausprobieren kannst.
+        </p>
+        <div class="ad-actions" data-reveal="3">
+          {amazonUrl && <a class="button primary" href={amazonUrl} rel="noopener" target="_blank">Bei Amazon ansehen</a>}
+          <a class={amazonUrl ? 'button' : 'button primary'} href={readingSample}>Leseprobe als PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container narrow">
+      <h2 data-reveal>Was drinsteht</h2>
+      <div class="ad-parts" data-reveal="2">
+        {parts.map((part) => (
+          <div class="ad-part">
+            <strong>{part.title}</strong>
+            <span>{part.text}</span>
+          </div>
+        ))}
+      </div>
+      <p data-reveal="2">
+        Dazu kommen Kapitel für besondere Lagen, ein 30-Tage-Plan, häufige Fragen und Vorlagen zum Ausfüllen.
+        Du musst das Buch nicht von vorne lesen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2 data-reveal>Wer das geschrieben hat</h2>
+      <p data-reveal="2">
+        Der Autor ist Projektleiter und Vater, kein Arzt und kein Therapeut. Die Werkzeuge übertragen Methoden aus dem
+        Projektalltag und wurden in dieser Form nicht wissenschaftlich geprüft. Aussagen zur Forschung stehen mit Quellen
+        im Buch. Das Buch entstand mit Unterstützung von KI-Werkzeugen.
+      </p>
+      <p class="ad-note" data-reveal="2">
+        Das Buch stellt keine Diagnose und ersetzt keine ärztliche oder psychotherapeutische Behandlung. In einer Krise
+        erreichst du die TelefonSeelsorge kostenlos unter 0800 111 0 111. Bei akuter Lebensgefahr gilt die 112.
+      </p>
+      <p data-reveal="2"><a href="/buecher/bonusmaterial/">Zum Bonusmaterial mit den Vorlagen</a></p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .ad-hero { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(200px, 320px) 1fr; }
+    .ad-cover { margin: 0; }
+    .ad-cover img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 14px 34px rgba(0, 0, 0, .22); }
+    .ad-sub { font-size: 1.2rem; font-weight: 600; }
+    .ad-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+    .ad-parts { display: grid; gap: .75rem; margin: 1.5rem 0; }
+    .ad-part { display: grid; gap: .25rem; padding: 1rem 1.25rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    .ad-note { font-size: .9rem; color: var(--muted); }
+    @media (max-width: 720px) {
+      .ad-hero { grid-template-columns: 1fr; }
+      .ad-cover { width: min(240px, 70%); }
+    }
+  </style>
+</BaseLayout>

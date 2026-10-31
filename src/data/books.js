@@ -3,6 +3,17 @@
 // gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
 export const books = [
   {
+    id: 'adhs-bei-maennern',
+    lang: 'de',
+    group: 'ratgeber',
+    title: 'ADHS bei Männern – spät erkannt',
+    subtitle: 'Werkzeuge für Job, Beziehung und Vatersein',
+    teaser: '42 kurze Kapitel mit je einem Werkzeug, einzeln lesbar, mit Quellen und ohne Heilversprechen. Vom Projektleiter, nicht vom Arzt.',
+    href: '/buecher/adhs-bei-maennern/',
+    cover: '/assets/books/adhs-bei-maennern/cover.jpg',
+    status: 'Erscheint in Kürze',
+  },
+  {
     id: 'heute-mal-nicht-alles',
     lang: 'de',
     group: 'ratgeber',
