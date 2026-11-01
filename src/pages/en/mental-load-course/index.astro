@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+// English course page "Reduce Mental Load" (Udemy course 7404961). The link carries the referral code from the Udemy instructor area.
+// No price on purpose: in the Udemy deals program, Udemy controls the selling price.
+const asset = '/assets/kurse/mental-load';
+const udemyUrl = 'https://www.udemy.com/course/reduce-mental-load/?referralCode=95F320713125A6D63CD8';
+
+const steps = [
+  { title: 'Anticipating', text: 'Noticing that something is coming up: the winter coat no longer fits, a check-up is due.' },
+  { title: 'Identifying options', text: 'Working out the possibilities: which store, which size, new or secondhand?' },
+  { title: 'Deciding', text: 'Making a choice so that things can move forward.' },
+  { title: 'Monitoring', text: 'Keeping track of whether it worked and what is still open.' },
+];
+const sheets = [
+  { title: 'Brain Dump', text: 'Collect what is on your mind without having to solve it right away.' },
+  { title: 'Family Task Map', text: 'Note, from your point of view, who plans, who does, and who keeps track.' },
+  { title: 'Handover Sheet', text: 'Prepare a handover that includes the thinking, or a simplification if no one can take over.' },
+  { title: 'Conversation Guide', text: 'Find your own words for an observation, its impact, your needs, and a specific request, with starters to copy.' },
+  { title: '30-Day Plan', text: 'Plan small steps and a later review. Thirty days is a planning frame, not a promised result.' },
+];
+const parts = [
+  { title: 'Part 1: Make mental load visible', text: 'A Brain Dump, the four invisible steps behind a task, and your Family Task Map.' },
+  { title: 'Part 2: Hand over responsibility', text: 'Choose a suitable task, draft a Handover Sheet, and adjust. Includes a lesson for the partner who wants to take on more.' },
+  { title: 'Part 3: The family conversation', text: 'Clarify your needs, prepare a specific request, consider objections, and plan an optional weekly check-in.' },
+  { title: 'Part 4: Bringing it together', text: 'Your 30-Day Plan and where good enough really is enough.' },
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Reduce Mental Load: Share the Work of Family Life',
+  description: 'Practical online course for working parents: make invisible mental work visible, prepare fair handovers, and plan practical steps for work and family life.',
+  inLanguage: 'en',
+  url: 'https://www.callidus-am.de/en/mental-load-course/',
+  provider: { '@type': 'Organization', name: 'callidus A&M', url: 'https://www.callidus-am.de/' },
+};
+---
+<BaseLayout
+  lang="en"
+  title="Reduce Mental Load: Online Course for Parents | Callidus"
+  description="Make invisible mental work visible, share family tasks more fairly, and prepare a calm conversation. An online course with five worksheets that also works if you're doing this alone."
+  ogImage={`${asset}/og.jpg`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+
+  <section class="section">
+    <div class="container ml-hero">
+      <div>
+        <p class="eyebrow" data-reveal>Online course on Udemy</p>
+        <h1 data-reveal="2">Reduce Mental Load</h1>
+        <p class="ml-sub" data-reveal="2">Share the work of family life</p>
+        <p class="lede" data-reveal="3">
+          It's nine p.m. Did anyone reply to Saturday's party invitation? Family life has a list behind the list,
+          and someone is usually carrying it in their head. This course helps you make that work visible and
+          prepare a next step that fits your family.
+        </p>
+        <div class="actions" data-reveal="3">
+          <a class="button primary" href={udemyUrl} target="_blank" rel="noopener">See the course and free preview on Udemy</a>
+        </div>
+      </div>
+      <figure class="ml-image" data-reveal>
+        <img src={`${asset}/kursbild.jpg`} width="1400" height="781" alt="Illustration: two adults share out task cards at a kitchen table while a child draws beside them." />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow">What mental load is</p>
+      <h2>Four steps you rarely see</h2>
+      <p>In an interview study, sociologist Allison Daminger describes four parts of the cognitive work of running a household. The course uses them in simplified form, with its own examples:</p>
+      <div class="ml-grid">
+        {steps.map((s) => <div class="ml-card"><h3>{s.title}</h3><p>{s.text}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">What you take away</p>
+      <h2>Five worksheets you can use today</h2>
+      <div class="ml-grid">
+        {sheets.map((s) => <div class="ml-card"><h3>{s.title}</h3><p>{s.text}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container ml-two">
+      <div>
+        <p class="eyebrow">Who it's for</p>
+        <h2>For both partners, without blame</h2>
+        <p>For working parents of any gender, for the person carrying most of the planning, for the partner who wants to take on more, and for single parents. It isn't about who is at fault. It's about the next workable step.</p>
+        <p><strong>Works even if you're doing this alone.</strong> Every exercise has a solo route. A draft, a simplification, or an open question can be your result.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Course outline</p>
+        <h2>Four parts</h2>
+        <ul class="ml-parts">
+          {parts.map((p) => <li><strong>{p.title}</strong><span>{p.text}</span></li>)}
+        </ul>
+        <p>About 1.5 hours of video. Allow around 3 hours in total with the paused exercises. Pen and paper or a notes app are all you need; the worksheets print on US Letter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container ml-narrow">
+      <h2>Good to know</h2>
+      <p><strong>Limits:</strong> This course isn't therapy, couples counseling, medical care, or crisis support, and it promises no particular result. What can change depends on your situation and on anyone else involved. With threats, violence, or abuse, skip the joint exercises; the course points to sources of support.</p>
+      <p><strong>AI in this course:</strong> The course uses an AI-generated narration voice. The welcome and closing clips feature an AI-generated avatar of Arnold Jedich with an AI-generated voice. AI tools also helped draft the text, and the illustration is AI-generated. callidus A&amp;M is responsible for the content.</p>
+      <div class="actions">
+        <a class="button primary" href={udemyUrl} target="_blank" rel="noopener">See the course and free preview on Udemy</a>
+      </div>
+      <p class="ml-note">Watch the free preview lessons and decide whether the approach and the voice suit you. This link goes to Udemy, where Udemy's prices and terms apply.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ml-hero { display: grid; grid-template-columns: 1fr minmax(280px, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .ml-hero, .ml-two { grid-template-columns: 1fr !important; } }
+  .ml-hero > *, .ml-two > *, .ml-grid > * { min-width: 0; }
+  .ml-hero .actions { flex-wrap: wrap; }
+  .ml-image { margin: 0; }
+  .ml-image img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 24px 60px rgba(30, 59, 51, 0.28); }
+  .ml-sub { font-size: 1.15rem; font-weight: 700; margin: -0.3rem 0 0.8rem; color: var(--gold); }
+  .ml-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+  .ml-card { padding: 1.1rem 1.2rem; border: 1px solid rgba(30, 59, 51, 0.16); border-radius: 10px; }
+  .ml-card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+  .ml-card p { margin: 0; }
+  .ml-two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); }
+  .ml-parts { list-style: none; padding: 0; margin: 0.6rem 0 1rem; }
+  .ml-parts li { display: grid; gap: 0.1rem; margin-bottom: 0.7rem; }
+  .ml-narrow { max-width: 760px; }
+  .ml-note { font-size: 0.9rem; color: var(--muted); margin-top: 0.8rem; }
+</style>
