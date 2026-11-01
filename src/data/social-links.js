@@ -15,6 +15,11 @@ export const socialLinks = [
     icon: 'tiktok',
   },
   {
+    label: 'Pinterest',
+    href: 'https://www.pinterest.com/callidusam/',
+    icon: 'pinterest',
+  },
+  {
     label: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=61580058447671',
     icon: 'facebook',
