@@ -125,13 +125,22 @@ const websiteJsonLd = {
 };
 // Die Kopfzeile führt bewusst nur zu den vier wichtigsten Wegen. Alles andere
 // bleibt erreichbar, konkurriert aber nicht mehr mit dem Kernangebot.
+const courseGroup = {
+  label: lang === 'en' ? 'Courses' : 'Kurse',
+  items: [
+    { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
+    lang === 'en'
+      ? { href: '/en/mental-load-course/', label: 'Reduce Mental Load' }
+      : { href: '/mental-load-kurs/', label: 'Mental Load reduzieren' },
+  ],
+};
 const navPrimary = [
   { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
-  { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
   { href: lang === 'en' ? '/en/books/' : '/buecher/', label: lang === 'en' ? 'Books' : 'Bücher' },
   { href: t.paths.portal, label: lang === 'en' ? 'Member area' : 'Mein Bereich' },
 ];
 const navGroups = [
+  courseGroup,
   {
     label: labels.knowledge,
     items: [
@@ -155,11 +164,11 @@ const footerLabels = lang === 'en'
   ? { explore: 'Explore', more: 'More from callidus', company: 'Company', lab: 'Callidus Lab', legal: 'Legal' }
   : { explore: 'Entdecken', more: 'Mehr von callidus', company: 'Unternehmen', lab: 'Callidus Lab', legal: 'Rechtliches' };
 const footerGroups = [
+  courseGroup,
   {
     label: footerLabels.explore,
     items: [
       { href: t.paths.compass ?? '/gesundheits-kompass/', label: t.nav.compass ?? 'Kompass' },
-      { href: t.paths.course, label: t.nav.course ?? 'Stress Reset' },
       { href: t.paths.guide, label: t.nav.guide },
       { href: '/audio/', label: t.footerExtras?.audio ?? 'Audio-Raum' },
       { href: '/gesund-geniessen/', label: lang === 'en' ? 'Healthy recipes' : 'Mahlzeitenempfehlungen' },
