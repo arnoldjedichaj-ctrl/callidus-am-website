@@ -11,7 +11,8 @@ export const books = [
     teaser: '42 kurze Kapitel mit je einem Werkzeug, einzeln lesbar, mit Quellen und ohne Heilversprechen. Vom Projektleiter, nicht vom Arzt.',
     href: '/buecher/adhs-bei-maennern/',
     cover: '/assets/books/adhs-bei-maennern/cover.jpg',
-    status: 'Erscheint in Kürze',
+    status: 'Neu erschienen',
+    isNew: true,
   },
   {
     id: 'heute-mal-nicht-alles',

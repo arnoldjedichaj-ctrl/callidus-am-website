@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 // Buchseite „ADHS bei Männern – spät erkannt“ (Callidus A&M, KDP 2026).
-// amazonUrl bleibt leer, bis das Buch bei Amazon live ist. Dann /dp/<ASIN> eintragen.
 const asset = '/assets/books/adhs-bei-maennern';
-const amazonUrl = '';
+const amazonUrl = 'https://www.amazon.de/dp/B0HPZD9YYR'; // Taschenbuch, Kindle: B0HPZ3GJQ1
 const readingSample = `${asset}/leseprobe.pdf`;
 
 const parts = [
@@ -26,7 +25,7 @@ const parts = [
         <img src={`${asset}/cover.jpg`} alt="Buchcover: ADHS bei Männern – spät erkannt" width="600" height="960" />
       </figure>
       <div>
-        <p class="eyebrow" data-reveal>Buch · Erscheint in Kürze</p>
+        <p class="eyebrow" data-reveal>Buch · Neu erschienen</p>
         <h1 data-reveal="2">ADHS bei Männern – spät erkannt</h1>
         <p class="ad-sub" data-reveal="2">Werkzeuge für Job, Beziehung und Vatersein</p>
         <p class="lede" data-reveal="3">
