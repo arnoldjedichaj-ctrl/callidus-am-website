@@ -1,0 +1,41 @@
+{
+  "stand": "November 2026",
+  "geprueft": "06.11.2026",
+  "gruppen": [
+    {
+      "titel": "Rat, Gericht und Verfahren",
+      "eintraege": [
+        { "name": "Zuständiges Nachlassgericht finden", "wofuer": "Orts- und Gerichtsverzeichnis der Justiz: Postleitzahl oder Ort eingeben, Amtsgericht wird angezeigt.", "url": "https://www.justizadressen.nrw.de/de/justiz/suche" },
+        { "name": "Justizportal: Nachlass", "wofuer": "Informationen zum Nachlassverfahren, Erbschein und Ausschlagung.", "url": "https://www.service.justiz.de/nachlass" },
+        { "name": "Bundesjustizministerium: „Erben und Vererben“", "wofuer": "Kostenlose Broschüre mit Abschnitt zum digitalen Nachlass.", "url": "https://www.bmjv.de/SharedDocs/Publikationen/DE/Broschueren/Erben_Vererben.pdf?__blob=publicationFile&v=18" },
+        { "name": "Verbraucherzentrale: Digitaler Nachlass", "wofuer": "Ratgeber zur digitalen Vorsorge und zum Nachlass.", "url": "https://www.verbraucherzentrale.de/de-x-simple/node/12002" },
+        { "name": "Verbraucherzentrale: Beratung", "wofuer": "Beratung bei Problemen mit Anbietern, vor Ort, telefonisch oder online.", "url": "https://www.verbraucherzentrale.de/beratung" },
+        { "name": "Polizei", "wofuer": "Bei Schockanrufen, Betrugsverdacht oder Drohungen: Notruf 110.", "url": "" }
+      ]
+    },
+    {
+      "titel": "Konten und Geräte",
+      "eintraege": [
+        { "name": "Google", "wofuer": "Antrag zum Konto eines verstorbenen Nutzers.", "url": "https://support.google.com/accounts/troubleshooter/6357590?hl=de" },
+        { "name": "Apple: Nachlasskontakt", "wofuer": "Was ein Nachlasskontakt ist und welche Daten er bekommt.", "url": "https://support.apple.com/de-de/102631" },
+        { "name": "Apple: Zugriff als Nachlasskontakt", "wofuer": "Voraussetzungen und Antrag.", "url": "https://support.apple.com/de-de/102678" },
+        { "name": "Microsoft", "wofuer": "Zugriff auf Outlook.com, OneDrive und andere Dienste nach einem Todesfall.", "url": "https://support.microsoft.com/de-de/accounts-billing/manage/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died" },
+        { "name": "Dropbox", "wofuer": "Zugriff auf das Konto einer verstorbenen Person (englisch).", "url": "https://help.dropbox.com/account-settings/access-account-of-someone-who-passed-away" },
+        { "name": "Facebook", "wofuer": "Hilfe zu verstorbenen Nutzern und Gedenkzustand. Inhalt für das Buch nicht vollständig prüfbar.", "url": "https://www.facebook.com/help/1568013990080948" },
+        { "name": "Instagram", "wofuer": "Hilfe zu verstorbenen Nutzern. Inhalt für das Buch nicht vollständig prüfbar.", "url": "https://help.instagram.com/264154560391256" },
+        { "name": "WhatsApp", "wofuer": "Hilfe zum Löschen eines Kontos.", "url": "https://faq.whatsapp.com/2138577903196467/?cms_platform=iphone&locale=de_DE" },
+        { "name": "OpenAI / ChatGPT", "wofuer": "Abo nach dem Tod beenden, Konto löschen (englisch).", "url": "https://help.openai.com/en/articles/6378407-deleting-your-chatgpt-account" }
+      ]
+    },
+    {
+      "titel": "Geld, Verträge und Shops",
+      "eintraege": [
+        { "name": "PayPal", "wofuer": "Konto einer verstorbenen Person kündigen. Laut Hilfeseite per E-Mail an europeanservices@paypal.com oder per Post. Adresse vor dem Versand auf der Hilfeseite prüfen.", "url": "https://www.paypal.com/de/cshelp/article/wie-k%C3%BCndige-ich-das-paypal-konto-einer-verstorbenen-person-help220" },
+        { "name": "eBay", "wofuer": "Tod eines Mitglieds melden, Konto schließen, Guthaben.", "url": "https://www.ebay.de/help/account/changing-account-settings/reporting-death-ebay-member?id=5574" },
+        { "name": "Telekom", "wofuer": "Mobilfunk- und Festnetzvertrag im Todesfall.", "url": "https://www.telekom.de/hilfe/vertrag-rechnung/vertrag/kuendigen/todesfall" },
+        { "name": "Coinbase", "wofuer": "Zugang zum Konto eines verstorbenen Familienmitglieds (englisch).", "url": "https://help.coinbase.com/en/coinbase/managing-my-account/other/how-do-i-gain-access-to-a-deceased-family-members-coinbase-account?b_id=13521" },
+        { "name": "DENIC (.de-Domains)", "wofuer": "Was mit einer .de-Domain im Erbfall passiert.", "url": "https://www.denic.de/faq/faqs-zu-rechtsthemen/" }
+      ]
+    }
+  ]
+}

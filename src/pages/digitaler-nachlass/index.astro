@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import hilfe from '../../data/digitaler-nachlass-hilfe.json';
 
 // Begleitseite zum Buch „Digitaler Nachlass für Angehörige“. Diese URL und der
 // PDF-Pfad sind im Buch abgedruckt – beide dürfen nicht umziehen.
@@ -31,7 +32,8 @@ const updates = [];
       <h2 data-reveal>Vorlagen zum Herunterladen</h2>
       <p data-reveal="2">
         Das PDF enthält die Übersicht der wichtigen Daten, die Gesamtliste, das Kontaktprotokoll,
-        die Geräteliste und die drei Musterschreiben. Alles im Querformat zum Ausdrucken.
+        die Geräteliste, die drei Musterschreiben und die wichtigsten Hilfeseiten. Die breiten
+        Listen sind im Querformat, damit genug Platz zum Schreiben bleibt.
       </p>
       <p data-reveal="2">
         <a class="button primary" href={pdf} download>Vorlagen als PDF herunterladen</a>
@@ -43,7 +45,32 @@ const updates = [];
     </div>
   </section>
 
-  <section class="section" id="aktualisierungen">
+  <section class="section" id="hilfe">
+    <div class="container narrow">
+      <h2 data-reveal>Hilfeseiten und Anlaufstellen</h2>
+      <p data-reveal="2">
+        Offizielle Seiten von Justiz, Verbraucherzentrale und Anbietern, geprüft am {hilfe.geprueft}.
+        Anbieter ändern ihre Seiten. Wenn ein Link nicht mehr stimmt, sag uns Bescheid.
+      </p>
+      {hilfe.gruppen.map((g) => (
+        <div class="help-group" data-reveal="2">
+          <h3>{g.titel}</h3>
+          <ul class="help-list">
+            {g.eintraege.map((e) => (
+              <li>
+                {e.url
+                  ? <a href={e.url} rel="noopener" target="_blank"><strong>{e.name}</strong></a>
+                  : <strong>{e.name}</strong>}
+                <span>{e.wofuer}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section band" id="aktualisierungen">
     <div class="container narrow">
       <h2 data-reveal>Korrekturen und Aktualisierungen</h2>
       <p data-reveal="2">
@@ -75,5 +102,9 @@ const updates = [];
     .container.narrow { max-width: 760px; }
     .note { font-size: .95rem; opacity: .85; }
     .updates { display: grid; gap: .6rem; padding-left: 1.2rem; }
+    .help-group { margin-top: 1.5rem; }
+    .help-list { list-style: none; padding: 0; display: grid; gap: .7rem; }
+    .help-list li { display: grid; gap: .15rem; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .help-list span { color: var(--muted); font-size: .95rem; }
   </style>
 </BaseLayout>
