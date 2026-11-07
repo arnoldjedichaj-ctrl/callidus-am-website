@@ -3,6 +3,19 @@
 // gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
 export const books = [
   {
+    id: 'digitaler-nachlass',
+    lang: 'de',
+    group: 'ratgeber',
+    title: 'Digitaler Nachlass für Angehörige',
+    subtitle: 'Handy, Konten, Fotos und Abos nach einem Todesfall Schritt für Schritt regeln',
+    teaser: '30 Schritte mit Checklisten: was du in den ersten Tagen besser lässt, welche Fristen zählen und wie du bei Google, Apple, PayPal & Co. offiziell vorgehst.',
+    href: '/digitaler-nachlass/',
+    cover: '/assets/books/digitaler-nachlass/cover.jpg',
+    download: { href: '/downloads/digitaler-nachlass-vorlagen.pdf', label: 'Vorlagen, Musterschreiben und Hilfeseiten' },
+    status: 'Neu erschienen',
+    isNew: true,
+  },
+  {
     id: 'adhs-bei-maennern',
     lang: 'de',
     group: 'ratgeber',
