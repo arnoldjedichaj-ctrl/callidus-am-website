@@ -6,6 +6,7 @@ import hilfe from '../../data/digitaler-nachlass-hilfe.json';
 // PDF-Pfad sind im Buch abgedruckt – beide dürfen nicht umziehen.
 const pdf = '/downloads/digitaler-nachlass-vorlagen.pdf';
 const stand = 'November 2026';
+const amazonUrl = 'https://www.amazon.de/dp/B0HQSKYTYL'; // Kindle; Taschenbuch-ASIN nachtragen, sobald live
 
 // Korrekturen und Aktualisierungen nach Erscheinen, neueste zuerst.
 const updates = [];
@@ -23,6 +24,9 @@ const updates = [];
       <p class="lede" data-reveal="3">
         Hier findest du die Vorlagen aus dem Anhang zum Ausdrucken und alle Korrekturen und
         Aktualisierungen zum Buch. Ohne Anmeldung, ohne E-Mail-Adresse.
+      </p>
+      <p data-reveal="3">
+        <a class="button primary" href={amazonUrl} rel="noopener" target="_blank">Buch bei Amazon ansehen</a>
       </p>
     </div>
   </section>
