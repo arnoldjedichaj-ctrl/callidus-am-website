@@ -8,6 +8,7 @@ const groups = en
   ? [{ key: 'ratgeber', title: 'Guides for adults', items: list }]
   : [
       { key: 'ratgeber', title: 'Ratgeber für Erwachsene', items: list.filter((b) => b.group === 'ratgeber') },
+      { key: 'raetsel', title: 'Rätselkrimis', items: list.filter((b) => b.group === 'raetsel') },
       { key: 'kinder', title: 'Kinderbücher', items: list.filter((b) => b.group === 'kinder') },
     ];
 const t = en

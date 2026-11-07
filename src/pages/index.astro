@@ -305,7 +305,7 @@ const todayStarts = [
           <a class="card home-book" href={book.href} data-reveal={String(index + 1)}>
             <img src={book.cover} alt="" loading="lazy" decoding="async" />
             <div class="card-body">
-              <span class={`badge ${book.isNew ? 'gold' : 'mint'}`}>{book.isNew ? 'Neu' : book.group === 'kinder' ? 'Kinderbuch' : 'Ratgeber'}</span>
+              <span class={`badge ${book.isNew ? 'gold' : 'mint'}`}>{book.isNew ? 'Neu' : book.group === 'kinder' ? 'Kinderbuch' : book.group === 'raetsel' ? 'Rätselkrimi' : 'Ratgeber'}</span>
               <h3>{book.title}</h3>
               <p>{book.subtitle}</p>
             </div>

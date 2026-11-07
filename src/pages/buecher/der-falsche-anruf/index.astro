@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+// Buchseite „Der falsche Anruf“ (Marie Kerner, Callidus A&M, KDP 2026).
+const asset = '/assets/books/der-falsche-anruf';
+const amazonUrl = 'https://www.amazon.de/dp/B0HQSYHS33'; // Kindle; Taschenbuch ISBN 9798140582265, ASIN folgt
+const readingSample = `${asset}/leseprobe.pdf`;
+const tafel = '/downloads/der-falsche-anruf-ermittlungstafel.pdf';
+
+const parts = [
+  { title: 'Erster Akt: Erste Anrufe', text: '„Hallo Mama, neue Nummer“, ein freundlicher Bankberater, eine Sprachnachricht am Morgen, eine Nachricht vom Paketdienst.' },
+  { title: 'Zweiter Akt: Gute Angebote', text: 'Eine Ferienwohnung am See, 70 Prozent auf alles, ein Nebenjob, Liebe aus Kalifornien, eine Spende und ein Videoanruf der Tochter.' },
+  { title: 'Dritter Akt: Muster', text: 'Zwei neue Nummern, eine Liste, ein Protokoll und ein Kurier. Hinter den einzelnen Fällen zeichnet sich ein Muster ab.' },
+  { title: 'Vierter Akt: Donnerstag', text: 'Die Ermittlungstafel füllt sich. Alle Spuren laufen zusammen, bis zur Auflösung.' },
+];
+---
+<BaseLayout
+  lang="de"
+  title="Der falsche Anruf: Rätselkrimi zum Mitermitteln | Callidus"
+  description="20 Fälle rund um Telefontricks, gefälschte Nachrichten und KI-Betrug. Ein Rätselkrimi ohne Mord, mit Beweisstücken zum Selbstprüfen und allen Lösungen."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container fa-hero">
+      <figure class="fa-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Buchcover: Der falsche Anruf, Rätselkrimi zum Mitermitteln, von Marie Kerner" width="875" height="1312" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Rätselkrimi · Neu erschienen</p>
+        <h1 data-reveal="2">Der falsche Anruf</h1>
+        <p class="fa-sub" data-reveal="2">Ein Rätselkrimi zum Mitermitteln. 20 Fälle rund um Telefontricks, gefälschte Nachrichten und KI-Betrug</p>
+        <p class="lede" data-reveal="3">
+          „Mama, ich hab einen Unfall gebaut!“ Die Stimme klingt echt. Die Geschichte ist es nicht. In der kleinen
+          Augsburger Beratungsstelle „Zweiter Blick“ prüfst du mit der pensionierten Kommissarin Hanne Albrecht
+          Chatverläufe, Notizzettel, Kontoauszüge und Kamerabilder. An jeder entscheidenden Stelle hält die Geschichte an,
+          und du entscheidest, was zu tun ist.
+        </p>
+        <p class="fa-author" data-reveal="3">von Marie Kerner</p>
+        <div class="fa-actions" data-reveal="3">
+          <a class="button primary" href={amazonUrl} rel="noopener" target="_blank">Bei Amazon ansehen</a>
+          <a class="button" href={readingSample}>Leseprobe als PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container narrow">
+      <h2 data-reveal>Was dich erwartet</h2>
+      <div class="fa-parts" data-reveal="2">
+        {parts.map((part) => (
+          <div class="fa-part">
+            <strong>{part.title}</strong>
+            <span>{part.text}</span>
+          </div>
+        ))}
+      </div>
+      <p data-reveal="2">
+        Die Fälle reichen von leicht bis knifflig. Ausführliche Lösungen stehen am Ende jedes Akts, und Hannes Regeln
+        fassen am Schluss die wichtigsten Prüfwege zusammen. Ein Rätselkrimi ohne Mord, aber mit Fällen, wie sie jeden
+        Tag passieren.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2 data-reveal>Ermittlungstafel zum Ausdrucken</h2>
+      <p data-reveal="2">
+        Wer das E-Book liest oder eine frische Tafel braucht: Hier gibt es die Ermittlungstafel und Hannes Regeln als
+        kostenloses PDF, ohne Anmeldung.
+      </p>
+      <p data-reveal="2"><a class="button" href={tafel}>Ermittlungstafel herunterladen (PDF)</a></p>
+      <p class="fa-note" data-reveal="2">
+        Alle Personen und Fälle sind frei erfunden. Das Buch ersetzt keine Rechts- oder Polizeiberatung. Es entstand mit
+        Unterstützung von KI-Werkzeugen. Wenn du selbst betroffen bist: Bei akuter Gefahr gilt die 110.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .fa-hero { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(200px, 320px) 1fr; }
+    .fa-cover { margin: 0; }
+    .fa-cover img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 14px 34px rgba(0, 0, 0, .22); }
+    .fa-sub { font-size: 1.2rem; font-weight: 600; }
+    .fa-author { font-weight: 600; color: var(--muted); }
+    .fa-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+    .fa-parts { display: grid; gap: .75rem; margin: 1.5rem 0; }
+    .fa-part { display: grid; gap: .25rem; padding: 1rem 1.25rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    .fa-note { font-size: .9rem; color: var(--muted); }
+    @media (max-width: 720px) {
+      .fa-hero { grid-template-columns: 1fr; }
+      .fa-cover { width: min(240px, 70%); }
+    }
+  </style>
+</BaseLayout>
