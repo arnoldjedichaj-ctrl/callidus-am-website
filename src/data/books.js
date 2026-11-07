@@ -3,6 +3,19 @@
 // gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
 export const books = [
   {
+    id: 'der-falsche-anruf',
+    lang: 'de',
+    group: 'raetsel',
+    title: 'Der falsche Anruf',
+    subtitle: 'Ein Rätselkrimi zum Mitermitteln. 20 Fälle rund um Telefontricks, gefälschte Nachrichten und KI-Betrug',
+    teaser: 'Mit Kommissarin a. D. Hanne Albrecht prüfst du Chats, Notizen und Kamerabilder und entscheidest selbst. Von Marie Kerner.',
+    href: '/buecher/der-falsche-anruf/',
+    cover: '/assets/books/der-falsche-anruf/cover.jpg',
+    download: { href: '/downloads/der-falsche-anruf-ermittlungstafel.pdf', label: 'Ermittlungstafel und Hannes Regeln' },
+    status: 'Neu erschienen',
+    isNew: true,
+  },
+  {
     id: 'digitaler-nachlass',
     lang: 'de',
     group: 'ratgeber',
