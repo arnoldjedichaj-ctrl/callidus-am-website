@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+// Companion page for the US book "Managing Online Accounts After a Death" (Arnold Jedich, KDP 2026).
+// This URL (callidus-am.de/en/digital-estate/) and the PDF path are printed in the book – neither may move.
+const pdf = '/downloads/digital-estate-templates.pdf';
+const checked = 'November 2026';
+// Amazon.com links go here once the book is live.
+const amazonPrint = '';
+const amazonKindle = '';
+
+// Corrections and updates after publication, newest first: { date, where, text }
+const updates = [];
+
+const help = [
+  { group: 'Government and consumer help', items: [
+    { name: 'Social Security: when someone dies', url: 'https://www.ssa.gov/personal-record/when-someone-dies', what: 'Reporting a death; survivor benefits' },
+    { name: 'Social Security: lump-sum death payment', url: 'https://www.ssa.gov/personal-record/when-someone-dies/lump-sum-death-payment', what: 'The one-time $255 payment and how to apply' },
+    { name: 'USA.gov: death certificates', url: 'https://www.usa.gov/death-certificate', what: 'Where to order certified copies' },
+    { name: 'CFPB: debt after a death', url: 'https://www.consumerfinance.gov/ask-cfpb/does-a-persons-debt-go-away-when-they-die-en-1463/', what: 'Who is responsible for debts' },
+    { name: 'CFPB: submit a complaint', url: 'https://www.consumerfinance.gov/complaint/', what: 'Problems with a bank account or payment service' },
+    { name: 'IRS: final income tax returns', url: 'https://www.irs.gov/individuals/file-the-final-income-tax-returns-of-a-deceased-person', what: 'Taxes for a person who died' },
+    { name: 'IRS: identity theft guide', url: 'https://www.irs.gov/identity-theft-central/identity-theft-guide-for-individuals', what: 'Protecting the identity of a person who died' },
+    { name: 'IdentityTheft.gov', url: 'https://www.identitytheft.gov/Steps', what: 'Steps if identity theft has happened' },
+    { name: 'Legal Services Corporation', url: 'https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help', what: 'Find a local legal aid organization' },
+  ]},
+  { group: 'Tech providers', items: [
+    { name: 'Apple: Legacy Contact', url: 'https://support.apple.com/en-us/102631', what: 'Access with a Legacy Contact' },
+    { name: "Apple: deceased family member's account", url: 'https://support.apple.com/en-us/102431', what: 'Without a Legacy Contact' },
+    { name: 'Google: deceased user', url: 'https://support.google.com/accounts/troubleshooter/6357590?hl=en', what: 'Request to close an account, get funds or data' },
+    { name: 'Google: Inactive Account Manager', url: 'https://support.google.com/accounts/answer/3036546?hl=en', what: 'Set up your own account in advance' },
+    { name: 'Microsoft: when someone has died', url: 'https://support.microsoft.com/en-us/accounts-billing/manage/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died', what: 'Outlook.com and OneDrive' },
+    { name: 'Yahoo: account owner passes away', url: 'https://help.yahoo.com/kb/account/options-yahoo-account-owner-passes-sln2021.html', what: 'Closing, billing and content' },
+    { name: 'Dropbox: someone who passed away', url: 'https://help.dropbox.com/account-settings/access-account-of-someone-who-passed-away', what: 'Access requests' },
+  ]},
+  { group: 'Money and phone', items: [
+    { name: 'PayPal', url: 'https://www.paypal.com/us/cshelp/article/how-do-i-close-the-paypal-account-of-a-deceased-relative-help220', what: 'Closing the account of a deceased relative' },
+    { name: 'Venmo', url: 'https://help.venmo.com/cs/articles/how-to-close-the-venmo-account-of-a-deceased-relative-vhel371', what: 'Closing the account of a deceased relative' },
+    { name: 'Coinbase', url: 'https://help.coinbase.com/en/coinbase/managing-my-account/other/how-do-i-gain-access-to-a-deceased-family-members-coinbase-account', what: 'Account of a deceased family member' },
+    { name: 'Verizon', url: 'https://www.verizon.com/support/deceased-account-handling/', what: 'Deceased account handling' },
+    { name: 'AT&T', url: 'https://www.att.com/support/article/wireless/KM1113355/', what: 'Wireless account of a deceased customer' },
+    { name: 'T-Mobile', url: 'https://www.t-mobile.com/support/account/cancel-an-account-of-a-deceased-family-member', what: 'Account of a deceased family member' },
+  ]},
+  { group: 'Social media and shopping', items: [
+    { name: 'Facebook: memorialization', url: 'https://transparency.meta.com/policies/community-standards/memorialization/', what: 'Memorialized accounts' },
+    { name: 'Instagram: memorialization', url: 'https://help.instagram.com/231764660354188', what: 'Memorializing or removing an account' },
+    { name: 'X', url: 'https://help.x.com/en/rules-and-policies/contact-x-about-a-deceased-family-members-account', what: "Deactivating a deceased family member's account" },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/help/linkedin/answer/a1336663/memorialize-or-close-the-account-of-a-deceased-member', what: 'Memorialize or close an account' },
+    { name: 'Amazon: bereavement support', url: 'https://www.amazon.com/gp/help/customer/display.html?nodeId=TzcJJiVFnIi3pG2yDA', what: 'Accounts of people who died' },
+  ]},
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Managing Online Accounts After a Death: Templates and Updates"
+  description="Companion page for the book Managing Online Accounts After a Death: free printable templates without sign-up, official help pages, corrections and updates."
+>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow" data-reveal>Companion page for the book</p>
+      <h1 data-reveal="2">Managing Online Accounts After a Death</h1>
+      <p class="lede" data-reveal="3">
+        Here you'll find the templates from the appendix to print, the official help pages, and all
+        corrections and updates to the book. No sign-up, no email address.
+      </p>
+      {amazonPrint ? (
+        <p data-reveal="3">
+          <a class="button primary" href={amazonPrint} rel="noopener" target="_blank">Paperback on Amazon</a>
+          {amazonKindle && <a class="button" href={amazonKindle} rel="noopener" target="_blank">Kindle edition</a>}
+        </p>
+      ) : (
+        <p class="note" data-reveal="3">The book by Arnold Jedich will be available on Amazon soon, as a paperback and for Kindle.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section band" id="templates">
+    <div class="container narrow">
+      <h2 data-reveal>Free printable templates</h2>
+      <p data-reveal="2">
+        The PDF (US Letter) contains the key dates, roles and documents, the master list, the contact log,
+        the device and subscription lists, a checklist for before closing an account, questions for professional
+        help, the three sample letters and the official help pages. Wide lists are in landscape, so there is room to write.
+      </p>
+      <p data-reveal="2">
+        <a class="button primary" href={pdf} download>Download the templates (PDF)</a>
+      </p>
+      <p class="note" data-reveal="2">
+        Never write passwords, PINs, recovery codes, recovery phrases or full Social Security numbers into the templates.
+        The sample letters are suggestions, not legal advice. Provider forms come first.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="help">
+    <div class="container narrow">
+      <h2 data-reveal>Official help pages</h2>
+      <p data-reveal="2">
+        Government, consumer and provider pages, checked in {checked}. Providers change their pages. If a link
+        no longer works, search the provider's help center for "deceased" or "passed away", and please let us know.
+      </p>
+      {help.map((g) => (
+        <div class="help-group" data-reveal="2">
+          <h3>{g.group}</h3>
+          <ul class="help-list">
+            {g.items.map((e) => (
+              <li>
+                <a href={e.url} rel="noopener" target="_blank"><strong>{e.name}</strong></a>
+                <span>{e.what}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section band" id="updates">
+    <div class="container narrow">
+      <h2 data-reveal>Corrections and updates</h2>
+      <p data-reveal="2">
+        Providers change their processes, and even a carefully checked book can contain mistakes. Anything that has
+        changed since printing is listed here.
+      </p>
+      {updates.length === 0 ? (
+        <p data-reveal="2"><strong>As of {checked}:</strong> No corrections so far.</p>
+      ) : (
+        <ul class="updates" data-reveal="2">
+          {updates.map((u) => (
+            <li><strong>{u.date}, {u.where}:</strong> {u.text}</li>
+          ))}
+        </ul>
+      )}
+      <p data-reveal="2">
+        Found a mistake, a broken link, or a provider that now works differently? Write to
+        <a href="mailto:info@callidus-am.de">info@callidus-am.de</a>. Please don't send any documents or personal details of the person who died.
+      </p>
+      <p class="note" data-reveal="2">
+        The book and this page provide general information for the United States. They are not legal, tax or financial
+        advice. Rules vary by state. For your situation, ask a probate attorney, a legal aid organization, your state
+        court's self-help center, or a CPA or enrolled agent.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .container.narrow { max-width: 760px; }
+    .note { font-size: .95rem; opacity: .85; }
+    .updates { display: grid; gap: .6rem; padding-left: 1.2rem; }
+    .help-group { margin-top: 1.5rem; }
+    .help-list { list-style: none; padding: 0; display: grid; gap: .7rem; }
+    .help-list li { display: grid; gap: .15rem; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .help-list span { color: var(--muted); font-size: .95rem; }
+  </style>
+</BaseLayout>
