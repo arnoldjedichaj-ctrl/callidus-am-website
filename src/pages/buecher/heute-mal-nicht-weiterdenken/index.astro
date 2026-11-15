@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { bonusFor } from '../../../data/book-bonus.js';
+// Buchseite „Heute mal nicht weiterdenken“ (Callidus A&M, KDP 2026, Band 2 der Reihe „Heute mal nicht“).
+// Das Buch druckt die Kurzadresse callidus-am.de/heute-mal-nicht-weiterdenken (Weiterleitung hierher)
+// und verspricht dort die Vordrucke kostenlos und ohne Anmeldung. Pfad des PDFs nicht mehr ändern.
+const asset = '/assets/books/heute-mal-nicht-weiterdenken';
+const vordrucke = '/downloads/heute-mal-nicht-weiterdenken-vordrucke.pdf';
+const readingSample = `${asset}/leseprobe.pdf`;
+// Amazon-Link nach Freigabe durch Amazon eintragen (Taschenbuch-ASIN), bis dahin „Erscheint in Kürze“.
+const amazonUrl = '';
+
+const inside = [
+  { title: 'Erst verstehen, dann ausprobieren', text: 'An den fünf Lerntagen jeder Woche steht zuerst ein Aha: warum dein Kopf Grübeln für Arbeit hält, warum Wegdrücken oft nur kurz klappt, warum ein Schritt Informationen bringt, die kein Gedanke bringt. Mit Quelle und mit Grenzen.', accent: 'mint' },
+  { title: '6 Werkzeuge, du behältst, was passt', text: 'Schleifencheck, konkret beschreiben, Gedanken benennen, Sorgenaufschub, nächster Schritt, zurückkehren. Jedes gibt es als Minute und als Version mit etwa fünf Minuten.', accent: 'coral' },
+  { title: '4 Mythen-Labore', text: '„Denk einfach positiv“, Gummiband und „Stopp!“, „Schreib einfach alles auf“ und „Gedanken erschaffen deine Realität“: geprüft gegen Studien, mit getrennten Urteilen für Evidenz und Sicherheit.', accent: 'gold' },
+  { title: 'Schleife, Aufgabe oder Last?', text: 'Nicht alles, was im Kopf kreist, ist Grübeln. Manches braucht ein Gespräch, Hilfe oder eine andere Verteilung der Arbeit. Das Buch sagt das, statt alles wegzutrainieren.', accent: 'mint' },
+];
+const downloads = [
+  'Wenn du gerade festhängst (Seite zum Aufhängen)',
+  'Wochencheck vom Start bis zum Ende',
+  'Logbuch für Woche 1 bis 4',
+  'Schleifencheck und Niederschrift der Sitzung',
+  'Schleifen-Landkarte, sachliche Notiz und Wiedervorlage',
+  'Mein Plan für schwierige Tage',
+];
+const people = [
+  { name: 'Jana, 43', text: 'Projektleiterin, zwei Kinder. Eine Mail ohne Betreff von ihrem Chef reicht, und um 23:14 Uhr formuliert sie die dritte Antwort auf ein Gespräch, das noch gar nicht stattgefunden hat.' },
+  { name: 'Birgit, 54', text: 'Pflegefachkraft im Schichtdienst. Im Dienst die Ruhigste auf der Station. Um 2:40 Uhr hält sie Sitzungen ohne Tagesordnung ab: „Was, wenn Mama stürzt?“' },
+  { name: 'Selin, 36', text: 'Beraterin in einer Agentur. Hat ein Jobangebot abgelehnt und die Entscheidung seitdem etwa neunzigmal neu getroffen. In Excel, Version 14.' },
+];
+const editions = [
+  { name: 'Taschenbuch', detail: '122 Seiten · 15,2 × 22,9 cm · Vordrucke zum Reinschreiben', price: '16,99 €' },
+  { name: 'Kindle E-Book', detail: 'Quellen verlinkt · Vordrucke hier zum Ausdrucken', price: '7,99 €' },
+];
+const bonus = bonusFor('de');
+---
+<BaseLayout
+  lang="de"
+  title="Heute mal nicht weiterdenken: Overthinking verstehen | Callidus"
+  description="Overthinking verstehen: In 4 Wochen Grübelschleifen erkennen und wieder handeln. Jeden Lerntag erst ein Aha mit Quelle, dann eine kleine Übung. 6 Werkzeuge, 4 Mythen-Labore und kostenlose Vordrucke zum Ausdrucken."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container hm-hero">
+      <figure class="hm-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Buchcover: Heute mal nicht weiterdenken – Overthinking verstehen, von Callidus. Illustration einer Frau, die nachts wach im Bett aufs Handy schaut, der Wecker zeigt 23:14." width="600" height="960" loading="eager" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Neues Buch · Band 2 der Reihe „Heute mal nicht“</p>
+        <h1 data-reveal="2">Heute mal nicht weiterdenken</h1>
+        <p class="hm-sub" data-reveal="2">Overthinking verstehen: In 4 Wochen Grübelschleifen erkennen und wieder handeln</p>
+        <p class="lede" data-reveal="3">
+          Für alle, deren Kopf noch eine Runde dreht. Eine Mail ohne Betreff, ein Smiley im Elternchat, eine
+          Entscheidung von vor drei Monaten. Dieses Buch erklärt, warum sich Grübeln wie Nachdenken anfühlt, und
+          zeigt dir in kleinen Schritten, wie du eine Runde auslassen kannst. Ohne Schlafversprechen, mit Quellen.
+        </p>
+        <div class="actions" data-reveal="3">
+          {amazonUrl
+            ? <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">Bei Amazon ansehen</a>
+            : <a class="button primary" href="#vordrucke">Vordrucke herunterladen</a>}
+          <a class="button" href={readingSample} target="_blank" rel="noopener">Kostenlose Leseprobe (PDF)</a>
+        </div>
+        <ul class="hm-facts" data-reveal="3">
+          <li><strong>4</strong><span>Wochen</span></li>
+          <li><strong>6</strong><span>Werkzeuge</span></li>
+          <li><strong>~10</strong><span>Min. am Tag</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="vordrucke">
+    <div class="container hm-download">
+      <div data-reveal>
+        <p class="eyebrow">Kostenloser Download</p>
+        <h2>Alle Vordrucke zum Ausdrucken</h2>
+        <p>
+          Für Leserinnen des Kindle-E-Books und für alle, die lieber auf Papier schreiben.
+          Neun Seiten A4, ohne Anmeldung:
+        </p>
+        <ul class="hm-list">
+          {downloads.map((d) => <li>{d}</li>)}
+        </ul>
+      </div>
+      <div class="hm-download-card" data-reveal="2">
+        <strong>heute-mal-nicht-weiterdenken-vordrucke.pdf</strong>
+        <small>9 Seiten · A4 · PDF · 0,2 MB</small>
+        <a class="button primary" href={vordrucke} download>Vordrucke kostenlos herunterladen</a>
+        <small>Die Notfallnummern gelten für Deutschland. Im Notfall: 112.</small>
+      </div>
+    </div>
+  </section>
+  {bonus.formUrl && (
+    <section class="section">
+      <div class="container bonus-teaser">
+        <div data-reveal>
+          <p class="eyebrow">Bequemer geht auch</p>
+          <h2>Alles Bonusmaterial in einer E-Mail</h2>
+          <p>
+            Der Download oben bleibt frei und ohne Anmeldung – daran ändert sich nichts. Wenn du
+            das Material zu allen Büchern lieber gebündelt bekommst, schicken wir es dir in einer Mail.
+          </p>
+        </div>
+        <div data-reveal="2">
+          <a class="button" href={bonus.href}>Bonuspaket per Mail anfordern</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Das steckt im Buch</p>
+      <h2 data-reveal="2">Mehr verstehen, weniger ausfüllen</h2>
+      <div class="hm-grid">
+        {inside.map((item, index) => (
+          <article class={`hm-card ${item.accent}`} data-reveal={String((index % 3) + 1)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Die Menschen im Buch</p>
+      <h2 data-reveal="2">Jana, Birgit und Selin gibt es nicht. Ihre Nächte um 2:40 Uhr vermutlich schon.</h2>
+      <div class="hm-grid">
+        {people.map((p, index) => (
+          <article class="hm-person" data-reveal={String(index + 1)}>
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+          </article>
+        ))}
+      </div>
+      <blockquote class="hm-quote" data-reveal>
+        „Danke, Kopf. Ich hab's notiert.“
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Ausgaben</p>
+      <h2 data-reveal="2">Taschenbuch oder Kindle</h2>
+      <div class="hm-editions">
+        {editions.map((ed) => (
+          <div class="hm-edition" data-reveal>
+            <h3>{ed.name}</h3>
+            <p>{ed.detail}</p>
+            <span class="hm-price">{ed.price}</span>
+          </div>
+        ))}
+      </div>
+      <div class="actions" style="margin-top:1.2rem">
+        {amazonUrl
+          ? <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">Bei Amazon ansehen</a>
+          : <span class="button is-disabled" aria-disabled="true">Erscheint in Kürze bei Amazon</span>}
+      </div>
+      <p class="hm-note">Preise für Amazon.de, Taschenbuch inklusive Mehrwertsteuer.</p>
+      <p class="hm-series">
+        Band 1 der Reihe: <a href="/buecher/heute-mal-nicht-alles/">„Heute mal nicht alles“</a> – über den Körper, der abends
+        nicht runterkommt. Du brauchst ihn nicht, um dieses Buch zu lesen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container hm-honest" data-reveal>
+      <h2>Ehrlich, was dieses Buch ist</h2>
+      <p>
+        Dieses Buch bietet allgemeine Informationen zum Umgang mit Grübeln und Sorgen. Es ersetzt keine medizinische
+        oder psychotherapeutische Beratung, Diagnose oder Behandlung und verspricht keinen besseren Schlaf. Für das
+        Programm als Ganzes gibt es keinen Wirksamkeitsnachweis; die einzelnen Aussagen sind mit Quellen belegt oder
+        ausdrücklich als unklar markiert. Recherche und Text entstanden mit Unterstützung von KI-Werkzeugen und wurden
+        gegen die angegebenen Quellen geprüft; die Coverillustration wurde mit KI erstellt. Eine fachliche Prüfung durch
+        eine Ärztin oder Psychotherapeutin hat nicht stattgefunden. Wenn es dir akut schlecht geht: 112 oder
+        TelefonSeelsorge 0800 111 0 111.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bonus-teaser { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+  .bonus-teaser > * { min-width: 0; }
+  @media (max-width: 760px) { .bonus-teaser { grid-template-columns: 1fr; } }
+
+  .hm-hero { display: grid; grid-template-columns: minmax(200px, 320px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .hm-hero { grid-template-columns: 1fr; } .hm-cover { max-width: 240px; } }
+  .hm-hero > *, .hm-download > *, .hm-grid > *, .hm-editions > * { min-width: 0; }
+  .hm-hero .actions { flex-wrap: wrap; }
+  .hm-cover { margin: 0; }
+  .hm-cover img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 24px 60px rgba(22, 27, 56, 0.4); }
+  .hm-sub { font-size: 1.15rem; font-weight: 700; margin: -0.3rem 0 0.8rem; color: var(--gold); }
+  .hm-facts { display: flex; gap: 1.6rem; list-style: none; padding: 0; margin: 1.4rem 0 0; }
+  .hm-facts li { display: grid; }
+  .hm-facts strong { font-size: 1.8rem; line-height: 1; color: var(--mint); }
+  .hm-facts span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .hm-download { display: grid; grid-template-columns: 1fr minmax(260px, 360px); gap: 1.5rem; align-items: center; }
+  @media (max-width: 760px) { .hm-download { grid-template-columns: 1fr; } }
+  .hm-list { margin: 0.4rem 0 0.8rem; padding-left: 1.2rem; }
+  .hm-list li { margin-bottom: 0.25rem; }
+  .hm-download-card { display: grid; gap: 0.5rem; padding: 1.4rem; border-radius: 12px; background: var(--bg-soft); border-top: 4px solid var(--gold); }
+  .hm-download-card small { color: var(--muted); }
+  .hm-download-card strong { word-break: break-all; }
+  .hm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .hm-card { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .hm-card.coral { border-top-color: var(--coral); }
+  .hm-card.gold { border-top-color: var(--gold); }
+  .hm-card h3, .hm-person h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+  .hm-card p, .hm-person p { margin: 0; }
+  .hm-person { padding: 1.4rem; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .hm-quote { margin: 1.6rem 0 0; padding: 1rem 1.2rem; border-left: 4px solid var(--gold); font-size: 1.15rem; font-style: italic; max-width: 720px; }
+  .hm-editions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .hm-edition { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--line); }
+  .hm-edition h3 { margin: 0 0 0.4rem; }
+  .hm-edition p { margin: 0 0 0.8rem; color: var(--muted); }
+  .hm-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
+  .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+  .hm-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
+  .hm-series { margin-top: 1rem; max-width: 720px; }
+  .hm-honest { max-width: 820px; }
+  .hm-honest p { color: var(--muted); }
+</style>

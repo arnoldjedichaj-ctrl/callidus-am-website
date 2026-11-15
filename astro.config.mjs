@@ -38,6 +38,7 @@ const sitemapRedirectPaths = new Set([
   '/apps/',
   '/gesundheitsbuch-kinder/',
   '/heute-mal-nicht-alles/',
+  '/heute-mal-nicht-weiterdenken/',
   '/not-everything-today/',
   '/unsere-empfehlungen/geist-and-seele-1/',
   '/biologische-verjungung/',
