@@ -25,7 +25,7 @@ export const books = [
     href: '/buecher/heute-mal-nicht-weiterdenken/',
     cover: '/assets/books/heute-mal-nicht-weiterdenken/cover.jpg',
     download: { href: '/downloads/heute-mal-nicht-weiterdenken-vordrucke.pdf', label: 'Vordrucke: Wochencheck, Logbuch, Plan für schwierige Tage' },
-    status: 'Erscheint in Kürze',
+    status: 'Neu erschienen',
     isNew: true,
   },
   {
