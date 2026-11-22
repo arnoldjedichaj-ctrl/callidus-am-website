@@ -1,9 +1,17 @@
 ---
 // Bücherregal für /buecher/ und /en/books/. Daten aus src/data/books.js.
-import { booksFor } from '../data/books.js';
+import { booksFor, series } from '../data/books.js';
 const { lang = 'de' } = Astro.props;
 const en = lang === 'en';
-const list = booksFor(lang);
+// Bände einer Reihe (Feld `series`) erscheinen als eine Reihen-Karte an der Stelle des neuesten Bands.
+const list = [];
+for (const book of booksFor(lang)) {
+  if (!book.series || !series[book.series]) { list.push(book); continue; }
+  if (list.some((b) => b.seriesKey === book.series)) continue;
+  const volumes = booksFor(lang).filter((b) => b.series === book.series).sort((a, b) => a.band - b.band);
+  list.push({ ...series[book.series], seriesKey: book.series, group: book.group, volumes,
+    isNew: volumes.some((v) => v.isNew), status: `${volumes.length} Bände` });
+}
 const groups = en
   ? [{ key: 'ratgeber', title: 'Guides for adults', items: list }]
   : [
@@ -20,6 +28,31 @@ const t = en
     <h2>{group.title}</h2>
     <div class="shelf">
       {group.items.map((book) => (
+        book.volumes ? (
+        <article class="shelf-book is-series is-reihe" id={`reihe-${book.seriesKey}`}>
+          <div class="shelf-covers is-books">
+            {book.volumes.map((v) => (
+              <a href={v.href} aria-label={`Band ${v.band}: ${v.title}`}><img src={v.cover} alt={`Buchcover: ${v.title}`} loading="lazy" /></a>
+            ))}
+          </div>
+          <div class="shelf-body">
+            <span class={`shelf-status${book.isNew ? ' is-new' : ''}`}>{book.status}</span>
+            <h3>{book.title}</h3>
+            <p class="shelf-sub">{book.subtitle}</p>
+            <p>{book.teaser}</p>
+            <ol class="shelf-volumes">
+              {book.volumes.map((v) => (
+                <li>
+                  <span class="shelf-band">Band {v.band}</span>
+                  <a href={v.href}><strong>{v.title}</strong></a>
+                  <span class="shelf-vsub">{v.subtitle}</span>
+                  {v.download && <a class="shelf-dl" href={v.download.href}>{t.free}: {v.download.label}</a>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </article>
+        ) : (
         <article class={`shelf-book${book.covers ? ' is-series' : ''}`}>
           <a class="shelf-cover" href={book.href} aria-label={book.title}>
             {book.covers
@@ -37,6 +70,7 @@ const t = en
             </div>
           </div>
         </article>
+        )
       ))}
     </div>
   </div>
@@ -58,6 +92,16 @@ const t = en
   .shelf-cover img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 12px 30px rgba(15, 40, 50, 0.25); }
   .shelf-covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
   .shelf-covers img { aspect-ratio: 1 / 1; object-fit: cover; }
+  .shelf-covers.is-books { align-self: start; }
+  .shelf-covers.is-books img { aspect-ratio: 5 / 8; display: block; width: 100%; height: auto; border-radius: 4px;
+    box-shadow: 0 10px 24px rgba(15, 40, 50, 0.22); }
+  .shelf-book.is-reihe { grid-template-columns: 300px 1fr; }
+  @media (max-width: 640px) { .shelf-book.is-reihe { grid-template-columns: 1fr; } .shelf-book.is-reihe .shelf-covers { max-width: 320px; } }
+  .shelf-volumes { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.75rem; }
+  .shelf-volumes li { display: grid; gap: 0.15rem; padding: 0.75rem 0.9rem; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .shelf-band { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mint); }
+  .shelf-volumes a strong { font-size: 1.05rem; }
+  .shelf-vsub { font-size: 0.9rem; color: var(--muted); }
   .shelf-status { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
     color: var(--mint); margin-bottom: 0.3rem; }
   .shelf-status.is-new { color: var(--gold); }

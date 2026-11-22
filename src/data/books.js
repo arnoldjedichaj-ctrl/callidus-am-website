@@ -1,9 +1,13 @@
 // Zentrale Bücherliste für /buecher/, /en/books/, die Startseite und den Footer.
 // Neues Buch: Eintrag oben ergänzen (neuestes zuerst). Kinderbücher bleiben als Serie
 // gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
+// Reihe „Heute mal nicht“: jeder Band hat einen eigenen Eintrag mit `series` und `band`;
+// das Bücherregal fasst sie zu einer Reihen-Karte zusammen (Angaben in `series` unten).
 export const books = [
   {
     id: 'heute-mal-nicht-ja-sagen',
+    series: 'heute-mal-nicht',
+    band: 3,
     lang: 'de',
     group: 'ratgeber',
     title: 'Heute mal nicht Ja sagen',
@@ -17,6 +21,8 @@ export const books = [
   },
   {
     id: 'heute-mal-nicht-weiterdenken',
+    series: 'heute-mal-nicht',
+    band: 2,
     lang: 'de',
     group: 'ratgeber',
     title: 'Heute mal nicht weiterdenken',
@@ -68,11 +74,13 @@ export const books = [
   },
   {
     id: 'heute-mal-nicht-alles',
+    series: 'heute-mal-nicht',
+    band: 1,
     lang: 'de',
     group: 'ratgeber',
     title: 'Heute mal nicht alles',
     subtitle: 'Nervensystem regulieren: Das ehrliche 4-Wochen-Programm gegen Daueranspannung',
-    teaser: 'Vier Wochen, acht kleine Werkzeuge, etwa 10 Minuten am Tag – und sechs Mythen-Labore, die Vagus-Versprechen ehrlich prüfen.',
+    teaser: 'Band 1 der Reihe: vier Wochen, acht kleine Werkzeuge, etwa 10 Minuten am Tag – und sechs Mythen-Labore, die Vagus-Versprechen ehrlich prüfen.',
     href: '/buecher/heute-mal-nicht-alles/',
     cover: '/assets/books/heute-mal-nicht-alles/cover.jpg',
     download: { href: '/downloads/heute-mal-nicht-alles-vordrucke.pdf', label: 'Vordrucke: Logbuch, Listen, Akuthilfe-Karte' },
@@ -155,5 +163,13 @@ export const books = [
     status: 'Available',
   },
 ];
+
+export const series = {
+  'heute-mal-nicht': {
+    title: 'Reihe „Heute mal nicht“',
+    subtitle: 'Ehrliche 4-Wochen-Arbeitsbücher von Callidus',
+    teaser: 'Jeder Band nimmt sich ein Muster vor, das den Alltag schwer macht: erst verstehen, mit Quellen und ihren Grenzen, dann kleine Werkzeuge ausprobieren. Mit Jana, Birgit und Selin. Jeder Band ist einzeln lesbar.',
+  },
+};
 
 export const booksFor = (lang) => books.filter((b) => b.lang === lang);
