@@ -12,7 +12,7 @@ export const books = [
     href: '/buecher/heute-mal-nicht-ja-sagen/',
     cover: '/assets/books/heute-mal-nicht-ja-sagen/cover.jpg',
     download: { href: '/downloads/heute-mal-nicht-ja-sagen-vordrucke.pdf', label: 'Vordrucke: Zusage korrigieren, Wochencheck, Plan für schwierige Tage' },
-    status: 'Erscheint in Kürze',
+    status: 'Neu erschienen',
     isNew: true,
   },
   {
