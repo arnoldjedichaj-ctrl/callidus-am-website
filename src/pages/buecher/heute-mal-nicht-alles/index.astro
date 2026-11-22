@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { bonusFor } from '../../../data/book-bonus.js';
-// Buchseite „Heute mal nicht alles“ (Callidus A&M, KDP 2026).
+// Buchseite „Heute mal nicht alles“ (Callidus A&M, KDP 2026, Band 1 der Reihe „Heute mal nicht“).
 // Das Buch druckt die Kurzadresse callidus-am.de/heute-mal-nicht-alles (Weiterleitung hierher)
 // und verweist auf die Vordrucke. Pfad des PDFs nicht mehr ändern.
 const asset = '/assets/books/heute-mal-nicht-alles';
@@ -48,7 +48,7 @@ const bonus = bonusFor('de');
         <img src={`${asset}/cover.jpg`} alt="Buchcover: Heute mal nicht alles – Nervensystem regulieren gegen Daueranspannung, etwa 10 Minuten am Tag, von Callidus" width="600" height="960" loading="eager" />
       </figure>
       <div>
-        <p class="eyebrow" data-reveal>Neues Buch · Ratgeber</p>
+        <p class="eyebrow" data-reveal>Band 1 der Reihe „Heute mal nicht“</p>
         <h1 data-reveal="2">Heute mal nicht alles</h1>
         <p class="hm-sub" data-reveal="2">Nervensystem regulieren: Das ehrliche 4-Wochen-Programm gegen Daueranspannung</p>
         <p class="lede" data-reveal="3">
