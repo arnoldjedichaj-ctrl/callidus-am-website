@@ -3,6 +3,19 @@
 // gebündelt, die Bände selbst pflegt src/pages/kinderbuch/index.astro.
 export const books = [
   {
+    id: 'heute-mal-nicht-ja-sagen',
+    lang: 'de',
+    group: 'ratgeber',
+    title: 'Heute mal nicht Ja sagen',
+    subtitle: 'People Pleasing verstehen: In 4 Wochen Nein sagen und Grenzen setzen üben',
+    teaser: 'Band 3 der Reihe: Psychologie in normalem Ton, jede Situation auch aus Sicht der Person, die fragt. 6 Werkzeuge, 4 Mythen-Labore, kein Pauschal-Nein.',
+    href: '/buecher/heute-mal-nicht-ja-sagen/',
+    cover: '/assets/books/heute-mal-nicht-ja-sagen/cover.jpg',
+    download: { href: '/downloads/heute-mal-nicht-ja-sagen-vordrucke.pdf', label: 'Vordrucke: Zusage korrigieren, Wochencheck, Plan für schwierige Tage' },
+    status: 'Erscheint in Kürze',
+    isNew: true,
+  },
+  {
     id: 'heute-mal-nicht-weiterdenken',
     lang: 'de',
     group: 'ratgeber',
