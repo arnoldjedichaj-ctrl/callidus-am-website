@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { bonusFor } from '../../../data/book-bonus.js';
+// Buchseite Band 2: „Krafttraining für Frauen ab 40 – Die nächste Stufe“ (Callidus, KDP 2026).
+// Die Vorlagen gibt es wie bei neuen Büchern üblich über die Bonusseite (Pfad unter /downloads/ nie ändern).
+const asset = '/assets/books/krafttraining-frauen-ab-40-die-naechste-stufe';
+const readingSample = `${asset}/leseprobe.pdf`;
+// Amazon.de-Suche nach Titel, bis das Buch eine ASIN hat.
+const amazonUrl = 'https://www.amazon.de/s?k=Krafttraining+f%C3%BCr+Frauen+ab+40+Die+n%C3%A4chste+Stufe+Callidus';
+
+const inside = [
+  { title: 'Einstiegscheck statt Sprung ins kalte Wasser', text: 'Eine Checkliste und zwei kurze Probeeinheiten helfen dir, zwischen Aufbauplan und vierwöchigem Grundlagenpfad zu wählen.', accent: 'mint' },
+  { title: '12 Wochen in drei Blöcken', text: 'Kalibrieren, Ausbauen, Festigen: mit Entlastungswoche, Meilensteinen in Woche 4, 8 und 12 und klaren Regeln, wann du steigerst.', accent: 'coral' },
+  { title: '13 Übungsgruppen mit Varianten', text: 'Von der Goblet-Kniebeuge bis zum Pallof-Press. Jede mit Stoppzeichen und einer Lösung, wenn du keine schwereren Hanteln hast.', accent: 'gold' },
+  { title: 'Einheit Z: Training auf Zeit', text: 'Freiwillig, mit klaren Pausenregeln. Die Uhr erzwingt keine zusätzlichen Wiederholungen.', accent: 'mint' },
+  { title: 'Essen für Kraft', text: 'Eiweiß im Alltag und an Ruhetagen, Wechseljahre und Kreatin ehrlich eingeordnet, 16 eiweißreiche Rezepte, Beispielwoche und Einkaufsliste.', accent: 'coral' },
+  { title: 'Ausgleich', text: 'Zwei bebilderte Beweglichkeitsroutinen und eine Entscheidungshilfe: normal trainieren, reduzieren oder pausieren.', accent: 'gold' },
+];
+const examples = [
+  { src: `${asset}/ex-21B-goblet-frei.jpg`, title: 'Goblet-Kniebeuge', label: 'Kniebeuge' },
+  { src: `${asset}/ex-26B-schulterdruecken-stehend.jpg`, title: 'Schulterdrücken im Stehen', label: 'Drücken' },
+  { src: `${asset}/ex-30C-hip-thrust-sofa.jpg`, title: 'Hip Thrust am Sofa', label: 'Hüfte' },
+  { src: `${asset}/ex-M1-2-hueftbeuger.jpg`, title: 'Hüftbeuger im Schrittstand', label: 'Beweglichkeit' },
+];
+const editions = [
+  { name: 'Taschenbuch', detail: '114 Seiten · 17,8 × 25,4 cm · Trainingskarten und 12 Wochenprotokolle zum Eintragen', price: '18,90 €' },
+  { name: 'Kindle E-Book', detail: 'Trainingstabellen fürs Handy · Vorlagen zum Ausdrucken über die Bonusseite', price: '6,99 €' },
+];
+const bonus = bonusFor('de');
+---
+<BaseLayout
+  lang="de"
+  title="Krafttraining für Frauen ab 40 – Die nächste Stufe | Callidus"
+  description="Band 2 für Frauen ab 40, die schon mit Kurzhanteln trainieren: 12-Wochen-Aufbauplan in drei Blöcken, 13 Übungsgruppen mit Varianten, freiwillige Einheit auf Zeit, 16 eiweißreiche Rezepte und Beweglichkeitsroutinen."
+  ogImage={`${asset}/og.jpg`}
+>
+  <section class="section">
+    <div class="container st-hero">
+      <figure class="st-cover" data-reveal>
+        <img src={`${asset}/cover.jpg`} alt="Buchcover: Krafttraining für Frauen ab 40 – Die nächste Stufe, Dein 12-Wochen-Aufbauplan mit Hanteln, Intervalltraining, Ernährung und Erholung, von Callidus" width="600" height="857" loading="eager" />
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Stark auf Dauer · Band 2</p>
+        <h1 data-reveal="2">Krafttraining für Frauen ab 40 – Die nächste Stufe</h1>
+        <p class="st-sub" data-reveal="2">Dein 12-Wochen-Aufbauplan mit Hanteln, Intervalltraining, Ernährung und Erholung</p>
+        <p class="lede" data-reveal="3">
+          Die leichten Hanteln reichen nicht mehr? Dieses Buch zeigt dir, wie du dein Training schrittweise steigerst:
+          zwölf Wochen, zwei Krafteinheiten pro Woche, mehr Gewicht, neue Übungen und eine freiwillige Einheit auf Zeit.
+          Dazu kommt, was Kraft im Alltag trägt: genug Eiweiß, gute Erholung und ein Plan für Tage, an denen es nicht rund läuft.
+        </p>
+        <div class="actions" data-reveal="3">
+          <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">Bei Amazon ansehen</a>
+          <a class="button" href={readingSample} target="_blank" rel="noopener">Kostenlose Leseprobe (PDF)</a>
+        </div>
+        <ul class="st-facts" data-reveal="3">
+          <li><strong>12</strong><span>Wochen</span></li>
+          <li><strong>2+1</strong><span>Einheiten pro Woche</span></li>
+          <li><strong>16</strong><span>Rezepte</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container st-honest" data-reveal>
+      <p class="eyebrow">Für wen?</p>
+      <h2>Für Frauen, die schon trainieren</h2>
+      <p>
+        Du trainierst seit einigen Monaten mit Kurzhanteln, zum Beispiel mit <a href="/buecher/krafttraining-frauen-ab-40/">Band 1</a>,
+        und die Grundübungen fallen dir leicht. Vorkenntnisse aus Band 1 sind hilfreich, aber nicht nötig: Der Einstiegscheck zeigt dir,
+        wo du startest. Du brauchst Kurzhanteln, eine Matte, eine fest eingebaute Küchenarbeitsplatte und einen stabilen Stuhl.
+        Ein Widerstandsband ist optional.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Das steckt im Buch</p>
+      <h2 data-reveal="2">Mehr Gewicht, neue Übungen, ein klarer Plan</h2>
+      <div class="st-grid">
+        {inside.map((item, index) => (
+          <article class={`st-card ${item.accent}`} data-reveal={String((index % 3) + 1)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Ein Blick ins Buch</p>
+      <h2 data-reveal="2">Klare Abbildungen für jede Bewegung</h2>
+      <div class="st-gallery">
+        {examples.map((ex) => (
+          <figure class="st-ex" data-reveal>
+            <img src={ex.src} alt={`Abbildung: ${ex.title}`} loading="lazy" />
+            <figcaption><span>{ex.label}</span><strong>{ex.title}</strong></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vorlagen">
+    <div class="container bonus-teaser">
+      <div data-reveal>
+        <p class="eyebrow">Kostenlos zum Ausdrucken</p>
+        <h2>Trainingskarten, Wochenprotokolle und Meilenstein-Seiten</h2>
+        <p>
+          Alle Seiten zum Eintragen aus dem Buch als PDF, besonders praktisch für die Kindle-Ausgabe:
+          Einstiegscheck, sechs Trainingskarten, zwölf Wochenprotokolle, Z-Protokoll und Meilenstein-Checks.
+          Du bekommst den Link über unsere Bonusseite per Mail.
+        </p>
+      </div>
+      <div data-reveal="2">
+        <a class="button" href={bonus.href}>Zum Bonusmaterial</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Ausgaben</p>
+      <h2 data-reveal="2">Taschenbuch oder Kindle</h2>
+      <div class="st-editions">
+        {editions.map((ed) => (
+          <div class="st-edition" data-reveal>
+            <h3>{ed.name}</h3>
+            <p>{ed.detail}</p>
+            <span class="st-price">{ed.price}</span>
+          </div>
+        ))}
+      </div>
+      <div class="actions" style="margin-top:1.2rem">
+        <a class="button primary" href={amazonUrl} target="_blank" rel="noopener">Bei Amazon ansehen</a>
+      </div>
+      <p class="st-note">Preise für Amazon.de. Neue Titel erscheinen erst nach einigen Tagen in der Amazon-Suche.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container st-honest" data-reveal>
+      <h2>Ehrlich, was dieses Buch ist</h2>
+      <p>
+        Dieses Buch bietet allgemeine Informationen zu Training und Ernährung. Es ist keine medizinische Beratung und
+        ersetzt kein persönliches Training. Der Trainingsplan ist ein redaktioneller Vorschlag: Eine fachliche Prüfung durch
+        eine Trainerin, Physiotherapeutin oder Ärztin hat nicht stattgefunden, und der Plan wurde als Ganzes nicht
+        wissenschaftlich getestet. Aussagen zur Forschung stehen mit Quellen im Buch. Text und Abbildungen entstanden mit
+        Unterstützung von KI-Werkzeugen und wurden redaktionell bearbeitet. Wenn du eine Erkrankung, Beschwerden oder
+        Osteoporose hast, sprich vor dem Start mit deiner Ärztin oder deinem Arzt.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bonus-teaser { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+  .bonus-teaser > * { min-width: 0; }
+  @media (max-width: 760px) { .bonus-teaser { grid-template-columns: 1fr; } }
+  .st-hero { display: grid; grid-template-columns: minmax(200px, 340px) 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  @media (max-width: 760px) { .st-hero { grid-template-columns: 1fr; } .st-cover { max-width: 260px; } }
+  .st-hero > *, .st-grid > *, .st-editions > * { min-width: 0; }
+  .st-hero .actions { flex-wrap: wrap; }
+  .st-cover img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 24px 60px rgba(62, 42, 71, 0.38); }
+  .st-hero h1 { font-size: clamp(2rem, 4.2vw, 3.1rem); line-height: 1.08; }
+  .st-sub { font-size: 1.2rem; font-weight: 700; margin: -0.3rem 0 0.8rem; color: var(--coral); }
+  .st-facts { display: flex; gap: 1.6rem; list-style: none; padding: 0; margin: 1.4rem 0 0; flex-wrap: wrap; }
+  .st-facts li { display: grid; }
+  .st-facts strong { font-size: 1.8rem; line-height: 1; color: var(--mint); }
+  .st-facts span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .st-card { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border-top: 4px solid var(--mint); }
+  .st-card.coral { border-top-color: var(--coral); }
+  .st-card.gold { border-top-color: var(--gold); }
+  .st-card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+  .st-card p { margin: 0; }
+  .st-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .st-ex { margin: 0; overflow: hidden; border-radius: 10px; background: #fff; border: 1px solid var(--line); }
+  .st-ex img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: #fff; }
+  .st-ex figcaption { padding: 0.8rem 0.9rem; background: var(--bg-soft); }
+  .st-ex span { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); }
+  .st-ex strong { color: var(--text); }
+  .st-editions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .st-edition { padding: 1.4rem; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--line); }
+  .st-edition h3 { margin: 0 0 0.4rem; }
+  .st-edition p { margin: 0 0 0.8rem; color: var(--muted); }
+  .st-price { font-size: 1.5rem; font-weight: 800; color: var(--mint); }
+  .st-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); max-width: 720px; }
+  .st-honest { max-width: 820px; }
+  .st-honest p { color: var(--muted); }
+</style>
