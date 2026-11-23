@@ -57,15 +57,15 @@ Die Sätze bleiben sauber. Wird die Ausführung schlampig, wirst du langsamer od
 | Station | Übung | So geht's im Intervall | Leichter |
 |---|---|---|---|
 | 1 | Stuhl-Kniebeuge (01) | Zügig hoch, kontrolliert runter. Kurz antippen statt hinsetzen. | Ganz hinsetzen |
-| 2 | Wand-Liegestütz (06) | Gleichmäßiges Tempo, Körper bleibt gerade. | Weiter von der Wand weg stehen |
+| 2 | Wand-Liegestütz (06) | Gleichmäßiges Tempo, Körper bleibt gerade. | Näher an die Wand stellen |
 | 3 | Hüftbeuge mit Hanteln (03) | Hüfte zurück, Rücken lang. Langsamer als die Kniebeuge. | Ohne Hanteln |
 | 4 | Marschieren auf der Stelle | Knie anheben, Arme mitschwingen. Dein Puls-Baustein. | Knie weniger hoch |
-| 5 | Einarmiges Rudern (08) | Jede Runde die Seite wechseln. In Runde 1 die schwächere Seite. | Leichtere Hantel |
+| 5 | Einarmiges Rudern (08) | Nach der Hälfte der Arbeitszeit die Seite wechseln. Beginne mit der schwächeren Seite. | Leichtere Hantel |
 | 6 | Dead Bug (11) | Langsam bleiben. Der Rücken bleibt am Boden. | Leichtere Variante aus dem Buch |
 
 **Zum Schluss:** zweimal 40 Sekunden Farmer-Gehen (09), dazwischen eine Minute Pause.
 
-**Ausklang:** wie im Buch, etwa fünf Minuten.
+**Ausklang:** wie im Buch, etwa zwei Minuten.
 
 **Gesamtdauer:** etwa 25 bis 35 Minuten.
 
@@ -96,7 +96,7 @@ Zähle in jeder Arbeitsphase deine sauberen Wiederholungen. Bei Marschieren und 
 | Wand-Liegestütz | | | | |
 | Hüftbeuge | | | | |
 | Marschieren | | | | |
-| Rudern (Seite) | | | | |
+| Rudern (je Seite) | | | | |
 | Dead Bug | | | | |
 | Farmer-Gehen | | | | |
 | Anstrengung 1–10 | | | | |
