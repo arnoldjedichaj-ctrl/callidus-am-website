@@ -2,9 +2,10 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { bonusFor } from '../../../data/book-bonus.js';
 // Buchseite Band 2: „Krafttraining für Frauen ab 40 – Die nächste Stufe“ (Callidus, KDP 2026).
-// Die Vorlagen gibt es wie bei neuen Büchern üblich über die Bonusseite (Pfad unter /downloads/ nie ändern).
+// Die Vorlagen sind frei herunterladbar, ohne Anmeldung (das Buch verweist darauf; Pfad unter /downloads/ nie ändern).
 const asset = '/assets/books/krafttraining-frauen-ab-40-die-naechste-stufe';
 const readingSample = `${asset}/leseprobe.pdf`;
+const companionPdf = '/downloads/krafttraining-frauen-ab-40-naechste-stufe-vorlagen.pdf';
 // Amazon.de-Suche nach Titel, bis das Buch eine ASIN hat.
 const amazonUrl = 'https://www.amazon.de/s?k=Krafttraining+f%C3%BCr+Frauen+ab+40+Die+n%C3%A4chste+Stufe+Callidus';
 
@@ -24,7 +25,7 @@ const examples = [
 ];
 const editions = [
   { name: 'Taschenbuch', detail: '114 Seiten · 17,8 × 25,4 cm · Trainingskarten und 12 Wochenprotokolle zum Eintragen', price: '18,90 €' },
-  { name: 'Kindle E-Book', detail: 'Trainingstabellen fürs Handy · Vorlagen zum Ausdrucken über die Bonusseite', price: '6,99 €' },
+  { name: 'Kindle E-Book', detail: 'Trainingstabellen fürs Handy · Vorlagen zum Ausdrucken frei herunterladbar', price: '6,99 €' },
 ];
 const bonus = bonusFor('de');
 ---
@@ -112,11 +113,12 @@ const bonus = bonusFor('de');
         <p>
           Alle Seiten zum Eintragen aus dem Buch als PDF, besonders praktisch für die Kindle-Ausgabe:
           Einstiegscheck, sechs Trainingskarten, zwölf Wochenprotokolle, Z-Protokoll und Meilenstein-Checks.
-          Du bekommst den Link über unsere Bonusseite per Mail.
+          25 Seiten, ohne Anmeldung. Wenn du das Material zu allen Büchern lieber gesammelt per Mail bekommst,
+          nutze die <a href={bonus.href}>Bonusseite</a>.
         </p>
       </div>
       <div data-reveal="2">
-        <a class="button" href={bonus.href}>Zum Bonusmaterial</a>
+        <a class="button primary" href={companionPdf} download>Vorlagen herunterladen (PDF)</a>
       </div>
     </div>
   </section>

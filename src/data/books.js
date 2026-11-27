@@ -96,7 +96,7 @@ export const books = [
     teaser: 'Band 2 für Fortgeschrittene: Aufbauplan in drei Blöcken, 13 Übungsgruppen mit Varianten, freiwillige Einheit auf Zeit, 16 eiweißreiche Rezepte und Beweglichkeitsroutinen.',
     href: '/buecher/krafttraining-frauen-ab-40-die-naechste-stufe/',
     cover: '/assets/books/krafttraining-frauen-ab-40-die-naechste-stufe/cover.jpg',
-    download: { href: '/buecher/bonusmaterial/', label: 'Trainingskarten, Wochenprotokolle und Meilenstein-Seiten' },
+    download: { href: '/downloads/krafttraining-frauen-ab-40-naechste-stufe-vorlagen.pdf', label: 'Trainingskarten, Wochenprotokolle und Meilenstein-Seiten' },
     status: 'Neu',
     isNew: true,
   },
